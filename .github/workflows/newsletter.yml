@@ -1,10 +1,7 @@
 name: Quite Frankly Newsletter
 
 on:
-  schedule:
-    # 12:00 UTC = 8:00 AM EDT (summer). In winter this runs at 7:00 AM EST - still fine.
-    - cron: '0 12 * * *'
-  workflow_dispatch: # lets you trigger a test run manually from the GitHub UI
+  workflow_dispatch:
 
 jobs:
   send-newsletter:
