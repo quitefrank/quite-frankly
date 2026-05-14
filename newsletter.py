@@ -20,6 +20,7 @@ import feedparser
 # ── Config ─────────────────────────────────────────────────────────────────────
 
 RECIPIENT = "suarez.milan@gmail.com"
+SENDER = "frank@quitefrank.co"
 SEEN_LINKS_FILE = "seen_links.json"
 SEVEN_DAYS_S = 7 * 24 * 60 * 60
 
@@ -565,13 +566,13 @@ def send_email(html, subject):
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
-    msg["From"]    = f"Quite Frankly <{gmail_user}>"
+    msg["From"]    = f"Quite Frankly <{SENDER}>"
     msg["To"]      = RECIPIENT
     msg.attach(MIMEText(html, "html"))
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(gmail_user, gmail_password)
-        server.sendmail(gmail_user, RECIPIENT, msg.as_string())
+        server.sendmail(SENDER, RECIPIENT, msg.as_string())
 
     print(f"Sent: {subject}")
 
