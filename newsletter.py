@@ -73,7 +73,14 @@ SOURCE_FAVICONS = {
     "r/canadahousing":     "https://www.google.com/s2/favicons?domain=reddit.com&sz=64",
 }
 
-SYSTEM_PROMPT = """You are a daily briefing editor. Follow this format exactly. Here is an example of one correctly formatted section:
+SYSTEM_PROMPT = """You are a daily briefing editor.
+
+Before the briefing, output a single SUBJECT line on its very first line, in this exact format:
+SUBJECT: <emoji> <headline>
+
+Pick the single most consequential or interesting story across all the headlines provided and rewrite it as a tight subject line of at most 70 characters, no quotation marks, no trailing punctuation. Choose one emoji that best captures the topic (examples: legislation ⚖️, tech 💻, housing 🏠, markets 📈, design 🎨, transit 🚇, climate 🌍, world news 🌐, AI 🤖, sports 🏆). After the SUBJECT line, leave one blank line, then continue with the briefing format below.
+
+Follow this format exactly. Here is an example of one correctly formatted section:
 
 ## Canada & Toronto
 
@@ -504,12 +511,25 @@ def build_everything_else(links, used_headlines):
     )
 
 
+def parse_subject_line(claude_response):
+    stripped = claude_response.lstrip()
+    first_line, _, rest = stripped.partition("\n")
+    if first_line.startswith("SUBJECT:"):
+        return first_line[len("SUBJECT:"):].strip(), rest.lstrip()
+    return None, claude_response
+
+
 def build_email_html(claude_response, links):
     toronto_tz  = ZoneInfo("America/Toronto")
     now_toronto = datetime.now(toronto_tz)
     today_long  = now_toronto.strftime("%A, %B %-d, %Y")
-    subject_date= now_toronto.strftime("%a, %b %-d, %Y")
-    subject     = f"Quite Frankly - {subject_date}"
+    short_date  = now_toronto.strftime("%b %-d")
+
+    parsed_subject, claude_response = parse_subject_line(claude_response)
+    if parsed_subject:
+        subject = f"{parsed_subject} · {short_date}"
+    else:
+        subject = f"Quite Frankly · {short_date}"
 
     sections_html, used_headlines = parse_and_render_sections(claude_response, links)
     everything_else_html          = build_everything_else(links, used_headlines)
