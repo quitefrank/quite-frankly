@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 from config import SECTION_MAP
 from routing import get_mode, get_feeds_for_mode
 from pipeline import fetch_all_feeds, deduplicate, assign_ids
-from triage import call_triage, parse_triage_response, build_triage_user_message
+from triage import call_triage, cap_items
 from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email
 
 
@@ -31,10 +31,12 @@ def main():
 
     clusters_by_item_id = {}
     try:
+        capped_items = cap_items(items)
+        if len(capped_items) < len(items):
+            print(f"Capped triage input from {len(items)} to {len(capped_items)} items")
         print("Calling triage pass...")
-        triage_user = build_triage_user_message(items)
-        triage_raw = call_triage(triage_user)
-        tiered_items, clusters = parse_triage_response(triage_raw)
+        tiered_items, clusters = call_triage(capped_items)
+        print(f"Triage returned {len(tiered_items)} scored items, {len(clusters)} clusters")
 
         print("Calling format pass...")
         format_input = build_format_input(tiered_items, clusters, links_by_id)

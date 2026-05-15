@@ -371,7 +371,7 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None):
     inner_html = ""
 
     for section in section_order:
-        section_links = grouped.get(section, [])
+        section_links = grouped.get(section, [])[:10]
         if not section_links:
             continue
         items = ""

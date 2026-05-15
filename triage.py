@@ -1,4 +1,9 @@
-"""Pass-1 Claude triage: score, tier, and cluster items."""
+"""Pass-1 Claude triage: score, tier, and cluster items.
+
+Uses Anthropic tool-use structured output so the model cannot return
+items missing required fields. Falls back to JSON parsing if tool use
+isn't available on the chosen model.
+"""
 
 from __future__ import annotations
 
@@ -11,18 +16,135 @@ import anthropic
 from prompts import TRIAGE_SYSTEM_PROMPT
 
 
-def call_triage(headlines_text: str) -> str:
+MAX_TRIAGE_INPUT_ITEMS = 120
+
+
+TRIAGE_TOOL = {
+    "name": "emit_triage",
+    "description": "Emit the full triage result for today's headlines. Every input item must appear exactly once in 'items'.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "integer", "description": "The exact [#N] id from the input headline."},
+                        "tier": {"type": "integer", "enum": [0, 1, 2, 3]},
+                        "section": {
+                            "type": "string",
+                            "enum": [
+                                "Canada & Toronto",
+                                "Toronto Housing",
+                                "Tech & AI",
+                                "Design & Product",
+                                "Finance & Markets",
+                                "US & Global",
+                                "Worth Knowing",
+                            ],
+                        },
+                        "cluster_id": {"type": "string"},
+                        "cross_source_coverage": {"type": "integer", "minimum": 1},
+                        "personal_relevance": {"type": "integer", "minimum": 0, "maximum": 3},
+                        "section_fit": {"type": "string", "enum": ["good", "weak", "none"]},
+                        "promotion_to_worth_knowing": {"type": "boolean"},
+                    },
+                    "required": ["id", "tier", "section", "cluster_id", "cross_source_coverage", "personal_relevance", "section_fit", "promotion_to_worth_knowing"],
+                },
+            },
+            "clusters": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string"},
+                        "primary_source": {"type": "string"},
+                        "also_in": {"type": "array", "items": {"type": "string"}},
+                        "canonical_headline": {"type": "string"},
+                    },
+                    "required": ["id", "primary_source", "also_in", "canonical_headline"],
+                },
+            },
+        },
+        "required": ["items", "clusters"],
+    },
+}
+
+
+def cap_items(items: list[dict], cap: int = MAX_TRIAGE_INPUT_ITEMS) -> list[dict]:
+    """Limit items going into triage to keep the output schema tractable.
+
+    Round-robins by source so no single high-volume feed crowds out everyone.
+    """
+    if len(items) <= cap:
+        return items
+    by_source: dict[str, list[dict]] = {}
+    for item in items:
+        by_source.setdefault(item["source"], []).append(item)
+    queues = list(by_source.values())
+    out: list[dict] = []
+    idx = 0
+    while len(out) < cap and any(queues):
+        q = queues[idx % len(queues)]
+        if q:
+            out.append(q.pop(0))
+        idx += 1
+        if all(not q for q in queues):
+            break
+    return out[:cap]
+
+
+def call_triage(items: list[dict]) -> tuple[list[dict], dict[str, dict]]:
+    """Run the triage pass and return (tiered_items, clusters_by_id).
+
+    Uses tool-use structured output so required fields are guaranteed.
+    """
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    user_message = build_triage_user_message(items)
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
         max_tokens=16000,
         system=TRIAGE_SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": headlines_text}],
+        tools=[TRIAGE_TOOL],
+        tool_choice={"type": "tool", "name": "emit_triage"},
+        messages=[{"role": "user", "content": user_message}],
     )
-    return message.content[0].text
+    for block in message.content:
+        if getattr(block, "type", None) == "tool_use" and block.name == "emit_triage":
+            return _shape_tool_output(block.input)
+    raise RuntimeError("Triage tool call missing from response")
+
+
+def _shape_tool_output(payload: dict) -> tuple[list[dict], dict[str, dict]]:
+    raw_items = payload.get("items", [])
+    raw_clusters = payload.get("clusters", [])
+    items: list[dict] = []
+    dropped = 0
+    for it in raw_items:
+        if "id" not in it or "tier" not in it or "section" not in it:
+            dropped += 1
+            continue
+        items.append({
+            "id": it["id"],
+            "tier": it["tier"],
+            "section": it["section"],
+            "cluster_id": it.get("cluster_id", ""),
+            "scores": {
+                "cross_source_coverage": it.get("cross_source_coverage", 1),
+                "personal_relevance": it.get("personal_relevance", 0),
+                "section_fit": it.get("section_fit", "weak"),
+            },
+            "promotion_to_worth_knowing": it.get("promotion_to_worth_knowing", False),
+        })
+    if dropped:
+        print(f"  Triage: dropped {dropped} malformed item(s) from tool output")
+    clusters = {c["id"]: c for c in raw_clusters if "id" in c}
+    return items, clusters
 
 
 def parse_triage_response(raw: str) -> tuple[list[dict], dict[str, dict]]:
+    """Legacy text-JSON parser, kept for tests. Production uses call_triage."""
     cleaned = re.sub(r"^```(json)?\s*|\s*```$", "", raw.strip(), flags=re.MULTILINE)
     data = json.loads(cleaned)
     items = data.get("items", [])
@@ -39,4 +161,4 @@ def build_triage_user_message(items: list[dict]) -> str:
     lines = []
     for i in items:
         lines.append(f"[#{i['id']}] [{i.get('section_label', '?')}] {i['title']} | Source: {i['source']}")
-    return "Here are today's headlines:\n\n" + "\n".join(lines)
+    return "Here are today's headlines. Call emit_triage with one entry per item:\n\n" + "\n".join(lines)
