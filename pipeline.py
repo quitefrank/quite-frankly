@@ -55,9 +55,11 @@ def fetch_feed(feed_config):
     return items
 
 
-def fetch_all_feeds():
+def fetch_all_feeds(feeds=None):
+    if feeds is None:
+        feeds = FEEDS  # back-compat
     all_items = []
-    for feed_config in FEEDS:
+    for feed_config in feeds:
         items = fetch_feed(feed_config)
         print(f"  {feed_config['source']}: {len(items)} items")
         all_items.extend(items)

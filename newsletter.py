@@ -1,14 +1,23 @@
 #!/usr/bin/env python3
 """Quite Frankly daily newsletter entry point."""
 
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 from config import SECTION_MAP
+from routing import get_mode, get_feeds_for_mode
 from pipeline import fetch_all_feeds, deduplicate
 from formatting import call_formatter, build_email_html, send_email
 
 
 def main():
+    today = datetime.now(ZoneInfo("America/Toronto")).date()
+    mode = get_mode(today)
+    print(f"Mode: {mode.value}")
+
+    feeds = get_feeds_for_mode(mode)
     print("Fetching feeds...")
-    all_items = fetch_all_feeds()
+    all_items = fetch_all_feeds(feeds)
     print(f"Total raw items: {len(all_items)}")
 
     print("Deduplicating...")
