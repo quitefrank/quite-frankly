@@ -1,5 +1,7 @@
 """RSS fetching and deduplication for the newsletter pipeline."""
 
+from __future__ import annotations
+
 import json
 import os
 import re
@@ -99,3 +101,16 @@ def deduplicate(items):
 
     save_seen_links(seen)
     return fresh
+
+
+def assign_ids(items: list[dict]) -> dict[int, dict]:
+    by_id = {}
+    for idx, item in enumerate(items):
+        item["id"] = idx
+        by_id[idx] = item
+    return by_id
+
+
+def monday_dedup_bypass(items: list[dict], seen: dict) -> list[dict]:
+    """On Mondays, re-admit items already in `seen` only if cluster_size >= 3."""
+    return [i for i in items if i["link"] in seen and i.get("cluster_size", 0) >= 3]
