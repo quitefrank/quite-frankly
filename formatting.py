@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import smtplib
@@ -14,6 +15,43 @@ import anthropic
 
 from config import RECIPIENT, SECTION_EMOJIS, SECTION_MAP, SENDER, SOURCE_FAVICONS, TEST_MODE
 from prompts import FORMAT_SYSTEM_PROMPT
+
+
+SECTION_ORDER = [
+    "Canada & Toronto",
+    "Toronto Housing",
+    "Tech & AI",
+    "Finance & Markets",
+    "US & Global",
+    "Worth Knowing",
+]
+
+
+def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], links_by_id: dict[int, dict]) -> str:
+    by_section: dict[str, dict[str, list]] = {
+        s: {"tier_1": [], "tier_2": [], "tier_3": []} for s in SECTION_ORDER
+    }
+    for item in tiered_items:
+        section = item.get("section")
+        tier = item.get("tier", 0)
+        if section not in by_section or tier == 0:
+            continue
+        bucket = f"tier_{tier}"
+        if bucket not in by_section[section]:
+            continue
+        link = links_by_id.get(item["id"], {})
+        by_section[section][bucket].append({
+            "id": item["id"],
+            "title": link.get("title", ""),
+            "snippet": link.get("snippet", ""),
+            "source": link.get("source", ""),
+            "cluster_id": item.get("cluster_id"),
+        })
+
+    return json.dumps({
+        "sections": by_section,
+        "clusters": clusters,
+    }, indent=2)
 
 
 # ── Claude API ─────────────────────────────────────────────────────────────────

@@ -17,12 +17,16 @@ def sample_format_response():
 
 @pytest.fixture
 def fake_anthropic_client(monkeypatch, sample_format_response):
+    triage_json = (FIXTURES / "sample_triage_response.json").read_text()
+    responses = iter([triage_json, sample_format_response])
+
     class FakeMessage:
-        content = [type("Block", (), {"text": sample_format_response})()]
+        def __init__(self, text):
+            self.content = [type("Block", (), {"text": text})()]
 
     class FakeMessages:
         def create(self, **kwargs):
-            return FakeMessage()
+            return FakeMessage(next(responses))
 
     class FakeClient:
         messages = FakeMessages()
