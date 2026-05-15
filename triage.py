@@ -15,7 +15,7 @@ def call_triage(headlines_text: str) -> str:
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
-        max_tokens=8000,
+        max_tokens=16000,
         system=TRIAGE_SYSTEM_PROMPT,
         messages=[{"role": "user", "content": headlines_text}],
     )

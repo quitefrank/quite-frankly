@@ -14,7 +14,7 @@ from zoneinfo import ZoneInfo
 import anthropic
 
 from config import RECIPIENT, SECTION_EMOJIS, SECTION_MAP, SENDER, SOURCE_FAVICONS, TEST_MODE
-from prompts import FORMAT_SYSTEM_PROMPT
+from prompts import FORMAT_SYSTEM_PROMPT, LEGACY_FORMAT_SYSTEM_PROMPT
 
 
 SECTION_ORDER = [
@@ -68,6 +68,27 @@ def call_formatter(headlines_text):
         model="claude-sonnet-4-20250514",
         max_tokens=4000,
         system=FORMAT_SYSTEM_PROMPT,
+        messages=[{"role": "user", "content": user_message}],
+    )
+    return message.content[0].text
+
+
+def call_legacy_formatter(headlines_text):
+    """Fallback formatter using the pre-redesign single-pass prompt.
+
+    Used when the two-pass triage pipeline fails. Accepts raw headlines
+    text (one item per line, `[#N] [Section] Title | Source: src`).
+    """
+    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    user_message = (
+        "Here are today's real headlines from my RSS feeds. Use ONLY these real stories:\n\n"
+        + headlines_text
+        + "\n\nGenerate my daily briefing following the exact format specified."
+    )
+    message = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=4000,
+        system=LEGACY_FORMAT_SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_message}],
     )
     return message.content[0].text
