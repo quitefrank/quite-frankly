@@ -1,9 +1,12 @@
 """Static configuration for the Quite Frankly newsletter."""
 
+import os
+
 RECIPIENT = "suarez.milan@gmail.com"
 SENDER = "frank@quitefrank.co"
 SEEN_LINKS_FILE = "seen_links.json"
 SEVEN_DAYS_S = 7 * 24 * 60 * 60
+TEST_MODE = os.environ.get("MODE") == "test"
 
 FEEDS = [
     {"url": "https://www.cbc.ca/cmlink/rss-canada-toronto",                                               "source": "CBC"},

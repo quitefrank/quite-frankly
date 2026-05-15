@@ -7,7 +7,7 @@ import time
 
 import feedparser
 
-from config import FEEDS, SEEN_LINKS_FILE, SEVEN_DAYS_S
+from config import FEEDS, SEEN_LINKS_FILE, SEVEN_DAYS_S, TEST_MODE
 
 
 def extract_image(entry):
@@ -78,6 +78,10 @@ def save_seen_links(seen):
 
 
 def deduplicate(items):
+    if TEST_MODE:
+        print("[TEST MODE] Bypassing dedup cache; subject will be prefixed [TEST]")
+        return items
+
     seen = load_seen_links()
     now  = time.time()
     seen = {url: ts for url, ts in seen.items() if now - ts < SEVEN_DAYS_S}

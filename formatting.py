@@ -10,7 +10,7 @@ from zoneinfo import ZoneInfo
 
 import anthropic
 
-from config import RECIPIENT, SECTION_EMOJIS, SECTION_MAP, SENDER, SOURCE_FAVICONS
+from config import RECIPIENT, SECTION_EMOJIS, SECTION_MAP, SENDER, SOURCE_FAVICONS, TEST_MODE
 from prompts import FORMAT_SYSTEM_PROMPT
 
 
@@ -351,6 +351,9 @@ def build_email_html(claude_response, links_by_id):
         subject = f"{parsed_subject} · {short_date}"
     else:
         subject = f"Quite Frankly · {short_date}"
+
+    if TEST_MODE:
+        subject = f"[TEST] {subject}"
 
     sections_html, used_ids = parse_and_render_sections(claude_response, links_by_id)
     everything_else_html    = build_everything_else(links_by_id, used_ids)
