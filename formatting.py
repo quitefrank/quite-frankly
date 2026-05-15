@@ -21,6 +21,7 @@ SECTION_ORDER = [
     "Canada & Toronto",
     "Toronto Housing",
     "Tech & AI",
+    "Design & Product",
     "Finance & Markets",
     "US & Global",
     "Worth Knowing",

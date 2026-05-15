@@ -44,6 +44,7 @@ For each section in this exact order (skip a section entirely if it has no items
 ## Canada & Toronto
 ## Toronto Housing
 ## Tech & AI
+## Design & Product
 ## Finance & Markets
 ## US & Global
 ## Worth Knowing
