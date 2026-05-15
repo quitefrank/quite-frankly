@@ -1,5 +1,7 @@
 """Claude formatter call, HTML rendering, and email send."""
 
+from __future__ import annotations
+
 import os
 import re
 import smtplib
@@ -37,21 +39,30 @@ def call_formatter(headlines_text):
 ID_TAG_RE = re.compile(r"\s*\[#(\d+)\]\s*$")
 
 
-def source_with_favicon(source_name, article_link=None):
+def render_source_line(primary_source: str, also_in: list[str], article_link: str | None) -> str:
     favicon = SOURCE_FAVICONS.get(
-        source_name,
-        f"https://www.google.com/s2/favicons?domain={source_name}&sz=64",
+        primary_source,
+        f"https://www.google.com/s2/favicons?domain={primary_source}&sz=64",
     )
     img = (
         f'<img src="{favicon}" width="16" height="16" '
-        f'style="width:16px;height:16px;vertical-align:middle;margin-right:4px;border-radius:3px;display:inline-block">'
+        f'style="width:16px;height:16px;vertical-align:middle;margin-right:4px;'
+        f'border-radius:3px;display:inline-block">'
     )
+    if not also_in:
+        label = primary_source
+    elif len(also_in) == 1:
+        label = f"{primary_source}, {also_in[0]}"
+    else:
+        also_str = ", ".join(also_in)
+        label = f"{primary_source} (also in {also_str})"
+
     if article_link:
         return (
             f'{img}<a href="{article_link}" '
-            f'style="color:#1c7ff2;text-decoration:none;vertical-align:middle;font-size:12px;">{source_name}</a>'
+            f'style="color:#1c7ff2;text-decoration:none;vertical-align:middle;font-size:12px;">{label}</a>'
         )
-    return f'{img}<span style="vertical-align:middle;font-size:12px;color:#999;">{source_name}</span>'
+    return f'{img}<span style="vertical-align:middle;font-size:12px;color:#999;">{label}</span>'
 
 
 def extract_id(text):
@@ -82,9 +93,10 @@ def find_article_data(headline, links_by_id):
     return {"link": None, "image": None, "id": None}
 
 
-def render_other_headlines(other_lines, links_by_id, used_ids):
+def render_other_headlines(other_lines, links_by_id, used_ids, clusters_by_item_id=None):
+    clusters_by_item_id = clusters_by_item_id or {}
     items_html = ""
-    for line in other_lines[:3]:
+    for line in other_lines[:5]:
         cleaned = re.sub(r"^-\s*", "", line).strip()
         m = re.match(r"^\*\*(.*?)\*\*:?\s*(.*?)(?:\s*Source:\s*(.*))?$", cleaned)
         if not m:
@@ -136,7 +148,8 @@ def render_other_headlines(other_lines, links_by_id, used_ids):
     )
 
 
-def parse_and_render_sections(text, links_by_id):
+def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None):
+    clusters_by_item_id = clusters_by_item_id or {}
     used_ids = set()
     blocks   = re.split(r"\n## ", text)
     html     = ""
@@ -192,13 +205,10 @@ def parse_and_render_sections(text, links_by_id):
         if current_story:
             stories.append(current_story)
 
-        stories_html = ""
-
         if not stories and not other_headline_lines:
-            stories_html = (
-                '<p style="margin:0;font-size:14px;color:#999;'
-                'font-family:Helvetica,Arial,sans-serif;font-style:italic">No stories available today.</p>'
-            )
+            continue
+
+        stories_html = ""
 
         for i, s in enumerate(stories):
             border       = "" if i == len(stories) - 1 else "border-bottom:1px solid #f0f0f0;padding-bottom:16px;margin-bottom:16px;"
@@ -243,11 +253,19 @@ def parse_and_render_sections(text, links_by_id):
                         f'font-family:Helvetica,Arial,sans-serif">{p}</p>'
                     )
 
-            if s["source"]:
+            cluster = clusters_by_item_id.get(article_data["id"]) if article_data["id"] is not None else None
+            if cluster:
+                primary_source = cluster.get("primary_source") or s["source"]
+                also_in = cluster.get("also_in") or []
+            else:
+                primary_source = s["source"]
+                also_in = []
+
+            if primary_source:
                 stories_html += (
                     f'<p style="margin:0 0 10px;font-size:12px;color:#999;'
                     f'font-family:Helvetica,Arial,sans-serif">'
-                    f'{source_with_favicon(s["source"], article_link)}</p>'
+                    f'{render_source_line(primary_source, also_in, article_link)}</p>'
                 )
 
             if s["callout"]:
@@ -261,7 +279,7 @@ def parse_and_render_sections(text, links_by_id):
             stories_html += "</div>"
 
         if other_headline_lines:
-            stories_html += render_other_headlines(other_headline_lines, links_by_id, used_ids)
+            stories_html += render_other_headlines(other_headline_lines, links_by_id, used_ids, clusters_by_item_id)
 
         html += (
             f'\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid #e6e6e6;'
@@ -277,7 +295,8 @@ def parse_and_render_sections(text, links_by_id):
     return html, used_ids
 
 
-def build_everything_else(links_by_id, used_ids):
+def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None):
+    clusters_by_item_id = clusters_by_item_id or {}
     grouped = {}
     for lid, l in links_by_id.items():
         if lid in used_ids:
@@ -340,7 +359,8 @@ def parse_subject_line(claude_response):
     return None, claude_response
 
 
-def build_email_html(claude_response, links_by_id):
+def build_email_html(claude_response, links_by_id, clusters_by_item_id=None):
+    clusters_by_item_id = clusters_by_item_id or {}
     toronto_tz  = ZoneInfo("America/Toronto")
     now_toronto = datetime.now(toronto_tz)
     today_long  = now_toronto.strftime("%A, %B %-d, %Y")
@@ -355,8 +375,8 @@ def build_email_html(claude_response, links_by_id):
     if TEST_MODE:
         subject = f"[TEST] {subject}"
 
-    sections_html, used_ids = parse_and_render_sections(claude_response, links_by_id)
-    everything_else_html    = build_everything_else(links_by_id, used_ids)
+    sections_html, used_ids = parse_and_render_sections(claude_response, links_by_id, clusters_by_item_id)
+    everything_else_html    = build_everything_else(links_by_id, used_ids, clusters_by_item_id)
 
     html = f"""<!DOCTYPE html>
 <html>
