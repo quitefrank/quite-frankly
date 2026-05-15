@@ -28,6 +28,17 @@ SECTION_ORDER = [
 ]
 
 
+SECTION_FIT_SCORE = {"good": 1, "weak": 0, "none": -1}
+
+
+def _item_score(scores: dict) -> int:
+    return (
+        scores.get("cross_source_coverage", 0)
+        + scores.get("personal_relevance", 0)
+        + SECTION_FIT_SCORE.get(scores.get("section_fit", "weak"), 0)
+    )
+
+
 def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], links_by_id: dict[int, dict]) -> str:
     by_section: dict[str, dict[str, list]] = {
         s: {"tier_1": [], "tier_2": [], "tier_3": []} for s in SECTION_ORDER
@@ -47,10 +58,38 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
             "snippet": link.get("snippet", ""),
             "source": link.get("source", ""),
             "cluster_id": item.get("cluster_id"),
+            "_score": _item_score(item.get("scores", {})),
         })
 
+    for section_buckets in by_section.values():
+        for bucket in section_buckets.values():
+            bucket.sort(key=lambda x: x["_score"], reverse=True)
+
+    for buckets in by_section.values():
+        if buckets["tier_1"]:
+            continue
+        for fallback_tier in ("tier_2", "tier_3"):
+            if buckets[fallback_tier]:
+                buckets["tier_1"].append(buckets[fallback_tier].pop(0))
+                break
+
+    def _section_max_score(buckets: dict) -> int:
+        all_scores = [item["_score"] for bucket in buckets.values() for item in bucket]
+        return max(all_scores) if all_scores else -100
+
+    sorted_sections = dict(sorted(
+        by_section.items(),
+        key=lambda kv: _section_max_score(kv[1]),
+        reverse=True,
+    ))
+
+    for section_buckets in sorted_sections.values():
+        for bucket in section_buckets.values():
+            for item in bucket:
+                item.pop("_score", None)
+
     return json.dumps({
-        "sections": by_section,
+        "sections": sorted_sections,
         "clusters": clusters,
     }, indent=2)
 

@@ -39,14 +39,7 @@ Pick the single most consequential Tier 1 item across all sections as the subjec
 
 After SUBJECT, leave one blank line, then write the briefing.
 
-For each section in this exact order (skip a section entirely if it has no items):
-## Canada & Toronto
-## Toronto Housing
-## Tech & AI
-## Design & Product
-## Finance & Markets
-## US & Global
-## Worth Knowing
+Render sections in the order they appear in the input "sections" object. Section ordering is determined by the input (highest-ranked section first). Skip a section entirely if it has no items in any tier.
 
 For Tier 1 items, write a full story:
 
@@ -81,7 +74,7 @@ For each section with Tier 3 items, add a subsection:
 
 CRITICAL RULES YOU MUST FOLLOW:
 1. Every input item carries an [#N] ID. You MUST preserve the exact [#N] inside the bold markers of every featured headline, and at the same position inside the bold for Other Headlines and Everything Else items. Example: **Headline text [#42]**.
-2. Never move an item to a different section than the triage assigned. Section is final.
+2. Never move an item to a different section than the triage assigned. Section is final. Render sections in the order they appear in the input.
 3. Never invent items. Use only the IDs provided in the input.
 4. For each item, use the cluster's primary_source for the Source line. If the input does not provide a cluster, fall back to the item's own source.
 5. Body paragraphs must be separated by exactly one blank line.
