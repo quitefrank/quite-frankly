@@ -23,6 +23,7 @@ RECIPIENT = "suarez.milan@gmail.com"
 SENDER = "frank@quitefrank.co"
 SEEN_LINKS_FILE = "seen_links.json"
 SEVEN_DAYS_S = 7 * 24 * 60 * 60
+TEST_MODE = os.environ.get("MODE") == "test"
 
 FEEDS = [
     {"url": "https://www.cbc.ca/cmlink/rss-canada-toronto",                                               "source": "CBC"},
@@ -535,6 +536,8 @@ def build_email_html(claude_response, links):
         subject = f"{parsed_subject} · {short_date}"
     else:
         subject = f"Quite Frankly · {short_date}"
+    if TEST_MODE:
+        subject = f"[TEST] {subject}"
 
     links_by_id = {l["id"]: l for l in links if l.get("id") is not None}
     sections_html, used_ids = parse_and_render_sections(claude_response, links_by_id, links)
@@ -606,13 +609,20 @@ def send_email(html, subject):
 # ── Main ───────────────────────────────────────────────────────────────────────
 
 def main():
+    if TEST_MODE:
+        print("[TEST MODE] Bypassing dedup cache; subject will be prefixed [TEST]")
+
     print("Fetching feeds...")
     all_items = fetch_all_feeds()
     print(f"Total raw items: {len(all_items)}")
 
-    print("Deduplicating...")
-    items = deduplicate(all_items)
-    print(f"Fresh items: {len(items)}")
+    if TEST_MODE:
+        items = all_items
+        print(f"Test items: {len(items)} (dedup skipped)")
+    else:
+        print("Deduplicating...")
+        items = deduplicate(all_items)
+        print(f"Fresh items: {len(items)}")
 
     headlines = "\n".join(
         f"[#{idx}] [{SECTION_MAP.get(i['source'], i['source'])}] {i['title']} | Source: {i['source']}"

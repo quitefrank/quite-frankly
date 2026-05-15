@@ -2,6 +2,15 @@ name: Quite Frankly Newsletter
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode (production sends real email and updates dedup cache; test bypasses the cache and prefixes the subject with [TEST])'
+        required: false
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - test
 
 jobs:
   send-newsletter:
@@ -27,6 +36,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GMAIL_ADDRESS:     ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          MODE:              ${{ inputs.mode }}
         run: python newsletter.py
 
       - name: Save seen_links cache
