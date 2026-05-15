@@ -84,13 +84,13 @@ Follow this format exactly. Here is an example of one correctly formatted sectio
 
 ## Canada & Toronto
 
-**Ontario tables renter protection bill**
+**Ontario tables renter protection bill [#7]**
 The Ford government introduced legislation Thursday that would cap above-guideline rent increases. The bill also aims to speed up Landlord and Tenant Board hearings. Advocates say the move is overdue given vacancy rates hitting a 10-year low in Toronto.
 
 This is a significant development for renters across the province, particularly in Toronto where affordability has been a growing concern. The legislation is expected to face pushback from landlord associations who argue the caps will discourage new rental construction at a time when supply is critically needed.
 Source: CBC
 
-**TTC adds late night service for World Cup**
+**TTC adds late night service for World Cup [#12]**
 The TTC announced extended hours and express shuttles to handle World Cup crowds this summer. Service will run until 3am on match nights across key corridors. The city expects over 2 million visitors during the tournament.
 
 The expanded service represents one of the largest single-event transit deployments in TTC history. Officials say the investment will also serve as a test case for permanent late-night service expansion that transit advocates have long demanded.
@@ -100,14 +100,15 @@ Now write all 6 sections following this exact format. Each story must have a bol
 What this means for you: [one specific sentence written directly to Frank, starting with You or with the subject of the insight, never starting with his name. Only include this if there is a genuine connection to his work as a product designer, his Leslieville condo, his investments, his freelance work, or his life in Toronto. Skip it if the story has no clear personal relevance.]
 
 CRITICAL RULES YOU MUST FOLLOW:
-1. Every headline in the provided list is pre-labelled with a section in brackets, for example [Canada & Toronto] or [Tech & AI]. You must place each story in the section that matches its label exactly. Never move a story to a different section.
-2. For Canada & Toronto, Toronto Housing, Tech & AI, and Design & Product: write exactly 2 full stories per section. If fewer than 2 stories are labelled for a section, write only the ones available.
-3. For Finance & Markets and US & Global: write exactly 1 full story per section. Then add an Other Headlines subsection with all remaining stories labelled for that section.
-4. The Other Headlines subsection must follow this exact format:
+1. Every input headline is prefixed with a stable identifier in the form [#N] (e.g. [#0], [#42]). You MUST preserve the exact [#N] token in every headline you produce, placed inside the bold markers at the end of the headline text. Example: **Headline text [#42]**. Apply this to featured story headlines, Other Headlines items, and Everything Else items. Never modify, drop, invent, or duplicate ID numbers.
+2. Every headline in the provided list is pre-labelled with a section in brackets, for example [Canada & Toronto] or [Tech & AI]. You must place each story in the section that matches its label exactly. Never move a story to a different section.
+3. For Canada & Toronto, Toronto Housing, Tech & AI, and Design & Product: write exactly 2 full stories per section. If fewer than 2 stories are labelled for a section, write only the ones available.
+4. For Finance & Markets and US & Global: write exactly 1 full story per section. Then add an Other Headlines subsection with all remaining stories labelled for that section.
+5. The Other Headlines subsection must follow this exact format:
 ### Other Headlines
-- **First few words of headline**: one sentence summary of the story. Source: [source name]
-5. Never reassign, promote, or recategorize any story. The section label is final.
-6. Never invent stories. Use only the real headlines provided.
+- **First few words of headline [#N]**: one sentence summary of the story. Source: [source name]
+6. Never reassign, promote, or recategorize any story. The section label is final.
+7. Never invent stories. Use only the real headlines provided.
 
 Write these 6 sections in this order:
 ## Canada & Toronto
@@ -121,7 +122,7 @@ After all 6 sections, add a final section using exactly this format:
 
 ## Everything Else
 
-- **First few words of headline**: one sentence summary of the story.
+- **First few words of headline [#N]**: one sentence summary of the story.
 
 Include every headline from the provided list that was NOT used as a featured story or Other Headlines item in the 6 sections above. Include all of them, do not skip any."""
 
@@ -252,16 +253,28 @@ def source_with_favicon(source_name, article_link=None):
     return f'{img}<span style="vertical-align:middle;font-size:12px;color:#999;">{source_name}</span>'
 
 
-def find_article_data(headline, links):
+ID_TAG_RE = re.compile(r"\s*\[#(\d+)\]\s*$")
+
+
+def extract_id(text):
+    m = ID_TAG_RE.search(text)
+    if m:
+        return text[:m.start()].rstrip(), int(m.group(1))
+    return text, None
+
+
+def find_article_data(item_id, headline, links_by_id, links):
+    if item_id is not None and item_id in links_by_id:
+        l = links_by_id[item_id]
+        return {"link": l["link"], "image": l["image"], "id": l["id"]}
     h = headline.lower()[:30]
     for l in links:
-        t = l["title"].lower()[:30]
         if h in l["title"].lower() or l["title"].lower()[:30] in h:
-            return {"link": l["link"], "image": l["image"]}
-    return {"link": None, "image": None}
+            return {"link": l["link"], "image": l["image"], "id": l.get("id")}
+    return {"link": None, "image": None, "id": None}
 
 
-def render_other_headlines(other_lines, links, used_headlines):
+def render_other_headlines(other_lines, links_by_id, links, used_ids):
     items_html = ""
     for line in other_lines[:3]:
         cleaned = re.sub(r"^-\s*", "", line).strip()
@@ -269,18 +282,21 @@ def render_other_headlines(other_lines, links, used_headlines):
         if not m:
             continue
 
-        linked_words = m.group(1).strip()
-        summary      = m.group(2).strip()
-        lw_lower     = linked_words.lower()[:25]
+        linked_words, item_id = extract_id(m.group(1).strip())
+        summary               = m.group(2).strip()
 
-        article_link_obj = next(
-            (l for l in links if lw_lower in l["title"].lower() or l["title"].lower()[:25] in lw_lower),
-            None,
-        )
+        article_link_obj = None
+        if item_id is not None and item_id in links_by_id:
+            article_link_obj = links_by_id[item_id]
+        else:
+            lw_lower = linked_words.lower()[:25]
+            article_link_obj = next(
+                (l for l in links if lw_lower in l["title"].lower() or l["title"].lower()[:25] in lw_lower),
+                None,
+            )
 
-        used_headlines.add(linked_words.lower()[:40])
-        if article_link_obj:
-            used_headlines.add(article_link_obj["title"].lower()[:40])
+        if article_link_obj and article_link_obj.get("id") is not None:
+            used_ids.add(article_link_obj["id"])
 
         if article_link_obj:
             linked_part = (
@@ -308,10 +324,10 @@ def render_other_headlines(other_lines, links, used_headlines):
     )
 
 
-def parse_and_render_sections(text, links):
-    used_headlines = set()
-    blocks = re.split(r"\n## ", text)
-    html   = ""
+def parse_and_render_sections(text, links_by_id, links):
+    used_ids = set()
+    blocks   = re.split(r"\n## ", text)
+    html     = ""
 
     for block in blocks:
         if not block.strip():
@@ -348,7 +364,8 @@ def parse_and_render_sections(text, links):
             if line.startswith("**") and line.endswith("**") and "**" not in line[2:-2]:
                 if current_story:
                     stories.append(current_story)
-                current_story = {"headline": line[2:-2], "body": [], "source": "", "callout": ""}
+                headline_text, item_id = extract_id(line[2:-2])
+                current_story = {"headline": headline_text, "id": item_id, "body": [], "source": "", "callout": ""}
             elif line.lower().startswith("source:") and current_story:
                 current_story["source"] = line[7:].strip()
             elif re.match(r"^what this means for you:", line, re.IGNORECASE):
@@ -373,18 +390,11 @@ def parse_and_render_sections(text, links):
 
         for i, s in enumerate(stories):
             border       = "" if i == len(stories) - 1 else "border-bottom:1px solid #f0f0f0;padding-bottom:16px;margin-bottom:16px;"
-            article_data = find_article_data(s["headline"], links)
+            article_data = find_article_data(s.get("id"), s["headline"], links_by_id, links)
             article_link = article_data["link"]
             article_image= article_data["image"]
-
-            used_headlines.add(s["headline"].lower()[:40])
-            matched = next(
-                (l for l in links if l["title"].lower()[:30] in s["headline"].lower()
-                 or s["headline"].lower()[:30] in l["title"].lower()),
-                None,
-            )
-            if matched:
-                used_headlines.add(matched["title"].lower()[:40])
+            if article_data["id"] is not None:
+                used_ids.add(article_data["id"])
 
             stories_html += f'<div style="{border}">'
 
@@ -435,7 +445,7 @@ def parse_and_render_sections(text, links):
             stories_html += "</div>"
 
         if other_headline_lines:
-            stories_html += render_other_headlines(other_headline_lines, links, used_headlines)
+            stories_html += render_other_headlines(other_headline_lines, links_by_id, links, used_ids)
 
         html += (
             f'\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid #e6e6e6;'
@@ -448,18 +458,13 @@ def parse_and_render_sections(text, links):
             f'\n</div>'
         )
 
-    return html, used_headlines
+    return html, used_ids
 
 
-def build_everything_else(links, used_headlines):
+def build_everything_else(links, used_ids):
     grouped = {}
     for l in links:
-        title_key = l["title"].lower()[:40]
-        is_used = any(
-            title_key[:30] in used or used[:30] in title_key
-            for used in used_headlines
-        )
-        if is_used:
+        if l.get("id") is not None and l["id"] in used_ids:
             continue
         section = SECTION_MAP.get(l["source"], l["source"])
         grouped.setdefault(section, []).append(l)
@@ -531,8 +536,9 @@ def build_email_html(claude_response, links):
     else:
         subject = f"Quite Frankly · {short_date}"
 
-    sections_html, used_headlines = parse_and_render_sections(claude_response, links)
-    everything_else_html          = build_everything_else(links, used_headlines)
+    links_by_id = {l["id"]: l for l in links if l.get("id") is not None}
+    sections_html, used_ids = parse_and_render_sections(claude_response, links_by_id, links)
+    everything_else_html    = build_everything_else(links, used_ids)
 
     html = f"""<!DOCTYPE html>
 <html>
@@ -609,13 +615,13 @@ def main():
     print(f"Fresh items: {len(items)}")
 
     headlines = "\n".join(
-        f"[{SECTION_MAP.get(i['source'], i['source'])}] {i['title']} | Source: {i['source']}"
-        for i in items
+        f"[#{idx}] [{SECTION_MAP.get(i['source'], i['source'])}] {i['title']} | Source: {i['source']}"
+        for idx, i in enumerate(items)
     )
 
     links = [
-        {"title": i["title"], "link": i["link"], "source": i["source"], "image": i["image"]}
-        for i in items
+        {"id": idx, "title": i["title"], "link": i["link"], "source": i["source"], "image": i["image"]}
+        for idx, i in enumerate(items)
     ]
 
     print("Calling Claude API...")
