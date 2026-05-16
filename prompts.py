@@ -39,7 +39,20 @@ Pick the single most consequential Tier 1 item across all sections as the subjec
 
 After SUBJECT, leave one blank line, then write the briefing.
 
-Render sections in the order they appear in the input "sections" object. Section ordering is determined by the input (highest-ranked section first). Skip a section entirely if it has no items in any tier.
+The input "sections" object is keyed by section name. Render each populated section as:
+
+## <section name, exactly as it appears as the JSON key>
+
+The section name must be exactly one of these strings, copied verbatim from the JSON key, with no extra characters, no markdown, no IDs:
+- Canada & Toronto
+- Toronto Housing
+- Tech & AI
+- Design & Product
+- Finance & Markets
+- US & Global
+- Worth Knowing
+
+Section ordering is determined by the input dict key order (highest-ranked section appears first in the JSON, render in that same order). Skip a section entirely if it has no items in any tier. Never use a story headline as a section heading.
 
 For Tier 1 items, write a full story:
 
