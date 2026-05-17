@@ -8,6 +8,16 @@ SEEN_LINKS_FILE = "seen_links.json"
 SEVEN_DAYS_S = 7 * 24 * 60 * 60
 TEST_MODE = os.environ.get("MODE") == "test"
 
+REDDIT_SUBREDDITS = [
+    "news",
+    "worldnews",
+    "canada",
+    "toronto",
+    "canadahousing",
+    "technology",
+    "OntarioHousing",
+]
+
 FEEDS_WEEKDAY = [
     # Canada & Toronto
     {"url": "https://www.cbc.ca/cmlink/rss-canada-toronto",                                               "source": "CBC"},
