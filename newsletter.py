@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 """Quite Frankly daily newsletter entry point."""
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from comparison import build_comparison_log, shadow_score, write_comparison_log
+from comparison import (
+    build_comparison_log,
+    build_weekly_digest_html,
+    shadow_score,
+    summarize_week,
+    write_comparison_log,
+)
 from config import SECTION_MAP
-from routing import get_mode, get_feeds_for_mode
+from routing import Mode, get_mode, get_feeds_for_mode
 from pipeline import fetch_all_feeds, deduplicate, assign_ids
 from triage import call_triage, cap_items
 from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email
@@ -66,6 +72,11 @@ def main():
     if tiered_items:
         print("Running Phase 1.5 shadow scoring...")
         try:
+            for t in tiered_items:
+                src = links_by_id.get(t["id"], {})
+                t["headline"] = src.get("title", "")
+                t["source"] = src.get("source", "")
+                t["link"] = src.get("link", "")
             phase2_items = shadow_score(tiered_items, links_by_id)
             log = build_comparison_log(
                 date_str=today.isoformat(),
@@ -81,6 +92,22 @@ def main():
             print(f"Shadow scoring failed: {e}")
     else:
         print("Skipping shadow scoring (no triage output).")
+
+    if mode == Mode.SUNDAY_VISUAL:
+        print("Sending weekly Phase 2 shadow digest...")
+        try:
+            week_start = (today - timedelta(days=6)).isoformat()
+            week_end = today.isoformat()
+            summary = summarize_week(Path("comparison"), week_start, week_end)
+            digest_html, digest_subject = build_weekly_digest_html(summary)
+            send_email(digest_html, digest_subject)
+            print(
+                f"Digest: {summary['total_promotions']} promotions, "
+                f"{summary['total_demotions']} demotions, "
+                f"{summary['days_with_data']} day(s) of data"
+            )
+        except Exception as e:
+            print(f"Weekly digest failed: {e}")
 
     print("Done.")
 
