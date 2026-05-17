@@ -17,6 +17,7 @@ FEEDS_WEEKDAY = [
     {"url": "https://www.thestar.com/feeds/rss/news.xml",                                                "source": "Toronto Star"},
     {"url": "https://nationalpost.com/feed",                                                             "source": "National Post"},
     {"url": "https://www.nationalnewswatch.com/feed/",                                                   "source": "National Newswatch"},
+    {"url": "https://www.canadaland.com/feed/",                                                          "source": "Canadaland"},
 
     # Toronto Housing
     {"url": "https://globeandmail.com/arc/outboundfeeds/rss/category/investing/",                        "source": "Globe & Mail Finance"},
@@ -76,6 +77,7 @@ SECTION_MAP = {
     "Toronto Star":        "Canada & Toronto",
     "National Post":       "Canada & Toronto",
     "National Newswatch":  "Canada & Toronto",
+    "Canadaland":          "Canada & Toronto",
 
     # Toronto Housing
     "Globe & Mail Finance":   "Toronto Housing",
@@ -142,6 +144,7 @@ SOURCE_FAVICONS = {
     "Toronto Star":       "https://www.google.com/s2/favicons?domain=thestar.com&sz=64",
     "National Post":      "https://www.google.com/s2/favicons?domain=nationalpost.com&sz=64",
     "National Newswatch": "https://www.google.com/s2/favicons?domain=nationalnewswatch.com&sz=64",
+    "Canadaland":         "https://www.google.com/s2/favicons?domain=canadaland.com&sz=64",
 
     # Toronto Housing
     "Globe & Mail Finance":   "https://www.google.com/s2/favicons?domain=theglobeandmail.com&sz=64",
