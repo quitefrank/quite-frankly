@@ -2,8 +2,10 @@
 """Quite Frankly daily newsletter entry point."""
 
 from datetime import datetime
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
+from comparison import build_comparison_log, shadow_score, write_comparison_log
 from config import SECTION_MAP
 from routing import get_mode, get_feeds_for_mode
 from pipeline import fetch_all_feeds, deduplicate, assign_ids
@@ -30,6 +32,7 @@ def main():
     links_by_id = assign_ids(items)
 
     clusters_by_item_id = {}
+    tiered_items = []
     try:
         capped_items = cap_items(items)
         if len(capped_items) < len(items):
@@ -59,6 +62,25 @@ def main():
 
     print("Sending email...")
     send_email(html, subject)
+
+    if tiered_items:
+        print("Running Phase 1.5 shadow scoring...")
+        try:
+            phase2_items = shadow_score(tiered_items, links_by_id)
+            log = build_comparison_log(
+                date_str=today.isoformat(),
+                mode=mode.value,
+                phase1=tiered_items,
+                phase2=phase2_items,
+            )
+            write_comparison_log(log, Path("comparison"))
+            promoted = len(log["deltas"]["promoted_by_phase2"])
+            demoted = len(log["deltas"]["demoted_by_phase2"])
+            print(f"Wrote comparison/{today.isoformat()}.json (+{promoted} promoted, -{demoted} demoted)")
+        except Exception as e:
+            print(f"Shadow scoring failed: {e}")
+    else:
+        print("Skipping shadow scoring (no triage output).")
 
     print("Done.")
 
