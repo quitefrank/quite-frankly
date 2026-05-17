@@ -1,7 +1,7 @@
 # Quite Frankly - Newsletter Setup
 
 A daily morning briefing delivered to your Gmail inbox at 8am Toronto time.
-Pulls from 10 RSS/Reddit sources, summarizes via Claude API, sends as a styled HTML email.
+Pulls from a curated pool of RSS/Reddit/podcast sources, triages and scores via Claude, sends as a styled HTML email. See [Architecture](#architecture-post-2026-05-15-redesign) for the post-redesign pipeline.
 
 ---
 
@@ -132,7 +132,42 @@ The next run will treat all headlines as fresh.
 
 ## Changing feeds or sections
 
-All feed URLs and section assignments are at the top of `newsletter.py` in the `FEEDS` and `SECTION_MAP` sections. Edit and commit - the next run picks up the changes.
+All feed URLs, section assignments, and favicons live in `config.py`. Feeds are split by mode: `FEEDS_WEEKDAY`, `FEEDS_SATURDAY_STRATEGIC`, and `FEEDS_SUNDAY_VISUAL`. The `SECTION_MAP` dict assigns each source to a section. Edit and commit — the next run picks up the changes.
+
+---
+
+## Architecture (post-2026-05-15 redesign)
+
+The script runs in one of four modes based on the day of week (Toronto time):
+
+- **Monday** — catch-up of Friday through Sunday non-design news
+- **Tuesday–Friday** — daily non-design news
+- **Saturday** — weekly strategic design round-up (UX Collective, Smashing, NN/g, Lenny's Newsletter)
+- **Sunday** — weekly visual design round-up (Design Milk, Hypebeast, Codrops, Sidebar, Trendland)
+
+Internally the pipeline is:
+
+```
+fetch → dedup → assign IDs → Pass 1 (Claude triage: score, tier, cluster)
+  → Phase 1.5 shadow scoring (Reddit + HN, writes comparison/YYYY-MM-DD.json)
+  → Pass 2 (Claude format) → render HTML → SMTP send
+```
+
+On Sundays, a second SMTP send delivers a weekly digest summarizing what a traction-weighted Phase 2 would have promoted or demoted versus what Phase 1 actually sent. After 2–3 weeks of digests, the call is whether to promote Phase 2 into production tier scoring.
+
+Module layout:
+
+- `newsletter.py` — orchestration entry point
+- `config.py` — feeds, sections, favicons, recipient
+- `routing.py` — day-of-week mode resolution
+- `pipeline.py` — feed fetching, dedup, ID assignment
+- `triage.py` — Pass 1 Claude call (structured output via tool use)
+- `formatting.py` — Pass 2 Claude call, HTML rendering, SMTP send
+- `traction.py` — Reddit + HN traction fetchers (Phase 1.5)
+- `comparison.py` — shadow scoring, comparison logs, weekly digest
+- `prompts.py` — system prompts and personal-relevance blurb
+
+See [`docs/2026-05-15-newsletter-redesign-spec.md`](docs/2026-05-15-newsletter-redesign-spec.md) for the full design and [`docs/2026-05-15-newsletter-redesign-plan.md`](docs/2026-05-15-newsletter-redesign-plan.md) for the implementation plan.
 
 ---
 
@@ -140,8 +175,9 @@ All feed URLs and section assignments are at the top of `newsletter.py` in the `
 
 | Service | Cost |
 |---------|------|
-| GitHub Actions | Free (well within free tier at ~1 min/day) |
-| Claude API | Charged per token - roughly $0.03 to $0.08 per newsletter |
+| GitHub Actions | Free (well within free tier at ~1–2 min/day) |
+| Claude API | Charged per token. Two-pass triage + format ≈ $0.06–$0.16 per newsletter |
+| Reddit + HN APIs | Free (public JSON endpoints) |
 | Gmail SMTP | Free |
 
-At ~$0.05/day, the newsletter costs about $1.50/month in Claude API usage.
+At ~$0.10/day, the newsletter costs about $3/month in Claude API usage post-redesign (Phase 1.5 shadow scoring adds no Claude cost, just ~30 seconds of runtime per day for the traction queries).
