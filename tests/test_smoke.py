@@ -17,4 +17,8 @@ def test_main_runs_through_two_passes(fake_anthropic_client, monkeypatch):
     monkeypatch.setattr(newsletter, "fetch_all_feeds", lambda feeds: fake_items)
     monkeypatch.setattr(newsletter, "deduplicate", lambda items: items)
     monkeypatch.setattr(newsletter, "send_email", lambda html, subject: None)
+    # Without these stubs the smoke test clobbers the real comparison log for
+    # today's date (write_comparison_log writes to comparison/<today>.json on disk).
+    monkeypatch.setattr(newsletter, "write_comparison_log", lambda log, base_dir: None)
+    monkeypatch.setattr(newsletter, "summarize_week", lambda *a, **kw: {"week_start": "", "week_end": "", "days": []})
     newsletter.main()
