@@ -7,11 +7,12 @@ Remaining work between the current `redesign` branch and full production cutover
 ## Pre-flight (your input required)
 
 - [x] **Personal-relevance blurb refresh.** Now sources from `~/Claude/About Me/personal-context.md` (canonical), auto-synced into this repo via `hooks/pre-commit`. Edit the canonical; the project copy updates on next commit. See repo `README.md` "Personal context (canonical at About Me/)" for setup notes if cloning fresh.
-- [ ] **Daily run trigger.** The workflow YAML has only `workflow_dispatch` — no `schedule:` block. Commit `b6cc003` removed the cron deliberately. Confirm what's triggering the daily run today and that it still fires once `redesign` is merged to `main`.
+- [x] **Daily run trigger.** Confirmed externally triggered (Frank, 2026-05-18: "we have a cron job that is handling that... possibly through Claude Chat. The trigger is running correctly. I received it this morning"). Not a local crontab, not a launchd LaunchAgent, not the `mcp__scheduled-tasks` local server. Likely a Claude.ai web-app scheduled task hitting the GitHub Actions API. Will continue firing on `main` post-merge as long as the trigger references the repo's `newsletter.yml` workflow.
 
 ## Cutover (mechanical)
 
-- [ ] **Local smoke test** (Task 10 Step 3):
+- [x] **Partial smoke test** (2026-05-18): wiring confirmed end-to-end minus the Claude call and SMTP send. Validated: module imports, day-of-week routing (Monday→`monday_catchup`, 29 feeds), `SECTION_MAP` covers all weekday feeds including Canadaland, `personal-context.md` loads with new content and embeds in `TRIAGE_SYSTEM_PROMPT`, `build_comparison_log` enriches deltas with headline/source/link, `build_weekly_digest_html` renders, `summarize_week` reads `comparison/` cleanly.
+- [ ] **Full live smoke test** (requires `ANTHROPIC_API_KEY`, `GMAIL_ADDRESS`, `GMAIL_APP_PASSWORD` env vars locally). Frank to run when convenient:
   ```bash
   cd .worktrees/redesign && MODE=test python3 newsletter.py
   ```
