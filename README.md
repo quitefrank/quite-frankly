@@ -109,11 +109,52 @@ If it fails, click the failed run to see the error log.
 
 ## How it runs automatically
 
-The workflow file tells GitHub to run the script every day at 12:00 UTC, which is:
-- **8:00 AM EDT** (April to November)
-- **7:00 AM EST** (November to April)
+The daily 8am send is triggered by an **external scheduler at cron-job.org**, not by GitHub Actions' built-in `schedule:` trigger. The built-in schedule was removed in commit `b6cc003` because it produced duplicate sends. The GitHub Actions workflow now only runs on `workflow_dispatch` (manual or HTTP-triggered).
 
-No action required from you - it just runs.
+### cron-job.org job configuration
+
+Dashboard: https://console.cron-job.org
+
+| Field | Value |
+|---|---|
+| Title | `Quite Frankly Newsletter` |
+| URL | `https://api.github.com/repos/quitefrank/quite-frankly/actions/workflows/newsletter.yml/dispatches` |
+| Method | POST |
+| Schedule | `0 8 * * *` (daily at 8:00) |
+| Timezone | `America/Toronto` (handles EDT/EST automatically) |
+| Headers | `Authorization: Bearer <GitHub PAT>`, `Content-Type: application/json` |
+| Body | `{"ref":"main"}` |
+| Timeout | 30 seconds |
+| Notify on failure | After 1 failure, plus when disabled due to too many failures |
+
+The Authorization header carries a GitHub Personal Access Token with `repo` and `workflow` scopes (private repos need both). The token lives only on cron-job.org and in your password manager. Never commit it.
+
+### Why an external scheduler
+
+GitHub Actions' `schedule:` trigger has two problems for a small personal job: it can run twice when a previous run is still queued, and it has no visibility into failures unless you watch the Actions tab. cron-job.org gives proper email alerts on failure, deterministic single-fire scheduling, and is free at this volume.
+
+### Triggering ad-hoc
+
+- **From the GitHub UI:** Actions → Quite Frankly Newsletter → Run workflow → pick `main` ref → choose `mode=production` or `test`
+- **From CLI:** `gh workflow run newsletter.yml --ref main -f mode=test`
+- **From cron-job.org:** dashboard → job → "Run now"
+
+### If sends stop arriving
+
+Check, in order:
+1. cron-job.org dashboard for failed executions and the last response code
+2. The GitHub PAT in the Authorization header (expired, revoked, or scopes changed)
+3. The GitHub Actions tab for failed workflow runs (the script itself may have failed)
+4. Anthropic API quota, Gmail SMTP auth (less common)
+
+### Rotating the PAT
+
+When the GitHub PAT expires or is suspected of leaking:
+
+1. GitHub → Settings → Developer settings → Personal access tokens → Revoke the old one
+2. Generate a new token with `repo` and `workflow` scopes
+3. Update the Authorization header on the cron-job.org job (no other places to update)
+4. Trigger a "Run now" from cron-job.org to confirm the new token works
 
 ---
 
