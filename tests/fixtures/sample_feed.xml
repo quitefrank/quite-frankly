@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+  <channel>
+    <title>Sample</title>
+    <item>
+      <title>Toronto council debates housing supply</title>
+      <link>https://example.com/article-1</link>
+      <description>Council weighs density rules.</description>
+    </item>
+    <item>
+      <title>Bank of Canada holds rates steady</title>
+      <link>https://example.com/article-2</link>
+      <description>Markets unchanged.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+#!/bin/bash
+# Quite Frankly — pre-commit hook
+#
+# Auto-sync personal-context.md from the canonical About Me/ file before commit.
+# Edit the canonical at ~/Claude/About Me/personal-context.md.
+# The project copy is a deployment artifact; do not edit directly.
+#
+# Activate (one-time, per local clone):
+#   git config core.hooksPath hooks/
+
+set -e
+
+CANONICAL="$HOME/Claude/About Me/personal-context.md"
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+LOCAL="$REPO_ROOT/personal-context.md"
+
+if [ ! -f "$CANONICAL" ]; then
+    echo "pre-commit: canonical context file not found at $CANONICAL"
+    echo "pre-commit: skipping personal-context sync (this is fine in CI)"
+    exit 0
+fi
+
+if [ ! -f "$LOCAL" ] || ! cmp -s "$CANONICAL" "$LOCAL"; then
+    cp "$CANONICAL" "$LOCAL"
+    git add "$LOCAL"
+    echo "pre-commit: synced personal-context.md from canonical $CANONICAL"
+fi
