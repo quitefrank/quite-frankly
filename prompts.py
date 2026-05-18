@@ -1,6 +1,27 @@
 """Claude prompts used by the newsletter pipeline."""
 
-PERSONAL_RELEVANCE_BLURB = """Frank is a senior product designer at theScore in Toronto, aiming for staff or principal product designer roles. He is rebuilding his portfolio, running AI side projects (Claude-based research tools, a workout PWA), and selling a Leslieville condo. He does not gamble or follow sports. He cares about Canadian politics in the dinner-table sense, Toronto housing market dynamics, AI tooling for designers, design industry moves at the staff/principal level, and personal finance for a transitional year. He is turning 38 in June."""
+from pathlib import Path
+
+# Personal-relevance context loaded from a sibling Markdown file at import time.
+# The file is a synced copy of ~/Claude/About Me/personal-context.md (canonical);
+# the project copy auto-updates via hooks/pre-commit before each commit. To edit
+# this content, edit the canonical file, not the project copy.
+_CONTEXT_PATH = Path(__file__).parent / "personal-context.md"
+
+
+def _strip_frontmatter(text: str) -> str:
+    """Drop a leading YAML frontmatter block (between --- markers) if present."""
+    if not text.startswith("---\n"):
+        return text
+    end = text.find("\n---\n", 4)
+    if end == -1:
+        return text
+    return text[end + 5 :].lstrip()
+
+
+PERSONAL_RELEVANCE_BLURB = _strip_frontmatter(
+    _CONTEXT_PATH.read_text(encoding="utf-8")
+).strip()
 
 
 TRIAGE_SYSTEM_PROMPT = f"""You are a triage editor for a daily news briefing.

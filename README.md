@@ -171,6 +171,22 @@ See [`docs/2026-05-15-newsletter-redesign-spec.md`](docs/2026-05-15-newsletter-r
 
 ---
 
+## Personal context (canonical at About Me/)
+
+The reader-context blurb fed into the triage prompt lives canonically at `~/Claude/About Me/personal-context.md`. The newsletter ships with a synced copy at `./personal-context.md` that `prompts.py` reads at import time. Edit the canonical; the project copy auto-updates on the next commit via `hooks/pre-commit`.
+
+**Fresh-clone setup (one-time, per machine):**
+
+```bash
+git config core.hooksPath hooks/
+```
+
+After that, any commit automatically syncs the project copy from the canonical if it's drifted. To sync without committing (e.g., before a manual workflow trigger), run `bash hooks/sync-context.sh`.
+
+If you're cloning the repo somewhere that doesn't have `~/Claude/About Me/personal-context.md` (e.g., CI), the sync is a no-op and the committed `personal-context.md` is used as-is. CI does not run pre-commit hooks.
+
+---
+
 ## Costs
 
 | Service | Cost |
