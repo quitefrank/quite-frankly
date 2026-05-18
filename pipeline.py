@@ -9,7 +9,7 @@ import time
 
 import feedparser
 
-from config import FEEDS, SEEN_LINKS_FILE, SEVEN_DAYS_S, TEST_MODE
+from config import FEEDS, MIN_SNIPPET_CHARS, SEEN_LINKS_FILE, SEVEN_DAYS_S, TEST_MODE
 
 
 def extract_image(entry):
@@ -44,7 +44,7 @@ def fetch_feed(feed_config):
             link  = getattr(entry, "link",  "") or ""
             title = getattr(entry, "title", "") or ""
             summary = re.sub(r"<[^>]+>", "", getattr(entry, "summary", "") or "").strip()
-            if title and link:
+            if title and link and len(summary) >= MIN_SNIPPET_CHARS:
                 items.append({
                     "title":   title,
                     "link":    link,

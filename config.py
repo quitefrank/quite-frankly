@@ -8,6 +8,12 @@ SEEN_LINKS_FILE = "seen_links.json"
 SEVEN_DAYS_S = 7 * 24 * 60 * 60
 TEST_MODE = os.environ.get("MODE") == "test"
 
+# Drop feed items whose RSS summary is shorter than this. Hub/index feeds
+# (e.g., the Economist's "the-world-this-week") publish entries with empty
+# descriptions; without a snippet, the formatter has nothing to write a body
+# from and emits headline+source with no story text.
+MIN_SNIPPET_CHARS = 20
+
 REDDIT_SUBREDDITS = [
     "news",
     "worldnews",
@@ -50,7 +56,7 @@ FEEDS_WEEKDAY = [
     # US & Global
     {"url": "https://feeds.bbci.co.uk/news/world/rss.xml",                                               "source": "BBC"},
     {"url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",                                 "source": "NYT"},
-    {"url": "https://www.economist.com/the-world-this-week/rss.xml",                                     "source": "Economist"},
+    {"url": "https://www.economist.com/international/rss.xml",                                           "source": "Economist"},
     {"url": "https://feeds.npr.org/1004/rss.xml",                                                        "source": "NPR World"},
     {"url": "https://api.axios.com/feed/",                                                               "source": "Axios"},
 
