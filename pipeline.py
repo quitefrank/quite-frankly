@@ -62,9 +62,12 @@ def _fetch_og_image(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> st
                 if total >= OG_IMAGE_MAX_BYTES:
                     break
             html = b"".join(chunks).decode("utf-8", errors="replace")
-            return _extract_og_image_from_html(html)
-    except Exception:
-        pass
+            url = _extract_og_image_from_html(html)
+            if not url:
+                print(f"  og:image missing in <head> for {article_url}")
+            return url
+    except Exception as e:
+        print(f"  og:image fetch failed for {article_url}: {type(e).__name__}: {e}")
     return ""
 
 

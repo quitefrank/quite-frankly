@@ -222,51 +222,62 @@ def find_article_data(headline, links_by_id):
     return {"link": None, "image": None, "id": None}
 
 
-def render_other_headlines(other_lines, links_by_id, used_ids, clusters_by_item_id=None):
-    clusters_by_item_id = clusters_by_item_id or {}
-    items_html = ""
-    for line in other_lines[:MAX_OTHER_HEADLINES_PER_SECTION]:
-        cleaned = re.sub(r"^-\s*", "", line).strip()
-        m = re.match(r"^\*\*(.*?)\*\*:?\s*(.*?)(?:\s*Source:\s*(.*))?$", cleaned)
-        if not m:
+_SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
+
+
+def _first_sentence(text: str, max_chars: int = 180) -> str:
+    """Return the first sentence of text, truncated to max_chars."""
+    if not text:
+        return ""
+    parts = _SENTENCE_SPLIT_RE.split(text, maxsplit=1)
+    first = parts[0].strip()
+    if len(first) > max_chars:
+        first = first[:max_chars].rstrip() + "…"
+    return first
+
+
+def render_other_headlines_for_section(section, tiered_items, links_by_id, used_ids):
+    """Synthesize the Other Headlines subsection for one section.
+
+    Picks the top MAX_OTHER_HEADLINES_PER_SECTION Tier 2 items in this section
+    whose IDs are not already in used_ids (i.e., not already featured), sorted
+    by composite score desc. Adds the chosen IDs to used_ids so they don't
+    duplicate in Everything Else.
+    """
+    candidates = []
+    for it in tiered_items or []:
+        if it.get("section") != section:
             continue
+        if it.get("tier") != 2:
+            continue
+        if it["id"] in used_ids:
+            continue
+        if it["id"] not in links_by_id:
+            continue
+        candidates.append((-_item_score(it.get("scores", {})), it["id"]))
 
-        linked_words, item_id = extract_id(m.group(1).strip())
-        summary               = m.group(2).strip()
+    candidates.sort()
+    picked = [lid for _neg_score, lid in candidates[:MAX_OTHER_HEADLINES_PER_SECTION]]
+    if not picked:
+        return ""
 
-        article_link_obj = None
-        resolved_id      = None
-        if item_id is not None and item_id in links_by_id:
-            article_link_obj = links_by_id[item_id]
-            resolved_id      = item_id
-        else:
-            lw_lower = linked_words.lower()[:25]
-            for lid, l in links_by_id.items():
-                tl = l["title"].lower()
-                if lw_lower in tl or tl[:25] in lw_lower:
-                    article_link_obj = l
-                    resolved_id      = lid
-                    break
-
-        if resolved_id is not None:
-            used_ids.add(resolved_id)
-
-        if article_link_obj:
-            linked_part = (
-                f'<a href="{article_link_obj["link"]}" '
-                f'style="color:#333;font-weight:400;text-decoration:underline;text-decoration-color:#1c7ff2;">'
-                f"{linked_words}</a>"
-            )
-        else:
-            linked_part = linked_words
-
+    items_html = ""
+    for lid in picked:
+        used_ids.add(lid)
+        l = links_by_id[lid]
+        words = l["title"].split(" ")
+        link_words = " ".join(words[:5])
+        linked_part = (
+            f'<a href="{l["link"]}" '
+            f'style="color:#333;font-weight:400;text-decoration:underline;text-decoration-color:#1c7ff2;">'
+            f"{link_words}</a>"
+            if l.get("link") else link_words
+        )
+        summary = _first_sentence(l.get("snippet", ""))
         items_html += (
             f'<li style="margin-bottom:10px;line-height:22px;font-size:15px;color:#333;'
             f'font-family:Helvetica,Arial,sans-serif">{linked_part}: {summary}</li>'
         )
-
-    if not items_html:
-        return ""
 
     return (
         '<div style="margin-top:16px;padding-top:14px;border-top:1px solid #f0f0f0;">'
@@ -277,8 +288,9 @@ def render_other_headlines(other_lines, links_by_id, used_ids, clusters_by_item_
     )
 
 
-def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None):
+def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None):
     clusters_by_item_id = clusters_by_item_id or {}
+    tiered_items = tiered_items or []
     used_ids = set()
     blocks   = re.split(r"\n## ", text)
     html     = ""
@@ -297,22 +309,21 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None):
 
         stories            = []
         current_story      = None
-        other_headline_lines = []
-        in_other_headlines = False
+        in_discarded_block = False  # Claude shouldn't emit OH anymore; skip if it does.
 
         for line in lines[1:]:
             line = line.strip()
 
-            if line == "### Other Headlines":
-                in_other_headlines = True
+            if line.startswith("### "):
+                # Any subheading from Claude (Other Headlines, etc.) is no longer
+                # rendered from the model output; we synthesize OH below.
+                in_discarded_block = True
                 if current_story:
                     stories.append(current_story)
                     current_story = None
                 continue
 
-            if in_other_headlines:
-                if line.startswith("-"):
-                    other_headline_lines.append(line)
+            if in_discarded_block:
                 continue
 
             if line.startswith("**") and line.endswith("**") and "**" not in line[2:-2]:
@@ -334,8 +345,9 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None):
         if current_story:
             stories.append(current_story)
 
-        if not stories and not other_headline_lines:
-            continue
+        # Synthesize Other Headlines from tier_2 items for this section now that
+        # featured-story IDs have been gathered into used_ids.
+        # Defer the actual call until after we've collected used_ids from stories.
 
         stories_html = ""
 
@@ -407,8 +419,11 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None):
 
             stories_html += "</div>"
 
-        if other_headline_lines:
-            stories_html += render_other_headlines(other_headline_lines, links_by_id, used_ids, clusters_by_item_id)
+        oh_html = render_other_headlines_for_section(title, tiered_items, links_by_id, used_ids)
+        stories_html += oh_html
+
+        if not stories_html:
+            continue
 
         html += (
             f'\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid #e6e6e6;'
@@ -508,7 +523,9 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
     if TEST_MODE:
         subject = f"[TEST] {subject}"
 
-    sections_html, used_ids = parse_and_render_sections(claude_response, links_by_id, clusters_by_item_id)
+    sections_html, used_ids = parse_and_render_sections(
+        claude_response, links_by_id, clusters_by_item_id, tiered_items=tiered_items
+    )
     everything_else_html    = build_everything_else(
         links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items
     )

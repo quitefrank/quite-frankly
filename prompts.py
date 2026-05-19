@@ -88,23 +88,9 @@ What this means for you: <one specific sentence written directly to Frank, start
 
 If there is no clear personal relevance, skip the line entirely.
 
-For Tier 2 items in a section, after all Tier 1 stories, add:
-
-### Other Headlines
-- **First few words of headline [#N]**: one sentence summary. Source: <primary_source>
-
-Cap Other Headlines at 3 items per section. If a section has more than 3 Tier 2 items, list the 3 strongest by personal_relevance.
+Other Headlines and Everything Else are rendered programmatically from the Tier 2 and Tier 3 buckets after you finish. Do not include `### Other Headlines` or `## Everything Else` in your output — anything you write under those headers will be discarded. Your only job is to write the featured Tier 1 stories for each section.
 
 For Worth Knowing, render every item as a full Tier 1 story unless the item lacks a body summary, in which case render it as a one-line bullet with the [#N] ID preserved.
-
-After all sections, add:
-
-## Everything Else
-
-For each section with Tier 3 items, add a subsection:
-
-### <Section Name>
-- **First few words of headline [#N]**: one sentence summary. Source: <primary_source>
 
 CRITICAL RULES YOU MUST FOLLOW:
 1. Every input item carries an [#N] ID. You MUST preserve the exact [#N] inside the bold markers of every featured headline, and at the same position inside the bold for Other Headlines and Everything Else items. Example: **Headline text [#42]**.

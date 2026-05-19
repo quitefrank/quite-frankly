@@ -4,7 +4,7 @@ from formatting import (
     build_everything_else,
     build_format_input,
     parse_and_render_sections,
-    render_other_headlines,
+    render_other_headlines_for_section,
     render_source_line,
 )
 
@@ -172,22 +172,86 @@ def test_section_order_is_by_max_score_descending():
     assert populated_order[2] == "Canada & Toronto"
 
 
-def test_render_other_headlines_caps_at_three():
-    lines = [
-        f"- **Story {n} [#{n}]**: summary {n}. Source: CBC"
-        for n in range(1, 7)  # 6 lines, expect 3
+def test_render_other_headlines_for_section_caps_at_three_and_skips_used_ids():
+    # 5 tier_2 items in US & Global; expect top 3 by score, none used.
+    tiered_items = [
+        {"id": 1, "section": "US & Global", "tier": 2,
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},
+        {"id": 2, "section": "US & Global", "tier": 2,
+         "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}},
+        {"id": 3, "section": "US & Global", "tier": 2,
+         "scores": {"cross_source_coverage": 1, "personal_relevance": 1, "section_fit": "weak"}},
+        {"id": 4, "section": "US & Global", "tier": 2,
+         "scores": {"cross_source_coverage": 1, "personal_relevance": 0, "section_fit": "weak"}},
+        {"id": 5, "section": "US & Global", "tier": 2,
+         "scores": {"cross_source_coverage": 1, "personal_relevance": 0, "section_fit": "none"}},
+        # Different section — must be ignored.
+        {"id": 6, "section": "Tech & AI", "tier": 2,
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 3, "section_fit": "good"}},
     ]
     links_by_id = {
-        n: {"link": f"https://example.com/{n}", "image": "", "title": f"Story {n}"}
+        n: {"link": f"https://example.com/{n}", "title": f"Story {n} headline",
+            "snippet": f"Snippet for story {n}. Second sentence.", "source": "BBC", "image": ""}
         for n in range(1, 7)
     }
     used_ids = set()
-    html = render_other_headlines(lines, links_by_id, used_ids)
+    html = render_other_headlines_for_section("US & Global", tiered_items, links_by_id, used_ids)
     assert html.count("<li") == 3
-    # First three render; later items don't
+    # Highest-scored three are 1, 2, 3
     assert "Story 1" in html
+    assert "Story 2" in html
     assert "Story 3" in html
     assert "Story 4" not in html
+    # Cross-section item never appears.
+    assert "Story 6" not in html
+    assert used_ids == {1, 2, 3}
+
+
+def test_render_other_headlines_for_section_skips_items_already_in_used_ids():
+    tiered_items = [
+        {"id": 10, "section": "Toronto Housing", "tier": 2,
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},
+        {"id": 11, "section": "Toronto Housing", "tier": 2,
+         "scores": {"cross_source_coverage": 2, "personal_relevance": 1, "section_fit": "good"}},
+    ]
+    links_by_id = {
+        10: {"link": "u10", "title": "Top story", "snippet": "Body.", "source": "CBC", "image": ""},
+        11: {"link": "u11", "title": "Other story", "snippet": "Body.", "source": "CBC", "image": ""},
+    }
+    used_ids = {10}  # Already featured.
+    html = render_other_headlines_for_section("Toronto Housing", tiered_items, links_by_id, used_ids)
+    assert "Top story" not in html
+    assert "Other story" in html
+
+
+def test_parse_and_render_sections_synthesizes_other_headlines_when_claude_omits_them():
+    # Simulate Claude producing only a Tier 1 story, no Other Headlines block.
+    text = """## US & Global
+
+**Big story [#100]**
+Body paragraph one.
+
+Body paragraph two.
+Source: BBC
+"""
+    links_by_id = {
+        100: {"link": "https://example.com/100", "image": "",
+              "title": "Big story", "snippet": "Body.", "source": "BBC"},
+        101: {"link": "https://example.com/101", "image": "",
+              "title": "Second tier story", "snippet": "Tier 2 first sentence.",
+              "source": "NYT"},
+    }
+    tiered_items = [
+        {"id": 100, "section": "US & Global", "tier": 1,
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},
+        {"id": 101, "section": "US & Global", "tier": 2,
+         "scores": {"cross_source_coverage": 2, "personal_relevance": 1, "section_fit": "good"}},
+    ]
+    html, used_ids = parse_and_render_sections(text, links_by_id, {}, tiered_items=tiered_items)
+    assert "Other Headlines" in html
+    assert "Second tier story" in html
+    assert 100 in used_ids
+    assert 101 in used_ids
 
 
 def test_build_everything_else_caps_at_seven_globally():
