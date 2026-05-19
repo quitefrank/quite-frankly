@@ -12,11 +12,17 @@ try/except for that reason.
 
 import html
 import json
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, timedelta
 from pathlib import Path
 
 from config import REDDIT_SUBREDDITS
 from traction import fetch_hn_traction, fetch_reddit_traction
+
+
+# Reddit's anonymous rate limit is ~60 req/min. With 7 subreddits per item +
+# 1 HN call, 5 concurrent workers keeps burst rate under that ceiling.
+TRACTION_MAX_WORKERS = 5
 
 
 SECTION_FIT_SCORE = {"good": 1, "weak": 0, "none": -1}
@@ -51,13 +57,28 @@ def compute_phase2_tier(item: dict) -> int:
     return 0
 
 
+def _attach_one(item: dict, link: str) -> None:
+    item["reddit"] = fetch_reddit_traction(link, REDDIT_SUBREDDITS)
+    item["hn"] = fetch_hn_traction(link)
+
+
 def attach_traction(items: list[dict], links_by_id: dict) -> list[dict]:
+    """Attach Reddit + HN traction to each item, in parallel across items.
+
+    Each worker handles one item's full traction (7 subreddit searches + 1 HN
+    query, ~800ms total). With TRACTION_MAX_WORKERS=5 the burst rate to
+    Reddit stays under the anonymous 60 req/min ceiling.
+    """
+    work = []
     for item in items:
         link = links_by_id.get(item["id"], {}).get("link", "")
         if not link:
             continue
-        item["reddit"] = fetch_reddit_traction(link, REDDIT_SUBREDDITS)
-        item["hn"] = fetch_hn_traction(link)
+        work.append((item, link))
+    if not work:
+        return items
+    with ThreadPoolExecutor(max_workers=TRACTION_MAX_WORKERS) as executor:
+        list(executor.map(lambda pair: _attach_one(*pair), work))
     return items
 
 

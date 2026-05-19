@@ -56,7 +56,58 @@ def _item_score(scores: dict) -> int:
     )
 
 
+def _collapse_by_cluster_within_section(items: list[dict]) -> list[dict]:
+    """Keep one representative item per (section, cluster_id), highest score wins.
+
+    Triage clusters by `cluster_id`, but every clustered item still flows through
+    as its own dict. Without this collapse, a single underlying story with 2+
+    items in the same section gets featured 2+ times. Items with empty
+    cluster_id are never merged - that's the "no cluster known" signal.
+    """
+    best: dict[tuple[str, str], dict] = {}
+    passthrough: list[dict] = []
+    for item in items:
+        cid = item.get("cluster_id") or ""
+        section = item.get("section") or ""
+        if not cid or not section:
+            passthrough.append(item)
+            continue
+        key = (section, cid)
+        current = best.get(key)
+        if current is None or _item_score(item.get("scores", {})) > _item_score(current.get("scores", {})):
+            best[key] = item
+    return passthrough + list(best.values())
+
+
 def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], links_by_id: dict[int, dict]) -> str:
+    # Build cluster_members from the UNCOLLAPSED tiered_items so siblings
+    # surface every cluster member's URL — even ones that the within-section
+    # collapse below removes from featuring. Order matters: collapse strips
+    # duplicates from the same (section, cluster_id), but a Tech & AI story
+    # might still want to link to a sibling Tech & AI item that lost the
+    # collapse tiebreak. Building this map first preserves that visibility.
+    cluster_members: dict[str, list[dict]] = {}
+    for item in tiered_items:
+        cid = item.get("cluster_id")
+        if not cid:
+            continue
+        link = links_by_id.get(item["id"], {})
+        url = link.get("link", "")
+        source = link.get("source", "")
+        if not url or not source:
+            continue
+        cluster_members.setdefault(cid, []).append({
+            "id": item["id"],
+            "source": source,
+            "url": url,
+        })
+
+    # Within-section cluster collapse: triage clusters the same underlying
+    # story into multiple feed items; without this, a single story can occupy
+    # several featured slots in one section. Keep the highest-scored per
+    # (section, cluster_id). Items with empty cluster_id pass through.
+    tiered_items = _collapse_by_cluster_within_section(tiered_items)
+
     by_section: dict[str, dict[str, list]] = {
         s: {"tier_1": [], "tier_2": [], "tier_3": []} for s in SECTION_ORDER
     }
@@ -77,25 +128,6 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
             "cluster_id": item.get("cluster_id"),
             "_score": _item_score(item.get("scores", {})),
             "_has_image": bool(link.get("image")),
-        })
-
-    # Build {cluster_id: [{"source": ..., "url": ...}, ...]} from all items
-    # (including those that won't render featured) so we don't lose
-    # cross-source visibility when the cluster spans tiers.
-    cluster_members: dict[str, list[dict]] = {}
-    for item in tiered_items:
-        cid = item.get("cluster_id")
-        if not cid:
-            continue
-        link = links_by_id.get(item["id"], {})
-        url = link.get("link", "")
-        source = link.get("source", "")
-        if not url or not source:
-            continue
-        cluster_members.setdefault(cid, []).append({
-            "id": item["id"],
-            "source": source,
-            "url": url,
         })
 
     # Attach siblings to each featured-eligible item. The sibling list excludes
@@ -163,12 +195,19 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
             picked[0], picked[hero_idx_in_picked] = picked[hero_idx_in_picked], picked[0]
 
     # Move picks into Today in the World, delete from home sections.
+    # Triage may also route items directly to Today in the World; combine
+    # those with the picks (triage-routed first), then cap to the section
+    # size so a busy triage day doesn't overflow the layout.
     picked_ids = {item["id"] for _, item in picked}
     for sec, _ in picked:
         by_section[sec]["tier_1"] = [
             it for it in by_section[sec]["tier_1"] if it["id"] not in picked_ids
         ]
-    by_section[TODAY_IN_THE_WORLD]["tier_1"] = [item for _, item in picked]
+    combined = (
+        by_section[TODAY_IN_THE_WORLD]["tier_1"]
+        + [item for _, item in picked]
+    )
+    by_section[TODAY_IN_THE_WORLD]["tier_1"] = combined[:TODAY_IN_THE_WORLD_CAP]
 
     # Per-section featured cap. Most sections aim for 2, Finance & Markets and
     # US & Global aim for 1. If tier_1 is short, fill from tier_2 then tier_3

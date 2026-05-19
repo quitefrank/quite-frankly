@@ -432,6 +432,47 @@ def test_today_in_the_world_pulls_global_top_five():
     assert 401 not in {x["id"] for x in payload["sections"]["US & Global"]["tier_1"]}
 
 
+def test_build_format_input_collapses_same_cluster_within_section():
+    # Triage clustered both NBC Meet the Press items together (cluster_id
+    # "alex_murdaugh"), but build_format_input was treating them as independent
+    # items and featuring both in Today in the World. One cluster, one feature.
+    tiered_items = [
+        _item(213, "Today in the World", tier=1, ccov=2, prel=0, fit="good"),  # score 3
+        _item(214, "Today in the World", tier=1, ccov=2, prel=1, fit="good"),  # score 4 (winner)
+    ]
+    for it in tiered_items:
+        it["cluster_id"] = "alex_murdaugh"
+    links_by_id = {
+        i["id"]: {"title": f"t{i['id']}", "source": "NBC Meet the Press", "snippet": "x"}
+        for i in tiered_items
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    titw = payload["sections"]["Today in the World"]
+    assert len(titw["tier_1"]) == 1
+    assert titw["tier_1"][0]["id"] == 214
+
+
+def test_build_format_input_does_not_collapse_items_with_empty_cluster_id():
+    # Missing/empty cluster_id means "no cluster known" - never merge.
+    # Five high-scoring swamp items in Canada & Toronto absorb the global
+    # pickoff into Today in the World; the test items stay in Tech & AI.
+    tiered_items = [
+        _item(1, "Tech & AI", tier=1, ccov=2, prel=1, fit="good"),
+        _item(2, "Tech & AI", tier=1, ccov=2, prel=1, fit="good"),
+        _item(900, "Canada & Toronto", tier=1, ccov=5, prel=3, fit="good"),
+        _item(901, "Canada & Toronto", tier=1, ccov=5, prel=3, fit="good"),
+        _item(902, "Canada & Toronto", tier=1, ccov=5, prel=3, fit="good"),
+        _item(903, "Canada & Toronto", tier=1, ccov=5, prel=3, fit="good"),
+        _item(904, "Canada & Toronto", tier=1, ccov=5, prel=3, fit="good"),
+    ]
+    for it in tiered_items[:2]:
+        it["cluster_id"] = ""
+    links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": ""} for i in tiered_items}
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    tech = payload["sections"]["Tech & AI"]
+    assert {x["id"] for x in tech["tier_1"]} == {1, 2}
+
+
 def test_today_in_the_world_hero_is_highest_scored_with_image():
     # Top scorer has no image; second-top has an image. Hero must be the second.
     tiered_items = [
@@ -560,17 +601,34 @@ def test_build_format_input_embeds_sibling_urls_for_multi_source_clusters():
 
 
 def test_build_format_input_omits_siblings_for_finance_and_us_global():
+    # Swamp items in Canada & Toronto absorb the global pickoff so the
+    # Finance & Markets item stays in its home section for the assertion.
     tiered_items = [
         {"id": 60, "section": "Finance & Markets", "tier": 1, "cluster_id": "cl_b",
          "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}},
         {"id": 61, "section": "Finance & Markets", "tier": 2, "cluster_id": "cl_b",
          "scores": {"cross_source_coverage": 2, "personal_relevance": 1, "section_fit": "good"}},
+        {"id": 70, "section": "Canada & Toronto", "tier": 1, "cluster_id": "cl_c1",
+         "scores": {"cross_source_coverage": 5, "personal_relevance": 3, "section_fit": "good"}},
+        {"id": 71, "section": "Canada & Toronto", "tier": 1, "cluster_id": "cl_c2",
+         "scores": {"cross_source_coverage": 5, "personal_relevance": 3, "section_fit": "good"}},
+        {"id": 72, "section": "Canada & Toronto", "tier": 1, "cluster_id": "cl_c3",
+         "scores": {"cross_source_coverage": 5, "personal_relevance": 3, "section_fit": "good"}},
+        {"id": 73, "section": "Canada & Toronto", "tier": 1, "cluster_id": "cl_c4",
+         "scores": {"cross_source_coverage": 5, "personal_relevance": 3, "section_fit": "good"}},
+        {"id": 74, "section": "Canada & Toronto", "tier": 1, "cluster_id": "cl_c5",
+         "scores": {"cross_source_coverage": 5, "personal_relevance": 3, "section_fit": "good"}},
     ]
     links_by_id = {
         60: {"title": "FOMC", "source": "WSJ", "snippet": "x",
              "link": "https://wsj.example/60", "image": ""},
         61: {"title": "FOMC angle", "source": "Yahoo Finance", "snippet": "x",
              "link": "https://yf.example/61", "image": ""},
+        70: {"title": "swamp", "source": "CBC", "snippet": "x", "link": "https://cbc.example/70", "image": ""},
+        71: {"title": "swamp", "source": "CBC", "snippet": "x", "link": "https://cbc.example/71", "image": ""},
+        72: {"title": "swamp", "source": "CBC", "snippet": "x", "link": "https://cbc.example/72", "image": ""},
+        73: {"title": "swamp", "source": "CBC", "snippet": "x", "link": "https://cbc.example/73", "image": ""},
+        74: {"title": "swamp", "source": "CBC", "snippet": "x", "link": "https://cbc.example/74", "image": ""},
     }
     payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
     fm = payload["sections"]["Finance & Markets"]["tier_1"][0]

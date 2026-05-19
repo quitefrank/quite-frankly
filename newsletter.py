@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
 """Quite Frankly daily newsletter entry point."""
 
+import time
+from contextlib import contextmanager
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
+
+
+@contextmanager
+def _stage(name: str):
+    """Print a `[stage] start` / `[stage] done in Xs` pair so the CI log
+    reveals where time actually goes (without per-line `flush=True` noise)."""
+    print(f"[{name}] start", flush=True)
+    start = time.time()
+    try:
+        yield
+    finally:
+        print(f"[{name}] done in {time.time() - start:.1f}s", flush=True)
 
 from comparison import (
     build_comparison_log,
@@ -12,7 +26,7 @@ from comparison import (
     summarize_week,
     write_comparison_log,
 )
-from config import SECTION_MAP
+from config import SECTION_MAP, TEST_MODE
 from routing import Mode, get_mode, get_feeds_for_mode
 from pipeline import fetch_all_feeds, deduplicate, assign_ids
 from triage import call_triage, cap_items
@@ -25,12 +39,13 @@ def main():
     print(f"Mode: {mode.value}")
 
     feeds = get_feeds_for_mode(mode)
-    print("Fetching feeds...")
-    all_items = fetch_all_feeds(feeds)
-    print(f"Raw items: {len(all_items)}")
+    with _stage("fetch_feeds"):
+        all_items = fetch_all_feeds(feeds)
+    print(f"Raw items: {len(all_items)}", flush=True)
 
-    items = deduplicate(all_items)
-    print(f"Fresh items: {len(items)}")
+    with _stage("deduplicate"):
+        items = deduplicate(all_items)
+    print(f"Fresh items: {len(items)}", flush=True)
 
     for item in items:
         item["section_label"] = SECTION_MAP.get(item["source"], item["source"])
@@ -42,42 +57,46 @@ def main():
     try:
         capped_items = cap_items(items)
         if len(capped_items) < len(items):
-            print(f"Capped triage input from {len(items)} to {len(capped_items)} items")
-        print("Calling triage pass...")
-        tiered_items, clusters = call_triage(capped_items)
-        print(f"Triage returned {len(tiered_items)} scored items, {len(clusters)} clusters")
+            print(f"Capped triage input from {len(items)} to {len(capped_items)} items", flush=True)
+        with _stage("triage"):
+            tiered_items, clusters = call_triage(capped_items)
+        print(f"Triage returned {len(tiered_items)} scored items, {len(clusters)} clusters", flush=True)
 
-        print("Calling format pass...")
-        format_input = build_format_input(tiered_items, clusters, links_by_id)
-        format_raw = call_formatter(format_input)
+        with _stage("format"):
+            format_input = build_format_input(tiered_items, clusters, links_by_id)
+            format_raw = call_formatter(format_input)
 
         clusters_by_item_id = {
             item["id"]: clusters.get(item["cluster_id"], {})
             for item in tiered_items
         }
     except Exception as e:
-        print(f"Triage pipeline failed ({e}); falling back to single-pass format.")
+        print(f"Triage pipeline failed ({e}); falling back to single-pass format.", flush=True)
         headlines = "\n".join(
             f"[#{i['id']}] [{i['section_label']}] {i['title']} | Source: {i['source']}"
             for i in items
         )
-        format_raw = call_legacy_formatter(headlines)
+        with _stage("format_legacy"):
+            format_raw = call_legacy_formatter(headlines)
 
-    print("Building HTML...")
-    html, subject = build_email_html(format_raw, links_by_id, clusters_by_item_id, tiered_items=tiered_items)
+    with _stage("build_html"):
+        html, subject = build_email_html(format_raw, links_by_id, clusters_by_item_id, tiered_items=tiered_items)
 
-    print("Sending email...")
-    send_email(html, subject)
+    with _stage("send_email"):
+        send_email(html, subject)
 
-    if tiered_items:
-        print("Running Phase 1.5 shadow scoring...")
+    if tiered_items and TEST_MODE:
+        print("Skipping shadow scoring (test mode).", flush=True)
+    elif tiered_items:
+        print("Running Phase 1.5 shadow scoring...", flush=True)
         try:
             for t in tiered_items:
                 src = links_by_id.get(t["id"], {})
                 t["headline"] = src.get("title", "")
                 t["source"] = src.get("source", "")
                 t["link"] = src.get("link", "")
-            phase2_items = shadow_score(tiered_items, links_by_id)
+            with _stage("shadow_score"):
+                phase2_items = shadow_score(tiered_items, links_by_id)
             log = build_comparison_log(
                 date_str=today.isoformat(),
                 mode=mode.value,
