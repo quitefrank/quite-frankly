@@ -299,6 +299,40 @@ def test_build_everything_else_returns_empty_when_no_unused_items():
     assert html == ""
 
 
+def test_build_format_input_collapses_same_cluster_within_section():
+    # Triage clustered both NBC Meet the Press items together (cluster_id
+    # "alex_murdaugh"), but build_format_input was treating them as independent
+    # items and featuring both in Worth Knowing. One cluster, one feature.
+    tiered_items = [
+        _item(213, "Worth Knowing", tier=1, ccov=2, prel=0, fit="good"),  # score 3
+        _item(214, "Worth Knowing", tier=1, ccov=2, prel=1, fit="good"),  # score 4 (winner)
+    ]
+    for it in tiered_items:
+        it["cluster_id"] = "alex_murdaugh"
+    links_by_id = {
+        i["id"]: {"title": f"t{i['id']}", "source": "NBC Meet the Press", "snippet": "x"}
+        for i in tiered_items
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    worth_knowing = payload["sections"]["Worth Knowing"]
+    assert len(worth_knowing["tier_1"]) == 1
+    assert worth_knowing["tier_1"][0]["id"] == 214
+
+
+def test_build_format_input_does_not_collapse_items_with_empty_cluster_id():
+    # Missing/empty cluster_id means "no cluster known" - never merge.
+    tiered_items = [
+        _item(1, "Tech & AI", tier=1, ccov=2, prel=1, fit="good"),
+        _item(2, "Tech & AI", tier=1, ccov=2, prel=1, fit="good"),
+    ]
+    for it in tiered_items:
+        it["cluster_id"] = ""
+    links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": ""} for i in tiered_items}
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    tech = payload["sections"]["Tech & AI"]
+    assert {x["id"] for x in tech["tier_1"]} == {1, 2}
+
+
 def test_worth_knowing_section_renders():
     text = """## Worth Knowing
 

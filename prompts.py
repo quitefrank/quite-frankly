@@ -48,6 +48,8 @@ Tier mapping (sum cross_source_coverage + personal_relevance + section_fit_score
 
 Also return a "clusters" array. For each cluster_id, list primary_source (the source whose headline is most distinctive), also_in (other sources in the cluster), and canonical_headline.
 
+Cross-cluster entity dedup. After computing tiers, look for cases where two distinct clusters cover different stories but share the same protagonists (e.g., a court-case story and a corporate-restructure story both starring Musk and Altman). For each cluster, identify its dominant entities: named people, organizations, or products that appear in the canonical_headline. If two different clusters share 2 or more dominant entities AND both contain Tier 1 or Tier 2 items, demote every item in the lower-scoring cluster by one tier (Tier 1 becomes Tier 2, Tier 2 becomes Tier 3). Lower-scoring is the cluster whose top item has the lower tier-formula score; ties favor the cluster with higher cross_source_coverage. The goal is to prevent two stories about the same protagonists from both being featured in different sections.
+
 Output strict JSON only. No prose, no markdown fences."""
 
 

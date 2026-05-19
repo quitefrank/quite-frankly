@@ -1,6 +1,6 @@
 from unittest.mock import patch
 
-from pipeline import assign_ids, fetch_feed, monday_dedup_bypass
+from pipeline import assign_ids, fetch_all_feeds, fetch_feed, monday_dedup_bypass
 
 
 def test_assign_ids_returns_dict_keyed_by_id():
@@ -123,6 +123,25 @@ def test_fetch_feed_image_falls_back_to_empty_string_when_og_image_unavailable(m
     with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
         items = fetch_feed({"url": "x", "source": "Whatever"})
     assert items[0]["image"] == ""
+
+
+def test_fetch_all_feeds_dedupes_items_with_identical_links():
+    # NBC Meet the Press shipped two separate RSS entries that both pointed to
+    # https://nbcnews.com/dateline (the show landing page). Both made it through
+    # fetch and ended up as separate items in Worth Knowing, where they showed up
+    # as a duplicate-feeling pair in the briefing.
+    entries_feed_a = [
+        ("In the Matter of Alex Murdaugh",
+         "https://nbcnews.com/dateline",
+         "A meaningful summary sentence that gives the formatter something to work with."),
+        ("Alex Murdaugh's murder convictions thrown out.",
+         "https://nbcnews.com/dateline",
+         "A meaningful summary sentence that gives the formatter something to work with."),
+    ]
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries_feed_a)):
+        items = fetch_all_feeds([{"url": "x", "source": "NBC Meet the Press"}])
+    assert len(items) == 1, "Within-batch link dedup should keep only one item per link"
+    assert items[0]["link"] == "https://nbcnews.com/dateline"
 
 
 def test_monday_bypass_keeps_items_with_cluster_size_3_plus():

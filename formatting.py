@@ -47,7 +47,31 @@ def _item_score(scores: dict) -> int:
     )
 
 
+def _collapse_by_cluster_within_section(items: list[dict]) -> list[dict]:
+    """Keep one representative item per (section, cluster_id), highest score wins.
+
+    Triage clusters by `cluster_id`, but every clustered item still flows through
+    as its own dict. Without this collapse, a single underlying story with 2+
+    items in the same section gets featured 2+ times. Items with empty
+    cluster_id are never merged - that's the "no cluster known" signal.
+    """
+    best: dict[tuple[str, str], dict] = {}
+    passthrough: list[dict] = []
+    for item in items:
+        cid = item.get("cluster_id") or ""
+        section = item.get("section") or ""
+        if not cid or not section:
+            passthrough.append(item)
+            continue
+        key = (section, cid)
+        current = best.get(key)
+        if current is None or _item_score(item.get("scores", {})) > _item_score(current.get("scores", {})):
+            best[key] = item
+    return passthrough + list(best.values())
+
+
 def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], links_by_id: dict[int, dict]) -> str:
+    tiered_items = _collapse_by_cluster_within_section(tiered_items)
     by_section: dict[str, dict[str, list]] = {
         s: {"tier_1": [], "tier_2": [], "tier_3": []} for s in SECTION_ORDER
     }

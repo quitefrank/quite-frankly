@@ -167,7 +167,21 @@ def fetch_all_feeds(feeds=None):
         print(f"  {feed_config['source']}: {len(items)} items")
         all_items.extend(items)
         time.sleep(0.5)
-    return all_items
+    # Drop within-batch link duplicates. Some feeds (e.g., NBC Meet the Press)
+    # publish multiple RSS entries that point to the same show landing URL;
+    # without this, both end up clustered together downstream and both get
+    # featured. The cross-day cache in deduplicate() doesn't catch this
+    # because the link only appears once outside the current batch.
+    seen_links: set[str] = set()
+    deduped: list[dict] = []
+    for item in all_items:
+        link = item.get("link", "")
+        if link and link in seen_links:
+            continue
+        if link:
+            seen_links.add(link)
+        deduped.append(item)
+    return deduped
 
 
 def load_seen_links():
