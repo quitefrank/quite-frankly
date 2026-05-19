@@ -248,16 +248,20 @@ def test_render_other_headlines_for_section_skips_items_already_in_used_ids():
 
 def test_other_headlines_includes_tier_1_overflow_above_tier_2():
     # Section has 3 tier_1 items; cap=2 means 1 demotes to Other Headlines.
-    # The demoted tier_1 should appear in Other Headlines AHEAD of a lower-scored tier_2.
+    # The demoted tier_1 (id=3) has a LOW score; a competing tier_2 (id=4)
+    # has a HIGH score. Tier ordering must beat score ordering: the tier_1
+    # overflow surfaces above the higher-scored tier_2 item.
     tiered_items = [
         {"id": 1, "section": "Toronto Housing", "tier": 1,
          "scores": {"cross_source_coverage": 3, "personal_relevance": 3, "section_fit": "good"}},  # score 7
         {"id": 2, "section": "Toronto Housing", "tier": 1,
          "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},  # score 6
+        # Overflow tier_1 with a deliberately LOW score (1).
         {"id": 3, "section": "Toronto Housing", "tier": 1,
-         "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}},  # score 5 (overflow)
+         "scores": {"cross_source_coverage": 1, "personal_relevance": 0, "section_fit": "weak"}},  # score 1
+        # Tier_2 with a deliberately HIGH score (6) — would beat id=3 under score-only sort.
         {"id": 4, "section": "Toronto Housing", "tier": 2,
-         "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}},  # score 4
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},  # score 6
     ]
     links_by_id = {
         n: {"link": f"https://example.com/{n}", "title": f"Story {n}",
@@ -266,11 +270,11 @@ def test_other_headlines_includes_tier_1_overflow_above_tier_2():
     }
     used_ids = {1, 2}  # featured slots took the top two tier_1
     html = render_other_headlines_for_section("Toronto Housing", tiered_items, links_by_id, used_ids)
-    # Tier-1 overflow id=3 must appear; tier-2 id=4 must appear; id=3 must come first.
     pos_3 = html.find("Story 3")
     pos_4 = html.find("Story 4")
     assert pos_3 >= 0 and pos_4 >= 0, "Both overflow and tier-2 must render"
-    assert pos_3 < pos_4, "Tier-1 overflow should surface above tier-2"
+    # Tier-1 overflow (low score 1) must beat tier-2 (high score 6) by virtue of tier alone.
+    assert pos_3 < pos_4, "Tier-1 overflow must surface above tier-2 regardless of score"
     assert used_ids == {1, 2, 3, 4}
 
 

@@ -248,10 +248,11 @@ def _first_sentence(text: str, max_chars: int = 180) -> str:
 def render_other_headlines_for_section(section, tiered_items, links_by_id, used_ids):
     """Synthesize the Other Headlines subsection for one section.
 
-    Picks the top MAX_OTHER_HEADLINES_PER_SECTION Tier 2 items in this section
-    whose IDs are not already in used_ids (i.e., not already featured), sorted
-    by composite score desc. Adds the chosen IDs to used_ids so they don't
-    duplicate in Everything Else.
+    Picks the top MAX_OTHER_HEADLINES_PER_SECTION Tier 1 overflow and Tier 2
+    items in this section whose IDs are not already in used_ids (i.e., not
+    already featured), sorted by tier ascending then composite score desc so
+    tier-1 overflow surfaces above tier-2. Adds the chosen IDs to used_ids so
+    they don't duplicate in Everything Else.
     """
     candidates = []
     for it in tiered_items or []:
@@ -264,7 +265,6 @@ def render_other_headlines_for_section(section, tiered_items, links_by_id, used_
             continue
         if it["id"] not in links_by_id:
             continue
-        # Sort tier 1 before tier 2, then by composite score desc.
         candidates.append((tier, -_item_score(it.get("scores", {})), it["id"]))
 
     candidates.sort()
