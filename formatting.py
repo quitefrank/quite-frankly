@@ -33,6 +33,8 @@ SECTION_FIT_SCORE = {"good": 1, "weak": 0, "none": -1}
 TODAY_IN_THE_WORLD = "Today in the World"
 TODAY_IN_THE_WORLD_CAP = 5
 
+SECTIONS_WITHOUT_INLINE_LINKS = {"Finance & Markets", "US & Global"}
+
 DEFAULT_FEATURED_CAP = 2
 SECTION_FEATURED_CAPS = {
     "Finance & Markets": 1,
@@ -76,6 +78,41 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
             "_score": _item_score(item.get("scores", {})),
             "_has_image": bool(link.get("image")),
         })
+
+    # Build {cluster_id: [{"source": ..., "url": ...}, ...]} from all items
+    # (including those that won't render featured) so we don't lose
+    # cross-source visibility when the cluster spans tiers.
+    cluster_members: dict[str, list[dict]] = {}
+    for item in tiered_items:
+        cid = item.get("cluster_id")
+        if not cid:
+            continue
+        link = links_by_id.get(item["id"], {})
+        url = link.get("link", "")
+        source = link.get("source", "")
+        if not url or not source:
+            continue
+        cluster_members.setdefault(cid, []).append({
+            "id": item["id"],
+            "source": source,
+            "url": url,
+        })
+
+    # Attach siblings to each featured-eligible item. The sibling list excludes
+    # the item itself and is empty for Finance & Markets / US & Global.
+    for section, buckets in by_section.items():
+        if section in SECTIONS_WITHOUT_INLINE_LINKS:
+            for item in buckets["tier_1"] + buckets["tier_2"] + buckets["tier_3"]:
+                item["siblings"] = []
+            continue
+        for item in buckets["tier_1"] + buckets["tier_2"] + buckets["tier_3"]:
+            cid = item.get("cluster_id")
+            members = cluster_members.get(cid, [])
+            item["siblings"] = [
+                {"source": m["source"], "url": m["url"]}
+                for m in members
+                if m["id"] != item["id"]
+            ]
 
     # Tier 1 buckets sort by (has_image desc, score desc) so image-bearing
     # stories surface before image-less ones within the same tier. Tier 2 and

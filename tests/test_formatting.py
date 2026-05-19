@@ -484,3 +484,65 @@ Source: NYT
     html, _ = parse_and_render_sections(text, links_by_id, clusters_by_item_id)
     assert "Today in the World" in html
     assert "NYT, BBC" in html
+
+
+def test_build_format_input_embeds_sibling_urls_for_multi_source_clusters():
+    # Swamp the global pickoff with 5 higher-scored items in another section so
+    # the Tech & AI cluster's tier-1 item stays in Tech & AI rather than being
+    # promoted into Today in the World.
+    tiered_items = [
+        {"id": 50, "section": "Tech & AI", "tier": 1, "cluster_id": "cl_a",
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},
+        {"id": 51, "section": "Tech & AI", "tier": 2, "cluster_id": "cl_a",
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 1, "section_fit": "good"}},
+        {"id": 52, "section": "Tech & AI", "tier": 3, "cluster_id": "cl_a",
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 0, "section_fit": "good"}},
+        _item(91, "Canada & Toronto", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(92, "Canada & Toronto", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(93, "Canada & Toronto", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(94, "Canada & Toronto", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(95, "Canada & Toronto", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+    ]
+    links_by_id = {
+        50: {"title": "Primary headline", "source": "TechCrunch",
+             "snippet": "x", "link": "https://tc.example/50", "image": ""},
+        51: {"title": "Same story diff angle", "source": "The Verge",
+             "snippet": "x", "link": "https://verge.example/51", "image": ""},
+        52: {"title": "Wire copy", "source": "Reuters",
+             "snippet": "x", "link": "https://reut.example/52", "image": ""},
+        91: {"title": "t91", "source": "CBC", "snippet": "x", "link": "https://cbc/91", "image": ""},
+        92: {"title": "t92", "source": "CBC", "snippet": "x", "link": "https://cbc/92", "image": ""},
+        93: {"title": "t93", "source": "CBC", "snippet": "x", "link": "https://cbc/93", "image": ""},
+        94: {"title": "t94", "source": "CBC", "snippet": "x", "link": "https://cbc/94", "image": ""},
+        95: {"title": "t95", "source": "CBC", "snippet": "x", "link": "https://cbc/95", "image": ""},
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    tech = payload["sections"]["Tech & AI"]["tier_1"]
+    # Locate the primary cluster item (id=50). The cap=2 fallback may also
+    # promote a tier-2 sibling into tier_1, but we only care about item 50's
+    # sibling list here.
+    primary = next(item for item in tech if item["id"] == 50)
+    siblings = primary["siblings"]
+    # Siblings exclude the primary item itself.
+    sources_with_urls = {(s["source"], s["url"]) for s in siblings}
+    assert ("The Verge", "https://verge.example/51") in sources_with_urls
+    assert ("Reuters", "https://reut.example/52") in sources_with_urls
+    assert ("TechCrunch", "https://tc.example/50") not in sources_with_urls
+
+
+def test_build_format_input_omits_siblings_for_finance_and_us_global():
+    tiered_items = [
+        {"id": 60, "section": "Finance & Markets", "tier": 1, "cluster_id": "cl_b",
+         "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}},
+        {"id": 61, "section": "Finance & Markets", "tier": 2, "cluster_id": "cl_b",
+         "scores": {"cross_source_coverage": 2, "personal_relevance": 1, "section_fit": "good"}},
+    ]
+    links_by_id = {
+        60: {"title": "FOMC", "source": "WSJ", "snippet": "x",
+             "link": "https://wsj.example/60", "image": ""},
+        61: {"title": "FOMC angle", "source": "Yahoo Finance", "snippet": "x",
+             "link": "https://yf.example/61", "image": ""},
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    fm = payload["sections"]["Finance & Markets"]["tier_1"][0]
+    assert fm.get("siblings", []) == []
