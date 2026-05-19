@@ -44,8 +44,9 @@ def test_fetch_feed_drops_items_with_empty_or_too_short_snippets():
     assert [i["title"] for i in items] == ["A real article with body"]
 
 
-def test_fetch_feed_uses_og_image_when_rss_has_no_image(monkeypatch):
-    # BetterDwelling-style: RSS exposes no image fields anywhere.
+def test_fetch_all_feeds_enriches_with_og_image_when_rss_has_no_image(monkeypatch):
+    # BetterDwelling-style: RSS exposes no image fields anywhere; the
+    # enrichment pass fills item['image'] from og:image after dedup.
     entries = [
         ("Vacant homes pile up", "https://betterdwelling.com/vacant-homes/",
          "Canadian developers are sitting on a glut of completed and unsold homes."),
@@ -53,7 +54,7 @@ def test_fetch_feed_uses_og_image_when_rss_has_no_image(monkeypatch):
     monkeypatch.setattr("pipeline._fetch_og_image",
                         lambda url, **kw: "https://betterdwelling.com/wp-content/og.jpg")
     with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
-        items = fetch_feed({"url": "x", "source": "BetterDwelling"})
+        items = fetch_all_feeds([{"url": "x", "source": "BetterDwelling"}])
     assert items[0]["image"] == "https://betterdwelling.com/wp-content/og.jpg"
 
 
@@ -97,9 +98,9 @@ def test_extract_og_image_returns_empty_when_no_og_image_present():
     assert _extract_og_image_from_html(html) == ""
 
 
-def test_fetch_feed_skips_og_image_fallback_for_podcast_sources(monkeypatch):
+def test_fetch_all_feeds_skips_og_image_enrichment_for_podcast_sources(monkeypatch):
     # Podcast feeds (e.g., CBC Frontburner) ship URLs that resolve to audio
-    # endpoints, not article pages — og:image fetch would always 404. Skip it.
+    # endpoints, not article pages — og:image fetch would always 404. Skip them.
     entries = [
         ("Episode 123", "https://www.cbc.ca/podcasting/includes/frontburner-abc",
          "A podcast episode with a meaningful summary sentence."),
@@ -108,21 +109,57 @@ def test_fetch_feed_skips_og_image_fallback_for_podcast_sources(monkeypatch):
     monkeypatch.setattr("pipeline._fetch_og_image",
                         lambda url, **kw: calls.append(url) or "https://should-not-be-used.jpg")
     with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
-        items = fetch_feed({"url": "x", "source": "CBC Frontburner"})
+        items = fetch_all_feeds([{"url": "x", "source": "CBC Frontburner"}])
     assert items[0]["image"] == ""
     assert calls == []  # _fetch_og_image must not have been called
 
 
-def test_fetch_feed_image_falls_back_to_empty_string_when_og_image_unavailable(monkeypatch):
+def test_fetch_all_feeds_image_stays_empty_when_og_image_unavailable(monkeypatch):
     entries = [
         ("A story", "https://example.com/story",
          "A meaningful summary sentence that gives the formatter something to work with."),
     ]
-    # autouse fixture already neutralizes _fetch_og_image, but be explicit.
     monkeypatch.setattr("pipeline._fetch_og_image", lambda url, **kw: "")
     with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
-        items = fetch_feed({"url": "x", "source": "Whatever"})
+        items = fetch_all_feeds([{"url": "x", "source": "Whatever"}])
     assert items[0]["image"] == ""
+
+
+def test_enrich_images_with_og_image_runs_concurrently(monkeypatch):
+    # Verify the enrichment pass actually runs in parallel: 5 items, each
+    # 100ms to fetch. Sequential would take >=500ms; with 10 workers it
+    # should finish well under 200ms.
+    from pipeline import enrich_images_with_og_image
+    import time as _time
+
+    def slow_fetch(url, **kw):
+        _time.sleep(0.1)
+        return f"{url}/og.jpg"
+
+    monkeypatch.setattr("pipeline._fetch_og_image", slow_fetch)
+    items = [
+        {"link": f"https://example.com/{i}", "image": "", "source": "X"}
+        for i in range(5)
+    ]
+    start = _time.time()
+    enrich_images_with_og_image(items)
+    elapsed = _time.time() - start
+    assert elapsed < 0.4, f"Enrichment should be parallel; took {elapsed:.2f}s"
+    assert all(item["image"].endswith("og.jpg") for item in items)
+
+
+def test_enrich_images_with_og_image_skips_items_with_existing_image(monkeypatch):
+    from pipeline import enrich_images_with_og_image
+    calls = []
+    monkeypatch.setattr("pipeline._fetch_og_image",
+                        lambda url, **kw: calls.append(url) or "https://x")
+    items = [
+        {"link": "u1", "image": "already-have-this.jpg", "source": "X"},
+        {"link": "u2", "image": "", "source": "X"},
+    ]
+    enrich_images_with_og_image(items)
+    # Only the empty-image item should have triggered a fetch.
+    assert calls == ["u2"]
 
 
 def test_fetch_all_feeds_dedupes_items_with_identical_links():
