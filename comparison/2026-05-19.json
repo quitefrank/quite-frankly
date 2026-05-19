@@ -6,10 +6,10 @@
       "id": 0,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "toronto-airport",
+      "cluster_id": "toronto_airport",
       "scores": {
         "cross_source_coverage": 2,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -21,10 +21,10 @@
       "id": 10,
       "tier": 3,
       "section": "Canada & Toronto",
-      "cluster_id": "nyc-synagogue-plot",
+      "cluster_id": "iraqi_plot",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -36,7 +36,7 @@
       "id": 12,
       "tier": 0,
       "section": "Canada & Toronto",
-      "cluster_id": "reddit-spiderman",
+      "cluster_id": "reddit_spiderman",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
@@ -49,9 +49,24 @@
     },
     {
       "id": 22,
-      "tier": 3,
+      "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "cusma-trump",
+      "cluster_id": "bread_settlement",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Canadian bread settlement money on the way and here's how much you can get",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/canadian-bread-settlement-money/"
+    },
+    {
+      "id": 32,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "cusma_trump",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -63,10 +78,10 @@
       "link": "https://nationalpost.com/opinion/canadas-too-late-now-to-save-cusma-from-a-trump-rewrite-or-worse"
     },
     {
-      "id": 32,
+      "id": 42,
       "tier": 0,
-      "section": "Canada & Toronto",
-      "cluster_id": "canadaland-events",
+      "section": "Worth Knowing",
+      "cluster_id": "canadaland_events",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
@@ -78,10 +93,10 @@
       "link": "https://www.canadaland.com/live/"
     },
     {
-      "id": 42,
+      "id": 52,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "boomers-housing",
+      "cluster_id": "housing_advice",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -93,13 +108,13 @@
       "link": "https://www.theglobeandmail.com/investing/personal-finance/retirement/article-housing-real-estate-home-ownership-boomers-kids/"
     },
     {
-      "id": 52,
+      "id": 62,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "housing-correction-regional",
+      "cluster_id": "housing_correction",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 3,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -108,10 +123,10 @@
       "link": "https://www.reddit.com/r/canadahousing/comments/1th5x22/canadas_correction_is_a_toronto_vancouver_story/"
     },
     {
-      "id": 55,
+      "id": 65,
       "tier": 1,
-      "section": "Toronto Housing",
-      "cluster_id": "40-under-40",
+      "section": "Worth Knowing",
+      "cluster_id": "development_40under40",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
@@ -123,10 +138,10 @@
       "link": "https://storeys.com/40-under-40-expands-development/"
     },
     {
-      "id": 65,
+      "id": 75,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "vacant-homes-pileup",
+      "cluster_id": "vacant_homes",
       "scores": {
         "cross_source_coverage": 2,
         "personal_relevance": 2,
@@ -138,14 +153,14 @@
       "link": "https://betterdwelling.com/this-weeks-top-stories-canada-sees-vacant-new-homes-pile-up-real-estate-demand-hits-1995-lows/"
     },
     {
-      "id": 75,
-      "tier": 1,
+      "id": 85,
+      "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "chatgpt-traffic",
+      "cluster_id": "ai_seo",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "weak"
+        "personal_relevance": 2,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "How I Get Free Traffic from ChatGPT in 2025 (AIO vs SEO)",
@@ -153,25 +168,25 @@
       "link": "https://techncruncher.blogspot.com/2025/12/how-i-get-free-traffic-from-chatgpt-in.html"
     },
     {
-      "id": 85,
+      "id": 95,
       "tier": 2,
-      "section": "Design & Product",
-      "cluster_id": "3d-pose-maker",
+      "section": "Tech & AI",
+      "cluster_id": "ai_engineer",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Show HN: I made a 3D pose maker for artists",
+      "headline": "Going full AI engineer, not touching code anymore",
       "source": "Hacker News",
-      "link": "https://setpose.com/"
+      "link": "https://max.gp/writing/going-full-ai-engineer-not-touching-code-anymore/"
     },
     {
-      "id": 95,
+      "id": 105,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "llm-six-months",
+      "cluster_id": "llm_recap",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -183,14 +198,14 @@
       "link": "https://simonwillison.net/2026/May/19/5-minute-llms/#atom-everything"
     },
     {
-      "id": 105,
-      "tier": 2,
+      "id": 115,
+      "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "stratechery-personal",
+      "cluster_id": "stratechery_personal",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
-        "section_fit": "good"
+        "section_fit": "weak"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Personal Day",
@@ -198,28 +213,28 @@
       "link": "https://stratechery.com/2026/personal-day-3/"
     },
     {
-      "id": 115,
-      "tier": 1,
+      "id": 125,
+      "tier": 3,
       "section": "Finance & Markets",
-      "cluster_id": "unm-stock",
+      "cluster_id": "home_depot",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
-        "section_fit": "weak"
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "3 Reasons to Avoid UNM and 1 Stock to Buy Instead",
+      "headline": "What investors need to know about Home Depot right now",
       "source": "Yahoo Finance",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-avoid-unm-1-142055773.html?.tsrc=rss"
+      "link": "https://finance.yahoo.com/video/what-investors-need-to-know-about-home-depot-right-now-143238812.html?.tsrc=rss"
     },
     {
-      "id": 125,
+      "id": 135,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "palestinians-gaza",
+      "cluster_id": "gaza_return",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -228,10 +243,10 @@
       "link": "https://www.wsj.com/articles/palestinians-flock-back-to-northern-gaza-on-foot-after-hostage-release-breakthrough-3f60e2db"
     },
     {
-      "id": 135,
+      "id": 145,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "gic-rates-canada",
+      "cluster_id": "gic_rates",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -243,13 +258,13 @@
       "link": "https://www.moneysense.ca/save/investing/best-gic-rates/"
     },
     {
-      "id": 144,
+      "id": 154,
       "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "ebola-outbreak",
+      "cluster_id": "ebola_outbreak",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -258,28 +273,28 @@
       "link": "https://www.bbc.com/news/articles/ceqp11gn1l8o?at_medium=RSS&at_campaign=rss"
     },
     {
-      "id": 154,
-      "tier": 2,
+      "id": 164,
+      "tier": 3,
       "section": "US & Global",
-      "cluster_id": "supreme-court-strains",
+      "cluster_id": "iran_war_military",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Justices Hint at Strains as Supreme Court Comes Under Scrutiny",
+      "headline": "Iran War Exposes Shortcomings in U.S. Military Industrial Base",
       "source": "NYT",
-      "link": "https://www.nytimes.com/2026/05/18/us/politics/supreme-court-political-tensions.html"
+      "link": "https://www.nytimes.com/2026/05/19/us/politics/pentagon-weapons-drones-iran-war-hegseth.html"
     },
     {
-      "id": 164,
-      "tier": 2,
+      "id": 174,
+      "tier": 3,
       "section": "US & Global",
-      "cluster_id": "submarine-dominance",
+      "cluster_id": "submarine_dominance",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -288,13 +303,13 @@
       "link": "https://www.economist.com/international/2026/05/07/americas-submarine-dominance-is-under-threat"
     },
     {
-      "id": 174,
+      "id": 184,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "east-jerusalem",
+      "cluster_id": "jerusalem_expel",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -303,13 +318,13 @@
       "link": "https://www.npr.org/2026/05/19/nx-s1-5823861/israel-palestinians-east-jerusalem"
     },
     {
-      "id": 184,
+      "id": 194,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "maha-fda-vapes",
+      "cluster_id": "fda_vapes",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -318,13 +333,13 @@
       "link": "https://www.axios.com/2026/05/15/fda-maha-vape-tanning-booths-teen-temptations"
     },
     {
-      "id": 194,
+      "id": 204,
       "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "trump-dissenter",
+      "cluster_id": "trump_dissenter",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -333,10 +348,10 @@
       "link": "https://www.nytimes.com/the-daily"
     },
     {
-      "id": 195,
+      "id": 205,
       "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "alberta-separatism",
+      "cluster_id": "alberta_separatism",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -348,13 +363,13 @@
       "link": "https://www.cbc.ca/podcasting/includes/frontburner-0ac1f75e-6aac-4713-bee2-6d8068f14733"
     },
     {
-      "id": 205,
+      "id": 215,
       "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "alex-murdaugh",
+      "cluster_id": "alex_murdaugh",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -364,9 +379,9 @@
     },
     {
       "id": 1,
-      "tier": 3,
+      "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "toronto-cops-spain",
+      "cluster_id": "toronto_cops_spain",
       "scores": {
         "cross_source_coverage": 3,
         "personal_relevance": 1,
@@ -379,12 +394,12 @@
     },
     {
       "id": 11,
-      "tier": 2,
+      "tier": 3,
       "section": "Canada & Toronto",
-      "cluster_id": "pearson-upgrade",
+      "cluster_id": "pearson_upgrade",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -394,9 +409,9 @@
     },
     {
       "id": 13,
-      "tier": 3,
+      "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "toronto-cops-spain",
+      "cluster_id": "toronto_cops_spain",
       "scores": {
         "cross_source_coverage": 3,
         "personal_relevance": 1,
@@ -410,11 +425,26 @@
     {
       "id": 23,
       "tier": 2,
-      "section": "US & Global",
-      "cluster_id": "san-diego-mosque",
+      "section": "Canada & Toronto",
+      "cluster_id": "ttc_shutdown",
       "scores": {
-        "cross_source_coverage": 4,
-        "personal_relevance": 1,
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "TTC to shut down over 7 kilometres of subway for this entire weekend",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/ttc-subway-closure-weekend-may-23/"
+    },
+    {
+      "id": 33,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "san_diego_mosque",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": true,
@@ -423,14 +453,14 @@
       "link": "https://nationalpost.com/news/world/san-diego-mosque-shooting"
     },
     {
-      "id": 33,
-      "tier": 1,
+      "id": 43,
+      "tier": 3,
       "section": "Canada & Toronto",
-      "cluster_id": "ndp-leadership",
+      "cluster_id": "ndp_leadership",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 1,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Five (Delusional? Brave?) NDP Leadership Candidates on WTF They Plan to Do",
@@ -438,13 +468,13 @@
       "link": "https://www.canadaland.com/ndp-leadership-candidates/"
     },
     {
-      "id": 43,
+      "id": 53,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "planswell-default",
+      "cluster_id": "planswell_default",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -453,10 +483,10 @@
       "link": "https://www.theglobeandmail.com/investing/personal-finance/article-planswell-defaulted-on-debt-as-ceo-absconded-to-colombia-court/"
     },
     {
-      "id": 53,
+      "id": 63,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "tiny-homes-canada",
+      "cluster_id": "tiny_homes",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -468,10 +498,10 @@
       "link": "https://www.reddit.com/r/canadahousing/comments/1th8xar/just_curious_why_arent_tiny_home_a_thing_in_canada/"
     },
     {
-      "id": 56,
+      "id": 66,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "carlyle-toronto",
+      "cluster_id": "carlyle_junction",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -483,10 +513,10 @@
       "link": "https://storeys.com/carlyle-seeks-sale-south-junction/"
     },
     {
-      "id": 66,
+      "id": 76,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "vacant-homes-pileup",
+      "cluster_id": "vacant_homes",
       "scores": {
         "cross_source_coverage": 2,
         "personal_relevance": 2,
@@ -498,14 +528,14 @@
       "link": "https://betterdwelling.com/canadian-developers-set-a-record-for-completed-unsold-new-homes/"
     },
     {
-      "id": 76,
-      "tier": 1,
+      "id": 86,
+      "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "ai-content-tools",
+      "cluster_id": "ai_content_tools",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "weak"
+        "personal_relevance": 2,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Top 10 AI Tools That Will Transform Your Content Creation in 2025",
@@ -513,28 +543,28 @@
       "link": "https://techncruncher.blogspot.com/2025/01/top-10-ai-tools-that-will-transform.html"
     },
     {
-      "id": 86,
-      "tier": 1,
+      "id": 96,
+      "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "openbsd-release",
+      "cluster_id": "3d_pose_maker",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 2,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "OpenBSD 7.9 Released",
+      "headline": "Show HN: I made a 3D pose maker for artists",
       "source": "Hacker News",
-      "link": "https://www.openbsd.org/79.html"
+      "link": "https://setpose.com/"
     },
     {
-      "id": 96,
+      "id": 106,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "simon-willison-birds",
+      "cluster_id": "simon_willison_misc",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
+        "personal_relevance": 1,
         "section_fit": "weak"
       },
       "promotion_to_worth_knowing": false,
@@ -543,10 +573,10 @@
       "link": "https://simonwillison.net/2026/May/18/sighting-362781627/#atom-everything"
     },
     {
-      "id": 106,
+      "id": 116,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "data-center-opposition",
+      "cluster_id": "data_center_opposition",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -558,25 +588,25 @@
       "link": "https://stratechery.com/2026/data-center-discontent-understanding-the-opposition-fixing-the-problem/"
     },
     {
-      "id": 116,
-      "tier": 2,
+      "id": 126,
+      "tier": 3,
       "section": "Finance & Markets",
-      "cluster_id": "pelosi-stock-market",
+      "cluster_id": "costco_earnings",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Here\u2019s How Nancy Pelosi Beat the Stock Market and Warren Buffett",
+      "headline": "Costco Seen Missing Quarterly Earnings Views, Oppenheimer Says",
       "source": "Yahoo Finance",
-      "link": "https://247wallst.com/investing/2025/11/23/heres-how-nancy-pelosi-beat-the-stock-market-and-warren-buffett/?.tsrc=rss"
+      "link": "https://finance.yahoo.com/markets/stocks/articles/costco-seen-missing-quarterly-earnings-143233335.html?.tsrc=rss"
     },
     {
-      "id": 126,
+      "id": 136,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "china-property-loss",
+      "cluster_id": "china_property",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -588,10 +618,10 @@
       "link": "https://www.wsj.com/articles/even-chinas-property-stalwart-isnt-immune-from-the-crisis-19799863"
     },
     {
-      "id": 136,
+      "id": 146,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "fuel-costs-canada",
+      "cluster_id": "fuel_costs_canada",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -603,13 +633,13 @@
       "link": "https://www.moneysense.ca/news/canadians-make-tough-tradeoffs-as-fuel-costs-rise/"
     },
     {
-      "id": 145,
+      "id": 155,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "san-diego-mosque",
+      "cluster_id": "san_diego_mosque",
       "scores": {
-        "cross_source_coverage": 4,
-        "personal_relevance": 1,
+        "cross_source_coverage": 3,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": true,
@@ -618,28 +648,28 @@
       "link": "https://www.bbc.com/news/articles/clyp3gkrwg9o?at_medium=RSS&at_campaign=rss"
     },
     {
-      "id": 155,
-      "tier": 2,
-      "section": "US & Global",
-      "cluster_id": "trump-money-mosque",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Trump\u2019s New $1.8 Billion Pot of Money, and a Deadly Mosque Attack in California",
-      "source": "NYT",
-      "link": "https://www.nytimes.com/2026/05/19/podcasts/the-headlines/trump-irs-mosque-attack-california.html"
-    },
-    {
       "id": 165,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "trump-caligula",
+      "cluster_id": "trump_iran_attack",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Trump Says He Postponed a \u2018Very Major Attack\u2019 on Iran, Leaving Mideast on Edge",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/world/middleeast/iran-trump-tension.html"
+    },
+    {
+      "id": 175,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "trump_caligula",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -648,13 +678,13 @@
       "link": "https://www.economist.com/international/2026/05/05/america-must-hope-donald-trump-is-not-a-new-caligula"
     },
     {
-      "id": 175,
+      "id": 185,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "san-diego-mosque",
+      "cluster_id": "san_diego_mosque",
       "scores": {
-        "cross_source_coverage": 4,
-        "personal_relevance": 1,
+        "cross_source_coverage": 3,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": true,
@@ -663,13 +693,13 @@
       "link": "https://www.npr.org/2026/05/19/g-s1-122806/up-first-newsletter-islamic-center-san-diego-primary-elections-trump-irs-elon-musk-openai"
     },
     {
-      "id": 185,
+      "id": 195,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "prediction-markets",
+      "cluster_id": "prediction_markets",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -678,13 +708,13 @@
       "link": "https://www.axios.com/2026/05/19/prediction-market-kalshi-polymarket-bill-congress"
     },
     {
-      "id": 196,
+      "id": 206,
       "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "conspiracy-theory-backyard",
+      "cluster_id": "conspiracy_theory",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -696,7 +726,7 @@
       "id": 2,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "ttc-deal",
+      "cluster_id": "ttc_deal",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -709,9 +739,9 @@
     },
     {
       "id": 14,
-      "tier": 3,
+      "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "toronto-cops-spain",
+      "cluster_id": "toronto_cops_spain",
       "scores": {
         "cross_source_coverage": 3,
         "personal_relevance": 1,
@@ -726,7 +756,22 @@
       "id": 24,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "ben-shapiro-toronto",
+      "cluster_id": "fireworks_chaos",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Fireworks-related chaos swept Ontario this long weekend",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/fireworks-chaos-ontario-long-weekend/"
+    },
+    {
+      "id": 34,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "shapiro_toronto",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -738,10 +783,10 @@
       "link": "https://nationalpost.com/news/zionism-won-jews-earned-israel-ben-shapiro-tells-toronto-audience"
     },
     {
-      "id": 34,
+      "id": 44,
       "tier": 0,
-      "section": "Canada & Toronto",
-      "cluster_id": "canadaland-call-in",
+      "section": "Worth Knowing",
+      "cluster_id": "canadaland_callin",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
@@ -753,13 +798,13 @@
       "link": "https://www.canadaland.com/canadaland-live-call-in-show/"
     },
     {
-      "id": 44,
-      "tier": 2,
+      "id": 54,
+      "tier": 3,
       "section": "Finance & Markets",
-      "cluster_id": "tsx-iran-peace",
+      "cluster_id": "tsx_iran_peace",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -768,10 +813,10 @@
       "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/market-news/article-premarket-global-stocks-and-bonds-steady-as-oil-eases-on-trumps-iran/"
     },
     {
-      "id": 54,
+      "id": 64,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "build-canada-homes",
+      "cluster_id": "build_canada_homes",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -783,10 +828,10 @@
       "link": "https://www.reddit.com/r/canadahousing/comments/1thnfx2/oped_the_problems_build_canada_homes_must_solve/"
     },
     {
-      "id": 57,
+      "id": 67,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "wychwood-cottage",
+      "cluster_id": "wychwood_cottage",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -798,13 +843,13 @@
       "link": "https://storeys.com/319-wychwood-avenue-for-sale/"
     },
     {
-      "id": 67,
+      "id": 77,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "real-estate-demand-1995",
+      "cluster_id": "real_estate_demand",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 3,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -813,10 +858,10 @@
       "link": "https://betterdwelling.com/canadian-real-estate-demand-balance-hits-weakest-level-since-1995/"
     },
     {
-      "id": 77,
+      "id": 87,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "limewire-ai-review",
+      "cluster_id": "limewire_ai",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -828,25 +873,25 @@
       "link": "https://techncruncher.blogspot.com/2023/12/limewire-ai-studio-review-2023-details.html"
     },
     {
-      "id": 87,
-      "tier": 1,
-      "section": "Tech & AI",
-      "cluster_id": "venus-colonization",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Colonization of Venus",
-      "source": "Hacker News",
-      "link": "https://en.wikipedia.org/wiki/Colonization_of_Venus"
-    },
-    {
       "id": 97,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "gds-nhs-opensource",
+      "cluster_id": "plex_pass",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "New Lifetime Plex Pass Pricing",
+      "source": "Hacker News",
+      "link": "https://www.plex.tv/blog/new-lifetime-plex-pass-pricing/"
+    },
+    {
+      "id": 107,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "nhs_opensource",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -858,10 +903,10 @@
       "link": "https://simonwillison.net/2026/May/17/gds-weighs-in/#atom-everything"
     },
     {
-      "id": 107,
+      "id": 117,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "stratechery-alliances",
+      "cluster_id": "stratechery_alliances",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -873,28 +918,28 @@
       "link": "https://stratechery.com/2026/shifting-alliances-in-a-changing-world/"
     },
     {
-      "id": 117,
-      "tier": 1,
-      "section": "Finance & Markets",
-      "cluster_id": "genpact-stock",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Is Genpact Stock a Buy After Hedge Fund Rice Hall James Raised Its Stake by $14 Million?",
-      "source": "Yahoo Finance",
-      "link": "https://www.fool.com/coverage/filings/2026/05/19/is-genpact-stock-a-buy-after-hedge-fund-rice-hall-james-raised-its-stake-by-usd14-million/?.tsrc=rss"
-    },
-    {
       "id": 127,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "israeli-hostages",
+      "cluster_id": "etf_gains",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "This Is the Only ETF That Gets You More Gains With Less Risk",
+      "source": "Yahoo Finance",
+      "link": "https://247wallst.com/investing/2026/05/19/this-is-the-only-etf-that-gets-you-more-gains-with-less-risk/?.tsrc=rss"
+    },
+    {
+      "id": 137,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "israeli_hostages",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -903,13 +948,13 @@
       "link": "https://www.wsj.com/articles/freed-israeli-hostages-still-had-shrapnel-in-their-bodies-from-oct-7-attack-3de8cd1e"
     },
     {
-      "id": 137,
+      "id": 147,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "summer-camp-costs",
+      "cluster_id": "summer_camp_budget",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -918,13 +963,13 @@
       "link": "https://www.moneysense.ca/news/summer-camp-sticker-shock/"
     },
     {
-      "id": 146,
+      "id": 156,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "epstein-girlfriend",
+      "cluster_id": "epstein_girlfriend",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -933,28 +978,28 @@
       "link": "https://www.bbc.com/news/articles/cz92j3n3jvvo?at_medium=RSS&at_campaign=rss"
     },
     {
-      "id": 156,
-      "tier": 2,
-      "section": "US & Global",
-      "cluster_id": "gop-trump-direction",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "G.O.P. Supporters Back Trump, but a Third Seek a New Direction for the Party",
-      "source": "NYT",
-      "link": "https://www.nytimes.com/2026/05/19/us/politics/poll-trump-republicans.html"
-    },
-    {
       "id": 166,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "global-ports",
+      "cluster_id": "oil_slick_iran",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Oil Slick Reaches a Pristine Persian Gulf Island in Iran",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/world/europe/oil-spill-iran-shidvar-island.html"
+    },
+    {
+      "id": 176,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "global_ports",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -963,14 +1008,14 @@
       "link": "https://www.economist.com/international/2026/04/30/the-global-scramble-for-ports"
     },
     {
-      "id": 176,
+      "id": 186,
       "tier": 1,
-      "section": "US & Global",
-      "cluster_id": "french-open-clay",
+      "section": "Worth Knowing",
+      "cluster_id": "french_open_clay",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
-        "section_fit": "weak"
+        "section_fit": "none"
       },
       "promotion_to_worth_knowing": false,
       "headline": "The French Open courts are clay, a tricky surface for some. Here's how the pros do it",
@@ -978,10 +1023,10 @@
       "link": "https://www.npr.org/2026/05/19/nx-s1-5822888/french-open-clay-hailey-baptiste"
     },
     {
-      "id": 186,
+      "id": 196,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "musk-altman-trial",
+      "cluster_id": "musk_altman_trial",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -993,13 +1038,13 @@
       "link": "https://www.axios.com/2026/05/19/musk-altman-openai-trial"
     },
     {
-      "id": 197,
+      "id": 207,
       "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "iran-quagmire",
+      "cluster_id": "iran_war_quagmire",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1011,7 +1056,7 @@
       "id": 3,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "summer-travel-disruptions",
+      "cluster_id": "flight_disruptions",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -1026,10 +1071,10 @@
       "id": 15,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "toronto-airport",
+      "cluster_id": "toronto_airport",
       "scores": {
         "cross_source_coverage": 2,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1040,8 +1085,23 @@
     {
       "id": 25,
       "tier": 2,
+      "section": "Toronto Housing",
+      "cluster_id": "ontario_mansion",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Sprawling $3.6M Ontario mansion comes with a pool and 13-car parking",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/real-estate-toronto/2026/05/495-meadow-wood-rd/"
+    },
+    {
+      "id": 35,
+      "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "carney-first-reading",
+      "cluster_id": "carney_reading",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -1053,10 +1113,10 @@
       "link": "https://nationalpost.com/opinion/what-carney-has-actually-done"
     },
     {
-      "id": 35,
+      "id": 45,
       "tier": 1,
-      "section": "Canada & Toronto",
-      "cluster_id": "canadaland-transparency",
+      "section": "Worth Knowing",
+      "cluster_id": "canadaland_transparency",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
@@ -1068,13 +1128,13 @@
       "link": "https://www.canadaland.com/canadalands-2024-transparency-report/"
     },
     {
-      "id": 45,
+      "id": 55,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "oil-prices-trump",
+      "cluster_id": "trump_iran_attack",
       "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "cross_source_coverage": 2,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1083,13 +1143,13 @@
       "link": "https://www.theglobeandmail.com/investing/article-oil-prices-fall-as-trump-pauses-iran-attack-plans/"
     },
     {
-      "id": 58,
+      "id": 68,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "rennie-agency",
+      "cluster_id": "rennie_agency",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1098,13 +1158,13 @@
       "link": "https://storeys.com/rennie-the-agency-partnership/"
     },
     {
-      "id": 68,
+      "id": 78,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "ontario-insolvency",
+      "cluster_id": "ontario_insolvency",
       "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1113,10 +1173,10 @@
       "link": "https://betterdwelling.com/ontario-is-now-ground-zero-for-canadas-consumer-insolvency-surge/"
     },
     {
-      "id": 78,
+      "id": 88,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "ai-tools-2023",
+      "cluster_id": "ai_tools_2023",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -1128,29 +1188,29 @@
       "link": "https://techncruncher.blogspot.com/2023/01/top-10-ai-tools-in-2023-that-will-make.html"
     },
     {
-      "id": 88,
+      "id": 98,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "cybersecurity-github",
+      "cluster_id": "openbsd_release",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "U.S. Cybersecurity Agency Leaves Its Digital Keys Out in Public on GitHub",
+      "headline": "OpenBSD 7.9 Released",
       "source": "Hacker News",
-      "link": "https://gizmodo.com/the-worst-leak-that-ive-witnessed-u-s-cybersecurity-agency-leaves-its-digital-keys-out-in-public-on-github-2000760330"
+      "link": "https://www.openbsd.org/79.html"
     },
     {
-      "id": 98,
-      "tier": 1,
+      "id": 108,
+      "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "warelay-openclaw",
+      "cluster_id": "warelay_openclaw",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 1,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Warelay -> OpenClaw",
@@ -1158,10 +1218,10 @@
       "link": "https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything"
     },
     {
-      "id": 108,
+      "id": 118,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "ben-thompson-interview",
+      "cluster_id": "ben_thompson_interview",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -1173,28 +1233,28 @@
       "link": "https://stratechery.com/2026/an-interview-with-ben-thompson-at-the-moffettnathanson-media-internet-communications-conference/"
     },
     {
-      "id": 118,
-      "tier": 1,
+      "id": 128,
+      "tier": 3,
       "section": "Finance & Markets",
-      "cluster_id": "aos-stock",
+      "cluster_id": "stock_market_today",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
-        "section_fit": "weak"
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "3 Reasons AOS is Risky and 1 Stock to Buy Instead",
+      "headline": "Stock Market Today: Dow Slides, Nasdaq Dives As Yields Climb But ServiceNow, Other Software Names Gain",
       "source": "Yahoo Finance",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-aos-risky-1-141255604.html?.tsrc=rss"
+      "link": "https://finance.yahoo.com/m/b4ff35eb-15aa-3167-a917-40783b249c0c/stock-market-today%3A-dow.html?.tsrc=rss"
     },
     {
-      "id": 128,
+      "id": 138,
       "tier": 2,
-      "section": "Finance & Markets",
-      "cluster_id": "cable-sabotage-nato",
+      "section": "US & Global",
+      "cluster_id": "cable_sabotage",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1203,10 +1263,10 @@
       "link": "https://www.wsj.com/articles/suspected-sabotage-of-deep-sea-cable-triggers-first-nato-led-response-337119ba"
     },
     {
-      "id": 138,
+      "id": 148,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "etf-screener",
+      "cluster_id": "etf_screener",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -1218,13 +1278,13 @@
       "link": "https://www.moneysense.ca/save/investing/etfs/the-moneysense-etf-finder-tool/"
     },
     {
-      "id": 147,
+      "id": 157,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "mango-boss-son",
+      "cluster_id": "mango_boss_son",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1233,28 +1293,28 @@
       "link": "https://www.bbc.com/news/articles/c0m2pg1z4x8o?at_medium=RSS&at_campaign=rss"
     },
     {
-      "id": 157,
-      "tier": 2,
-      "section": "US & Global",
-      "cluster_id": "trump-massie",
-      "scores": {
-        "cross_source_coverage": 2,
-        "personal_relevance": 1,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Trump\u2019s Push to Defeat Thomas Massie Is the Most Expensive House Primary in Recent Years",
-      "source": "NYT",
-      "link": "https://www.nytimes.com/2026/05/19/us/politics/trump-massie-kentucky-primary-spending.html"
-    },
-    {
       "id": 167,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "europe-ukraine-russia",
+      "cluster_id": "trump_money_mosque",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Trump\u2019s New $1.8 Billion Pot of Money, and a Deadly Mosque Attack in California",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/podcasts/the-headlines/trump-irs-mosque-attack-california.html"
+    },
+    {
+      "id": 177,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "europe_ukraine",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1263,13 +1323,13 @@
       "link": "https://www.economist.com/international/2026/04/28/to-fight-russia-europe-needs-ukraine"
     },
     {
-      "id": 177,
+      "id": 187,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "palestinian-survival",
+      "cluster_id": "palestinian_survival",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1278,13 +1338,13 @@
       "link": "https://www.npr.org/2026/05/19/nx-s1-5825865/one-palestinian-mans-life-of-survival"
     },
     {
-      "id": 187,
+      "id": 197,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "trump-massie",
+      "cluster_id": "trump_revenge_massie",
       "scores": {
-        "cross_source_coverage": 2,
-        "personal_relevance": 1,
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1293,13 +1353,13 @@
       "link": "https://www.axios.com/2026/05/19/thomas-massie-trump-republican-primary"
     },
     {
-      "id": 198,
+      "id": 208,
       "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "princeton-president",
+      "cluster_id": "princeton_president",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1311,10 +1371,10 @@
       "id": 4,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "heat-warning-gta",
+      "cluster_id": "heat_warning",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1326,7 +1386,7 @@
       "id": 16,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "infamous-toronto-man",
+      "cluster_id": "feces_man_charges",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -1341,26 +1401,41 @@
       "id": 26,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "liberals-first-nations",
+      "cluster_id": "toronto_barter",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Liberals are playing legal hardball with First Nations over drinking water",
-      "source": "National Post",
-      "link": "https://nationalpost.com/news/canada/liberals-fight-first-nations-over-drinking-water"
+      "headline": "Toronto's barter trend has led to some unusual offers for one resident including a liver",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/toronto-barter-trend-unusual-offers/"
     },
     {
       "id": 36,
-      "tier": 1,
+      "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "canadaland-ai-policy",
+      "cluster_id": "hamas_charities",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Hamas memos show Canadian-funded charities worked with terror group, NGO says",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/hamas-memos-show-canadian-funded-charities-worked-with-terror-group-ngo-says"
+    },
+    {
+      "id": 46,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "canadaland_ai_policy",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Canadaland\u2019s Artificial Intelligence Policy",
@@ -1368,13 +1443,13 @@
       "link": "https://www.canadaland.com/canadalands-artificial-intelligence-policy/"
     },
     {
-      "id": 46,
+      "id": 56,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "yields-spike-housing",
+      "cluster_id": "yields_spike",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1383,13 +1458,13 @@
       "link": "https://www.theglobeandmail.com/investing/article-us-yield-spike-small-caps-consumer-stocks-housing-shares/"
     },
     {
-      "id": 59,
+      "id": 69,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "chartwell-seasons",
+      "cluster_id": "chartwell_seasons",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1398,13 +1473,13 @@
       "link": "https://storeys.com/chartwell-stake-fengates-senior-housing/"
     },
     {
-      "id": 69,
+      "id": 79,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "canada-jobless-ontario",
+      "cluster_id": "ontario_insolvency",
       "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1413,10 +1488,10 @@
       "link": "https://betterdwelling.com/canadas-jobless-problem-is-increasingly-an-ontario-problem/"
     },
     {
-      "id": 79,
+      "id": 89,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "ai-content-2022",
+      "cluster_id": "ai_content_2022",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -1428,29 +1503,29 @@
       "link": "https://techncruncher.blogspot.com/2022/11/top-10-ai-content-generator-writer.html"
     },
     {
-      "id": 89,
-      "tier": 2,
-      "section": "Design & Product",
-      "cluster_id": "apple-accessibility",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 2,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "New accessibility features powered by Apple Intelligence",
-      "source": "Hacker News",
-      "link": "https://www.apple.com/newsroom/2026/05/apple-unveils-new-accessibility-features-and-updates-with-apple-intelligence/"
-    },
-    {
       "id": 99,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "julia-evans-quote",
+      "cluster_id": "venus_colonization",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
         "section_fit": "weak"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Colonization of Venus",
+      "source": "Hacker News",
+      "link": "https://en.wikipedia.org/wiki/Colonization_of_Venus"
+    },
+    {
+      "id": 109,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "julia_evans_quote",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Quoting Julia Evans",
@@ -1458,10 +1533,10 @@
       "link": "https://simonwillison.net/2026/May/16/julia-evans/#atom-everything"
     },
     {
-      "id": 109,
+      "id": 119,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "stratechery-deployment",
+      "cluster_id": "deployment_company",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -1473,28 +1548,28 @@
       "link": "https://stratechery.com/2026/the-deployment-company-back-to-the-70s-apple-and-intel/"
     },
     {
-      "id": 119,
-      "tier": 1,
-      "section": "Finance & Markets",
-      "cluster_id": "pahc-earnings",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Phibro Animal Health (PAHC): Buy, Sell, or Hold Post Q1 Earnings?",
-      "source": "Yahoo Finance",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/phibro-animal-health-pahc-buy-140455253.html?.tsrc=rss"
-    },
-    {
       "id": 129,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "rwanda-congo",
+      "cluster_id": "unm_avoid",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "3 Reasons to Avoid UNM and 1 Stock to Buy Instead",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-avoid-unm-1-142055773.html?.tsrc=rss"
+    },
+    {
+      "id": 139,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "rwanda_congo",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1503,13 +1578,13 @@
       "link": "https://www.wsj.com/articles/rwanda-backed-rebels-enter-congo-safe-haven-city-aid-hub-09fdccb8"
     },
     {
-      "id": 139,
+      "id": 149,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "barrick-gold",
+      "cluster_id": "barrick_gold",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1518,13 +1593,13 @@
       "link": "https://www.moneysense.ca/save/investing/stock-market-news-may-15-2/"
     },
     {
-      "id": 148,
+      "id": 158,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "afghan-fathers",
+      "cluster_id": "afghan_children",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1533,29 +1608,29 @@
       "link": "https://www.bbc.com/news/articles/c0q25dwj807o?at_medium=RSS&at_campaign=rss"
     },
     {
-      "id": 158,
-      "tier": 2,
-      "section": "US & Global",
-      "cluster_id": "treasury-lawyer",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Top Treasury Lawyer Resigns After Creation of \u2018Anti-Weaponization Fund\u2019",
-      "source": "NYT",
-      "link": "https://www.nytimes.com/2026/05/18/business/anti-weaponization-fund-brian-morrissey-treasury.html"
-    },
-    {
       "id": 168,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "war-room-generals",
+      "cluster_id": "supreme_court",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Justices Hint at Strains as Supreme Court Comes Under Scrutiny",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/18/us/politics/supreme-court-political-tensions.html"
+    },
+    {
+      "id": 178,
+      "tier": 1,
+      "section": "Worth Knowing",
+      "cluster_id": "war_room_generals",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "weak"
       },
       "promotion_to_worth_knowing": false,
       "headline": "The War Room newsletter: The best generals in history",
@@ -1563,13 +1638,13 @@
       "link": "https://www.economist.com/international/2026/04/27/the-war-room-newsletter-the-best-generals-in-history"
     },
     {
-      "id": 178,
+      "id": 188,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "putin-china",
+      "cluster_id": "putin_china",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1578,13 +1653,13 @@
       "link": "https://www.npr.org/2026/05/19/g-s1-122775/putin-visits-china"
     },
     {
-      "id": 188,
+      "id": 198,
       "tier": 2,
       "section": "US & Global",
-      "cluster_id": "trump-profit-machine",
+      "cluster_id": "trump_profit_machine",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1593,13 +1668,13 @@
       "link": "https://www.axios.com/2026/05/19/trump-presidential-gold-rush"
     },
     {
-      "id": 199,
+      "id": 209,
       "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "trump-china-weakened",
+      "cluster_id": "trump_china_weakened",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1611,7 +1686,7 @@
       "id": 5,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "etobicoke-stabbing",
+      "cluster_id": "etobicoke_stabbing",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -1626,7 +1701,7 @@
       "id": 17,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "brampton-park",
+      "cluster_id": "brampton_park_closed",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -1641,26 +1716,41 @@
       "id": 27,
       "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "sweden-immigration",
+      "cluster_id": "wonderland_waterpark",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Michael Higgins: How \u2018humanitarian\u2019 Sweden\u2019s immigration policies went all wrong",
-      "source": "National Post",
-      "link": "https://nationalpost.com/opinion/how-humanitarian-swedens-immigration-policies-all-went-wrong"
+      "headline": "The water park at Canada's Wonderland is opening this weekend",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/radar/2026/05/water-park-canadas-wonderland-opening-weekend/"
     },
     {
       "id": 37,
-      "tier": 1,
+      "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "canadaland-corrections",
+      "cluster_id": "first_nations_water",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Liberals are playing legal hardball with First Nations over drinking water",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/canada/liberals-fight-first-nations-over-drinking-water"
+    },
+    {
+      "id": 47,
+      "tier": 2,
+      "section": "Worth Knowing",
+      "cluster_id": "canadaland_corrections",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
-        "section_fit": "weak"
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "All Our 2024 Corrections and Clarifications",
@@ -1668,13 +1758,13 @@
       "link": "https://www.canadaland.com/all-our-2024-corrections-and-clarifications/"
     },
     {
-      "id": 47,
+      "id": 57,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "bond-market-nvidia",
+      "cluster_id": "bond_market_nvidia",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1683,13 +1773,13 @@
       "link": "https://www.theglobeandmail.com/investing/article-bond-market-storm-could-rain-on-nvidias-parade/"
     },
     {
-      "id": 60,
+      "id": 70,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "wesgroup-surrey",
+      "cluster_id": "wesgroup_surrey",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1698,109 +1788,19 @@
       "link": "https://storeys.com/wesgroup-civic-district-master-plan/"
     },
     {
-      "id": 70,
+      "id": 80,
       "tier": 2,
       "section": "Toronto Housing",
-      "cluster_id": "consumer-insolvencies",
+      "cluster_id": "consumer_insolvencies",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 3,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Canadian Consumer Insolvencies Approach 2009 Record High",
       "source": "BetterDwelling",
       "link": "https://betterdwelling.com/canadian-consumer-insolvencies-approach-2009-record-high/"
-    },
-    {
-      "id": 80,
-      "tier": 1,
-      "section": "Tech & AI",
-      "cluster_id": "cj-affiliate",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "weak"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Beginner Guide to CJ Affiliate (Commission Junction) in 2022",
-      "source": "TechCrunch",
-      "link": "https://techncruncher.blogspot.com/2022/09/cj-affiliate-ultimate-guide-to.html"
-    },
-    {
-      "id": 90,
-      "tier": 2,
-      "section": "Design & Product",
-      "cluster_id": "gaussian-strawberry",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 2,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Gaussian Splat of a Strawberry",
-      "source": "Hacker News",
-      "link": "https://superspl.at/scene/84df8849"
-    },
-    {
-      "id": 100,
-      "tier": 1,
-      "section": "Tech & AI",
-      "cluster_id": "inaturalist-clumper",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "inaturalist-clumper 0.1",
-      "source": "Simon Willison",
-      "link": "https://simonwillison.net/2026/May/15/inaturalist-clumper/#atom-everything"
-    },
-    {
-      "id": 110,
-      "tier": 2,
-      "section": "Tech & AI",
-      "cluster_id": "spacex-anthropic",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 2,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "SpaceX and Anthropic, xAI\u2019s Two Companies, Elon Musk and SpaceXAI\u2019s Future",
-      "source": "Stratechery",
-      "link": "https://stratechery.com/2026/spacex-and-anthropic-xais-two-companies-elon-musk-and-spacexais-future/"
-    },
-    {
-      "id": 120,
-      "tier": 1,
-      "section": "Finance & Markets",
-      "cluster_id": "bond-etf-comparison",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Which Is the Better Government Bond ETF, iShares' MUB or Fidelity's FIGB?",
-      "source": "Yahoo Finance",
-      "link": "https://www.fool.com/coverage/etfs/2026/05/19/which-is-the-better-government-bond-etf-ishares-mub-or-fidelity-s-figb/?.tsrc=rss"
-    },
-    {
-      "id": 130,
-      "tier": 2,
-      "section": "Finance & Markets",
-      "cluster_id": "colombia-gangs",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Cocaine-Funded Gangs Shake Colombia Years After Peace Pact",
-      "source": "WSJ",
-      "link": "https://www.wsj.com/articles/cocaine-funded-gangs-shake-colombia-years-after-peace-pact-a45a28da"
     }
   ],
   "phase2_shadow": [
@@ -1808,10 +1808,10 @@
       "id": 0,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "toronto-airport",
+      "cluster_id": "toronto_airport",
       "scores": {
         "cross_source_coverage": 2,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1830,12 +1830,12 @@
     },
     {
       "id": 10,
-      "tier": 1,
+      "tier": 2,
       "section": "Canada & Toronto",
-      "cluster_id": "nyc-synagogue-plot",
+      "cluster_id": "iraqi_plot",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1856,7 +1856,7 @@
       "id": 12,
       "tier": 3,
       "section": "Canada & Toronto",
-      "cluster_id": "reddit-spiderman",
+      "cluster_id": "reddit_spiderman",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
@@ -1880,7 +1880,31 @@
       "id": 22,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "cusma-trump",
+      "cluster_id": "bread_settlement",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Canadian bread settlement money on the way and here's how much you can get",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/canadian-bread-settlement-money/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 32,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "cusma_trump",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -1901,10 +1925,10 @@
       }
     },
     {
-      "id": 32,
+      "id": 42,
       "tier": 3,
-      "section": "Canada & Toronto",
-      "cluster_id": "canadaland-events",
+      "section": "Worth Knowing",
+      "cluster_id": "canadaland_events",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
@@ -1925,10 +1949,10 @@
       }
     },
     {
-      "id": 42,
+      "id": 52,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "boomers-housing",
+      "cluster_id": "housing_advice",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -1949,13 +1973,13 @@
       }
     },
     {
-      "id": 52,
+      "id": 62,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "housing-correction-regional",
+      "cluster_id": "housing_correction",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 3,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -1973,10 +1997,10 @@
       }
     },
     {
-      "id": 55,
+      "id": 65,
       "tier": 2,
-      "section": "Toronto Housing",
-      "cluster_id": "40-under-40",
+      "section": "Worth Knowing",
+      "cluster_id": "development_40under40",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
@@ -1997,10 +2021,10 @@
       }
     },
     {
-      "id": 65,
+      "id": 75,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "vacant-homes-pileup",
+      "cluster_id": "vacant_homes",
       "scores": {
         "cross_source_coverage": 2,
         "personal_relevance": 2,
@@ -2021,14 +2045,14 @@
       }
     },
     {
-      "id": 75,
-      "tier": 2,
+      "id": 85,
+      "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "chatgpt-traffic",
+      "cluster_id": "ai_seo",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "weak"
+        "personal_relevance": 2,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "How I Get Free Traffic from ChatGPT in 2025 (AIO vs SEO)",
@@ -2045,34 +2069,34 @@
       }
     },
     {
-      "id": 85,
+      "id": 95,
       "tier": 1,
-      "section": "Design & Product",
-      "cluster_id": "3d-pose-maker",
+      "section": "Tech & AI",
+      "cluster_id": "ai_engineer",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Show HN: I made a 3D pose maker for artists",
+      "headline": "Going full AI engineer, not touching code anymore",
       "source": "Hacker News",
-      "link": "https://setpose.com/",
+      "link": "https://max.gp/writing/going-full-ai-engineer-not-touching-code-anymore/",
       "reddit": {
         "score": 0,
         "comments": 0,
         "subreddit_hits": 0
       },
       "hn": {
-        "points": 16,
-        "comments": 9
+        "points": 32,
+        "comments": 41
       }
     },
     {
-      "id": 95,
+      "id": 105,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "llm-six-months",
+      "cluster_id": "llm_recap",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -2093,14 +2117,14 @@
       }
     },
     {
-      "id": 105,
-      "tier": 1,
+      "id": 115,
+      "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "stratechery-personal",
+      "cluster_id": "stratechery_personal",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
-        "section_fit": "good"
+        "section_fit": "weak"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Personal Day",
@@ -2117,19 +2141,19 @@
       }
     },
     {
-      "id": 115,
+      "id": 125,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "unm-stock",
+      "cluster_id": "home_depot",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
-        "section_fit": "weak"
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "3 Reasons to Avoid UNM and 1 Stock to Buy Instead",
+      "headline": "What investors need to know about Home Depot right now",
       "source": "Yahoo Finance",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-avoid-unm-1-142055773.html?.tsrc=rss",
+      "link": "https://finance.yahoo.com/video/what-investors-need-to-know-about-home-depot-right-now-143238812.html?.tsrc=rss",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -2141,13 +2165,13 @@
       }
     },
     {
-      "id": 125,
-      "tier": 1,
+      "id": 135,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "palestinians-gaza",
+      "cluster_id": "gaza_return",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2165,10 +2189,10 @@
       }
     },
     {
-      "id": 135,
+      "id": 145,
       "tier": 1,
       "section": "Finance & Markets",
-      "cluster_id": "gic-rates-canada",
+      "cluster_id": "gic_rates",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -2189,13 +2213,13 @@
       }
     },
     {
-      "id": 144,
-      "tier": 1,
+      "id": 154,
+      "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "ebola-outbreak",
+      "cluster_id": "ebola_outbreak",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2213,19 +2237,19 @@
       }
     },
     {
-      "id": 154,
-      "tier": 1,
+      "id": 164,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "supreme-court-strains",
+      "cluster_id": "iran_war_military",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Justices Hint at Strains as Supreme Court Comes Under Scrutiny",
+      "headline": "Iran War Exposes Shortcomings in U.S. Military Industrial Base",
       "source": "NYT",
-      "link": "https://www.nytimes.com/2026/05/18/us/politics/supreme-court-political-tensions.html",
+      "link": "https://www.nytimes.com/2026/05/19/us/politics/pentagon-weapons-drones-iran-war-hegseth.html",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -2237,13 +2261,13 @@
       }
     },
     {
-      "id": 164,
-      "tier": 1,
+      "id": 174,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "submarine-dominance",
+      "cluster_id": "submarine_dominance",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2261,13 +2285,13 @@
       }
     },
     {
-      "id": 174,
-      "tier": 1,
+      "id": 184,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "east-jerusalem",
+      "cluster_id": "jerusalem_expel",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2285,13 +2309,13 @@
       }
     },
     {
-      "id": 184,
-      "tier": 1,
+      "id": 194,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "maha-fda-vapes",
+      "cluster_id": "fda_vapes",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2309,13 +2333,13 @@
       }
     },
     {
-      "id": 194,
-      "tier": 1,
+      "id": 204,
+      "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "trump-dissenter",
+      "cluster_id": "trump_dissenter",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2333,10 +2357,10 @@
       }
     },
     {
-      "id": 195,
+      "id": 205,
       "tier": 1,
       "section": "Worth Knowing",
-      "cluster_id": "alberta-separatism",
+      "cluster_id": "alberta_separatism",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -2357,13 +2381,13 @@
       }
     },
     {
-      "id": 205,
-      "tier": 1,
+      "id": 215,
+      "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "alex-murdaugh",
+      "cluster_id": "alex_murdaugh",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2376,7 +2400,7 @@
         "subreddit_hits": 0
       },
       "hn": {
-        "points": 1,
+        "points": 11,
         "comments": 0
       }
     },
@@ -2384,7 +2408,7 @@
       "id": 1,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "toronto-cops-spain",
+      "cluster_id": "toronto_cops_spain",
       "scores": {
         "cross_source_coverage": 3,
         "personal_relevance": 1,
@@ -2408,10 +2432,10 @@
       "id": 11,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "pearson-upgrade",
+      "cluster_id": "pearson_upgrade",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2432,7 +2456,7 @@
       "id": 13,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "toronto-cops-spain",
+      "cluster_id": "toronto_cops_spain",
       "scores": {
         "cross_source_coverage": 3,
         "personal_relevance": 1,
@@ -2455,11 +2479,35 @@
     {
       "id": 23,
       "tier": 1,
-      "section": "US & Global",
-      "cluster_id": "san-diego-mosque",
+      "section": "Canada & Toronto",
+      "cluster_id": "ttc_shutdown",
       "scores": {
-        "cross_source_coverage": 4,
-        "personal_relevance": 1,
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "TTC to shut down over 7 kilometres of subway for this entire weekend",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/ttc-subway-closure-weekend-may-23/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 33,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "san_diego_mosque",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": true,
@@ -2477,14 +2525,14 @@
       }
     },
     {
-      "id": 33,
-      "tier": 2,
+      "id": 43,
+      "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "ndp-leadership",
+      "cluster_id": "ndp_leadership",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 1,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Five (Delusional? Brave?) NDP Leadership Candidates on WTF They Plan to Do",
@@ -2501,13 +2549,13 @@
       }
     },
     {
-      "id": 43,
+      "id": 53,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "planswell-default",
+      "cluster_id": "planswell_default",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2525,10 +2573,10 @@
       }
     },
     {
-      "id": 53,
+      "id": 63,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "tiny-homes-canada",
+      "cluster_id": "tiny_homes",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -2549,10 +2597,10 @@
       }
     },
     {
-      "id": 56,
+      "id": 66,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "carlyle-toronto",
+      "cluster_id": "carlyle_junction",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -2573,10 +2621,10 @@
       }
     },
     {
-      "id": 66,
+      "id": 76,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "vacant-homes-pileup",
+      "cluster_id": "vacant_homes",
       "scores": {
         "cross_source_coverage": 2,
         "personal_relevance": 2,
@@ -2597,14 +2645,14 @@
       }
     },
     {
-      "id": 76,
-      "tier": 2,
+      "id": 86,
+      "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "ai-content-tools",
+      "cluster_id": "ai_content_tools",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "weak"
+        "personal_relevance": 2,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Top 10 AI Tools That Will Transform Your Content Creation in 2025",
@@ -2621,37 +2669,37 @@
       }
     },
     {
-      "id": 86,
-      "tier": 2,
+      "id": 96,
+      "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "openbsd-release",
+      "cluster_id": "3d_pose_maker",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 2,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "OpenBSD 7.9 Released",
+      "headline": "Show HN: I made a 3D pose maker for artists",
       "source": "Hacker News",
-      "link": "https://www.openbsd.org/79.html",
+      "link": "https://setpose.com/",
       "reddit": {
         "score": 0,
         "comments": 0,
         "subreddit_hits": 0
       },
       "hn": {
-        "points": 123,
-        "comments": 47
+        "points": 18,
+        "comments": 12
       }
     },
     {
-      "id": 96,
+      "id": 106,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "simon-willison-birds",
+      "cluster_id": "simon_willison_misc",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
+        "personal_relevance": 1,
         "section_fit": "weak"
       },
       "promotion_to_worth_knowing": false,
@@ -2669,10 +2717,10 @@
       }
     },
     {
-      "id": 106,
+      "id": 116,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "data-center-opposition",
+      "cluster_id": "data_center_opposition",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -2693,19 +2741,19 @@
       }
     },
     {
-      "id": 116,
-      "tier": 1,
+      "id": 126,
+      "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "pelosi-stock-market",
+      "cluster_id": "costco_earnings",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Here\u2019s How Nancy Pelosi Beat the Stock Market and Warren Buffett",
+      "headline": "Costco Seen Missing Quarterly Earnings Views, Oppenheimer Says",
       "source": "Yahoo Finance",
-      "link": "https://247wallst.com/investing/2025/11/23/heres-how-nancy-pelosi-beat-the-stock-market-and-warren-buffett/?.tsrc=rss",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/costco-seen-missing-quarterly-earnings-143233335.html?.tsrc=rss",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -2717,10 +2765,10 @@
       }
     },
     {
-      "id": 126,
+      "id": 136,
       "tier": 1,
       "section": "Finance & Markets",
-      "cluster_id": "china-property-loss",
+      "cluster_id": "china_property",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -2741,10 +2789,10 @@
       }
     },
     {
-      "id": 136,
+      "id": 146,
       "tier": 1,
       "section": "Finance & Markets",
-      "cluster_id": "fuel-costs-canada",
+      "cluster_id": "fuel_costs_canada",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -2765,13 +2813,13 @@
       }
     },
     {
-      "id": 145,
+      "id": 155,
       "tier": 1,
       "section": "US & Global",
-      "cluster_id": "san-diego-mosque",
+      "cluster_id": "san_diego_mosque",
       "scores": {
-        "cross_source_coverage": 4,
-        "personal_relevance": 1,
+        "cross_source_coverage": 3,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": true,
@@ -2789,19 +2837,19 @@
       }
     },
     {
-      "id": 155,
+      "id": 165,
       "tier": 1,
       "section": "US & Global",
-      "cluster_id": "trump-money-mosque",
+      "cluster_id": "trump_iran_attack",
       "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "cross_source_coverage": 2,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Trump\u2019s New $1.8 Billion Pot of Money, and a Deadly Mosque Attack in California",
+      "headline": "Trump Says He Postponed a \u2018Very Major Attack\u2019 on Iran, Leaving Mideast on Edge",
       "source": "NYT",
-      "link": "https://www.nytimes.com/2026/05/19/podcasts/the-headlines/trump-irs-mosque-attack-california.html",
+      "link": "https://www.nytimes.com/2026/05/19/world/middleeast/iran-trump-tension.html",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -2813,13 +2861,13 @@
       }
     },
     {
-      "id": 165,
-      "tier": 1,
+      "id": 175,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "trump-caligula",
+      "cluster_id": "trump_caligula",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2837,13 +2885,13 @@
       }
     },
     {
-      "id": 175,
+      "id": 185,
       "tier": 1,
       "section": "US & Global",
-      "cluster_id": "san-diego-mosque",
+      "cluster_id": "san_diego_mosque",
       "scores": {
-        "cross_source_coverage": 4,
-        "personal_relevance": 1,
+        "cross_source_coverage": 3,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": true,
@@ -2861,13 +2909,13 @@
       }
     },
     {
-      "id": 185,
-      "tier": 1,
+      "id": 195,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "prediction-markets",
+      "cluster_id": "prediction_markets",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2885,13 +2933,13 @@
       }
     },
     {
-      "id": 196,
-      "tier": 1,
+      "id": 206,
+      "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "conspiracy-theory-backyard",
+      "cluster_id": "conspiracy_theory",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -2912,7 +2960,7 @@
       "id": 2,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "ttc-deal",
+      "cluster_id": "ttc_deal",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -2936,7 +2984,7 @@
       "id": 14,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "toronto-cops-spain",
+      "cluster_id": "toronto_cops_spain",
       "scores": {
         "cross_source_coverage": 3,
         "personal_relevance": 1,
@@ -2960,7 +3008,31 @@
       "id": 24,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "ben-shapiro-toronto",
+      "cluster_id": "fireworks_chaos",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Fireworks-related chaos swept Ontario this long weekend",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/fireworks-chaos-ontario-long-weekend/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 34,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "shapiro_toronto",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -2981,10 +3053,10 @@
       }
     },
     {
-      "id": 34,
+      "id": 44,
       "tier": 3,
-      "section": "Canada & Toronto",
-      "cluster_id": "canadaland-call-in",
+      "section": "Worth Knowing",
+      "cluster_id": "canadaland_callin",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
@@ -3005,13 +3077,13 @@
       }
     },
     {
-      "id": 44,
-      "tier": 1,
+      "id": 54,
+      "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "tsx-iran-peace",
+      "cluster_id": "tsx_iran_peace",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3029,10 +3101,10 @@
       }
     },
     {
-      "id": 54,
+      "id": 64,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "build-canada-homes",
+      "cluster_id": "build_canada_homes",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -3053,10 +3125,10 @@
       }
     },
     {
-      "id": 57,
+      "id": 67,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "wychwood-cottage",
+      "cluster_id": "wychwood_cottage",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -3077,13 +3149,13 @@
       }
     },
     {
-      "id": 67,
+      "id": 77,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "real-estate-demand-1995",
+      "cluster_id": "real_estate_demand",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 3,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3101,10 +3173,10 @@
       }
     },
     {
-      "id": 77,
+      "id": 87,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "limewire-ai-review",
+      "cluster_id": "limewire_ai",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -3125,34 +3197,34 @@
       }
     },
     {
-      "id": 87,
-      "tier": 2,
+      "id": 97,
+      "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "venus-colonization",
+      "cluster_id": "plex_pass",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 1,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Colonization of Venus",
+      "headline": "New Lifetime Plex Pass Pricing",
       "source": "Hacker News",
-      "link": "https://en.wikipedia.org/wiki/Colonization_of_Venus",
+      "link": "https://www.plex.tv/blog/new-lifetime-plex-pass-pricing/",
       "reddit": {
         "score": 0,
         "comments": 0,
         "subreddit_hits": 0
       },
       "hn": {
-        "points": 59,
-        "comments": 30
+        "points": 15,
+        "comments": 17
       }
     },
     {
-      "id": 97,
+      "id": 107,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "gds-nhs-opensource",
+      "cluster_id": "nhs_opensource",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -3173,10 +3245,10 @@
       }
     },
     {
-      "id": 107,
+      "id": 117,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "stratechery-alliances",
+      "cluster_id": "stratechery_alliances",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -3197,19 +3269,19 @@
       }
     },
     {
-      "id": 117,
-      "tier": 2,
+      "id": 127,
+      "tier": 1,
       "section": "Finance & Markets",
-      "cluster_id": "genpact-stock",
+      "cluster_id": "etf_gains",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 1,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Is Genpact Stock a Buy After Hedge Fund Rice Hall James Raised Its Stake by $14 Million?",
+      "headline": "This Is the Only ETF That Gets You More Gains With Less Risk",
       "source": "Yahoo Finance",
-      "link": "https://www.fool.com/coverage/filings/2026/05/19/is-genpact-stock-a-buy-after-hedge-fund-rice-hall-james-raised-its-stake-by-usd14-million/?.tsrc=rss",
+      "link": "https://247wallst.com/investing/2026/05/19/this-is-the-only-etf-that-gets-you-more-gains-with-less-risk/?.tsrc=rss",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -3221,13 +3293,13 @@
       }
     },
     {
-      "id": 127,
-      "tier": 1,
-      "section": "Finance & Markets",
-      "cluster_id": "israeli-hostages",
+      "id": 137,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "israeli_hostages",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3245,13 +3317,13 @@
       }
     },
     {
-      "id": 137,
+      "id": 147,
       "tier": 1,
       "section": "Finance & Markets",
-      "cluster_id": "summer-camp-costs",
+      "cluster_id": "summer_camp_budget",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3269,13 +3341,13 @@
       }
     },
     {
-      "id": 146,
-      "tier": 1,
+      "id": 156,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "epstein-girlfriend",
+      "cluster_id": "epstein_girlfriend",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3293,19 +3365,19 @@
       }
     },
     {
-      "id": 156,
-      "tier": 1,
+      "id": 166,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "gop-trump-direction",
+      "cluster_id": "oil_slick_iran",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "G.O.P. Supporters Back Trump, but a Third Seek a New Direction for the Party",
+      "headline": "Oil Slick Reaches a Pristine Persian Gulf Island in Iran",
       "source": "NYT",
-      "link": "https://www.nytimes.com/2026/05/19/us/politics/poll-trump-republicans.html",
+      "link": "https://www.nytimes.com/2026/05/19/world/europe/oil-spill-iran-shidvar-island.html",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -3317,13 +3389,13 @@
       }
     },
     {
-      "id": 166,
-      "tier": 1,
+      "id": 176,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "global-ports",
+      "cluster_id": "global_ports",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3341,14 +3413,14 @@
       }
     },
     {
-      "id": 176,
-      "tier": 2,
-      "section": "US & Global",
-      "cluster_id": "french-open-clay",
+      "id": 186,
+      "tier": 3,
+      "section": "Worth Knowing",
+      "cluster_id": "french_open_clay",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
-        "section_fit": "weak"
+        "section_fit": "none"
       },
       "promotion_to_worth_knowing": false,
       "headline": "The French Open courts are clay, a tricky surface for some. Here's how the pros do it",
@@ -3365,10 +3437,10 @@
       }
     },
     {
-      "id": 186,
+      "id": 196,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "musk-altman-trial",
+      "cluster_id": "musk_altman_trial",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -3389,13 +3461,13 @@
       }
     },
     {
-      "id": 197,
-      "tier": 1,
+      "id": 207,
+      "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "iran-quagmire",
+      "cluster_id": "iran_war_quagmire",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3416,7 +3488,7 @@
       "id": 3,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "summer-travel-disruptions",
+      "cluster_id": "flight_disruptions",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -3440,10 +3512,10 @@
       "id": 15,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "toronto-airport",
+      "cluster_id": "toronto_airport",
       "scores": {
         "cross_source_coverage": 2,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3463,8 +3535,32 @@
     {
       "id": 25,
       "tier": 1,
+      "section": "Toronto Housing",
+      "cluster_id": "ontario_mansion",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Sprawling $3.6M Ontario mansion comes with a pool and 13-car parking",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/real-estate-toronto/2026/05/495-meadow-wood-rd/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 35,
+      "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "carney-first-reading",
+      "cluster_id": "carney_reading",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -3485,10 +3581,10 @@
       }
     },
     {
-      "id": 35,
+      "id": 45,
       "tier": 2,
-      "section": "Canada & Toronto",
-      "cluster_id": "canadaland-transparency",
+      "section": "Worth Knowing",
+      "cluster_id": "canadaland_transparency",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
@@ -3509,13 +3605,13 @@
       }
     },
     {
-      "id": 45,
+      "id": 55,
       "tier": 1,
       "section": "Finance & Markets",
-      "cluster_id": "oil-prices-trump",
+      "cluster_id": "trump_iran_attack",
       "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "cross_source_coverage": 2,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3533,13 +3629,13 @@
       }
     },
     {
-      "id": 58,
+      "id": 68,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "rennie-agency",
+      "cluster_id": "rennie_agency",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3557,13 +3653,13 @@
       }
     },
     {
-      "id": 68,
+      "id": 78,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "ontario-insolvency",
+      "cluster_id": "ontario_insolvency",
       "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3581,10 +3677,10 @@
       }
     },
     {
-      "id": 78,
+      "id": 88,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "ai-tools-2023",
+      "cluster_id": "ai_tools_2023",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -3605,38 +3701,38 @@
       }
     },
     {
-      "id": 88,
+      "id": 98,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "cybersecurity-github",
+      "cluster_id": "openbsd_release",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "U.S. Cybersecurity Agency Leaves Its Digital Keys Out in Public on GitHub",
+      "headline": "OpenBSD 7.9 Released",
       "source": "Hacker News",
-      "link": "https://gizmodo.com/the-worst-leak-that-ive-witnessed-u-s-cybersecurity-agency-leaves-its-digital-keys-out-in-public-on-github-2000760330",
+      "link": "https://www.openbsd.org/79.html",
       "reddit": {
         "score": 0,
         "comments": 0,
         "subreddit_hits": 0
       },
       "hn": {
-        "points": 18,
-        "comments": 2
+        "points": 143,
+        "comments": 59
       }
     },
     {
-      "id": 98,
-      "tier": 2,
+      "id": 108,
+      "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "warelay-openclaw",
+      "cluster_id": "warelay_openclaw",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 1,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Warelay -> OpenClaw",
@@ -3653,10 +3749,10 @@
       }
     },
     {
-      "id": 108,
+      "id": 118,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "ben-thompson-interview",
+      "cluster_id": "ben_thompson_interview",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -3677,19 +3773,19 @@
       }
     },
     {
-      "id": 118,
+      "id": 128,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "aos-stock",
+      "cluster_id": "stock_market_today",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
-        "section_fit": "weak"
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "3 Reasons AOS is Risky and 1 Stock to Buy Instead",
+      "headline": "Stock Market Today: Dow Slides, Nasdaq Dives As Yields Climb But ServiceNow, Other Software Names Gain",
       "source": "Yahoo Finance",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-aos-risky-1-141255604.html?.tsrc=rss",
+      "link": "https://finance.yahoo.com/m/b4ff35eb-15aa-3167-a917-40783b249c0c/stock-market-today%3A-dow.html?.tsrc=rss",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -3701,13 +3797,13 @@
       }
     },
     {
-      "id": 128,
-      "tier": 1,
-      "section": "Finance & Markets",
-      "cluster_id": "cable-sabotage-nato",
+      "id": 138,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "cable_sabotage",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3725,10 +3821,10 @@
       }
     },
     {
-      "id": 138,
+      "id": 148,
       "tier": 1,
       "section": "Finance & Markets",
-      "cluster_id": "etf-screener",
+      "cluster_id": "etf_screener",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 2,
@@ -3749,13 +3845,13 @@
       }
     },
     {
-      "id": 147,
-      "tier": 1,
+      "id": 157,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "mango-boss-son",
+      "cluster_id": "mango_boss_son",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3773,19 +3869,19 @@
       }
     },
     {
-      "id": 157,
-      "tier": 1,
+      "id": 167,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "trump-massie",
+      "cluster_id": "trump_money_mosque",
       "scores": {
-        "cross_source_coverage": 2,
-        "personal_relevance": 1,
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Trump\u2019s Push to Defeat Thomas Massie Is the Most Expensive House Primary in Recent Years",
+      "headline": "Trump\u2019s New $1.8 Billion Pot of Money, and a Deadly Mosque Attack in California",
       "source": "NYT",
-      "link": "https://www.nytimes.com/2026/05/19/us/politics/trump-massie-kentucky-primary-spending.html",
+      "link": "https://www.nytimes.com/2026/05/19/podcasts/the-headlines/trump-irs-mosque-attack-california.html",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -3797,13 +3893,13 @@
       }
     },
     {
-      "id": 167,
-      "tier": 1,
+      "id": 177,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "europe-ukraine-russia",
+      "cluster_id": "europe_ukraine",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3821,13 +3917,13 @@
       }
     },
     {
-      "id": 177,
-      "tier": 1,
+      "id": 187,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "palestinian-survival",
+      "cluster_id": "palestinian_survival",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3845,13 +3941,13 @@
       }
     },
     {
-      "id": 187,
-      "tier": 1,
+      "id": 197,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "trump-massie",
+      "cluster_id": "trump_revenge_massie",
       "scores": {
-        "cross_source_coverage": 2,
-        "personal_relevance": 1,
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3869,13 +3965,13 @@
       }
     },
     {
-      "id": 198,
-      "tier": 1,
+      "id": 208,
+      "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "princeton-president",
+      "cluster_id": "princeton_president",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3896,10 +3992,10 @@
       "id": 4,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "heat-warning-gta",
+      "cluster_id": "heat_warning",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -3920,7 +4016,7 @@
       "id": 16,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "infamous-toronto-man",
+      "cluster_id": "feces_man_charges",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -3944,16 +4040,16 @@
       "id": 26,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "liberals-first-nations",
+      "cluster_id": "toronto_barter",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Liberals are playing legal hardball with First Nations over drinking water",
-      "source": "National Post",
-      "link": "https://nationalpost.com/news/canada/liberals-fight-first-nations-over-drinking-water",
+      "headline": "Toronto's barter trend has led to some unusual offers for one resident including a liver",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/toronto-barter-trend-unusual-offers/",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -3966,13 +4062,37 @@
     },
     {
       "id": 36,
-      "tier": 2,
+      "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "canadaland-ai-policy",
+      "cluster_id": "hamas_charities",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Hamas memos show Canadian-funded charities worked with terror group, NGO says",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/hamas-memos-show-canadian-funded-charities-worked-with-terror-group-ngo-says",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 46,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "canadaland_ai_policy",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Canadaland\u2019s Artificial Intelligence Policy",
@@ -3989,13 +4109,13 @@
       }
     },
     {
-      "id": 46,
+      "id": 56,
       "tier": 1,
       "section": "Finance & Markets",
-      "cluster_id": "yields-spike-housing",
+      "cluster_id": "yields_spike",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4013,13 +4133,13 @@
       }
     },
     {
-      "id": 59,
+      "id": 69,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "chartwell-seasons",
+      "cluster_id": "chartwell_seasons",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4037,13 +4157,13 @@
       }
     },
     {
-      "id": 69,
+      "id": 79,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "canada-jobless-ontario",
+      "cluster_id": "ontario_insolvency",
       "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4061,10 +4181,10 @@
       }
     },
     {
-      "id": 79,
+      "id": 89,
       "tier": 2,
       "section": "Tech & AI",
-      "cluster_id": "ai-content-2022",
+      "cluster_id": "ai_content_2022",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -4085,38 +4205,38 @@
       }
     },
     {
-      "id": 89,
-      "tier": 1,
-      "section": "Design & Product",
-      "cluster_id": "apple-accessibility",
+      "id": 99,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "venus_colonization",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
-        "section_fit": "good"
+        "personal_relevance": 0,
+        "section_fit": "weak"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "New accessibility features powered by Apple Intelligence",
+      "headline": "Colonization of Venus",
       "source": "Hacker News",
-      "link": "https://www.apple.com/newsroom/2026/05/apple-unveils-new-accessibility-features-and-updates-with-apple-intelligence/",
+      "link": "https://en.wikipedia.org/wiki/Colonization_of_Venus",
       "reddit": {
         "score": 0,
         "comments": 0,
         "subreddit_hits": 0
       },
       "hn": {
-        "points": 212,
-        "comments": 97
+        "points": 66,
+        "comments": 33
       }
     },
     {
-      "id": 99,
-      "tier": 2,
+      "id": 109,
+      "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "julia-evans-quote",
+      "cluster_id": "julia_evans_quote",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
+        "personal_relevance": 1,
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Quoting Julia Evans",
@@ -4133,10 +4253,10 @@
       }
     },
     {
-      "id": 109,
+      "id": 119,
       "tier": 1,
       "section": "Tech & AI",
-      "cluster_id": "stratechery-deployment",
+      "cluster_id": "deployment_company",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -4157,19 +4277,19 @@
       }
     },
     {
-      "id": 119,
+      "id": 129,
       "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "pahc-earnings",
+      "cluster_id": "unm_avoid",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
-        "section_fit": "weak"
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Phibro Animal Health (PAHC): Buy, Sell, or Hold Post Q1 Earnings?",
+      "headline": "3 Reasons to Avoid UNM and 1 Stock to Buy Instead",
       "source": "Yahoo Finance",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/phibro-animal-health-pahc-buy-140455253.html?.tsrc=rss",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-avoid-unm-1-142055773.html?.tsrc=rss",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -4181,13 +4301,13 @@
       }
     },
     {
-      "id": 129,
-      "tier": 1,
-      "section": "Finance & Markets",
-      "cluster_id": "rwanda-congo",
+      "id": 139,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "rwanda_congo",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4205,13 +4325,13 @@
       }
     },
     {
-      "id": 139,
+      "id": 149,
       "tier": 1,
       "section": "Finance & Markets",
-      "cluster_id": "barrick-gold",
+      "cluster_id": "barrick_gold",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4229,13 +4349,13 @@
       }
     },
     {
-      "id": 148,
-      "tier": 1,
+      "id": 158,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "afghan-fathers",
+      "cluster_id": "afghan_children",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4253,19 +4373,19 @@
       }
     },
     {
-      "id": 158,
-      "tier": 1,
+      "id": 168,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "treasury-lawyer",
+      "cluster_id": "supreme_court",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Top Treasury Lawyer Resigns After Creation of \u2018Anti-Weaponization Fund\u2019",
+      "headline": "Justices Hint at Strains as Supreme Court Comes Under Scrutiny",
       "source": "NYT",
-      "link": "https://www.nytimes.com/2026/05/18/business/anti-weaponization-fund-brian-morrissey-treasury.html",
+      "link": "https://www.nytimes.com/2026/05/18/us/politics/supreme-court-political-tensions.html",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -4277,14 +4397,14 @@
       }
     },
     {
-      "id": 168,
-      "tier": 1,
-      "section": "US & Global",
-      "cluster_id": "war-room-generals",
+      "id": 178,
+      "tier": 2,
+      "section": "Worth Knowing",
+      "cluster_id": "war_room_generals",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "good"
+        "personal_relevance": 0,
+        "section_fit": "weak"
       },
       "promotion_to_worth_knowing": false,
       "headline": "The War Room newsletter: The best generals in history",
@@ -4301,13 +4421,13 @@
       }
     },
     {
-      "id": 178,
-      "tier": 1,
+      "id": 188,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "putin-china",
+      "cluster_id": "putin_china",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4325,13 +4445,13 @@
       }
     },
     {
-      "id": 188,
-      "tier": 1,
+      "id": 198,
+      "tier": 2,
       "section": "US & Global",
-      "cluster_id": "trump-profit-machine",
+      "cluster_id": "trump_profit_machine",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4349,13 +4469,13 @@
       }
     },
     {
-      "id": 199,
-      "tier": 1,
+      "id": 209,
+      "tier": 2,
       "section": "Worth Knowing",
-      "cluster_id": "trump-china-weakened",
+      "cluster_id": "trump_china_weakened",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4376,7 +4496,7 @@
       "id": 5,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "etobicoke-stabbing",
+      "cluster_id": "etobicoke_stabbing",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -4400,7 +4520,7 @@
       "id": 17,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "brampton-park",
+      "cluster_id": "brampton_park_closed",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
@@ -4424,16 +4544,16 @@
       "id": 27,
       "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "sweden-immigration",
+      "cluster_id": "wonderland_waterpark",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
-      "headline": "Michael Higgins: How \u2018humanitarian\u2019 Sweden\u2019s immigration policies went all wrong",
-      "source": "National Post",
-      "link": "https://nationalpost.com/opinion/how-humanitarian-swedens-immigration-policies-all-went-wrong",
+      "headline": "The water park at Canada's Wonderland is opening this weekend",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/radar/2026/05/water-park-canadas-wonderland-opening-weekend/",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -4446,13 +4566,37 @@
     },
     {
       "id": 37,
-      "tier": 2,
+      "tier": 1,
       "section": "Canada & Toronto",
-      "cluster_id": "canadaland-corrections",
+      "cluster_id": "first_nations_water",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_worth_knowing": false,
+      "headline": "Liberals are playing legal hardball with First Nations over drinking water",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/canada/liberals-fight-first-nations-over-drinking-water",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 47,
+      "tier": 2,
+      "section": "Worth Knowing",
+      "cluster_id": "canadaland_corrections",
       "scores": {
         "cross_source_coverage": 1,
         "personal_relevance": 0,
-        "section_fit": "weak"
+        "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "All Our 2024 Corrections and Clarifications",
@@ -4469,13 +4613,13 @@
       }
     },
     {
-      "id": 47,
-      "tier": 1,
+      "id": 57,
+      "tier": 2,
       "section": "Finance & Markets",
-      "cluster_id": "bond-market-nvidia",
+      "cluster_id": "bond_market_nvidia",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 1,
+        "personal_relevance": 0,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4493,13 +4637,13 @@
       }
     },
     {
-      "id": 60,
+      "id": 70,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "wesgroup-surrey",
+      "cluster_id": "wesgroup_surrey",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 1,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
@@ -4517,163 +4661,19 @@
       }
     },
     {
-      "id": 70,
+      "id": 80,
       "tier": 1,
       "section": "Toronto Housing",
-      "cluster_id": "consumer-insolvencies",
+      "cluster_id": "consumer_insolvencies",
       "scores": {
         "cross_source_coverage": 1,
-        "personal_relevance": 2,
+        "personal_relevance": 3,
         "section_fit": "good"
       },
       "promotion_to_worth_knowing": false,
       "headline": "Canadian Consumer Insolvencies Approach 2009 Record High",
       "source": "BetterDwelling",
       "link": "https://betterdwelling.com/canadian-consumer-insolvencies-approach-2009-record-high/",
-      "reddit": {
-        "score": 0,
-        "comments": 0,
-        "subreddit_hits": 0
-      },
-      "hn": {
-        "points": 0,
-        "comments": 0
-      }
-    },
-    {
-      "id": 80,
-      "tier": 2,
-      "section": "Tech & AI",
-      "cluster_id": "cj-affiliate",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "weak"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Beginner Guide to CJ Affiliate (Commission Junction) in 2022",
-      "source": "TechCrunch",
-      "link": "https://techncruncher.blogspot.com/2022/09/cj-affiliate-ultimate-guide-to.html",
-      "reddit": {
-        "score": 0,
-        "comments": 0,
-        "subreddit_hits": 0
-      },
-      "hn": {
-        "points": 0,
-        "comments": 0
-      }
-    },
-    {
-      "id": 90,
-      "tier": 1,
-      "section": "Design & Product",
-      "cluster_id": "gaussian-strawberry",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 2,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Gaussian Splat of a Strawberry",
-      "source": "Hacker News",
-      "link": "https://superspl.at/scene/84df8849",
-      "reddit": {
-        "score": 0,
-        "comments": 0,
-        "subreddit_hits": 0
-      },
-      "hn": {
-        "points": 253,
-        "comments": 103
-      }
-    },
-    {
-      "id": 100,
-      "tier": 2,
-      "section": "Tech & AI",
-      "cluster_id": "inaturalist-clumper",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "inaturalist-clumper 0.1",
-      "source": "Simon Willison",
-      "link": "https://simonwillison.net/2026/May/15/inaturalist-clumper/#atom-everything",
-      "reddit": {
-        "score": 0,
-        "comments": 0,
-        "subreddit_hits": 0
-      },
-      "hn": {
-        "points": 0,
-        "comments": 0
-      }
-    },
-    {
-      "id": 110,
-      "tier": 1,
-      "section": "Tech & AI",
-      "cluster_id": "spacex-anthropic",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 2,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "SpaceX and Anthropic, xAI\u2019s Two Companies, Elon Musk and SpaceXAI\u2019s Future",
-      "source": "Stratechery",
-      "link": "https://stratechery.com/2026/spacex-and-anthropic-xais-two-companies-elon-musk-and-spacexais-future/",
-      "reddit": {
-        "score": 0,
-        "comments": 0,
-        "subreddit_hits": 0
-      },
-      "hn": {
-        "points": 2,
-        "comments": 0
-      }
-    },
-    {
-      "id": 120,
-      "tier": 2,
-      "section": "Finance & Markets",
-      "cluster_id": "bond-etf-comparison",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 0,
-        "section_fit": "weak"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Which Is the Better Government Bond ETF, iShares' MUB or Fidelity's FIGB?",
-      "source": "Yahoo Finance",
-      "link": "https://www.fool.com/coverage/etfs/2026/05/19/which-is-the-better-government-bond-etf-ishares-mub-or-fidelity-s-figb/?.tsrc=rss",
-      "reddit": {
-        "score": 0,
-        "comments": 0,
-        "subreddit_hits": 0
-      },
-      "hn": {
-        "points": 0,
-        "comments": 0
-      }
-    },
-    {
-      "id": 130,
-      "tier": 1,
-      "section": "Finance & Markets",
-      "cluster_id": "colombia-gangs",
-      "scores": {
-        "cross_source_coverage": 1,
-        "personal_relevance": 1,
-        "section_fit": "good"
-      },
-      "promotion_to_worth_knowing": false,
-      "headline": "Cocaine-Funded Gangs Shake Colombia Years After Peace Pact",
-      "source": "WSJ",
-      "link": "https://www.wsj.com/articles/cocaine-funded-gangs-shake-colombia-years-after-peace-pact-a45a28da",
       "reddit": {
         "score": 0,
         "comments": 0,
@@ -4699,7 +4699,7 @@
       {
         "id": 10,
         "from": 3,
-        "to": 1,
+        "to": 2,
         "headline": "Iraqi man charged in NYC synagogue plot after attacks in Canada and Europe",
         "source": "Globe & Mail",
         "section": "Canada & Toronto",
@@ -4707,7 +4707,16 @@
       },
       {
         "id": 22,
-        "from": 3,
+        "from": 2,
+        "to": 1,
+        "headline": "Canadian bread settlement money on the way and here's how much you can get",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/city/2026/05/canadian-bread-settlement-money/"
+      },
+      {
+        "id": 32,
+        "from": 2,
         "to": 1,
         "headline": "Canada\u2019s too late now to save CUSMA from a Trump rewrite \u2026 or worse: Full Comment podcast",
         "source": "National Post",
@@ -4715,7 +4724,7 @@
         "link": "https://nationalpost.com/opinion/canadas-too-late-now-to-save-cusma-from-a-trump-rewrite-or-worse"
       },
       {
-        "id": 42,
+        "id": 52,
         "from": 2,
         "to": 1,
         "headline": "Boomers, you can dial down the urgency on the \u2018get my kids a home\u2019 project",
@@ -4724,7 +4733,7 @@
         "link": "https://www.theglobeandmail.com/investing/personal-finance/retirement/article-housing-real-estate-home-ownership-boomers-kids/"
       },
       {
-        "id": 52,
+        "id": 62,
         "from": 2,
         "to": 1,
         "headline": "Canada\u2019s \u201ccorrection\u201d is a Toronto & Vancouver story. Every other province is at an all-time high.",
@@ -4733,7 +4742,7 @@
         "link": "https://www.reddit.com/r/canadahousing/comments/1th5x22/canadas_correction_is_a_toronto_vancouver_story/"
       },
       {
-        "id": 65,
+        "id": 75,
         "from": 2,
         "to": 1,
         "headline": "This Week\u2019s Top Stories: Canada Sees Vacant New Homes Pile Up, Real Estate Demand Hits 1995 Lows",
@@ -4745,13 +4754,22 @@
         "id": 85,
         "from": 2,
         "to": 1,
-        "headline": "Show HN: I made a 3D pose maker for artists",
-        "source": "Hacker News",
-        "section": "Design & Product",
-        "link": "https://setpose.com/"
+        "headline": "How I Get Free Traffic from ChatGPT in 2025 (AIO vs SEO)",
+        "source": "TechCrunch",
+        "section": "Tech & AI",
+        "link": "https://techncruncher.blogspot.com/2025/12/how-i-get-free-traffic-from-chatgpt-in.html"
       },
       {
         "id": 95,
+        "from": 2,
+        "to": 1,
+        "headline": "Going full AI engineer, not touching code anymore",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://max.gp/writing/going-full-ai-engineer-not-touching-code-anymore/"
+      },
+      {
+        "id": 105,
         "from": 2,
         "to": 1,
         "headline": "The last six months in LLMs in five minutes",
@@ -4760,25 +4778,16 @@
         "link": "https://simonwillison.net/2026/May/19/5-minute-llms/#atom-everything"
       },
       {
-        "id": 105,
-        "from": 2,
-        "to": 1,
-        "headline": "Personal Day",
-        "source": "Stratechery",
-        "section": "Tech & AI",
-        "link": "https://stratechery.com/2026/personal-day-3/"
-      },
-      {
         "id": 125,
-        "from": 2,
-        "to": 1,
-        "headline": "Palestinians Stream Back to Northern Gaza on Foot",
-        "source": "WSJ",
-        "section": "US & Global",
-        "link": "https://www.wsj.com/articles/palestinians-flock-back-to-northern-gaza-on-foot-after-hostage-release-breakthrough-3f60e2db"
+        "from": 3,
+        "to": 2,
+        "headline": "What investors need to know about Home Depot right now",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://finance.yahoo.com/video/what-investors-need-to-know-about-home-depot-right-now-143238812.html?.tsrc=rss"
       },
       {
-        "id": 135,
+        "id": 145,
         "from": 2,
         "to": 1,
         "headline": "The best GIC rates in Canada for 2026",
@@ -4787,61 +4796,25 @@
         "link": "https://www.moneysense.ca/save/investing/best-gic-rates/"
       },
       {
-        "id": 144,
-        "from": 2,
-        "to": 1,
-        "headline": "Ebola outbreak may be spreading faster than first thought, WHO doctor warns",
-        "source": "BBC",
-        "section": "Worth Knowing",
-        "link": "https://www.bbc.com/news/articles/ceqp11gn1l8o?at_medium=RSS&at_campaign=rss"
-      },
-      {
-        "id": 154,
-        "from": 2,
-        "to": 1,
-        "headline": "Justices Hint at Strains as Supreme Court Comes Under Scrutiny",
+        "id": 164,
+        "from": 3,
+        "to": 2,
+        "headline": "Iran War Exposes Shortcomings in U.S. Military Industrial Base",
         "source": "NYT",
         "section": "US & Global",
-        "link": "https://www.nytimes.com/2026/05/18/us/politics/supreme-court-political-tensions.html"
+        "link": "https://www.nytimes.com/2026/05/19/us/politics/pentagon-weapons-drones-iran-war-hegseth.html"
       },
       {
-        "id": 164,
-        "from": 2,
-        "to": 1,
+        "id": 174,
+        "from": 3,
+        "to": 2,
         "headline": "America\u2019s submarine dominance is under threat",
         "source": "Economist",
         "section": "US & Global",
         "link": "https://www.economist.com/international/2026/05/07/americas-submarine-dominance-is-under-threat"
       },
       {
-        "id": 174,
-        "from": 2,
-        "to": 1,
-        "headline": "Activists say Israel tries to expel a whole Palestinian neighborhood in East Jerusalem",
-        "source": "NPR World",
-        "section": "US & Global",
-        "link": "https://www.npr.org/2026/05/19/nx-s1-5823861/israel-palestinians-east-jerusalem"
-      },
-      {
-        "id": 184,
-        "from": 2,
-        "to": 1,
-        "headline": "Teen temptations beware: MAHA-era FDA gives vapes, tanning beds a boost",
-        "source": "Axios",
-        "section": "US & Global",
-        "link": "https://www.axios.com/2026/05/15/fda-maha-vape-tanning-booths-teen-temptations"
-      },
-      {
-        "id": 194,
-        "from": 2,
-        "to": 1,
-        "headline": "A Trump Dissenter Fights for His Political Life",
-        "source": "NYT The Daily",
-        "section": "Worth Knowing",
-        "link": "https://www.nytimes.com/the-daily"
-      },
-      {
-        "id": 195,
+        "id": 205,
         "from": 2,
         "to": 1,
         "headline": "How should Canada handle Alberta separatism?",
@@ -4850,17 +4823,8 @@
         "link": "https://www.cbc.ca/podcasting/includes/frontburner-0ac1f75e-6aac-4713-bee2-6d8068f14733"
       },
       {
-        "id": 205,
-        "from": 2,
-        "to": 1,
-        "headline": "In the Matter of Alex Murdaugh",
-        "source": "NBC Meet the Press",
-        "section": "Worth Knowing",
-        "link": "https://www.nbcnews.com/dateline"
-      },
-      {
         "id": 1,
-        "from": 3,
+        "from": 2,
         "to": 1,
         "headline": "3 off-duty Toronto police officers arrested, 2 accused of sexual assault in Spain: Spanish police",
         "source": "CBC",
@@ -4869,7 +4833,7 @@
       },
       {
         "id": 11,
-        "from": 2,
+        "from": 3,
         "to": 1,
         "headline": "Pearson airport kicks off multibillion-dollar upgrade in bid to boost traffic",
         "source": "Globe & Mail",
@@ -4878,7 +4842,7 @@
       },
       {
         "id": 13,
-        "from": 3,
+        "from": 2,
         "to": 1,
         "headline": "\u2018The allegations are serious\u2019: Three Toronto cops facing charges in Barcelona",
         "source": "r/toronto",
@@ -4889,6 +4853,15 @@
         "id": 23,
         "from": 2,
         "to": 1,
+        "headline": "TTC to shut down over 7 kilometres of subway for this entire weekend",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/city/2026/05/ttc-subway-closure-weekend-may-23/"
+      },
+      {
+        "id": 33,
+        "from": 2,
+        "to": 1,
         "headline": "Three killed in San Diego mosque shooting, two attackers dead",
         "source": "National Post",
         "section": "US & Global",
@@ -4896,6 +4869,15 @@
       },
       {
         "id": 43,
+        "from": 3,
+        "to": 1,
+        "headline": "Five (Delusional? Brave?) NDP Leadership Candidates on WTF They Plan to Do",
+        "source": "Canadaland",
+        "section": "Canada & Toronto",
+        "link": "https://www.canadaland.com/ndp-leadership-candidates/"
+      },
+      {
+        "id": 53,
         "from": 2,
         "to": 1,
         "headline": "Planswell defaulted on debt as CEO \u2018absconded\u2019 to Colombia, court documents show",
@@ -4904,7 +4886,7 @@
         "link": "https://www.theglobeandmail.com/investing/personal-finance/article-planswell-defaulted-on-debt-as-ceo-absconded-to-colombia-court/"
       },
       {
-        "id": 53,
+        "id": 63,
         "from": 2,
         "to": 1,
         "headline": "Just curious why aren't tiny home a thing in Canada?",
@@ -4913,7 +4895,7 @@
         "link": "https://www.reddit.com/r/canadahousing/comments/1th8xar/just_curious_why_arent_tiny_home_a_thing_in_canada/"
       },
       {
-        "id": 56,
+        "id": 66,
         "from": 2,
         "to": 1,
         "headline": "Carlyle Looks To Sell South Phase Of Toronto Junction Project",
@@ -4922,7 +4904,7 @@
         "link": "https://storeys.com/carlyle-seeks-sale-south-junction/"
       },
       {
-        "id": 66,
+        "id": 76,
         "from": 2,
         "to": 1,
         "headline": "Canadian Developers Set A Record For Completed & Unsold New Homes",
@@ -4931,7 +4913,25 @@
         "link": "https://betterdwelling.com/canadian-developers-set-a-record-for-completed-unsold-new-homes/"
       },
       {
-        "id": 106,
+        "id": 86,
+        "from": 2,
+        "to": 1,
+        "headline": "Top 10 AI Tools That Will Transform Your Content Creation in 2025",
+        "source": "TechCrunch",
+        "section": "Tech & AI",
+        "link": "https://techncruncher.blogspot.com/2025/01/top-10-ai-tools-that-will-transform.html"
+      },
+      {
+        "id": 96,
+        "from": 2,
+        "to": 1,
+        "headline": "Show HN: I made a 3D pose maker for artists",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://setpose.com/"
+      },
+      {
+        "id": 116,
         "from": 2,
         "to": 1,
         "headline": "Data Center Discontent, Understanding the Opposition, Fixing the Problem",
@@ -4940,16 +4940,16 @@
         "link": "https://stratechery.com/2026/data-center-discontent-understanding-the-opposition-fixing-the-problem/"
       },
       {
-        "id": 116,
-        "from": 2,
-        "to": 1,
-        "headline": "Here\u2019s How Nancy Pelosi Beat the Stock Market and Warren Buffett",
+        "id": 126,
+        "from": 3,
+        "to": 2,
+        "headline": "Costco Seen Missing Quarterly Earnings Views, Oppenheimer Says",
         "source": "Yahoo Finance",
         "section": "Finance & Markets",
-        "link": "https://247wallst.com/investing/2025/11/23/heres-how-nancy-pelosi-beat-the-stock-market-and-warren-buffett/?.tsrc=rss"
+        "link": "https://finance.yahoo.com/markets/stocks/articles/costco-seen-missing-quarterly-earnings-143233335.html?.tsrc=rss"
       },
       {
-        "id": 126,
+        "id": 136,
         "from": 2,
         "to": 1,
         "headline": "Leading China Property Developer Reports Huge loss, in Sign of Widening Real-Estate Woes",
@@ -4958,7 +4958,7 @@
         "link": "https://www.wsj.com/articles/even-chinas-property-stalwart-isnt-immune-from-the-crisis-19799863"
       },
       {
-        "id": 136,
+        "id": 146,
         "from": 2,
         "to": 1,
         "headline": "Canadians make tough tradeoffs as fuel costs rise",
@@ -4967,7 +4967,7 @@
         "link": "https://www.moneysense.ca/news/canadians-make-tough-tradeoffs-as-fuel-costs-rise/"
       },
       {
-        "id": 145,
+        "id": 155,
         "from": 2,
         "to": 1,
         "headline": "Father-of-eight killed in San Diego mosque shooting hailed as hero",
@@ -4976,49 +4976,22 @@
         "link": "https://www.bbc.com/news/articles/clyp3gkrwg9o?at_medium=RSS&at_campaign=rss"
       },
       {
-        "id": 155,
-        "from": 2,
-        "to": 1,
-        "headline": "Trump\u2019s New $1.8 Billion Pot of Money, and a Deadly Mosque Attack in California",
-        "source": "NYT",
-        "section": "US & Global",
-        "link": "https://www.nytimes.com/2026/05/19/podcasts/the-headlines/trump-irs-mosque-attack-california.html"
-      },
-      {
         "id": 165,
         "from": 2,
         "to": 1,
-        "headline": "America must hope Donald Trump is not a new Caligula",
-        "source": "Economist",
+        "headline": "Trump Says He Postponed a \u2018Very Major Attack\u2019 on Iran, Leaving Mideast on Edge",
+        "source": "NYT",
         "section": "US & Global",
-        "link": "https://www.economist.com/international/2026/05/05/america-must-hope-donald-trump-is-not-a-new-caligula"
+        "link": "https://www.nytimes.com/2026/05/19/world/middleeast/iran-trump-tension.html"
       },
       {
-        "id": 175,
+        "id": 185,
         "from": 2,
         "to": 1,
         "headline": "California mosque shooting leaves 5 dead. And, judge dismisses Trump's IRS lawsuit",
         "source": "NPR World",
         "section": "US & Global",
         "link": "https://www.npr.org/2026/05/19/g-s1-122806/up-first-newsletter-islamic-center-san-diego-primary-elections-trump-irs-elon-musk-openai"
-      },
-      {
-        "id": 185,
-        "from": 2,
-        "to": 1,
-        "headline": "Congress is scrambling to regulate prediction markets",
-        "source": "Axios",
-        "section": "US & Global",
-        "link": "https://www.axios.com/2026/05/19/prediction-market-kalshi-polymarket-bill-congress"
-      },
-      {
-        "id": 196,
-        "from": 2,
-        "to": 1,
-        "headline": "What happens when a conspiracy theory drives into your backyard?",
-        "source": "CBC Frontburner",
-        "section": "Worth Knowing",
-        "link": "https://www.cbc.ca/podcasting/includes/frontburner-c3112eec-1131-4148-bb84-375460a1c796"
       },
       {
         "id": 2,
@@ -5031,7 +5004,7 @@
       },
       {
         "id": 14,
-        "from": 3,
+        "from": 2,
         "to": 1,
         "headline": "3 off-duty Toronto police officers arrested, 2 accused of sexual assault in Spain: Spanish police | CBC News",
         "source": "r/toronto",
@@ -5042,22 +5015,31 @@
         "id": 24,
         "from": 2,
         "to": 1,
+        "headline": "Fireworks-related chaos swept Ontario this long weekend",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/city/2026/05/fireworks-chaos-ontario-long-weekend/"
+      },
+      {
+        "id": 34,
+        "from": 2,
+        "to": 1,
         "headline": "\u2018Zionism won\u2019: Jews earned Israel, Ben Shapiro tells Toronto audience",
         "source": "National Post",
         "section": "Canada & Toronto",
         "link": "https://nationalpost.com/news/zionism-won-jews-earned-israel-ben-shapiro-tells-toronto-audience"
       },
       {
-        "id": 44,
-        "from": 2,
-        "to": 1,
+        "id": 54,
+        "from": 3,
+        "to": 2,
         "headline": "TSX opens higher as Iran peace hopes lift sentiment",
         "source": "Globe & Mail Finance",
         "section": "Finance & Markets",
         "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/market-news/article-premarket-global-stocks-and-bonds-steady-as-oil-eases-on-trumps-iran/"
       },
       {
-        "id": 54,
+        "id": 64,
         "from": 2,
         "to": 1,
         "headline": "Op-Ed: The problems Build Canada Homes must solve",
@@ -5066,7 +5048,7 @@
         "link": "https://www.reddit.com/r/canadahousing/comments/1thnfx2/oped_the_problems_build_canada_homes_must_solve/"
       },
       {
-        "id": 57,
+        "id": 67,
         "from": 2,
         "to": 1,
         "headline": "Quaint Detached In Wychwood Is Like A Cottage In The City",
@@ -5075,7 +5057,7 @@
         "link": "https://storeys.com/319-wychwood-avenue-for-sale/"
       },
       {
-        "id": 67,
+        "id": 77,
         "from": 2,
         "to": 1,
         "headline": "Canadian Real Estate Demand Balance Hits Weakest Level Since 1995",
@@ -5087,13 +5069,22 @@
         "id": 97,
         "from": 2,
         "to": 1,
+        "headline": "New Lifetime Plex Pass Pricing",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://www.plex.tv/blog/new-lifetime-plex-pass-pricing/"
+      },
+      {
+        "id": 107,
+        "from": 2,
+        "to": 1,
         "headline": "GDS weighs in on the NHS's decision to retreat from Open Source",
         "source": "Simon Willison",
         "section": "Tech & AI",
         "link": "https://simonwillison.net/2026/May/17/gds-weighs-in/#atom-everything"
       },
       {
-        "id": 107,
+        "id": 117,
         "from": 2,
         "to": 1,
         "headline": "2026.20: Shifting Alliances in a Changing World",
@@ -5105,13 +5096,13 @@
         "id": 127,
         "from": 2,
         "to": 1,
-        "headline": "Freed Israeli Hostages Still Had Shrapnel in Their Bodies From Oct. 7 Attack",
-        "source": "WSJ",
+        "headline": "This Is the Only ETF That Gets You More Gains With Less Risk",
+        "source": "Yahoo Finance",
         "section": "Finance & Markets",
-        "link": "https://www.wsj.com/articles/freed-israeli-hostages-still-had-shrapnel-in-their-bodies-from-oct-7-attack-3de8cd1e"
+        "link": "https://247wallst.com/investing/2026/05/19/this-is-the-only-etf-that-gets-you-more-gains-with-less-risk/?.tsrc=rss"
       },
       {
-        "id": 137,
+        "id": 147,
         "from": 2,
         "to": 1,
         "headline": "Summer camp sticker shock is real\u2014here\u2019s how to stay on budget",
@@ -5120,49 +5111,13 @@
         "link": "https://www.moneysense.ca/news/summer-camp-sticker-shock/"
       },
       {
-        "id": 146,
-        "from": 2,
-        "to": 1,
-        "headline": "Victim or enabler? Epstein girlfriend who could face questions despite plea deal",
-        "source": "BBC",
-        "section": "US & Global",
-        "link": "https://www.bbc.com/news/articles/cz92j3n3jvvo?at_medium=RSS&at_campaign=rss"
-      },
-      {
-        "id": 156,
-        "from": 2,
-        "to": 1,
-        "headline": "G.O.P. Supporters Back Trump, but a Third Seek a New Direction for the Party",
-        "source": "NYT",
-        "section": "US & Global",
-        "link": "https://www.nytimes.com/2026/05/19/us/politics/poll-trump-republicans.html"
-      },
-      {
-        "id": 166,
-        "from": 2,
-        "to": 1,
-        "headline": "The global scramble for ports",
-        "source": "Economist",
-        "section": "US & Global",
-        "link": "https://www.economist.com/international/2026/04/30/the-global-scramble-for-ports"
-      },
-      {
-        "id": 186,
+        "id": 196,
         "from": 2,
         "to": 1,
         "headline": "In Musk v. Altman trial, the entire AI industry lost",
         "source": "Axios",
         "section": "Tech & AI",
         "link": "https://www.axios.com/2026/05/19/musk-altman-openai-trial"
-      },
-      {
-        "id": 197,
-        "from": 2,
-        "to": 1,
-        "headline": "Iran quagmire: why can\u2019t the U.S. end the war?",
-        "source": "CBC Frontburner",
-        "section": "Worth Knowing",
-        "link": "https://www.cbc.ca/podcasting/includes/frontburner-da3a824b-c47e-4781-a492-7a5039cec7dc"
       },
       {
         "id": 3,
@@ -5186,13 +5141,22 @@
         "id": 25,
         "from": 2,
         "to": 1,
+        "headline": "Sprawling $3.6M Ontario mansion comes with a pool and 13-car parking",
+        "source": "BlogTO",
+        "section": "Toronto Housing",
+        "link": "https://www.blogto.com/real-estate-toronto/2026/05/495-meadow-wood-rd/"
+      },
+      {
+        "id": 35,
+        "from": 2,
+        "to": 1,
         "headline": "FIRST READING: What Carney has actually done",
         "source": "National Post",
         "section": "Canada & Toronto",
         "link": "https://nationalpost.com/opinion/what-carney-has-actually-done"
       },
       {
-        "id": 45,
+        "id": 55,
         "from": 2,
         "to": 1,
         "headline": "Oil prices fall as Trump pauses Iran attack plans",
@@ -5201,7 +5165,7 @@
         "link": "https://www.theglobeandmail.com/investing/article-oil-prices-fall-as-trump-pauses-iran-attack-plans/"
       },
       {
-        "id": 58,
+        "id": 68,
         "from": 2,
         "to": 1,
         "headline": "Rennie President Greg Zayadi On 'The Agency' Partnership",
@@ -5210,7 +5174,7 @@
         "link": "https://storeys.com/rennie-the-agency-partnership/"
       },
       {
-        "id": 68,
+        "id": 78,
         "from": 2,
         "to": 1,
         "headline": "Ontario Is Now Ground Zero For Canada\u2019s Consumer Insolvency Surge",
@@ -5219,16 +5183,25 @@
         "link": "https://betterdwelling.com/ontario-is-now-ground-zero-for-canadas-consumer-insolvency-surge/"
       },
       {
-        "id": 88,
+        "id": 98,
         "from": 2,
         "to": 1,
-        "headline": "U.S. Cybersecurity Agency Leaves Its Digital Keys Out in Public on GitHub",
+        "headline": "OpenBSD 7.9 Released",
         "source": "Hacker News",
         "section": "Tech & AI",
-        "link": "https://gizmodo.com/the-worst-leak-that-ive-witnessed-u-s-cybersecurity-agency-leaves-its-digital-keys-out-in-public-on-github-2000760330"
+        "link": "https://www.openbsd.org/79.html"
       },
       {
         "id": 108,
+        "from": 2,
+        "to": 1,
+        "headline": "Warelay -> OpenClaw",
+        "source": "Simon Willison",
+        "section": "Tech & AI",
+        "link": "https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything"
+      },
+      {
+        "id": 118,
         "from": 2,
         "to": 1,
         "headline": "An Interview with Ben Thompson at the MoffettNathanson Media, Internet & Communications Conference",
@@ -5238,75 +5211,21 @@
       },
       {
         "id": 128,
-        "from": 2,
-        "to": 1,
-        "headline": "Suspected Sabotage of Deep-Sea Cable Triggers First NATO-Led Response",
-        "source": "WSJ",
+        "from": 3,
+        "to": 2,
+        "headline": "Stock Market Today: Dow Slides, Nasdaq Dives As Yields Climb But ServiceNow, Other Software Names Gain",
+        "source": "Yahoo Finance",
         "section": "Finance & Markets",
-        "link": "https://www.wsj.com/articles/suspected-sabotage-of-deep-sea-cable-triggers-first-nato-led-response-337119ba"
+        "link": "https://finance.yahoo.com/m/b4ff35eb-15aa-3167-a917-40783b249c0c/stock-market-today%3A-dow.html?.tsrc=rss"
       },
       {
-        "id": 138,
+        "id": 148,
         "from": 2,
         "to": 1,
         "headline": "Buying ETFs in Canada Tool: The MoneySense ETF Screener",
         "source": "MoneySense",
         "section": "Finance & Markets",
         "link": "https://www.moneysense.ca/save/investing/etfs/the-moneysense-etf-finder-tool/"
-      },
-      {
-        "id": 147,
-        "from": 2,
-        "to": 1,
-        "headline": "Son of Mango boss arrested over father's fatal fall from cliff",
-        "source": "BBC",
-        "section": "US & Global",
-        "link": "https://www.bbc.com/news/articles/c0m2pg1z4x8o?at_medium=RSS&at_campaign=rss"
-      },
-      {
-        "id": 157,
-        "from": 2,
-        "to": 1,
-        "headline": "Trump\u2019s Push to Defeat Thomas Massie Is the Most Expensive House Primary in Recent Years",
-        "source": "NYT",
-        "section": "US & Global",
-        "link": "https://www.nytimes.com/2026/05/19/us/politics/trump-massie-kentucky-primary-spending.html"
-      },
-      {
-        "id": 167,
-        "from": 2,
-        "to": 1,
-        "headline": "To fight Russia, Europe needs Ukraine",
-        "source": "Economist",
-        "section": "US & Global",
-        "link": "https://www.economist.com/international/2026/04/28/to-fight-russia-europe-needs-ukraine"
-      },
-      {
-        "id": 177,
-        "from": 2,
-        "to": 1,
-        "headline": "One Palestinian man's life of survival",
-        "source": "NPR World",
-        "section": "US & Global",
-        "link": "https://www.npr.org/2026/05/19/nx-s1-5825865/one-palestinian-mans-life-of-survival"
-      },
-      {
-        "id": 187,
-        "from": 2,
-        "to": 1,
-        "headline": "Trump's revenge tour comes for Massie",
-        "source": "Axios",
-        "section": "US & Global",
-        "link": "https://www.axios.com/2026/05/19/thomas-massie-trump-republican-primary"
-      },
-      {
-        "id": 198,
-        "from": 2,
-        "to": 1,
-        "headline": "Princeton president on the future of university",
-        "source": "CBC Frontburner",
-        "section": "Worth Knowing",
-        "link": "https://www.cbc.ca/podcasting/includes/frontburner-75e844ed-cad6-4b55-85dd-52a6e0c9625a"
       },
       {
         "id": 4,
@@ -5330,13 +5249,31 @@
         "id": 26,
         "from": 2,
         "to": 1,
-        "headline": "Liberals are playing legal hardball with First Nations over drinking water",
+        "headline": "Toronto's barter trend has led to some unusual offers for one resident including a liver",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/city/2026/05/toronto-barter-trend-unusual-offers/"
+      },
+      {
+        "id": 36,
+        "from": 2,
+        "to": 1,
+        "headline": "Hamas memos show Canadian-funded charities worked with terror group, NGO says",
         "source": "National Post",
         "section": "Canada & Toronto",
-        "link": "https://nationalpost.com/news/canada/liberals-fight-first-nations-over-drinking-water"
+        "link": "https://nationalpost.com/news/hamas-memos-show-canadian-funded-charities-worked-with-terror-group-ngo-says"
       },
       {
         "id": 46,
+        "from": 2,
+        "to": 1,
+        "headline": "Canadaland\u2019s Artificial Intelligence Policy",
+        "source": "Canadaland",
+        "section": "Tech & AI",
+        "link": "https://www.canadaland.com/canadalands-artificial-intelligence-policy/"
+      },
+      {
+        "id": 56,
         "from": 2,
         "to": 1,
         "headline": "As yields spike, U.S. small caps, consumer stocks and housing shares could see pressure",
@@ -5345,7 +5282,7 @@
         "link": "https://www.theglobeandmail.com/investing/article-us-yield-spike-small-caps-consumer-stocks-housing-shares/"
       },
       {
-        "id": 59,
+        "id": 69,
         "from": 2,
         "to": 1,
         "headline": "Chartwell Pays $382.M For 30% Stake In Fengate's Seasons Senior Housing Portfolio",
@@ -5354,7 +5291,7 @@
         "link": "https://storeys.com/chartwell-stake-fengates-senior-housing/"
       },
       {
-        "id": 69,
+        "id": 79,
         "from": 2,
         "to": 1,
         "headline": "Canada\u2019s Jobless Problem Is Increasingly An Ontario Problem",
@@ -5363,16 +5300,16 @@
         "link": "https://betterdwelling.com/canadas-jobless-problem-is-increasingly-an-ontario-problem/"
       },
       {
-        "id": 89,
+        "id": 109,
         "from": 2,
         "to": 1,
-        "headline": "New accessibility features powered by Apple Intelligence",
-        "source": "Hacker News",
-        "section": "Design & Product",
-        "link": "https://www.apple.com/newsroom/2026/05/apple-unveils-new-accessibility-features-and-updates-with-apple-intelligence/"
+        "headline": "Quoting Julia Evans",
+        "source": "Simon Willison",
+        "section": "Tech & AI",
+        "link": "https://simonwillison.net/2026/May/16/julia-evans/#atom-everything"
       },
       {
-        "id": 109,
+        "id": 119,
         "from": 2,
         "to": 1,
         "headline": "The Deployment Company, Back to the 70s, Apple and Intel",
@@ -5381,76 +5318,13 @@
         "link": "https://stratechery.com/2026/the-deployment-company-back-to-the-70s-apple-and-intel/"
       },
       {
-        "id": 129,
-        "from": 2,
-        "to": 1,
-        "headline": "Rwanda-Backed Rebels Enter Congo's Safe-Haven City",
-        "source": "WSJ",
-        "section": "Finance & Markets",
-        "link": "https://www.wsj.com/articles/rwanda-backed-rebels-enter-congo-safe-haven-city-aid-hub-09fdccb8"
-      },
-      {
-        "id": 139,
+        "id": 149,
         "from": 2,
         "to": 1,
         "headline": "Stock news: Barrick\u2019s gold-fuelled profit boom leads a busy week of earnings",
         "source": "MoneySense",
         "section": "Finance & Markets",
         "link": "https://www.moneysense.ca/save/investing/stock-market-news-may-15-2/"
-      },
-      {
-        "id": 148,
-        "from": 2,
-        "to": 1,
-        "headline": "Selling children to survive: Afghan fathers forced to make impossible choices",
-        "source": "BBC",
-        "section": "US & Global",
-        "link": "https://www.bbc.com/news/articles/c0q25dwj807o?at_medium=RSS&at_campaign=rss"
-      },
-      {
-        "id": 158,
-        "from": 2,
-        "to": 1,
-        "headline": "Top Treasury Lawyer Resigns After Creation of \u2018Anti-Weaponization Fund\u2019",
-        "source": "NYT",
-        "section": "US & Global",
-        "link": "https://www.nytimes.com/2026/05/18/business/anti-weaponization-fund-brian-morrissey-treasury.html"
-      },
-      {
-        "id": 168,
-        "from": 2,
-        "to": 1,
-        "headline": "The War Room newsletter: The best generals in history",
-        "source": "Economist",
-        "section": "US & Global",
-        "link": "https://www.economist.com/international/2026/04/27/the-war-room-newsletter-the-best-generals-in-history"
-      },
-      {
-        "id": 178,
-        "from": 2,
-        "to": 1,
-        "headline": "Putin visits China to reaffirm Russia ties",
-        "source": "NPR World",
-        "section": "US & Global",
-        "link": "https://www.npr.org/2026/05/19/g-s1-122775/putin-visits-china"
-      },
-      {
-        "id": 188,
-        "from": 2,
-        "to": 1,
-        "headline": "\"I'm allowed to\": Trump's presidential profit machine bursts into the open",
-        "source": "Axios",
-        "section": "US & Global",
-        "link": "https://www.axios.com/2026/05/19/trump-presidential-gold-rush"
-      },
-      {
-        "id": 199,
-        "from": 2,
-        "to": 1,
-        "headline": "Weakened, Trump heads to China",
-        "source": "CBC Frontburner",
-        "section": "Worth Knowing",
-        "link": "https://www.cbc.ca/podcasting/includes/frontburner-5b47ae41-f3d9-4be8-aa5b-a5ec83567692"
       },
       {
         "id": 5,
@@ -5474,22 +5348,22 @@
         "id": 27,
         "from": 2,
         "to": 1,
-        "headline": "Michael Higgins: How \u2018humanitarian\u2019 Sweden\u2019s immigration policies went all wrong",
-        "source": "National Post",
+        "headline": "The water park at Canada's Wonderland is opening this weekend",
+        "source": "BlogTO",
         "section": "Canada & Toronto",
-        "link": "https://nationalpost.com/opinion/how-humanitarian-swedens-immigration-policies-all-went-wrong"
+        "link": "https://www.blogto.com/radar/2026/05/water-park-canadas-wonderland-opening-weekend/"
       },
       {
-        "id": 47,
+        "id": 37,
         "from": 2,
         "to": 1,
-        "headline": "Bond market storm could rain on Nvidia\u2019s parade",
-        "source": "Globe & Mail Finance",
-        "section": "Finance & Markets",
-        "link": "https://www.theglobeandmail.com/investing/article-bond-market-storm-could-rain-on-nvidias-parade/"
+        "headline": "Liberals are playing legal hardball with First Nations over drinking water",
+        "source": "National Post",
+        "section": "Canada & Toronto",
+        "link": "https://nationalpost.com/news/canada/liberals-fight-first-nations-over-drinking-water"
       },
       {
-        "id": 60,
+        "id": 70,
         "from": 2,
         "to": 1,
         "headline": "Wesgroup Revises Civic District Master Plan Project In Surrey To 1,900 Units",
@@ -5498,40 +5372,13 @@
         "link": "https://storeys.com/wesgroup-civic-district-master-plan/"
       },
       {
-        "id": 70,
+        "id": 80,
         "from": 2,
         "to": 1,
         "headline": "Canadian Consumer Insolvencies Approach 2009 Record High",
         "source": "BetterDwelling",
         "section": "Toronto Housing",
         "link": "https://betterdwelling.com/canadian-consumer-insolvencies-approach-2009-record-high/"
-      },
-      {
-        "id": 90,
-        "from": 2,
-        "to": 1,
-        "headline": "Gaussian Splat of a Strawberry",
-        "source": "Hacker News",
-        "section": "Design & Product",
-        "link": "https://superspl.at/scene/84df8849"
-      },
-      {
-        "id": 110,
-        "from": 2,
-        "to": 1,
-        "headline": "SpaceX and Anthropic, xAI\u2019s Two Companies, Elon Musk and SpaceXAI\u2019s Future",
-        "source": "Stratechery",
-        "section": "Tech & AI",
-        "link": "https://stratechery.com/2026/spacex-and-anthropic-xais-two-companies-elon-musk-and-spacexais-future/"
-      },
-      {
-        "id": 130,
-        "from": 2,
-        "to": 1,
-        "headline": "Cocaine-Funded Gangs Shake Colombia Years After Peace Pact",
-        "source": "WSJ",
-        "section": "Finance & Markets",
-        "link": "https://www.wsj.com/articles/cocaine-funded-gangs-shake-colombia-years-after-peace-pact-a45a28da"
       }
     ],
     "demoted_by_phase2": [
@@ -5545,70 +5392,34 @@
         "link": "https://www.reddit.com/r/toronto/comments/1th01tp/peter_parker_or_spiderman/"
       },
       {
-        "id": 32,
+        "id": 42,
         "from": 0,
         "to": 3,
         "headline": "Every upcoming Canadaland live event you should know about",
         "source": "Canadaland",
-        "section": "Canada & Toronto",
+        "section": "Worth Knowing",
         "link": "https://www.canadaland.com/live/"
       },
       {
-        "id": 55,
+        "id": 65,
         "from": 1,
         "to": 2,
         "headline": "40 Under 40 Expands To Include Development Professionals",
         "source": "Storeys",
-        "section": "Toronto Housing",
+        "section": "Worth Knowing",
         "link": "https://storeys.com/40-under-40-expands-development/"
-      },
-      {
-        "id": 75,
-        "from": 1,
-        "to": 2,
-        "headline": "How I Get Free Traffic from ChatGPT in 2025 (AIO vs SEO)",
-        "source": "TechCrunch",
-        "section": "Tech & AI",
-        "link": "https://techncruncher.blogspot.com/2025/12/how-i-get-free-traffic-from-chatgpt-in.html"
       },
       {
         "id": 115,
         "from": 1,
         "to": 2,
-        "headline": "3 Reasons to Avoid UNM and 1 Stock to Buy Instead",
-        "source": "Yahoo Finance",
-        "section": "Finance & Markets",
-        "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-avoid-unm-1-142055773.html?.tsrc=rss"
-      },
-      {
-        "id": 33,
-        "from": 1,
-        "to": 2,
-        "headline": "Five (Delusional? Brave?) NDP Leadership Candidates on WTF They Plan to Do",
-        "source": "Canadaland",
-        "section": "Canada & Toronto",
-        "link": "https://www.canadaland.com/ndp-leadership-candidates/"
-      },
-      {
-        "id": 76,
-        "from": 1,
-        "to": 2,
-        "headline": "Top 10 AI Tools That Will Transform Your Content Creation in 2025",
-        "source": "TechCrunch",
+        "headline": "Personal Day",
+        "source": "Stratechery",
         "section": "Tech & AI",
-        "link": "https://techncruncher.blogspot.com/2025/01/top-10-ai-tools-that-will-transform.html"
+        "link": "https://stratechery.com/2026/personal-day-3/"
       },
       {
-        "id": 86,
-        "from": 1,
-        "to": 2,
-        "headline": "OpenBSD 7.9 Released",
-        "source": "Hacker News",
-        "section": "Tech & AI",
-        "link": "https://www.openbsd.org/79.html"
-      },
-      {
-        "id": 96,
+        "id": 106,
         "from": 1,
         "to": 2,
         "headline": "Glaucous-winged Gull, Brown Pelican, Snowy Egret, Canada Goose",
@@ -5617,16 +5428,16 @@
         "link": "https://simonwillison.net/2026/May/18/sighting-362781627/#atom-everything"
       },
       {
-        "id": 34,
+        "id": 44,
         "from": 0,
         "to": 3,
         "headline": "Live Call-In Show",
         "source": "Canadaland",
-        "section": "Canada & Toronto",
+        "section": "Worth Knowing",
         "link": "https://www.canadaland.com/canadaland-live-call-in-show/"
       },
       {
-        "id": 77,
+        "id": 87,
         "from": 1,
         "to": 2,
         "headline": "LimeWire AI Studio Review 2023: Details, Pricing & Features",
@@ -5635,43 +5446,25 @@
         "link": "https://techncruncher.blogspot.com/2023/12/limewire-ai-studio-review-2023-details.html"
       },
       {
-        "id": 87,
+        "id": 186,
         "from": 1,
-        "to": 2,
-        "headline": "Colonization of Venus",
-        "source": "Hacker News",
-        "section": "Tech & AI",
-        "link": "https://en.wikipedia.org/wiki/Colonization_of_Venus"
-      },
-      {
-        "id": 117,
-        "from": 1,
-        "to": 2,
-        "headline": "Is Genpact Stock a Buy After Hedge Fund Rice Hall James Raised Its Stake by $14 Million?",
-        "source": "Yahoo Finance",
-        "section": "Finance & Markets",
-        "link": "https://www.fool.com/coverage/filings/2026/05/19/is-genpact-stock-a-buy-after-hedge-fund-rice-hall-james-raised-its-stake-by-usd14-million/?.tsrc=rss"
-      },
-      {
-        "id": 176,
-        "from": 1,
-        "to": 2,
+        "to": 3,
         "headline": "The French Open courts are clay, a tricky surface for some. Here's how the pros do it",
         "source": "NPR World",
-        "section": "US & Global",
+        "section": "Worth Knowing",
         "link": "https://www.npr.org/2026/05/19/nx-s1-5822888/french-open-clay-hailey-baptiste"
       },
       {
-        "id": 35,
+        "id": 45,
         "from": 1,
         "to": 2,
         "headline": "Canadaland\u2019s 2024 Transparency Report",
         "source": "Canadaland",
-        "section": "Canada & Toronto",
+        "section": "Worth Knowing",
         "link": "https://www.canadaland.com/canadalands-2024-transparency-report/"
       },
       {
-        "id": 78,
+        "id": 88,
         "from": 1,
         "to": 2,
         "headline": "Top 10 AI Tools in 2023 That Will Make Your Life Easier",
@@ -5680,34 +5473,7 @@
         "link": "https://techncruncher.blogspot.com/2023/01/top-10-ai-tools-in-2023-that-will-make.html"
       },
       {
-        "id": 98,
-        "from": 1,
-        "to": 2,
-        "headline": "Warelay -> OpenClaw",
-        "source": "Simon Willison",
-        "section": "Tech & AI",
-        "link": "https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything"
-      },
-      {
-        "id": 118,
-        "from": 1,
-        "to": 2,
-        "headline": "3 Reasons AOS is Risky and 1 Stock to Buy Instead",
-        "source": "Yahoo Finance",
-        "section": "Finance & Markets",
-        "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-aos-risky-1-141255604.html?.tsrc=rss"
-      },
-      {
-        "id": 36,
-        "from": 1,
-        "to": 2,
-        "headline": "Canadaland\u2019s Artificial Intelligence Policy",
-        "source": "Canadaland",
-        "section": "Canada & Toronto",
-        "link": "https://www.canadaland.com/canadalands-artificial-intelligence-policy/"
-      },
-      {
-        "id": 79,
+        "id": 89,
         "from": 1,
         "to": 2,
         "headline": "Top 10 AI Content Generator & Writer Tools in 2022",
@@ -5719,55 +5485,19 @@
         "id": 99,
         "from": 1,
         "to": 2,
-        "headline": "Quoting Julia Evans",
-        "source": "Simon Willison",
+        "headline": "Colonization of Venus",
+        "source": "Hacker News",
         "section": "Tech & AI",
-        "link": "https://simonwillison.net/2026/May/16/julia-evans/#atom-everything"
+        "link": "https://en.wikipedia.org/wiki/Colonization_of_Venus"
       },
       {
-        "id": 119,
+        "id": 178,
         "from": 1,
         "to": 2,
-        "headline": "Phibro Animal Health (PAHC): Buy, Sell, or Hold Post Q1 Earnings?",
-        "source": "Yahoo Finance",
-        "section": "Finance & Markets",
-        "link": "https://finance.yahoo.com/markets/stocks/articles/phibro-animal-health-pahc-buy-140455253.html?.tsrc=rss"
-      },
-      {
-        "id": 37,
-        "from": 1,
-        "to": 2,
-        "headline": "All Our 2024 Corrections and Clarifications",
-        "source": "Canadaland",
-        "section": "Canada & Toronto",
-        "link": "https://www.canadaland.com/all-our-2024-corrections-and-clarifications/"
-      },
-      {
-        "id": 80,
-        "from": 1,
-        "to": 2,
-        "headline": "Beginner Guide to CJ Affiliate (Commission Junction) in 2022",
-        "source": "TechCrunch",
-        "section": "Tech & AI",
-        "link": "https://techncruncher.blogspot.com/2022/09/cj-affiliate-ultimate-guide-to.html"
-      },
-      {
-        "id": 100,
-        "from": 1,
-        "to": 2,
-        "headline": "inaturalist-clumper 0.1",
-        "source": "Simon Willison",
-        "section": "Tech & AI",
-        "link": "https://simonwillison.net/2026/May/15/inaturalist-clumper/#atom-everything"
-      },
-      {
-        "id": 120,
-        "from": 1,
-        "to": 2,
-        "headline": "Which Is the Better Government Bond ETF, iShares' MUB or Fidelity's FIGB?",
-        "source": "Yahoo Finance",
-        "section": "Finance & Markets",
-        "link": "https://www.fool.com/coverage/etfs/2026/05/19/which-is-the-better-government-bond-etf-ishares-mub-or-fidelity-s-figb/?.tsrc=rss"
+        "headline": "The War Room newsletter: The best generals in history",
+        "source": "Economist",
+        "section": "Worth Knowing",
+        "link": "https://www.economist.com/international/2026/04/27/the-war-room-newsletter-the-best-generals-in-history"
       }
     ]
   }
