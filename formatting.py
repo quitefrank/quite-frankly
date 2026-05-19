@@ -352,17 +352,25 @@ _SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
 
 
 _MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+_MARKDOWN_BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
 
 
-def _render_body_markdown_links(text: str) -> str:
-    """Convert [label](url) markdown links to <a href> with the inline link style."""
-    return _MARKDOWN_LINK_RE.sub(
+def _render_body_markdown(text: str) -> str:
+    """Convert [label](url) markdown links and **bold** markers to HTML.
+
+    Both links and bold are converted so Claude's body output renders
+    cleanly even if it emits stray bold (e.g., misformatted Layout C
+    micro-headers that fell through to Layout B).
+    """
+    text = _MARKDOWN_LINK_RE.sub(
         lambda m: (
             f'<a href="{m.group(2)}" '
             f'style="color:#1c7ff2;text-decoration:underline;">{m.group(1)}</a>'
         ),
         text,
     )
+    text = _MARKDOWN_BOLD_RE.sub(r"<strong>\1</strong>", text)
+    return text
 
 
 def _first_sentence(text: str, max_chars: int = 180) -> str:
@@ -485,7 +493,7 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
             )
         else:
             bold = f'<strong>{bold_inner}</strong>'
-        rendered_body = _render_body_markdown_links(it["body"])
+        rendered_body = _render_body_markdown(it["body"])
         items_html += (
             f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:#333;'
             f'font-family:Helvetica,Arial,sans-serif">'
@@ -537,14 +545,14 @@ def _render_from_the_front_page(story: dict, links_by_id: dict,
         m = LAYOUT_C_PARAGRAPH_RE.match(p)
         if m:
             header = m.group("header").strip()
-            rest = _render_body_markdown_links(m.group("rest").strip())
+            rest = _render_body_markdown(m.group("rest").strip())
             out += (
                 f'<p style="margin:0 0 12px;line-height:22px;font-size:15px;color:#333;'
                 f'font-family:Helvetica,Arial,sans-serif">'
                 f'<strong>{header}</strong> {rest}</p>'
             )
         else:
-            rendered = _render_body_markdown_links(p)
+            rendered = _render_body_markdown(p)
             out += (
                 f'<p style="margin:0 0 12px;line-height:22px;font-size:15px;color:#333;'
                 f'font-family:Helvetica,Arial,sans-serif">{rendered}</p>'
@@ -716,7 +724,7 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
             if s["body"]:
                 paragraphs = [p.strip() for p in re.split(r"\n\n+", "\n".join(s["body"])) if p.strip()]
                 for p in paragraphs:
-                    rendered = _render_body_markdown_links(p)
+                    rendered = _render_body_markdown(p)
                     stories_html += (
                         f'<p style="margin:0 0 12px;line-height:22px;font-size:15px;color:#333;'
                         f'font-family:Helvetica,Arial,sans-serif">{rendered}</p>'

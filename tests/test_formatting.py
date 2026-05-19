@@ -597,6 +597,43 @@ Source: TechCrunch
     assert "[The Verge]" not in html
 
 
+def test_body_paragraphs_render_markdown_bold_as_html():
+    text = """## Tech & AI
+
+**Story headline [#201]**
+The Fed's **rate cut** signal moved markets. Body continues normally.
+
+Source: WSJ
+"""
+    links_by_id = {201: {"link": "https://example.com/201", "image": "",
+                         "title": "Story headline"}}
+    clusters_by_item_id = {201: {"primary_source": "WSJ", "also_in": []}}
+    html, _ = parse_and_render_sections(text, links_by_id, clusters_by_item_id)
+    # Stray **rate cut** inside body becomes a strong tag.
+    assert "<strong>rate cut</strong>" in html
+    # Raw markdown asterisks must not leak through.
+    assert "**rate cut**" not in html
+
+
+def test_body_paragraphs_render_link_with_bold_in_label():
+    # Edge case: link label contains bold. Link converts first, so the bold
+    # markers inside the label get converted at the second pass.
+    text = """## Tech & AI
+
+**Story headline [#202]**
+Read [**this**](https://example.com/x) for more.
+
+Source: WSJ
+"""
+    links_by_id = {202: {"link": "https://example.com/202", "image": "",
+                         "title": "Story headline"}}
+    clusters_by_item_id = {202: {"primary_source": "WSJ", "also_in": []}}
+    html, _ = parse_and_render_sections(text, links_by_id, clusters_by_item_id)
+    # Anchor renders with bold-tagged label inside.
+    assert '<a href="https://example.com/x"' in html
+    assert "<strong>this</strong>" in html
+
+
 def test_format_prompt_describes_today_in_the_world_layout():
     from prompts import FORMAT_SYSTEM_PROMPT
     # Layout description must mention the emoji-led item structure for TitW.
