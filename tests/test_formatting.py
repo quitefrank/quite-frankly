@@ -754,3 +754,145 @@ Source: WSJ
     out = tmp_path / "sample-newsletter.html"
     out.write_text(html, encoding="utf-8")
     print(f"\nSample newsletter rendered to: {out}")
+
+
+def test_end_to_end_pipeline_from_build_format_input_to_html(tmp_path):
+    """Walk the full pipeline: tier scoring → build_format_input → synthesized
+    Claude response → build_email_html. Verifies that the global top-5 pickoff,
+    sibling URL plumbing, and per-section caps all behave correctly when
+    chained together with the renderer."""
+    from formatting import build_format_input, build_email_html
+    import json as _json
+
+    # 8 candidates across multiple sections. After build_format_input runs:
+    #   - Today in the World should receive the top 5 by composite score
+    #     (lifted from their home sections, removed from those sections).
+    #   - Cluster cl_a has 2 members (10 and 11) so item 10 should carry a
+    #     siblings entry pointing at item 11's URL.
+    #   - Finance & Markets has 1 item (left after pickoff lifts the highest
+    #     scorer), Layout C territory.
+    tiered_items = [
+        # Top-5 candidates (highest scores → pickoff lifts these into TitW)
+        {"id": 10, "section": "Tech & AI", "tier": 1, "cluster_id": "cl_a",
+         "scores": {"cross_source_coverage": 5, "personal_relevance": 3, "section_fit": "good"}},  # 9
+        {"id": 20, "section": "Canada & Toronto", "tier": 1, "cluster_id": "cl_b",
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # 8
+        {"id": 30, "section": "US & Global", "tier": 1, "cluster_id": "cl_c",
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # 8
+        {"id": 40, "section": "Finance & Markets", "tier": 1, "cluster_id": "cl_d",
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # 8
+        {"id": 50, "section": "Toronto Housing", "tier": 1, "cluster_id": "cl_e",
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # 8
+        # Sibling for cluster cl_a — same cluster as item 10 but tier 2; should
+        # appear in item 10's siblings array but NOT be picked into TitW.
+        {"id": 11, "section": "Tech & AI", "tier": 2, "cluster_id": "cl_a",
+         "scores": {"cross_source_coverage": 5, "personal_relevance": 2, "section_fit": "good"}},
+        # Remaining Finance & Markets candidate so the section keeps an item
+        # after pickoff drains item 40.
+        {"id": 41, "section": "Finance & Markets", "tier": 1, "cluster_id": "cl_f",
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},  # 6
+        # Tech & AI extra so the section keeps a tier-1 after item 10 leaves.
+        {"id": 12, "section": "Tech & AI", "tier": 1, "cluster_id": "cl_g",
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},  # 6
+    ]
+    links_by_id = {
+        10: {"title": "Hero TitW story", "source": "TechCrunch", "snippet": "x",
+             "link": "https://tc.example/10", "image": "https://img/10.jpg"},
+        11: {"title": "Sibling story", "source": "The Verge", "snippet": "x",
+             "link": "https://verge.example/11", "image": ""},
+        12: {"title": "Tech leftover", "source": "Hacker News", "snippet": "x",
+             "link": "https://hn.example/12", "image": ""},
+        20: {"title": "Canada lift", "source": "CBC", "snippet": "x",
+             "link": "https://cbc.example/20", "image": ""},
+        30: {"title": "US lift", "source": "BBC", "snippet": "x",
+             "link": "https://bbc.example/30", "image": ""},
+        40: {"title": "Finance lift", "source": "WSJ", "snippet": "x",
+             "link": "https://wsj.example/40", "image": ""},
+        41: {"title": "Finance leftover", "source": "Yahoo Finance", "snippet": "x",
+             "link": "https://yf.example/41", "image": ""},
+        50: {"title": "Housing lift", "source": "Storeys", "snippet": "x",
+             "link": "https://storeys.example/50", "image": ""},
+    }
+
+    # Step 1: build_format_input — this is what Claude would normally receive.
+    payload_json = build_format_input(tiered_items, {}, links_by_id)
+    payload = _json.loads(payload_json)
+
+    # Step 2: structural assertions on the payload.
+    titw = payload["sections"]["Today in the World"]["tier_1"]
+    titw_ids = {item["id"] for item in titw}
+    assert titw_ids == {10, 20, 30, 40, 50}, \
+        f"Expected top-5 pickoff to lift {{10, 20, 30, 40, 50}}, got {titw_ids}"
+
+    # Hero is the only image-bearer in the top 5.
+    assert titw[0]["id"] == 10, "Hero must be the image-bearing item"
+
+    # Item 10's siblings should include item 11's URL (same cluster cl_a, Tech & AI not excluded).
+    hero_siblings = {(s["source"], s["url"]) for s in titw[0]["siblings"]}
+    assert ("The Verge", "https://verge.example/11") in hero_siblings, \
+        f"Hero siblings missing The Verge: {hero_siblings}"
+
+    # Finance & Markets after pickoff: item 40 should be gone, item 41 should remain.
+    fm_tier1 = payload["sections"]["Finance & Markets"]["tier_1"]
+    fm_ids = {item["id"] for item in fm_tier1}
+    assert fm_ids == {41}, f"Finance & Markets should have item 41 only, got {fm_ids}"
+    # Cap=1 means longform layout will trigger. Siblings should be empty (Finance & Markets is excluded).
+    assert fm_tier1[0]["siblings"] == [], "Finance & Markets items must have empty siblings"
+
+    # Tech & AI after pickoff: item 10 gone, item 12 should remain.
+    tech_tier1 = payload["sections"]["Tech & AI"]["tier_1"]
+    tech_ids = {item["id"] for item in tech_tier1}
+    assert 10 not in tech_ids, "Item 10 should have left Tech & AI"
+    assert 12 in tech_ids, "Item 12 should still be in Tech & AI"
+
+    # Step 3: synthesize a Claude response that uses the IDs build_format_input emitted.
+    # Today in the World: Layout A (hero is item 10).
+    titw_lines = []
+    for item in titw:
+        emoji = "🌐"
+        header = f"{item['title']}"
+        titw_lines.append(f"{emoji} **{header} [#{item['id']}]:** Body text.")
+    titw_block = "\n\n".join(titw_lines)
+
+    response = f"""SUBJECT: 🌐 Test subject
+
+## Today in the World
+
+{titw_block}
+
+## Finance & Markets
+
+**{fm_tier1[0]['title']} [#{fm_tier1[0]['id']}]**
+**Setup.** First paragraph of longform body.
+
+**Turn.** Second paragraph.
+
+**Conclusion.** Third paragraph.
+
+Source: Yahoo Finance
+
+## Tech & AI
+
+**{tech_tier1[0]['title']} [#{tech_tier1[0]['id']}]**
+Body paragraph one.
+
+Body paragraph two.
+Source: Hacker News
+"""
+
+    # Step 4: render through build_email_html.
+    html, subject = build_email_html(response, links_by_id, {}, tiered_items=tiered_items)
+
+    # Assertions: pipeline produced a coherent email.
+    assert "Today in the World" in html
+    assert "Finance & Markets" in html
+    assert "Tech & AI" in html
+    assert "🌐 Test subject" in subject
+    # Hero image rendered exactly once.
+    assert html.count('src="https://img/10.jpg"') == 1
+    # Layout A emoji items render.
+    assert "🌐" in html
+    # Layout C micro-header markers render as bold inside paragraphs.
+    assert "<strong>Setup.</strong>" in html
+    assert "<strong>Turn.</strong>" in html
+    assert "<strong>Conclusion.</strong>" in html
