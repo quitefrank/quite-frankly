@@ -618,3 +618,31 @@ def test_format_prompt_describes_inline_source_links_rule():
     assert "siblings" in FORMAT_SYSTEM_PROMPT.lower()
     assert "Finance & Markets" in FORMAT_SYSTEM_PROMPT
     assert "US & Global" in FORMAT_SYSTEM_PROMPT
+
+
+def test_from_the_front_page_longform_renders_micro_headers():
+    text = """## Finance & Markets
+
+**Fed signals rate cut by year end [#300]**
+**Decreasing optimism.** Markets had priced in two cuts. The Fed walked it back to one.
+
+**Threading the needle.** Powell framed the move as data-dependent without naming a trigger.
+
+**What it means.** Mortgage rates likely tick down through Q4.
+
+Source: WSJ
+"""
+    links_by_id = {300: {"link": "https://wsj.example/300", "image": "https://img/300.jpg",
+                         "title": "Fed signals rate cut"}}
+    clusters_by_item_id = {300: {"primary_source": "WSJ", "also_in": []}}
+    html, used_ids = parse_and_render_sections(text, links_by_id, clusters_by_item_id, tiered_items=[])
+    # Three paragraph micro-headers render as bold inside the paragraph.
+    assert "<strong>Decreasing optimism.</strong>" in html
+    assert "<strong>Threading the needle.</strong>" in html
+    assert "<strong>What it means.</strong>" in html
+    # Hero image rendered.
+    assert 'src="https://img/300.jpg"' in html
+    # Source line still rendered.
+    assert "WSJ" in html
+    # ID tracked.
+    assert 300 in used_ids

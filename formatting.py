@@ -267,6 +267,17 @@ LAYOUT_A_ITEM_RE = re.compile(
 )
 
 
+# Layout C paragraph opener: a body paragraph starts with **<short cap>.**
+LAYOUT_C_PARAGRAPH_RE = re.compile(r"^\*\*(?P<header>[^*]+)\*\*\s*(?P<rest>.*)$")
+
+
+def _looks_like_longform(body_lines: list[str]) -> bool:
+    """Body is longform if 2+ of its paragraphs start with **<short cap>.**"""
+    joined = "\n".join(body_lines)
+    paragraphs = [p.strip() for p in re.split(r"\n\n+", joined) if p.strip()]
+    return sum(1 for p in paragraphs if LAYOUT_C_PARAGRAPH_RE.match(p)) >= 2
+
+
 def _is_today_in_the_world_section(title: str) -> bool:
     return title.strip() == "Today in the World"
 
@@ -485,6 +496,87 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
     return hero_image_html + items_html
 
 
+def _render_from_the_front_page(story: dict, links_by_id: dict,
+                                 clusters_by_item_id: dict, used_ids: set) -> str:
+    """Render a single featured story as longform: hero image, headline,
+    micro-headered paragraphs, source line, optional callout."""
+    headline_for_lookup = story["headline"]
+    if story.get("id") is not None:
+        headline_for_lookup = f"{story['headline']} [#{story['id']}]"
+    article_data = find_article_data(headline_for_lookup, links_by_id)
+    article_link = article_data["link"]
+    article_image = article_data["image"]
+    if article_data["id"] is not None:
+        used_ids.add(article_data["id"])
+
+    out = '<div>'
+
+    if article_image:
+        img_tag = (
+            f'<img src="{article_image}" alt="{story["headline"]}" '
+            f'style="width:100%;max-width:640px;height:200px;object-fit:cover;'
+            f'display:block;margin:0 0 12px;border-radius:8px">'
+        )
+        out += (
+            f'<a href="{article_link}" style="text-decoration:none;display:block">{img_tag}</a>'
+            if article_link else img_tag
+        )
+
+    if story["headline"]:
+        headline_inner = (
+            f'<a href="{article_link}" style="color:#1a1a1a;text-decoration:none;">{story["headline"]}</a>'
+            if article_link else story["headline"]
+        )
+        out += (
+            f'<p style="margin:0 0 8px;font-size:24px;font-weight:700;color:#1a1a1a;'
+            f'line-height:26px;font-family:Helvetica,Arial,sans-serif">{headline_inner}</p>'
+        )
+
+    paragraphs = [p.strip() for p in re.split(r"\n\n+", "\n".join(story["body"])) if p.strip()]
+    for p in paragraphs:
+        m = LAYOUT_C_PARAGRAPH_RE.match(p)
+        if m:
+            header = m.group("header").strip()
+            rest = _render_body_markdown_links(m.group("rest").strip())
+            out += (
+                f'<p style="margin:0 0 12px;line-height:22px;font-size:15px;color:#333;'
+                f'font-family:Helvetica,Arial,sans-serif">'
+                f'<strong>{header}</strong> {rest}</p>'
+            )
+        else:
+            rendered = _render_body_markdown_links(p)
+            out += (
+                f'<p style="margin:0 0 12px;line-height:22px;font-size:15px;color:#333;'
+                f'font-family:Helvetica,Arial,sans-serif">{rendered}</p>'
+            )
+
+    cluster = clusters_by_item_id.get(article_data["id"]) if article_data["id"] is not None else None
+    if cluster:
+        primary_source = cluster.get("primary_source") or story["source"]
+        also_in = cluster.get("also_in") or []
+    else:
+        primary_source = story["source"]
+        also_in = []
+
+    if primary_source:
+        out += (
+            f'<p style="margin:0 0 10px;font-size:12px;color:#999;'
+            f'font-family:Helvetica,Arial,sans-serif">'
+            f'{render_source_line(primary_source, also_in, article_link)}</p>'
+        )
+
+    if story.get("callout"):
+        out += (
+            f'<div style="margin:10px 0 0;padding:12px 14px;background:#f0f4ff;'
+            f'border-left:3px solid #1c7ff2;font-size:14px;line-height:20px;color:#333;'
+            f'font-family:Helvetica,Arial,sans-serif">'
+            f'<strong style="color:#1c7ff2">What this means for you:</strong> {story["callout"]}</div>'
+        )
+
+    out += '</div>'
+    return out
+
+
 def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None):
     clusters_by_item_id = clusters_by_item_id or {}
     tiered_items = tiered_items or []
@@ -561,6 +653,28 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
         # Synthesize Other Headlines from tier_2 items for this section now that
         # featured-story IDs have been gathered into used_ids.
         # Defer the actual call until after we've collected used_ids from stories.
+
+        # From the Front Page longform: exactly one featured story whose
+        # body uses **<header>.** paragraph openers.
+        if len(stories) == 1 and _looks_like_longform(stories[0]["body"]):
+            stories_html = _render_from_the_front_page(
+                stories[0], links_by_id, clusters_by_item_id, used_ids
+            )
+            oh_html = render_other_headlines_for_section(title, tiered_items, links_by_id, used_ids)
+            stories_html += oh_html
+            if not stories_html:
+                continue
+            html += (
+                f'\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid #e6e6e6;'
+                f'overflow:hidden;background:#fff;font-family:Helvetica,Arial,sans-serif">'
+                f'\n  <div style="padding:15px 15px 0">'
+                f'\n    <p style="color:#1c7ff2;margin:0 0 12px;font-size:13px;font-weight:700;'
+                f'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">{emoji} {title}</p>'
+                f'\n  </div>'
+                f'\n  <div style="padding:0 15px 15px">{stories_html}</div>'
+                f'\n</div>'
+            )
+            continue
 
         stories_html = ""
 
