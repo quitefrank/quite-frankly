@@ -646,3 +646,74 @@ Source: WSJ
     assert "WSJ" in html
     # ID tracked.
     assert 300 in used_ids
+
+
+def test_end_to_end_renders_all_three_layouts(tmp_path):
+    """Synthetic Claude response covering Today in the World, standard featured,
+    and From the Front Page longform. Smoke test — verifies all three section
+    blocks render without error and produce non-empty HTML."""
+    from formatting import build_email_html
+    response = """SUBJECT: 🤖 Odyssey ships world models
+
+## Today in the World
+
+🤖 **Odyssey ships two world models [#10]:** The AI lab released [Agora-1](https://odyssey.example/agora) and Starchild-1.
+
+🏠 **Toronto rents drop again [#11]:** Asking rent fell 4 percent for the third month.
+
+⚖️ **Privacy bill passes committee [#12]:** Auto-delete defaults move closer to law.
+
+📈 **Markets rally on rate cut [#13]:** S&P up 1.2 percent on Fed signal.
+
+🚇 **TTC subway extension funded [#14]:** Federal commitment closes the gap.
+
+## Tech & AI
+
+**Two big AI announcements today [#20]**
+Body paragraph one with [a link](https://example.com/x).
+
+Body paragraph two.
+Source: TechCrunch
+
+**Second featured story [#21]**
+Body paragraph one.
+
+Body paragraph two.
+Source: Hacker News
+
+## US & Global
+
+**Fed signals rate cut by year end [#30]**
+**Decreasing optimism.** Markets had priced in two cuts. The Fed walked it back.
+
+**Threading the needle.** Powell framed the move as data-dependent.
+
+**What it means.** Mortgage rates likely tick down through Q4.
+
+Source: WSJ
+"""
+    links_by_id = {
+        10: {"link": "https://odyssey.example/news", "image": "https://img/10.jpg", "title": "Odyssey"},
+        11: {"link": "https://rent.example/", "image": "", "title": "Rents"},
+        12: {"link": "https://privacy.example/", "image": "", "title": "Privacy bill"},
+        13: {"link": "https://markets.example/", "image": "", "title": "Markets"},
+        14: {"link": "https://ttc.example/", "image": "", "title": "TTC"},
+        20: {"link": "https://tc.example/20", "image": "https://img/20.jpg", "title": "AI announcements"},
+        21: {"link": "https://hn.example/21", "image": "", "title": "Second story"},
+        30: {"link": "https://wsj.example/30", "image": "https://img/30.jpg", "title": "Fed cut"},
+    }
+    html, subject = build_email_html(response, links_by_id, {}, tiered_items=[])
+    assert "Today in the World" in html
+    assert "Tech & AI" in html
+    assert "US & Global" in html
+    assert "Odyssey ships world models" in subject
+    # Layout-specific markers
+    assert '<img src="https://img/10.jpg"' in html  # TitW hero
+    assert "🤖" in html and "🚇" in html             # TitW emojis
+    assert '<a href="https://example.com/x"' in html  # inline link in Tech & AI body
+    assert "<strong>Decreasing optimism.</strong>" in html  # longform micro-header
+
+    # Write the rendered HTML to a tmp file so Frank can open it visually.
+    out = tmp_path / "sample-newsletter.html"
+    out.write_text(html, encoding="utf-8")
+    print(f"\nSample newsletter rendered to: {out}")
