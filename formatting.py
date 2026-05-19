@@ -30,10 +30,17 @@ SECTION_ORDER = [
 
 SECTION_FIT_SCORE = {"good": 1, "weak": 0, "none": -1}
 
+TODAY_IN_THE_WORLD = "Today in the World"
+TODAY_IN_THE_WORLD_CAP = 5
+
 DEFAULT_FEATURED_CAP = 2
 SECTION_FEATURED_CAPS = {
     "Finance & Markets": 1,
     "US & Global": 1,
+    # Today in the World is populated by the global pickoff; per-section
+    # filling is skipped for it (cap=0 here means "don't fill from this
+    # section's own items").
+    TODAY_IN_THE_WORLD: 0,
 }
 MAX_OTHER_HEADLINES_PER_SECTION = 3
 MAX_EVERYTHING_ELSE = 7
@@ -81,6 +88,51 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
             else:
                 bucket.sort(key=lambda x: x["_score"], reverse=True)
 
+    # Global pickoff: pull the top TODAY_IN_THE_WORLD_CAP tier-1 items
+    # across every section EXCEPT Today in the World itself, move them into
+    # the Today in the World tier_1 bucket, and delete them from their home
+    # sections. Hero (position 0) is the highest-scored picked item that has
+    # an image; if none of the picks have images, look for an image-bearing
+    # tier-1 candidate beyond the picks and swap one in.
+    global_pool = []
+    for sec, sec_buckets in by_section.items():
+        if sec == TODAY_IN_THE_WORLD:
+            continue
+        for item in sec_buckets["tier_1"]:
+            global_pool.append((sec, item))
+    # Sort by pure score desc to pick the top 5 regardless of image.
+    global_pool.sort(key=lambda pair: pair[1]["_score"], reverse=True)
+    picked = global_pool[:TODAY_IN_THE_WORLD_CAP]
+
+    # Hero promotion: if any picked item has an image, move the
+    # highest-scored image-bearer to position 0. If none has an image,
+    # try to swap in a lower-scored image-bearer from the remaining pool.
+    if picked:
+        hero_idx_in_picked = next(
+            (i for i, (_, item) in enumerate(picked) if item["_has_image"]),
+            None,
+        )
+        if hero_idx_in_picked is None:
+            swap_idx = next(
+                (i for i, (_, item) in enumerate(global_pool[TODAY_IN_THE_WORLD_CAP:], start=TODAY_IN_THE_WORLD_CAP)
+                 if item["_has_image"]),
+                None,
+            )
+            if swap_idx is not None:
+                # Replace the lowest-scored pick with the image-bearer.
+                picked[-1] = global_pool[swap_idx]
+                hero_idx_in_picked = len(picked) - 1
+        if hero_idx_in_picked is not None and hero_idx_in_picked != 0:
+            picked[0], picked[hero_idx_in_picked] = picked[hero_idx_in_picked], picked[0]
+
+    # Move picks into Today in the World, delete from home sections.
+    picked_ids = {item["id"] for _, item in picked}
+    for sec, _ in picked:
+        by_section[sec]["tier_1"] = [
+            it for it in by_section[sec]["tier_1"] if it["id"] not in picked_ids
+        ]
+    by_section[TODAY_IN_THE_WORLD]["tier_1"] = [item for _, item in picked]
+
     # Per-section featured cap. Most sections aim for 2, Finance & Markets and
     # US & Global aim for 1. If tier_1 is short, fill from tier_2 then tier_3
     # (already score-sorted) so the section still has *something* featured.
@@ -88,6 +140,11 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
     # them up because they're not in used_ids.
     for section, buckets in by_section.items():
         cap = SECTION_FEATURED_CAPS.get(section, DEFAULT_FEATURED_CAP)
+        if cap == 0:
+            # cap=0 means "skip per-section filling for this section"
+            # (used for Today in the World, which is populated by the
+            # global pickoff above).
+            continue
         while len(buckets["tier_1"]) < cap:
             promoted = False
             for fallback_tier in ("tier_2", "tier_3"):

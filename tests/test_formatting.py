@@ -75,11 +75,20 @@ def _item(id_, section, tier, ccov=1, prel=0, fit="weak"):
 
 
 def test_build_format_input_caps_tier_1_at_two_per_section():
+    # Swamp the global pickoff with 5 higher-scored items in another section so
+    # Toronto Housing's tier-1 items stay in place. Housing items max score is 7;
+    # the swamp items score 9 so they get picked into Today in the World instead.
     tiered_items = [
         _item(1, "Toronto Housing", tier=1, ccov=3, prel=3, fit="good"),  # score 7
         _item(2, "Toronto Housing", tier=1, ccov=2, prel=2, fit="good"),  # score 5
         _item(3, "Toronto Housing", tier=1, ccov=1, prel=1, fit="weak"),  # score 2
         _item(4, "Toronto Housing", tier=1, ccov=1, prel=0, fit="weak"),  # score 1
+        # Swamp pickoff with 5 highly-scored items in another section.
+        _item(91, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(92, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(93, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(94, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(95, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
     ]
     links_by_id = {
         i["id"]: {"title": f"t{i['id']}", "source": "BetterDwelling", "snippet": "x"}
@@ -96,15 +105,27 @@ def test_build_format_input_prioritises_images_within_tier_1():
     # Top scorer has no image (score 7); next has image (score 5); third has image (score 4).
     # Expected: items with images surface first, sorted by score within the image group.
     # Picks: id=2 (image, 5), id=3 (image, 4). The score-7 no-image item drops out.
+    # Swamp the global pickoff with 5 higher-scored items elsewhere so Housing
+    # tier-1 items aren't pulled into Today in the World.
     tiered_items = [
         _item(1, "Toronto Housing", tier=1, ccov=3, prel=3, fit="good"),  # score 7
         _item(2, "Toronto Housing", tier=1, ccov=2, prel=2, fit="good"),  # score 5
         _item(3, "Toronto Housing", tier=1, ccov=2, prel=1, fit="good"),  # score 4
+        _item(91, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(92, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(93, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(94, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(95, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
     ]
     links_by_id = {
         1: {"title": "t1", "source": "BetterDwelling", "snippet": "x", "image": ""},
         2: {"title": "t2", "source": "BetterDwelling", "snippet": "x", "image": "https://img/2.jpg"},
         3: {"title": "t3", "source": "BetterDwelling", "snippet": "x", "image": "https://img/3.jpg"},
+        91: {"title": "t91", "source": "TechCrunch", "snippet": "x", "image": "https://img/91.jpg"},
+        92: {"title": "t92", "source": "TechCrunch", "snippet": "x", "image": "https://img/92.jpg"},
+        93: {"title": "t93", "source": "TechCrunch", "snippet": "x", "image": "https://img/93.jpg"},
+        94: {"title": "t94", "source": "TechCrunch", "snippet": "x", "image": "https://img/94.jpg"},
+        95: {"title": "t95", "source": "TechCrunch", "snippet": "x", "image": "https://img/95.jpg"},
     }
     payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
     housing = payload["sections"]["Toronto Housing"]
@@ -115,10 +136,17 @@ def test_build_format_input_prioritises_images_within_tier_1():
 
 def test_build_format_input_fills_tier_1_to_cap_from_tier_2_when_short():
     # Section has only 1 tier_1 item; cap is 2 → promote 1 from tier_2.
+    # Swamp the global pickoff with 5 higher-scored items elsewhere so
+    # Design & Product's single tier-1 stays in the section.
     tiered_items = [
         _item(1, "Design & Product", tier=1, ccov=2, prel=2, fit="good"),  # score 5
         _item(2, "Design & Product", tier=2, ccov=2, prel=1, fit="good"),  # score 4
         _item(3, "Design & Product", tier=2, ccov=1, prel=1, fit="weak"),  # score 2
+        _item(91, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(92, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(93, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(94, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(95, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
     ]
     links_by_id = {
         i["id"]: {"title": f"t{i['id']}", "source": "UX Collective", "snippet": "x"}
@@ -133,11 +161,19 @@ def test_build_format_input_fills_tier_1_to_cap_from_tier_2_when_short():
 
 
 def test_build_format_input_caps_finance_and_us_global_at_one():
+    # Swamp the global pickoff with 5 higher-scored items elsewhere so the
+    # Finance & Markets and US & Global tier-1s aren't pulled into Today in
+    # the World.
     tiered_items = [
         _item(10, "Finance & Markets", tier=1, ccov=3, prel=2, fit="good"),  # score 6
         _item(11, "Finance & Markets", tier=1, ccov=2, prel=2, fit="good"),  # score 5
         _item(20, "US & Global",       tier=1, ccov=4, prel=3, fit="good"),  # score 8
         _item(21, "US & Global",       tier=1, ccov=3, prel=2, fit="good"),  # score 6
+        _item(91, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(92, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(93, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(94, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        _item(95, "Tech & AI", tier=1, ccov=4, prel=4, fit="good"),  # score 9
     ]
     links_by_id = {
         i["id"]: {"title": f"t{i['id']}", "source": "BBC", "snippet": "x"}
@@ -181,17 +217,27 @@ def test_fallback_fills_tier_1_to_section_cap_when_tier_1_empty():
 
 
 def test_section_order_is_by_max_score_descending():
+    # With the global pickoff, top tier-1 items get lifted into Today in the
+    # World, which then naturally sorts first by max score. Remaining sections
+    # sort by their highest-scored leftover item. Use tier-2 items that stay
+    # in their home sections (the pickoff only pulls from tier-1) to verify
+    # inter-section ordering still holds for the non-TitW sections.
     tiered_items = [
-        _item(10, "Canada & Toronto", tier=1, ccov=1, prel=1, fit="weak"),  # score 2
-        _item(20, "US & Global",      tier=1, ccov=4, prel=3, fit="good"),  # score 8
-        _item(30, "Tech & AI",        tier=1, ccov=2, prel=2, fit="good"),  # score 5
+        _item(10, "Canada & Toronto", tier=2, ccov=1, prel=1, fit="weak"),  # score 2
+        _item(20, "US & Global",      tier=2, ccov=4, prel=3, fit="good"),  # score 8
+        _item(30, "Tech & AI",        tier=2, ccov=2, prel=2, fit="good"),  # score 5
+        # Tier-1 items in another section so Today in the World is populated.
+        _item(91, "Toronto Housing", tier=1, ccov=4, prel=4, fit="good"),  # score 9
     ]
     links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "CBC", "snippet": ""} for i in tiered_items}
     payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
     populated_order = [s for s, b in payload["sections"].items() if any(b.values())]
-    assert populated_order[0] == "US & Global"
-    assert populated_order[1] == "Tech & AI"
-    assert populated_order[2] == "Canada & Toronto"
+    # Today in the World sorts first (holds the global top pick, score 9).
+    assert populated_order[0] == "Today in the World"
+    # Remaining sections sort by max score of leftover items.
+    assert populated_order[1] == "US & Global"   # score 8
+    assert populated_order[2] == "Tech & AI"     # score 5
+    assert populated_order[3] == "Canada & Toronto"  # score 2
 
 
 def test_render_other_headlines_for_section_caps_at_three_and_skips_used_ids():
@@ -351,6 +397,59 @@ def test_build_everything_else_returns_empty_when_no_unused_items():
     links_by_id = {0: {"id": 0, "title": "X", "link": "https://x", "image": "", "source": "CBC"}}
     html = build_everything_else(links_by_id, used_ids={0}, clusters_by_item_id={}, tiered_items=[])
     assert html == ""
+
+
+def test_today_in_the_world_pulls_global_top_five():
+    # Five sections, three tier_1 items each. Today in the World should
+    # get the top 5 globally by composite score and they should NOT appear
+    # in their home sections' tier_1.
+    tiered_items = [
+        # Tech & AI: scores 8, 6, 5
+        _item(101, "Tech & AI", tier=1, ccov=4, prel=3, fit="good"),  # 8
+        _item(102, "Tech & AI", tier=1, ccov=3, prel=2, fit="good"),  # 6
+        _item(103, "Tech & AI", tier=1, ccov=2, prel=2, fit="good"),  # 5
+        # Toronto Housing: scores 8, 5, 4
+        _item(201, "Toronto Housing", tier=1, ccov=4, prel=3, fit="good"),  # 8
+        _item(202, "Toronto Housing", tier=1, ccov=2, prel=2, fit="good"),  # 5
+        _item(203, "Toronto Housing", tier=1, ccov=2, prel=1, fit="good"),  # 4
+        # Finance & Markets: score 7
+        _item(301, "Finance & Markets", tier=1, ccov=3, prel=3, fit="good"),  # 7
+        # US & Global: score 8
+        _item(401, "US & Global", tier=1, ccov=4, prel=3, fit="good"),  # 8
+    ]
+    links_by_id = {
+        i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": "x", "image": f"https://img/{i['id']}.jpg"}
+        for i in tiered_items
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    titw = payload["sections"]["Today in the World"]
+    # Top 5 by composite score: 101 (8), 201 (8), 401 (8), 301 (7), 102 (6)
+    assert {x["id"] for x in titw["tier_1"]} == {101, 201, 401, 301, 102}
+    # Picked items must not reappear in their home sections.
+    assert 101 not in {x["id"] for x in payload["sections"]["Tech & AI"]["tier_1"]}
+    assert 201 not in {x["id"] for x in payload["sections"]["Toronto Housing"]["tier_1"]}
+    assert 301 not in {x["id"] for x in payload["sections"]["Finance & Markets"]["tier_1"]}
+    assert 401 not in {x["id"] for x in payload["sections"]["US & Global"]["tier_1"]}
+
+
+def test_today_in_the_world_hero_is_highest_scored_with_image():
+    # Top scorer has no image; second-top has an image. Hero must be the second.
+    tiered_items = [
+        _item(1, "Tech & AI", tier=1, ccov=4, prel=3, fit="good"),  # 8, no image
+        _item(2, "Tech & AI", tier=1, ccov=3, prel=2, fit="good"),  # 6, with image
+        _item(3, "Tech & AI", tier=1, ccov=2, prel=2, fit="good"),  # 5, with image
+    ]
+    links_by_id = {
+        1: {"title": "t1", "source": "X", "snippet": "x", "image": ""},
+        2: {"title": "t2", "source": "X", "snippet": "x", "image": "https://img/2.jpg"},
+        3: {"title": "t3", "source": "X", "snippet": "x", "image": "https://img/3.jpg"},
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    titw = payload["sections"]["Today in the World"]
+    # All three picked (top 5 but only 3 candidates).
+    assert {x["id"] for x in titw["tier_1"]} == {1, 2, 3}
+    # Position 0 (hero) must be id=2 (highest-scored with image).
+    assert titw["tier_1"][0]["id"] == 2
 
 
 def test_today_in_the_world_replaces_worth_knowing_in_section_order():
