@@ -97,6 +97,22 @@ def test_extract_og_image_returns_empty_when_no_og_image_present():
     assert _extract_og_image_from_html(html) == ""
 
 
+def test_fetch_feed_skips_og_image_fallback_for_podcast_sources(monkeypatch):
+    # Podcast feeds (e.g., CBC Frontburner) ship URLs that resolve to audio
+    # endpoints, not article pages — og:image fetch would always 404. Skip it.
+    entries = [
+        ("Episode 123", "https://www.cbc.ca/podcasting/includes/frontburner-abc",
+         "A podcast episode with a meaningful summary sentence."),
+    ]
+    calls = []
+    monkeypatch.setattr("pipeline._fetch_og_image",
+                        lambda url, **kw: calls.append(url) or "https://should-not-be-used.jpg")
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
+        items = fetch_feed({"url": "x", "source": "CBC Frontburner"})
+    assert items[0]["image"] == ""
+    assert calls == []  # _fetch_og_image must not have been called
+
+
 def test_fetch_feed_image_falls_back_to_empty_string_when_og_image_unavailable(monkeypatch):
     entries = [
         ("A story", "https://example.com/story",

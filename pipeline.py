@@ -12,7 +12,14 @@ from urllib.parse import urlparse
 import feedparser
 import requests
 
-from config import FEEDS, MIN_SNIPPET_CHARS, SEEN_LINKS_FILE, SEVEN_DAYS_S, TEST_MODE
+from config import (
+    FEEDS,
+    MIN_SNIPPET_CHARS,
+    SEEN_LINKS_FILE,
+    SEVEN_DAYS_S,
+    SOURCES_SKIP_OG_IMAGE,
+    TEST_MODE,
+)
 
 
 OG_IMAGE_TIMEOUT_S = 3.0
@@ -95,7 +102,7 @@ def _fetch_og_image(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> st
     return ""
 
 
-def extract_image(entry):
+def extract_image(entry, skip_og_fallback: bool = False):
     if hasattr(entry, "media_content") and entry.media_content:
         for m in entry.media_content:
             url = m.get("url", "")
@@ -117,7 +124,10 @@ def extract_image(entry):
 
     # Last resort: fetch the article page and pull og:image. WordPress-based
     # feeds (e.g., BetterDwelling) ship no image fields in RSS but expose
-    # og:image in the article's <head>.
+    # og:image in the article's <head>. Sources whose feed link points at a
+    # podcast/audio endpoint (not an article) opt out via skip_og_fallback.
+    if skip_og_fallback:
+        return ""
     link = getattr(entry, "link", "") or ""
     if link:
         return _fetch_og_image(link)
@@ -130,6 +140,7 @@ def fetch_feed(feed_config):
     try:
         headers = {"User-Agent": "Mozilla/5.0 (compatible; QuiteFramkly/1.0)"}
         parsed = feedparser.parse(feed_config["url"], request_headers=headers)
+        skip_og = feed_config["source"] in SOURCES_SKIP_OG_IMAGE
         for entry in parsed.entries[:10]:
             link  = getattr(entry, "link",  "") or ""
             title = getattr(entry, "title", "") or ""
@@ -139,7 +150,7 @@ def fetch_feed(feed_config):
                     "title":   title,
                     "link":    link,
                     "snippet": summary[:300],
-                    "image":   extract_image(entry),
+                    "image":   extract_image(entry, skip_og_fallback=skip_og),
                     "source":  feed_config["source"],
                 })
     except Exception as e:

@@ -140,6 +140,16 @@ SECTION_MAP = {
     "NBC Meet the Press": "Worth Knowing",
 }
 
+# Sources whose RSS "link" points to a podcast/audio resource rather than an
+# article page. og:image fetches against these always 404 — skip the HTTP
+# call to keep CI logs clean.
+SOURCES_SKIP_OG_IMAGE = {
+    "CBC Frontburner",
+    "NYT The Daily",
+    "Today Explained",
+    "NBC Meet the Press",
+}
+
 SECTION_EMOJIS = {
     "Canada & Toronto": "🇨🇦",
     "Toronto Housing":  "🏠",
