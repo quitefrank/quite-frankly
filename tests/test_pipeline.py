@@ -44,6 +44,31 @@ def test_fetch_feed_drops_items_with_empty_or_too_short_snippets():
     assert [i["title"] for i in items] == ["A real article with body"]
 
 
+def test_fetch_feed_uses_og_image_when_rss_has_no_image(monkeypatch):
+    # BetterDwelling-style: RSS exposes no image fields anywhere.
+    entries = [
+        ("Vacant homes pile up", "https://betterdwelling.com/vacant-homes/",
+         "Canadian developers are sitting on a glut of completed and unsold homes."),
+    ]
+    monkeypatch.setattr("pipeline._fetch_og_image",
+                        lambda url, **kw: "https://betterdwelling.com/wp-content/og.jpg")
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
+        items = fetch_feed({"url": "x", "source": "BetterDwelling"})
+    assert items[0]["image"] == "https://betterdwelling.com/wp-content/og.jpg"
+
+
+def test_fetch_feed_image_falls_back_to_empty_string_when_og_image_unavailable(monkeypatch):
+    entries = [
+        ("A story", "https://example.com/story",
+         "A meaningful summary sentence that gives the formatter something to work with."),
+    ]
+    # autouse fixture already neutralizes _fetch_og_image, but be explicit.
+    monkeypatch.setattr("pipeline._fetch_og_image", lambda url, **kw: "")
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
+        items = fetch_feed({"url": "x", "source": "Whatever"})
+    assert items[0]["image"] == ""
+
+
 def test_monday_bypass_keeps_items_with_cluster_size_3_plus():
     seen = {"u1": 0, "u2": 0, "u3": 0}
     items = [

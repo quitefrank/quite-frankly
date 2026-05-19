@@ -30,6 +30,8 @@ SECTION_ORDER = [
 
 SECTION_FIT_SCORE = {"good": 1, "weak": 0, "none": -1}
 
+MAX_FEATURED_PER_SECTION = 2
+
 
 def _item_score(scores: dict) -> int:
     return (
@@ -72,6 +74,12 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
             if buckets[fallback_tier]:
                 buckets["tier_1"].append(buckets[fallback_tier].pop(0))
                 break
+
+    # Cap featured stories per section. Overflow leaves the JSON entirely;
+    # build_everything_else picks them up because they're not in used_ids.
+    for buckets in by_section.values():
+        if len(buckets["tier_1"]) > MAX_FEATURED_PER_SECTION:
+            buckets["tier_1"] = buckets["tier_1"][:MAX_FEATURED_PER_SECTION]
 
     def _section_max_score(buckets: dict) -> int:
         all_scores = [item["_score"] for bucket in buckets.values() for item in bucket]
@@ -148,6 +156,18 @@ def render_source_line(primary_source: str, also_in: list[str], article_link: st
         f'style="width:16px;height:16px;vertical-align:middle;margin-right:4px;'
         f'border-radius:3px;display:inline-block">'
     )
+    # Triage occasionally lists the primary_source inside also_in (multiple
+    # articles from the same source clustered together), or repeats sources.
+    # Strip both so we never render "Source, Source".
+    seen = {primary_source}
+    deduped_also_in = []
+    for src in also_in:
+        if src in seen:
+            continue
+        seen.add(src)
+        deduped_also_in.append(src)
+    also_in = deduped_also_in
+
     if not also_in:
         label = primary_source
     elif len(also_in) == 1:

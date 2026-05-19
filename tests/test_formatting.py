@@ -33,6 +33,31 @@ def test_three_plus_cluster_renders_with_also_in_suffix():
     assert "Economist" in line
 
 
+def _label_text(line: str) -> str:
+    import re as _re
+    return _re.sub(r"<[^>]+>", "", line)
+
+
+def test_render_source_line_drops_primary_from_also_in():
+    line = render_source_line(
+        primary_source="BetterDwelling",
+        also_in=["BetterDwelling"],
+        article_link="https://example.com/a",
+    )
+    assert _label_text(line).count("BetterDwelling") == 1
+
+
+def test_render_source_line_dedupes_also_in_entries():
+    line = render_source_line(
+        primary_source="CBC",
+        also_in=["BBC", "BBC", "NPR World"],
+        article_link=None,
+    )
+    text = _label_text(line)
+    assert text.count("BBC") == 1
+    assert "NPR World" in text
+
+
 def _item(id_, section, tier, ccov=1, prel=0, fit="weak"):
     return {
         "id": id_,
@@ -41,6 +66,23 @@ def _item(id_, section, tier, ccov=1, prel=0, fit="weak"):
         "cluster_id": f"cl_{id_}",
         "scores": {"cross_source_coverage": ccov, "personal_relevance": prel, "section_fit": fit},
     }
+
+
+def test_build_format_input_caps_tier_1_at_two_per_section():
+    tiered_items = [
+        _item(1, "Toronto Housing", tier=1, ccov=3, prel=3, fit="good"),  # score 7
+        _item(2, "Toronto Housing", tier=1, ccov=2, prel=2, fit="good"),  # score 5
+        _item(3, "Toronto Housing", tier=1, ccov=1, prel=1, fit="weak"),  # score 2
+        _item(4, "Toronto Housing", tier=1, ccov=1, prel=0, fit="weak"),  # score 1
+    ]
+    links_by_id = {
+        i["id"]: {"title": f"t{i['id']}", "source": "BetterDwelling", "snippet": "x"}
+        for i in tiered_items
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    housing = payload["sections"]["Toronto Housing"]
+    assert len(housing["tier_1"]) == 2
+    assert {x["id"] for x in housing["tier_1"]} == {1, 2}
 
 
 def test_fallback_promotes_highest_scored_item_when_tier_1_empty():

@@ -8,8 +8,50 @@ import re
 import time
 
 import feedparser
+import requests
 
 from config import FEEDS, MIN_SNIPPET_CHARS, SEEN_LINKS_FILE, SEVEN_DAYS_S, TEST_MODE
+
+
+OG_IMAGE_TIMEOUT_S = 3.0
+OG_IMAGE_MAX_BYTES = 16384  # <meta property="og:image"> lives in <head>; 16KB is enough.
+
+_OG_IMAGE_RE = re.compile(
+    r'<meta\b[^>]*?(?:'
+    r'property=["\']og:image["\'][^>]*?content=["\']([^"\']+)["\']'
+    r'|'
+    r'content=["\']([^"\']+)["\'][^>]*?property=["\']og:image["\']'
+    r')',
+    re.IGNORECASE,
+)
+
+
+def _fetch_og_image(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> str:
+    """Fetch the article page and pull og:image from <head>. Returns "" on any failure."""
+    try:
+        with requests.get(
+            article_url,
+            timeout=timeout,
+            stream=True,
+            headers={"User-Agent": "Mozilla/5.0 (compatible; QuiteFrankly/1.0)"},
+        ) as r:
+            r.raise_for_status()
+            chunks = []
+            total = 0
+            for chunk in r.iter_content(chunk_size=4096):
+                if not chunk:
+                    continue
+                chunks.append(chunk)
+                total += len(chunk)
+                if total >= OG_IMAGE_MAX_BYTES:
+                    break
+            html = b"".join(chunks).decode("utf-8", errors="replace")
+            m = _OG_IMAGE_RE.search(html)
+            if m:
+                return m.group(1) or m.group(2) or ""
+    except Exception:
+        pass
+    return ""
 
 
 def extract_image(entry):
@@ -31,6 +73,13 @@ def extract_image(entry):
     img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', summary)
     if img_match:
         return img_match.group(1)
+
+    # Last resort: fetch the article page and pull og:image. WordPress-based
+    # feeds (e.g., BetterDwelling) ship no image fields in RSS but expose
+    # og:image in the article's <head>.
+    link = getattr(entry, "link", "") or ""
+    if link:
+        return _fetch_og_image(link)
 
     return ""
 

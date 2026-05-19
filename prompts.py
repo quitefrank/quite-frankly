@@ -75,7 +75,7 @@ The section name must be exactly one of these strings, copied verbatim from the 
 
 Section ordering is determined by the input dict key order (highest-ranked section appears first in the JSON, render in that same order). Skip a section entirely if it has no items in any tier. Never use a story headline as a section heading.
 
-For Tier 1 items, write a full story:
+For Tier 1 items, write a full story. The JSON input already caps Tier 1 at 2 items per section; render every Tier 1 item the input gives you, never feature more than the input contains, and never promote a Tier 2 item into a featured slot.
 
 **Original headline text [#N]**
 Body paragraph one, 3 to 4 sentences.
