@@ -566,3 +566,26 @@ Source: TechCrunch
     assert ">The Verge</a>" in html
     # Raw markdown brackets must not leak through.
     assert "[The Verge]" not in html
+
+
+def test_format_prompt_describes_today_in_the_world_layout():
+    from prompts import FORMAT_SYSTEM_PROMPT
+    # Layout description must mention the emoji-led item structure for TitW.
+    assert "Today in the World" in FORMAT_SYSTEM_PROMPT
+    assert "emoji" in FORMAT_SYSTEM_PROMPT.lower()
+    assert "micro-header" in FORMAT_SYSTEM_PROMPT.lower()
+
+
+def test_format_prompt_describes_from_the_front_page_fallback():
+    from prompts import FORMAT_SYSTEM_PROMPT
+    # Single-featured section fallback must be documented.
+    assert "single featured story" in FORMAT_SYSTEM_PROMPT.lower()
+    assert "3 to 4" in FORMAT_SYSTEM_PROMPT or "three to four" in FORMAT_SYSTEM_PROMPT.lower()
+
+
+def test_format_prompt_describes_inline_source_links_rule():
+    from prompts import FORMAT_SYSTEM_PROMPT
+    # Inline link rule and the Finance/US & Global exclusion must both be stated.
+    assert "siblings" in FORMAT_SYSTEM_PROMPT.lower()
+    assert "Finance & Markets" in FORMAT_SYSTEM_PROMPT
+    assert "US & Global" in FORMAT_SYSTEM_PROMPT
