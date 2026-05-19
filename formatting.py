@@ -67,11 +67,19 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
             "source": link.get("source", ""),
             "cluster_id": item.get("cluster_id"),
             "_score": _item_score(item.get("scores", {})),
+            "_has_image": bool(link.get("image")),
         })
 
+    # Tier 1 buckets sort by (has_image desc, score desc) so image-bearing
+    # stories surface before image-less ones within the same tier. Tier 2 and
+    # Tier 3 buckets keep pure score ordering — image priority only matters
+    # for the featured slot.
     for section_buckets in by_section.values():
-        for bucket in section_buckets.values():
-            bucket.sort(key=lambda x: x["_score"], reverse=True)
+        for bucket_name, bucket in section_buckets.items():
+            if bucket_name == "tier_1":
+                bucket.sort(key=lambda x: (x["_has_image"], x["_score"]), reverse=True)
+            else:
+                bucket.sort(key=lambda x: x["_score"], reverse=True)
 
     # Per-section featured cap. Most sections aim for 2, Finance & Markets and
     # US & Global aim for 1. If tier_1 is short, fill from tier_2 then tier_3
@@ -105,6 +113,7 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
         for bucket in section_buckets.values():
             for item in bucket:
                 item.pop("_score", None)
+                item.pop("_has_image", None)
 
     return json.dumps({
         "sections": sorted_sections,

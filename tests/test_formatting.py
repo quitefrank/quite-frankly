@@ -91,6 +91,28 @@ def test_build_format_input_caps_tier_1_at_two_per_section():
     assert {x["id"] for x in housing["tier_1"]} == {1, 2}
 
 
+def test_build_format_input_prioritises_images_within_tier_1():
+    # Section has 3 tier_1 candidates, cap=2.
+    # Top scorer has no image (score 7); next has image (score 5); third has image (score 4).
+    # Expected: items with images surface first, sorted by score within the image group.
+    # Picks: id=2 (image, 5), id=3 (image, 4). The score-7 no-image item drops out.
+    tiered_items = [
+        _item(1, "Toronto Housing", tier=1, ccov=3, prel=3, fit="good"),  # score 7
+        _item(2, "Toronto Housing", tier=1, ccov=2, prel=2, fit="good"),  # score 5
+        _item(3, "Toronto Housing", tier=1, ccov=2, prel=1, fit="good"),  # score 4
+    ]
+    links_by_id = {
+        1: {"title": "t1", "source": "BetterDwelling", "snippet": "x", "image": ""},
+        2: {"title": "t2", "source": "BetterDwelling", "snippet": "x", "image": "https://img/2.jpg"},
+        3: {"title": "t3", "source": "BetterDwelling", "snippet": "x", "image": "https://img/3.jpg"},
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    housing = payload["sections"]["Toronto Housing"]
+    assert len(housing["tier_1"]) == 2
+    # Items with images come first, sorted by score within that group.
+    assert [x["id"] for x in housing["tier_1"]] == [2, 3]
+
+
 def test_build_format_input_fills_tier_1_to_cap_from_tier_2_when_short():
     # Section has only 1 tier_1 item; cap is 2 → promote 1 from tier_2.
     tiered_items = [
