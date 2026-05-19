@@ -328,6 +328,20 @@ def find_article_data(headline, links_by_id):
 _SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
 
 
+_MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+
+
+def _render_body_markdown_links(text: str) -> str:
+    """Convert [label](url) markdown links to <a href> with the inline link style."""
+    return _MARKDOWN_LINK_RE.sub(
+        lambda m: (
+            f'<a href="{m.group(2)}" '
+            f'style="color:#1c7ff2;text-decoration:underline;">{m.group(1)}</a>'
+        ),
+        text,
+    )
+
+
 def _first_sentence(text: str, max_chars: int = 180) -> str:
     """Return the first sentence of text, truncated to max_chars."""
     if not text:
@@ -494,9 +508,10 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
             if s["body"]:
                 paragraphs = [p.strip() for p in re.split(r"\n\n+", "\n".join(s["body"])) if p.strip()]
                 for p in paragraphs:
+                    rendered = _render_body_markdown_links(p)
                     stories_html += (
                         f'<p style="margin:0 0 12px;line-height:22px;font-size:15px;color:#333;'
-                        f'font-family:Helvetica,Arial,sans-serif">{p}</p>'
+                        f'font-family:Helvetica,Arial,sans-serif">{rendered}</p>'
                     )
 
             cluster = clusters_by_item_id.get(article_data["id"]) if article_data["id"] is not None else None

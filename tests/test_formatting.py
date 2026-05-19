@@ -546,3 +546,23 @@ def test_build_format_input_omits_siblings_for_finance_and_us_global():
     payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
     fm = payload["sections"]["Finance & Markets"]["tier_1"][0]
     assert fm.get("siblings", []) == []
+
+
+def test_body_paragraphs_render_markdown_links_as_html():
+    text = """## Tech & AI
+
+**Multi-source story [#200]**
+Claude says [The Verge](https://verge.example/x) covered this first.
+
+Source: TechCrunch
+"""
+    links_by_id = {200: {"link": "https://tc.example/200", "image": "",
+                         "title": "Multi-source story"}}
+    clusters_by_item_id = {200: {"primary_source": "TechCrunch",
+                                 "also_in": ["The Verge"]}}
+    html, _ = parse_and_render_sections(text, links_by_id, clusters_by_item_id)
+    # Markdown link survives as a real anchor tag.
+    assert '<a href="https://verge.example/x"' in html
+    assert ">The Verge</a>" in html
+    # Raw markdown brackets must not leak through.
+    assert "[The Verge]" not in html
