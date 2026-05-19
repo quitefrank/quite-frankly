@@ -473,17 +473,46 @@ def test_today_in_the_world_has_an_emoji():
 def test_today_in_the_world_section_renders():
     text = """## Today in the World
 
-**Big global story [#5]**
-Body paragraph one.
-
-Body paragraph two.
-Source: NYT
+🌐 **Big global story [#5]:** Body sentence with the gist.
 """
     links_by_id = {5: {"link": "https://example.com/5", "image": "", "title": "Big global story"}}
     clusters_by_item_id = {5: {"primary_source": "NYT", "also_in": ["BBC"]}}
     html, _ = parse_and_render_sections(text, links_by_id, clusters_by_item_id)
     assert "Today in the World" in html
-    assert "NYT, BBC" in html
+    assert "🌐" in html
+    assert "Big global story" in html
+
+
+def test_today_in_the_world_layout_renders_hero_and_emoji_items():
+    text = """## Today in the World
+
+🤖 **Odyssey ships two world models [#10]:** The AI lab released [Agora-1](https://odyssey.example/agora) for multiplayer simulation and Starchild-1 for audio.
+
+🏠 **Toronto rents drop again [#11]:** Average asking rent slid 4 percent for the third consecutive month.
+
+⚖️ **Privacy bill passes committee [#12]:** Auto-delete defaults move closer to law.
+
+📈 **Markets rally on rate cut [#13]:** S&P closed up 1.2 percent after the Fed signaled easing.
+
+🚇 **TTC subway extension funded [#14]:** Federal commitment closes the funding gap.
+"""
+    links_by_id = {
+        10: {"link": "https://odyssey.example/news", "image": "https://img/10.jpg",
+             "title": "Odyssey ships two world models"},
+        11: {"link": "https://rent.example/", "image": "", "title": "Toronto rents drop"},
+        12: {"link": "https://privacy.example/", "image": "", "title": "Privacy bill"},
+        13: {"link": "https://markets.example/", "image": "", "title": "Markets rally"},
+        14: {"link": "https://ttc.example/", "image": "", "title": "TTC funded"},
+    }
+    html, used_ids = parse_and_render_sections(text, links_by_id, {}, tiered_items=[])
+    # Hero image from item 10 appears once.
+    assert html.count('src="https://img/10.jpg"') == 1
+    # All 5 emoji + bold headers render.
+    assert "🤖" in html and "🏠" in html and "⚖️" in html and "📈" in html and "🚇" in html
+    # Inline markdown link in item 10's body becomes an anchor.
+    assert '<a href="https://odyssey.example/agora"' in html
+    # All 5 IDs are tracked as used.
+    assert {10, 11, 12, 13, 14}.issubset(used_ids)
 
 
 def test_build_format_input_embeds_sibling_urls_for_multi_source_clusters():

@@ -259,6 +259,18 @@ def call_legacy_formatter(headlines_text):
 ID_TAG_RE = re.compile(r"\s*\[#(\d+)\]\s*$")
 
 
+# Layout A item: <emoji> **<micro-header> [#N]:** <body>
+# Emoji is any sequence of non-space, non-asterisk characters before the
+# first ** marker on the line.
+LAYOUT_A_ITEM_RE = re.compile(
+    r"^(?P<emoji>\S+)\s+\*\*(?P<header>.+?)\s*\[#(?P<id>\d+)\]:\*\*\s*(?P<body>.*)$"
+)
+
+
+def _is_today_in_the_world_section(title: str) -> bool:
+    return title.strip() == "Today in the World"
+
+
 def render_source_line(primary_source: str, also_in: list[str], article_link: str | None) -> str:
     favicon = SOURCE_FAVICONS.get(
         primary_source,
@@ -407,6 +419,72 @@ def render_other_headlines_for_section(section, tiered_items, links_by_id, used_
     )
 
 
+def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: set) -> str:
+    """Render the Today in the World list (Layout A) from Claude output lines.
+
+    Hero image comes from the first item that has one. The hero image renders
+    once at the top of the list. Each item is `<emoji> **<header> [#N]:** body`.
+    """
+    items = []
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+        m = LAYOUT_A_ITEM_RE.match(line)
+        if not m:
+            continue
+        item_id = int(m.group("id"))
+        items.append({
+            "emoji": m.group("emoji"),
+            "header": m.group("header").strip(),
+            "id": item_id,
+            "body": m.group("body").strip(),
+        })
+
+    if not items:
+        return ""
+
+    hero_image_html = ""
+    for it in items:
+        link = links_by_id.get(it["id"], {})
+        if link.get("image"):
+            img = link["image"]
+            href = link.get("link", "")
+            img_tag = (
+                f'<img src="{img}" alt="{it["header"]}" '
+                f'style="width:100%;max-width:640px;height:200px;object-fit:cover;'
+                f'display:block;margin:0 0 12px;border-radius:8px">'
+            )
+            hero_image_html = (
+                f'<a href="{href}" style="text-decoration:none;display:block">{img_tag}</a>'
+                if href else img_tag
+            )
+            break
+
+    items_html = ""
+    for it in items:
+        used_ids.add(it["id"])
+        link = links_by_id.get(it["id"], {})
+        href = link.get("link", "")
+        bold_inner = f'{it["header"]}:'
+        if href:
+            bold = (
+                f'<a href="{href}" style="color:#1a1a1a;text-decoration:none;">'
+                f'<strong>{bold_inner}</strong></a>'
+            )
+        else:
+            bold = f'<strong>{bold_inner}</strong>'
+        rendered_body = _render_body_markdown_links(it["body"])
+        items_html += (
+            f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:#333;'
+            f'font-family:Helvetica,Arial,sans-serif">'
+            f'<span style="margin-right:6px">{it["emoji"]}</span>'
+            f'{bold} {rendered_body}</p>'
+        )
+
+    return hero_image_html + items_html
+
+
 def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None):
     clusters_by_item_id = clusters_by_item_id or {}
     tiered_items = tiered_items or []
@@ -425,6 +503,22 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
             continue
 
         emoji = SECTION_EMOJIS.get(title, "")
+
+        if _is_today_in_the_world_section(title):
+            stories_html = _render_today_in_the_world(lines[1:], links_by_id, used_ids)
+            if not stories_html:
+                continue
+            html += (
+                f'\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid #e6e6e6;'
+                f'overflow:hidden;background:#fff;font-family:Helvetica,Arial,sans-serif">'
+                f'\n  <div style="padding:15px 15px 0">'
+                f'\n    <p style="color:#1c7ff2;margin:0 0 12px;font-size:13px;font-weight:700;'
+                f'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">{emoji} {title}</p>'
+                f'\n  </div>'
+                f'\n  <div style="padding:0 15px 15px">{stories_html}</div>'
+                f'\n</div>'
+            )
+            continue
 
         stories            = []
         current_story      = None
