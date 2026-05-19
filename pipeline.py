@@ -7,6 +7,8 @@ import os
 import re
 import time
 
+from urllib.parse import urlparse
+
 import feedparser
 import requests
 
@@ -42,6 +44,28 @@ def _extract_og_image_from_html(html: str) -> str:
     return ""
 
 
+_BROWSER_USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/126.0.0.0 Safari/537.36"
+)
+
+
+def _browser_headers(article_url: str) -> dict[str, str]:
+    """Headers that look like a real browser request — some sites (notably
+    BetterDwelling, which 403's our bot UA from GitHub Actions IPs) check
+    User-Agent and/or Referer before serving the page."""
+    parsed = urlparse(article_url)
+    referer = f"{parsed.scheme}://{parsed.netloc}/" if parsed.scheme and parsed.netloc else article_url
+    return {
+        "User-Agent": _BROWSER_USER_AGENT,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate",
+        "Referer": referer,
+    }
+
+
 def _fetch_og_image(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> str:
     """Fetch the article page and pull og:image from <head>. Returns "" on any failure."""
     try:
@@ -49,7 +73,7 @@ def _fetch_og_image(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> st
             article_url,
             timeout=timeout,
             stream=True,
-            headers={"User-Agent": "Mozilla/5.0 (compatible; QuiteFrankly/1.0)"},
+            headers=_browser_headers(article_url),
         ) as r:
             r.raise_for_status()
             chunks = []
