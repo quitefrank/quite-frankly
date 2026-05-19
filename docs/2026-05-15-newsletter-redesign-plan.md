@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add day-of-week routing, an expanded source pool, two-pass Claude triage with tier scoring, a Worth Knowing section, weekend strategic/visual design modes, and Phase 1.5 shadow evaluation (Reddit + HN traction logging) to the existing single-mode newsletter pipeline.
+**Goal:** Add day-of-week routing, an expanded source pool, two-pass Claude triage with tier scoring, a Today in the World section, weekend strategic/visual design modes, and Phase 1.5 shadow evaluation (Reddit + HN traction logging) to the existing single-mode newsletter pipeline.
 
 **Architecture:** Split the monolithic `newsletter.py` into focused modules. A routing module branches on weekday and selects the feed pool and section layout. A triage module makes the first Claude call to score and tier items. A formatting module makes the second Claude call to render the email. A shadow module runs in parallel, queries free traction APIs (Reddit, Hacker News), and writes comparison logs for later promotion to Phase 2.
 
@@ -55,7 +55,7 @@ Phase B: Triage and rendering (Tasks 4–6)
 Phase C: Shadow evaluation (Tasks 7–9)
 Phase D: Cutover (Task 10)
 
-Each task ends with a commit. After Phase A, the existing newsletter still runs (no behavior change yet). After Phase B, the new triage and Worth Knowing section are live. After Phase C, shadow logs are being written. Phase D flips the production switch.
+Each task ends with a commit. After Phase A, the existing newsletter still runs (no behavior change yet). After Phase B, the new triage and Today in the World section are live. After Phase C, shadow logs are being written. Phase D flips the production switch.
 
 ---
 
@@ -432,7 +432,7 @@ FEEDS_SUNDAY_VISUAL = [
 ]
 ```
 
-Extend `SECTION_MAP` in `config.py` with entries for every new source. Map podcasts to `"Worth Knowing"` and design sources to `"Design & Product"`.
+Extend `SECTION_MAP` in `config.py` with entries for every new source. Map podcasts to `"Today in the World"` and design sources to `"Design & Product"`.
 
 - [ ] **Step 4: Run tests, verify they pass**
 
@@ -580,10 +580,10 @@ Reader context for personal relevance scoring:
 For each item, return:
 - id (integer)
 - tier (1=Featured, 2=Worth Reading, 3=Background, or 0=Dropped)
-- section (one of: "Canada & Toronto", "Toronto Housing", "Tech & AI", "Finance & Markets", "US & Global", "Worth Knowing", "Design & Product")
+- section (one of: "Canada & Toronto", "Toronto Housing", "Tech & AI", "Finance & Markets", "US & Global", "Today in the World", "Design & Product")
 - cluster_id (string; same id for items covering the same underlying story)
 - scores: cross_source_coverage (integer count of feeds covering it, including itself), personal_relevance (0-3), section_fit ("good" | "weak" | "none")
-- promotion_to_worth_knowing (boolean; true only when cluster_size >= 3 AND no clean section fit)
+- promotion_to_today_in_the_world (boolean; true only when cluster_size >= 3 AND no clean section fit)
 - reasoning (one sentence)
 
 Tier mapping (sum cross_source_coverage + personal_relevance + section_fit_score):
@@ -605,8 +605,8 @@ Output strict JSON only. No prose, no markdown fences."""
 ```json
 {
   "items": [
-    {"id": 0, "tier": 1, "section": "Canada & Toronto", "cluster_id": "cl_a", "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}, "promotion_to_worth_knowing": false, "reasoning": "Toronto housing supply directly relevant."},
-    {"id": 1, "tier": 1, "section": "Finance & Markets", "cluster_id": "cl_b", "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}, "promotion_to_worth_knowing": false, "reasoning": "Bank of Canada move covered widely."}
+    {"id": 0, "tier": 1, "section": "Canada & Toronto", "cluster_id": "cl_a", "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}, "promotion_to_today_in_the_world": false, "reasoning": "Toronto housing supply directly relevant."},
+    {"id": 1, "tier": 1, "section": "Finance & Markets", "cluster_id": "cl_b", "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}, "promotion_to_today_in_the_world": false, "reasoning": "Bank of Canada move covered widely."}
   ],
   "clusters": [
     {"id": "cl_a", "primary_source": "CBC", "also_in": ["BlogTO"], "canonical_headline": "Toronto council debates housing supply"},
@@ -720,11 +720,11 @@ git commit -m "Add pass-1 triage module with tier scoring and clustering"
 
 ---
 
-### Task 5: Format pass updates (Worth Knowing, cluster rendering, tier-aware sections)
+### Task 5: Format pass updates (Today in the World, cluster rendering, tier-aware sections)
 
 **Files:**
 - Modify: `prompts.py` (rewrite FORMAT_SYSTEM_PROMPT to consume triage output)
-- Modify: `formatting.py` (consume tier data, add Worth Knowing section, render cluster corroboration in source line)
+- Modify: `formatting.py` (consume tier data, add Today in the World section, render cluster corroboration in source line)
 - Create: `tests/test_formatting.py`
 
 - [ ] **Step 1: Write failing tests for cluster source rendering**
@@ -832,7 +832,7 @@ For each section in this exact order (skip a section entirely if it has no items
 ## Tech & AI
 ## Finance & Markets
 ## US & Global
-## Worth Knowing
+## Today in the World
 
 For Tier 1 items, write a full story:
 
@@ -854,7 +854,7 @@ For Tier 2 items in a section, after all Tier 1 stories, add:
 
 Cap Other Headlines at 5 items per section. If a section has more than 5 Tier 2 items, list the 5 strongest by personal_relevance.
 
-For Worth Knowing, render every item as a full Tier 1 story unless the item lacks a body summary, in which case render it as a one-line bullet with the [#N] ID preserved.
+For Today in the World, render every item as a full Tier 1 story unless the item lacks a body summary, in which case render it as a one-line bullet with the [#N] ID preserved.
 
 After all sections, add:
 
@@ -876,18 +876,18 @@ CRITICAL RULES YOU MUST FOLLOW:
 
 The triage already determined what goes where, so the format prompt is freed from selection logic. This is the split the spec relies on.
 
-- [ ] **Step 6: Update parse_and_render_sections to handle Worth Knowing and to use cluster data**
+- [ ] **Step 6: Update parse_and_render_sections to handle Today in the World and to use cluster data**
 
 In `formatting.py`, modify `parse_and_render_sections` to:
-- Recognize `## Worth Knowing` as a valid section heading
+- Recognize `## Today in the World` as a valid section heading
 - For each rendered story, look up its cluster (by item ID) and pass primary_source + also_in to `render_source_line`
-- Skip empty sections (Worth Knowing renders nothing if no items)
+- Skip empty sections (Today in the World renders nothing if no items)
 
-- [ ] **Step 7: Add a tests/test_formatting.py case asserting Worth Knowing section renders when given matching markdown input**
+- [ ] **Step 7: Add a tests/test_formatting.py case asserting Today in the World section renders when given matching markdown input**
 
 ```python
-def test_worth_knowing_section_renders():
-    text = """## Worth Knowing
+def test_today_in_the_world_section_renders():
+    text = """## Today in the World
 
 **Big global story [#5]**
 Body paragraph one.
@@ -898,7 +898,7 @@ Source: NYT
     links_by_id = {5: {"link": "https://example.com/5", "image": "", "title": "Big global story"}}
     clusters_by_item_id = {5: {"primary_source": "NYT", "also_in": ["BBC"]}}
     html, _ = parse_and_render_sections(text, links_by_id, clusters_by_item_id)
-    assert "Worth Knowing" in html
+    assert "Today in the World" in html
     assert "NYT, BBC" in html
 ```
 
@@ -916,7 +916,7 @@ Expected: all passing.
 
 ```bash
 git add prompts.py formatting.py tests/test_formatting.py
-git commit -m "Add Worth Knowing section and cluster-aware source rendering"
+git commit -m "Add Today in the World section and cluster-aware source rendering"
 ```
 
 ---
@@ -994,7 +994,7 @@ SECTION_ORDER = [
     "Tech & AI",
     "Finance & Markets",
     "US & Global",
-    "Worth Knowing",
+    "Today in the World",
 ]
 
 
@@ -1646,7 +1646,7 @@ After the first real run, monitor for one week, then evaluate Phase 2 promotion 
 | Source list | Task 2 (config), Task 10 (docs) |
 | Two-pass triage | Task 4, Task 6 |
 | Tier system | Task 4 (Phase 1 scoring), Task 8 (Phase 2 shadow) |
-| Worth Knowing section | Task 5 |
+| Today in the World section | Task 5 |
 | Cross-source clustering | Task 4 (detection), Task 5 (rendering) |
 | Phase 1.5 shadow | Task 7, Task 8, Task 9 |
 | Weekly digest | Task 9 |
@@ -1657,7 +1657,7 @@ After the first real run, monitor for one week, then evaluate Phase 2 promotion 
 
 - Specific feed URL verification at runtime (the spec already flags this)
 - Personal relevance blurb wording is included in `prompts.py` as a starting point; refine after first week of output
-- Visual treatment of Worth Knowing section (currently uses the same card style; revisit if Frank wants it distinct)
+- Visual treatment of Today in the World section (currently uses the same card style; revisit if Frank wants it distinct)
 
 **Where the plan deliberately keeps things light**
 

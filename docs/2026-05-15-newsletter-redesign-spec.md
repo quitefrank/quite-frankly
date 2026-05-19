@@ -23,8 +23,8 @@ The script branches on `datetime.weekday()` (Toronto time) and runs in one of th
 
 | Day | Mode | Window | Pool | Sections |
 |---|---|---|---|---|
-| Mon | Weekend catch-up | Fri 00:00 to Mon 06:00 Toronto | Weekday news pool (no design) | Standard 6 + Worth Knowing |
-| Tue–Fri | Daily news | Previous 24h | Weekday news pool (no design) | Standard 6 + Worth Knowing |
+| Mon | Weekend catch-up | Fri 00:00 to Mon 06:00 Toronto | Weekday news pool (no design) | Standard 6 + Today in the World |
+| Tue–Fri | Daily news | Previous 24h | Weekday news pool (no design) | Standard 6 + Today in the World |
 | Sat | Designer day, strategic | Previous 7 days, minus items used in last design email | Strategic design pool | Single section: Design & Product, strategic |
 | Sun | Designer day, visual | Previous 7 days, minus items used in last design email | Visual design pool | Single section: Design & Product, visual |
 
@@ -75,7 +75,7 @@ Grouped by default section assignment.
 - NPR World — sober US/global
 - Axios — Smart Brevity format
 
-**Worth Knowing eligible (podcasts and other)**
+**Today in the World eligible (podcasts and other)**
 - NYT The Daily — episode title and description
 - Vox Today Explained — episode title and description
 - CBC Frontburner — episode title and description
@@ -121,7 +121,7 @@ Grouped by default section assignment.
 2. **Triage pass (new).** Send the full headline pool to Claude with a structured prompt. Claude returns JSON: per-item tier, section assignment, cluster ID, and reasoning trace.
 3. **Shadow scoring (Phase 1.5, runs in parallel).** Hits Reddit JSON endpoints and HN Algolia API to fetch traction data. Recomputes tiers with traction signals weighted in. Writes alternate ranking to comparison log. Does not affect the sent email.
 4. **Format pass (existing).** Send selected items to Claude with the current formatting prompt, plus cluster metadata so multi-source corroboration can render in the source line.
-5. **Render and send.** Existing HTML build and SMTP logic, with one new section block for Worth Knowing.
+5. **Render and send.** Existing HTML build and SMTP logic, with one new section block for Today in the World.
 
 ### Two-pass Claude rationale
 
@@ -144,7 +144,7 @@ Pass 1 is doing fundamentally different work than pass 2. Pass 1 reasons about w
         "personal_relevance": 2,
         "section_fit": "good"
       },
-      "promotion_to_worth_knowing": false,
+      "promotion_to_today_in_the_world": false,
       "reasoning": "Major geopolitical story covered by NYT, BBC, Economist."
     }
   ],
@@ -202,23 +202,23 @@ In order:
 3. Tech & AI (2 featured + Other Headlines)
 4. Finance & Markets (1 featured + Other Headlines)
 5. US & Global (1 featured + Other Headlines)
-6. Worth Knowing (3–7 items, new)
+6. Today in the World (3–7 items, new)
 7. Everything Else (Tier 3 background items, capped at 5 per section)
 
 Design & Product is removed from weekday emails. Design news lives on weekends only.
 
-### Worth Knowing logic
+### Today in the World logic
 
-An item gets promoted to Worth Knowing when ALL of these are true:
+An item gets promoted to Today in the World when ALL of these are true:
 - Tier 1 score
 - Cultural currency signal strong (cross-source coverage ≥3 OR strong podcast match)
 - Doesn't naturally fit Canada & Toronto, Toronto Housing, Tech & AI, Finance & Markets, or US & Global with a clean section_fit
 
-Worth Knowing renders 3–7 items per day depending on what qualifies. Empty section is suppressed.
+Today in the World renders 3–7 items per day depending on what qualifies. Empty section is suppressed.
 
 ### Weekend email
 
-Single-section layout. No Worth Knowing or Everything Else. 5–8 featured items, no Other Headlines bucket. Source list lives in the footer.
+Single-section layout. No Today in the World or Everything Else. 5–8 featured items, no Other Headlines bucket. Source list lives in the footer.
 
 ---
 
@@ -299,7 +299,7 @@ Phase 1.5 shadow mode adds no Claude cost (signals are appended to the same pass
 | Triage pass returns malformed JSON | Strict schema parsing, fall back to current single-pass behavior if parsing fails. Email still ships. |
 | Reddit or HN API rate-limits or fails | Shadow mode catches its own errors and logs them. Phase 1 email is unaffected. |
 | Cross-source clustering misses obvious overlaps | Triage prompt includes 2–3 worked examples. Format pass uses cluster metadata but degrades gracefully if missing. |
-| Worth Knowing is empty most days | Suppressed when empty. No "no stories today" placeholder. |
+| Today in the World is empty most days | Suppressed when empty. No "no stories today" placeholder. |
 | Weekend design pool is thin on a slow week | Section renders with whatever's available, footer notes the date range covered. |
 | Personal relevance blurb goes stale | Calendar reminder every 3 months to review. |
 | Monday window pulls duplicate items already in Friday's email | Cluster-size-≥3 exception is the only path back in. Otherwise dedup holds. |
@@ -325,7 +325,7 @@ These belong in Phase 3 or never. They were considered and consciously cut.
 
 | Phase | Ships | Contents |
 |---|---|---|
-| 1 | First | Day-of-week routing, expanded source pool, two-pass Claude triage with cross-source clustering, tier system, Worth Knowing section, weekend strategic/visual split |
+| 1 | First | Day-of-week routing, expanded source pool, two-pass Claude triage with cross-source clustering, tier system, Today in the World section, weekend strategic/visual split |
 | 1.5 | Same release | Shadow Reddit/HN scoring writes comparison logs, Sunday weekly digest email |
 | 2 | After 2–3 weeks of comparison data, if warranted | Promote traction signals into production tier scoring |
 | 3 | Backlog, never if not needed | Google Trends, more sophisticated relevance modeling, reader feedback loop |
@@ -336,5 +336,5 @@ These belong in Phase 3 or never. They were considered and consciously cut.
 
 1. Source URL verification: a few feeds (BetterDwelling, podcast feeds for The Daily / Today Explained / Frontburner / Meet the Press, WSJ behind paywall, National Post and National Newswatch RSS) need to be confirmed working at implementation time. Treat as implementation detail; flag any that fail before going live.
 2. The personal relevance blurb above is a first draft. Confirm it captures the right priorities before pass 1 prompt is finalized.
-3. The Worth Knowing rendering: same card style as other sections, or visually distinct (e.g., gradient header) to signal "outside the regular rotation"?
+3. The Today in the World rendering: same card style as other sections, or visually distinct (e.g., gradient header) to signal "outside the regular rotation"?
 4. Weekly digest email: should it go to the same inbox or a separate one to keep it from cluttering daily reads?

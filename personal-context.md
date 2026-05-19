@@ -83,7 +83,7 @@ News about the stacks or domains these projects touch counts.
 
 ## Not elevated (deprioritization signals)
 
-The following should not be scored as high personal relevance even when trending. They can still surface through other channels (cross-source coverage, Worth Knowing-style buckets) if widely covered, but should not get a personal-relevance bump.
+The following should not be scored as high personal relevance even when trending. They can still surface through other channels (cross-source coverage, Today in the World-style buckets) if widely covered, but should not get a personal-relevance bump.
 
 - **Sports content of any kind**, including game results, fantasy, betting takes, and league business. The briefing should read as if Frank is already out of the sports betting industry.
 - **Crypto, stock picks, or get-rich-quick content**, even when dressed as wealth-building.
@@ -92,4 +92,4 @@ The following should not be scored as high personal relevance even when trending
 
 ## Scoring guidance (for triage applications)
 
-Score personal relevance by matching items against the topics above, the authority of the source within those topics, and Frank's active projects and transition-year framing. Do not inflate personal relevance just because a story is trending across sources, since trending is handled separately (e.g., via cross-source coverage and Worth Knowing-style logic in the newsletter).
+Score personal relevance by matching items against the topics above, the authority of the source within those topics, and Frank's active projects and transition-year framing. Do not inflate personal relevance just because a story is trending across sources, since trending is handled separately (e.g., via cross-source coverage and Today in the World-style logic in the newsletter).
