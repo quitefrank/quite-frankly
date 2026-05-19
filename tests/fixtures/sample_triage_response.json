@@ -1,7 +1,7 @@
 {
   "items": [
-    {"id": 0, "tier": 1, "section": "Canada & Toronto", "cluster_id": "cl_a", "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}, "promotion_to_worth_knowing": false, "reasoning": "Toronto housing supply directly relevant."},
-    {"id": 1, "tier": 1, "section": "Finance & Markets", "cluster_id": "cl_b", "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}, "promotion_to_worth_knowing": false, "reasoning": "Bank of Canada move covered widely."}
+    {"id": 0, "tier": 1, "section": "Canada & Toronto", "cluster_id": "cl_a", "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}, "promotion_to_today_in_the_world": false, "reasoning": "Toronto housing supply directly relevant."},
+    {"id": 1, "tier": 1, "section": "Finance & Markets", "cluster_id": "cl_b", "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}, "promotion_to_today_in_the_world": false, "reasoning": "Bank of Canada move covered widely."}
   ],
   "clusters": [
     {"id": "cl_a", "primary_source": "CBC", "also_in": ["BlogTO"], "canonical_headline": "Toronto council debates housing supply"},

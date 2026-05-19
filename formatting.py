@@ -24,7 +24,7 @@ SECTION_ORDER = [
     "Design & Product",
     "Finance & Markets",
     "US & Global",
-    "Worth Knowing",
+    "Today in the World",
 ]
 
 

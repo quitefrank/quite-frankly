@@ -41,16 +41,16 @@ TRIAGE_TOOL = {
                                 "Design & Product",
                                 "Finance & Markets",
                                 "US & Global",
-                                "Worth Knowing",
+                                "Today in the World",
                             ],
                         },
                         "cluster_id": {"type": "string"},
                         "cross_source_coverage": {"type": "integer", "minimum": 1},
                         "personal_relevance": {"type": "integer", "minimum": 0, "maximum": 3},
                         "section_fit": {"type": "string", "enum": ["good", "weak", "none"]},
-                        "promotion_to_worth_knowing": {"type": "boolean"},
+                        "promotion_to_today_in_the_world": {"type": "boolean"},
                     },
-                    "required": ["id", "tier", "section", "cluster_id", "cross_source_coverage", "personal_relevance", "section_fit", "promotion_to_worth_knowing"],
+                    "required": ["id", "tier", "section", "cluster_id", "cross_source_coverage", "personal_relevance", "section_fit", "promotion_to_today_in_the_world"],
                 },
             },
             "clusters": {
@@ -135,7 +135,7 @@ def _shape_tool_output(payload: dict) -> tuple[list[dict], dict[str, dict]]:
                 "personal_relevance": it.get("personal_relevance", 0),
                 "section_fit": it.get("section_fit", "weak"),
             },
-            "promotion_to_worth_knowing": it.get("promotion_to_worth_knowing", False),
+            "promotion_to_today_in_the_world": it.get("promotion_to_today_in_the_world", False),
         })
     if dropped:
         print(f"  Triage: dropped {dropped} malformed item(s) from tool output")

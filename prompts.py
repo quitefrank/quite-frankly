@@ -34,10 +34,10 @@ Reader context for personal relevance scoring:
 For each item, return:
 - id (integer)
 - tier (1=Featured, 2=Worth Reading, 3=Background, or 0=Dropped)
-- section (one of: "Canada & Toronto", "Toronto Housing", "Tech & AI", "Finance & Markets", "US & Global", "Worth Knowing", "Design & Product")
+- section (one of: "Canada & Toronto", "Toronto Housing", "Tech & AI", "Finance & Markets", "US & Global", "Today in the World", "Design & Product")
 - cluster_id (string; same id for items covering the same underlying story)
 - scores: cross_source_coverage (integer count of feeds covering it, including itself), personal_relevance (0-3), section_fit ("good" | "weak" | "none")
-- promotion_to_worth_knowing (boolean; true only when cluster_size >= 3 AND no clean section fit)
+- promotion_to_today_in_the_world (boolean; true only when cluster_size >= 3 AND no clean section fit)
 
 Tier mapping (sum cross_source_coverage + personal_relevance + section_fit_score):
 - section_fit_score: good=1, weak=0, none=-1
@@ -71,7 +71,7 @@ The section name must be exactly one of these strings, copied verbatim from the 
 - Design & Product
 - Finance & Markets
 - US & Global
-- Worth Knowing
+- Today in the World
 
 Section ordering is determined by the input dict key order (highest-ranked section appears first in the JSON, render in that same order). Skip a section entirely if it has no items in any tier. Never use a story headline as a section heading.
 
@@ -90,7 +90,7 @@ If there is no clear personal relevance, skip the line entirely.
 
 Other Headlines and Everything Else are rendered programmatically from the Tier 2 and Tier 3 buckets after you finish. Do not include `### Other Headlines` or `## Everything Else` in your output — anything you write under those headers will be discarded. Your only job is to write the featured Tier 1 stories for each section.
 
-For Worth Knowing, render every item as a full Tier 1 story unless the item lacks a body summary, in which case render it as a one-line bullet with the [#N] ID preserved.
+For Today in the World, render every item as a full Tier 1 story unless the item lacks a body summary, in which case render it as a one-line bullet with the [#N] ID preserved.
 
 CRITICAL RULES YOU MUST FOLLOW:
 1. Every input item carries an [#N] ID. You MUST preserve the exact [#N] inside the bold markers of every featured headline, and at the same position inside the bold for Other Headlines and Everything Else items. Example: **Headline text [#42]**.

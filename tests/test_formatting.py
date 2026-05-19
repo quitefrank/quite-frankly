@@ -299,8 +299,26 @@ def test_build_everything_else_returns_empty_when_no_unused_items():
     assert html == ""
 
 
-def test_worth_knowing_section_renders():
-    text = """## Worth Knowing
+def test_today_in_the_world_replaces_worth_knowing_in_section_order():
+    from formatting import SECTION_ORDER
+    assert "Today in the World" in SECTION_ORDER
+    assert "Worth Knowing" not in SECTION_ORDER
+
+
+def test_today_in_the_world_replaces_worth_knowing_in_section_map():
+    from config import SECTION_MAP
+    assert "Today in the World" in SECTION_MAP.values()
+    assert "Worth Knowing" not in SECTION_MAP.values()
+
+
+def test_today_in_the_world_has_an_emoji():
+    from config import SECTION_EMOJIS
+    assert "Today in the World" in SECTION_EMOJIS
+    assert "Worth Knowing" not in SECTION_EMOJIS
+
+
+def test_today_in_the_world_section_renders():
+    text = """## Today in the World
 
 **Big global story [#5]**
 Body paragraph one.
@@ -311,5 +329,5 @@ Source: NYT
     links_by_id = {5: {"link": "https://example.com/5", "image": "", "title": "Big global story"}}
     clusters_by_item_id = {5: {"primary_source": "NYT", "also_in": ["BBC"]}}
     html, _ = parse_and_render_sections(text, links_by_id, clusters_by_item_id)
-    assert "Worth Knowing" in html
+    assert "Today in the World" in html
     assert "NYT, BBC" in html

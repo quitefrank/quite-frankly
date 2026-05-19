@@ -60,7 +60,7 @@ FEEDS_WEEKDAY = [
     {"url": "https://feeds.npr.org/1004/rss.xml",                                                        "source": "NPR World"},
     {"url": "https://api.axios.com/feed/",                                                               "source": "Axios"},
 
-    # Podcasts (cultural currency, route to Worth Knowing)
+    # Podcasts (cultural currency, route to Today in the World)
     {"url": "https://rss.art19.com/the-daily",                                                           "source": "NYT The Daily"},
     {"url": "https://feeds.megaphone.fm/todayexplained",                                                 "source": "Today Explained"},
     {"url": "https://www.cbc.ca/podcasting/includes/frontburner.xml",                                    "source": "CBC Frontburner"},
@@ -133,11 +133,11 @@ SECTION_MAP = {
     "Sidebar":     "Design & Product",
     "Trendland":   "Design & Product",
 
-    # Worth Knowing (podcasts)
-    "NYT The Daily":      "Worth Knowing",
-    "Today Explained":    "Worth Knowing",
-    "CBC Frontburner":    "Worth Knowing",
-    "NBC Meet the Press": "Worth Knowing",
+    # Today in the World (podcasts)
+    "NYT The Daily":      "Today in the World",
+    "Today Explained":    "Today in the World",
+    "CBC Frontburner":    "Today in the World",
+    "NBC Meet the Press": "Today in the World",
 }
 
 # Sources whose RSS "link" points to a podcast/audio resource rather than an
@@ -157,7 +157,7 @@ SECTION_EMOJIS = {
     "Design & Product": "🎨",
     "Finance & Markets":"📈",
     "US & Global":      "🌍",
-    "Worth Knowing":    "🎧",
+    "Today in the World": "🌐",
     "Everything Else":  "📋",
 }
 
@@ -210,7 +210,7 @@ SOURCE_FAVICONS = {
     "Sidebar":     "https://www.google.com/s2/favicons?domain=sidebar.io&sz=64",
     "Trendland":   "https://www.google.com/s2/favicons?domain=trendland.com&sz=64",
 
-    # Worth Knowing (podcasts)
+    # Today in the World (podcasts)
     "NYT The Daily":      "https://www.google.com/s2/favicons?domain=nytimes.com&sz=64",
     "Today Explained":    "https://www.google.com/s2/favicons?domain=vox.com&sz=64",
     "CBC Frontburner":    "https://www.google.com/s2/favicons?domain=cbc.ca&sz=64",
