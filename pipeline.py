@@ -16,14 +16,30 @@ from config import FEEDS, MIN_SNIPPET_CHARS, SEEN_LINKS_FILE, SEVEN_DAYS_S, TEST
 OG_IMAGE_TIMEOUT_S = 3.0
 OG_IMAGE_MAX_BYTES = 16384  # <meta property="og:image"> lives in <head>; 16KB is enough.
 
-_OG_IMAGE_RE = re.compile(
-    r'<meta\b[^>]*?(?:'
-    r'property=["\']og:image["\'][^>]*?content=["\']([^"\']+)["\']'
-    r'|'
-    r'content=["\']([^"\']+)["\'][^>]*?property=["\']og:image["\']'
-    r')',
+_META_TAG_RE = re.compile(r'<meta\b[^>]+>', re.IGNORECASE)
+_OG_IMAGE_FAMILY_RE = re.compile(r'\bog:image\b', re.IGNORECASE)
+_OG_IMAGE_SIBLING_RE = re.compile(r'\bog:image:[A-Za-z_]', re.IGNORECASE)
+# Match content= followed by a double-quoted, single-quoted, or bare value.
+_CONTENT_ATTR_RE = re.compile(
+    r'''\bcontent\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s>]+))''',
     re.IGNORECASE,
 )
+
+
+def _extract_og_image_from_html(html: str) -> str:
+    """Return the og:image URL from an HTML snippet, or '' if none."""
+    for tag_match in _META_TAG_RE.finditer(html):
+        tag = tag_match.group(0)
+        if not _OG_IMAGE_FAMILY_RE.search(tag):
+            continue
+        # Skip og:image:width / og:image:height / og:image:secure_url — those
+        # are siblings, not the image URL itself.
+        if _OG_IMAGE_SIBLING_RE.search(tag):
+            continue
+        c = _CONTENT_ATTR_RE.search(tag)
+        if c:
+            return c.group(1) or c.group(2) or c.group(3) or ""
+    return ""
 
 
 def _fetch_og_image(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> str:
@@ -46,9 +62,7 @@ def _fetch_og_image(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> st
                 if total >= OG_IMAGE_MAX_BYTES:
                     break
             html = b"".join(chunks).decode("utf-8", errors="replace")
-            m = _OG_IMAGE_RE.search(html)
-            if m:
-                return m.group(1) or m.group(2) or ""
+            return _extract_og_image_from_html(html)
     except Exception:
         pass
     return ""

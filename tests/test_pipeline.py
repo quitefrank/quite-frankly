@@ -57,6 +57,46 @@ def test_fetch_feed_uses_og_image_when_rss_has_no_image(monkeypatch):
     assert items[0]["image"] == "https://betterdwelling.com/wp-content/og.jpg"
 
 
+def test_extract_og_image_handles_unquoted_attribute_values():
+    # National Post serves <meta content=https://... property=og:image> with no quotes.
+    from pipeline import _extract_og_image_from_html
+    html = (
+        '<html><head>'
+        '<meta content=https://example.com/og.jpg property=og:image>'
+        '<meta content="900" property="og:image:width">'
+        '</head><body></body></html>'
+    )
+    assert _extract_og_image_from_html(html) == "https://example.com/og.jpg"
+
+
+def test_extract_og_image_handles_quoted_attribute_values():
+    from pipeline import _extract_og_image_from_html
+    html = (
+        '<html><head>'
+        '<meta property="og:image" content="https://example.com/og.jpg">'
+        '</head></html>'
+    )
+    assert _extract_og_image_from_html(html) == "https://example.com/og.jpg"
+
+
+def test_extract_og_image_skips_og_image_width_and_height_meta_tags():
+    # If the only og:image* tag is og:image:width, must not return that value.
+    from pipeline import _extract_og_image_from_html
+    html = (
+        '<html><head>'
+        '<meta property="og:image:width" content="1200">'
+        '<meta property="og:image:height" content="800">'
+        '</head></html>'
+    )
+    assert _extract_og_image_from_html(html) == ""
+
+
+def test_extract_og_image_returns_empty_when_no_og_image_present():
+    from pipeline import _extract_og_image_from_html
+    html = '<html><head><title>foo</title></head></html>'
+    assert _extract_og_image_from_html(html) == ""
+
+
 def test_fetch_feed_image_falls_back_to_empty_string_when_og_image_unavailable(monkeypatch):
     entries = [
         ("A story", "https://example.com/story",

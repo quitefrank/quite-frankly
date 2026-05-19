@@ -1,6 +1,12 @@
 import json
 
-from formatting import build_format_input, parse_and_render_sections, render_source_line
+from formatting import (
+    build_everything_else,
+    build_format_input,
+    parse_and_render_sections,
+    render_other_headlines,
+    render_source_line,
+)
 
 
 def test_single_source_renders_plain():
@@ -85,7 +91,61 @@ def test_build_format_input_caps_tier_1_at_two_per_section():
     assert {x["id"] for x in housing["tier_1"]} == {1, 2}
 
 
-def test_fallback_promotes_highest_scored_item_when_tier_1_empty():
+def test_build_format_input_fills_tier_1_to_cap_from_tier_2_when_short():
+    # Section has only 1 tier_1 item; cap is 2 → promote 1 from tier_2.
+    tiered_items = [
+        _item(1, "Design & Product", tier=1, ccov=2, prel=2, fit="good"),  # score 5
+        _item(2, "Design & Product", tier=2, ccov=2, prel=1, fit="good"),  # score 4
+        _item(3, "Design & Product", tier=2, ccov=1, prel=1, fit="weak"),  # score 2
+    ]
+    links_by_id = {
+        i["id"]: {"title": f"t{i['id']}", "source": "UX Collective", "snippet": "x"}
+        for i in tiered_items
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    dp = payload["sections"]["Design & Product"]
+    assert len(dp["tier_1"]) == 2
+    # Highest-scored tier_2 (id=2) gets promoted; the other tier_2 (id=3) stays
+    assert {x["id"] for x in dp["tier_1"]} == {1, 2}
+    assert [x["id"] for x in dp["tier_2"]] == [3]
+
+
+def test_build_format_input_caps_finance_and_us_global_at_one():
+    tiered_items = [
+        _item(10, "Finance & Markets", tier=1, ccov=3, prel=2, fit="good"),  # score 6
+        _item(11, "Finance & Markets", tier=1, ccov=2, prel=2, fit="good"),  # score 5
+        _item(20, "US & Global",       tier=1, ccov=4, prel=3, fit="good"),  # score 8
+        _item(21, "US & Global",       tier=1, ccov=3, prel=2, fit="good"),  # score 6
+    ]
+    links_by_id = {
+        i["id"]: {"title": f"t{i['id']}", "source": "BBC", "snippet": "x"}
+        for i in tiered_items
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    assert len(payload["sections"]["Finance & Markets"]["tier_1"]) == 1
+    assert payload["sections"]["Finance & Markets"]["tier_1"][0]["id"] == 10
+    assert len(payload["sections"]["US & Global"]["tier_1"]) == 1
+    assert payload["sections"]["US & Global"]["tier_1"][0]["id"] == 20
+
+
+def test_build_format_input_fills_finance_from_tier_2_when_no_tier_1():
+    tiered_items = [
+        _item(40, "Finance & Markets", tier=2, ccov=2, prel=1, fit="good"),  # score 4
+        _item(41, "Finance & Markets", tier=2, ccov=1, prel=1, fit="weak"),  # score 2
+    ]
+    links_by_id = {
+        i["id"]: {"title": f"t{i['id']}", "source": "Yahoo Finance", "snippet": "x"}
+        for i in tiered_items
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    fm = payload["sections"]["Finance & Markets"]
+    assert len(fm["tier_1"]) == 1  # only 1, even though we promoted
+    assert fm["tier_1"][0]["id"] == 40
+
+
+def test_fallback_fills_tier_1_to_section_cap_when_tier_1_empty():
+    # Toronto Housing has cap=2, no tier_1 items, and 2 fallback candidates →
+    # both should get promoted (tier_2 first, then tier_3).
     tiered_items = [
         _item(1, "Toronto Housing", tier=2, ccov=1, prel=1, fit="weak"),
         _item(2, "Toronto Housing", tier=3, ccov=1, prel=0, fit="none"),
@@ -94,8 +154,8 @@ def test_fallback_promotes_highest_scored_item_when_tier_1_empty():
     links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "CBC", "snippet": ""} for i in tiered_items}
     payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
     housing = payload["sections"]["Toronto Housing"]
-    assert len(housing["tier_1"]) == 1
-    assert housing["tier_1"][0]["id"] == 1
+    assert len(housing["tier_1"]) == 2
+    assert {x["id"] for x in housing["tier_1"]} == {1, 2}
 
 
 def test_section_order_is_by_max_score_descending():
@@ -110,6 +170,69 @@ def test_section_order_is_by_max_score_descending():
     assert populated_order[0] == "US & Global"
     assert populated_order[1] == "Tech & AI"
     assert populated_order[2] == "Canada & Toronto"
+
+
+def test_render_other_headlines_caps_at_three():
+    lines = [
+        f"- **Story {n} [#{n}]**: summary {n}. Source: CBC"
+        for n in range(1, 7)  # 6 lines, expect 3
+    ]
+    links_by_id = {
+        n: {"link": f"https://example.com/{n}", "image": "", "title": f"Story {n}"}
+        for n in range(1, 7)
+    }
+    used_ids = set()
+    html = render_other_headlines(lines, links_by_id, used_ids)
+    assert html.count("<li") == 3
+    # First three render; later items don't
+    assert "Story 1" in html
+    assert "Story 3" in html
+    assert "Story 4" not in html
+
+
+def test_build_everything_else_caps_at_seven_globally():
+    # 20 unused items across multiple sections; expect a flat top-7 list.
+    links_by_id = {
+        i: {
+            "id": i,
+            "title": f"Headline {i}",
+            "link": f"https://example.com/{i}",
+            "image": "",
+            "source": "CBC",
+        }
+        for i in range(20)
+    }
+    tiered_items = [
+        # Mix of tiers; lower tier number = higher priority in EE.
+        {"id": 0, "tier": 1, "section": "Canada & Toronto",
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 3, "section_fit": "good"}},
+        {"id": 1, "tier": 1, "section": "Tech & AI",
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},
+        # tier_2 entries
+        *[
+            {"id": i, "tier": 2, "section": "Canada & Toronto",
+             "scores": {"cross_source_coverage": 1, "personal_relevance": 1, "section_fit": "weak"}}
+            for i in range(2, 12)
+        ],
+        # tier_3 entries
+        *[
+            {"id": i, "tier": 3, "section": "Tech & AI",
+             "scores": {"cross_source_coverage": 1, "personal_relevance": 0, "section_fit": "none"}}
+            for i in range(12, 18)
+        ],
+    ]
+    used_ids = set()
+    html = build_everything_else(links_by_id, used_ids, {}, tiered_items=tiered_items)
+    assert html.count("<li") == 7
+    # The two tier_1 overflows must appear (highest priority).
+    assert "Headline 0" in html
+    assert "Headline 1" in html
+
+
+def test_build_everything_else_returns_empty_when_no_unused_items():
+    links_by_id = {0: {"id": 0, "title": "X", "link": "https://x", "image": "", "source": "CBC"}}
+    html = build_everything_else(links_by_id, used_ids={0}, clusters_by_item_id={}, tiered_items=[])
+    assert html == ""
 
 
 def test_worth_knowing_section_renders():

@@ -30,7 +30,13 @@ SECTION_ORDER = [
 
 SECTION_FIT_SCORE = {"good": 1, "weak": 0, "none": -1}
 
-MAX_FEATURED_PER_SECTION = 2
+DEFAULT_FEATURED_CAP = 2
+SECTION_FEATURED_CAPS = {
+    "Finance & Markets": 1,
+    "US & Global": 1,
+}
+MAX_OTHER_HEADLINES_PER_SECTION = 3
+MAX_EVERYTHING_ELSE = 7
 
 
 def _item_score(scores: dict) -> int:
@@ -67,19 +73,23 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
         for bucket in section_buckets.values():
             bucket.sort(key=lambda x: x["_score"], reverse=True)
 
-    for buckets in by_section.values():
-        if buckets["tier_1"]:
-            continue
-        for fallback_tier in ("tier_2", "tier_3"):
-            if buckets[fallback_tier]:
-                buckets["tier_1"].append(buckets[fallback_tier].pop(0))
+    # Per-section featured cap. Most sections aim for 2, Finance & Markets and
+    # US & Global aim for 1. If tier_1 is short, fill from tier_2 then tier_3
+    # (already score-sorted) so the section still has *something* featured.
+    # Overflow drops out of the JSON entirely; build_everything_else picks
+    # them up because they're not in used_ids.
+    for section, buckets in by_section.items():
+        cap = SECTION_FEATURED_CAPS.get(section, DEFAULT_FEATURED_CAP)
+        while len(buckets["tier_1"]) < cap:
+            promoted = False
+            for fallback_tier in ("tier_2", "tier_3"):
+                if buckets[fallback_tier]:
+                    buckets["tier_1"].append(buckets[fallback_tier].pop(0))
+                    promoted = True
+                    break
+            if not promoted:
                 break
-
-    # Cap featured stories per section. Overflow leaves the JSON entirely;
-    # build_everything_else picks them up because they're not in used_ids.
-    for buckets in by_section.values():
-        if len(buckets["tier_1"]) > MAX_FEATURED_PER_SECTION:
-            buckets["tier_1"] = buckets["tier_1"][:MAX_FEATURED_PER_SECTION]
+        buckets["tier_1"] = buckets["tier_1"][:cap]
 
     def _section_max_score(buckets: dict) -> int:
         all_scores = [item["_score"] for bucket in buckets.values() for item in bucket]
@@ -215,7 +225,7 @@ def find_article_data(headline, links_by_id):
 def render_other_headlines(other_lines, links_by_id, used_ids, clusters_by_item_id=None):
     clusters_by_item_id = clusters_by_item_id or {}
     items_html = ""
-    for line in other_lines[:5]:
+    for line in other_lines[:MAX_OTHER_HEADLINES_PER_SECTION]:
         cleaned = re.sub(r"^-\s*", "", line).strip()
         m = re.match(r"^\*\*(.*?)\*\*:?\s*(.*?)(?:\s*Source:\s*(.*))?$", cleaned)
         if not m:
@@ -414,49 +424,53 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None):
     return html, used_ids
 
 
-def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None):
+def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiered_items=None):
+    """Render up to MAX_EVERYTHING_ELSE items globally, ranked by tier then score.
+
+    Tier 1 overflow (items capped out of featured) ranks first, then tier 2
+    overflow (capped out of Other Headlines), then tier 3. Items the triage
+    dropped (tier 0) and items it never scored are excluded.
+    """
     clusters_by_item_id = clusters_by_item_id or {}
-    grouped = {}
+    tiered_items = tiered_items or []
+
+    # {id: (tier, composite_score)}
+    rank_by_id: dict[int, tuple[int, int]] = {}
+    for it in tiered_items:
+        tier = it.get("tier", 0)
+        if tier <= 0:
+            continue
+        rank_by_id[it["id"]] = (tier, _item_score(it.get("scores", {})))
+
+    candidates = []
     for lid, l in links_by_id.items():
         if lid in used_ids:
             continue
-        section = SECTION_MAP.get(l["source"], l["source"])
-        grouped.setdefault(section, []).append(l)
-
-    section_order = [
-        "Canada & Toronto", "Toronto Housing", "Tech & AI",
-        "Design & Product", "Finance & Markets", "US & Global",
-    ]
-    inner_html = ""
-
-    for section in section_order:
-        section_links = grouped.get(section, [])[:10]
-        if not section_links:
+        if lid not in rank_by_id:
             continue
-        items = ""
-        for l in section_links:
-            words       = l["title"].split(" ")
-            link_words  = " ".join(words[:4])
-            remaining   = " ".join(words[4:])
-            linked_part = (
-                f'<a href="{l["link"]}" style="color:#333;font-weight:400;'
-                f'text-decoration:underline;text-decoration-color:#1c7ff2;">{link_words}</a>'
-                if l["link"] else link_words
-            )
-            full_line = f"{linked_part} {remaining}" if remaining else linked_part
-            items += (
-                f'<li style="margin-bottom:10px;line-height:22px;font-size:15px;color:#333;'
-                f'font-family:Helvetica,Arial,sans-serif">{full_line}</li>'
-            )
-        inner_html += (
-            f'\n    <p style="margin:16px 0 6px;font-size:13px;font-weight:700;color:#1a1a1a;'
-            f'font-family:Helvetica,Arial,sans-serif;text-transform:uppercase;letter-spacing:0.05em">'
-            f'{section}</p>'
-            f'\n    <ul style="margin:0 0 8px;padding-left:20px">{items}</ul>'
-        )
+        tier, score = rank_by_id[lid]
+        candidates.append((tier, -score, lid, l))
 
-    if not inner_html:
+    candidates.sort()  # tier asc, then score desc (because we stored -score)
+    top = candidates[:MAX_EVERYTHING_ELSE]
+    if not top:
         return ""
+
+    items_html = ""
+    for _tier, _neg_score, _lid, l in top:
+        words = l["title"].split(" ")
+        link_words = " ".join(words[:4])
+        remaining = " ".join(words[4:])
+        linked_part = (
+            f'<a href="{l["link"]}" style="color:#333;font-weight:400;'
+            f'text-decoration:underline;text-decoration-color:#1c7ff2;">{link_words}</a>'
+            if l["link"] else link_words
+        )
+        full_line = f"{linked_part} {remaining}" if remaining else linked_part
+        items_html += (
+            f'<li style="margin-bottom:10px;line-height:22px;font-size:15px;color:#333;'
+            f'font-family:Helvetica,Arial,sans-serif">{full_line}</li>'
+        )
 
     return (
         '\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid #e6e6e6;'
@@ -465,7 +479,7 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None):
         '\n    <p style="color:#1c7ff2;margin:0 0 4px;font-size:13px;font-weight:700;'
         'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">📋 Everything Else</p>'
         '\n  </div>'
-        f'\n  <div style="padding:0 15px 15px">{inner_html}</div>'
+        f'\n  <div style="padding:0 15px 15px"><ul style="margin:0;padding-left:20px">{items_html}</ul></div>'
         '\n</div>'
     )
 
@@ -478,7 +492,7 @@ def parse_subject_line(claude_response):
     return None, claude_response
 
 
-def build_email_html(claude_response, links_by_id, clusters_by_item_id=None):
+def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None):
     clusters_by_item_id = clusters_by_item_id or {}
     toronto_tz  = ZoneInfo("America/Toronto")
     now_toronto = datetime.now(toronto_tz)
@@ -495,7 +509,9 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None):
         subject = f"[TEST] {subject}"
 
     sections_html, used_ids = parse_and_render_sections(claude_response, links_by_id, clusters_by_item_id)
-    everything_else_html    = build_everything_else(links_by_id, used_ids, clusters_by_item_id)
+    everything_else_html    = build_everything_else(
+        links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items
+    )
 
     html = f"""<!DOCTYPE html>
 <html>

@@ -64,7 +64,7 @@ def main():
         format_raw = call_legacy_formatter(headlines)
 
     print("Building HTML...")
-    html, subject = build_email_html(format_raw, links_by_id, clusters_by_item_id)
+    html, subject = build_email_html(format_raw, links_by_id, clusters_by_item_id, tiered_items=tiered_items)
 
     print("Sending email...")
     send_email(html, subject)
