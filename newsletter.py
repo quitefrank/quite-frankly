@@ -26,7 +26,7 @@ from comparison import (
     summarize_week,
     write_comparison_log,
 )
-from config import SECTION_MAP
+from config import SECTION_MAP, TEST_MODE
 from routing import Mode, get_mode, get_feeds_for_mode
 from pipeline import fetch_all_feeds, deduplicate, assign_ids
 from triage import call_triage, cap_items
@@ -85,7 +85,9 @@ def main():
     with _stage("send_email"):
         send_email(html, subject)
 
-    if tiered_items:
+    if tiered_items and TEST_MODE:
+        print("Skipping shadow scoring (test mode).", flush=True)
+    elif tiered_items:
         print("Running Phase 1.5 shadow scoring...", flush=True)
         try:
             for t in tiered_items:

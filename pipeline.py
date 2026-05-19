@@ -26,6 +26,7 @@ from config import (
 OG_IMAGE_TIMEOUT_S = 3.0
 OG_IMAGE_MAX_BYTES = 16384  # <meta property="og:image"> lives in <head>; 16KB is enough.
 OG_IMAGE_MAX_WORKERS = 10   # Concurrent og:image fetches in fetch_all_feeds.
+FEED_FETCH_MAX_WORKERS = 10  # Concurrent feedparser.parse calls in fetch_all_feeds.
 
 _META_TAG_RE = re.compile(r'<meta\b[^>]+>', re.IGNORECASE)
 _OG_IMAGE_FAMILY_RE = re.compile(r'\bog:image\b', re.IGNORECASE)
@@ -192,12 +193,21 @@ def enrich_images_with_og_image(items: list[dict]) -> None:
 def fetch_all_feeds(feeds=None):
     if feeds is None:
         feeds = FEEDS  # back-compat
-    all_items = []
-    for feed_config in feeds:
-        items = fetch_feed(feed_config)
-        print(f"  {feed_config['source']}: {len(items)} items")
-        all_items.extend(items)
-        time.sleep(0.5)
+    all_items: list[dict] = []
+    # Fetch feeds in parallel. Each feed gets one HTTP request to its own
+    # origin, so polite per-host concurrency is automatic. Order isn't
+    # preserved but downstream code doesn't depend on it.
+    with ThreadPoolExecutor(max_workers=FEED_FETCH_MAX_WORKERS) as executor:
+        future_to_feed = {executor.submit(fetch_feed, fc): fc for fc in feeds}
+        for future in as_completed(future_to_feed):
+            fc = future_to_feed[future]
+            try:
+                items = future.result()
+            except Exception as e:
+                print(f"  Error fetching {fc['source']}: {e}")
+                items = []
+            print(f"  {fc['source']}: {len(items)} items")
+            all_items.extend(items)
     # Drop within-batch link duplicates. Some feeds (e.g., NBC Meet the Press)
     # publish multiple RSS entries that point to the same show landing URL;
     # without this, both end up clustered together downstream and both get
