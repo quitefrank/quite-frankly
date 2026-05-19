@@ -257,16 +257,18 @@ def render_other_headlines_for_section(section, tiered_items, links_by_id, used_
     for it in tiered_items or []:
         if it.get("section") != section:
             continue
-        if it.get("tier") != 2:
+        tier = it.get("tier")
+        if tier not in (1, 2):
             continue
         if it["id"] in used_ids:
             continue
         if it["id"] not in links_by_id:
             continue
-        candidates.append((-_item_score(it.get("scores", {})), it["id"]))
+        # Sort tier 1 before tier 2, then by composite score desc.
+        candidates.append((tier, -_item_score(it.get("scores", {})), it["id"]))
 
     candidates.sort()
-    picked = [lid for _neg_score, lid in candidates[:MAX_OTHER_HEADLINES_PER_SECTION]]
+    picked = [lid for _tier, _neg_score, lid in candidates[:MAX_OTHER_HEADLINES_PER_SECTION]]
     if not picked:
         return ""
 

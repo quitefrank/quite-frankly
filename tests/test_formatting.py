@@ -246,6 +246,34 @@ def test_render_other_headlines_for_section_skips_items_already_in_used_ids():
     assert "Other story" in html
 
 
+def test_other_headlines_includes_tier_1_overflow_above_tier_2():
+    # Section has 3 tier_1 items; cap=2 means 1 demotes to Other Headlines.
+    # The demoted tier_1 should appear in Other Headlines AHEAD of a lower-scored tier_2.
+    tiered_items = [
+        {"id": 1, "section": "Toronto Housing", "tier": 1,
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 3, "section_fit": "good"}},  # score 7
+        {"id": 2, "section": "Toronto Housing", "tier": 1,
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},  # score 6
+        {"id": 3, "section": "Toronto Housing", "tier": 1,
+         "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}},  # score 5 (overflow)
+        {"id": 4, "section": "Toronto Housing", "tier": 2,
+         "scores": {"cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good"}},  # score 4
+    ]
+    links_by_id = {
+        n: {"link": f"https://example.com/{n}", "title": f"Story {n}",
+            "snippet": "First sentence.", "source": "Storeys", "image": ""}
+        for n in range(1, 5)
+    }
+    used_ids = {1, 2}  # featured slots took the top two tier_1
+    html = render_other_headlines_for_section("Toronto Housing", tiered_items, links_by_id, used_ids)
+    # Tier-1 overflow id=3 must appear; tier-2 id=4 must appear; id=3 must come first.
+    pos_3 = html.find("Story 3")
+    pos_4 = html.find("Story 4")
+    assert pos_3 >= 0 and pos_4 >= 0, "Both overflow and tier-2 must render"
+    assert pos_3 < pos_4, "Tier-1 overflow should surface above tier-2"
+    assert used_ids == {1, 2, 3, 4}
+
+
 def test_parse_and_render_sections_synthesizes_other_headlines_when_claude_omits_them():
     # Simulate Claude producing only a Tier 1 story, no Other Headlines block.
     text = """## US & Global
