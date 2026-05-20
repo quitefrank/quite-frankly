@@ -1,0 +1,5647 @@
+{
+  "date": "2026-05-20",
+  "mode": "weekday_daily",
+  "phase1": [
+    {
+      "id": 0,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "canada_author_safety",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "FIRST READING: He\u2019s Canada\u2019s number one author, and he\u2019s leaving Canada for safety reasons",
+      "source": "National Post",
+      "link": "https://nationalpost.com/opinion/gad-saad-is-canadas-number-one-author-and-hes-leaving-canada-for-safety-reasons"
+    },
+    {
+      "id": 10,
+      "tier": 2,
+      "section": "Toronto Housing",
+      "cluster_id": "toronto_historic_home",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "$5M historic Toronto home was designed and lived in by famed architect",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/real-estate-toronto/2026/05/41-nanton-avenue/"
+    },
+    {
+      "id": 20,
+      "tier": 2,
+      "section": "Toronto Housing",
+      "cluster_id": "canadian_housing_pace",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Edmonton is the only major Canadian city where housing is keeping pace with popuIation growth",
+      "source": "r/canadahousing",
+      "link": "https://www.reddit.com/r/canadahousing/comments/1thytvi/edmonton_is_the_only_major_canadian_city_where/"
+    },
+    {
+      "id": 23,
+      "tier": 1,
+      "section": "Toronto Housing",
+      "cluster_id": "canadian_inflation_surge",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Canadian Inflation Surges To 23-Month High, Data Shows It\u2019s Higher",
+      "source": "BetterDwelling",
+      "link": "https://betterdwelling.com/canadian-inflation-surges-to-23-month-high-data-shows-its-higher/"
+    },
+    {
+      "id": 24,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "billy_bishop_expansion",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Billy Bishop expansion could cost up to $5B. But taxpayers won't foot the bill, federal agency says",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/billy-bishop-expansion-plan-9.7204928?cmp=rss"
+    },
+    {
+      "id": 33,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "analyst_upgrades_downgrades",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Wednesday\u2019s analyst upgrades and downgrades",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-wednesdays-analyst-upgrades-and-downgrades-304/"
+    },
+    {
+      "id": 43,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "llm_gemini_update",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "llm-gemini 0.32",
+      "source": "Simon Willison",
+      "link": "https://simonwillison.net/2026/May/19/llm-gemini-2/#atom-everything"
+    },
+    {
+      "id": 48,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_golden_hour",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Toronto Golden Hour",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1ti565c/toronto_golden_hour/"
+    },
+    {
+      "id": 58,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "ai_momentum_equity_markets",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "IUX Publishes Market Insight on AI Momentum and U.S. Equity Markets",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/iux-publishes-market-insight-ai-114600968.html?.tsrc=rss"
+    },
+    {
+      "id": 68,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "google_io_world_models",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Google I/O, World Models, I/O Spaghetti",
+      "source": "Stratechery",
+      "link": "https://stratechery.com/2026/google-i-o-world-models-i-o-spaghetti/"
+    },
+    {
+      "id": 69,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "tuesday_primaries_mosque",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Takeaways from Tuesday's primaries. And, victims of mosque shooting revealed",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/g-s1-122996/up-first-newsletter-primary-elections-iran-war-mosque-shooting-victims-minnesota-prediction-markets"
+    },
+    {
+      "id": 79,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "renting_home_cash_complications",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Renting out your home can bring cash\u2014and complications",
+      "source": "MoneySense",
+      "link": "https://www.moneysense.ca/spend/real-estate/income-properties/renting-out-your-home-can-bring-cash-and-complications/"
+    },
+    {
+      "id": 82,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "xi_putin_meeting",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "Xi basks in spotlight as he hosts Putin days after Trump",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cjep12qx3xjo?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": 92,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "irs_trump_audits",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "I.R.S. to Drop Audits of Trump and Family",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/us/politics/trump-irs-doj-lawsuit-audit.html"
+    },
+    {
+      "id": 102,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "israel_lonely",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Israel the lonely",
+      "source": "Economist",
+      "link": "https://www.economist.com/international/2026/05/19/israel-the-lonely"
+    },
+    {
+      "id": 103,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "gas_prices_4_dollar",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "All 50 states top $4 a gallon gas as Iran war impacts linger",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/gas-prices-us-iran-war-4-dollars-50-states"
+    },
+    {
+      "id": 113,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "carney_climate_legacy",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Is Carney undoing the Liberals\u2019 climate legacy?",
+      "source": "CBC Frontburner",
+      "link": "https://www.cbc.ca/podcasting/includes/frontburner-8ff68874-95a6-417b-b705-70bdefad3e62"
+    },
+    {
+      "id": 114,
+      "tier": 3,
+      "section": "Tech & AI",
+      "cluster_id": "map_of_metal",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Map of Metal",
+      "source": "Hacker News",
+      "link": "https://mapofmetal.com/"
+    },
+    {
+      "id": 1,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_stabbing_threat",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Toronto man who stabbed a stranger and killed his brother gets escorted city visits despite \u2018significant threat\u2019",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/canada/toronto-man-not-criminally-responsible-city-visits"
+    },
+    {
+      "id": 11,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "hidden_slushy_bar",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "New hidden slushy bar opens in Toronto just in time for summer",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/eat_drink/2026/05/hanks-chill-slushy-bar-toronto/"
+    },
+    {
+      "id": 21,
+      "tier": 2,
+      "section": "Toronto Housing",
+      "cluster_id": "build_canada_homes",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Op-Ed: The problems Build Canada Homes must solve",
+      "source": "r/canadahousing",
+      "link": "https://www.reddit.com/r/canadahousing/comments/1thnfx2/oped_the_problems_build_canada_homes_must_solve/"
+    },
+    {
+      "id": 25,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "durham_new_mayors",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "2 of Durham\u2019s largest municipalities will have new mayors. Few are vying for the job so far",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/oshawa-ajax-election-municipal-mayor-durham-region-9.7205111?cmp=rss"
+    },
+    {
+      "id": 34,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "bofa_analyst_picks",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Barlow\u2019s Research Roundup: A BofA analyst\u2019s top picks, earnings preview for Canadian bank stocks",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-barlows-research-roundup-a-bofa-analysts-top-picks-earnings-preview/"
+    },
+    {
+      "id": 44,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "gemini_35_flash",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Gemini 3.5 Flash: more expensive, but Google plan to use it for everything",
+      "source": "Simon Willison",
+      "link": "https://simonwillison.net/2026/May/19/gemini-35-flash/#atom-everything"
+    },
+    {
+      "id": 49,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "victoria_park_steels",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Everyone goes to High Park for Sakura viewing. Meanwhile Victoria Park/Steels",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1thwrk8/everyone_goes_to_high_park_for_sakura_viewing/"
+    },
+    {
+      "id": 59,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "software_stock_fundamentals",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "1 Software Stock with Impressive Fundamentals and 2 We Brush Off",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/1-software-stock-impressive-fundamentals-113255567.html?.tsrc=rss"
+    },
+    {
+      "id": 70,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "spanish_pm_investigation",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Former Spanish Prime Minister Zapatero is under investigation",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5828248/former-spanish-pm-zapatero-investigation"
+    },
+    {
+      "id": 80,
+      "tier": 2,
+      "section": "Toronto Housing",
+      "cluster_id": "negative_home_equity",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Fallen into negative home equity? Here are your options",
+      "source": "MoneySense",
+      "link": "https://www.moneysense.ca/spend/real-estate/mortgages/fallen-into-negative-home-equity-here-are-your-options/"
+    },
+    {
+      "id": 83,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "trump_republican_grip",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Trump exerts iron grip on Republican Party with Massie defeated",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cdjpng88d2vo?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": 93,
+      "tier": 2,
+      "section": "Today in the World",
+      "cluster_id": "irs_trump_audits",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "With Trump\u2019s Settlement, a Possible $100 Million I.R.S. Penalty Melts Away",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/us/politics/trump-settlement-irs.html"
+    },
+    {
+      "id": 104,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "trump_latino_voters",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Trump's grip is slipping on Latino voters",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/trump-latino-voters-2026-midterms"
+    },
+    {
+      "id": 115,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "rust_ai_learnings",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Learnings from 100K lines of Rust with AI (2025)",
+      "source": "Hacker News",
+      "link": "https://zfhuang99.github.io/rust/claude%20code/codex/contracts/spec-driven%20development/2025/12/01/rust-with-ai.html"
+    },
+    {
+      "id": 2,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "canadian_jews_october_7",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Yoni Goldstein: Canadian Jews are trapped in an October 7 mindset",
+      "source": "National Post",
+      "link": "https://nationalpost.com/opinion/canadian-jews-are-trapped-in-an-october-7-mindset"
+    },
+    {
+      "id": 12,
+      "tier": 2,
+      "section": "Toronto Housing",
+      "cluster_id": "ontario_rent_cheaper",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "These are the Ontario cities where rent is getting much cheaper in 2026",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/real-estate-toronto/2026/05/ontario-cities-rent-cheaper-2026/"
+    },
+    {
+      "id": 22,
+      "tier": 2,
+      "section": "Toronto Housing",
+      "cluster_id": "housing_affordability_question",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "What could I afford?",
+      "source": "r/canadahousing",
+      "link": "https://www.reddit.com/r/canadahousing/comments/1ti2n2v/what_could_i_afford/"
+    },
+    {
+      "id": 26,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "leslieville_mom_shooting",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "'I miss you, Mama': Family, friends give emotional statements about Leslieville mom killed in shooting",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/karolina-huebner-makurat-victim-impact-statements-leslieville-damian-hudson-9.7205352?cmp=rss"
+    },
+    {
+      "id": 35,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "oil_prices_trump_supply",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Oil prices slump after Trump comments while analysts point to supply crunch",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/article-oil-prices-slump-after-trump-comments-while-analysts-point-to-supply/"
+    },
+    {
+      "id": 45,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "datasette_llm_accountant",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "datasette-llm-accountant 0.1a4",
+      "source": "Simon Willison",
+      "link": "https://simonwillison.net/2026/May/19/datasette-llm-accountant/#atom-everything"
+    },
+    {
+      "id": 50,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "cbc_kars4kids",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "CBC pulls Kars4Kids ads after U.S. court bans 'deceptive' jingle",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1ti6n5g/cbc_pulls_kars4kids_ads_after_us_court_bans/"
+    },
+    {
+      "id": 60,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "nvidia_watch_wall_street",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Nvidia Watch Lifts Wall Street Pre-Bell; Asia Off, Europe Up",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-watch-lifts-wall-street-111727203.html?.tsrc=rss"
+    },
+    {
+      "id": 71,
+      "tier": 3,
+      "section": "US & Global",
+      "cluster_id": "bees_mystery_name",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Bees have coexisted with us for over a millennia. Their name remains a mystery",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5825919/bees-have-coexisted-with-us-for-over-a-millennia-their-name-remains-a-mystery"
+    },
+    {
+      "id": 81,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "best_gic_rates_2026",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The best GIC rates in Canada for 2026",
+      "source": "MoneySense",
+      "link": "https://www.moneysense.ca/save/investing/best-gic-rates/"
+    },
+    {
+      "id": 84,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "ebola_outbreak",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "More die of suspected Ebola as WHO warns that numbers will rise further",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cwy2g197dp8o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": 94,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "jan_6_pardons_payouts",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Prison to Pardons to Payouts: Jan. 6 Rioters Are Elated at Trump Compensation Fund",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/20/us/politics/jan-6-rioters-trump-fund-payouts.html"
+    },
+    {
+      "id": 105,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "google_search_reinvention",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Google reinvents search before AI rivals replace it",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/google-ai-search-agents-chatbots"
+    },
+    {
+      "id": 116,
+      "tier": 3,
+      "section": "Tech & AI",
+      "cluster_id": "humanity_gold_obsession",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The weird, wild story of humanity's obsession with gold",
+      "source": "Hacker News",
+      "link": "https://www.economist.com/culture/2026/05/14/the-weird-wild-story-of-humanitys-obsession-with-gold"
+    },
+    {
+      "id": 3,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "snowbirds_pause_recruitment",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Fraser Tolmie: Snowbirds\u2019 \u2018pause\u2019 a devastating blow to recruitment",
+      "source": "National Post",
+      "link": "https://nationalpost.com/opinion/fraser-tolmie-snowbirds-pause-a-devastating-blow-to-recruitment"
+    },
+    {
+      "id": 13,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_weekend_activities",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "15 things to do in Toronto this weekend",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/radar/2026/05/15-things-do-toronto-weekend-may-20/"
+    },
+    {
+      "id": 27,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "peel_police_lawsuit",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Children of couple killed in mistaken identity shooting allegedly tied to Ryan Wedding sue Peel police",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/peel-police-lawsuit-caledon-shooting-ryan-wedding-9.7204949?cmp=rss"
+    },
+    {
+      "id": 36,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "ai_financing_convertible_bonds",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "AI financing fueling a surge in U.S. convertible bond sales",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/article-ai-financing-fueling-a-surge-in-us-convertible-bond-sales/"
+    },
+    {
+      "id": 46,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "llm_gemini_update",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "llm-gemini 0.32a0",
+      "source": "Simon Willison",
+      "link": "https://simonwillison.net/2026/May/19/llm-gemini/#atom-everything"
+    },
+    {
+      "id": 51,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "ford_speed_cameras",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "We all have one thing to say about Doug Ford\u2019s ban on automated speed cameras: We told you so",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1thqrwf/we_all_have_one_thing_to_say_about_doug_fords_ban/"
+    },
+    {
+      "id": 61,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "consumer_stocks_radar",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "3 Consumer Stocks We Keep Off Our Radar",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-consumer-stocks-keep-off-110855761.html?.tsrc=rss"
+    },
+    {
+      "id": 72,
+      "tier": 2,
+      "section": "Today in the World",
+      "cluster_id": "xi_putin_meeting",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "Russian President Putin meets with China's Xi Jinping, days after Trump's visit",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5826921/russian-president-putin-meets-with-chinas-xi-jinping-days-after-trumps-visit"
+    },
+    {
+      "id": 85,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "lithuania_drone_alert",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Lithuania's leaders take shelter during drone air alert",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/c9d3vpqqqpeo?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": 95,
+      "tier": 2,
+      "section": "Today in the World",
+      "cluster_id": "irs_trump_audits",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "The IRS Thought it Could Fight Trump\u2019s Lawsuit, but it Struck a Deal Anyway",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/admin/irs-trump-lawsuit-deal.html"
+    },
+    {
+      "id": 106,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "taiwan_xi_trump",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Taiwan soldiers on through Xi's threats and Trump's ambivalence",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/taiwan-trump-xi-straits-foundation-kuma"
+    },
+    {
+      "id": 117,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "c_undefined_behavior",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Everything in C is undefined behavior",
+      "source": "Hacker News",
+      "link": "https://blog.habets.se/2026/05/Everything-in-C-is-undefined-behavior.html"
+    },
+    {
+      "id": 4,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "honorary_degree_critique",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Christopher Dummitt: Nothing says generic left winger like getting an honorary degree",
+      "source": "National Post",
+      "link": "https://nationalpost.com/opinion/christopher-dummitt-nothing-says-generic-left-winger-like-getting-an-honorary-degree"
+    },
+    {
+      "id": 14,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_food_streets",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "These are the top Toronto streets for food according to the city's residents",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/eat_drink/2026/05/top-toronto-streets-food/"
+    },
+    {
+      "id": 28,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "billy_bishop_expansion",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Ontario's Toronto Island airport expansion will increase congestion, committee hears",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/toronto-waterfront-expansion-congestion-committee-9.7204805?cmp=rss"
+    },
+    {
+      "id": 37,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "canadian_investor_news",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Before the Bell: What every Canadian investor needs to know today",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-before-the-bell-what-every-canadian-investor-needs-to-know-today-1480/"
+    },
+    {
+      "id": 47,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "datasette_llm_update",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "datasette-llm 0.1a8",
+      "source": "Simon Willison",
+      "link": "https://simonwillison.net/2026/May/19/datasette-llm/#atom-everything"
+    },
+    {
+      "id": 52,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "victoria_day_fireworks",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Last night's Victoria day fireworks were, to pardon a pun, a BLAST!!",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1thm1ew/last_nights_victoria_day_fireworks_were_to_pardon/"
+    },
+    {
+      "id": 62,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "wealthspire_flxr_position",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Wealthspire Retirement Loads Up on FLXR With New $21 Million Position",
+      "source": "Yahoo Finance",
+      "link": "https://www.fool.com/coverage/filings/2026/05/20/wealthspire-retirement-loads-up-on-flxr-with-new-usd21-million-position/?.tsrc=rss"
+    },
+    {
+      "id": 73,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "global_aid_system_failing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Report finds global aid system is failing to address today's humanitarian crises",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5825863/report-finds-global-aid-system-is-failing-to-address-todays-humanitarian-crises"
+    },
+    {
+      "id": 86,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "pakistan_tiktok_murder",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Man who murdered teen TikTok star in Pakistan gets death sentence",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cvgzrgm0rgvo?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": 96,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "trump_immunity_iran_regime",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "New Immunity for President Trump, and an Audacious Plan for Regime Change in Iran",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/20/podcasts/the-headlines/-trump-irs-audit-regime-change-iran.html"
+    },
+    {
+      "id": 107,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "rubio_cuba_relationship",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Rubio offers \"new relationship\" to Cuban people",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/rubio-cuba-speech-independence-day"
+    },
+    {
+      "id": 118,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "infomaniak_foundation_privacy",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Infomaniak transitions to a foundation model to protect user data privacy",
+      "source": "Hacker News",
+      "link": "https://news.infomaniak.com/en/infomaniak-foundation-sovereign-cloud/"
+    },
+    {
+      "id": 5,
+      "tier": 2,
+      "section": "Today in the World",
+      "cluster_id": "xi_putin_meeting",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "Putin arrives in Beijing to reinforce Russia-China alliance after Trump visit",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/world/putin-xi-to-strengthen-russia-china-alliance"
+    },
+    {
+      "id": 15,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "cn_tower_doors_open",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "CN Tower tickets for Doors Open Toronto vanish in seconds and people are furious",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/radar/2026/05/cn-tower-doors-open-toronto/"
+    },
+    {
+      "id": 29,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "mississauga_stabbing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Police looking for suspect after man dies in stabbing in Mississauga parking lot",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/fatal-mississauga-stabbing-9.7204738?cmp=rss"
+    },
+    {
+      "id": 38,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "bond_yields_nvidia_stocks",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Premarket: Bond yields pause near recent peak, stocks steady ahead of Nvidia results",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/market-news/article-premarket-bond-yields-pause-near-recent-peak-stocks-steady-ahead-of/"
+    },
+    {
+      "id": 53,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "chow_bradford_poll",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "New poll results show Olivia Chow has an early lead over Brad Bradford among decided voters",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1thpiw1/new_poll_results_show_olivia_chow_has_an_early/"
+    },
+    {
+      "id": 63,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "stocks_nvidia_earnings",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Stocks Gain Pre-Bell Ahead of Nvidia Earnings, Fed Meeting Minutes",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stocks-gain-pre-bell-ahead-110246938.html?.tsrc=rss"
+    },
+    {
+      "id": 74,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "bolivia_capital_protests",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Bolivia's capital under siege as protests deepen crisis for President Paz",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5828203/bolivia-capital-protests-crisis"
+    },
+    {
+      "id": 87,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "trump_greenland_envoy",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Trump's Greenland envoy faces uphill battle on mission to make 'friends'",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cze28ex3lexo?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": 97,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "iran_hardline_president",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Early War Goal Was to Install Hard Line Former President as Iran\u2019s Leader",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/us/politics/iran-israel-us-leader-ahmadinejad.html"
+    },
+    {
+      "id": 108,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "small_business_gasoline",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Small business profits sink as gasoline prices soar",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/small-business-economy-gas-prices"
+    },
+    {
+      "id": 119,
+      "tier": 3,
+      "section": "Tech & AI",
+      "cluster_id": "japan_mass_allergies",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Japan is gripped by mass allergies. A 1950s project is to blame",
+      "source": "Hacker News",
+      "link": "https://www.bbc.com/future/article/20260515-the-1950s-blunder-which-causes-mass-hay-fever-in-japan"
+    },
+    {
+      "id": 6,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "ai_unease_us",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "AI unease grows in the U.S. as early enthusiasm gives way to \u2018existential fear\u2019",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/world/artificial-intelligence-unease-grows-in-us"
+    },
+    {
+      "id": 16,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "government_payouts_canada",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Here are all the government payouts eligible Canadians can expect next month",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/government-payouts-canada-june-2026/"
+    },
+    {
+      "id": 30,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "missing_teen_north_york",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Parents of 14-year-old last seen in North York plead for public's help to find her",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/missing-14-year-old-north-york-9.7204706?cmp=rss"
+    },
+    {
+      "id": 39,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "bond_yields_ai_world",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Bond yields may finally be baking in an AI world",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/article-bond-yields-may-finally-be-baking-in-an-ai-world/"
+    },
+    {
+      "id": 54,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_police_spain",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Toronto police officers arrested in Spain will be paid while suspended, force confirms",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1tht8fs/toronto_police_officers_arrested_in_spain_will_be/"
+    },
+    {
+      "id": 64,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "love_stock_sell",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "3 Reasons to Sell LOVE and 1 Stock to Buy Instead",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-sell-love-1-105255218.html?.tsrc=rss"
+    },
+    {
+      "id": 75,
+      "tier": 2,
+      "section": "Today in the World",
+      "cluster_id": "ebola_outbreak",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "WHO chief concerned over 'scale and speed' of Ebola outbreak",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/g-s1-122971/who-chief-concerned-over-scale-and-speed-of-ebola-outbreak"
+    },
+    {
+      "id": 88,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "mango_boss_son_arrest",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Son of Mango boss arrested over father's fatal fall from cliff",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/c0m2pg1z4x8o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": 98,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "iran_strike_threat",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Iran Threatens to Strike Beyond the Middle East if the U.S. Resumes Attacks",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/20/world/middleeast/iran-threat-us-attacks-trump.html"
+    },
+    {
+      "id": 109,
+      "tier": 2,
+      "section": "Today in the World",
+      "cluster_id": "ebola_outbreak",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "Why health officials are worried about containing the Ebola outbreak",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/19/ebola-hantavirus-who-cdc-preparedness-concerns"
+    },
+    {
+      "id": 120,
+      "tier": 3,
+      "section": "Tech & AI",
+      "cluster_id": "fivethirtyeight_archive",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "FiveThirtyEight articles on the Internet Archive",
+      "source": "Hacker News",
+      "link": "https://fivethirtyeightindex.com/"
+    },
+    {
+      "id": 7,
+      "tier": 2,
+      "section": "Today in the World",
+      "cluster_id": "irs_trump_audits",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "IRS \u2018forever barred\u2019 from probing Donald Trump\u2019s tax returns under lawsuit settlement",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/world/donald-trump-irs-lawsuit"
+    },
+    {
+      "id": 17,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "nba_raptors_poll",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "NBA poll reveals players don't hate playing for Toronto Raptors",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/sports_play/2026/05/nba-players-dont-hate-playing-toronto-raptors/"
+    },
+    {
+      "id": 31,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "ottawa_defence_testing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Ottawa spending $5M on defence testing at Ontario Tech University",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/federal-government-funding-ace-ontario-tech-university-9.7205048?cmp=rss"
+    },
+    {
+      "id": 40,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "client_ghosting_advice",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Been ghosted by a client? Try not to take it personally",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-practice/article-been-ghosted-by-a-client-try-not-to-take-it-personally/"
+    },
+    {
+      "id": 55,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "billy_bishop_expansion",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Toronto island airport expansion would lead to severe traffic, committee hears",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1thw8m2/toronto_island_airport_expansion_would_lead_to/"
+    },
+    {
+      "id": 65,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "heico_fans_reasons",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "3 Reasons We\u2019re Fans of HEICO (HEI)",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-fans-heico-hei-104455352.html?.tsrc=rss"
+    },
+    {
+      "id": 76,
+      "tier": 2,
+      "section": "Today in the World",
+      "cluster_id": "xi_putin_meeting",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "Xi and Putin meet to reaffirm China-Russia ties days after Trump's visit",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5828196/xi-putin-meet-beijing"
+    },
+    {
+      "id": 89,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "san_diego_mosque_shooting",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Father-of-eight killed in San Diego mosque shooting hailed as hero",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/clyp3gkrwg9o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": 99,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "senate_iran_war_measure",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Senate Votes to Take Up Measure to Force Trump to End Iran War",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/us/politics/senate-iran-war-authorization.html"
+    },
+    {
+      "id": 110,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai_election_ads_crackdown",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Democrats eye 2027 crackdown on AI in election ads",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/ai-ads-democrats-congress-2026-midterms-videos"
+    },
+    {
+      "id": 121,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "railway_google_cloud_incident",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Incident Report: Railway Blocked by Google Cloud (Resolved)",
+      "source": "Hacker News",
+      "link": "https://blog.railway.com/p/incident-report-may-19-2026-gcp-account-outage"
+    },
+    {
+      "id": 8,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "churchill_falls_deal",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Ottawa ready to help broker Churchill Falls deal with Quebec and Newfoundland",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/ottawa-ready-to-help-broker-churchill-falls-deal-with-quebec-and-newfoundland"
+    },
+    {
+      "id": 18,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_malls_chaos",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Toronto malls turn into complete chaos over luxury merch launch",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/fashion_style/2026/05/toronto-malls-chaos-luxury-merch-launch/"
+    },
+    {
+      "id": 32,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "cbc_kars4kids",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "CBC pulls Kars4Kids ads after U.S. court bans 'deceptive' jingle",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/cbc-kars4kids-ads-pulled-9.7204937?cmp=rss"
+    },
+    {
+      "id": 41,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "wealthy_philanthropy_priorities",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Give now or in the estate? Helping wealthy clients set philanthropic priorities",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-news/article-give-now-or-in-the-estate-helping-wealthy-clients-set-philanthropic/"
+    },
+    {
+      "id": 56,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "sunday_christie_pits",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Sunday in Christie Pits",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1ti79ed/sunday_in_christie_pits/"
+    },
+    {
+      "id": 66,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "amg_earnings_analysis",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Affiliated Managers Group (AMG): Buy, Sell, or Hold Post Q1 Earnings?",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/affiliated-managers-group-amg-buy-103655254.html?.tsrc=rss"
+    },
+    {
+      "id": 77,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "taiwan_travelogue_booker",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "'Taiwan Travelogue' wins the 2026 International Booker Prize",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/19/nx-s1-5823677/2026-booker-prize-winner-taiwan-travelogue"
+    },
+    {
+      "id": 90,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "nigeria_minister_arrest",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Nigeria arrests former minister in hiding after corruption conviction",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cdjpn378mvvo?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": 100,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "iran_war_leverage",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "How Iran Gained Leverage in the War",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/20/world/middleeast/iran-strait-of-hormuz-triangular-coercion.html"
+    },
+    {
+      "id": 111,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "trump_ai_executive_order",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Scoop: Trump AI executive order seeks early government access to frontier models",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/ai-trump-executive-order-white-house-infighting"
+    },
+    {
+      "id": 122,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "github_unauthorized_access",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "GitHub is investigating unauthorized access to their internal repositories",
+      "source": "Hacker News",
+      "link": "https://twitter.com/github/status/2056884788179726685"
+    },
+    {
+      "id": 9,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "us_troop_poland_delay",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "U.S. troop deployment to Poland delayed, not canceled, says JD Vance",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/world/us-troop-deployment-to-poland-only-delayed-jd-vance"
+    },
+    {
+      "id": 19,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "snowbirds_cne_delay",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Snowbirds leaving CNE Air Show until 2030s and will return worse than ever",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/snowbirds-leaving-cne-air-show/"
+    },
+    {
+      "id": 42,
+      "tier": 2,
+      "section": "Toronto Housing",
+      "cluster_id": "global_bond_yields_mortgages",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Surging global bond yields could cause Canadian mortgage rates to climb",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/personal-finance/article-global-bond-yields-mortgage-rates-inflation/"
+    },
+    {
+      "id": 57,
+      "tier": 3,
+      "section": "Canada & Toronto",
+      "cluster_id": "planta_toronto_closure",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Planta closed both its Toronto locations",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1tidh87/planta_closed_both_its_toronto_locations/"
+    },
+    {
+      "id": 67,
+      "tier": 2,
+      "section": "Finance & Markets",
+      "cluster_id": "platt_ai_titans_positions",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Is Billionaire Michael Platt Souring on the Magnificent Seven? He Just Closed Positions in 4 AI Titans in Favor of a Company That May Be a Surefire Winner in the AI Infrastructure Spending Boom.",
+      "source": "Yahoo Finance",
+      "link": "https://www.fool.com/investing/2026/05/20/is-billionaire-platt-souring-on-magnificent-seven/?.tsrc=rss"
+    },
+    {
+      "id": 78,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "israel_palestinian_district",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Israel's trying to expel a whole Palestinian district in East Jerusalem, activists say",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/19/nx-s1-5823861/israel-palestinians-east-jerusalem"
+    }
+  ],
+  "phase2_shadow": [
+    {
+      "id": 0,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "canada_author_safety",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "FIRST READING: He\u2019s Canada\u2019s number one author, and he\u2019s leaving Canada for safety reasons",
+      "source": "National Post",
+      "link": "https://nationalpost.com/opinion/gad-saad-is-canadas-number-one-author-and-hes-leaving-canada-for-safety-reasons",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 10,
+      "tier": 1,
+      "section": "Toronto Housing",
+      "cluster_id": "toronto_historic_home",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "$5M historic Toronto home was designed and lived in by famed architect",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/real-estate-toronto/2026/05/41-nanton-avenue/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 20,
+      "tier": 1,
+      "section": "Toronto Housing",
+      "cluster_id": "canadian_housing_pace",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Edmonton is the only major Canadian city where housing is keeping pace with popuIation growth",
+      "source": "r/canadahousing",
+      "link": "https://www.reddit.com/r/canadahousing/comments/1thytvi/edmonton_is_the_only_major_canadian_city_where/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 23,
+      "tier": 1,
+      "section": "Toronto Housing",
+      "cluster_id": "canadian_inflation_surge",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Canadian Inflation Surges To 23-Month High, Data Shows It\u2019s Higher",
+      "source": "BetterDwelling",
+      "link": "https://betterdwelling.com/canadian-inflation-surges-to-23-month-high-data-shows-its-higher/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 24,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "billy_bishop_expansion",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Billy Bishop expansion could cost up to $5B. But taxpayers won't foot the bill, federal agency says",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/billy-bishop-expansion-plan-9.7204928?cmp=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 33,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "analyst_upgrades_downgrades",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Wednesday\u2019s analyst upgrades and downgrades",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-wednesdays-analyst-upgrades-and-downgrades-304/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 43,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "llm_gemini_update",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "llm-gemini 0.32",
+      "source": "Simon Willison",
+      "link": "https://simonwillison.net/2026/May/19/llm-gemini-2/#atom-everything",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 48,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_golden_hour",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Toronto Golden Hour",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1ti565c/toronto_golden_hour/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 58,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "ai_momentum_equity_markets",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "IUX Publishes Market Insight on AI Momentum and U.S. Equity Markets",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/iux-publishes-market-insight-ai-114600968.html?.tsrc=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 68,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "google_io_world_models",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Google I/O, World Models, I/O Spaghetti",
+      "source": "Stratechery",
+      "link": "https://stratechery.com/2026/google-i-o-world-models-i-o-spaghetti/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 69,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "tuesday_primaries_mosque",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Takeaways from Tuesday's primaries. And, victims of mosque shooting revealed",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/g-s1-122996/up-first-newsletter-primary-elections-iran-war-mosque-shooting-victims-minnesota-prediction-markets",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 79,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "renting_home_cash_complications",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Renting out your home can bring cash\u2014and complications",
+      "source": "MoneySense",
+      "link": "https://www.moneysense.ca/spend/real-estate/income-properties/renting-out-your-home-can-bring-cash-and-complications/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 82,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "xi_putin_meeting",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "Xi basks in spotlight as he hosts Putin days after Trump",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cjep12qx3xjo?at_medium=RSS&at_campaign=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 92,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "irs_trump_audits",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "I.R.S. to Drop Audits of Trump and Family",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/us/politics/trump-irs-doj-lawsuit-audit.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 42,
+        "comments": 10
+      }
+    },
+    {
+      "id": 102,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "israel_lonely",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Israel the lonely",
+      "source": "Economist",
+      "link": "https://www.economist.com/international/2026/05/19/israel-the-lonely",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 103,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "gas_prices_4_dollar",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "All 50 states top $4 a gallon gas as Iran war impacts linger",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/gas-prices-us-iran-war-4-dollars-50-states",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 113,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "carney_climate_legacy",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Is Carney undoing the Liberals\u2019 climate legacy?",
+      "source": "CBC Frontburner",
+      "link": "https://www.cbc.ca/podcasting/includes/frontburner-8ff68874-95a6-417b-b705-70bdefad3e62",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 114,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "map_of_metal",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Map of Metal",
+      "source": "Hacker News",
+      "link": "https://mapofmetal.com/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 35,
+        "comments": 7
+      }
+    },
+    {
+      "id": 1,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_stabbing_threat",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Toronto man who stabbed a stranger and killed his brother gets escorted city visits despite \u2018significant threat\u2019",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/canada/toronto-man-not-criminally-responsible-city-visits",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 11,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "hidden_slushy_bar",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "New hidden slushy bar opens in Toronto just in time for summer",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/eat_drink/2026/05/hanks-chill-slushy-bar-toronto/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 21,
+      "tier": 1,
+      "section": "Toronto Housing",
+      "cluster_id": "build_canada_homes",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Op-Ed: The problems Build Canada Homes must solve",
+      "source": "r/canadahousing",
+      "link": "https://www.reddit.com/r/canadahousing/comments/1thnfx2/oped_the_problems_build_canada_homes_must_solve/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 25,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "durham_new_mayors",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "2 of Durham\u2019s largest municipalities will have new mayors. Few are vying for the job so far",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/oshawa-ajax-election-municipal-mayor-durham-region-9.7205111?cmp=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 34,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "bofa_analyst_picks",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Barlow\u2019s Research Roundup: A BofA analyst\u2019s top picks, earnings preview for Canadian bank stocks",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-barlows-research-roundup-a-bofa-analysts-top-picks-earnings-preview/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 44,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "gemini_35_flash",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Gemini 3.5 Flash: more expensive, but Google plan to use it for everything",
+      "source": "Simon Willison",
+      "link": "https://simonwillison.net/2026/May/19/gemini-35-flash/#atom-everything",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 49,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "victoria_park_steels",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Everyone goes to High Park for Sakura viewing. Meanwhile Victoria Park/Steels",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1thwrk8/everyone_goes_to_high_park_for_sakura_viewing/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 59,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "software_stock_fundamentals",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "1 Software Stock with Impressive Fundamentals and 2 We Brush Off",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/1-software-stock-impressive-fundamentals-113255567.html?.tsrc=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 70,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "spanish_pm_investigation",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Former Spanish Prime Minister Zapatero is under investigation",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5828248/former-spanish-pm-zapatero-investigation",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 80,
+      "tier": 1,
+      "section": "Toronto Housing",
+      "cluster_id": "negative_home_equity",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Fallen into negative home equity? Here are your options",
+      "source": "MoneySense",
+      "link": "https://www.moneysense.ca/spend/real-estate/mortgages/fallen-into-negative-home-equity-here-are-your-options/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 83,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "trump_republican_grip",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Trump exerts iron grip on Republican Party with Massie defeated",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cdjpng88d2vo?at_medium=RSS&at_campaign=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 93,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "irs_trump_audits",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "With Trump\u2019s Settlement, a Possible $100 Million I.R.S. Penalty Melts Away",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/us/politics/trump-settlement-irs.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 104,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "trump_latino_voters",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Trump's grip is slipping on Latino voters",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/trump-latino-voters-2026-midterms",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 115,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "rust_ai_learnings",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Learnings from 100K lines of Rust with AI (2025)",
+      "source": "Hacker News",
+      "link": "https://zfhuang99.github.io/rust/claude%20code/codex/contracts/spec-driven%20development/2025/12/01/rust-with-ai.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 67,
+        "comments": 54
+      }
+    },
+    {
+      "id": 2,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "canadian_jews_october_7",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Yoni Goldstein: Canadian Jews are trapped in an October 7 mindset",
+      "source": "National Post",
+      "link": "https://nationalpost.com/opinion/canadian-jews-are-trapped-in-an-october-7-mindset",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 12,
+      "tier": 1,
+      "section": "Toronto Housing",
+      "cluster_id": "ontario_rent_cheaper",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "These are the Ontario cities where rent is getting much cheaper in 2026",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/real-estate-toronto/2026/05/ontario-cities-rent-cheaper-2026/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 22,
+      "tier": 1,
+      "section": "Toronto Housing",
+      "cluster_id": "housing_affordability_question",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "What could I afford?",
+      "source": "r/canadahousing",
+      "link": "https://www.reddit.com/r/canadahousing/comments/1ti2n2v/what_could_i_afford/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 26,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "leslieville_mom_shooting",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "'I miss you, Mama': Family, friends give emotional statements about Leslieville mom killed in shooting",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/karolina-huebner-makurat-victim-impact-statements-leslieville-damian-hudson-9.7205352?cmp=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 35,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "oil_prices_trump_supply",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Oil prices slump after Trump comments while analysts point to supply crunch",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/article-oil-prices-slump-after-trump-comments-while-analysts-point-to-supply/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 45,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "datasette_llm_accountant",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "datasette-llm-accountant 0.1a4",
+      "source": "Simon Willison",
+      "link": "https://simonwillison.net/2026/May/19/datasette-llm-accountant/#atom-everything",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 50,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "cbc_kars4kids",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "CBC pulls Kars4Kids ads after U.S. court bans 'deceptive' jingle",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1ti6n5g/cbc_pulls_kars4kids_ads_after_us_court_bans/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 60,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "nvidia_watch_wall_street",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Nvidia Watch Lifts Wall Street Pre-Bell; Asia Off, Europe Up",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-watch-lifts-wall-street-111727203.html?.tsrc=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 71,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "bees_mystery_name",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Bees have coexisted with us for over a millennia. Their name remains a mystery",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5825919/bees-have-coexisted-with-us-for-over-a-millennia-their-name-remains-a-mystery",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 81,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "best_gic_rates_2026",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The best GIC rates in Canada for 2026",
+      "source": "MoneySense",
+      "link": "https://www.moneysense.ca/save/investing/best-gic-rates/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 84,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "ebola_outbreak",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "More die of suspected Ebola as WHO warns that numbers will rise further",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cwy2g197dp8o?at_medium=RSS&at_campaign=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 94,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "jan_6_pardons_payouts",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Prison to Pardons to Payouts: Jan. 6 Rioters Are Elated at Trump Compensation Fund",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/20/us/politics/jan-6-rioters-trump-fund-payouts.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 105,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "google_search_reinvention",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Google reinvents search before AI rivals replace it",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/google-ai-search-agents-chatbots",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 116,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "humanity_gold_obsession",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The weird, wild story of humanity's obsession with gold",
+      "source": "Hacker News",
+      "link": "https://www.economist.com/culture/2026/05/14/the-weird-wild-story-of-humanitys-obsession-with-gold",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 22,
+        "comments": 27
+      }
+    },
+    {
+      "id": 3,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "snowbirds_pause_recruitment",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Fraser Tolmie: Snowbirds\u2019 \u2018pause\u2019 a devastating blow to recruitment",
+      "source": "National Post",
+      "link": "https://nationalpost.com/opinion/fraser-tolmie-snowbirds-pause-a-devastating-blow-to-recruitment",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 13,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_weekend_activities",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "15 things to do in Toronto this weekend",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/radar/2026/05/15-things-do-toronto-weekend-may-20/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 27,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "peel_police_lawsuit",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Children of couple killed in mistaken identity shooting allegedly tied to Ryan Wedding sue Peel police",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/peel-police-lawsuit-caledon-shooting-ryan-wedding-9.7204949?cmp=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 36,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "ai_financing_convertible_bonds",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "AI financing fueling a surge in U.S. convertible bond sales",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/article-ai-financing-fueling-a-surge-in-us-convertible-bond-sales/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 46,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "llm_gemini_update",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "llm-gemini 0.32a0",
+      "source": "Simon Willison",
+      "link": "https://simonwillison.net/2026/May/19/llm-gemini/#atom-everything",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 51,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "ford_speed_cameras",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "We all have one thing to say about Doug Ford\u2019s ban on automated speed cameras: We told you so",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1thqrwf/we_all_have_one_thing_to_say_about_doug_fords_ban/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 61,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "consumer_stocks_radar",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "3 Consumer Stocks We Keep Off Our Radar",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-consumer-stocks-keep-off-110855761.html?.tsrc=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 72,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "xi_putin_meeting",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "Russian President Putin meets with China's Xi Jinping, days after Trump's visit",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5826921/russian-president-putin-meets-with-chinas-xi-jinping-days-after-trumps-visit",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 85,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "lithuania_drone_alert",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Lithuania's leaders take shelter during drone air alert",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/c9d3vpqqqpeo?at_medium=RSS&at_campaign=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 95,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "irs_trump_audits",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "The IRS Thought it Could Fight Trump\u2019s Lawsuit, but it Struck a Deal Anyway",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/admin/irs-trump-lawsuit-deal.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 106,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "taiwan_xi_trump",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Taiwan soldiers on through Xi's threats and Trump's ambivalence",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/taiwan-trump-xi-straits-foundation-kuma",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 117,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "c_undefined_behavior",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Everything in C is undefined behavior",
+      "source": "Hacker News",
+      "link": "https://blog.habets.se/2026/05/Everything-in-C-is-undefined-behavior.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 260,
+        "comments": 358
+      }
+    },
+    {
+      "id": 4,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "honorary_degree_critique",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Christopher Dummitt: Nothing says generic left winger like getting an honorary degree",
+      "source": "National Post",
+      "link": "https://nationalpost.com/opinion/christopher-dummitt-nothing-says-generic-left-winger-like-getting-an-honorary-degree",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 14,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_food_streets",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "These are the top Toronto streets for food according to the city's residents",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/eat_drink/2026/05/top-toronto-streets-food/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 28,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "billy_bishop_expansion",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Ontario's Toronto Island airport expansion will increase congestion, committee hears",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/toronto-waterfront-expansion-congestion-committee-9.7204805?cmp=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 37,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "canadian_investor_news",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Before the Bell: What every Canadian investor needs to know today",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-before-the-bell-what-every-canadian-investor-needs-to-know-today-1480/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 47,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "datasette_llm_update",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "datasette-llm 0.1a8",
+      "source": "Simon Willison",
+      "link": "https://simonwillison.net/2026/May/19/datasette-llm/#atom-everything",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 52,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "victoria_day_fireworks",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Last night's Victoria day fireworks were, to pardon a pun, a BLAST!!",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1thm1ew/last_nights_victoria_day_fireworks_were_to_pardon/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 62,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "wealthspire_flxr_position",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Wealthspire Retirement Loads Up on FLXR With New $21 Million Position",
+      "source": "Yahoo Finance",
+      "link": "https://www.fool.com/coverage/filings/2026/05/20/wealthspire-retirement-loads-up-on-flxr-with-new-usd21-million-position/?.tsrc=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 73,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "global_aid_system_failing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Report finds global aid system is failing to address today's humanitarian crises",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5825863/report-finds-global-aid-system-is-failing-to-address-todays-humanitarian-crises",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 86,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "pakistan_tiktok_murder",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Man who murdered teen TikTok star in Pakistan gets death sentence",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cvgzrgm0rgvo?at_medium=RSS&at_campaign=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 96,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "trump_immunity_iran_regime",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "New Immunity for President Trump, and an Audacious Plan for Regime Change in Iran",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/20/podcasts/the-headlines/-trump-irs-audit-regime-change-iran.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 107,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "rubio_cuba_relationship",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Rubio offers \"new relationship\" to Cuban people",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/rubio-cuba-speech-independence-day",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 118,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "infomaniak_foundation_privacy",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Infomaniak transitions to a foundation model to protect user data privacy",
+      "source": "Hacker News",
+      "link": "https://news.infomaniak.com/en/infomaniak-foundation-sovereign-cloud/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 100,
+        "comments": 26
+      }
+    },
+    {
+      "id": 5,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "xi_putin_meeting",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "Putin arrives in Beijing to reinforce Russia-China alliance after Trump visit",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/world/putin-xi-to-strengthen-russia-china-alliance",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 15,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "cn_tower_doors_open",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "CN Tower tickets for Doors Open Toronto vanish in seconds and people are furious",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/radar/2026/05/cn-tower-doors-open-toronto/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 29,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "mississauga_stabbing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Police looking for suspect after man dies in stabbing in Mississauga parking lot",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/fatal-mississauga-stabbing-9.7204738?cmp=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 38,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "bond_yields_nvidia_stocks",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Premarket: Bond yields pause near recent peak, stocks steady ahead of Nvidia results",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/market-news/article-premarket-bond-yields-pause-near-recent-peak-stocks-steady-ahead-of/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 53,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "chow_bradford_poll",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "New poll results show Olivia Chow has an early lead over Brad Bradford among decided voters",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1thpiw1/new_poll_results_show_olivia_chow_has_an_early/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 63,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "stocks_nvidia_earnings",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Stocks Gain Pre-Bell Ahead of Nvidia Earnings, Fed Meeting Minutes",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stocks-gain-pre-bell-ahead-110246938.html?.tsrc=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 74,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "bolivia_capital_protests",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Bolivia's capital under siege as protests deepen crisis for President Paz",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5828203/bolivia-capital-protests-crisis",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 87,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "trump_greenland_envoy",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Trump's Greenland envoy faces uphill battle on mission to make 'friends'",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cze28ex3lexo?at_medium=RSS&at_campaign=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 97,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "iran_hardline_president",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Early War Goal Was to Install Hard Line Former President as Iran\u2019s Leader",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/us/politics/iran-israel-us-leader-ahmadinejad.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 108,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "small_business_gasoline",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Small business profits sink as gasoline prices soar",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/small-business-economy-gas-prices",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 119,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "japan_mass_allergies",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Japan is gripped by mass allergies. A 1950s project is to blame",
+      "source": "Hacker News",
+      "link": "https://www.bbc.com/future/article/20260515-the-1950s-blunder-which-causes-mass-hay-fever-in-japan",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 155,
+        "comments": 68
+      }
+    },
+    {
+      "id": 6,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai_unease_us",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "AI unease grows in the U.S. as early enthusiasm gives way to \u2018existential fear\u2019",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/world/artificial-intelligence-unease-grows-in-us",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 16,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "government_payouts_canada",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Here are all the government payouts eligible Canadians can expect next month",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/government-payouts-canada-june-2026/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 30,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "missing_teen_north_york",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Parents of 14-year-old last seen in North York plead for public's help to find her",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/missing-14-year-old-north-york-9.7204706?cmp=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 39,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "bond_yields_ai_world",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Bond yields may finally be baking in an AI world",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/article-bond-yields-may-finally-be-baking-in-an-ai-world/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 54,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_police_spain",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Toronto police officers arrested in Spain will be paid while suspended, force confirms",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1tht8fs/toronto_police_officers_arrested_in_spain_will_be/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 64,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "love_stock_sell",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "3 Reasons to Sell LOVE and 1 Stock to Buy Instead",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-sell-love-1-105255218.html?.tsrc=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 75,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "ebola_outbreak",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "WHO chief concerned over 'scale and speed' of Ebola outbreak",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/g-s1-122971/who-chief-concerned-over-scale-and-speed-of-ebola-outbreak",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 88,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "mango_boss_son_arrest",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Son of Mango boss arrested over father's fatal fall from cliff",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/c0m2pg1z4x8o?at_medium=RSS&at_campaign=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 98,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "iran_strike_threat",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Iran Threatens to Strike Beyond the Middle East if the U.S. Resumes Attacks",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/20/world/middleeast/iran-threat-us-attacks-trump.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 109,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "ebola_outbreak",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "Why health officials are worried about containing the Ebola outbreak",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/19/ebola-hantavirus-who-cdc-preparedness-concerns",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 120,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "fivethirtyeight_archive",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "FiveThirtyEight articles on the Internet Archive",
+      "source": "Hacker News",
+      "link": "https://fivethirtyeightindex.com/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 235,
+        "comments": 58
+      }
+    },
+    {
+      "id": 7,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "irs_trump_audits",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "IRS \u2018forever barred\u2019 from probing Donald Trump\u2019s tax returns under lawsuit settlement",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/world/donald-trump-irs-lawsuit",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 17,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "nba_raptors_poll",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "NBA poll reveals players don't hate playing for Toronto Raptors",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/sports_play/2026/05/nba-players-dont-hate-playing-toronto-raptors/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 31,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "ottawa_defence_testing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Ottawa spending $5M on defence testing at Ontario Tech University",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/toronto/federal-government-funding-ace-ontario-tech-university-9.7205048?cmp=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 40,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "client_ghosting_advice",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Been ghosted by a client? Try not to take it personally",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-practice/article-been-ghosted-by-a-client-try-not-to-take-it-personally/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 55,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "billy_bishop_expansion",
+      "scores": {
+        "cross_source_coverage": 3,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Toronto island airport expansion would lead to severe traffic, committee hears",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1thw8m2/toronto_island_airport_expansion_would_lead_to/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 65,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "heico_fans_reasons",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "3 Reasons We\u2019re Fans of HEICO (HEI)",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-fans-heico-hei-104455352.html?.tsrc=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 76,
+      "tier": 1,
+      "section": "Today in the World",
+      "cluster_id": "xi_putin_meeting",
+      "scores": {
+        "cross_source_coverage": 4,
+        "personal_relevance": 1,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": true,
+      "headline": "Xi and Putin meet to reaffirm China-Russia ties days after Trump's visit",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/20/nx-s1-5828196/xi-putin-meet-beijing",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 89,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "san_diego_mosque_shooting",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Father-of-eight killed in San Diego mosque shooting hailed as hero",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/clyp3gkrwg9o?at_medium=RSS&at_campaign=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 99,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "senate_iran_war_measure",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Senate Votes to Take Up Measure to Force Trump to End Iran War",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/19/us/politics/senate-iran-war-authorization.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 110,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai_election_ads_crackdown",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Democrats eye 2027 crackdown on AI in election ads",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/ai-ads-democrats-congress-2026-midterms-videos",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 121,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "railway_google_cloud_incident",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Incident Report: Railway Blocked by Google Cloud (Resolved)",
+      "source": "Hacker News",
+      "link": "https://blog.railway.com/p/incident-report-may-19-2026-gcp-account-outage",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 496,
+        "comments": 315
+      }
+    },
+    {
+      "id": 8,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "churchill_falls_deal",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Ottawa ready to help broker Churchill Falls deal with Quebec and Newfoundland",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/ottawa-ready-to-help-broker-churchill-falls-deal-with-quebec-and-newfoundland",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 18,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "toronto_malls_chaos",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Toronto malls turn into complete chaos over luxury merch launch",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/fashion_style/2026/05/toronto-malls-chaos-luxury-merch-launch/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 32,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "cbc_kars4kids",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "CBC pulls Kars4Kids ads after U.S. court bans 'deceptive' jingle",
+      "source": "CBC",
+      "link": "https://www.cbc.ca/news/canada/cbc-kars4kids-ads-pulled-9.7204937?cmp=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 41,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "wealthy_philanthropy_priorities",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Give now or in the estate? Helping wealthy clients set philanthropic priorities",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-news/article-give-now-or-in-the-estate-helping-wealthy-clients-set-philanthropic/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 56,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "sunday_christie_pits",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Sunday in Christie Pits",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1ti79ed/sunday_in_christie_pits/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 66,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "amg_earnings_analysis",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Affiliated Managers Group (AMG): Buy, Sell, or Hold Post Q1 Earnings?",
+      "source": "Yahoo Finance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/affiliated-managers-group-amg-buy-103655254.html?.tsrc=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 77,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "taiwan_travelogue_booker",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "'Taiwan Travelogue' wins the 2026 International Booker Prize",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/19/nx-s1-5823677/2026-booker-prize-winner-taiwan-travelogue",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 90,
+      "tier": 2,
+      "section": "US & Global",
+      "cluster_id": "nigeria_minister_arrest",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Nigeria arrests former minister in hiding after corruption conviction",
+      "source": "BBC",
+      "link": "https://www.bbc.com/news/articles/cdjpn378mvvo?at_medium=RSS&at_campaign=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 100,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "iran_war_leverage",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "How Iran Gained Leverage in the War",
+      "source": "NYT",
+      "link": "https://www.nytimes.com/2026/05/20/world/middleeast/iran-strait-of-hormuz-triangular-coercion.html",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 111,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "trump_ai_executive_order",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Scoop: Trump AI executive order seeks early government access to frontier models",
+      "source": "Axios",
+      "link": "https://www.axios.com/2026/05/20/ai-trump-executive-order-white-house-infighting",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 122,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "github_unauthorized_access",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "GitHub is investigating unauthorized access to their internal repositories",
+      "source": "Hacker News",
+      "link": "https://twitter.com/github/status/2056884788179726685",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 499,
+        "comments": 263
+      }
+    },
+    {
+      "id": 9,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "us_troop_poland_delay",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "U.S. troop deployment to Poland delayed, not canceled, says JD Vance",
+      "source": "National Post",
+      "link": "https://nationalpost.com/news/world/us-troop-deployment-to-poland-only-delayed-jd-vance",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 19,
+      "tier": 1,
+      "section": "Canada & Toronto",
+      "cluster_id": "snowbirds_cne_delay",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Snowbirds leaving CNE Air Show until 2030s and will return worse than ever",
+      "source": "BlogTO",
+      "link": "https://www.blogto.com/city/2026/05/snowbirds-leaving-cne-air-show/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 42,
+      "tier": 1,
+      "section": "Toronto Housing",
+      "cluster_id": "global_bond_yields_mortgages",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Surging global bond yields could cause Canadian mortgage rates to climb",
+      "source": "Globe & Mail Finance",
+      "link": "https://www.theglobeandmail.com/investing/personal-finance/article-global-bond-yields-mortgage-rates-inflation/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 57,
+      "tier": 2,
+      "section": "Canada & Toronto",
+      "cluster_id": "planta_toronto_closure",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Planta closed both its Toronto locations",
+      "source": "r/toronto",
+      "link": "https://www.reddit.com/r/toronto/comments/1tidh87/planta_closed_both_its_toronto_locations/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 67,
+      "tier": 1,
+      "section": "Finance & Markets",
+      "cluster_id": "platt_ai_titans_positions",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Is Billionaire Michael Platt Souring on the Magnificent Seven? He Just Closed Positions in 4 AI Titans in Favor of a Company That May Be a Surefire Winner in the AI Infrastructure Spending Boom.",
+      "source": "Yahoo Finance",
+      "link": "https://www.fool.com/investing/2026/05/20/is-billionaire-platt-souring-on-magnificent-seven/?.tsrc=rss",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 78,
+      "tier": 1,
+      "section": "US & Global",
+      "cluster_id": "israel_palestinian_district",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Israel's trying to expel a whole Palestinian district in East Jerusalem, activists say",
+      "source": "NPR World",
+      "link": "https://www.npr.org/2026/05/19/nx-s1-5823861/israel-palestinians-east-jerusalem",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    }
+  ],
+  "deltas": {
+    "promoted_by_phase2": [
+      {
+        "id": 0,
+        "from": 2,
+        "to": 1,
+        "headline": "FIRST READING: He\u2019s Canada\u2019s number one author, and he\u2019s leaving Canada for safety reasons",
+        "source": "National Post",
+        "section": "Canada & Toronto",
+        "link": "https://nationalpost.com/opinion/gad-saad-is-canadas-number-one-author-and-hes-leaving-canada-for-safety-reasons"
+      },
+      {
+        "id": 10,
+        "from": 2,
+        "to": 1,
+        "headline": "$5M historic Toronto home was designed and lived in by famed architect",
+        "source": "BlogTO",
+        "section": "Toronto Housing",
+        "link": "https://www.blogto.com/real-estate-toronto/2026/05/41-nanton-avenue/"
+      },
+      {
+        "id": 20,
+        "from": 2,
+        "to": 1,
+        "headline": "Edmonton is the only major Canadian city where housing is keeping pace with popuIation growth",
+        "source": "r/canadahousing",
+        "section": "Toronto Housing",
+        "link": "https://www.reddit.com/r/canadahousing/comments/1thytvi/edmonton_is_the_only_major_canadian_city_where/"
+      },
+      {
+        "id": 24,
+        "from": 2,
+        "to": 1,
+        "headline": "Billy Bishop expansion could cost up to $5B. But taxpayers won't foot the bill, federal agency says",
+        "source": "CBC",
+        "section": "Canada & Toronto",
+        "link": "https://www.cbc.ca/news/canada/toronto/billy-bishop-expansion-plan-9.7204928?cmp=rss"
+      },
+      {
+        "id": 33,
+        "from": 2,
+        "to": 1,
+        "headline": "Wednesday\u2019s analyst upgrades and downgrades",
+        "source": "Globe & Mail Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-wednesdays-analyst-upgrades-and-downgrades-304/"
+      },
+      {
+        "id": 43,
+        "from": 2,
+        "to": 1,
+        "headline": "llm-gemini 0.32",
+        "source": "Simon Willison",
+        "section": "Tech & AI",
+        "link": "https://simonwillison.net/2026/May/19/llm-gemini-2/#atom-everything"
+      },
+      {
+        "id": 48,
+        "from": 3,
+        "to": 2,
+        "headline": "Toronto Golden Hour",
+        "source": "r/toronto",
+        "section": "Canada & Toronto",
+        "link": "https://www.reddit.com/r/toronto/comments/1ti565c/toronto_golden_hour/"
+      },
+      {
+        "id": 58,
+        "from": 2,
+        "to": 1,
+        "headline": "IUX Publishes Market Insight on AI Momentum and U.S. Equity Markets",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/iux-publishes-market-insight-ai-114600968.html?.tsrc=rss"
+      },
+      {
+        "id": 69,
+        "from": 2,
+        "to": 1,
+        "headline": "Takeaways from Tuesday's primaries. And, victims of mosque shooting revealed",
+        "source": "NPR World",
+        "section": "US & Global",
+        "link": "https://www.npr.org/2026/05/20/g-s1-122996/up-first-newsletter-primary-elections-iran-war-mosque-shooting-victims-minnesota-prediction-markets"
+      },
+      {
+        "id": 79,
+        "from": 2,
+        "to": 1,
+        "headline": "Renting out your home can bring cash\u2014and complications",
+        "source": "MoneySense",
+        "section": "Finance & Markets",
+        "link": "https://www.moneysense.ca/spend/real-estate/income-properties/renting-out-your-home-can-bring-cash-and-complications/"
+      },
+      {
+        "id": 102,
+        "from": 2,
+        "to": 1,
+        "headline": "Israel the lonely",
+        "source": "Economist",
+        "section": "US & Global",
+        "link": "https://www.economist.com/international/2026/05/19/israel-the-lonely"
+      },
+      {
+        "id": 103,
+        "from": 2,
+        "to": 1,
+        "headline": "All 50 states top $4 a gallon gas as Iran war impacts linger",
+        "source": "Axios",
+        "section": "US & Global",
+        "link": "https://www.axios.com/2026/05/20/gas-prices-us-iran-war-4-dollars-50-states"
+      },
+      {
+        "id": 113,
+        "from": 2,
+        "to": 1,
+        "headline": "Is Carney undoing the Liberals\u2019 climate legacy?",
+        "source": "CBC Frontburner",
+        "section": "Canada & Toronto",
+        "link": "https://www.cbc.ca/podcasting/includes/frontburner-8ff68874-95a6-417b-b705-70bdefad3e62"
+      },
+      {
+        "id": 114,
+        "from": 3,
+        "to": 2,
+        "headline": "Map of Metal",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://mapofmetal.com/"
+      },
+      {
+        "id": 1,
+        "from": 2,
+        "to": 1,
+        "headline": "Toronto man who stabbed a stranger and killed his brother gets escorted city visits despite \u2018significant threat\u2019",
+        "source": "National Post",
+        "section": "Canada & Toronto",
+        "link": "https://nationalpost.com/news/canada/toronto-man-not-criminally-responsible-city-visits"
+      },
+      {
+        "id": 11,
+        "from": 3,
+        "to": 2,
+        "headline": "New hidden slushy bar opens in Toronto just in time for summer",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/eat_drink/2026/05/hanks-chill-slushy-bar-toronto/"
+      },
+      {
+        "id": 21,
+        "from": 2,
+        "to": 1,
+        "headline": "Op-Ed: The problems Build Canada Homes must solve",
+        "source": "r/canadahousing",
+        "section": "Toronto Housing",
+        "link": "https://www.reddit.com/r/canadahousing/comments/1thnfx2/oped_the_problems_build_canada_homes_must_solve/"
+      },
+      {
+        "id": 25,
+        "from": 2,
+        "to": 1,
+        "headline": "2 of Durham\u2019s largest municipalities will have new mayors. Few are vying for the job so far",
+        "source": "CBC",
+        "section": "Canada & Toronto",
+        "link": "https://www.cbc.ca/news/canada/toronto/oshawa-ajax-election-municipal-mayor-durham-region-9.7205111?cmp=rss"
+      },
+      {
+        "id": 34,
+        "from": 2,
+        "to": 1,
+        "headline": "Barlow\u2019s Research Roundup: A BofA analyst\u2019s top picks, earnings preview for Canadian bank stocks",
+        "source": "Globe & Mail Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-barlows-research-roundup-a-bofa-analysts-top-picks-earnings-preview/"
+      },
+      {
+        "id": 44,
+        "from": 2,
+        "to": 1,
+        "headline": "Gemini 3.5 Flash: more expensive, but Google plan to use it for everything",
+        "source": "Simon Willison",
+        "section": "Tech & AI",
+        "link": "https://simonwillison.net/2026/May/19/gemini-35-flash/#atom-everything"
+      },
+      {
+        "id": 49,
+        "from": 3,
+        "to": 2,
+        "headline": "Everyone goes to High Park for Sakura viewing. Meanwhile Victoria Park/Steels",
+        "source": "r/toronto",
+        "section": "Canada & Toronto",
+        "link": "https://www.reddit.com/r/toronto/comments/1thwrk8/everyone_goes_to_high_park_for_sakura_viewing/"
+      },
+      {
+        "id": 59,
+        "from": 2,
+        "to": 1,
+        "headline": "1 Software Stock with Impressive Fundamentals and 2 We Brush Off",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/1-software-stock-impressive-fundamentals-113255567.html?.tsrc=rss"
+      },
+      {
+        "id": 80,
+        "from": 2,
+        "to": 1,
+        "headline": "Fallen into negative home equity? Here are your options",
+        "source": "MoneySense",
+        "section": "Toronto Housing",
+        "link": "https://www.moneysense.ca/spend/real-estate/mortgages/fallen-into-negative-home-equity-here-are-your-options/"
+      },
+      {
+        "id": 83,
+        "from": 2,
+        "to": 1,
+        "headline": "Trump exerts iron grip on Republican Party with Massie defeated",
+        "source": "BBC",
+        "section": "US & Global",
+        "link": "https://www.bbc.com/news/articles/cdjpng88d2vo?at_medium=RSS&at_campaign=rss"
+      },
+      {
+        "id": 93,
+        "from": 2,
+        "to": 1,
+        "headline": "With Trump\u2019s Settlement, a Possible $100 Million I.R.S. Penalty Melts Away",
+        "source": "NYT",
+        "section": "Today in the World",
+        "link": "https://www.nytimes.com/2026/05/19/us/politics/trump-settlement-irs.html"
+      },
+      {
+        "id": 104,
+        "from": 2,
+        "to": 1,
+        "headline": "Trump's grip is slipping on Latino voters",
+        "source": "Axios",
+        "section": "US & Global",
+        "link": "https://www.axios.com/2026/05/20/trump-latino-voters-2026-midterms"
+      },
+      {
+        "id": 115,
+        "from": 2,
+        "to": 1,
+        "headline": "Learnings from 100K lines of Rust with AI (2025)",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://zfhuang99.github.io/rust/claude%20code/codex/contracts/spec-driven%20development/2025/12/01/rust-with-ai.html"
+      },
+      {
+        "id": 2,
+        "from": 2,
+        "to": 1,
+        "headline": "Yoni Goldstein: Canadian Jews are trapped in an October 7 mindset",
+        "source": "National Post",
+        "section": "Canada & Toronto",
+        "link": "https://nationalpost.com/opinion/canadian-jews-are-trapped-in-an-october-7-mindset"
+      },
+      {
+        "id": 12,
+        "from": 2,
+        "to": 1,
+        "headline": "These are the Ontario cities where rent is getting much cheaper in 2026",
+        "source": "BlogTO",
+        "section": "Toronto Housing",
+        "link": "https://www.blogto.com/real-estate-toronto/2026/05/ontario-cities-rent-cheaper-2026/"
+      },
+      {
+        "id": 22,
+        "from": 2,
+        "to": 1,
+        "headline": "What could I afford?",
+        "source": "r/canadahousing",
+        "section": "Toronto Housing",
+        "link": "https://www.reddit.com/r/canadahousing/comments/1ti2n2v/what_could_i_afford/"
+      },
+      {
+        "id": 26,
+        "from": 2,
+        "to": 1,
+        "headline": "'I miss you, Mama': Family, friends give emotional statements about Leslieville mom killed in shooting",
+        "source": "CBC",
+        "section": "Canada & Toronto",
+        "link": "https://www.cbc.ca/news/canada/toronto/karolina-huebner-makurat-victim-impact-statements-leslieville-damian-hudson-9.7205352?cmp=rss"
+      },
+      {
+        "id": 35,
+        "from": 2,
+        "to": 1,
+        "headline": "Oil prices slump after Trump comments while analysts point to supply crunch",
+        "source": "Globe & Mail Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.theglobeandmail.com/investing/article-oil-prices-slump-after-trump-comments-while-analysts-point-to-supply/"
+      },
+      {
+        "id": 45,
+        "from": 2,
+        "to": 1,
+        "headline": "datasette-llm-accountant 0.1a4",
+        "source": "Simon Willison",
+        "section": "Tech & AI",
+        "link": "https://simonwillison.net/2026/May/19/datasette-llm-accountant/#atom-everything"
+      },
+      {
+        "id": 50,
+        "from": 3,
+        "to": 1,
+        "headline": "CBC pulls Kars4Kids ads after U.S. court bans 'deceptive' jingle",
+        "source": "r/toronto",
+        "section": "Canada & Toronto",
+        "link": "https://www.reddit.com/r/toronto/comments/1ti6n5g/cbc_pulls_kars4kids_ads_after_us_court_bans/"
+      },
+      {
+        "id": 60,
+        "from": 2,
+        "to": 1,
+        "headline": "Nvidia Watch Lifts Wall Street Pre-Bell; Asia Off, Europe Up",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-watch-lifts-wall-street-111727203.html?.tsrc=rss"
+      },
+      {
+        "id": 71,
+        "from": 3,
+        "to": 2,
+        "headline": "Bees have coexisted with us for over a millennia. Their name remains a mystery",
+        "source": "NPR World",
+        "section": "US & Global",
+        "link": "https://www.npr.org/2026/05/20/nx-s1-5825919/bees-have-coexisted-with-us-for-over-a-millennia-their-name-remains-a-mystery"
+      },
+      {
+        "id": 81,
+        "from": 2,
+        "to": 1,
+        "headline": "The best GIC rates in Canada for 2026",
+        "source": "MoneySense",
+        "section": "Finance & Markets",
+        "link": "https://www.moneysense.ca/save/investing/best-gic-rates/"
+      },
+      {
+        "id": 94,
+        "from": 2,
+        "to": 1,
+        "headline": "Prison to Pardons to Payouts: Jan. 6 Rioters Are Elated at Trump Compensation Fund",
+        "source": "NYT",
+        "section": "US & Global",
+        "link": "https://www.nytimes.com/2026/05/20/us/politics/jan-6-rioters-trump-fund-payouts.html"
+      },
+      {
+        "id": 116,
+        "from": 3,
+        "to": 2,
+        "headline": "The weird, wild story of humanity's obsession with gold",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://www.economist.com/culture/2026/05/14/the-weird-wild-story-of-humanitys-obsession-with-gold"
+      },
+      {
+        "id": 3,
+        "from": 2,
+        "to": 1,
+        "headline": "Fraser Tolmie: Snowbirds\u2019 \u2018pause\u2019 a devastating blow to recruitment",
+        "source": "National Post",
+        "section": "Canada & Toronto",
+        "link": "https://nationalpost.com/opinion/fraser-tolmie-snowbirds-pause-a-devastating-blow-to-recruitment"
+      },
+      {
+        "id": 13,
+        "from": 3,
+        "to": 2,
+        "headline": "15 things to do in Toronto this weekend",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/radar/2026/05/15-things-do-toronto-weekend-may-20/"
+      },
+      {
+        "id": 27,
+        "from": 2,
+        "to": 1,
+        "headline": "Children of couple killed in mistaken identity shooting allegedly tied to Ryan Wedding sue Peel police",
+        "source": "CBC",
+        "section": "Canada & Toronto",
+        "link": "https://www.cbc.ca/news/canada/toronto/peel-police-lawsuit-caledon-shooting-ryan-wedding-9.7204949?cmp=rss"
+      },
+      {
+        "id": 36,
+        "from": 2,
+        "to": 1,
+        "headline": "AI financing fueling a surge in U.S. convertible bond sales",
+        "source": "Globe & Mail Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.theglobeandmail.com/investing/article-ai-financing-fueling-a-surge-in-us-convertible-bond-sales/"
+      },
+      {
+        "id": 46,
+        "from": 2,
+        "to": 1,
+        "headline": "llm-gemini 0.32a0",
+        "source": "Simon Willison",
+        "section": "Tech & AI",
+        "link": "https://simonwillison.net/2026/May/19/llm-gemini/#atom-everything"
+      },
+      {
+        "id": 51,
+        "from": 2,
+        "to": 1,
+        "headline": "We all have one thing to say about Doug Ford\u2019s ban on automated speed cameras: We told you so",
+        "source": "r/toronto",
+        "section": "Canada & Toronto",
+        "link": "https://www.reddit.com/r/toronto/comments/1thqrwf/we_all_have_one_thing_to_say_about_doug_fords_ban/"
+      },
+      {
+        "id": 61,
+        "from": 2,
+        "to": 1,
+        "headline": "3 Consumer Stocks We Keep Off Our Radar",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/3-consumer-stocks-keep-off-110855761.html?.tsrc=rss"
+      },
+      {
+        "id": 72,
+        "from": 2,
+        "to": 1,
+        "headline": "Russian President Putin meets with China's Xi Jinping, days after Trump's visit",
+        "source": "NPR World",
+        "section": "Today in the World",
+        "link": "https://www.npr.org/2026/05/20/nx-s1-5826921/russian-president-putin-meets-with-chinas-xi-jinping-days-after-trumps-visit"
+      },
+      {
+        "id": 85,
+        "from": 2,
+        "to": 1,
+        "headline": "Lithuania's leaders take shelter during drone air alert",
+        "source": "BBC",
+        "section": "US & Global",
+        "link": "https://www.bbc.com/news/articles/c9d3vpqqqpeo?at_medium=RSS&at_campaign=rss"
+      },
+      {
+        "id": 95,
+        "from": 2,
+        "to": 1,
+        "headline": "The IRS Thought it Could Fight Trump\u2019s Lawsuit, but it Struck a Deal Anyway",
+        "source": "NYT",
+        "section": "Today in the World",
+        "link": "https://www.nytimes.com/2026/05/19/admin/irs-trump-lawsuit-deal.html"
+      },
+      {
+        "id": 106,
+        "from": 2,
+        "to": 1,
+        "headline": "Taiwan soldiers on through Xi's threats and Trump's ambivalence",
+        "source": "Axios",
+        "section": "US & Global",
+        "link": "https://www.axios.com/2026/05/20/taiwan-trump-xi-straits-foundation-kuma"
+      },
+      {
+        "id": 117,
+        "from": 2,
+        "to": 1,
+        "headline": "Everything in C is undefined behavior",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://blog.habets.se/2026/05/Everything-in-C-is-undefined-behavior.html"
+      },
+      {
+        "id": 4,
+        "from": 2,
+        "to": 1,
+        "headline": "Christopher Dummitt: Nothing says generic left winger like getting an honorary degree",
+        "source": "National Post",
+        "section": "Canada & Toronto",
+        "link": "https://nationalpost.com/opinion/christopher-dummitt-nothing-says-generic-left-winger-like-getting-an-honorary-degree"
+      },
+      {
+        "id": 14,
+        "from": 3,
+        "to": 2,
+        "headline": "These are the top Toronto streets for food according to the city's residents",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/eat_drink/2026/05/top-toronto-streets-food/"
+      },
+      {
+        "id": 28,
+        "from": 2,
+        "to": 1,
+        "headline": "Ontario's Toronto Island airport expansion will increase congestion, committee hears",
+        "source": "CBC",
+        "section": "Canada & Toronto",
+        "link": "https://www.cbc.ca/news/canada/toronto/toronto-waterfront-expansion-congestion-committee-9.7204805?cmp=rss"
+      },
+      {
+        "id": 37,
+        "from": 2,
+        "to": 1,
+        "headline": "Before the Bell: What every Canadian investor needs to know today",
+        "source": "Globe & Mail Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-before-the-bell-what-every-canadian-investor-needs-to-know-today-1480/"
+      },
+      {
+        "id": 47,
+        "from": 2,
+        "to": 1,
+        "headline": "datasette-llm 0.1a8",
+        "source": "Simon Willison",
+        "section": "Tech & AI",
+        "link": "https://simonwillison.net/2026/May/19/datasette-llm/#atom-everything"
+      },
+      {
+        "id": 52,
+        "from": 3,
+        "to": 2,
+        "headline": "Last night's Victoria day fireworks were, to pardon a pun, a BLAST!!",
+        "source": "r/toronto",
+        "section": "Canada & Toronto",
+        "link": "https://www.reddit.com/r/toronto/comments/1thm1ew/last_nights_victoria_day_fireworks_were_to_pardon/"
+      },
+      {
+        "id": 62,
+        "from": 2,
+        "to": 1,
+        "headline": "Wealthspire Retirement Loads Up on FLXR With New $21 Million Position",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.fool.com/coverage/filings/2026/05/20/wealthspire-retirement-loads-up-on-flxr-with-new-usd21-million-position/?.tsrc=rss"
+      },
+      {
+        "id": 73,
+        "from": 2,
+        "to": 1,
+        "headline": "Report finds global aid system is failing to address today's humanitarian crises",
+        "source": "NPR World",
+        "section": "US & Global",
+        "link": "https://www.npr.org/2026/05/20/nx-s1-5825863/report-finds-global-aid-system-is-failing-to-address-todays-humanitarian-crises"
+      },
+      {
+        "id": 96,
+        "from": 2,
+        "to": 1,
+        "headline": "New Immunity for President Trump, and an Audacious Plan for Regime Change in Iran",
+        "source": "NYT",
+        "section": "US & Global",
+        "link": "https://www.nytimes.com/2026/05/20/podcasts/the-headlines/-trump-irs-audit-regime-change-iran.html"
+      },
+      {
+        "id": 118,
+        "from": 2,
+        "to": 1,
+        "headline": "Infomaniak transitions to a foundation model to protect user data privacy",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://news.infomaniak.com/en/infomaniak-foundation-sovereign-cloud/"
+      },
+      {
+        "id": 5,
+        "from": 2,
+        "to": 1,
+        "headline": "Putin arrives in Beijing to reinforce Russia-China alliance after Trump visit",
+        "source": "National Post",
+        "section": "Today in the World",
+        "link": "https://nationalpost.com/news/world/putin-xi-to-strengthen-russia-china-alliance"
+      },
+      {
+        "id": 15,
+        "from": 2,
+        "to": 1,
+        "headline": "CN Tower tickets for Doors Open Toronto vanish in seconds and people are furious",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/radar/2026/05/cn-tower-doors-open-toronto/"
+      },
+      {
+        "id": 29,
+        "from": 2,
+        "to": 1,
+        "headline": "Police looking for suspect after man dies in stabbing in Mississauga parking lot",
+        "source": "CBC",
+        "section": "Canada & Toronto",
+        "link": "https://www.cbc.ca/news/canada/toronto/fatal-mississauga-stabbing-9.7204738?cmp=rss"
+      },
+      {
+        "id": 38,
+        "from": 2,
+        "to": 1,
+        "headline": "Premarket: Bond yields pause near recent peak, stocks steady ahead of Nvidia results",
+        "source": "Globe & Mail Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.theglobeandmail.com/investing/markets/inside-the-market/market-news/article-premarket-bond-yields-pause-near-recent-peak-stocks-steady-ahead-of/"
+      },
+      {
+        "id": 53,
+        "from": 2,
+        "to": 1,
+        "headline": "New poll results show Olivia Chow has an early lead over Brad Bradford among decided voters",
+        "source": "r/toronto",
+        "section": "Canada & Toronto",
+        "link": "https://www.reddit.com/r/toronto/comments/1thpiw1/new_poll_results_show_olivia_chow_has_an_early/"
+      },
+      {
+        "id": 63,
+        "from": 2,
+        "to": 1,
+        "headline": "Stocks Gain Pre-Bell Ahead of Nvidia Earnings, Fed Meeting Minutes",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/stocks-gain-pre-bell-ahead-110246938.html?.tsrc=rss"
+      },
+      {
+        "id": 87,
+        "from": 2,
+        "to": 1,
+        "headline": "Trump's Greenland envoy faces uphill battle on mission to make 'friends'",
+        "source": "BBC",
+        "section": "US & Global",
+        "link": "https://www.bbc.com/news/articles/cze28ex3lexo?at_medium=RSS&at_campaign=rss"
+      },
+      {
+        "id": 97,
+        "from": 2,
+        "to": 1,
+        "headline": "Early War Goal Was to Install Hard Line Former President as Iran\u2019s Leader",
+        "source": "NYT",
+        "section": "US & Global",
+        "link": "https://www.nytimes.com/2026/05/19/us/politics/iran-israel-us-leader-ahmadinejad.html"
+      },
+      {
+        "id": 108,
+        "from": 2,
+        "to": 1,
+        "headline": "Small business profits sink as gasoline prices soar",
+        "source": "Axios",
+        "section": "US & Global",
+        "link": "https://www.axios.com/2026/05/20/small-business-economy-gas-prices"
+      },
+      {
+        "id": 119,
+        "from": 3,
+        "to": 2,
+        "headline": "Japan is gripped by mass allergies. A 1950s project is to blame",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://www.bbc.com/future/article/20260515-the-1950s-blunder-which-causes-mass-hay-fever-in-japan"
+      },
+      {
+        "id": 6,
+        "from": 2,
+        "to": 1,
+        "headline": "AI unease grows in the U.S. as early enthusiasm gives way to \u2018existential fear\u2019",
+        "source": "National Post",
+        "section": "Tech & AI",
+        "link": "https://nationalpost.com/news/world/artificial-intelligence-unease-grows-in-us"
+      },
+      {
+        "id": 16,
+        "from": 2,
+        "to": 1,
+        "headline": "Here are all the government payouts eligible Canadians can expect next month",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/city/2026/05/government-payouts-canada-june-2026/"
+      },
+      {
+        "id": 30,
+        "from": 2,
+        "to": 1,
+        "headline": "Parents of 14-year-old last seen in North York plead for public's help to find her",
+        "source": "CBC",
+        "section": "Canada & Toronto",
+        "link": "https://www.cbc.ca/news/canada/toronto/missing-14-year-old-north-york-9.7204706?cmp=rss"
+      },
+      {
+        "id": 39,
+        "from": 2,
+        "to": 1,
+        "headline": "Bond yields may finally be baking in an AI world",
+        "source": "Globe & Mail Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.theglobeandmail.com/investing/article-bond-yields-may-finally-be-baking-in-an-ai-world/"
+      },
+      {
+        "id": 54,
+        "from": 2,
+        "to": 1,
+        "headline": "Toronto police officers arrested in Spain will be paid while suspended, force confirms",
+        "source": "r/toronto",
+        "section": "Canada & Toronto",
+        "link": "https://www.reddit.com/r/toronto/comments/1tht8fs/toronto_police_officers_arrested_in_spain_will_be/"
+      },
+      {
+        "id": 64,
+        "from": 2,
+        "to": 1,
+        "headline": "3 Reasons to Sell LOVE and 1 Stock to Buy Instead",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-sell-love-1-105255218.html?.tsrc=rss"
+      },
+      {
+        "id": 75,
+        "from": 2,
+        "to": 1,
+        "headline": "WHO chief concerned over 'scale and speed' of Ebola outbreak",
+        "source": "NPR World",
+        "section": "Today in the World",
+        "link": "https://www.npr.org/2026/05/20/g-s1-122971/who-chief-concerned-over-scale-and-speed-of-ebola-outbreak"
+      },
+      {
+        "id": 98,
+        "from": 2,
+        "to": 1,
+        "headline": "Iran Threatens to Strike Beyond the Middle East if the U.S. Resumes Attacks",
+        "source": "NYT",
+        "section": "US & Global",
+        "link": "https://www.nytimes.com/2026/05/20/world/middleeast/iran-threat-us-attacks-trump.html"
+      },
+      {
+        "id": 109,
+        "from": 2,
+        "to": 1,
+        "headline": "Why health officials are worried about containing the Ebola outbreak",
+        "source": "Axios",
+        "section": "Today in the World",
+        "link": "https://www.axios.com/2026/05/19/ebola-hantavirus-who-cdc-preparedness-concerns"
+      },
+      {
+        "id": 120,
+        "from": 3,
+        "to": 2,
+        "headline": "FiveThirtyEight articles on the Internet Archive",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://fivethirtyeightindex.com/"
+      },
+      {
+        "id": 7,
+        "from": 2,
+        "to": 1,
+        "headline": "IRS \u2018forever barred\u2019 from probing Donald Trump\u2019s tax returns under lawsuit settlement",
+        "source": "National Post",
+        "section": "Today in the World",
+        "link": "https://nationalpost.com/news/world/donald-trump-irs-lawsuit"
+      },
+      {
+        "id": 17,
+        "from": 3,
+        "to": 2,
+        "headline": "NBA poll reveals players don't hate playing for Toronto Raptors",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/sports_play/2026/05/nba-players-dont-hate-playing-toronto-raptors/"
+      },
+      {
+        "id": 31,
+        "from": 2,
+        "to": 1,
+        "headline": "Ottawa spending $5M on defence testing at Ontario Tech University",
+        "source": "CBC",
+        "section": "Canada & Toronto",
+        "link": "https://www.cbc.ca/news/canada/toronto/federal-government-funding-ace-ontario-tech-university-9.7205048?cmp=rss"
+      },
+      {
+        "id": 40,
+        "from": 2,
+        "to": 1,
+        "headline": "Been ghosted by a client? Try not to take it personally",
+        "source": "Globe & Mail Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-practice/article-been-ghosted-by-a-client-try-not-to-take-it-personally/"
+      },
+      {
+        "id": 55,
+        "from": 2,
+        "to": 1,
+        "headline": "Toronto island airport expansion would lead to severe traffic, committee hears",
+        "source": "r/toronto",
+        "section": "Canada & Toronto",
+        "link": "https://www.reddit.com/r/toronto/comments/1thw8m2/toronto_island_airport_expansion_would_lead_to/"
+      },
+      {
+        "id": 65,
+        "from": 2,
+        "to": 1,
+        "headline": "3 Reasons We\u2019re Fans of HEICO (HEI)",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-fans-heico-hei-104455352.html?.tsrc=rss"
+      },
+      {
+        "id": 76,
+        "from": 2,
+        "to": 1,
+        "headline": "Xi and Putin meet to reaffirm China-Russia ties days after Trump's visit",
+        "source": "NPR World",
+        "section": "Today in the World",
+        "link": "https://www.npr.org/2026/05/20/nx-s1-5828196/xi-putin-meet-beijing"
+      },
+      {
+        "id": 89,
+        "from": 2,
+        "to": 1,
+        "headline": "Father-of-eight killed in San Diego mosque shooting hailed as hero",
+        "source": "BBC",
+        "section": "US & Global",
+        "link": "https://www.bbc.com/news/articles/clyp3gkrwg9o?at_medium=RSS&at_campaign=rss"
+      },
+      {
+        "id": 99,
+        "from": 2,
+        "to": 1,
+        "headline": "Senate Votes to Take Up Measure to Force Trump to End Iran War",
+        "source": "NYT",
+        "section": "US & Global",
+        "link": "https://www.nytimes.com/2026/05/19/us/politics/senate-iran-war-authorization.html"
+      },
+      {
+        "id": 121,
+        "from": 2,
+        "to": 1,
+        "headline": "Incident Report: Railway Blocked by Google Cloud (Resolved)",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://blog.railway.com/p/incident-report-may-19-2026-gcp-account-outage"
+      },
+      {
+        "id": 8,
+        "from": 2,
+        "to": 1,
+        "headline": "Ottawa ready to help broker Churchill Falls deal with Quebec and Newfoundland",
+        "source": "National Post",
+        "section": "Canada & Toronto",
+        "link": "https://nationalpost.com/news/ottawa-ready-to-help-broker-churchill-falls-deal-with-quebec-and-newfoundland"
+      },
+      {
+        "id": 18,
+        "from": 3,
+        "to": 2,
+        "headline": "Toronto malls turn into complete chaos over luxury merch launch",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/fashion_style/2026/05/toronto-malls-chaos-luxury-merch-launch/"
+      },
+      {
+        "id": 32,
+        "from": 3,
+        "to": 1,
+        "headline": "CBC pulls Kars4Kids ads after U.S. court bans 'deceptive' jingle",
+        "source": "CBC",
+        "section": "Canada & Toronto",
+        "link": "https://www.cbc.ca/news/canada/cbc-kars4kids-ads-pulled-9.7204937?cmp=rss"
+      },
+      {
+        "id": 41,
+        "from": 2,
+        "to": 1,
+        "headline": "Give now or in the estate? Helping wealthy clients set philanthropic priorities",
+        "source": "Globe & Mail Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-news/article-give-now-or-in-the-estate-helping-wealthy-clients-set-philanthropic/"
+      },
+      {
+        "id": 56,
+        "from": 3,
+        "to": 2,
+        "headline": "Sunday in Christie Pits",
+        "source": "r/toronto",
+        "section": "Canada & Toronto",
+        "link": "https://www.reddit.com/r/toronto/comments/1ti79ed/sunday_in_christie_pits/"
+      },
+      {
+        "id": 66,
+        "from": 2,
+        "to": 1,
+        "headline": "Affiliated Managers Group (AMG): Buy, Sell, or Hold Post Q1 Earnings?",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/affiliated-managers-group-amg-buy-103655254.html?.tsrc=rss"
+      },
+      {
+        "id": 77,
+        "from": 2,
+        "to": 1,
+        "headline": "'Taiwan Travelogue' wins the 2026 International Booker Prize",
+        "source": "NPR World",
+        "section": "US & Global",
+        "link": "https://www.npr.org/2026/05/19/nx-s1-5823677/2026-booker-prize-winner-taiwan-travelogue"
+      },
+      {
+        "id": 100,
+        "from": 2,
+        "to": 1,
+        "headline": "How Iran Gained Leverage in the War",
+        "source": "NYT",
+        "section": "US & Global",
+        "link": "https://www.nytimes.com/2026/05/20/world/middleeast/iran-strait-of-hormuz-triangular-coercion.html"
+      },
+      {
+        "id": 122,
+        "from": 2,
+        "to": 1,
+        "headline": "GitHub is investigating unauthorized access to their internal repositories",
+        "source": "Hacker News",
+        "section": "Tech & AI",
+        "link": "https://twitter.com/github/status/2056884788179726685"
+      },
+      {
+        "id": 9,
+        "from": 2,
+        "to": 1,
+        "headline": "U.S. troop deployment to Poland delayed, not canceled, says JD Vance",
+        "source": "National Post",
+        "section": "US & Global",
+        "link": "https://nationalpost.com/news/world/us-troop-deployment-to-poland-only-delayed-jd-vance"
+      },
+      {
+        "id": 19,
+        "from": 2,
+        "to": 1,
+        "headline": "Snowbirds leaving CNE Air Show until 2030s and will return worse than ever",
+        "source": "BlogTO",
+        "section": "Canada & Toronto",
+        "link": "https://www.blogto.com/city/2026/05/snowbirds-leaving-cne-air-show/"
+      },
+      {
+        "id": 42,
+        "from": 2,
+        "to": 1,
+        "headline": "Surging global bond yields could cause Canadian mortgage rates to climb",
+        "source": "Globe & Mail Finance",
+        "section": "Toronto Housing",
+        "link": "https://www.theglobeandmail.com/investing/personal-finance/article-global-bond-yields-mortgage-rates-inflation/"
+      },
+      {
+        "id": 57,
+        "from": 3,
+        "to": 2,
+        "headline": "Planta closed both its Toronto locations",
+        "source": "r/toronto",
+        "section": "Canada & Toronto",
+        "link": "https://www.reddit.com/r/toronto/comments/1tidh87/planta_closed_both_its_toronto_locations/"
+      },
+      {
+        "id": 67,
+        "from": 2,
+        "to": 1,
+        "headline": "Is Billionaire Michael Platt Souring on the Magnificent Seven? He Just Closed Positions in 4 AI Titans in Favor of a Company That May Be a Surefire Winner in the AI Infrastructure Spending Boom.",
+        "source": "Yahoo Finance",
+        "section": "Finance & Markets",
+        "link": "https://www.fool.com/investing/2026/05/20/is-billionaire-platt-souring-on-magnificent-seven/?.tsrc=rss"
+      },
+      {
+        "id": 78,
+        "from": 2,
+        "to": 1,
+        "headline": "Israel's trying to expel a whole Palestinian district in East Jerusalem, activists say",
+        "source": "NPR World",
+        "section": "US & Global",
+        "link": "https://www.npr.org/2026/05/19/nx-s1-5823861/israel-palestinians-east-jerusalem"
+      }
+    ],
+    "demoted_by_phase2": []
+  }
+}
