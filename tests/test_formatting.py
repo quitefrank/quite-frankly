@@ -6,6 +6,7 @@ from formatting import (
     parse_and_render_sections,
     render_other_headlines_for_section,
     render_source_line,
+    suppressed_cluster_ids,
 )
 
 
@@ -954,3 +955,35 @@ Source: Hacker News
     assert "<strong>Setup.</strong>" in html
     assert "<strong>Turn.</strong>" in html
     assert "<strong>Conclusion.</strong>" in html
+
+
+def test_suppressed_cluster_ids_keeps_highest_scored_representative():
+    # Four feed items, one underlying story, one cluster (the real
+    # cuba_raul_castro_charges case). One item survives as the
+    # representative; the other three ids are suppressed.
+    items = [
+        _item(57, "US & Global", tier=2, ccov=4, prel=0, fit="good"),  # score 5
+        _item(83, "US & Global", tier=2, ccov=4, prel=0, fit="good"),  # score 5
+        _item(85, "US & Global", tier=2, ccov=4, prel=0, fit="good"),  # score 5
+        _item(76, "US & Global", tier=2, ccov=4, prel=0, fit="good"),  # score 5
+    ]
+    for it in items:
+        it["cluster_id"] = "cuba_raul_castro_charges"
+    # All four tie at score 5; the lowest id (57) wins the tiebreak and
+    # survives, so the other three are suppressed.
+    assert suppressed_cluster_ids(items) == {83, 85, 76}
+
+
+def test_suppressed_cluster_ids_ignores_singletons_and_empty_clusters():
+    # _item gives each item a unique cluster_id (cl_<id>), so items 1 and 2
+    # are singleton clusters. Items 3 and 4 carry an explicit empty
+    # cluster_id ("no cluster known"). Nothing is suppressed.
+    items = [
+        _item(1, "Tech & AI", tier=1, ccov=2, prel=1, fit="good"),
+        _item(2, "Tech & AI", tier=1, ccov=2, prel=1, fit="good"),
+        _item(3, "Tech & AI", tier=2),
+        _item(4, "Tech & AI", tier=2),
+    ]
+    items[2]["cluster_id"] = ""
+    items[3]["cluster_id"] = ""
+    assert suppressed_cluster_ids(items) == set()

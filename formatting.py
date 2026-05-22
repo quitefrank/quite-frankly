@@ -56,6 +56,41 @@ def _item_score(scores: dict) -> int:
     )
 
 
+def suppressed_cluster_ids(tiered_items: list[dict]) -> set[int]:
+    """Return the ids of non-representative cluster members.
+
+    For each non-empty cluster_id with 2+ members, the highest-scored item
+    is the representative; every other member's id is returned. The
+    newsletter must show a cluster exactly once, so these ids are
+    suppressed from every surface: featured stories, Other Headlines, and
+    Everything Else. Scope is global: a cluster whose members span two
+    sections still collapses to a single representative.
+
+    Ties on _item_score are broken by lowest id so the result is
+    deterministic. Items with an empty cluster_id are never suppressed -
+    an empty cluster_id is triage's "no cluster known" signal.
+    """
+    by_cluster: dict[str, list[dict]] = {}
+    for item in tiered_items:
+        cid = item.get("cluster_id") or ""
+        if not cid:
+            continue
+        by_cluster.setdefault(cid, []).append(item)
+
+    suppressed: set[int] = set()
+    for members in by_cluster.values():
+        if len(members) < 2:
+            continue
+        rep = max(
+            members,
+            key=lambda it: (_item_score(it.get("scores", {})), -it["id"]),
+        )
+        for item in members:
+            if item["id"] != rep["id"]:
+                suppressed.add(item["id"])
+    return suppressed
+
+
 def _collapse_by_cluster_within_section(items: list[dict]) -> list[dict]:
     """Keep one representative item per (section, cluster_id), highest score wins.
 
