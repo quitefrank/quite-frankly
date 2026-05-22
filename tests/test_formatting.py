@@ -1,6 +1,7 @@
 import json
 
 from formatting import (
+    build_email_html,
     build_everything_else,
     build_format_input,
     parse_and_render_sections,
@@ -1011,3 +1012,52 @@ def test_build_format_input_collapses_cluster_across_sections():
         for it in bucket
     ]
     assert surviving == [10]
+
+
+def test_suppressed_cluster_sibling_absent_from_rendered_html():
+    # The real cuba_raul_castro_charges case: four articles, one cluster.
+    # The representative is featured; the other three must not reappear in
+    # Other Headlines or Everything Else.
+    tiered_items = [
+        _item(57, "US & Global", tier=2, ccov=4, prel=0, fit="good"),
+        _item(83, "US & Global", tier=2, ccov=4, prel=0, fit="good"),
+        _item(85, "US & Global", tier=2, ccov=4, prel=0, fit="good"),
+        _item(76, "US & Global", tier=2, ccov=4, prel=0, fit="good"),
+    ]
+    for it in tiered_items:
+        it["cluster_id"] = "cuba_raul_castro_charges"
+    links_by_id = {
+        57: {"title": "US charges Raul Castro over plane downing",
+             "link": "https://bbc.com/57", "image": "", "source": "BBC",
+             "snippet": "The indictment names the former leader."},
+        83: {"title": "Cuba's Raul Castro indicted over 1996 downing",
+             "link": "https://npr.org/83", "image": "", "source": "NPR World",
+             "snippet": "A grand jury returned the indictment."},
+        85: {"title": "US grand jury indicts Raul Castro",
+             "link": "https://npr.org/85", "image": "", "source": "NPR World",
+             "snippet": "The charges relate to the 1996 shootdown."},
+        76: {"title": "News of indictment slow to reach Cubans",
+             "link": "https://nyt.com/76", "image": "", "source": "NYT",
+             "snippet": "Cubans waiting for a breakthrough."},
+    }
+    suppressed = suppressed_cluster_ids(tiered_items)  # {83, 85, 76}
+    formatter_output = (
+        "SUBJECT: 🌐 Castro charged\n\n"
+        "## US & Global\n"
+        "**US charges Raul Castro over plane downing [#57]**\n"
+        "**The indictment.** A federal court has charged the former leader.\n\n"
+        "**The backdrop.** Two civilian planes were shot down in 1996.\n\n"
+        "**What is alleged.** Prosecutors tie the order to the chain of command.\n"
+        "Source: BBC\n"
+    )
+    cluster_info = {"primary_source": "BBC", "also_in": ["NPR World", "NYT"]}
+    html, _ = build_email_html(
+        formatter_output, links_by_id,
+        clusters_by_item_id={i: cluster_info for i in (57, 83, 85, 76)},
+        tiered_items=tiered_items,
+        suppressed_ids=suppressed,
+    )
+    assert "bbc.com/57" in html        # representative is featured
+    assert "npr.org/83" not in html    # suppressed siblings never reappear
+    assert "npr.org/85" not in html
+    assert "nyt.com/76" not in html

@@ -639,10 +639,15 @@ def _render_from_the_front_page(story: dict, links_by_id: dict,
     return out
 
 
-def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None):
+def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None):
     clusters_by_item_id = clusters_by_item_id or {}
     tiered_items = tiered_items or []
-    used_ids = set()
+    # Seed used_ids with suppressed cluster members so the programmatic
+    # Other Headlines and Everything Else blocks can never re-surface a
+    # duplicate that the formatter input already collapsed away. Both
+    # render_other_headlines_for_section and build_everything_else skip
+    # ids found in used_ids.
+    used_ids = set(suppressed_ids or ())
     blocks   = re.split(r"\n## ", text)
     html     = ""
 
@@ -897,7 +902,7 @@ def parse_subject_line(claude_response):
     return None, claude_response
 
 
-def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None):
+def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None):
     clusters_by_item_id = clusters_by_item_id or {}
     toronto_tz  = ZoneInfo("America/Toronto")
     now_toronto = datetime.now(toronto_tz)
@@ -914,7 +919,8 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
         subject = f"[TEST] {subject}"
 
     sections_html, used_ids = parse_and_render_sections(
-        claude_response, links_by_id, clusters_by_item_id, tiered_items=tiered_items
+        claude_response, links_by_id, clusters_by_item_id,
+        tiered_items=tiered_items, suppressed_ids=suppressed_ids,
     )
     everything_else_html    = build_everything_else(
         links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items
