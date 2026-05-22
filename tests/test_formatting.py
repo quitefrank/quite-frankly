@@ -1061,3 +1061,27 @@ def test_suppressed_cluster_sibling_absent_from_rendered_html():
     assert "npr.org/83" not in html    # suppressed siblings never reappear
     assert "npr.org/85" not in html
     assert "nyt.com/76" not in html
+
+
+def test_distinct_clusters_are_never_suppressed():
+    # Two items in the same section but different stories (distinct
+    # cluster_ids, supplied by the _item helper as cl_1 and cl_2). Neither
+    # is a duplicate, so neither is suppressed and both survive into the
+    # formatter input. This guards against the global collapse over-reaching.
+    tiered_items = [
+        _item(1, "Tech & AI", tier=1, ccov=3, prel=2, fit="good"),
+        _item(2, "Tech & AI", tier=1, ccov=3, prel=2, fit="good"),
+    ]
+    assert suppressed_cluster_ids(tiered_items) == set()
+    links_by_id = {
+        i["id"]: {"title": f"t{i['id']}", "source": "TechCrunch", "snippet": "x"}
+        for i in tiered_items
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    surviving = {
+        it["id"]
+        for sec in payload["sections"].values()
+        for bucket in sec.values()
+        for it in bucket
+    }
+    assert surviving == {1, 2}
