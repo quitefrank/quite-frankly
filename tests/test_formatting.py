@@ -987,3 +987,27 @@ def test_suppressed_cluster_ids_ignores_singletons_and_empty_clusters():
     items[2]["cluster_id"] = ""
     items[3]["cluster_id"] = ""
     assert suppressed_cluster_ids(items) == set()
+
+
+def test_build_format_input_collapses_cluster_across_sections():
+    # Triage clustered the same story under two different sections. The
+    # global collapse keeps only the highest-scored member, so the
+    # cross-section duplicate never reaches the formatter.
+    tiered_items = [
+        _item(10, "US & Global", tier=1, ccov=4, prel=1, fit="good"),        # score 6
+        _item(11, "Finance & Markets", tier=1, ccov=3, prel=0, fit="good"),  # score 4
+    ]
+    for it in tiered_items:
+        it["cluster_id"] = "trump_iran_attack"
+    links_by_id = {
+        i["id"]: {"title": f"t{i['id']}", "source": "Reuters", "snippet": "x"}
+        for i in tiered_items
+    }
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    surviving = [
+        it["id"]
+        for sec in payload["sections"].values()
+        for bucket in sec.values()
+        for it in bucket
+    ]
+    assert surviving == [10]

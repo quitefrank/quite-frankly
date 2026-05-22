@@ -91,36 +91,13 @@ def suppressed_cluster_ids(tiered_items: list[dict]) -> set[int]:
     return suppressed
 
 
-def _collapse_by_cluster_within_section(items: list[dict]) -> list[dict]:
-    """Keep one representative item per (section, cluster_id), highest score wins.
-
-    Triage clusters by `cluster_id`, but every clustered item still flows through
-    as its own dict. Without this collapse, a single underlying story with 2+
-    items in the same section gets featured 2+ times. Items with empty
-    cluster_id are never merged - that's the "no cluster known" signal.
-    """
-    best: dict[tuple[str, str], dict] = {}
-    passthrough: list[dict] = []
-    for item in items:
-        cid = item.get("cluster_id") or ""
-        section = item.get("section") or ""
-        if not cid or not section:
-            passthrough.append(item)
-            continue
-        key = (section, cid)
-        current = best.get(key)
-        if current is None or _item_score(item.get("scores", {})) > _item_score(current.get("scores", {})):
-            best[key] = item
-    return passthrough + list(best.values())
-
-
-def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], links_by_id: dict[int, dict]) -> str:
+def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], links_by_id: dict[int, dict], suppressed_ids: set[int] | None = None) -> str:
     # Build cluster_members from the UNCOLLAPSED tiered_items so siblings
-    # surface every cluster member's URL — even ones that the within-section
-    # collapse below removes from featuring. Order matters: collapse strips
-    # duplicates from the same (section, cluster_id), but a Tech & AI story
-    # might still want to link to a sibling Tech & AI item that lost the
-    # collapse tiebreak. Building this map first preserves that visibility.
+    # surface every cluster member's URL — even ones that the global cluster
+    # collapse below drops. Order matters: the collapse keeps only one item
+    # per cluster, but a surviving story might still want to link to a
+    # sibling that lost the collapse tiebreak. Building this map first
+    # preserves that visibility.
     cluster_members: dict[str, list[dict]] = {}
     for item in tiered_items:
         cid = item.get("cluster_id")
@@ -137,11 +114,14 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
             "url": url,
         })
 
-    # Within-section cluster collapse: triage clusters the same underlying
-    # story into multiple feed items; without this, a single story can occupy
-    # several featured slots in one section. Keep the highest-scored per
-    # (section, cluster_id). Items with empty cluster_id pass through.
-    tiered_items = _collapse_by_cluster_within_section(tiered_items)
+    # Global cluster collapse: triage clusters the same underlying story into
+    # multiple feed items. Drop every non-representative cluster member so a
+    # single story occupies at most one slot anywhere in the briefing. The
+    # cluster_members map above was built from the uncollapsed list, so a
+    # surviving story still links to every sibling's URL.
+    if suppressed_ids is None:
+        suppressed_ids = suppressed_cluster_ids(tiered_items)
+    tiered_items = [it for it in tiered_items if it["id"] not in suppressed_ids]
 
     by_section: dict[str, dict[str, list]] = {
         s: {"tier_1": [], "tier_2": [], "tier_3": []} for s in SECTION_ORDER
