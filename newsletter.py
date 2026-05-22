@@ -30,7 +30,7 @@ from config import SECTION_MAP, TEST_MODE
 from routing import Mode, get_mode, get_feeds_for_mode
 from pipeline import fetch_all_feeds, deduplicate, assign_ids
 from triage import call_triage, cap_items
-from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email
+from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email, suppressed_cluster_ids
 
 
 def main():
@@ -54,6 +54,7 @@ def main():
 
     clusters_by_item_id = {}
     tiered_items = []
+    suppressed_ids: set[int] = set()
     try:
         capped_items = cap_items(items)
         if len(capped_items) < len(items):
@@ -62,8 +63,12 @@ def main():
             tiered_items, clusters = call_triage(capped_items)
         print(f"Triage returned {len(tiered_items)} scored items, {len(clusters)} clusters", flush=True)
 
+        suppressed_ids = suppressed_cluster_ids(tiered_items)
+        if suppressed_ids:
+            print(f"Cluster suppression: hiding {len(suppressed_ids)} duplicate item(s)", flush=True)
+
         with _stage("format"):
-            format_input = build_format_input(tiered_items, clusters, links_by_id)
+            format_input = build_format_input(tiered_items, clusters, links_by_id, suppressed_ids)
             format_raw = call_formatter(format_input)
 
         clusters_by_item_id = {
@@ -80,7 +85,7 @@ def main():
             format_raw = call_legacy_formatter(headlines)
 
     with _stage("build_html"):
-        html, subject = build_email_html(format_raw, links_by_id, clusters_by_item_id, tiered_items=tiered_items)
+        html, subject = build_email_html(format_raw, links_by_id, clusters_by_item_id, tiered_items=tiered_items, suppressed_ids=suppressed_ids)
 
     with _stage("send_email"):
         send_email(html, subject)
