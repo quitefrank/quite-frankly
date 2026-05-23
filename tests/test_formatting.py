@@ -5,6 +5,7 @@ from formatting import (
     build_everything_else,
     build_format_input,
     parse_and_render_sections,
+    pick_everything_else_emoji,
     render_other_headlines_for_section,
     render_source_line,
     suppressed_cluster_ids,
@@ -1085,3 +1086,41 @@ def test_distinct_clusters_are_never_suppressed():
         for it in bucket
     }
     assert surviving == {1, 2}
+
+
+def test_pick_everything_else_emoji_keyword_match_wins_over_source():
+    # Title contains an AI-vendor keyword; source map says 📈 for WSJ,
+    # but the keyword regex must win because it comes first in resolution.
+    assert pick_everything_else_emoji("OpenAI raises Series F", "WSJ") == "🤖"
+
+
+def test_pick_everything_else_emoji_source_used_when_no_keyword_match():
+    # Title has no mapped keyword; source map kicks in.
+    assert pick_everything_else_emoji("Quiet Monday at the market", "WSJ") == "📈"
+
+
+def test_pick_everything_else_emoji_safety_net_when_neither_matches():
+    # Unmapped source, unmapped keyword set → 📰 safety net.
+    assert pick_everything_else_emoji("A poem about clouds", "Unknown Source") == "📰"
+
+
+def test_pick_everything_else_emoji_is_case_insensitive():
+    assert pick_everything_else_emoji("OPENAI hires research lead", "WSJ") == "🤖"
+    assert pick_everything_else_emoji("OpEnAi releases benchmark", "WSJ") == "🤖"
+
+
+def test_pick_everything_else_emoji_respects_word_boundaries():
+    # "capitalism" must not match the \b(apple|...)\b rule via substring.
+    # Source "WSJ" still resolves to 📈 via the source map.
+    assert pick_everything_else_emoji("Capitalism and its critics", "WSJ") == "📈"
+
+
+def test_pick_everything_else_emoji_empty_title_falls_through_to_source():
+    assert pick_everything_else_emoji("", "WSJ") == "📈"
+    assert pick_everything_else_emoji(None, "WSJ") == "📈"
+
+
+def test_pick_everything_else_emoji_first_keyword_in_declared_order_wins():
+    # Title mentions both "apple" (🍎) and "google" (🔎). The keyword list
+    # declares apple before google, so apple wins.
+    assert pick_everything_else_emoji("Apple and Google announce partnership", "WSJ") == "🍎"
