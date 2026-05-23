@@ -161,6 +161,108 @@ SECTION_EMOJIS = {
     "Everything Else":  "📋",
 }
 
+# Per-item emoji selection for Everything Else.
+# Resolution order in formatting.pick_everything_else_emoji:
+#   1. First case-insensitive keyword regex match (declared order wins).
+#   2. Exact source-name lookup below.
+#   3. Newspaper safety net (📰) — only fires if a feed source is added
+#      without being added to EVERYTHING_ELSE_SOURCE_EMOJIS.
+EVERYTHING_ELSE_KEYWORD_EMOJIS = [
+    # AI / tech firms
+    (r"\b(openai|anthropic|gpt|claude|gemini|llm|chatgpt|copilot)\b", "🤖"),
+    (r"\b(apple|iphone|ipad|mac|airpods)\b", "🍎"),
+    (r"\b(google|alphabet|android|pixel)\b", "🔎"),
+    (r"\b(meta|facebook|instagram|whatsapp|threads)\b", "📱"),
+    (r"\b(microsoft|azure|xbox|windows)\b", "🪟"),
+    (r"\b(amazon|aws|prime)\b", "📦"),
+    (r"\b(tesla|musk|spacex|x corp|twitter)\b", "🚀"),
+
+    # Housing / real estate
+    (r"\b(rent|condo|landlord|mortgage|housing|real estate|listing|airbnb)\b", "🏠"),
+
+    # Markets / finance
+    (r"\b(fed|inflation|interest rate|tsx|s&p|nasdaq|dow|recession|bond|yield)\b", "📈"),
+    (r"\b(crypto|bitcoin|ethereum|stablecoin)\b", "🪙"),
+    (r"\b(layoff|firing|severance|hiring freeze)\b", "📉"),
+
+    # Politics
+    (r"\b(trump|biden|harris|white house|congress|senate|gop|democrat|republican)\b", "🇺🇸"),
+    (r"\b(ottawa|trudeau|carney|liberal|conservative|ndp|poilievre|parliament)\b", "🇨🇦"),
+    (r"\b(election|vote|ballot|poll|polling|riding)\b", "🗳️"),
+
+    # Toronto / Ontario
+    (r"\b(toronto|ontario|ttc|tdsb|leslieville|scarborough|mississauga)\b", "🏙️"),
+
+    # World / environment
+    (r"\b(climate|emissions|wildfire|hurricane|flood|heatwave)\b", "🌍"),
+    (r"\b(war|ukraine|gaza|israel|hamas|nato)\b", "🕊️"),
+
+    # Work / labour
+    (r"\b(strike|union|labour|labor|walkout)\b", "👷"),
+
+    # Culture
+    (r"\b(film|movie|netflix|hollywood|streaming|series|hbo)\b", "🎬"),
+    (r"\b(nba|nhl|nfl|mlb|raptors|leafs|blue jays|formula 1|world cup|olympics)\b", "🏆"),
+    (r"\b(restaurant|chef|menu|michelin)\b", "🍽️"),
+
+    # Design / product
+    (r"\b(design|ux|figma|product|prototype|interaction)\b", "🎨"),
+]
+
+EVERYTHING_ELSE_SOURCE_EMOJIS = {
+    # Canada & Toronto
+    "CBC":                "🇨🇦",
+    "Globe & Mail":       "🇨🇦",
+    "r/toronto":          "🏙️",
+    "BlogTO":             "🏙️",
+    "Toronto Star":       "🏙️",
+    "National Post":      "🇨🇦",
+    "National Newswatch": "🇨🇦",
+    "Canadaland":         "🇨🇦",
+
+    # Toronto Housing
+    "Globe & Mail Finance":   "🏠",
+    "r/canadahousing":        "🏠",
+    "Storeys":                "🏠",
+    "BetterDwelling":         "🏠",
+    "MoneySense Real Estate": "🏠",
+
+    # Tech & AI
+    "TechCrunch":     "💻",
+    "Hacker News":    "💻",
+    "Simon Willison": "🤖",
+    "Stratechery":    "💻",
+
+    # Finance & Markets
+    "Yahoo Finance": "📈",
+    "WSJ":           "📈",
+    "MoneySense":    "💰",
+
+    # US & Global
+    "BBC":       "🌍",
+    "NYT":       "🇺🇸",
+    "Economist": "🌍",
+    "NPR World": "🌍",
+    "Axios":     "🇺🇸",
+
+    # Design & Product
+    "UX Collective":      "🎨",
+    "Smashing Magazine":  "🎨",
+    "NN/g":               "🎨",
+    "Lenny's Newsletter": "📊",
+    "Design Milk":        "🎨",
+    "Hypebeast":          "👟",
+    "Codrops":            "🎨",
+    "Sidebar":            "🎨",
+    "Trendland":          "🎨",
+
+    # Today in the World (podcasts)
+    "NYT The Daily":      "🎙️",
+    "Today Explained":    "🎙️",
+    "CBC Frontburner":    "🎙️",
+    "NBC Meet the Press": "🎙️",
+}
+
 SOURCE_FAVICONS = {
     # Canada & Toronto
     "CBC":                "https://www.google.com/s2/favicons?domain=cbc.ca&sz=64",
