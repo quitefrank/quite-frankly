@@ -1,0 +1,1420 @@
+{
+  "date": "2026-05-23",
+  "mode": "saturday_strategic",
+  "phase1": [
+    {
+      "id": 0,
+      "tier": 2,
+      "section": "Design & Product",
+      "cluster_id": "lenny-newsletter-updates",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Goodbye, Lenny's Reads!",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/goodbye-lennys-reads"
+    },
+    {
+      "id": 1,
+      "tier": 2,
+      "section": "Tech & AI",
+      "cluster_id": "google-io-2026",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "What launched at Google I/O 2026 (30-minute day 1 recap)",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/what-launched-at-google-io-2026-30"
+    },
+    {
+      "id": 2,
+      "tier": 2,
+      "section": "Design & Product",
+      "cluster_id": "lenny-summit",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The Lenny and Friends Summit is back!",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/the-lenny-and-friends-summit-is-back"
+    },
+    {
+      "id": 3,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "anthropic-claude-code",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "\ud83c\udf99\ufe0f How I AI: HTML is the new Markdown: How Anthropic engineers are building with Claude Code",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/how-i-ai-html-is-the-new-markdown"
+    },
+    {
+      "id": 4,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "anthropic-claude-code",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "HTML is the new Markdown: How Anthropic engineers are building with Claude Code | Thariq Shihipar",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/html-is-the-new-markdown-how-anthropic"
+    },
+    {
+      "id": 5,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-hardware-boom",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Why we\u2019re at the beginning of the AI hardware boom | Caitlin Kalinowski (ex\u2013OpenAI, Meta, Apple)",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/why-were-at-the-beginning-of-the"
+    },
+    {
+      "id": 6,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-tooling-community",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "\ud83e\udde0 Community Wisdom: Screening AI slop in hiring, Wispr Flow alternatives for voice transcription, multi-agent pipeline vs. MCP, and more",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/community-wisdom-screening-ai-slop"
+    },
+    {
+      "id": 7,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "notion-ai-workflow",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "\ud83c\udf99\ufe0f How I AI: Quests, token leaderboards, and the elite AI adoption playbook & Notion\u2019s spec-driven development",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/how-i-ai-quests-token-leaderboards"
+    },
+    {
+      "id": 8,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "notion-ai-workflow",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/spec-driven-development-the-ai-engineering"
+    },
+    {
+      "id": 9,
+      "tier": 2,
+      "section": "Design & Product",
+      "cluster_id": "lean-startup-eric-ries",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "How to build a company that withstands any era | Eric Ries, Lean Startup author",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/how-to-build-a-company-that-withstands"
+    },
+    {
+      "id": 10,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "design-disposables-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The Case for Design Disposables",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/design-disposables/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+    },
+    {
+      "id": 11,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "design-critique-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Closing the Loop: What to Do After a Design Critique Ends",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/after-design-critique/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+    },
+    {
+      "id": 12,
+      "tier": 2,
+      "section": "Design & Product",
+      "cluster_id": "ux-conference-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "UX Conference August Announced (Aug 17 - Aug 28)",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/training/august/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+    },
+    {
+      "id": 13,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "lean-design-systems-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Small by Design: The Strength of Lean Design-System Teams",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/lean-design-system-teams/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+    },
+    {
+      "id": 14,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "designer-struggles-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "What Designers Actually Struggle with on Product Teams",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/designers-product-teams/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+    },
+    {
+      "id": 15,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-agent-design-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Designing AI Agents: 4 Lessons from China\u2019s Qwen Agent",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/designing-ai-agents/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+    },
+    {
+      "id": 16,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "ux-writing-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "UX Writing: FAQs from Practitioners",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/ux-writing-faqs/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+    },
+    {
+      "id": 17,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "participant-selection-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Selection Criteria: How to Pick Your Participants",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/selection-criteria/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+    },
+    {
+      "id": 18,
+      "tier": 2,
+      "section": "Design & Product",
+      "cluster_id": "china-ux-research-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Information Seeking in China: A Different Ecosystem, Familiar Behavior",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/information-seeking-china/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+    },
+    {
+      "id": 19,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "ux-job-opening-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Job Opening: UX Design Assistant (Remote, World-Wide; Europe Based)",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/news/item/job-opening-ux-design-assistant-remote-europe-1/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+    },
+    {
+      "id": 20,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "human-ai-system-design",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Designing the Human+AI system",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/designing-the-human-ai-system-d7f6fc8bf772?source=rss----138adf9c44c---4"
+    },
+    {
+      "id": 21,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-ux-debt",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "AI UX debt: A new bottleneck",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/ai-ux-debt-a-new-bottleneck-ed91c256b86b?source=rss----138adf9c44c---4"
+    },
+    {
+      "id": 22,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "information-architecture-ux",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Yippee IA: Six principles for creating a successful information architecture",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/yippee-ia-six-principles-for-creating-a-successful-information-architecture-e4ceea39673c?source=rss----138adf9c44c---4"
+    },
+    {
+      "id": 23,
+      "tier": 2,
+      "section": "Design & Product",
+      "cluster_id": "ethical-interface-design",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The case for catholic philosophy in ethical interface design",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/the-case-for-catholic-philosophy-in-ethical-interface-design-c5a30b729e4b?source=rss----138adf9c44c---4"
+    },
+    {
+      "id": 24,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "critical-thinking-senior-designers",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "What critical thinking means for senior designers (and how to apply it)",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/what-critical-thinking-means-for-senior-designers-and-how-to-apply-it-7423762b2391?source=rss----138adf9c44c---4"
+    },
+    {
+      "id": 25,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-tools-better-users",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Most AI tools make users faster. The best AI tools make users better.",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/most-ai-tools-make-users-faster-the-best-ai-tools-make-users-better-471bac7c7f86?source=rss----138adf9c44c---4"
+    },
+    {
+      "id": 26,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-experience-architect",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "From faster pencil to AI Experience Architect: a designer\u2019s path",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/from-faster-pencil-to-ai-experience-architect-a-designers-path-4bec9856a785?source=rss----138adf9c44c---4"
+    },
+    {
+      "id": 27,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "waiting-problem-ai",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The waiting problem in AI products",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/the-waiting-problem-in-ai-products-e7c11fd5a825?source=rss----138adf9c44c---4"
+    },
+    {
+      "id": 28,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-ux-trends",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Be like water, The death of the empty state, AI for UX",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/be-like-water-the-death-of-the-empty-state-ai-for-ux-88654390e8ee?source=rss----138adf9c44c---4"
+    },
+    {
+      "id": 29,
+      "tier": 3,
+      "section": "Design & Product",
+      "cluster_id": "mm-color-investigation",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The big M&M\u2019s color investigation you could\u2019ve totally lived without",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/the-big-m-ms-color-investigation-you-could-ve-totally-lived-without-f836bd2697ec?source=rss----138adf9c44c---4"
+    },
+    {
+      "id": 30,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "customer-understanding-smashing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Four Levels Of Customer Understanding",
+      "source": "Smashing Magazine",
+      "link": "https://smashingmagazine.com/2026/05/four-levels-customer-understanding/"
+    },
+    {
+      "id": 31,
+      "tier": 2,
+      "section": "Design & Product",
+      "cluster_id": "css-tree-counting-smashing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Advanced Tree Counting: Mathematical Layouts With `sibling-index()` And `sibling-count()`",
+      "source": "Smashing Magazine",
+      "link": "https://smashingmagazine.com/2026/05/mathematical-layouts-sibling-index-sibling-count/"
+    },
+    {
+      "id": 32,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "ux-roi-data-smashing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Ten Data-Backed Truths Of User Experience ROI",
+      "source": "Smashing Magazine",
+      "link": "https://smashingmagazine.com/2026/05/data-backed-truths-user-experience-roi/"
+    },
+    {
+      "id": 33,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-transparency-patterns-smashing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Practical Interface Patterns For AI Transparency (Part 2)",
+      "source": "Smashing Magazine",
+      "link": "https://smashingmagazine.com/2026/05/practical-interface-patterns-ai-transparency/"
+    }
+  ],
+  "phase2_shadow": [
+    {
+      "id": 0,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "lenny-newsletter-updates",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Goodbye, Lenny's Reads!",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/goodbye-lennys-reads",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 1,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "google-io-2026",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "What launched at Google I/O 2026 (30-minute day 1 recap)",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/what-launched-at-google-io-2026-30",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 2,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "lenny-summit",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The Lenny and Friends Summit is back!",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/the-lenny-and-friends-summit-is-back",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 3,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "anthropic-claude-code",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "\ud83c\udf99\ufe0f How I AI: HTML is the new Markdown: How Anthropic engineers are building with Claude Code",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/how-i-ai-html-is-the-new-markdown",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 4,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "anthropic-claude-code",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "HTML is the new Markdown: How Anthropic engineers are building with Claude Code | Thariq Shihipar",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/html-is-the-new-markdown-how-anthropic",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 5,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-hardware-boom",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Why we\u2019re at the beginning of the AI hardware boom | Caitlin Kalinowski (ex\u2013OpenAI, Meta, Apple)",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/why-were-at-the-beginning-of-the",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 6,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-tooling-community",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "\ud83e\udde0 Community Wisdom: Screening AI slop in hiring, Wispr Flow alternatives for voice transcription, multi-agent pipeline vs. MCP, and more",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/community-wisdom-screening-ai-slop",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 7,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "notion-ai-workflow",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "\ud83c\udf99\ufe0f How I AI: Quests, token leaderboards, and the elite AI adoption playbook & Notion\u2019s spec-driven development",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/how-i-ai-quests-token-leaderboards",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 8,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "notion-ai-workflow",
+      "scores": {
+        "cross_source_coverage": 2,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/spec-driven-development-the-ai-engineering",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 9,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "lean-startup-eric-ries",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "How to build a company that withstands any era | Eric Ries, Lean Startup author",
+      "source": "Lenny's Newsletter",
+      "link": "https://www.lennysnewsletter.com/p/how-to-build-a-company-that-withstands",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 10,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "design-disposables-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The Case for Design Disposables",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/design-disposables/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 11,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "design-critique-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Closing the Loop: What to Do After a Design Critique Ends",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/after-design-critique/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 12,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "ux-conference-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "UX Conference August Announced (Aug 17 - Aug 28)",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/training/august/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 13,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "lean-design-systems-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Small by Design: The Strength of Lean Design-System Teams",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/lean-design-system-teams/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 14,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "designer-struggles-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "What Designers Actually Struggle with on Product Teams",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/designers-product-teams/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 15,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-agent-design-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Designing AI Agents: 4 Lessons from China\u2019s Qwen Agent",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/designing-ai-agents/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 16,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "ux-writing-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 2,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "UX Writing: FAQs from Practitioners",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/ux-writing-faqs/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 17,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "participant-selection-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Selection Criteria: How to Pick Your Participants",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/selection-criteria/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 18,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "china-ux-research-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Information Seeking in China: A Different Ecosystem, Familiar Behavior",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/articles/information-seeking-china/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 19,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "ux-job-opening-nng",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Job Opening: UX Design Assistant (Remote, World-Wide; Europe Based)",
+      "source": "NN/g",
+      "link": "https://www.nngroup.com/news/item/job-opening-ux-design-assistant-remote-europe-1/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 20,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "human-ai-system-design",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Designing the Human+AI system",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/designing-the-human-ai-system-d7f6fc8bf772?source=rss----138adf9c44c---4",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 21,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-ux-debt",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "AI UX debt: A new bottleneck",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/ai-ux-debt-a-new-bottleneck-ed91c256b86b?source=rss----138adf9c44c---4",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 22,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "information-architecture-ux",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Yippee IA: Six principles for creating a successful information architecture",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/yippee-ia-six-principles-for-creating-a-successful-information-architecture-e4ceea39673c?source=rss----138adf9c44c---4",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 23,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "ethical-interface-design",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The case for catholic philosophy in ethical interface design",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/the-case-for-catholic-philosophy-in-ethical-interface-design-c5a30b729e4b?source=rss----138adf9c44c---4",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 24,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "critical-thinking-senior-designers",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "What critical thinking means for senior designers (and how to apply it)",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/what-critical-thinking-means-for-senior-designers-and-how-to-apply-it-7423762b2391?source=rss----138adf9c44c---4",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 25,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-tools-better-users",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Most AI tools make users faster. The best AI tools make users better.",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/most-ai-tools-make-users-faster-the-best-ai-tools-make-users-better-471bac7c7f86?source=rss----138adf9c44c---4",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 26,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-experience-architect",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "From faster pencil to AI Experience Architect: a designer\u2019s path",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/from-faster-pencil-to-ai-experience-architect-a-designers-path-4bec9856a785?source=rss----138adf9c44c---4",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 27,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "waiting-problem-ai",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The waiting problem in AI products",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/the-waiting-problem-in-ai-products-e7c11fd5a825?source=rss----138adf9c44c---4",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 28,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-ux-trends",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Be like water, The death of the empty state, AI for UX",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/be-like-water-the-death-of-the-empty-state-ai-for-ux-88654390e8ee?source=rss----138adf9c44c---4",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 29,
+      "tier": 2,
+      "section": "Design & Product",
+      "cluster_id": "mm-color-investigation",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 0,
+        "section_fit": "weak"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "The big M&M\u2019s color investigation you could\u2019ve totally lived without",
+      "source": "UX Collective",
+      "link": "https://uxdesign.cc/the-big-m-ms-color-investigation-you-could-ve-totally-lived-without-f836bd2697ec?source=rss----138adf9c44c---4",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 30,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "customer-understanding-smashing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Four Levels Of Customer Understanding",
+      "source": "Smashing Magazine",
+      "link": "https://smashingmagazine.com/2026/05/four-levels-customer-understanding/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 31,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "css-tree-counting-smashing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 1,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Advanced Tree Counting: Mathematical Layouts With `sibling-index()` And `sibling-count()`",
+      "source": "Smashing Magazine",
+      "link": "https://smashingmagazine.com/2026/05/mathematical-layouts-sibling-index-sibling-count/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 32,
+      "tier": 1,
+      "section": "Design & Product",
+      "cluster_id": "ux-roi-data-smashing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Ten Data-Backed Truths Of User Experience ROI",
+      "source": "Smashing Magazine",
+      "link": "https://smashingmagazine.com/2026/05/data-backed-truths-user-experience-roi/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": 33,
+      "tier": 1,
+      "section": "Tech & AI",
+      "cluster_id": "ai-transparency-patterns-smashing",
+      "scores": {
+        "cross_source_coverage": 1,
+        "personal_relevance": 3,
+        "section_fit": "good"
+      },
+      "promotion_to_today_in_the_world": false,
+      "headline": "Practical Interface Patterns For AI Transparency (Part 2)",
+      "source": "Smashing Magazine",
+      "link": "https://smashingmagazine.com/2026/05/practical-interface-patterns-ai-transparency/",
+      "reddit": {
+        "score": 0,
+        "comments": 0,
+        "subreddit_hits": 0
+      },
+      "hn": {
+        "points": 0,
+        "comments": 0
+      }
+    }
+  ],
+  "deltas": {
+    "promoted_by_phase2": [
+      {
+        "id": 0,
+        "from": 2,
+        "to": 1,
+        "headline": "Goodbye, Lenny's Reads!",
+        "source": "Lenny's Newsletter",
+        "section": "Design & Product",
+        "link": "https://www.lennysnewsletter.com/p/goodbye-lennys-reads"
+      },
+      {
+        "id": 1,
+        "from": 2,
+        "to": 1,
+        "headline": "What launched at Google I/O 2026 (30-minute day 1 recap)",
+        "source": "Lenny's Newsletter",
+        "section": "Tech & AI",
+        "link": "https://www.lennysnewsletter.com/p/what-launched-at-google-io-2026-30"
+      },
+      {
+        "id": 2,
+        "from": 2,
+        "to": 1,
+        "headline": "The Lenny and Friends Summit is back!",
+        "source": "Lenny's Newsletter",
+        "section": "Design & Product",
+        "link": "https://www.lennysnewsletter.com/p/the-lenny-and-friends-summit-is-back"
+      },
+      {
+        "id": 9,
+        "from": 2,
+        "to": 1,
+        "headline": "How to build a company that withstands any era | Eric Ries, Lean Startup author",
+        "source": "Lenny's Newsletter",
+        "section": "Design & Product",
+        "link": "https://www.lennysnewsletter.com/p/how-to-build-a-company-that-withstands"
+      },
+      {
+        "id": 12,
+        "from": 2,
+        "to": 1,
+        "headline": "UX Conference August Announced (Aug 17 - Aug 28)",
+        "source": "NN/g",
+        "section": "Design & Product",
+        "link": "https://www.nngroup.com/training/august/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+      },
+      {
+        "id": 18,
+        "from": 2,
+        "to": 1,
+        "headline": "Information Seeking in China: A Different Ecosystem, Familiar Behavior",
+        "source": "NN/g",
+        "section": "Design & Product",
+        "link": "https://www.nngroup.com/articles/information-seeking-china/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+      },
+      {
+        "id": 23,
+        "from": 2,
+        "to": 1,
+        "headline": "The case for catholic philosophy in ethical interface design",
+        "source": "UX Collective",
+        "section": "Design & Product",
+        "link": "https://uxdesign.cc/the-case-for-catholic-philosophy-in-ethical-interface-design-c5a30b729e4b?source=rss----138adf9c44c---4"
+      },
+      {
+        "id": 29,
+        "from": 3,
+        "to": 2,
+        "headline": "The big M&M\u2019s color investigation you could\u2019ve totally lived without",
+        "source": "UX Collective",
+        "section": "Design & Product",
+        "link": "https://uxdesign.cc/the-big-m-ms-color-investigation-you-could-ve-totally-lived-without-f836bd2697ec?source=rss----138adf9c44c---4"
+      },
+      {
+        "id": 31,
+        "from": 2,
+        "to": 1,
+        "headline": "Advanced Tree Counting: Mathematical Layouts With `sibling-index()` And `sibling-count()`",
+        "source": "Smashing Magazine",
+        "section": "Design & Product",
+        "link": "https://smashingmagazine.com/2026/05/mathematical-layouts-sibling-index-sibling-count/"
+      }
+    ],
+    "demoted_by_phase2": []
+  }
+}
