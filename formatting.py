@@ -13,7 +13,16 @@ from zoneinfo import ZoneInfo
 
 import anthropic
 
-from config import RECIPIENT, SECTION_EMOJIS, SECTION_MAP, SENDER, SOURCE_FAVICONS, TEST_MODE
+from config import (
+    EVERYTHING_ELSE_KEYWORD_EMOJIS,
+    EVERYTHING_ELSE_SOURCE_EMOJIS,
+    RECIPIENT,
+    SECTION_EMOJIS,
+    SECTION_MAP,
+    SENDER,
+    SOURCE_FAVICONS,
+    TEST_MODE,
+)
 from prompts import FORMAT_SYSTEM_PROMPT, LEGACY_FORMAT_SYSTEM_PROMPT
 
 
@@ -832,6 +841,24 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
         )
 
     return html, used_ids
+
+
+def pick_everything_else_emoji(title: str, source: str) -> str:
+    """Pick the per-item emoji for an Everything Else entry.
+
+    Resolution order:
+      1. First case-insensitive keyword match in EVERYTHING_ELSE_KEYWORD_EMOJIS.
+      2. Exact match in EVERYTHING_ELSE_SOURCE_EMOJIS.
+      3. Newspaper safety net (📰) — only reached if a new source slipped
+         into the feed without being added to the source map.
+    """
+    text = (title or "").lower()
+    for pattern, emoji in EVERYTHING_ELSE_KEYWORD_EMOJIS:
+        if re.search(pattern, text):
+            return emoji
+    if source in EVERYTHING_ELSE_SOURCE_EMOJIS:
+        return EVERYTHING_ELSE_SOURCE_EMOJIS[source]
+    return "📰"
 
 
 def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiered_items=None):
