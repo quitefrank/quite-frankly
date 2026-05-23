@@ -899,14 +899,18 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiere
         link_words = " ".join(words[:4])
         remaining = " ".join(words[4:])
         linked_part = (
-            f'<a href="{l["link"]}" style="color:#333;font-weight:400;'
-            f'text-decoration:underline;text-decoration-color:#1c7ff2;">{link_words}</a>'
-            if l["link"] else link_words
+            f'<a href="{l["link"]}" style="color:#333;font-weight:700;'
+            f'text-decoration:underline;text-decoration-color:#1c7ff2;">'
+            f'<strong>{link_words}</strong></a>'
+            if l["link"] else f'<strong>{link_words}</strong>'
         )
         full_line = f"{linked_part} {remaining}" if remaining else linked_part
+        emoji = pick_everything_else_emoji(l.get("title", ""), l.get("source", ""))
         items_html += (
-            f'<li style="margin-bottom:10px;line-height:22px;font-size:15px;color:#333;'
-            f'font-family:Helvetica,Arial,sans-serif">{full_line}</li>'
+            f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:#333;'
+            f'font-family:Helvetica,Arial,sans-serif">'
+            f'<span style="margin-right:6px">{emoji}</span>'
+            f'{full_line}</p>'
         )
 
     return (
@@ -916,7 +920,7 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiere
         '\n    <p style="color:#1c7ff2;margin:0 0 4px;font-size:13px;font-weight:700;'
         'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">📋 Everything Else</p>'
         '\n  </div>'
-        f'\n  <div style="padding:0 15px 15px"><ul style="margin:0;padding-left:20px">{items_html}</ul></div>'
+        f'\n  <div style="padding:0 15px 15px">{items_html}</div>'
         '\n</div>'
     )
 
