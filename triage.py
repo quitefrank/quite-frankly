@@ -234,10 +234,15 @@ def attach_traction(items: list[dict], links_by_id: dict) -> list[dict]:
 def apply_phase2_tier(items: list[dict], links_by_id: dict) -> list[dict]:
     """Overwrite each item's tier using the Phase 2 traction-aware formula.
 
-    Mutates items in place (in contrast to the deep-copy `shadow_score` used
-    while traction lived in shadow). Returns the same list.
+    Mutates items in place. If the Reddit/HN fetch raises (network outage,
+    library error), log and return items unchanged so the email still ships
+    with Claude's original tier assignments.
     """
-    attach_traction(items, links_by_id)
+    try:
+        attach_traction(items, links_by_id)
+    except Exception as e:
+        print(f"  Phase 2: attach_traction failed ({e}); keeping Claude tiers.", flush=True)
+        return items
     for item in items:
         item["tier"] = compute_phase2_tier(item)
     return items

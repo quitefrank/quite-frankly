@@ -58,3 +58,23 @@ def test_apply_phase2_tier_recomputes_without_traction(monkeypatch):
     result = apply_phase2_tier(items, links_by_id)
     # 2*3 + 2*2 + 1 = 11 → tier 1 even with no traction
     assert result[0]["tier"] == 1
+
+
+def test_apply_phase2_tier_falls_back_when_attach_traction_raises(monkeypatch, capsys):
+    def boom(items, links_by_id):
+        raise RuntimeError("Reddit blew up")
+
+    monkeypatch.setattr(triage, "attach_traction", boom)
+
+    items = [
+        {"id": 0, "tier": 1, "scores": {"cross_source_coverage": 3, "personal_relevance": 3, "section_fit": "good"}},
+        {"id": 1, "tier": 3, "scores": {"cross_source_coverage": 0, "personal_relevance": 1, "section_fit": "weak"}},
+    ]
+    links_by_id = {0: {"link": "https://a"}, 1: {"link": "https://b"}}
+
+    result = apply_phase2_tier(items, links_by_id)
+
+    assert result[0]["tier"] == 1  # Claude's tier preserved
+    assert result[1]["tier"] == 3  # Claude's tier preserved
+    out = capsys.readouterr().out
+    assert "attach_traction failed" in out or "Reddit blew up" in out
