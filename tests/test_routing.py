@@ -23,7 +23,7 @@ def test_weekday_pool_excludes_design_feeds():
     feeds = get_feeds_for_mode(Mode.WEEKDAY_DAILY)
     sources = [f["source"] for f in feeds]
     assert "Design Milk" not in sources
-    assert "Hypebeast" not in sources
+    assert "It's Nice That" not in sources
     assert "UX Collective" not in sources
 
 
@@ -32,7 +32,7 @@ def test_saturday_pool_is_strategic_design_only():
     sources = [f["source"] for f in feeds]
     assert "UX Collective" in sources
     assert "Lenny's Newsletter" in sources
-    assert "Hypebeast" not in sources
+    assert "It's Nice That" not in sources
     assert "CBC" not in sources
 
 
@@ -41,4 +41,5 @@ def test_sunday_pool_is_visual_design_only():
     sources = [f["source"] for f in feeds]
     assert "Design Milk" in sources
     assert "Codrops" in sources
+    assert "It's Nice That" in sources
     assert "Lenny's Newsletter" not in sources

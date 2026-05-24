@@ -76,7 +76,7 @@ FEEDS_SATURDAY_STRATEGIC = [
 
 FEEDS_SUNDAY_VISUAL = [
     {"url": "https://design-milk.com/feed",              "source": "Design Milk"},
-    {"url": "https://hypebeast.com/feed",                "source": "Hypebeast"},
+    {"url": "https://www.itsnicethat.com/articles.rss",  "source": "It's Nice That"},
     {"url": "https://tympanus.net/codrops/feed/",        "source": "Codrops"},
     {"url": "https://sidebar.io/feed.xml",               "source": "Sidebar"},
     {"url": "https://trendland.com/feed/",               "source": "Trendland"},
@@ -128,7 +128,7 @@ SECTION_MAP = {
 
     # Design & Product (Sunday visual)
     "Design Milk": "Design & Product",
-    "Hypebeast":   "Design & Product",
+    "It's Nice That":  "Design & Product",
     "Codrops":     "Design & Product",
     "Sidebar":     "Design & Product",
     "Trendland":   "Design & Product",
@@ -251,7 +251,7 @@ EVERYTHING_ELSE_SOURCE_EMOJIS = {
     "NN/g":               "🎨",
     "Lenny's Newsletter": "📊",
     "Design Milk":        "🎨",
-    "Hypebeast":          "👟",
+    "It's Nice That":     "🎨",
     "Codrops":            "🎨",
     "Sidebar":            "🎨",
     "Trendland":          "🎨",
@@ -307,7 +307,7 @@ SOURCE_FAVICONS = {
 
     # Design & Product (Sunday visual)
     "Design Milk": "https://www.google.com/s2/favicons?domain=design-milk.com&sz=64",
-    "Hypebeast":   "https://www.google.com/s2/favicons?domain=hypebeast.com&sz=64",
+    "It's Nice That":  "https://www.google.com/s2/favicons?domain=itsnicethat.com&sz=64",
     "Codrops":     "https://www.google.com/s2/favicons?domain=tympanus.net&sz=64",
     "Sidebar":     "https://www.google.com/s2/favicons?domain=sidebar.io&sz=64",
     "Trendland":   "https://www.google.com/s2/favicons?domain=trendland.com&sz=64",
