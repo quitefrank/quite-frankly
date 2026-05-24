@@ -20,7 +20,7 @@ def _stage(name: str):
 
 from config import SECTION_MAP, TEST_MODE
 from routing import Mode, get_mode, get_feeds_for_mode
-from pipeline import fetch_all_feeds, deduplicate, assign_ids
+from pipeline import fetch_all_feeds, deduplicate, record_seen, assign_ids
 from triage import apply_phase2_tier, call_triage, cap_items
 from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email, suppressed_cluster_ids
 
@@ -85,6 +85,8 @@ def main():
 
     with _stage("send_email"):
         send_email(html, subject)
+
+    record_seen(items)
 
     print("Done.")
 

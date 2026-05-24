@@ -239,6 +239,11 @@ def save_seen_links(seen):
 
 
 def deduplicate(items):
+    """Return items not seen in the last SEVEN_DAYS_S window.
+
+    Read-only: callers must invoke record_seen(fresh_items) after the email
+    successfully ships, so a failed run doesn't lock items out of retries.
+    """
     if TEST_MODE:
         print("[TEST MODE] Bypassing dedup cache; subject will be prefixed [TEST]")
         return items
@@ -253,11 +258,21 @@ def deduplicate(items):
         print("  All items seen before - using full list (likely a test run)")
         fresh = items
 
-    for item in fresh:
-        seen[item["link"]] = now
-
-    save_seen_links(seen)
     return fresh
+
+
+def record_seen(items):
+    """Persist items to the seen-links cache. Call after send_email succeeds."""
+    if TEST_MODE or not items:
+        return
+    seen = load_seen_links()
+    now = time.time()
+    seen = {url: ts for url, ts in seen.items() if now - ts < SEVEN_DAYS_S}
+    for item in items:
+        link = item.get("link")
+        if link:
+            seen[link] = now
+    save_seen_links(seen)
 
 
 def assign_ids(items: list[dict]) -> dict[int, dict]:

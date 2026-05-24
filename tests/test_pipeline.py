@@ -1,6 +1,8 @@
+import json
 from unittest.mock import patch
 
-from pipeline import assign_ids, fetch_all_feeds, fetch_feed, monday_dedup_bypass
+import pipeline
+from pipeline import assign_ids, deduplicate, fetch_all_feeds, fetch_feed, monday_dedup_bypass, record_seen
 
 
 def test_assign_ids_returns_dict_keyed_by_id():
@@ -190,3 +192,64 @@ def test_monday_bypass_keeps_items_with_cluster_size_3_plus():
     ]
     result = monday_dedup_bypass(items, seen)
     assert {i["id"] for i in result} == {0}
+
+
+def test_deduplicate_does_not_persist_seen_links(tmp_path, monkeypatch):
+    seen_file = tmp_path / "seen_links.json"
+    seen_file.write_text("{}")
+    monkeypatch.setattr(pipeline, "SEEN_LINKS_FILE", str(seen_file))
+    monkeypatch.setattr(pipeline, "TEST_MODE", False)
+
+    items = [
+        {"title": "a", "link": "https://example.com/a", "source": "Codrops"},
+        {"title": "b", "link": "https://example.com/b", "source": "Sidebar"},
+    ]
+    fresh = deduplicate(items)
+    assert len(fresh) == 2
+    assert json.loads(seen_file.read_text()) == {}, (
+        "deduplicate must not persist seen_links; record_seen does that after a successful send"
+    )
+
+
+def test_record_seen_persists_items(tmp_path, monkeypatch):
+    seen_file = tmp_path / "seen_links.json"
+    seen_file.write_text("{}")
+    monkeypatch.setattr(pipeline, "SEEN_LINKS_FILE", str(seen_file))
+    monkeypatch.setattr(pipeline, "TEST_MODE", False)
+
+    items = [
+        {"title": "a", "link": "https://example.com/a", "source": "Codrops"},
+        {"title": "b", "link": "https://example.com/b", "source": "Sidebar"},
+    ]
+    record_seen(items)
+    saved = json.loads(seen_file.read_text())
+    assert set(saved.keys()) == {"https://example.com/a", "https://example.com/b"}
+
+
+def test_record_seen_is_noop_in_test_mode(tmp_path, monkeypatch):
+    seen_file = tmp_path / "seen_links.json"
+    seen_file.write_text("{}")
+    monkeypatch.setattr(pipeline, "SEEN_LINKS_FILE", str(seen_file))
+    monkeypatch.setattr(pipeline, "TEST_MODE", True)
+
+    record_seen([{"title": "a", "link": "https://example.com/a", "source": "Codrops"}])
+    assert json.loads(seen_file.read_text()) == {}
+
+
+def test_deduplicate_then_record_seen_round_trip(tmp_path, monkeypatch):
+    seen_file = tmp_path / "seen_links.json"
+    seen_file.write_text("{}")
+    monkeypatch.setattr(pipeline, "SEEN_LINKS_FILE", str(seen_file))
+    monkeypatch.setattr(pipeline, "TEST_MODE", False)
+
+    first_run = [{"title": "a", "link": "https://example.com/a", "source": "Codrops"}]
+    fresh = deduplicate(first_run)
+    assert len(fresh) == 1
+    record_seen(fresh)
+
+    second_run = [
+        {"title": "a", "link": "https://example.com/a", "source": "Codrops"},
+        {"title": "b", "link": "https://example.com/b", "source": "Sidebar"},
+    ]
+    fresh = deduplicate(second_run)
+    assert [i["link"] for i in fresh] == ["https://example.com/b"]
