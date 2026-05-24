@@ -10,10 +10,13 @@ from __future__ import annotations
 import json
 import os
 import re
+from concurrent.futures import ThreadPoolExecutor
 
 import anthropic
 
+from config import REDDIT_SUBREDDITS
 from prompts import TRIAGE_SYSTEM_PROMPT
+from traction import fetch_hn_traction, fetch_reddit_traction
 
 
 MAX_TRIAGE_INPUT_ITEMS = 120
@@ -165,12 +168,6 @@ def build_triage_user_message(items: list[dict]) -> str:
 
 
 # ---- Phase 2 traction-aware tier scoring ----
-
-from concurrent.futures import ThreadPoolExecutor
-
-from config import REDDIT_SUBREDDITS
-from traction import fetch_hn_traction, fetch_reddit_traction
-
 
 # Reddit's anonymous rate limit is ~60 req/min. With 7 subreddits per item +
 # 1 HN call, 5 concurrent workers keeps burst rate under that ceiling.
