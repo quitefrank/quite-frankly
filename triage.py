@@ -229,3 +229,15 @@ def attach_traction(items: list[dict], links_by_id: dict) -> list[dict]:
     with ThreadPoolExecutor(max_workers=TRACTION_MAX_WORKERS) as executor:
         list(executor.map(lambda pair: _attach_one(*pair), work))
     return items
+
+
+def apply_phase2_tier(items: list[dict], links_by_id: dict) -> list[dict]:
+    """Overwrite each item's tier using the Phase 2 traction-aware formula.
+
+    Mutates items in place (in contrast to the deep-copy `shadow_score` used
+    while traction lived in shadow). Returns the same list.
+    """
+    attach_traction(items, links_by_id)
+    for item in items:
+        item["tier"] = compute_phase2_tier(item)
+    return items
