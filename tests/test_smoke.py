@@ -14,11 +14,12 @@ def test_main_runs_through_two_passes(fake_anthropic_client, monkeypatch):
 
     # Patch the imports newsletter.py has already done at module load time.
     import newsletter
+    import triage
     monkeypatch.setattr(newsletter, "fetch_all_feeds", lambda feeds: fake_items)
     monkeypatch.setattr(newsletter, "deduplicate", lambda items: items)
     monkeypatch.setattr(newsletter, "send_email", lambda html, subject: None)
-    # Without these stubs the smoke test clobbers the real comparison log for
-    # today's date (write_comparison_log writes to comparison/<today>.json on disk).
-    monkeypatch.setattr(newsletter, "write_comparison_log", lambda log, base_dir: None)
-    monkeypatch.setattr(newsletter, "summarize_week", lambda *a, **kw: {"week_start": "", "week_end": "", "days": []})
+    # Keep the smoke test offline: stub the live Reddit/HN calls that the
+    # new Phase 2 path runs between triage and format.
+    monkeypatch.setattr(triage, "fetch_reddit_traction", lambda url, subs: {"score": 0, "comments": 0, "subreddit_hits": 0})
+    monkeypatch.setattr(triage, "fetch_hn_traction", lambda url: {"points": 0, "comments": 0})
     newsletter.main()
