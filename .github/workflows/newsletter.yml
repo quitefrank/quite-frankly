@@ -47,9 +47,3 @@ jobs:
           git add seen_links.json
           git diff --staged --quiet || git commit -m "chore: update seen_links cache [skip ci]"
           git push
-
-      - name: Save comparison logs
-        run: |
-          git add -f comparison/ 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "chore: append comparison log [skip ci]"
-          git push
