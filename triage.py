@@ -142,6 +142,11 @@ def _shape_tool_output(payload: dict) -> tuple[list[dict], dict[str, dict]]:
         })
     if dropped:
         print(f"  Triage: dropped {dropped} malformed item(s) from tool output")
+    if raw_items and not items:
+        raise RuntimeError(
+            f"Triage returned {len(raw_items)} items, all malformed; "
+            "falling back to legacy formatter"
+        )
     clusters = {c["id"]: c for c in raw_clusters if "id" in c}
     return items, clusters
 

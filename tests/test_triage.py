@@ -1,4 +1,5 @@
 from pathlib import Path
+import pytest
 import triage
 from triage import parse_triage_response, select_items_by_tier, apply_phase2_tier
 
@@ -24,6 +25,21 @@ def test_select_tier_1_items():
 def test_parse_handles_extra_whitespace_and_fences():
     raw = '```json\n{"items": [], "clusters": []}\n```'
     items, clusters = parse_triage_response(raw)
+    assert items == []
+    assert clusters == {}
+
+
+def test_shape_tool_output_raises_when_all_items_malformed():
+    payload = {
+        "items": [{"foo": "bar"}, {"baz": 1}, {}],
+        "clusters": [],
+    }
+    with pytest.raises(RuntimeError, match="malformed"):
+        triage._shape_tool_output(payload)
+
+
+def test_shape_tool_output_allows_legitimate_empty_response():
+    items, clusters = triage._shape_tool_output({"items": [], "clusters": []})
     assert items == []
     assert clusters == {}
 
