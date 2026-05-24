@@ -11,12 +11,14 @@ def test_main_runs_through_two_passes(fake_anthropic_client, monkeypatch):
     monkeypatch.setattr("formatting.send_email", lambda html, subject: None)
     monkeypatch.setattr("pipeline.fetch_all_feeds", lambda feeds: fake_items)
     monkeypatch.setattr("pipeline.deduplicate", lambda items: items)
+    monkeypatch.setattr("pipeline.record_seen", lambda items: None)
 
     # Patch the imports newsletter.py has already done at module load time.
     import newsletter
     import triage
     monkeypatch.setattr(newsletter, "fetch_all_feeds", lambda feeds: fake_items)
     monkeypatch.setattr(newsletter, "deduplicate", lambda items: items)
+    monkeypatch.setattr(newsletter, "record_seen", lambda items: None)
     monkeypatch.setattr(newsletter, "send_email", lambda html, subject: None)
     # Keep the smoke test offline: stub the live Reddit/HN calls that the
     # new Phase 2 path runs between triage and format.
