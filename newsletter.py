@@ -3,8 +3,7 @@
 
 import time
 from contextlib import contextmanager
-from datetime import datetime, timedelta
-from pathlib import Path
+from datetime import datetime
 from zoneinfo import ZoneInfo
 
 
@@ -19,17 +18,10 @@ def _stage(name: str):
     finally:
         print(f"[{name}] done in {time.time() - start:.1f}s", flush=True)
 
-from comparison import (
-    build_comparison_log,
-    build_weekly_digest_html,
-    shadow_score,
-    summarize_week,
-    write_comparison_log,
-)
 from config import SECTION_MAP, TEST_MODE
 from routing import Mode, get_mode, get_feeds_for_mode
 from pipeline import fetch_all_feeds, deduplicate, assign_ids
-from triage import call_triage, cap_items
+from triage import apply_phase2_tier, call_triage, cap_items
 from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email, suppressed_cluster_ids
 
 
@@ -63,6 +55,10 @@ def main():
             tiered_items, clusters = call_triage(capped_items)
         print(f"Triage returned {len(tiered_items)} scored items, {len(clusters)} clusters", flush=True)
 
+        with _stage("phase2_tier"):
+            apply_phase2_tier(tiered_items, links_by_id)
+        print("Phase 2 tier reassignment complete.", flush=True)
+
         suppressed_ids = suppressed_cluster_ids(tiered_items)
         if suppressed_ids:
             print(f"Cluster suppression: hiding {len(suppressed_ids)} duplicate item(s)", flush=True)
@@ -89,49 +85,6 @@ def main():
 
     with _stage("send_email"):
         send_email(html, subject)
-
-    if tiered_items and TEST_MODE:
-        print("Skipping shadow scoring (test mode).", flush=True)
-    elif tiered_items:
-        print("Running Phase 1.5 shadow scoring...", flush=True)
-        try:
-            for t in tiered_items:
-                src = links_by_id.get(t["id"], {})
-                t["headline"] = src.get("title", "")
-                t["source"] = src.get("source", "")
-                t["link"] = src.get("link", "")
-            with _stage("shadow_score"):
-                phase2_items = shadow_score(tiered_items, links_by_id)
-            log = build_comparison_log(
-                date_str=today.isoformat(),
-                mode=mode.value,
-                phase1=tiered_items,
-                phase2=phase2_items,
-            )
-            write_comparison_log(log, Path("comparison"))
-            promoted = len(log["deltas"]["promoted_by_phase2"])
-            demoted = len(log["deltas"]["demoted_by_phase2"])
-            print(f"Wrote comparison/{today.isoformat()}.json (+{promoted} promoted, -{demoted} demoted)")
-        except Exception as e:
-            print(f"Shadow scoring failed: {e}")
-    else:
-        print("Skipping shadow scoring (no triage output).")
-
-    if mode == Mode.SUNDAY_VISUAL:
-        print("Sending weekly Phase 2 shadow digest...")
-        try:
-            week_start = (today - timedelta(days=6)).isoformat()
-            week_end = today.isoformat()
-            summary = summarize_week(Path("comparison"), week_start, week_end)
-            digest_html, digest_subject = build_weekly_digest_html(summary)
-            send_email(digest_html, digest_subject)
-            print(
-                f"Digest: {summary['total_promotions']} promotions, "
-                f"{summary['total_demotions']} demotions, "
-                f"{summary['days_with_data']} day(s) of data"
-            )
-        except Exception as e:
-            print(f"Weekly digest failed: {e}")
 
     print("Done.")
 
