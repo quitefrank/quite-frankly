@@ -162,3 +162,73 @@ def build_triage_user_message(items: list[dict]) -> str:
     for i in items:
         lines.append(f"[#{i['id']}] [{i.get('section_label', '?')}] {i['title']} | Source: {i['source']}")
     return "Here are today's headlines. Call emit_triage with one entry per item:\n\n" + "\n".join(lines)
+
+
+# ---- Phase 2 traction-aware tier scoring ----
+
+from concurrent.futures import ThreadPoolExecutor
+
+from config import REDDIT_SUBREDDITS
+from traction import fetch_hn_traction, fetch_reddit_traction
+
+
+# Reddit's anonymous rate limit is ~60 req/min. With 7 subreddits per item +
+# 1 HN call, 5 concurrent workers keeps burst rate under that ceiling.
+TRACTION_MAX_WORKERS = 5
+
+
+SECTION_FIT_SCORE = {"good": 1, "weak": 0, "none": -1}
+
+
+def compute_phase2_tier(item: dict) -> int:
+    scores = item.get("scores", {})
+    base = (
+        scores.get("cross_source_coverage", 0) * 3
+        + scores.get("personal_relevance", 0) * 2
+        + SECTION_FIT_SCORE.get(scores.get("section_fit", "none"), 0)
+    )
+
+    reddit = item.get("reddit", {})
+    if reddit.get("score", 0) >= 1000 or reddit.get("subreddit_hits", 0) >= 2:
+        reddit_bonus = 2
+    elif reddit.get("score", 0) >= 200:
+        reddit_bonus = 1
+    else:
+        reddit_bonus = 0
+
+    hn = item.get("hn", {})
+    hn_bonus = 1 if hn.get("points", 0) >= 200 else 0
+
+    total = base + reddit_bonus + hn_bonus
+    if total >= 6:
+        return 1
+    if total >= 3:
+        return 2
+    if total >= 1:
+        return 3
+    return 0
+
+
+def _attach_one(item: dict, link: str) -> None:
+    item["reddit"] = fetch_reddit_traction(link, REDDIT_SUBREDDITS)
+    item["hn"] = fetch_hn_traction(link)
+
+
+def attach_traction(items: list[dict], links_by_id: dict) -> list[dict]:
+    """Attach Reddit + HN traction to each item, in parallel across items.
+
+    Each worker handles one item's full traction (7 subreddit searches + 1 HN
+    query, ~800ms total). With TRACTION_MAX_WORKERS=5 the burst rate to
+    Reddit stays under the anonymous 60 req/min ceiling.
+    """
+    work = []
+    for item in items:
+        link = links_by_id.get(item["id"], {}).get("link", "")
+        if not link:
+            continue
+        work.append((item, link))
+    if not work:
+        return items
+    with ThreadPoolExecutor(max_workers=TRACTION_MAX_WORKERS) as executor:
+        list(executor.map(lambda pair: _attach_one(*pair), work))
+    return items

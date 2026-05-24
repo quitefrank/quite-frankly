@@ -5,11 +5,11 @@ import json
 from comparison import (
     build_comparison_log,
     build_weekly_digest_html,
-    compute_phase2_tier,
     shadow_score,
     summarize_week,
     write_comparison_log,
 )
+from triage import compute_phase2_tier
 
 
 def test_compute_phase2_tier_includes_reddit_weight():
@@ -89,8 +89,8 @@ def test_shadow_score_applies_phase2_tier(monkeypatch):
     def fake_hn(url):
         return {"points": 0, "comments": 0}
 
-    monkeypatch.setattr("comparison.fetch_reddit_traction", fake_reddit)
-    monkeypatch.setattr("comparison.fetch_hn_traction", fake_hn)
+    monkeypatch.setattr("triage.fetch_reddit_traction", fake_reddit)
+    monkeypatch.setattr("triage.fetch_hn_traction", fake_hn)
 
     items = [{
         "id": 0,
@@ -106,8 +106,8 @@ def test_shadow_score_applies_phase2_tier(monkeypatch):
 
 def test_shadow_score_skips_items_without_link(monkeypatch):
     called = []
-    monkeypatch.setattr("comparison.fetch_reddit_traction", lambda u, s: called.append("r") or {"score": 0, "comments": 0, "subreddit_hits": 0})
-    monkeypatch.setattr("comparison.fetch_hn_traction", lambda u: called.append("hn") or {"points": 0, "comments": 0})
+    monkeypatch.setattr("triage.fetch_reddit_traction", lambda u, s: called.append("r") or {"score": 0, "comments": 0, "subreddit_hits": 0})
+    monkeypatch.setattr("triage.fetch_hn_traction", lambda u: called.append("hn") or {"points": 0, "comments": 0})
 
     items = [{
         "id": 99,
