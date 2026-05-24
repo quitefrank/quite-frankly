@@ -77,4 +77,4 @@ def test_apply_phase2_tier_falls_back_when_attach_traction_raises(monkeypatch, c
     assert result[0]["tier"] == 1  # Claude's tier preserved
     assert result[1]["tier"] == 3  # Claude's tier preserved
     out = capsys.readouterr().out
-    assert "attach_traction failed" in out or "Reddit blew up" in out
+    assert "attach_traction failed" in out
