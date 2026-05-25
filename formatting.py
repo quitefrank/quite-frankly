@@ -428,7 +428,7 @@ def _render_body_markdown(text: str) -> str:
     text = _MARKDOWN_LINK_RE.sub(
         lambda m: (
             f'<a href="{m.group(2)}" '
-            f'style="color:#1c7ff2;text-decoration:underline;">{m.group(1)}</a>'
+            f'style="color:#333;text-decoration:underline;text-decoration-color:#1c7ff2;">{m.group(1)}</a>'
         ),
         text,
     )
@@ -551,7 +551,7 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
         bold_inner = f'{it["header"]}:'
         if href:
             bold = (
-                f'<a href="{href}" style="color:#1a1a1a;text-decoration:none;">'
+                f'<a href="{href}" style="color:#1a1a1a;text-decoration:underline;text-decoration-color:#1c7ff2;">'
                 f'<strong>{bold_inner}</strong></a>'
             )
         else:
