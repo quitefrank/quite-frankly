@@ -55,6 +55,7 @@ SECTION_FEATURED_CAPS = {
 }
 MAX_OTHER_HEADLINES_PER_SECTION = 3
 MAX_EVERYTHING_ELSE = 7
+FEATURED_STORY_PARAGRAPH_CAP = 2
 
 
 def _item_score(scores: dict) -> int:
@@ -798,7 +799,7 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
 
             if s["body"]:
                 paragraphs = [p.strip() for p in re.split(r"\n\n+", "\n".join(s["body"])) if p.strip()]
-                for p in paragraphs:
+                for p in paragraphs[:FEATURED_STORY_PARAGRAPH_CAP]:
                     rendered = _render_body_markdown(p)
                     stories_html += (
                         f'<p style="margin:0 0 12px;line-height:22px;font-size:15px;color:#333;'

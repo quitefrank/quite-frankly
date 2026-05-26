@@ -741,6 +741,47 @@ def test_format_prompt_describes_inline_source_links_rule():
     assert "US & Global" in FORMAT_SYSTEM_PROMPT
 
 
+def test_featured_story_caps_body_paragraphs_at_two():
+    """Renderer caps featured-story body paragraphs at 2 even if Claude emits more."""
+    text = """## Toronto Housing
+
+**Stronger protection has arrived [#100]**
+**Enhanced safeguards.** Ontario has new protections for pre-construction buyers.
+
+**Market confidence building.** These protections restore trust in the new home market.
+
+**Economic ripple effects.** A more secure marketplace boosts construction activity.
+Source: Storeys
+
+**Hidden townhouse hits the market [#101]**
+**Exclusive enclave.** A rare Annex townhouse appeared on MLS.
+
+**Understated luxury.** The community values privacy over flash.
+
+**Market positioning.** At $2M, it targets discreet buyers.
+Source: BlogTO
+"""
+    links_by_id = {
+        100: {"link": "https://storeys.example/100", "image": "", "title": "Stronger protection"},
+        101: {"link": "https://blogto.example/101", "image": "", "title": "Hidden townhouse"},
+    }
+    html, _ = parse_and_render_sections(text, links_by_id, {}, tiered_items=[])
+
+    # First two paragraphs of story 100 render.
+    assert "<strong>Enhanced safeguards.</strong>" in html
+    assert "<strong>Market confidence building.</strong>" in html
+    # Third paragraph of story 100 must NOT render.
+    assert "<strong>Economic ripple effects.</strong>" not in html
+    assert "Economic ripple effects" not in html
+
+    # First two paragraphs of story 101 render.
+    assert "<strong>Exclusive enclave.</strong>" in html
+    assert "<strong>Understated luxury.</strong>" in html
+    # Third paragraph of story 101 must NOT render.
+    assert "<strong>Market positioning.</strong>" not in html
+    assert "Market positioning" not in html
+
+
 def test_from_the_front_page_longform_renders_micro_headers():
     text = """## Finance & Markets
 
