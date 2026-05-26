@@ -531,9 +531,23 @@ def test_today_in_the_world_section_renders():
     links_by_id = {5: {"link": "https://example.com/5", "image": "", "title": "Big global story"}}
     clusters_by_item_id = {5: {"primary_source": "NYT", "also_in": ["BBC"]}}
     html, _ = parse_and_render_sections(text, links_by_id, clusters_by_item_id)
-    assert "Today in the World" in html
+    assert "In the World" in html
+    assert "Today in the World" not in html
     assert "🌐" in html
     assert "Big global story" in html
+
+
+def test_today_in_the_world_renders_as_in_design_for_weekend():
+    text = """## Today in the World
+
+🎨 **Studio launches identity refresh [#7]:** Body sentence with the gist.
+"""
+    links_by_id = {7: {"link": "https://example.com/7", "image": "", "title": "Studio identity"}}
+    html, _ = parse_and_render_sections(text, links_by_id, {}, is_design_edition=True)
+    assert "In Design" in html
+    assert "In the World" not in html
+    assert "🎨" in html
+    assert "Today in the World" not in html
 
 
 def test_today_in_the_world_layout_renders_hero_and_emoji_items():
@@ -810,7 +824,7 @@ Source: WSJ
         30: {"link": "https://wsj.example/30", "image": "https://img/30.jpg", "title": "Fed cut"},
     }
     html, subject = build_email_html(response, links_by_id, {}, tiered_items=[])
-    assert "Today in the World" in html
+    assert "In the World" in html
     assert "Tech & AI" in html
     assert "US & Global" in html
     assert "Odyssey ships world models" in subject
@@ -954,7 +968,7 @@ Source: Hacker News
     html, subject = build_email_html(response, links_by_id, {}, tiered_items=tiered_items)
 
     # Assertions: pipeline produced a coherent email.
-    assert "Today in the World" in html
+    assert "In the World" in html
     assert "Finance & Markets" in html
     assert "Tech & AI" in html
     assert "🌐 Test subject" in subject

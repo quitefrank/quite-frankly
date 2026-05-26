@@ -345,6 +345,12 @@ def _is_today_in_the_world_section(title: str) -> bool:
     return title.strip() == "Today in the World"
 
 
+def _global_pickoff_display(is_design_edition: bool) -> tuple[str, str]:
+    if is_design_edition:
+        return ("In Design", "🎨")
+    return ("In the World", "🌐")
+
+
 def render_source_line(primary_source: str, also_in: list[str], article_link: str | None) -> str:
     favicon = SOURCE_FAVICONS.get(
         primary_source,
@@ -648,7 +654,7 @@ def _render_from_the_front_page(story: dict, links_by_id: dict,
     return out
 
 
-def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None):
+def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False):
     clusters_by_item_id = clusters_by_item_id or {}
     tiered_items = tiered_items or []
     # Seed used_ids with suppressed cluster members so the programmatic
@@ -673,6 +679,7 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
         emoji = SECTION_EMOJIS.get(title, "")
 
         if _is_today_in_the_world_section(title):
+            display_title, display_emoji = _global_pickoff_display(is_design_edition)
             stories_html = _render_today_in_the_world(lines[1:], links_by_id, used_ids)
             if not stories_html:
                 continue
@@ -681,7 +688,7 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
                 f'overflow:hidden;background:#fff;font-family:Helvetica,Arial,sans-serif">'
                 f'\n  <div style="padding:15px 15px 0">'
                 f'\n    <p style="color:#1c7ff2;margin:0 0 12px;font-size:13px;font-weight:700;'
-                f'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">{emoji} {title}</p>'
+                f'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">{display_emoji} {display_title}</p>'
                 f'\n  </div>'
                 f'\n  <div style="padding:0 15px 15px">{stories_html}</div>'
                 f'\n</div>'
@@ -933,7 +940,7 @@ def parse_subject_line(claude_response):
     return None, claude_response
 
 
-def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None):
+def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False):
     clusters_by_item_id = clusters_by_item_id or {}
     toronto_tz  = ZoneInfo("America/Toronto")
     now_toronto = datetime.now(toronto_tz)
@@ -952,6 +959,7 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
     sections_html, used_ids = parse_and_render_sections(
         claude_response, links_by_id, clusters_by_item_id,
         tiered_items=tiered_items, suppressed_ids=suppressed_ids,
+        is_design_edition=is_design_edition,
     )
     everything_else_html    = build_everything_else(
         links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items
