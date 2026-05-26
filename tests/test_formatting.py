@@ -718,19 +718,26 @@ Source: WSJ
     assert "<strong>this</strong>" in html
 
 
-def test_format_prompt_describes_today_in_the_world_layout():
+def test_format_prompt_describes_featured_layout():
     from prompts import FORMAT_SYSTEM_PROMPT
-    # Layout description must mention the emoji-led item structure for TitW.
+    # Featured Layout is the renamed Today in the World list layout.
+    assert "Featured Layout" in FORMAT_SYSTEM_PROMPT
     assert "Today in the World" in FORMAT_SYSTEM_PROMPT
     assert "emoji" in FORMAT_SYSTEM_PROMPT.lower()
     assert "micro-header" in FORMAT_SYSTEM_PROMPT.lower()
 
 
-def test_format_prompt_describes_from_the_front_page_fallback():
+def test_format_prompt_describes_layout_a_for_other_sections():
     from prompts import FORMAT_SYSTEM_PROMPT
-    # Single-featured section fallback must be documented.
-    assert "single featured story" in FORMAT_SYSTEM_PROMPT.lower()
-    assert "3 to 4" in FORMAT_SYSTEM_PROMPT or "three to four" in FORMAT_SYSTEM_PROMPT.lower()
+    # Layout A is the unified featured-story format for every non-Today section.
+    assert "Layout A" in FORMAT_SYSTEM_PROMPT
+    # Layout A requires exactly 2 body paragraphs.
+    assert "2 body paragraphs" in FORMAT_SYSTEM_PROMPT or "two body paragraphs" in FORMAT_SYSTEM_PROMPT.lower()
+    # Each paragraph opens with a bold micro-header.
+    assert "micro-header" in FORMAT_SYSTEM_PROMPT.lower()
+    # Layouts B and C are no longer mentioned.
+    assert "Layout B" not in FORMAT_SYSTEM_PROMPT
+    assert "Layout C" not in FORMAT_SYSTEM_PROMPT
 
 
 def test_format_prompt_describes_inline_source_links_rule():
@@ -783,8 +790,8 @@ Source: BlogTO
 
 
 def test_single_story_section_renders_micro_headers_via_default_path():
-    """Sections with exactly one story still render bold micro-headers on
-    each paragraph after the longform branch is removed."""
+    """Sections with exactly one story render bold micro-headers on each
+    paragraph through the unified default rendering path."""
     text = """## Finance & Markets
 
 **Fed signals rate cut [#200]**

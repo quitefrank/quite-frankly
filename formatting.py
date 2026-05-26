@@ -418,8 +418,7 @@ def _render_body_markdown(text: str) -> str:
     """Convert [label](url) markdown links and **bold** markers to HTML.
 
     Both links and bold are converted so Claude's body output renders
-    cleanly even if it emits stray bold (e.g., misformatted Layout C
-    micro-headers that fell through to Layout B).
+    cleanly even if it emits stray bold from the model.
     """
     text = _MARKDOWN_LINK_RE.sub(
         lambda m: (
