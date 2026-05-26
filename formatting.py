@@ -738,28 +738,6 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
         # featured-story IDs have been gathered into used_ids.
         # Defer the actual call until after we've collected used_ids from stories.
 
-        # From the Front Page longform: exactly one featured story whose
-        # body uses **<header>.** paragraph openers.
-        if len(stories) == 1 and _looks_like_longform(stories[0]["body"]):
-            stories_html = _render_from_the_front_page(
-                stories[0], links_by_id, clusters_by_item_id, used_ids
-            )
-            oh_html = render_other_headlines_for_section(title, tiered_items, links_by_id, used_ids)
-            stories_html += oh_html
-            if not stories_html:
-                continue
-            html += (
-                f'\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid #e6e6e6;'
-                f'overflow:hidden;background:#fff;font-family:Helvetica,Arial,sans-serif">'
-                f'\n  <div style="padding:15px 15px 0">'
-                f'\n    <p style="color:#1c7ff2;margin:0 0 12px;font-size:13px;font-weight:700;'
-                f'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">{emoji} {title}</p>'
-                f'\n  </div>'
-                f'\n  <div style="padding:0 15px 15px">{stories_html}</div>'
-                f'\n</div>'
-            )
-            continue
-
         stories_html = ""
 
         for i, s in enumerate(stories):

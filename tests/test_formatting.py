@@ -782,6 +782,32 @@ Source: BlogTO
     assert "Market positioning" not in html
 
 
+def test_single_story_section_renders_micro_headers_via_default_path():
+    """Sections with exactly one story still render bold micro-headers on
+    each paragraph after the longform branch is removed."""
+    text = """## Finance & Markets
+
+**Fed signals rate cut [#200]**
+**Decreasing optimism.** Markets had priced in two cuts. The Fed walked it back to one.
+
+**Threading the needle.** Powell framed the move as data-dependent.
+Source: WSJ
+"""
+    links_by_id = {200: {"link": "https://wsj.example/200", "image": "https://img/200.jpg",
+                         "title": "Fed signals rate cut"}}
+    clusters_by_item_id = {200: {"primary_source": "WSJ", "also_in": []}}
+    html, used_ids = parse_and_render_sections(text, links_by_id, clusters_by_item_id, tiered_items=[])
+
+    assert "<strong>Decreasing optimism.</strong>" in html
+    assert "<strong>Threading the needle.</strong>" in html
+    # Hero image rendered.
+    assert 'src="https://img/200.jpg"' in html
+    # Source line rendered.
+    assert "WSJ" in html
+    # ID tracked.
+    assert 200 in used_ids
+
+
 def test_from_the_front_page_longform_renders_micro_headers():
     text = """## Finance & Markets
 
