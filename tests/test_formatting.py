@@ -808,7 +808,9 @@ Source: WSJ
     assert 200 in used_ids
 
 
-def test_from_the_front_page_longform_renders_micro_headers():
+def test_featured_story_renders_micro_headers():
+    """Featured-story body paragraphs that open with **Cap.** render as
+    <strong>Cap.</strong> inline."""
     text = """## Finance & Markets
 
 **Fed signals rate cut by year end [#300]**
@@ -816,18 +818,15 @@ def test_from_the_front_page_longform_renders_micro_headers():
 
 **Threading the needle.** Powell framed the move as data-dependent without naming a trigger.
 
-**What it means.** Mortgage rates likely tick down through Q4.
-
 Source: WSJ
 """
     links_by_id = {300: {"link": "https://wsj.example/300", "image": "https://img/300.jpg",
                          "title": "Fed signals rate cut"}}
     clusters_by_item_id = {300: {"primary_source": "WSJ", "also_in": []}}
     html, used_ids = parse_and_render_sections(text, links_by_id, clusters_by_item_id, tiered_items=[])
-    # Three paragraph micro-headers render as bold inside the paragraph.
+    # Two paragraph micro-headers render as bold inside the paragraph.
     assert "<strong>Decreasing optimism.</strong>" in html
     assert "<strong>Threading the needle.</strong>" in html
-    assert "<strong>What it means.</strong>" in html
     # Hero image rendered.
     assert 'src="https://img/300.jpg"' in html
     # Source line still rendered.
@@ -836,10 +835,10 @@ Source: WSJ
     assert 300 in used_ids
 
 
-def test_end_to_end_renders_all_three_layouts(tmp_path):
-    """Synthetic Claude response covering Today in the World, standard featured,
-    and From the Front Page longform. Smoke test — verifies all three section
-    blocks render without error and produce non-empty HTML."""
+def test_end_to_end_renders_both_layouts(tmp_path):
+    """Synthetic Claude response covering Featured Layout (Today in the
+    World) and Layout A (every other section). Smoke test — verifies all
+    section blocks render without error and produce non-empty HTML."""
     from formatting import build_email_html
     response = """SUBJECT: 🤖 Odyssey ships world models
 
@@ -858,15 +857,15 @@ def test_end_to_end_renders_all_three_layouts(tmp_path):
 ## Tech & AI
 
 **Two big AI announcements today [#20]**
-Body paragraph one with [a link](https://example.com/x).
+**Setup.** Body paragraph one with [a link](https://example.com/x).
 
-Body paragraph two.
+**Stakes.** Body paragraph two.
 Source: TechCrunch
 
 **Second featured story [#21]**
-Body paragraph one.
+**Opening.** Body paragraph one.
 
-Body paragraph two.
+**Implication.** Body paragraph two.
 Source: Hacker News
 
 ## US & Global
@@ -875,9 +874,6 @@ Source: Hacker News
 **Decreasing optimism.** Markets had priced in two cuts. The Fed walked it back.
 
 **Threading the needle.** Powell framed the move as data-dependent.
-
-**What it means.** Mortgage rates likely tick down through Q4.
-
 Source: WSJ
 """
     links_by_id = {
@@ -895,11 +891,15 @@ Source: WSJ
     assert "Tech & AI" in html
     assert "US & Global" in html
     assert "Odyssey ships world models" in subject
-    # Layout-specific markers
-    assert '<img src="https://img/10.jpg"' in html  # TitW hero
-    assert "🤖" in html and "🚇" in html             # TitW emojis
+    # Featured Layout markers
+    assert '<img src="https://img/10.jpg"' in html  # Featured Layout hero
+    assert "🤖" in html and "🚇" in html             # Featured Layout emojis
+    # Layout A markers
     assert '<a href="https://example.com/x"' in html  # inline link in Tech & AI body
-    assert "<strong>Decreasing optimism.</strong>" in html  # longform micro-header
+    assert "<strong>Decreasing optimism.</strong>" in html
+    assert "<strong>Threading the needle.</strong>" in html
+    assert "<strong>Setup.</strong>" in html
+    assert "<strong>Stakes.</strong>" in html
 
     # Write the rendered HTML to a tmp file so Frank can open it visually.
     out = tmp_path / "sample-newsletter.html"
@@ -921,7 +921,7 @@ def test_end_to_end_pipeline_from_build_format_input_to_html(tmp_path):
     #   - Cluster cl_a has 2 members (10 and 11) so item 10 should carry a
     #     siblings entry pointing at item 11's URL.
     #   - Finance & Markets has 1 item (left after pickoff lifts the highest
-    #     scorer), Layout C territory.
+    #     scorer), which renders through the unified Layout A path.
     tiered_items = [
         # Top-5 candidates (highest scores → pickoff lifts these into TitW)
         {"id": 10, "section": "Tech & AI", "tier": 1, "cluster_id": "cl_a",
@@ -987,7 +987,7 @@ def test_end_to_end_pipeline_from_build_format_input_to_html(tmp_path):
     fm_tier1 = payload["sections"]["Finance & Markets"]["tier_1"]
     fm_ids = {item["id"] for item in fm_tier1}
     assert fm_ids == {41}, f"Finance & Markets should have item 41 only, got {fm_ids}"
-    # Cap=1 means longform layout will trigger. Siblings should be empty (Finance & Markets is excluded).
+    # Cap=1 means the section has a single Layout A story. Siblings should be empty (Finance & Markets is excluded).
     assert fm_tier1[0]["siblings"] == [], "Finance & Markets items must have empty siblings"
 
     # Tech & AI after pickoff: item 10 gone, item 12 should remain.
@@ -1014,11 +1014,9 @@ def test_end_to_end_pipeline_from_build_format_input_to_html(tmp_path):
 ## Finance & Markets
 
 **{fm_tier1[0]['title']} [#{fm_tier1[0]['id']}]**
-**Setup.** First paragraph of longform body.
+**Setup.** First paragraph of body.
 
-**Turn.** Second paragraph.
-
-**Conclusion.** Third paragraph.
+**Turn.** Second paragraph of body.
 
 Source: Yahoo Finance
 
@@ -1041,12 +1039,11 @@ Source: Hacker News
     assert "🌐 Test subject" in subject
     # Hero image rendered exactly once.
     assert html.count('src="https://img/10.jpg"') == 1
-    # Layout A emoji items render.
+    # Featured Layout emoji items render.
     assert "🌐" in html
-    # Layout C micro-header markers render as bold inside paragraphs.
+    # Layout A micro-header markers render as bold inside paragraphs.
     assert "<strong>Setup.</strong>" in html
     assert "<strong>Turn.</strong>" in html
-    assert "<strong>Conclusion.</strong>" in html
 
 
 def test_suppressed_cluster_ids_keeps_highest_scored_representative():
