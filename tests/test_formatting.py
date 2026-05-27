@@ -409,12 +409,13 @@ def test_build_everything_else_caps_at_seven_globally():
     ]
     used_ids = set()
     html = build_everything_else(links_by_id, used_ids, {}, tiered_items=tiered_items)
-    # New structure: <p> per item, no <ul>/<li>. Each item carries an emoji span
-    # and a <strong>-wrapped first-words link.
+    # New structure: <p> per item, no <ul>/<li>. Each item carries an emoji
+    # span and a first-words anchor link (no <strong> — item links are unbolded).
     assert "<ul" not in html
     assert "<li" not in html
     assert html.count("<p style=\"margin:0 0 14px") == 7
-    assert html.count("<strong>") == 7
+    assert html.count("<a href") == 7
+    assert "<strong>" not in html
     # Every item uses source "CBC" → 🇨🇦 via EVERYTHING_ELSE_SOURCE_EMOJIS.
     # Titles are "Headline {i}", which match no keyword regex, so source wins.
     # The section header text "Everything Else" carries no 🇨🇦, so exactly 7.
