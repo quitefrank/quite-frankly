@@ -791,10 +791,10 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiere
         link_words = " ".join(words[:4])
         remaining = " ".join(words[4:])
         linked_part = (
-            f'<a href="{l["link"]}" style="color:#333;font-weight:700;'
+            f'<a href="{l["link"]}" style="color:#333;'
             f'text-decoration:underline;text-decoration-color:#1c7ff2;">'
-            f'<strong>{link_words}</strong></a>'
-            if l["link"] else f'<strong>{link_words}</strong>'
+            f'{link_words}</a>'
+            if l["link"] else link_words
         )
         full_line = f"{linked_part} {remaining}" if remaining else linked_part
         emoji = pick_everything_else_emoji(l.get("title", ""), l.get("source", ""))
@@ -809,7 +809,7 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiere
         '\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid #e6e6e6;'
         'overflow:hidden;background:#fff;font-family:Helvetica,Arial,sans-serif">'
         '\n  <div style="padding:15px 15px 0">'
-        '\n    <p style="color:#1c7ff2;margin:0 0 4px;font-size:13px;font-weight:700;'
+        '\n    <p style="color:#1c7ff2;margin:0 0 14px;font-size:13px;font-weight:700;'
         'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">📋 Everything Else</p>'
         '\n  </div>'
         f'\n  <div style="padding:0 15px 15px">{items_html}</div>'

@@ -1,7 +1,7 @@
 ---
 title: Personal Context
 canonical: ~/Claude/About Me/personal-context.md
-last_updated: 2026-05-17
+last_updated: 2026-05-27
 domains:
   career: Work/wiki/personal-brand/
   design-research: Work/wiki/design-research/
@@ -28,6 +28,8 @@ Related identity files in `About Me/`: `about-me.md` (how Frank works and what h
 ## Who I am
 
 Frank is a senior product designer in Toronto, 4 years at theScore and 8 to 10 years of design experience total. He previously taught UX at the University of Toronto School of Continuing Studies. He is turning 38 in June 2026 and treating this year as a transitional one: every priority is about being better positioned in December than he is today.
+
+He lives at 50 McCaul St #301 (downtown Toronto, OCAD / Chinatown area). Walking distance to St. Patrick and Osgoode (Line 1) and the 501/505/510 streetcars. He does not own a car. Use this as the default origin point when planning venues, dates, or commute timing.
 
 He is aiming for a staff or principal product designer role at a consumer product, AI, design-tooling, or Toronto-area tech company. Frank is exiting sports betting, so betting-industry moves do not count as personal relevance.
 
