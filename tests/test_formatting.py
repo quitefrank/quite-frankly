@@ -278,6 +278,25 @@ def test_render_other_headlines_for_section_caps_at_three_and_skips_used_ids():
     assert used_ids == {1, 2, 3}
 
 
+def test_render_other_headlines_for_section_renders_title_only_when_snippet_is_empty():
+    # When an item has no usable snippet (e.g. an hnrss item whose RSS
+    # description is metadata-only and was cleared at ingest), the row
+    # must render as the linked title alone — no trailing ": " separator.
+    tiered_items = [
+        {"id": 7, "section": "Tech & AI", "tier": 2,
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 2, "section_fit": "good"}},
+    ]
+    links_by_id = {
+        7: {"link": "https://example.com/7", "title": "Claude Code as a Daily Driver",
+            "snippet": "", "source": "Hacker News", "image": ""},
+    }
+    used_ids = set()
+    html = render_other_headlines_for_section("Tech & AI", tiered_items, links_by_id, used_ids)
+    assert "Claude Code as a Daily" in html
+    assert "</a>: " not in html
+    assert "</a></li>" in html
+
+
 def test_render_other_headlines_for_section_skips_items_already_in_used_ids():
     tiered_items = [
         {"id": 10, "section": "Toronto Housing", "tier": 2,

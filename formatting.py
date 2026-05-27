@@ -482,9 +482,10 @@ def render_other_headlines_for_section(section, tiered_items, links_by_id, used_
             if l.get("link") else link_words
         )
         summary = _first_sentence(l.get("snippet", ""))
+        body = f"{linked_part}: {summary}" if summary else linked_part
         items_html += (
             f'<li style="margin-bottom:10px;line-height:22px;font-size:15px;color:#333;'
-            f'font-family:Helvetica,Arial,sans-serif">{linked_part}: {summary}</li>'
+            f'font-family:Helvetica,Arial,sans-serif">{body}</li>'
         )
 
     return (

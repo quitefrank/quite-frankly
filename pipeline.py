@@ -143,10 +143,17 @@ def fetch_feed(feed_config):
             title = getattr(entry, "title", "") or ""
             summary = re.sub(r"<[^>]+>", "", getattr(entry, "summary", "") or "").strip()
             if title and link and len(summary) >= MIN_SNIPPET_CHARS:
+                snippet = summary[:300]
+                # hnrss.org ships a metadata-only description on every link
+                # post (Article URL / Comments URL / Points / # Comments).
+                # Strip it so renderers and the LLM see no snippet rather
+                # than a URL dump. Ask HN posts carry real prose and stay.
+                if feed_config["source"] == "Hacker News" and snippet.startswith("Article URL:"):
+                    snippet = ""
                 items.append({
                     "title":   title,
                     "link":    link,
-                    "snippet": summary[:300],
+                    "snippet": snippet,
                     "image":   extract_image(entry),
                     "source":  feed_config["source"],
                 })

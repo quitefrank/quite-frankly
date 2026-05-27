@@ -46,6 +46,39 @@ def test_fetch_feed_drops_items_with_empty_or_too_short_snippets():
     assert [i["title"] for i in items] == ["A real article with body"]
 
 
+def test_fetch_feed_strips_hnrss_metadata_from_hacker_news_snippets():
+    # hnrss.org ships every entry with a metadata-only <description>:
+    #   "Article URL: <url> Comments URL: <hn-thread> Points: N # Comments: N"
+    # That blob is not an article excerpt — it would render verbatim in
+    # Other Headlines as a URL dump. Strip it at ingest so the renderer
+    # falls back to a title-only row.
+    entries = [
+        ("Claude Code as a Daily", "https://arps18.github.io/posts/claude-code-mastery/",
+         "Article URL: https://arps18.github.io/posts/claude-code-mastery/ "
+         "Comments URL: https://news.ycombinator.com/item?id=48289950 "
+         "Points: 94 # Comments: 74"),
+    ]
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
+        items = fetch_feed({"url": "x", "source": "Hacker News"})
+    assert len(items) == 1
+    assert items[0]["title"] == "Claude Code as a Daily"
+    assert items[0]["snippet"] == ""
+
+
+def test_fetch_feed_preserves_real_snippets_from_hacker_news():
+    # Not every HN entry is metadata-only — Ask HN posts and similar can
+    # carry real prose. Only the hnrss "Article URL: ..." prefix should
+    # trigger stripping.
+    entries = [
+        ("Ask HN: How do you stay sane?", "https://news.ycombinator.com/item?id=1",
+         "I have been working remotely for years and find myself struggling to focus."),
+    ]
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
+        items = fetch_feed({"url": "x", "source": "Hacker News"})
+    assert len(items) == 1
+    assert items[0]["snippet"].startswith("I have been working remotely")
+
+
 def test_fetch_all_feeds_enriches_with_og_image_when_rss_has_no_image(monkeypatch):
     # BetterDwelling-style: RSS exposes no image fields anywhere; the
     # enrichment pass fills item['image'] from og:image after dedup.
