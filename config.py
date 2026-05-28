@@ -162,11 +162,12 @@ SECTION_EMOJIS = {
 }
 
 # Per-item emoji selection for Everything Else.
-# Resolution order in formatting.pick_everything_else_emoji:
-#   1. First case-insensitive keyword regex match (declared order wins).
-#   2. Exact source-name lookup below.
-#   3. Newspaper safety net (📰) — only fires if a feed source is added
-#      without being added to EVERYTHING_ELSE_SOURCE_EMOJIS.
+# Rule: every emoji within an Everything Else section is unique.
+# Resolution order in formatting.pick_everything_else_emoji (first
+# candidate not already used in the section wins):
+#   1. Case-insensitive keyword regex matches (declared order).
+#   2. Exact source-name lookup in EVERYTHING_ELSE_SOURCE_EMOJIS.
+#   3. EVERYTHING_ELSE_FALLBACK_POOL, in order.
 EVERYTHING_ELSE_KEYWORD_EMOJIS = [
     # AI / tech firms
     (r"\b(openai|anthropic|gpt|claude|gemini|llm|chatgpt|copilot)\b", "🤖"),
@@ -208,6 +209,12 @@ EVERYTHING_ELSE_KEYWORD_EMOJIS = [
     # Design / product
     (r"\b(design|ux|figma|product|prototype|interaction)\b", "🎨"),
 ]
+
+# Neutral fallbacks for Everything Else dedup: when both the keyword pick
+# and the source pick are already used in the section, walk this pool in
+# order to find an unused emoji. Topic-agnostic on purpose — by the time
+# we reach here, the topical signal is gone anyway.
+EVERYTHING_ELSE_FALLBACK_POOL = ["📰", "📌", "🔖", "📎", "✨", "🧭", "📝"]
 
 EVERYTHING_ELSE_SOURCE_EMOJIS = {
     # Canada & Toronto

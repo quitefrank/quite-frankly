@@ -14,6 +14,7 @@ from zoneinfo import ZoneInfo
 import anthropic
 
 from config import (
+    EVERYTHING_ELSE_FALLBACK_POOL,
     EVERYTHING_ELSE_KEYWORD_EMOJIS,
     EVERYTHING_ELSE_SOURCE_EMOJIS,
     RECIPIENT,
@@ -736,22 +737,37 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
     return html, used_ids
 
 
-def pick_everything_else_emoji(title: str, source: str) -> str:
+def pick_everything_else_emoji(title: str, source: str, used: set | None = None) -> str:
     """Pick the per-item emoji for an Everything Else entry.
 
     Resolution order:
-      1. First case-insensitive keyword match in EVERYTHING_ELSE_KEYWORD_EMOJIS.
+      1. Case-insensitive keyword matches in EVERYTHING_ELSE_KEYWORD_EMOJIS,
+         declared order.
       2. Exact match in EVERYTHING_ELSE_SOURCE_EMOJIS.
-      3. Newspaper safety net (📰) — only reached if a new source slipped
-         into the feed without being added to the source map.
+      3. EVERYTHING_ELSE_FALLBACK_POOL, in order.
+
+    Every emoji within an Everything Else section must be unique. When
+    `used` is provided, the first candidate not already in it wins. If
+    every candidate collides (rare), the natural pick is returned anyway.
     """
     text = (title or "").lower()
+    candidates: list[str] = []
     for pattern, emoji in EVERYTHING_ELSE_KEYWORD_EMOJIS:
-        if re.search(pattern, text):
-            return emoji
-    if source in EVERYTHING_ELSE_SOURCE_EMOJIS:
-        return EVERYTHING_ELSE_SOURCE_EMOJIS[source]
-    return "📰"
+        if re.search(pattern, text) and emoji not in candidates:
+            candidates.append(emoji)
+    source_emoji = EVERYTHING_ELSE_SOURCE_EMOJIS.get(source)
+    if source_emoji and source_emoji not in candidates:
+        candidates.append(source_emoji)
+    for fallback in EVERYTHING_ELSE_FALLBACK_POOL:
+        if fallback not in candidates:
+            candidates.append(fallback)
+
+    if used is None:
+        return candidates[0]
+    for c in candidates:
+        if c not in used:
+            return c
+    return candidates[0]
 
 
 def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiered_items=None):
@@ -787,6 +803,7 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiere
         return ""
 
     items_html = ""
+    used_emojis: set[str] = set()
     for _tier, _neg_score, _lid, l in top:
         words = l["title"].split(" ")
         link_words = " ".join(words[:4])
@@ -798,7 +815,8 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiere
             if l["link"] else link_words
         )
         full_line = f"{linked_part} {remaining}" if remaining else linked_part
-        emoji = pick_everything_else_emoji(l.get("title", ""), l.get("source", ""))
+        emoji = pick_everything_else_emoji(l.get("title", ""), l.get("source", ""), used_emojis)
+        used_emojis.add(emoji)
         items_html += (
             f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:#333;'
             f'font-family:Helvetica,Arial,sans-serif">'

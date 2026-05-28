@@ -1,4 +1,5 @@
 import json
+import re
 
 from formatting import (
     build_email_html,
@@ -416,10 +417,9 @@ def test_build_everything_else_caps_at_seven_globally():
     assert html.count("<p style=\"margin:0 0 14px") == 7
     assert html.count("<a href") == 7
     assert "<strong>" not in html
-    # Every item uses source "CBC" → 🇨🇦 via EVERYTHING_ELSE_SOURCE_EMOJIS.
-    # Titles are "Headline {i}", which match no keyword regex, so source wins.
-    # The section header text "Everything Else" carries no 🇨🇦, so exactly 7.
-    assert html.count("🇨🇦") == 7
+    # Every item uses source "CBC" → natural pick is 🇨🇦. Dedup kicks in:
+    # the first item keeps 🇨🇦, the rest cascade through the fallback pool.
+    assert html.count("🇨🇦") == 1
     # The two tier_1 overflows must appear (highest priority).
     assert "Headline 0" in html
     assert "Headline 1" in html
@@ -1238,3 +1238,44 @@ def test_pick_everything_else_emoji_first_keyword_in_declared_order_wins():
     # Title mentions both "apple" (🍎) and "google" (🔎). The keyword list
     # declares apple before google, so apple wins.
     assert pick_everything_else_emoji("Apple and Google announce partnership", "WSJ") == "🍎"
+
+
+def test_pick_everything_else_emoji_dedups_via_used_set():
+    # Natural pick for an OpenAI headline is 🤖. With 🤖 already used,
+    # the picker should walk to the next candidate (source, then fallback).
+    used = {"🤖"}
+    # No source match here ("WSJ" → 📈), so 📈 should be next.
+    assert pick_everything_else_emoji("OpenAI announces new model", "WSJ", used) == "📈"
+
+
+def test_pick_everything_else_emoji_falls_back_to_pool_when_keyword_and_source_used():
+    # Headline keyword pick is 🇨🇦 (liberal), source pick is also 🇨🇦 (CBC).
+    # Both taken → walk EVERYTHING_ELSE_FALLBACK_POOL. First entry is 📰.
+    used = {"🇨🇦"}
+    assert pick_everything_else_emoji("Liberal party rally in Ottawa", "CBC", used) == "📰"
+
+
+def test_build_everything_else_emojis_are_all_unique():
+    # All 7 items share source "CBC" → natural pick 🇨🇦 for each. With dedup
+    # the section should still render 7 distinct emojis.
+    links_by_id = {
+        i: {
+            "id": i,
+            "title": f"Headline {i}",
+            "link": f"https://example.com/{i}",
+            "image": "",
+            "source": "CBC",
+        }
+        for i in range(7)
+    }
+    tiered_items = [
+        {"id": i, "tier": 2, "section": "Canada & Toronto",
+         "scores": {"cross_source_coverage": 1, "personal_relevance": 1, "section_fit": "weak"}}
+        for i in range(7)
+    ]
+    html = build_everything_else(links_by_id, used_ids=set(), clusters_by_item_id={},
+                                 tiered_items=tiered_items)
+    # Each rendered item carries one emoji inside <span style="margin-right:6px">…</span>.
+    emojis = re.findall(r'<span style="margin-right:6px">([^<]+)</span>', html)
+    assert len(emojis) == 7
+    assert len(set(emojis)) == 7
