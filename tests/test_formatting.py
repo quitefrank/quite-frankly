@@ -1279,3 +1279,42 @@ def test_build_everything_else_emojis_are_all_unique():
     emojis = re.findall(r'<span style="margin-right:6px">([^<]+)</span>', html)
     assert len(emojis) == 7
     assert len(set(emojis)) == 7
+
+
+# ── Weekend dark mode ────────────────────────────────────────────────────────
+
+from formatting import LIGHT, DARK, build_email_html
+
+
+def _weekend_html():
+    html, _ = build_email_html("## Tech & AI\n\n**Hello world [#1]**\nBody text.\nSource: CBC",
+                               {1: {"link": "https://x.co", "image": None, "title": "Hello world", "snippet": ""}},
+                               is_design_edition=True)
+    return html
+
+
+def _weekday_html():
+    html, _ = build_email_html("## Tech & AI\n\n**Hello world [#1]**\nBody text.\nSource: CBC",
+                               {1: {"link": "https://x.co", "image": None, "title": "Hello world", "snippet": ""}},
+                               is_design_edition=False)
+    return html
+
+
+def test_palettes_have_identical_keys():
+    assert set(LIGHT) == set(DARK)
+
+
+def test_weekend_shell_is_dark():
+    html = _weekend_html()
+    assert "#121212" in html                       # dark page bg
+    assert 'background:#ffffff' in html             # inverted white header bar
+    assert 'name="color-scheme" content="dark"' in html
+    assert 'content="dark"' in html
+    assert "color-scheme:dark" in html.replace(" ", "")
+
+
+def test_weekday_shell_is_light():
+    html = _weekday_html()
+    assert "#f4f4f4" in html                        # light page bg
+    assert "#121212" not in html
+    assert 'name="color-scheme" content="light"' in html

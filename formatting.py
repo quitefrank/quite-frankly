@@ -27,6 +27,47 @@ from config import (
 from prompts import FORMAT_SYSTEM_PROMPT, LEGACY_FORMAT_SYSTEM_PROMPT
 
 
+# ── Colour themes ───────────────────────────────────────────────────────────
+# LIGHT = current weekday palette (values identical to prior hardcoded hexes).
+# DARK  = weekend palette, the inverse. build_email_html picks one per edition.
+LIGHT = {
+    "page_bg": "#f4f4f4",
+    "card_bg": "#ffffff",
+    "card_border": "#e6e6e6",
+    "header_bg": "#1f1f1f",
+    "header_text": "#ffffff",
+    "header_border": "#222222",
+    "heading": "#1a1a1a",
+    "body": "#333333",
+    "meta": "#999999",
+    "meta_label": "#888888",
+    "accent": "#1c7ff2",
+    "callout_bg": "#f0f4ff",
+    "divider": "#f0f0f0",
+    "footer_bg": "#E9EBF7",
+    "footer_text": "#79787d",
+    "color_scheme": "light",
+}
+DARK = {
+    "page_bg": "#121212",
+    "card_bg": "#1e1e1e",
+    "card_border": "#2a2a2a",
+    "header_bg": "#ffffff",
+    "header_text": "#1a1a1a",
+    "header_border": "#e6e6e6",
+    "heading": "#f5f5f5",
+    "body": "#c8c8c8",
+    "meta": "#7f7f7f",
+    "meta_label": "#8a8a8a",
+    "accent": "#4d9bff",
+    "callout_bg": "#16243a",
+    "divider": "#333333",
+    "footer_bg": "#1a1c2e",
+    "footer_text": "#8b8ba3",
+    "color_scheme": "dark",
+}
+
+
 SECTION_ORDER = [
     "Canada & Toronto",
     "Toronto Housing",
@@ -342,7 +383,7 @@ def _global_pickoff_display(is_design_edition: bool) -> tuple[str, str]:
     return ("In the World", "🌐")
 
 
-def render_source_line(primary_source: str, also_in: list[str], article_link: str | None) -> str:
+def render_source_line(primary_source: str, also_in: list[str], article_link: str | None, palette: dict = LIGHT) -> str:
     favicon = SOURCE_FAVICONS.get(
         primary_source,
         f"https://www.google.com/s2/favicons?domain={primary_source}&sz=64",
@@ -415,7 +456,7 @@ _MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 _MARKDOWN_BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
 
 
-def _render_body_markdown(text: str) -> str:
+def _render_body_markdown(text: str, palette: dict = LIGHT) -> str:
     """Convert [label](url) markdown links and **bold** markers to HTML.
 
     Both links and bold are converted so Claude's body output renders
@@ -443,7 +484,7 @@ def _first_sentence(text: str, max_chars: int = 180) -> str:
     return first
 
 
-def render_other_headlines_for_section(section, tiered_items, links_by_id, used_ids):
+def render_other_headlines_for_section(section, tiered_items, links_by_id, used_ids, palette: dict = LIGHT):
     """Synthesize the Other Headlines subsection for one section.
 
     Picks the top MAX_OTHER_HEADLINES_PER_SECTION Tier 1 overflow and Tier 2
@@ -498,7 +539,7 @@ def render_other_headlines_for_section(section, tiered_items, links_by_id, used_
     )
 
 
-def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: set) -> str:
+def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: set, palette: dict = LIGHT) -> str:
     """Render the Today in the World list (Layout A) from Claude output lines.
 
     Hero image comes from the first item that has one. The hero image renders
@@ -564,7 +605,7 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
     return hero_image_html + items_html
 
 
-def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False):
+def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, palette: dict = LIGHT):
     clusters_by_item_id = clusters_by_item_id or {}
     tiered_items = tiered_items or []
     # Seed used_ids with suppressed cluster members so the programmatic
@@ -770,7 +811,7 @@ def pick_everything_else_emoji(title: str, source: str, used: set | None = None)
     return candidates[0]
 
 
-def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiered_items=None):
+def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiered_items=None, palette: dict = LIGHT):
     """Render up to MAX_EVERYTHING_ELSE items globally, ranked by tier then score.
 
     Tier 1 overflow (items capped out of featured) ranks first, then tier 2
@@ -851,6 +892,8 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
     today_long  = now_toronto.strftime("%A, %B %-d, %Y")
     short_date  = now_toronto.strftime("%b %-d")
 
+    c = DARK if is_design_edition else LIGHT
+
     parsed_subject, claude_response = parse_subject_line(claude_response)
     if parsed_subject:
         subject = f"{parsed_subject} · {short_date}"
@@ -863,44 +906,46 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
     sections_html, used_ids = parse_and_render_sections(
         claude_response, links_by_id, clusters_by_item_id,
         tiered_items=tiered_items, suppressed_ids=suppressed_ids,
-        is_design_edition=is_design_edition,
+        is_design_edition=is_design_edition, palette=c,
     )
     everything_else_html    = build_everything_else(
-        links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items
+        links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items, palette=c,
     )
 
     html = f"""<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f4f4f4">
-<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;background:#f4f4f4">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="{c['color_scheme']}">
+<meta name="supported-color-schemes" content="{c['color_scheme']}"></head>
+<body style="margin:0;padding:0;background:{c['page_bg']};color-scheme:{c['color_scheme']}">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;background:{c['page_bg']}">
 <tr><td style="padding:20px 10px">
 <div style="max-width:670px;margin:0 auto">
 
-  <div style="margin-bottom:10px;border-radius:15px;overflow:hidden;border:1px solid #e6e6e6;font-family:Helvetica,Arial,sans-serif">
-    <div style="padding:16px 20px;border-bottom:1px solid #222;background:#1f1f1f;">
+  <div style="margin-bottom:10px;border-radius:15px;overflow:hidden;border:1px solid {c['card_border']};font-family:Helvetica,Arial,sans-serif">
+    <div style="padding:16px 20px;border-bottom:1px solid {c['header_border']};background:{c['header_bg']};">
       <table border="0" cellpadding="0" cellspacing="0">
         <tr>
           <td style="vertical-align:middle;padding-right:10px;">
             <img src="https://quitefrank.co/wp-content/uploads/2021/03/favicon.svg" width="28" height="28" style="display:block;border-radius:50%;" alt="Quite Frankly">
           </td>
           <td style="vertical-align:middle;">
-            <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#fff;font-family:Helvetica,Arial,sans-serif">Quite Frankly</p>
+            <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:{c['header_text']};font-family:Helvetica,Arial,sans-serif">Quite Frankly</p>
           </td>
         </tr>
       </table>
     </div>
-    <div style="padding:20px 20px 22px;background:#ffffff;">
-      <h1 style="margin:0 0 6px;font-size:26px;font-weight:700;color:#1a1a1a;line-height:1.2;font-family:Helvetica,Arial,sans-serif">Here's what matters today.</h1>
-      <p style="margin:0;font-size:13px;color:#888;font-family:Helvetica,Arial,sans-serif">{today_long}</p>
+    <div style="padding:20px 20px 22px;background:{c['card_bg']};">
+      <h1 style="margin:0 0 6px;font-size:26px;font-weight:700;color:{c['heading']};line-height:1.2;font-family:Helvetica,Arial,sans-serif">Here's what matters today.</h1>
+      <p style="margin:0;font-size:13px;color:{c['meta_label']};font-family:Helvetica,Arial,sans-serif">{today_long}</p>
     </div>
   </div>
 
   {sections_html}
   {everything_else_html}
 
-  <div style="margin-top:10px;border-radius:15px;overflow:hidden;background:#E9EBF7;font-family:Helvetica,Arial,sans-serif">
-    <div style="padding:15px;font-size:12px;color:#79787d;text-align:center;line-height:20px">
+  <div style="margin-top:10px;border-radius:15px;overflow:hidden;background:{c['footer_bg']};font-family:Helvetica,Arial,sans-serif">
+    <div style="padding:15px;font-size:12px;color:{c['footer_text']};text-align:center;line-height:20px">
       Generated daily by Quite Frankly &nbsp;·&nbsp; Sources: CBC, Globe and Mail, TechCrunch, UX Collective, BBC, Smashing Magazine, Yahoo Finance, Globe &amp; Mail Finance, r/toronto<br>
       <span style="font-size:11px">Quite Frankly &nbsp;·&nbsp; Toronto, Ontario</span>
     </div>
