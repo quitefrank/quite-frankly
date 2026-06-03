@@ -519,21 +519,21 @@ def render_other_headlines_for_section(section, tiered_items, links_by_id, used_
         link_words = " ".join(words[:5])
         linked_part = (
             f'<a href="{l["link"]}" '
-            f'style="color:#333;font-weight:400;text-decoration:underline;text-decoration-color:#1c7ff2;">'
+            f'style="color:{palette["body"]};font-weight:400;text-decoration:underline;text-decoration-color:{palette["accent"]};">'
             f"{link_words}</a>"
             if l.get("link") else link_words
         )
         summary = _first_sentence(l.get("snippet", ""))
         body = f"{linked_part}: {summary}" if summary else linked_part
         items_html += (
-            f'<li style="margin-bottom:10px;line-height:22px;font-size:15px;color:#333;'
+            f'<li style="margin-bottom:10px;line-height:22px;font-size:15px;color:{palette["body"]};'
             f'font-family:Helvetica,Arial,sans-serif">{body}</li>'
         )
 
     return (
-        '<div style="margin-top:16px;padding-top:14px;border-top:1px solid #f0f0f0;">'
-        '<p style="margin:0 0 8px;font-size:12px;font-weight:700;color:#888;'
-        'font-family:Helvetica,Arial,sans-serif;text-transform:uppercase;letter-spacing:0.08em">Other Headlines</p>'
+        f'<div style="margin-top:16px;padding-top:14px;border-top:1px solid {palette["divider"]};">'
+        f'<p style="margin:0 0 8px;font-size:12px;font-weight:700;color:{palette["meta_label"]};'
+        f'font-family:Helvetica,Arial,sans-serif;text-transform:uppercase;letter-spacing:0.08em">Other Headlines</p>'
         f'<ul style="margin:0;padding-left:20px">{items_html}</ul>'
         "</div>"
     )
@@ -589,14 +589,14 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
         bold_inner = f'{it["header"]}:'
         if href:
             bold = (
-                f'<a href="{href}" style="color:#1a1a1a;text-decoration:underline;text-decoration-color:#1c7ff2;">'
+                f'<a href="{href}" style="color:{palette["heading"]};text-decoration:underline;text-decoration-color:{palette["accent"]};">'
                 f'<strong>{bold_inner}</strong></a>'
             )
         else:
             bold = f'<strong>{bold_inner}</strong>'
-        rendered_body = _render_body_markdown(it["body"])
+        rendered_body = _render_body_markdown(it["body"], palette)
         items_html += (
-            f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:#333;'
+            f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:{palette["body"]};'
             f'font-family:Helvetica,Arial,sans-serif">'
             f'<span style="margin-right:6px">{it["emoji"]}</span>'
             f'{bold} {rendered_body}</p>'

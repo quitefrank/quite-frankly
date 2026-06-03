@@ -1336,3 +1336,26 @@ def test_body_markdown_link_uses_palette():
     assert "#c8c8c8" in dark          # body link colour
     assert "#4d9bff" in dark          # underline accent
     assert "#1c7ff2" not in dark
+
+
+from formatting import _render_today_in_the_world, render_other_headlines_for_section
+
+
+def test_today_in_world_dark_palette():
+    links = {1: {"link": "https://x.co", "image": None, "title": "T"}}
+    html = _render_today_in_the_world(["🌍 **Header [#1]:** body"], links, set(), palette=DARK)
+    assert "#f5f5f5" in html       # heading-coloured link
+    assert "#4d9bff" in html       # underline accent
+    assert "#c8c8c8" in html       # body paragraph
+    assert "#1c7ff2" not in html
+
+
+def test_other_headlines_dark_palette():
+    items = [{"id": 1, "section": "Tech & AI", "tier": 2, "scores": {}}]
+    links = {1: {"link": "https://x.co", "title": "One two three four five six", "snippet": "A sentence."}}
+    html = render_other_headlines_for_section("Tech & AI", items, links, set(), palette=DARK)
+    assert "#c8c8c8" in html       # link + item body
+    assert "#4d9bff" in html       # underline accent
+    assert "#8a8a8a" in html       # "Other Headlines" label
+    assert "#333333" in html       # divider (dark)
+    assert "#1c7ff2" not in html
