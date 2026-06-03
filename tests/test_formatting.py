@@ -1318,3 +1318,21 @@ def test_weekday_shell_is_light():
     assert "#f4f4f4" in html                        # light page bg
     assert "#121212" not in html
     assert 'name="color-scheme" content="light"' in html
+
+
+from formatting import render_source_line, _render_body_markdown
+
+
+def test_source_line_uses_palette_accent():
+    light = render_source_line("CBC", [], "https://x.co", palette=LIGHT)
+    dark = render_source_line("CBC", [], "https://x.co", palette=DARK)
+    assert "#1c7ff2" in light
+    assert "#4d9bff" in dark
+    assert "#1c7ff2" not in dark
+
+
+def test_body_markdown_link_uses_palette():
+    dark = _render_body_markdown("see [docs](https://x.co)", palette=DARK)
+    assert "#c8c8c8" in dark          # body link colour
+    assert "#4d9bff" in dark          # underline accent
+    assert "#1c7ff2" not in dark

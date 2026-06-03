@@ -416,9 +416,9 @@ def render_source_line(primary_source: str, also_in: list[str], article_link: st
     if article_link:
         return (
             f'{img}<a href="{article_link}" '
-            f'style="color:#1c7ff2;text-decoration:none;vertical-align:middle;font-size:12px;">{label}</a>'
+            f'style="color:{palette["accent"]};text-decoration:none;vertical-align:middle;font-size:12px;">{label}</a>'
         )
-    return f'{img}<span style="vertical-align:middle;font-size:12px;color:#999;">{label}</span>'
+    return f'{img}<span style="vertical-align:middle;font-size:12px;color:{palette["meta"]};">{label}</span>'
 
 
 def extract_id(text):
@@ -465,7 +465,7 @@ def _render_body_markdown(text: str, palette: dict = LIGHT) -> str:
     text = _MARKDOWN_LINK_RE.sub(
         lambda m: (
             f'<a href="{m.group(2)}" '
-            f'style="color:#333;text-decoration:underline;text-decoration-color:#1c7ff2;">{m.group(1)}</a>'
+            f'style="color:{palette["body"]};text-decoration:underline;text-decoration-color:{palette["accent"]};">{m.group(1)}</a>'
         ),
         text,
     )
