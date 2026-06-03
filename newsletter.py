@@ -22,7 +22,7 @@ from config import SECTION_MAP, TEST_MODE
 from routing import Mode, get_mode, get_feeds_for_mode, is_design_mode
 from pipeline import fetch_all_feeds, deduplicate, record_seen, assign_ids
 from triage import apply_phase2_tier, call_triage, cap_items
-from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email, suppressed_cluster_ids
+from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email, suppressed_cluster_ids, write_everything_else_copy
 
 
 def main():
@@ -85,6 +85,7 @@ def main():
             format_raw, links_by_id, clusters_by_item_id,
             tiered_items=tiered_items, suppressed_ids=suppressed_ids,
             is_design_edition=is_design_mode(mode),
+            everything_else_writer=write_everything_else_copy,
         )
 
     with _stage("send_email"):

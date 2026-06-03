@@ -24,7 +24,11 @@ from config import (
     SOURCE_FAVICONS,
     TEST_MODE,
 )
-from prompts import FORMAT_SYSTEM_PROMPT, LEGACY_FORMAT_SYSTEM_PROMPT
+from prompts import (
+    EVERYTHING_ELSE_SYSTEM_PROMPT,
+    FORMAT_SYSTEM_PROMPT,
+    LEGACY_FORMAT_SYSTEM_PROMPT,
+)
 
 
 # ── Colour themes ───────────────────────────────────────────────────────────
@@ -811,14 +815,15 @@ def pick_everything_else_emoji(title: str, source: str, used: set | None = None)
     return candidates[0]
 
 
-def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiered_items=None, palette: dict = LIGHT):
-    """Render up to MAX_EVERYTHING_ELSE items globally, ranked by tier then score.
+def _select_everything_else(links_by_id, used_ids, tiered_items=None):
+    """Pick and order the Everything Else items.
 
     Tier 1 overflow (items capped out of featured) ranks first, then tier 2
     overflow (capped out of Other Headlines), then tier 3. Items the triage
-    dropped (tier 0) and items it never scored are excluded.
+    dropped (tier 0) and items it never scored are excluded. Returns a list of
+    (id, link_dict), capped at MAX_EVERYTHING_ELSE. Shared by the renderer and
+    the copywriter so both operate on exactly the same items.
     """
-    clusters_by_item_id = clusters_by_item_id or {}
     tiered_items = tiered_items or []
 
     # {id: (tier, composite_score)}
@@ -839,30 +844,119 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiere
         candidates.append((tier, -score, lid, l))
 
     candidates.sort()  # tier asc, then score desc (because we stored -score)
-    top = candidates[:MAX_EVERYTHING_ELSE]
+    return [(lid, l) for _tier, _neg_score, lid, l in candidates[:MAX_EVERYTHING_ELSE]]
+
+
+def _ee_anchor(text, link, palette):
+    """Wrap text in the Everything Else item link style, or return it plain."""
+    if not link:
+        return text
+    return (
+        f'<a href="{link}" style="color:{palette["body"]};'
+        f'text-decoration:underline;text-decoration-color:{palette["accent"]};">'
+        f'{text}</a>'
+    )
+
+
+def _everything_else_line(l, copy, palette):
+    """Render the text of one Everything Else item.
+
+    With LLM copy ({subject, blurb}), the subject becomes the hyperlink and the
+    blurb flows from it as one sentence (Morning Brew "what else is brewing"
+    style). Without copy, or if it is malformed, fall back to the legacy
+    title-only rendering: first four words linked, the rest of the title plain.
+    """
+    copy = copy or {}
+    subject = str(copy.get("subject", "")).strip()
+    blurb = str(copy.get("blurb", "")).strip()
+    if subject and blurb:
+        # Subject is meant to be the literal opening of the blurb so the link
+        # wraps it cleanly. If the model drifted, keep subject-first by linking
+        # the subject and letting the blurb follow.
+        rest = blurb[len(subject):] if blurb.startswith(subject) else " " + blurb
+        return f"{_ee_anchor(subject, l.get('link'), palette)}{rest}"
+
+    words = l["title"].split(" ")
+    link_words = " ".join(words[:4])
+    remaining = " ".join(words[4:])
+    linked_part = _ee_anchor(link_words, l.get("link"), palette)
+    return f"{linked_part} {remaining}" if remaining else linked_part
+
+
+def write_everything_else_copy(items, client=None):
+    """Ask Claude to write a subject + blurb for each Everything Else item.
+
+    items: list of (id, link_dict), as returned by _select_everything_else.
+    Returns {id: {"subject": str, "blurb": str}}. Any failure returns {} so the
+    renderer falls back to title-only copy. A bad API call must never break the
+    send.
+    """
+    if not items:
+        return {}
+
+    payload = [
+        {
+            "id": lid,
+            "title": l.get("title", ""),
+            "snippet": l.get("snippet", ""),
+            "source": l.get("source", ""),
+        }
+        for lid, l in items
+    ]
+    try:
+        client = client or anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+        message = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=1500,
+            system=EVERYTHING_ELSE_SYSTEM_PROMPT,
+            messages=[{"role": "user", "content": json.dumps(payload, indent=2)}],
+        )
+        cleaned = re.sub(
+            r"^```(json)?\s*|\s*```$", "", message.content[0].text.strip(),
+            flags=re.MULTILINE,
+        )
+        data = json.loads(cleaned)
+    except Exception as e:  # noqa: BLE001 — any failure must degrade gracefully
+        print(f"[everything_else] copy generation failed ({e}); title-only fallback.", flush=True)
+        return {}
+
+    out: dict[int, dict] = {}
+    for obj in data if isinstance(data, list) else []:
+        try:
+            lid = int(obj["id"])
+        except (KeyError, ValueError, TypeError):
+            continue
+        subject = str(obj.get("subject", "")).strip()
+        blurb = str(obj.get("blurb", "")).strip()
+        if subject and blurb:
+            out[lid] = {"subject": subject, "blurb": blurb}
+    return out
+
+
+def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None,
+                          tiered_items=None, palette: dict = LIGHT, copy_by_id=None):
+    """Render up to MAX_EVERYTHING_ELSE items globally, ranked by tier then score.
+
+    copy_by_id ({id: {subject, blurb}}) supplies Morning-Brew-style written
+    copy per item; items without an entry render title-only. Pass None to
+    render every item title-only (used by offline tests).
+    """
+    top = _select_everything_else(links_by_id, used_ids, tiered_items)
     if not top:
         return ""
 
+    copy_by_id = copy_by_id or {}
     items_html = ""
     used_emojis: set[str] = set()
-    for _tier, _neg_score, _lid, l in top:
-        words = l["title"].split(" ")
-        link_words = " ".join(words[:4])
-        remaining = " ".join(words[4:])
-        linked_part = (
-            f'<a href="{l["link"]}" style="color:{palette["body"]};'
-            f'text-decoration:underline;text-decoration-color:{palette["accent"]};">'
-            f'{link_words}</a>'
-            if l["link"] else link_words
-        )
-        full_line = f"{linked_part} {remaining}" if remaining else linked_part
+    for lid, l in top:
         emoji = pick_everything_else_emoji(l.get("title", ""), l.get("source", ""), used_emojis)
         used_emojis.add(emoji)
+        line = _everything_else_line(l, copy_by_id.get(lid), palette)
         items_html += (
             f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:{palette["body"]};'
             f'font-family:Helvetica,Arial,sans-serif">'
             f'<span style="margin-right:6px">{emoji}</span>'
-            f'{full_line}</p>'
+            f'{line}</p>'
         )
 
     return (
@@ -885,7 +979,7 @@ def parse_subject_line(claude_response):
     return None, claude_response
 
 
-def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False):
+def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, everything_else_writer=None):
     clusters_by_item_id = clusters_by_item_id or {}
     toronto_tz  = ZoneInfo("America/Toronto")
     now_toronto = datetime.now(toronto_tz)
@@ -908,8 +1002,16 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
         tiered_items=tiered_items, suppressed_ids=suppressed_ids,
         is_design_edition=is_design_edition, palette=c,
     )
+    # Write Morning-Brew-style subject + blurb copy for exactly the items that
+    # will surface, then render. Without a writer (offline tests), items render
+    # title-only.
+    ee_copy = None
+    if everything_else_writer is not None:
+        ee_items = _select_everything_else(links_by_id, used_ids, tiered_items)
+        ee_copy = everything_else_writer(ee_items)
     everything_else_html    = build_everything_else(
-        links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items, palette=c,
+        links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items,
+        palette=c, copy_by_id=ee_copy,
     )
 
     html = f"""<!DOCTYPE html>

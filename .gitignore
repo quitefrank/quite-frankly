@@ -7,3 +7,4 @@ comparison/
 case-study-raw.md
 .claude/
 tmp/
+venv/

@@ -1434,3 +1434,116 @@ def test_full_weekday_build_has_no_dark_only_colours():
         assert m not in html, f"dark-only colour {m} leaked into light build"
     for m in LIGHT_ONLY_MARKERS:
         assert m in html
+
+
+# ── Everything Else Morning-Brew-style copy (subject + blurb) ────────────────
+
+from formatting import write_everything_else_copy, _everything_else_line, LIGHT
+
+
+class _FakeMessage:
+    def __init__(self, text):
+        self.content = [type("C", (), {"text": text})()]
+
+
+class _FakeClient:
+    """Stands in for anthropic.Anthropic. Returns a canned response or raises."""
+    def __init__(self, text=None, exc=None):
+        self._text, self._exc = text, exc
+        self.messages = self
+        self.received = None
+
+    def create(self, **kwargs):
+        self.received = kwargs
+        if self._exc:
+            raise self._exc
+        return _FakeMessage(self._text)
+
+
+def _ee_links(n):
+    return {
+        i: {"id": i, "title": f"Headline number {i} here", "link": f"https://e.co/{i}",
+            "image": "", "source": "CBC", "snippet": f"Snippet {i}."}
+        for i in range(n)
+    }
+
+
+def _ee_tiers(n):
+    return [{"id": i, "tier": 3, "section": "Tech & AI",
+             "scores": {"cross_source_coverage": 1, "personal_relevance": 0, "section_fit": "none"}}
+            for i in range(n)]
+
+
+def test_everything_else_renders_subject_blurb():
+    links = _ee_links(1)
+    copy = {0: {"subject": "Anthropic", "blurb": "Anthropic filed to go public, lodging a confidential prospectus with the SEC."}}
+    html = build_everything_else(links, set(), tiered_items=_ee_tiers(1), copy_by_id=copy)
+    # Subject is the anchor text; blurb follows with no colon glue.
+    assert ">Anthropic</a> filed to go public" in html
+    assert "Anthropic:" not in html
+    # Emoji prefix preserved.
+    assert '<span style="margin-right:6px">' in html
+
+
+def test_everything_else_falls_back_to_title_when_copy_missing():
+    links = _ee_links(1)
+    # No copy_by_id at all → legacy title-only (first four words linked).
+    html = build_everything_else(links, set(), tiered_items=_ee_tiers(1))
+    assert ">Headline number 0 here</a>" in html
+
+
+def test_everything_else_subject_first_when_blurb_not_prefixed():
+    links = _ee_links(1)
+    copy = {0: {"subject": "Colombia", "blurb": "The country heads to a runoff presidential election."}}
+    html = build_everything_else(links, set(), tiered_items=_ee_tiers(1), copy_by_id=copy)
+    # Subject still leads as the link, blurb follows after a space.
+    assert ">Colombia</a> The country heads to a runoff" in html
+
+
+def test_everything_else_line_blank_copy_uses_title():
+    l = {"title": "First second third fourth fifth", "link": "https://e.co/1"}
+    line = _everything_else_line(l, {"subject": "", "blurb": ""}, LIGHT)
+    assert ">First second third fourth</a> fifth" in line
+
+
+def test_write_everything_else_copy_parses_filters_and_strips():
+    fake = _FakeClient(text=(
+        "```json\n"
+        '[{"id": 0, "subject": " Anthropic ", "blurb": " Anthropic filed to go public. "},'
+        '{"id": 1, "subject": "OpenAI", "blurb": ""},'   # empty blurb → dropped
+        '{"id": "x", "subject": "Bad", "blurb": "id"}]'   # bad id → dropped
+        "\n```"
+    ))
+    out = write_everything_else_copy([(0, {"title": "t"}), (1, {"title": "t"})], client=fake)
+    assert out == {0: {"subject": "Anthropic", "blurb": "Anthropic filed to go public."}}
+    # Items were sent to the model.
+    assert fake.received["model"]
+
+
+def test_write_everything_else_copy_returns_empty_on_error():
+    fake = _FakeClient(exc=RuntimeError("boom"))
+    out = write_everything_else_copy([(0, {"title": "t"})], client=fake)
+    assert out == {}
+
+
+def test_write_everything_else_copy_empty_items_no_call():
+    fake = _FakeClient(text="[]")
+    out = write_everything_else_copy([], client=fake)
+    assert out == {}
+    assert fake.received is None  # never hit the API
+
+
+def test_build_email_html_invokes_writer_with_selected_items():
+    links = _ee_links(2)
+    text = "## Tech & AI\n\n**Featured [#99]**\nBody.\nSource: CBC"
+    links[99] = {"id": 99, "title": "Featured", "link": "https://e.co/99", "image": "", "source": "CBC", "snippet": ""}
+    seen = {}
+
+    def writer(items):
+        for lid, _l in items:
+            seen[lid] = True
+        return {0: {"subject": "Anthropic", "blurb": "Anthropic filed to go public today."}}
+
+    html, _ = build_email_html(text, links, {}, tiered_items=_ee_tiers(2) + [{"id": 99, "tier": 1, "section": "Tech & AI", "scores": {}}], everything_else_writer=writer)
+    assert ">Anthropic</a> filed to go public" in html
+    assert 0 in seen and 1 in seen  # writer saw the selected EE items
