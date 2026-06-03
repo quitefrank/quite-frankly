@@ -1399,3 +1399,38 @@ def test_everything_else_dark_palette():
     assert "#c8c8c8" in html                 # item text + link
     assert "#4d9bff" in html                 # accent (label + underline)
     assert "#1c7ff2" not in html
+
+
+LIGHT_ONLY_MARKERS = ["#f4f4f4", "#1c7ff2", "#f0f4ff", "#E9EBF7", "#79787d", "#f0f0f0"]
+DARK_ONLY_MARKERS = ["#121212", "#4d9bff", "#1e1e1e", "#16243a", "#1a1c2e"]
+
+# Two featured stories in Tech & AI so the inter-story divider renders; that
+# hairline carries the divider colour (#f0f0f0 light / #333333 dark), which a
+# single-story fixture would never emit.
+_FULL_TEXT = (
+    "## Today in the World\n\n🌍 **Rates held [#1]:** markets mixed.\n\n"
+    "## Tech & AI\n\n**Big news [#2]**\nBody paragraph here.\nSource: CBC\n"
+    "What this means for you: test it\n\n"
+    "**Second story [#3]**\nAnother body paragraph.\nSource: BBC"
+)
+_FULL_LINKS = {
+    1: {"link": "https://a.co", "image": None, "title": "Rates held", "snippet": "x"},
+    2: {"link": "https://b.co", "image": None, "title": "Big news", "snippet": "y"},
+    3: {"link": "https://c.co", "image": None, "title": "Second story", "snippet": "z"},
+}
+
+
+def test_full_weekend_build_has_no_light_only_colours():
+    html, _ = build_email_html(_FULL_TEXT, _FULL_LINKS, is_design_edition=True)
+    for m in LIGHT_ONLY_MARKERS:
+        assert m not in html, f"light-only colour {m} leaked into dark build"
+    for m in DARK_ONLY_MARKERS:
+        assert m in html
+
+
+def test_full_weekday_build_has_no_dark_only_colours():
+    html, _ = build_email_html(_FULL_TEXT, _FULL_LINKS, is_design_edition=False)
+    for m in DARK_ONLY_MARKERS:
+        assert m not in html, f"dark-only colour {m} leaked into light build"
+    for m in LIGHT_ONLY_MARKERS:
+        assert m in html
