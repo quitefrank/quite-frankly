@@ -1385,3 +1385,17 @@ def test_section_card_light_unchanged():
     assert "background:#fff" in html
     assert "#1c7ff2" in html
     assert "#121212" not in html
+
+
+from formatting import build_everything_else
+
+
+def test_everything_else_dark_palette():
+    links = {1: {"link": "https://x.co", "title": "One two three four five", "source": "CBC", "image": None}}
+    items = [{"id": 1, "tier": 3, "scores": {}}]
+    html = build_everything_else(links, set(), tiered_items=items, palette=DARK)
+    assert "background:#1e1e1e" in html      # card bg
+    assert "1px solid #2a2a2a" in html       # card border
+    assert "#c8c8c8" in html                 # item text + link
+    assert "#4d9bff" in html                 # accent (label + underline)
+    assert "#1c7ff2" not in html

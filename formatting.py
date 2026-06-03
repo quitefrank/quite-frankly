@@ -850,8 +850,8 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiere
         link_words = " ".join(words[:4])
         remaining = " ".join(words[4:])
         linked_part = (
-            f'<a href="{l["link"]}" style="color:#333;'
-            f'text-decoration:underline;text-decoration-color:#1c7ff2;">'
+            f'<a href="{l["link"]}" style="color:{palette["body"]};'
+            f'text-decoration:underline;text-decoration-color:{palette["accent"]};">'
             f'{link_words}</a>'
             if l["link"] else link_words
         )
@@ -859,21 +859,21 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None, tiere
         emoji = pick_everything_else_emoji(l.get("title", ""), l.get("source", ""), used_emojis)
         used_emojis.add(emoji)
         items_html += (
-            f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:#333;'
+            f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:{palette["body"]};'
             f'font-family:Helvetica,Arial,sans-serif">'
             f'<span style="margin-right:6px">{emoji}</span>'
             f'{full_line}</p>'
         )
 
     return (
-        '\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid #e6e6e6;'
-        'overflow:hidden;background:#fff;font-family:Helvetica,Arial,sans-serif">'
-        '\n  <div style="padding:15px 15px 0">'
-        '\n    <p style="color:#1c7ff2;margin:0 0 14px;font-size:13px;font-weight:700;'
-        'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">📋 Everything Else</p>'
-        '\n  </div>'
+        f'\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid {palette["card_border"]};'
+        f'overflow:hidden;background:{palette["card_bg"]};font-family:Helvetica,Arial,sans-serif">'
+        f'\n  <div style="padding:15px 15px 0">'
+        f'\n    <p style="color:{palette["accent"]};margin:0 0 14px;font-size:13px;font-weight:700;'
+        f'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">📋 Everything Else</p>'
+        f'\n  </div>'
         f'\n  <div style="padding:0 15px 15px">{items_html}</div>'
-        '\n</div>'
+        f'\n</div>'
     )
 
 
