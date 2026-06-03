@@ -1438,7 +1438,7 @@ def test_full_weekday_build_has_no_dark_only_colours():
 
 # ── Everything Else Morning-Brew-style copy (subject + blurb) ────────────────
 
-from formatting import write_everything_else_copy, _everything_else_line, LIGHT
+from formatting import write_subject_blurbs, _everything_else_line, _other_headline_line, LIGHT
 
 
 class _FakeMessage:
@@ -1506,7 +1506,7 @@ def test_everything_else_line_blank_copy_uses_title():
     assert ">First second third fourth</a> fifth" in line
 
 
-def test_write_everything_else_copy_parses_filters_and_strips():
+def test_write_subject_blurbs_parses_filters_and_strips():
     fake = _FakeClient(text=(
         "```json\n"
         '[{"id": 0, "subject": " Anthropic ", "blurb": " Anthropic filed to go public. "},'
@@ -1514,21 +1514,21 @@ def test_write_everything_else_copy_parses_filters_and_strips():
         '{"id": "x", "subject": "Bad", "blurb": "id"}]'   # bad id → dropped
         "\n```"
     ))
-    out = write_everything_else_copy([(0, {"title": "t"}), (1, {"title": "t"})], client=fake)
+    out = write_subject_blurbs([(0, {"title": "t"}), (1, {"title": "t"})], client=fake)
     assert out == {0: {"subject": "Anthropic", "blurb": "Anthropic filed to go public."}}
     # Items were sent to the model.
     assert fake.received["model"]
 
 
-def test_write_everything_else_copy_returns_empty_on_error():
+def test_write_subject_blurbs_returns_empty_on_error():
     fake = _FakeClient(exc=RuntimeError("boom"))
-    out = write_everything_else_copy([(0, {"title": "t"})], client=fake)
+    out = write_subject_blurbs([(0, {"title": "t"})], client=fake)
     assert out == {}
 
 
-def test_write_everything_else_copy_empty_items_no_call():
+def test_write_subject_blurbs_empty_items_no_call():
     fake = _FakeClient(text="[]")
-    out = write_everything_else_copy([], client=fake)
+    out = write_subject_blurbs([], client=fake)
     assert out == {}
     assert fake.received is None  # never hit the API
 
@@ -1544,6 +1544,51 @@ def test_build_email_html_invokes_writer_with_selected_items():
             seen[lid] = True
         return {0: {"subject": "Anthropic", "blurb": "Anthropic filed to go public today."}}
 
-    html, _ = build_email_html(text, links, {}, tiered_items=_ee_tiers(2) + [{"id": 99, "tier": 1, "section": "Tech & AI", "scores": {}}], everything_else_writer=writer)
+    html, _ = build_email_html(text, links, {}, tiered_items=_ee_tiers(2) + [{"id": 99, "tier": 1, "section": "Tech & AI", "scores": {}}], blurb_writer=writer)
     assert ">Anthropic</a> filed to go public" in html
     assert 0 in seen and 1 in seen  # writer saw the selected EE items
+
+
+def test_other_headline_line_renders_subject_blurb_without_colon():
+    l = {"title": "Some headline words here", "link": "https://e.co/1", "snippet": "Ignored snippet."}
+    copy = {"subject": "Andrew Left", "blurb": "Andrew Left was found guilty of securities fraud by a jury."}
+    line = _other_headline_line(l, copy, LIGHT)
+    assert ">Andrew Left</a> was found guilty of securities fraud" in line
+    # No colon-glue and the legacy first-5-words/snippet path is not used.
+    assert "Andrew Left:" not in line
+    assert "Ignored snippet" not in line
+
+
+def test_other_headline_line_falls_back_to_title_and_snippet():
+    l = {"title": "First second third fourth fifth sixth", "link": "https://e.co/1", "snippet": "A summary sentence. More."}
+    line = _other_headline_line(l, None, LIGHT)
+    # Legacy: first five words linked, colon, first sentence of the snippet.
+    assert ">First second third fourth fifth</a>: A summary sentence." in line
+
+
+def test_build_email_html_writes_other_headlines_copy():
+    # One featured story plus two tier-2 items in the same section become Other
+    # Headlines; the writer should receive them and their copy should render.
+    links = {
+        99: {"id": 99, "title": "Featured", "link": "https://e.co/99", "image": "", "source": "CBC", "snippet": ""},
+        1: {"id": 1, "title": "Rate decision lands today", "link": "https://e.co/1", "image": "", "source": "CBC", "snippet": "The bank held."},
+        2: {"id": 2, "title": "Condo starts slow down", "link": "https://e.co/2", "image": "", "source": "CBC", "snippet": "Builders paused."},
+    }
+    tiered = [
+        {"id": 99, "tier": 1, "section": "Finance & Markets", "scores": {}},
+        {"id": 1, "tier": 2, "section": "Finance & Markets",
+         "scores": {"cross_source_coverage": 1, "personal_relevance": 1, "section_fit": "weak"}},
+        {"id": 2, "tier": 2, "section": "Finance & Markets",
+         "scores": {"cross_source_coverage": 1, "personal_relevance": 1, "section_fit": "weak"}},
+    ]
+    text = "## Finance & Markets\n\n**Featured [#99]**\nBody.\nSource: CBC"
+    seen_ids = []
+
+    def writer(items):
+        seen_ids.extend(lid for lid, _ in items)
+        return {1: {"subject": "The Bank of Canada", "blurb": "The Bank of Canada held its rate at 4.25%."}}
+
+    html, _ = build_email_html(text, links, {}, tiered_items=tiered, blurb_writer=writer)
+    assert 1 in seen_ids and 2 in seen_ids           # OH picks reached the writer
+    assert ">The Bank of Canada</a> held its rate" in html  # OH copy rendered
+    assert "<li" in html                             # bullets kept, no emoji added

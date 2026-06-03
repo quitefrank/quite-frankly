@@ -149,7 +149,7 @@ CRITICAL RULES YOU MUST FOLLOW:
 """
 
 
-EVERYTHING_ELSE_SYSTEM_PROMPT = """You write the short news items for the "Everything Else" section of Frank's daily briefing. These are the one-line bites at the end, modeled on Morning Brew's "What else is brewing": each item opens with the story's subject, then flows into a single sentence of context.
+SUBJECT_BLURB_SYSTEM_PROMPT = """You write the short news items for Frank's daily briefing: the per-section Other Headlines lists and the Everything Else section at the end. Both are modeled on Morning Brew's "What else is brewing": each item opens with the story's subject, then flows into a single sentence of context.
 
 You receive a JSON array of news items, each with: id, title, snippet (may be empty), source.
 

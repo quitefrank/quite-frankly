@@ -25,7 +25,7 @@ from config import (
     TEST_MODE,
 )
 from prompts import (
-    EVERYTHING_ELSE_SYSTEM_PROMPT,
+    SUBJECT_BLURB_SYSTEM_PROMPT,
     FORMAT_SYSTEM_PROMPT,
     LEGACY_FORMAT_SYSTEM_PROMPT,
 )
@@ -488,7 +488,43 @@ def _first_sentence(text: str, max_chars: int = 180) -> str:
     return first
 
 
-def render_other_headlines_for_section(section, tiered_items, links_by_id, used_ids, palette: dict = LIGHT):
+def _other_headline_anchor(text, link, palette):
+    """Wrap text in the Other Headlines link style, or return it plain."""
+    if not link:
+        return text
+    return (
+        f'<a href="{link}" '
+        f'style="color:{palette["body"]};font-weight:400;text-decoration:underline;'
+        f'text-decoration-color:{palette["accent"]};">'
+        f"{text}</a>"
+    )
+
+
+def _other_headline_line(l, copy, palette):
+    """Render the text of one Other Headlines item.
+
+    With LLM copy ({subject, blurb}), the subject becomes the hyperlink and the
+    blurb flows from it as one sentence (Morning Brew "what else is brewing"
+    style). Without copy, or if it is malformed, fall back to the legacy
+    rendering: first five words of the title linked, then a colon and the first
+    sentence of the snippet.
+    """
+    copy = copy or {}
+    subject = str(copy.get("subject", "")).strip()
+    blurb = str(copy.get("blurb", "")).strip()
+    if subject and blurb:
+        rest = blurb[len(subject):] if blurb.startswith(subject) else " " + blurb
+        return f"{_other_headline_anchor(subject, l.get('link'), palette)}{rest}"
+
+    words = l["title"].split(" ")
+    link_words = " ".join(words[:5])
+    linked_part = _other_headline_anchor(link_words, l.get("link"), palette)
+    summary = _first_sentence(l.get("snippet", ""))
+    return f"{linked_part}: {summary}" if summary else linked_part
+
+
+def render_other_headlines_for_section(section, tiered_items, links_by_id, used_ids,
+                                       palette: dict = LIGHT, copy_by_id=None, collect=None):
     """Synthesize the Other Headlines subsection for one section.
 
     Picks the top MAX_OTHER_HEADLINES_PER_SECTION Tier 1 overflow and Tier 2
@@ -496,6 +532,11 @@ def render_other_headlines_for_section(section, tiered_items, links_by_id, used_
     already featured), sorted by tier ascending then composite score desc so
     tier-1 overflow surfaces above tier-2. Adds the chosen IDs to used_ids so
     they don't duplicate in Everything Else.
+
+    copy_by_id ({id: {subject, blurb}}) supplies Morning-Brew-style written copy
+    per item; items without an entry render with the legacy title+snippet line.
+    If collect is a list, the picked (id, link_dict) pairs are appended to it so
+    a caller can write copy for exactly the items that surfaced.
     """
     candidates = []
     for it in tiered_items or []:
@@ -515,20 +556,14 @@ def render_other_headlines_for_section(section, tiered_items, links_by_id, used_
     if not picked:
         return ""
 
+    copy_by_id = copy_by_id or {}
     items_html = ""
     for lid in picked:
         used_ids.add(lid)
         l = links_by_id[lid]
-        words = l["title"].split(" ")
-        link_words = " ".join(words[:5])
-        linked_part = (
-            f'<a href="{l["link"]}" '
-            f'style="color:{palette["body"]};font-weight:400;text-decoration:underline;text-decoration-color:{palette["accent"]};">'
-            f"{link_words}</a>"
-            if l.get("link") else link_words
-        )
-        summary = _first_sentence(l.get("snippet", ""))
-        body = f"{linked_part}: {summary}" if summary else linked_part
+        if collect is not None:
+            collect.append((lid, l))
+        body = _other_headline_line(l, copy_by_id.get(lid), palette)
         items_html += (
             f'<li style="margin-bottom:10px;line-height:22px;font-size:15px;color:{palette["body"]};'
             f'font-family:Helvetica,Arial,sans-serif">{body}</li>'
@@ -609,7 +644,7 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
     return hero_image_html + items_html
 
 
-def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, palette: dict = LIGHT):
+def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, palette: dict = LIGHT, oh_copy_by_id=None, oh_collect=None):
     clusters_by_item_id = clusters_by_item_id or {}
     tiered_items = tiered_items or []
     # Seed used_ids with suppressed cluster members so the programmatic
@@ -762,7 +797,10 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
 
             stories_html += "</div>"
 
-        oh_html = render_other_headlines_for_section(title, tiered_items, links_by_id, used_ids, palette)
+        oh_html = render_other_headlines_for_section(
+            title, tiered_items, links_by_id, used_ids, palette,
+            copy_by_id=oh_copy_by_id, collect=oh_collect,
+        )
         stories_html += oh_html
 
         if not stories_html:
@@ -883,13 +921,13 @@ def _everything_else_line(l, copy, palette):
     return f"{linked_part} {remaining}" if remaining else linked_part
 
 
-def write_everything_else_copy(items, client=None):
-    """Ask Claude to write a subject + blurb for each Everything Else item.
+def write_subject_blurbs(items, client=None):
+    """Ask Claude to write a subject + blurb for each short news item.
 
-    items: list of (id, link_dict), as returned by _select_everything_else.
-    Returns {id: {"subject": str, "blurb": str}}. Any failure returns {} so the
-    renderer falls back to title-only copy. A bad API call must never break the
-    send.
+    Shared by Other Headlines and Everything Else. items: list of
+    (id, link_dict). Returns {id: {"subject": str, "blurb": str}}. Any failure
+    returns {} so the renderer falls back to its title-only copy. A bad API call
+    must never break the send.
     """
     if not items:
         return {}
@@ -908,7 +946,7 @@ def write_everything_else_copy(items, client=None):
         message = client.messages.create(
             model="claude-sonnet-4-20250514",
             max_tokens=1500,
-            system=EVERYTHING_ELSE_SYSTEM_PROMPT,
+            system=SUBJECT_BLURB_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": json.dumps(payload, indent=2)}],
         )
         cleaned = re.sub(
@@ -917,7 +955,7 @@ def write_everything_else_copy(items, client=None):
         )
         data = json.loads(cleaned)
     except Exception as e:  # noqa: BLE001 — any failure must degrade gracefully
-        print(f"[everything_else] copy generation failed ({e}); title-only fallback.", flush=True)
+        print(f"[subject_blurbs] copy generation failed ({e}); title-only fallback.", flush=True)
         return {}
 
     out: dict[int, dict] = {}
@@ -979,7 +1017,7 @@ def parse_subject_line(claude_response):
     return None, claude_response
 
 
-def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, everything_else_writer=None):
+def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, blurb_writer=None):
     clusters_by_item_id = clusters_by_item_id or {}
     toronto_tz  = ZoneInfo("America/Toronto")
     now_toronto = datetime.now(toronto_tz)
@@ -997,18 +1035,31 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
     if TEST_MODE:
         subject = f"[TEST] {subject}"
 
+    # Pass 1 discovers which items surface: featured stories populate used_ids,
+    # and oh_items collects the Other Headlines picks across every section.
+    oh_items: list = []
     sections_html, used_ids = parse_and_render_sections(
         claude_response, links_by_id, clusters_by_item_id,
         tiered_items=tiered_items, suppressed_ids=suppressed_ids,
-        is_design_edition=is_design_edition, palette=c,
+        is_design_edition=is_design_edition, palette=c, oh_collect=oh_items,
     )
-    # Write Morning-Brew-style subject + blurb copy for exactly the items that
-    # will surface, then render. Without a writer (offline tests), items render
-    # title-only.
+    ee_items = _select_everything_else(links_by_id, used_ids, tiered_items)
+
+    # Write Morning-Brew-style subject + blurb copy for exactly the short items
+    # that surfaced (Other Headlines + Everything Else), in one batched call.
+    # Without a writer (offline tests), everything renders title-only.
     ee_copy = None
-    if everything_else_writer is not None:
-        ee_items = _select_everything_else(links_by_id, used_ids, tiered_items)
-        ee_copy = everything_else_writer(ee_items)
+    if blurb_writer is not None:
+        blurb_copy = blurb_writer(oh_items + ee_items)
+        oh_copy = {lid: blurb_copy[lid] for lid, _ in oh_items if lid in blurb_copy}
+        ee_copy = {lid: blurb_copy[lid] for lid, _ in ee_items if lid in blurb_copy}
+        if oh_copy:
+            # Re-render sections with the Other Headlines copy in place.
+            sections_html, used_ids = parse_and_render_sections(
+                claude_response, links_by_id, clusters_by_item_id,
+                tiered_items=tiered_items, suppressed_ids=suppressed_ids,
+                is_design_edition=is_design_edition, palette=c, oh_copy_by_id=oh_copy,
+            )
     everything_else_html    = build_everything_else(
         links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items,
         palette=c, copy_by_id=ee_copy,
