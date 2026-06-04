@@ -625,7 +625,7 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
         used_ids.add(it["id"])
         link = links_by_id.get(it["id"], {})
         href = link.get("link", "")
-        bold_inner = f'{it["header"]}:'
+        bold_inner = f'{it["header"]}.'
         if href:
             bold = (
                 f'<a href="{href}" style="color:{palette["heading"]};text-decoration:underline;text-decoration-color:{palette["accent"]};">'
@@ -890,7 +890,7 @@ def _ee_anchor(text, link, palette):
     if not link:
         return text
     return (
-        f'<a href="{link}" style="color:{palette["body"]};'
+        f'<a href="{link}" style="color:{palette["body"]};font-weight:700;'
         f'text-decoration:underline;text-decoration-color:{palette["accent"]};">'
         f'{text}</a>'
     )
