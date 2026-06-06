@@ -290,11 +290,6 @@ def assign_ids(items: list[dict]) -> dict[int, dict]:
     return by_id
 
 
-def monday_dedup_bypass(items: list[dict], seen: dict) -> list[dict]:
-    """On Mondays, re-admit items already in `seen` only if cluster_size >= 3."""
-    return [i for i in items if i["link"] in seen and i.get("cluster_size", 0) >= 3]
-
-
 # ---- Content-similarity primitives for the clustering-miss backstop ----
 
 _YOUTUBE_RE = re.compile(

@@ -2,7 +2,7 @@ import json
 from unittest.mock import patch
 
 import pipeline
-from pipeline import assign_ids, deduplicate, fetch_all_feeds, fetch_feed, monday_dedup_bypass, record_seen
+from pipeline import assign_ids, deduplicate, fetch_all_feeds, fetch_feed, record_seen
 
 
 def test_assign_ids_returns_dict_keyed_by_id():
@@ -214,17 +214,6 @@ def test_fetch_all_feeds_dedupes_items_with_identical_links():
         items = fetch_all_feeds([{"url": "x", "source": "NBC Meet the Press"}])
     assert len(items) == 1, "Within-batch link dedup should keep only one item per link"
     assert items[0]["link"] == "https://nbcnews.com/dateline"
-
-
-def test_monday_bypass_keeps_items_with_cluster_size_3_plus():
-    seen = {"u1": 0, "u2": 0, "u3": 0}
-    items = [
-        {"id": 0, "title": "Story A", "link": "u1", "source": "CBC", "cluster_size": 4},
-        {"id": 1, "title": "Story B", "link": "u2", "source": "BBC", "cluster_size": 2},
-        {"id": 2, "title": "Story C", "link": "u3", "source": "NYT", "cluster_size": 1},
-    ]
-    result = monday_dedup_bypass(items, seen)
-    assert {i["id"] for i in result} == {0}
 
 
 def test_deduplicate_does_not_persist_seen_links(tmp_path, monkeypatch):
