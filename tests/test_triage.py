@@ -94,3 +94,28 @@ def test_apply_phase2_tier_falls_back_when_attach_traction_raises(monkeypatch, c
     assert result[1]["tier"] == 3  # Claude's tier preserved
     out = capsys.readouterr().out
     assert "attach_traction failed" in out
+
+
+from triage import build_triage_user_message
+
+
+def test_triage_message_includes_snippet():
+    items = [{
+        "id": 7, "title": "Codex goals explained", "source": "IAI",
+        "section_label": "Design & Product",
+        "snippet": "Bryce Ratner shows how Keith Lee built a no-code fitness app.",
+    }]
+    msg = build_triage_user_message(items)
+    assert "[#7]" in msg
+    assert "Bryce Ratner" in msg
+    assert "no-code fitness app" in msg
+
+
+def test_triage_message_omits_separator_when_snippet_empty():
+    items = [{
+        "id": 8, "title": "Just a title", "source": "CBC",
+        "section_label": "Canada & Toronto", "snippet": "",
+    }]
+    msg = build_triage_user_message(items)
+    assert "[#8]" in msg
+    assert " — " not in msg

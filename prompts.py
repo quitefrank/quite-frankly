@@ -68,6 +68,8 @@ TRIAGE_SYSTEM_PROMPT = f"""You are a triage editor for a daily news briefing.
 
 You will receive a list of today's news headlines, each prefixed with an integer ID [#N], a section label in square brackets, and a source name. Your job: score each item, group items into clusters when multiple sources cover the same story, and assign each item to a section.
 
+Each headline may be followed by " — " and a snippet. Use BOTH the title and the snippet to detect duplicates. Two items are the same story, and MUST get the same cluster_id, when they share the same primary people, company, product, or event, even if the headlines are worded differently or sit in different sections. When you are unsure whether two items are the same story, prefer giving them the same cluster_id.
+
 Reader context for personal relevance scoring:
 {PERSONAL_RELEVANCE_BLURB}
 

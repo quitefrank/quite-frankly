@@ -168,7 +168,16 @@ def select_items_by_tier(items: list[dict], tier: int) -> list[dict]:
 def build_triage_user_message(items: list[dict]) -> str:
     lines = []
     for i in items:
-        lines.append(f"[#{i['id']}] [{i.get('section_label', '?')}] {i['title']} | Source: {i['source']}")
+        snippet = (i.get("snippet") or "").strip()
+        # The snippet is the only place differently-worded headlines about
+        # the same story share vocabulary (the same people, company, event),
+        # so it's what lets triage cluster cross-publisher duplicates. Cap at
+        # 200 chars to keep the prompt tractable across ~120 items.
+        snippet_part = f" — {snippet[:200]}" if snippet else ""
+        lines.append(
+            f"[#{i['id']}] [{i.get('section_label', '?')}] {i['title']} "
+            f"| Source: {i['source']}{snippet_part}"
+        )
     return "Here are today's headlines. Call emit_triage with one entry per item:\n\n" + "\n".join(lines)
 
 
