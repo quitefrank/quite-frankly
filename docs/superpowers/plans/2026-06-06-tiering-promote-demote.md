@@ -8,6 +8,8 @@
 
 **Tech Stack:** Python 3.9 (runtime; `from __future__ import annotations` already in use), pytest. No new dependencies.
 
+> **Status (2026-06-06):** Tasks 1–4 implemented and shipped (139 tests pass). Task 5 (same-entity demotion) remains deferred pending an explicit go-ahead and a calibration example.
+
 ---
 
 ## Background
