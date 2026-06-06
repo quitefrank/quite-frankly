@@ -50,7 +50,6 @@ def fake_anthropic_client(monkeypatch, sample_format_response):
                 "cross_source_coverage": it["scores"]["cross_source_coverage"],
                 "personal_relevance": it["scores"]["personal_relevance"],
                 "section_fit": it["scores"]["section_fit"],
-                "promotion_to_today_in_the_world": it["promotion_to_today_in_the_world"],
             }
             for it in triage_payload["items"]
         ],

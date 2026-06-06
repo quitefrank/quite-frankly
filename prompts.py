@@ -79,7 +79,6 @@ For each item, return:
 - section (one of: "Canada & Toronto", "Toronto Housing", "Tech & AI", "Finance & Markets", "US & Global", "Today in the World", "Design & Product")
 - cluster_id (string; same id for items covering the same underlying story)
 - scores: cross_source_coverage (integer count of feeds covering it, including itself), personal_relevance (0-3), section_fit ("good" | "weak" | "none")
-- promotion_to_today_in_the_world (boolean; true only when cluster_size >= 3 AND no clean section fit)
 
 Tier mapping (sum cross_source_coverage + personal_relevance + section_fit_score):
 - section_fit_score: good=1, weak=0, none=-1

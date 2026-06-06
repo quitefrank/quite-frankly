@@ -24,24 +24,19 @@ def test_phase2_traction_promotes_borderline_item_into_format_input(monkeypatch)
             "section": "Canada & Toronto",
             "cluster_id": "",
             "scores": {"cross_source_coverage": 2, "personal_relevance": 1, "section_fit": "good"},
-            "promotion_to_today_in_the_world": False,
         },
         {
             "id": 2,
             "tier": 1,
             "section": "Canada & Toronto",
             "cluster_id": "",
-            "scores": {"cross_source_coverage": 1, "personal_relevance": 2, "section_fit": "good"},
-            "promotion_to_today_in_the_world": False,
-        },
+            "scores": {"cross_source_coverage": 1, "personal_relevance": 2, "section_fit": "good"},        },
         {
             "id": 42,
             "tier": 2,
             "section": "Tech & AI",
             "cluster_id": "",
-            "scores": {"cross_source_coverage": 0, "personal_relevance": 2, "section_fit": "weak"},
-            "promotion_to_today_in_the_world": False,
-        },
+            "scores": {"cross_source_coverage": 0, "personal_relevance": 2, "section_fit": "weak"},        },
     ]
     links_by_id = {
         1: {"link": "https://example.com/story1", "title": "Story 1", "source": "CBC", "image": ""},
