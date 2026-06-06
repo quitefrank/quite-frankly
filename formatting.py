@@ -54,9 +54,9 @@ LIGHT = {
     "color_scheme": "light",
 }
 DARK = {
-    "page_bg": "#121212",
-    "card_bg": "#1e1e1e",
-    "card_border": "#2a2a2a",
+    "page_bg": "#202226",
+    "card_bg": "#2b2d33",
+    "card_border": "#3a3d45",
     "header_bg": "#ffffff",
     "header_text": "#1a1a1a",
     "header_border": "#e6e6e6",
@@ -66,7 +66,7 @@ DARK = {
     "meta_label": "#8a8a8a",
     "accent": "#4d9bff",
     "callout_bg": "#16243a",
-    "divider": "#333333",
+    "divider": "#3a3d45",
     "footer_bg": "#1a1c2e",
     "footer_text": "#8b8ba3",
     "color_scheme": "dark",

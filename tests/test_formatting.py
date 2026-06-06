@@ -1307,7 +1307,7 @@ def test_palettes_have_identical_keys():
 
 def test_weekend_shell_is_dark():
     html = _weekend_html()
-    assert "#121212" in html                       # dark page bg
+    assert "#202226" in html                       # dark page bg (medium charcoal)
     assert 'background:#ffffff' in html             # inverted white header bar
     assert 'name="color-scheme" content="dark"' in html
     assert 'content="dark"' in html
@@ -1317,7 +1317,7 @@ def test_weekend_shell_is_dark():
 def test_weekday_shell_is_light():
     html = _weekday_html()
     assert "#f4f4f4" in html                        # light page bg
-    assert "#121212" not in html
+    assert "#202226" not in html
     assert 'name="color-scheme" content="light"' in html
 
 
@@ -1358,7 +1358,7 @@ def test_other_headlines_dark_palette():
     assert "#c8c8c8" in html       # link + item body
     assert "#4d9bff" in html       # underline accent
     assert "#8a8a8a" in html       # "Other Headlines" label
-    assert "#333333" in html       # divider (dark)
+    assert "#3a3d45" in html       # divider (dark)
     assert "#1c7ff2" not in html
 
 
@@ -1369,8 +1369,8 @@ def test_section_card_dark_palette():
     text = "## Tech & AI\n\n**Big news [#1]**\nThe body paragraph.\nSource: CBC\nWhat this means for you: do X"
     links = {1: {"link": "https://x.co", "image": None, "title": "Big news", "snippet": ""}}
     html, _ = parse_and_render_sections(text, links, palette=DARK)
-    assert "background:#1e1e1e" in html      # card bg
-    assert "1px solid #2a2a2a" in html       # card border
+    assert "background:#2b2d33" in html      # card bg
+    assert "1px solid #3a3d45" in html       # card border
     assert "#f5f5f5" in html                 # headline
     assert "#c8c8c8" in html                 # body + callout text
     assert "background:#16243a" in html      # callout bg
@@ -1385,7 +1385,7 @@ def test_section_card_light_unchanged():
     html, _ = parse_and_render_sections(text, links)  # default LIGHT
     assert "background:#fff" in html
     assert "#1c7ff2" in html
-    assert "#121212" not in html
+    assert "#202226" not in html
 
 
 from formatting import build_everything_else
@@ -1395,18 +1395,18 @@ def test_everything_else_dark_palette():
     links = {1: {"link": "https://x.co", "title": "One two three four five", "source": "CBC", "image": None}}
     items = [{"id": 1, "tier": 3, "scores": {}}]
     html = build_everything_else(links, set(), tiered_items=items, palette=DARK)
-    assert "background:#1e1e1e" in html      # card bg
-    assert "1px solid #2a2a2a" in html       # card border
+    assert "background:#2b2d33" in html      # card bg
+    assert "1px solid #3a3d45" in html       # card border
     assert "#c8c8c8" in html                 # item text + link
     assert "#4d9bff" in html                 # accent (label + underline)
     assert "#1c7ff2" not in html
 
 
 LIGHT_ONLY_MARKERS = ["#f4f4f4", "#1c7ff2", "#f0f4ff", "#E9EBF7", "#79787d", "#f0f0f0"]
-DARK_ONLY_MARKERS = ["#121212", "#4d9bff", "#1e1e1e", "#16243a", "#1a1c2e"]
+DARK_ONLY_MARKERS = ["#202226", "#4d9bff", "#2b2d33", "#16243a", "#1a1c2e"]
 
 # Two featured stories in Tech & AI so the inter-story divider renders; that
-# hairline carries the divider colour (#f0f0f0 light / #333333 dark), which a
+# hairline carries the divider colour (#f0f0f0 light / #3a3d45 dark), which a
 # single-story fixture would never emit.
 _FULL_TEXT = (
     "## Today in the World\n\n🌍 **Rates held [#1]:** markets mixed.\n\n"
