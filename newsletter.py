@@ -21,7 +21,7 @@ def _stage(name: str):
 from config import SECTION_MAP, TEST_MODE
 from routing import Mode, get_mode, get_feeds_for_mode, is_design_mode
 from pipeline import fetch_all_feeds, deduplicate, record_seen, assign_ids
-from triage import apply_phase2_tier, call_triage, cap_items
+from triage import apply_phase2_tier, call_triage, cap_items, enrich_cluster_metrics
 from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email, suppressed_cluster_ids, near_duplicate_ids, write_subject_blurbs
 
 
@@ -54,6 +54,8 @@ def main():
         with _stage("triage"):
             tiered_items, clusters = call_triage(capped_items)
         print(f"Triage returned {len(tiered_items)} scored items, {len(clusters)} clusters", flush=True)
+
+        enrich_cluster_metrics(tiered_items, links_by_id)
 
         with _stage("phase2_tier"):
             apply_phase2_tier(tiered_items, links_by_id)

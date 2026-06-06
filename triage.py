@@ -51,9 +51,8 @@ TRIAGE_TOOL = {
                         "cross_source_coverage": {"type": "integer", "minimum": 1},
                         "personal_relevance": {"type": "integer", "minimum": 0, "maximum": 3},
                         "section_fit": {"type": "string", "enum": ["good", "weak", "none"]},
-                        "promotion_to_today_in_the_world": {"type": "boolean"},
                     },
-                    "required": ["id", "tier", "section", "cluster_id", "cross_source_coverage", "personal_relevance", "section_fit", "promotion_to_today_in_the_world"],
+                    "required": ["id", "tier", "section", "cluster_id", "cross_source_coverage", "personal_relevance", "section_fit"],
                 },
             },
             "clusters": {
@@ -138,7 +137,6 @@ def _shape_tool_output(payload: dict) -> tuple[list[dict], dict[str, dict]]:
                 "personal_relevance": it.get("personal_relevance", 0),
                 "section_fit": it.get("section_fit", "weak"),
             },
-            "promotion_to_today_in_the_world": it.get("promotion_to_today_in_the_world", False),
         })
     if dropped:
         print(f"  Triage: dropped {dropped} malformed item(s) from tool output")
@@ -259,4 +257,37 @@ def apply_phase2_tier(items: list[dict], links_by_id: dict) -> list[dict]:
         return items
     for item in items:
         item["tier"] = compute_phase2_tier(item)
+    return items
+
+
+def enrich_cluster_metrics(items: list[dict], links_by_id: dict) -> list[dict]:
+    """Set each item's cluster_size and cross_source_coverage from real cluster
+    membership, replacing the LLM's self-reported cross_source_coverage guess.
+
+    cluster_size = number of items sharing the cluster_id.
+    cross_source_coverage = number of DISTINCT sources in the cluster (min 1).
+    Items with an empty cluster_id are singletons (size 1, coverage 1).
+
+    Mutates items in place. MUST run after call_triage and before
+    apply_phase2_tier, so compute_phase2_tier reads the corrected coverage
+    (which it weights x3) instead of the model's estimate.
+    """
+    by_cluster: dict[str, list[dict]] = {}
+    for it in items:
+        cid = it.get("cluster_id") or ""
+        if not cid:
+            it["cluster_size"] = 1
+            it.setdefault("scores", {})["cross_source_coverage"] = 1
+            continue
+        by_cluster.setdefault(cid, []).append(it)
+    for members in by_cluster.values():
+        size = len(members)
+        sources = {
+            links_by_id.get(m["id"], {}).get("source", "") for m in members
+        }
+        sources.discard("")
+        coverage = max(len(sources), 1)
+        for it in members:
+            it["cluster_size"] = size
+            it.setdefault("scores", {})["cross_source_coverage"] = coverage
     return items

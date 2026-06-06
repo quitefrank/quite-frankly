@@ -119,3 +119,27 @@ def test_triage_message_omits_separator_when_snippet_empty():
     msg = build_triage_user_message(items)
     assert "[#8]" in msg
     assert " — " not in msg
+
+
+from triage import enrich_cluster_metrics
+
+
+def test_enrich_sets_coverage_to_distinct_source_count():
+    items = [
+        {"id": 1, "cluster_id": "c1", "scores": {"cross_source_coverage": 9}},
+        {"id": 2, "cluster_id": "c1", "scores": {"cross_source_coverage": 9}},
+        {"id": 3, "cluster_id": "c1", "scores": {"cross_source_coverage": 9}},
+    ]
+    links_by_id = {
+        1: {"source": "CBC"}, 2: {"source": "CBC"}, 3: {"source": "BBC"},
+    }
+    enrich_cluster_metrics(items, links_by_id)
+    assert [it["cluster_size"] for it in items] == [3, 3, 3]
+    assert [it["scores"]["cross_source_coverage"] for it in items] == [2, 2, 2]
+
+
+def test_enrich_treats_empty_cluster_as_singleton():
+    items = [{"id": 5, "cluster_id": "", "scores": {"cross_source_coverage": 4}}]
+    enrich_cluster_metrics(items, {5: {"source": "NYT"}})
+    assert items[0]["cluster_size"] == 1
+    assert items[0]["scores"]["cross_source_coverage"] == 1
