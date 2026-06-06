@@ -293,3 +293,48 @@ def assign_ids(items: list[dict]) -> dict[int, dict]:
 def monday_dedup_bypass(items: list[dict], seen: dict) -> list[dict]:
     """On Mondays, re-admit items already in `seen` only if cluster_size >= 3."""
     return [i for i in items if i["link"] in seen and i.get("cluster_size", 0) >= 3]
+
+
+# ---- Content-similarity primitives for the clustering-miss backstop ----
+
+_YOUTUBE_RE = re.compile(
+    r'(?:youtube\.com/(?:watch\?v=|embed/|shorts/|v/)|youtu\.be/)([A-Za-z0-9_-]{11})'
+)
+_TOKEN_RE = re.compile(r"[a-z0-9]+")
+_STOPWORDS = frozenset({
+    "the", "a", "an", "and", "or", "to", "of", "in", "on", "for", "with", "is",
+    "are", "its", "it", "this", "that", "as", "at", "by", "from", "how", "why",
+    "what", "new", "up", "out", "his", "her", "she", "he", "they", "you", "your",
+    "i", "we", "s", "was", "were", "has", "have", "will",
+})
+
+
+def youtube_id(text: str) -> str:
+    """Return an 11-char YouTube video id found in text, or '' if none."""
+    m = _YOUTUBE_RE.search(text or "")
+    return m.group(1) if m else ""
+
+
+def canonical_key(item: dict) -> str:
+    """A high-confidence same-story key, or '' if none can be derived.
+
+    Keys off a shared YouTube video id found in the item's link or snippet.
+    Two items with the same non-empty key are the same story with near
+    certainty. (When article-body fetching lands, og:url / rel=canonical and
+    body-embedded video ids can feed in here too.)
+    """
+    vid = youtube_id(item.get("link", "")) or youtube_id(item.get("snippet", ""))
+    return f"yt:{vid}" if vid else ""
+
+
+def normalize_text(text: str) -> frozenset:
+    """Lowercased significant-token set for fuzzy story matching.
+
+    Drops stopwords and tokens of 2 chars or fewer so similarity reflects the
+    proper nouns and content words that identify a story (people, companies,
+    products), not boilerplate.
+    """
+    return frozenset(
+        t for t in _TOKEN_RE.findall((text or "").lower())
+        if t not in _STOPWORDS and len(t) > 2
+    )

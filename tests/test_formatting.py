@@ -10,6 +10,7 @@ from formatting import (
     render_other_headlines_for_section,
     render_source_line,
     suppressed_cluster_ids,
+    near_duplicate_ids,
 )
 
 
@@ -1592,3 +1593,66 @@ def test_build_email_html_writes_other_headlines_copy():
     assert 1 in seen_ids and 2 in seen_ids           # OH picks reached the writer
     assert ">The Bank of Canada</a> held its rate" in html  # OH copy rendered
     assert "<li" in html                             # bullets kept, no emoji added
+
+
+def test_near_duplicate_ids_catches_same_story_different_clusters():
+    a = _item(7, "Design & Product", tier=1, ccov=1, prel=2, fit="good")   # score 4
+    b = _item(8, "Tech & AI", tier=2, ccov=1, prel=1, fit="good")          # score 3
+    links_by_id = {
+        7: {"title": "IAI Codex goals explained for product teams",
+            "link": "https://iai.com/codex",
+            "snippet": "Bryce Ratner walks through how Keith Lee built a no-code fitness app."},
+        8: {"title": "How she built a fitness app with no code",
+            "link": "https://maker.com/keith-lee",
+            "snippet": "Keith Lee built her no-code fitness app, profiled by Bryce Ratner."},
+    }
+    assert near_duplicate_ids([a, b], links_by_id) == {8}
+
+
+def test_near_duplicate_ids_catches_shared_video_even_with_thin_text():
+    a = _item(1, "Design & Product", tier=1, ccov=2, prel=1, fit="good")   # score 4
+    b = _item(2, "Tech & AI", tier=2, ccov=1, prel=0, fit="weak")          # score 1
+    links_by_id = {
+        1: {"title": "Profile of a builder", "link": "https://a.com/x",
+            "snippet": "full story at https://youtu.be/dQw4w9WgXcQ"},
+        2: {"title": "Totally different framing", "link": "https://b.com/y",
+            "snippet": "watch https://www.youtube.com/watch?v=dQw4w9WgXcQ"},
+    }
+    assert near_duplicate_ids([a, b], links_by_id) == {2}
+
+
+def test_near_duplicate_ids_leaves_distinct_stories_alone():
+    a = _item(1, "Tech & AI", tier=1, ccov=3, prel=2, fit="good")
+    b = _item(2, "Tech & AI", tier=1, ccov=3, prel=2, fit="good")
+    links_by_id = {
+        1: {"title": "Anthropic ships prompt caching", "link": "https://x.com/1",
+            "snippet": "Anthropic cut token costs on repeated context."},
+        2: {"title": "Bank of Canada holds rates", "link": "https://y.com/2",
+            "snippet": "The central bank kept its policy rate unchanged."},
+    }
+    assert near_duplicate_ids([a, b], links_by_id) == set()
+
+
+def test_near_duplicate_ids_catches_2026_06_06_lennys_incident():
+    # Real 2026-06-06 incident, verified against the live pages. The same
+    # Lenny's "How I AI" episode (YouTube EJKwI4m0fZg) surfaced as two RSS
+    # entries with different URLs and differently-framed titles: the full
+    # episode in Design & Product, and the no-code fitness app segment in the
+    # In Design list. Titles share "building an iphone app with zero technical
+    # skills". Worst realistic shape: the segment carries its fitness-app
+    # description, the episode carries title only -> overlap coefficient 0.5.
+    a = _item(31, "Design & Product", tier=1, ccov=1, prel=2, fit="good")   # episode
+    b = _item(32, "Design & Product", tier=2, ccov=1, prel=1, fit="good")   # segment
+    links_by_id = {
+        31: {"title": "🎙️ How I AI: Codex Goals explained & Claude Opus 4.8 review "
+                      "& Building an iPhone app with zero technical skills",
+             "link": "https://www.lennysnewsletter.com/p/how-i-ai-codex-goals-explained-and",
+             "snippet": ""},
+        32: {"title": "Building an iPhone app with zero technical skills | Bryce Rattner Keithley",
+             "link": "https://www.lennysnewsletter.com/p/building-an-iphone-app-with-zero",
+             "snippet": "How a non-technical talent leader built and shipped a fitness app "
+                        "to the App Store, complete with AI-generated videos of animals doing exercises."},
+    }
+    suppressed = near_duplicate_ids([a, b], links_by_id)
+    assert len(suppressed) == 1          # exactly one of the two survives
+    assert suppressed == {32}            # higher-scored episode (31) is the representative

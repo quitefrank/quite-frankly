@@ -286,3 +286,27 @@ def test_deduplicate_then_record_seen_round_trip(tmp_path, monkeypatch):
     ]
     fresh = deduplicate(second_run)
     assert [i["link"] for i in fresh] == ["https://example.com/b"]
+
+
+from pipeline import youtube_id, canonical_key, normalize_text
+
+
+def test_youtube_id_extracts_from_watch_and_short_forms():
+    assert youtube_id("https://www.youtube.com/watch?v=dQw4w9WgXcQ") == "dQw4w9WgXcQ"
+    assert youtube_id("see https://youtu.be/dQw4w9WgXcQ now") == "dQw4w9WgXcQ"
+    assert youtube_id("https://example.com/article") == ""
+    assert youtube_id("") == ""
+
+
+def test_canonical_key_keys_off_shared_youtube_video():
+    a = {"link": "https://siteA.com/post", "snippet": "watch https://youtu.be/dQw4w9WgXcQ"}
+    b = {"link": "https://youtube.com/watch?v=dQw4w9WgXcQ", "snippet": ""}
+    c = {"link": "https://siteC.com/other", "snippet": "no video here"}
+    assert canonical_key(a) == canonical_key(b) == "yt:dQw4w9WgXcQ"
+    assert canonical_key(c) == ""
+
+
+def test_normalize_text_drops_stopwords_and_short_tokens():
+    tokens = normalize_text("How Keith Lee built a no-code Fitness App")
+    assert "keith" in tokens and "fitness" in tokens and "built" in tokens
+    assert "how" not in tokens and "a" not in tokens

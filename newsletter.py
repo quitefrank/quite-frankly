@@ -22,7 +22,7 @@ from config import SECTION_MAP, TEST_MODE
 from routing import Mode, get_mode, get_feeds_for_mode, is_design_mode
 from pipeline import fetch_all_feeds, deduplicate, record_seen, assign_ids
 from triage import apply_phase2_tier, call_triage, cap_items
-from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email, suppressed_cluster_ids, write_subject_blurbs
+from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email, suppressed_cluster_ids, near_duplicate_ids, write_subject_blurbs
 
 
 def main():
@@ -59,7 +59,10 @@ def main():
             apply_phase2_tier(tiered_items, links_by_id)
         print("Phase 2 tier reassignment complete.", flush=True)
 
-        suppressed_ids = suppressed_cluster_ids(tiered_items)
+        suppressed_ids = (
+            suppressed_cluster_ids(tiered_items)
+            | near_duplicate_ids(tiered_items, links_by_id)
+        )
         if suppressed_ids:
             print(f"Cluster suppression: hiding {len(suppressed_ids)} duplicate item(s)", flush=True)
 

@@ -29,6 +29,7 @@ from prompts import (
     FORMAT_SYSTEM_PROMPT,
     LEGACY_FORMAT_SYSTEM_PROMPT,
 )
+from pipeline import canonical_key, normalize_text
 
 
 # ── Colour themes ───────────────────────────────────────────────────────────
@@ -144,6 +145,93 @@ def suppressed_cluster_ids(tiered_items: list[dict]) -> set[int]:
         for item in members:
             if item["id"] != rep["id"]:
                 suppressed.add(item["id"])
+    return suppressed
+
+
+def near_duplicate_ids(
+    tiered_items: list[dict],
+    links_by_id: dict[int, dict],
+    overlap_threshold: float = 0.5,
+    min_shared_tokens: int = 3,
+) -> set[int]:
+    """Deterministic backstop for clustering misses (the deferred F1 detector).
+
+    suppressed_cluster_ids keys off cluster_id, so it can't catch two articles
+    about one story that triage gave DIFFERENT cluster_ids (different URLs,
+    differently-worded headlines, sometimes different sections). This pass
+    re-detects them from content and returns the ids to hide, contributing to
+    the same suppressed_ids set every surface already honors.
+
+    Two items are near-duplicates when EITHER:
+      - they share a non-empty canonical key (e.g. the same embedded YouTube
+        video), or
+      - their combined title+snippet token sets share at least
+        min_shared_tokens significant tokens AND their overlap coefficient
+        (shared / size of the smaller set) is >= overlap_threshold.
+
+    Overlap coefficient, not Jaccard: a featured story carries a long headline
+    plus snippet while its duplicate may be a short headline, so the union is
+    lopsided and Jaccard understates a real match. Overlap measures how fully
+    the smaller item is contained in the larger, which is what "same story,
+    less text" looks like. min_shared_tokens (significant tokens only) is the
+    precision guard against a short generic title being swallowed.
+
+    Within each near-duplicate group the highest-scored item survives (ties to
+    lowest id, matching suppressed_cluster_ids); the rest are returned.
+    Conservative by design: a wrong merge silently drops a real story, so the
+    thresholds favour precision over recall.
+    """
+    ids = [it["id"] for it in tiered_items]
+    text: dict[int, frozenset] = {}
+    keys: dict[int, str] = {}
+    for it in tiered_items:
+        src = links_by_id.get(it["id"], {})
+        text[it["id"]] = normalize_text(f"{src.get('title', '')} {src.get('snippet', '')}")
+        keys[it["id"]] = canonical_key(src)
+
+    parent = {i: i for i in ids}
+
+    def find(x: int) -> int:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a: int, b: int) -> None:
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[rb] = ra
+
+    n = len(ids)
+    for a_idx in range(n):
+        for b_idx in range(a_idx + 1, n):
+            a, b = ids[a_idx], ids[b_idx]
+            ka, kb = keys[a], keys[b]
+            if ka and ka == kb:
+                union(a, b)
+                continue
+            shared = text[a] & text[b]
+            if len(shared) < min_shared_tokens:
+                continue
+            smaller = min(len(text[a]), len(text[b]))
+            if smaller and len(shared) / smaller >= overlap_threshold:
+                union(a, b)
+
+    groups: dict[int, list[dict]] = {}
+    for it in tiered_items:
+        groups.setdefault(find(it["id"]), []).append(it)
+
+    suppressed: set[int] = set()
+    for members in groups.values():
+        if len(members) < 2:
+            continue
+        rep = max(
+            members,
+            key=lambda it: (_item_score(it.get("scores", {})), -it["id"]),
+        )
+        for it in members:
+            if it["id"] != rep["id"]:
+                suppressed.add(it["id"])
     return suppressed
 
 
