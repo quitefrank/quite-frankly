@@ -325,3 +325,23 @@ SOURCE_FAVICONS = {
     "CBC Frontburner":    "https://www.google.com/s2/favicons?domain=cbc.ca&sz=64",
     "NBC Meet the Press": "https://www.google.com/s2/favicons?domain=nbcnews.com&sz=64",
 }
+
+# --- Everything Else thumbnails ---
+EE_THUMB_SIZE = 80                     # rendered thumbnail edge, px
+EE_THUMB_RADIUS = 8                    # CSS border-radius, px
+EE_THUMB_CACHE_DIR = "tmp/ee_thumb_cache"
+EE_THUMB_FETCH_TIMEOUT_S = 4.0         # download an og:image
+EE_THUMB_FETCH_MAX_BYTES = 5_000_000   # cap a downloaded image at 5 MB
+EE_THUMB_MAX_WORKERS = 6               # concurrent resolves
+
+GEMINI_IMAGE_MODEL = "gemini-2.5-flash-image"  # confirmed in Task 1
+GEMINI_IMAGE_TIMEOUT_S = 20.0
+
+# Editorial, deliberately non-photoreal so an AI image never reads as a real
+# news photo. {title}/{snippet} are filled per item.
+EE_IMAGE_PROMPT_TEMPLATE = (
+    "Create a flat, minimal editorial illustration representing this news item. "
+    "Use a calm, muted palette and simple geometric shapes. Absolutely no text, "
+    "no logos, no real faces, no photorealism. Square composition.\n\n"
+    "Headline: {title}\nContext: {snippet}"
+)
