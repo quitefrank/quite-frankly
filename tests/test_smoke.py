@@ -8,7 +8,7 @@ def test_main_runs_through_two_passes(fake_anthropic_client, monkeypatch):
         {"title": "Bank of Canada holds rates steady", "link": "https://example.com/2", "snippet": "", "image": "", "source": "Yahoo Finance"},
     ]
 
-    monkeypatch.setattr("formatting.send_email", lambda html, subject: None)
+    monkeypatch.setattr("formatting.send_email", lambda html, subject, inline_images=None: None)
     monkeypatch.setattr("pipeline.fetch_all_feeds", lambda feeds: fake_items)
     monkeypatch.setattr("pipeline.deduplicate", lambda items: items)
     monkeypatch.setattr("pipeline.record_seen", lambda items: None)
@@ -19,7 +19,7 @@ def test_main_runs_through_two_passes(fake_anthropic_client, monkeypatch):
     monkeypatch.setattr(newsletter, "fetch_all_feeds", lambda feeds: fake_items)
     monkeypatch.setattr(newsletter, "deduplicate", lambda items: items)
     monkeypatch.setattr(newsletter, "record_seen", lambda items: None)
-    monkeypatch.setattr(newsletter, "send_email", lambda html, subject: None)
+    monkeypatch.setattr(newsletter, "send_email", lambda html, subject, inline_images=None: None)
     # Keep the smoke test offline: stub the live Reddit/HN calls that the
     # new Phase 2 path runs between triage and format.
     monkeypatch.setattr(triage, "fetch_reddit_traction", lambda url, subs: {"score": 0, "comments": 0, "subreddit_hits": 0})
