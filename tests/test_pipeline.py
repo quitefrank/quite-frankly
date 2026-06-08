@@ -133,6 +133,40 @@ def test_extract_og_image_returns_empty_when_no_og_image_present():
     assert _extract_og_image_from_html(html) == ""
 
 
+def test_extract_og_image_skips_generic_placeholder_logo():
+    # Yahoo Finance serves a site-wide default logo as og:image on articles that
+    # have no real hero image. Treat it as "no image" so the resolver falls back
+    # to an AI illustration instead of repeating the same Yahoo logo.
+    from pipeline import _extract_og_image_from_html
+    html = (
+        '<html><head>'
+        '<meta property="og:image" '
+        'content="https://s.yimg.com/cv/apiv2/social/images/yahoo-finance-default-logo.png">'
+        '</head></html>'
+    )
+    assert _extract_og_image_from_html(html) == ""
+
+
+def test_extract_og_image_prefers_real_image_over_generic_logo():
+    # If both a generic logo and a real article image are present, return the real one.
+    from pipeline import _extract_og_image_from_html
+    html = (
+        '<html><head>'
+        '<meta property="og:image" '
+        'content="https://s.yimg.com/cv/apiv2/social/images/yahoo-finance-default-logo.png">'
+        '<meta property="og:image" content="https://example.com/real-hero.jpg">'
+        '</head></html>'
+    )
+    assert _extract_og_image_from_html(html) == "https://example.com/real-hero.jpg"
+
+
+def test_og_image_max_bytes_covers_deep_head_tags():
+    # Yahoo Finance puts og:image at ~62KB into the page; the fetch cap must be
+    # large enough to reach it, or finance articles never get a real image.
+    from pipeline import OG_IMAGE_MAX_BYTES
+    assert OG_IMAGE_MAX_BYTES >= 96 * 1024
+
+
 def test_fetch_all_feeds_skips_og_image_enrichment_for_podcast_sources(monkeypatch):
     # Podcast feeds (e.g., CBC Frontburner) ship URLs that resolve to audio
     # endpoints, not article pages — og:image fetch would always 404. Skip them.

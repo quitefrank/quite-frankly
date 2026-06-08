@@ -141,6 +141,56 @@ def test_resolve_omits_item_when_fetched_bytes_are_garbage(tmp_path):
     assert cache_files == [] or all(p.stat().st_size == 0 for p in cache_files)
 
 
+def test_resolve_falls_back_to_gen_when_fetch_returns_none(tmp_path):
+    # An item WITH an og:image URL whose download fails must fall back to the AI
+    # generator, not drop to a blank/text row. ("always show one")
+    calls = {"fetch": 0, "gen": 0}
+
+    def fake_fetch(url):
+        calls["fetch"] += 1
+        return None
+
+    def fake_gen(title, snippet):
+        calls["gen"] += 1
+        return _png(50, 50)
+
+    items = [(8, {"link": "http://a/8", "image": "http://a/og.jpg",
+                  "title": "T8", "snippet": "s8"})]
+    out = images_mod.resolve_ee_thumbnails(
+        items, cache_dir=str(tmp_path), fetch=fake_fetch, gen=fake_gen
+    )
+    assert set(out) == {8}
+    assert calls == {"fetch": 1, "gen": 1}  # tried article image first, then AI
+
+
+def test_resolve_falls_back_to_gen_when_fetch_raises(tmp_path):
+    def boom(url):
+        raise RuntimeError("network exploded")
+
+    def fake_gen(title, snippet):
+        return _png(50, 50)
+
+    items = [(9, {"link": "http://a/9", "image": "http://a/og.jpg",
+                  "title": "T9", "snippet": "s9"})]
+    out = images_mod.resolve_ee_thumbnails(
+        items, cache_dir=str(tmp_path), fetch=boom, gen=fake_gen
+    )
+    assert set(out) == {9}  # fetch blew up, AI fallback still produced an image
+
+
+def test_resolve_falls_back_to_gen_when_fetched_bytes_are_garbage(tmp_path):
+    def fake_gen(title, snippet):
+        return _png(50, 50)
+
+    items = [(10, {"link": "http://a/10", "image": "http://a/og.jpg",
+                   "title": "T10", "snippet": "s10"})]
+    out = images_mod.resolve_ee_thumbnails(
+        items, cache_dir=str(tmp_path),
+        fetch=lambda u: b"not an image", gen=fake_gen,
+    )
+    assert set(out) == {10}  # undecodable article image, AI fallback used
+
+
 def test_resolve_treats_empty_cache_file_as_miss(tmp_path):
     import hashlib
     url = "http://a/7"

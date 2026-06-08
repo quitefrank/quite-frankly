@@ -121,12 +121,26 @@ def _resolve_one(lid, link, cache_dir, fetch, gen) -> "tuple[int, ThumbAsset | N
         if cached is not None:
             return lid, ThumbAsset(cid=f"ee-{lid}@quitefrankly", data=cached)
 
-        raw = fetch(link["image"]) if link.get("image") else gen(
-            link.get("title", ""), link.get("snippet", "")
-        )
-        if raw is None:
-            return lid, None
-        thumb = to_square_thumbnail(raw, size=EE_THUMB_SIZE)
+        # Resolution chain: article image (og:image) first, AI generation only as
+        # a fallback when the article image is absent, undownloadable, or corrupt.
+        # Each source is isolated so one failing falls through to the next rather
+        # than dropping the row to text. ("always show one")
+        thumb = None
+        image_url = link.get("image")
+        if image_url:
+            try:
+                raw = fetch(image_url)
+            except Exception:  # noqa: BLE001 — a failed fetch falls back to gen
+                raw = None
+            if raw is not None:
+                thumb = to_square_thumbnail(raw, size=EE_THUMB_SIZE)
+        if thumb is None:
+            try:
+                raw = gen(link.get("title", ""), link.get("snippet", ""))
+            except Exception:  # noqa: BLE001 — generation must never break the send
+                raw = None
+            if raw is not None:
+                thumb = to_square_thumbnail(raw, size=EE_THUMB_SIZE)
         if thumb is None:
             return lid, None
 

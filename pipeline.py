@@ -25,7 +25,10 @@ from config import (
 
 
 OG_IMAGE_TIMEOUT_S = 3.0
-OG_IMAGE_MAX_BYTES = 16384  # <meta property="og:image"> lives in <head>; 16KB is enough.
+OG_IMAGE_MAX_BYTES = 131072  # Most sites put og:image early, but Yahoo Finance
+# (and other script-heavy heads) push it past ~62KB. 128KB reaches it while
+# still reading only a fraction of a typical ~500KB page; the fetch early-exits
+# once og:image + og:description are in hand at the byte cap.
 OG_IMAGE_MAX_WORKERS = 10   # Concurrent og:image fetches in fetch_all_feeds.
 FEED_FETCH_MAX_WORKERS = 10  # Concurrent feedparser.parse calls in fetch_all_feeds.
 
@@ -39,8 +42,23 @@ _CONTENT_ATTR_RE = re.compile(
 )
 
 
+# Site-wide placeholder og:images served when an article has no real hero image.
+# Treating these as "no image" lets the Everything Else resolver fall back to an
+# AI illustration instead of repeating the same generic logo across finance rows.
+_GENERIC_OG_IMAGE_SUBSTRINGS = ("default-logo",)
+
+
+def _is_generic_og_image(url: str) -> bool:
+    low = url.lower()
+    return any(s in low for s in _GENERIC_OG_IMAGE_SUBSTRINGS)
+
+
 def _extract_og_image_from_html(html: str) -> str:
-    """Return the og:image URL from an HTML snippet, or '' if none."""
+    """Return the og:image URL from an HTML snippet, or '' if none.
+
+    Generic site-wide placeholder logos are skipped; a real article image later
+    in the head wins over an earlier placeholder.
+    """
     for tag_match in _META_TAG_RE.finditer(html):
         tag = tag_match.group(0)
         if not _OG_IMAGE_FAMILY_RE.search(tag):
@@ -51,7 +69,9 @@ def _extract_og_image_from_html(html: str) -> str:
             continue
         c = _CONTENT_ATTR_RE.search(tag)
         if c:
-            return c.group(1) or c.group(2) or c.group(3) or ""
+            url = c.group(1) or c.group(2) or c.group(3) or ""
+            if url and not _is_generic_og_image(url):
+                return url
     return ""
 
 
