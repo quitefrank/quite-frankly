@@ -8,8 +8,12 @@ FIXTURES = Path(__file__).parent / "fixtures"
 
 @pytest.fixture(autouse=True)
 def _no_og_image_http(monkeypatch):
-    """Neutralize the og:image HTTP fallback so tests never hit the network."""
-    monkeypatch.setattr("pipeline._fetch_og_image", lambda *a, **kw: "", raising=False)
+    """Neutralize the og metadata HTTP fallback so tests never hit the network."""
+    monkeypatch.setattr(
+        "pipeline._fetch_og_meta",
+        lambda *a, **kw: {"image": "", "description": ""},
+        raising=False,
+    )
 
 
 @pytest.fixture

@@ -86,8 +86,8 @@ def test_fetch_all_feeds_enriches_with_og_image_when_rss_has_no_image(monkeypatc
         ("Vacant homes pile up", "https://betterdwelling.com/vacant-homes/",
          "Canadian developers are sitting on a glut of completed and unsold homes."),
     ]
-    monkeypatch.setattr("pipeline._fetch_og_image",
-                        lambda url, **kw: "https://betterdwelling.com/wp-content/og.jpg")
+    monkeypatch.setattr("pipeline._fetch_og_meta",
+                        lambda url, **kw: {"image": "https://betterdwelling.com/wp-content/og.jpg", "description": ""})
     with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
         items = fetch_all_feeds([{"url": "x", "source": "BetterDwelling"}])
     assert items[0]["image"] == "https://betterdwelling.com/wp-content/og.jpg"
@@ -141,12 +141,12 @@ def test_fetch_all_feeds_skips_og_image_enrichment_for_podcast_sources(monkeypat
          "A podcast episode with a meaningful summary sentence."),
     ]
     calls = []
-    monkeypatch.setattr("pipeline._fetch_og_image",
-                        lambda url, **kw: calls.append(url) or "https://should-not-be-used.jpg")
+    monkeypatch.setattr("pipeline._fetch_og_meta",
+                        lambda url, **kw: calls.append(url) or {"image": "https://should-not-be-used.jpg", "description": ""})
     with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
         items = fetch_all_feeds([{"url": "x", "source": "CBC Frontburner"}])
     assert items[0]["image"] == ""
-    assert calls == []  # _fetch_og_image must not have been called
+    assert calls == []  # _fetch_og_meta must not have been called for skip-list sources
 
 
 def test_fetch_all_feeds_image_stays_empty_when_og_image_unavailable(monkeypatch):
@@ -154,46 +154,46 @@ def test_fetch_all_feeds_image_stays_empty_when_og_image_unavailable(monkeypatch
         ("A story", "https://example.com/story",
          "A meaningful summary sentence that gives the formatter something to work with."),
     ]
-    monkeypatch.setattr("pipeline._fetch_og_image", lambda url, **kw: "")
+    monkeypatch.setattr("pipeline._fetch_og_meta", lambda url, **kw: {"image": "", "description": ""})
     with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
         items = fetch_all_feeds([{"url": "x", "source": "Whatever"}])
     assert items[0]["image"] == ""
 
 
-def test_enrich_images_with_og_image_runs_concurrently(monkeypatch):
+def test_enrich_from_og_metadata_runs_concurrently(monkeypatch):
     # Verify the enrichment pass actually runs in parallel: 5 items, each
     # 100ms to fetch. Sequential would take >=500ms; with 10 workers it
     # should finish well under 200ms.
-    from pipeline import enrich_images_with_og_image
+    from pipeline import enrich_from_og_metadata
     import time as _time
 
     def slow_fetch(url, **kw):
         _time.sleep(0.1)
-        return f"{url}/og.jpg"
+        return {"image": f"{url}/og.jpg", "description": ""}
 
-    monkeypatch.setattr("pipeline._fetch_og_image", slow_fetch)
+    monkeypatch.setattr("pipeline._fetch_og_meta", slow_fetch)
     items = [
-        {"link": f"https://example.com/{i}", "image": "", "source": "X"}
+        {"link": f"https://example.com/{i}", "image": "", "snippet": "have", "source": "X"}
         for i in range(5)
     ]
     start = _time.time()
-    enrich_images_with_og_image(items)
+    enrich_from_og_metadata(items)
     elapsed = _time.time() - start
     assert elapsed < 0.4, f"Enrichment should be parallel; took {elapsed:.2f}s"
     assert all(item["image"].endswith("og.jpg") for item in items)
 
 
-def test_enrich_images_with_og_image_skips_items_with_existing_image(monkeypatch):
-    from pipeline import enrich_images_with_og_image
+def test_enrich_from_og_metadata_skips_items_with_image_and_snippet(monkeypatch):
+    from pipeline import enrich_from_og_metadata
     calls = []
-    monkeypatch.setattr("pipeline._fetch_og_image",
-                        lambda url, **kw: calls.append(url) or "https://x")
+    monkeypatch.setattr("pipeline._fetch_og_meta",
+                        lambda url, **kw: calls.append(url) or {"image": "https://x", "description": "d"})
     items = [
-        {"link": "u1", "image": "already-have-this.jpg", "source": "X"},
-        {"link": "u2", "image": "", "source": "X"},
+        {"link": "u1", "image": "already-have-this.jpg", "snippet": "have", "source": "X"},
+        {"link": "u2", "image": "", "snippet": "have", "source": "X"},
     ]
-    enrich_images_with_og_image(items)
-    # Only the empty-image item should have triggered a fetch.
+    enrich_from_og_metadata(items)
+    # u1 has both image and snippet, so no fetch; only u2 (missing image).
     assert calls == ["u2"]
 
 
@@ -245,7 +245,9 @@ def test_record_seen_persists_items(tmp_path, monkeypatch):
     ]
     record_seen(items)
     saved = json.loads(seen_file.read_text())
-    assert set(saved.keys()) == {"https://example.com/a", "https://example.com/b"}
+    # Keys are stored normalized (scheme/www/tracking stripped) for cross-run
+    # matching, not as the raw RSS URL.
+    assert set(saved.keys()) == {"example.com/a", "example.com/b"}
 
 
 def test_record_seen_is_noop_in_test_mode(tmp_path, monkeypatch):
@@ -299,3 +301,159 @@ def test_normalize_text_drops_stopwords_and_short_tokens():
     tokens = normalize_text("How Keith Lee built a no-code Fitness App")
     assert "keith" in tokens and "fitness" in tokens and "built" in tokens
     assert "how" not in tokens and "a" not in tokens
+
+
+from pipeline import normalize_url
+
+
+def test_extract_og_description_prefers_og_then_twitter_then_name():
+    from pipeline import _extract_og_description_from_html
+    og = ('<head><meta property="og:description" content="The og one">'
+          '<meta name="twitter:description" content="The twitter one">'
+          '<meta name="description" content="The name one"></head>')
+    assert _extract_og_description_from_html(og) == "The og one"
+    tw = ('<head><meta name="twitter:description" content="The twitter one">'
+          '<meta name="description" content="The name one"></head>')
+    assert _extract_og_description_from_html(tw) == "The twitter one"
+    nm = '<head><meta name="description" content="The name one"></head>'
+    assert _extract_og_description_from_html(nm) == "The name one"
+    assert _extract_og_description_from_html("<head></head>") == ""
+
+
+def test_extract_og_description_unescapes_entities():
+    from pipeline import _extract_og_description_from_html
+    html = '<head><meta property="og:description" content="Mom &amp; Pop won&#39;t quit"></head>'
+    assert _extract_og_description_from_html(html) == "Mom & Pop won't quit"
+
+
+def test_enrich_backfills_empty_snippet_from_og_description(monkeypatch):
+    # The HN case: a link-post enters with snippet="" (hnrss metadata stripped).
+    # The og metadata pass should fill it so triage clustering and the token
+    # backstop have story vocabulary to work with.
+    from pipeline import enrich_from_og_metadata
+    monkeypatch.setattr("pipeline._fetch_og_meta",
+                        lambda url, **kw: {"image": "", "description": "Real article summary about Acme Corp layoffs."})
+    items = [{"link": "https://acme.example/news", "image": "x.jpg", "snippet": "", "source": "Hacker News"}]
+    enrich_from_og_metadata(items)
+    assert items[0]["snippet"] == "Real article summary about Acme Corp layoffs."
+
+
+def test_enrich_does_not_overwrite_existing_snippet(monkeypatch):
+    from pipeline import enrich_from_og_metadata
+    monkeypatch.setattr("pipeline._fetch_og_meta",
+                        lambda url, **kw: {"image": "", "description": "Should not replace."})
+    items = [{"link": "u", "image": "x.jpg", "snippet": "Original snippet from RSS.", "source": "X"}]
+    enrich_from_og_metadata(items)
+    assert items[0]["snippet"] == "Original snippet from RSS."
+
+
+def test_enrich_skips_fetch_when_image_and_snippet_both_present(monkeypatch):
+    from pipeline import enrich_from_og_metadata
+    calls = []
+    monkeypatch.setattr("pipeline._fetch_og_meta",
+                        lambda url, **kw: calls.append(url) or {"image": "y", "description": "z"})
+    items = [
+        {"link": "u1", "image": "have.jpg", "snippet": "have snippet", "source": "X"},
+        {"link": "u2", "image": "", "snippet": "have snippet", "source": "X"},
+        {"link": "u3", "image": "have.jpg", "snippet": "", "source": "X"},
+    ]
+    enrich_from_og_metadata(items)
+    assert sorted(calls) == ["u2", "u3"], "Fetch only when image OR snippet missing"
+
+
+def test_fetch_all_feeds_backfills_hacker_news_snippet_end_to_end(monkeypatch):
+    # hnrss strips the snippet to "" at ingest; the og pass should restore it.
+    entries = [
+        ("Claude Code as a Daily", "https://arps18.github.io/posts/x/",
+         "Article URL: https://arps18.github.io/posts/x/ "
+         "Comments URL: https://news.ycombinator.com/item?id=1 Points: 94 # Comments: 74"),
+    ]
+    monkeypatch.setattr("pipeline._fetch_og_meta",
+                        lambda url, **kw: {"image": "", "description": "A hands-on guide to running Claude Code daily."})
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
+        items = fetch_all_feeds([{"url": "x", "source": "Hacker News"}])
+    assert items[0]["snippet"] == "A hands-on guide to running Claude Code daily."
+
+
+def test_normalize_url_strips_scheme_www_and_fragment():
+    # http vs https, a www prefix, and a #fragment are the same article.
+    a = normalize_url("https://www.cbc.ca/news/story-123#top")
+    b = normalize_url("http://cbc.ca/news/story-123")
+    assert a == b == "cbc.ca/news/story-123"
+
+
+def test_normalize_url_strips_tracking_params_but_keeps_content_params():
+    # utm_*/fbclid/gclid are tracking noise; ?p= and ?id= identify the article.
+    assert (
+        normalize_url("https://example.com/post?utm_source=newsletter&fbclid=abc")
+        == "example.com/post"
+    )
+    # WordPress encodes the article id in ?p= — must NOT be stripped, or every
+    # post on the site collapses to one.
+    assert (
+        normalize_url("https://example.com/?p=12345&utm_medium=rss")
+        == "example.com?p=12345"
+    )
+    assert normalize_url("https://site.com/a?id=1") != normalize_url("https://site.com/a?id=2")
+
+
+def test_normalize_url_collapses_trailing_slash_amp_and_mobile_host():
+    assert normalize_url("https://theverge.com/article/") == "theverge.com/article"
+    assert normalize_url("https://m.theverge.com/article") == "theverge.com/article"
+    assert normalize_url("https://theverge.com/article/amp/") == "theverge.com/article"
+
+
+def test_normalize_url_handles_empty_and_garbage():
+    assert normalize_url("") == ""
+    assert normalize_url(None) == ""
+
+
+def test_fetch_all_feeds_dedupes_links_differing_only_by_tracking_params():
+    # Two RSS entries for one article, one carrying a utm tag. Raw-string dedup
+    # let both through; normalized within-batch dedup collapses them.
+    entries = [
+        ("Bank of Canada holds rate", "https://cbc.ca/news/boc-holds",
+         "A meaningful summary sentence that gives the formatter something to work with."),
+        ("Bank of Canada holds rate", "https://www.cbc.ca/news/boc-holds?utm_source=rss",
+         "A meaningful summary sentence that gives the formatter something to work with."),
+    ]
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
+        items = fetch_all_feeds([{"url": "x", "source": "CBC"}])
+    assert len(items) == 1, "Within-batch dedup should normalize tracking-param variants"
+
+
+def test_deduplicate_treats_tracking_param_variant_as_seen(tmp_path, monkeypatch):
+    # Yesterday's article re-arrives today with a tracking param and an http
+    # scheme. The 7-day cache must recognize it as already sent.
+    seen_file = tmp_path / "seen_links.json"
+    seen_file.write_text("{}")
+    monkeypatch.setattr(pipeline, "SEEN_LINKS_FILE", str(seen_file))
+    monkeypatch.setattr(pipeline, "TEST_MODE", False)
+
+    record_seen([{"title": "a", "link": "https://www.cbc.ca/news/boc-holds", "source": "CBC"}])
+    second_run = [
+        {"title": "a", "link": "http://cbc.ca/news/boc-holds?utm_source=rss", "source": "CBC"},
+        {"title": "b", "link": "https://cbc.ca/news/new-story", "source": "CBC"},
+    ]
+    fresh = deduplicate(second_run)
+    assert [i["link"] for i in fresh] == ["https://cbc.ca/news/new-story"]
+
+
+def test_deduplicate_matches_legacy_raw_seen_keys(tmp_path, monkeypatch):
+    # Existing seen_links.json holds raw (un-normalized) URLs from before this
+    # change. They must still match incoming normalized links so the cutover
+    # doesn't re-send a week of history.
+    seen_file = tmp_path / "seen_links.json"
+    seen_file.write_text(json.dumps({"https://www.example.com/a/": 9999999999}))
+    monkeypatch.setattr(pipeline, "SEEN_LINKS_FILE", str(seen_file))
+    monkeypatch.setattr(pipeline, "TEST_MODE", False)
+
+    # Second item is genuinely new, so fresh is non-empty and the
+    # "all seen -> return everything" fallback doesn't mask the result.
+    fresh = deduplicate([
+        {"title": "a", "link": "https://example.com/a", "source": "X"},
+        {"title": "b", "link": "https://example.com/b", "source": "X"},
+    ])
+    assert [i["link"] for i in fresh] == ["https://example.com/b"], (
+        "Legacy raw seen key should match its normalized incoming form"
+    )

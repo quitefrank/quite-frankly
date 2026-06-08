@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import html as html_module
 import json
 import os
 import re
 import time
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, urlencode, urlparse
 
 import feedparser
 import requests
@@ -54,6 +55,38 @@ def _extract_og_image_from_html(html: str) -> str:
     return ""
 
 
+_OG_DESCRIPTION_RE = re.compile(r'\bog:description\b', re.IGNORECASE)
+_TW_DESCRIPTION_RE = re.compile(r'\btwitter:description\b', re.IGNORECASE)
+_NAME_DESCRIPTION_RE = re.compile(r'\bname\s*=\s*["\']?description\b', re.IGNORECASE)
+_WS_RE = re.compile(r"\s+")
+
+
+def _extract_og_description_from_html(html: str) -> str:
+    """Return the best article description from an HTML <head> snippet, or ''.
+
+    Priority: og:description, then twitter:description, then meta name=description.
+    HTML entities are unescaped and whitespace collapsed so the value reads like
+    the RSS snippets it stands in for.
+    """
+    og = tw = name = ""
+    for tag_match in _META_TAG_RE.finditer(html):
+        tag = tag_match.group(0)
+        c = _CONTENT_ATTR_RE.search(tag)
+        if not c:
+            continue
+        val = (c.group(1) or c.group(2) or c.group(3) or "").strip()
+        if not val:
+            continue
+        if _OG_DESCRIPTION_RE.search(tag):
+            og = og or val
+        elif _TW_DESCRIPTION_RE.search(tag):
+            tw = tw or val
+        elif _NAME_DESCRIPTION_RE.search(tag):
+            name = name or val
+    best = og or tw or name
+    return _WS_RE.sub(" ", html_module.unescape(best)).strip() if best else ""
+
+
 _BROWSER_USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -76,8 +109,14 @@ def _browser_headers(article_url: str) -> dict[str, str]:
     }
 
 
-def _fetch_og_image(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> str:
-    """Fetch the article page and pull og:image from <head>. Returns "" on any failure."""
+def _fetch_og_meta(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> dict:
+    """Fetch the article <head> once and pull og:image + og:description.
+
+    Returns {"image": str, "description": str}; either field is "" if absent or
+    on any failure. One fetch serves both the image fallback and the snippet
+    backfill, so a title-only item (e.g. an HN link-post) costs no extra HTTP.
+    """
+    out = {"image": "", "description": ""}
     try:
         with requests.get(
             article_url,
@@ -96,20 +135,20 @@ def _fetch_og_image(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> st
                 if total >= OG_IMAGE_MAX_BYTES:
                     break
             html = b"".join(chunks).decode("utf-8", errors="replace")
-            url = _extract_og_image_from_html(html)
-            if not url:
+            out["image"] = _extract_og_image_from_html(html)
+            out["description"] = _extract_og_description_from_html(html)
+            if not out["image"]:
                 print(f"  og:image missing in <head> for {article_url}")
-            return url
     except Exception as e:
-        print(f"  og:image fetch failed for {article_url}: {type(e).__name__}: {e}")
-    return ""
+        print(f"  og:meta fetch failed for {article_url}: {type(e).__name__}: {e}")
+    return out
 
 
 def extract_image(entry):
     """Return an image URL from the RSS entry's own fields, or '' if none.
 
     og:image is no longer fetched here — it's done in parallel later by
-    enrich_images_with_og_image after every feed has been read.
+    enrich_from_og_metadata after every feed has been read.
     """
     if hasattr(entry, "media_content") and entry.media_content:
         for m in entry.media_content:
@@ -162,39 +201,56 @@ def fetch_feed(feed_config):
     return items
 
 
-def enrich_images_with_og_image(items: list[dict]) -> None:
-    """Populate `item['image']` for items whose RSS gave us nothing.
+OG_DESCRIPTION_SNIPPET_CAP = 300  # Match fetch_feed's RSS-snippet cap.
 
-    Runs og:image fetches concurrently with a bounded ThreadPoolExecutor so
-    the ~150 fallback fetches per daily run finish in ~30 seconds instead of
-    the ~6 minutes the old sequential path took. Mutates `items` in place.
+
+def enrich_from_og_metadata(items: list[dict]) -> None:
+    """Backfill `item['image']` and `item['snippet']` from the article's <head>.
+
+    One fetch per item supplies both: the og:image fallback for items whose RSS
+    carried no image, and an og:description snippet for items that arrived
+    title-only (notably HN link-posts, whose hnrss snippet is stripped at
+    ingest). A populated snippet is what lets triage cluster cross-publisher
+    duplicates and the token backstop catch clustering misses, so this directly
+    strengthens dedup as well as rendering. Only fetches when image OR snippet
+    is missing; never overwrites an existing snippet. Mutates `items` in place.
+
+    Runs concurrently with a bounded ThreadPoolExecutor so the fallback fetches
+    per daily run finish in ~30s instead of the ~6 minutes a sequential path
+    took.
     """
     candidates = [
         item for item in items
-        if not item.get("image")
-        and item.get("link")
+        if item.get("link")
         and item.get("source") not in SOURCES_SKIP_OG_IMAGE
+        and (not item.get("image") or not item.get("snippet"))
     ]
     if not candidates:
         return
     start = time.time()
-    enriched = 0
+    images = snippets = 0
     with ThreadPoolExecutor(max_workers=OG_IMAGE_MAX_WORKERS) as executor:
         future_to_item = {
-            executor.submit(_fetch_og_image, item["link"]): item
+            executor.submit(_fetch_og_meta, item["link"]): item
             for item in candidates
         }
         for future in as_completed(future_to_item):
             item = future_to_item[future]
             try:
-                url = future.result()
+                meta = future.result()
             except Exception:
-                url = ""
-            if url:
-                item["image"] = url
-                enriched += 1
+                meta = {"image": "", "description": ""}
+            if not item.get("image") and meta.get("image"):
+                item["image"] = meta["image"]
+                images += 1
+            if not item.get("snippet") and meta.get("description"):
+                item["snippet"] = meta["description"][:OG_DESCRIPTION_SNIPPET_CAP]
+                snippets += 1
     elapsed = time.time() - start
-    print(f"  og:image enrichment: {enriched}/{len(candidates)} resolved in {elapsed:.1f}s")
+    print(
+        f"  og:meta enrichment: {images} image(s), {snippets} snippet(s) "
+        f"from {len(candidates)} fetches in {elapsed:.1f}s"
+    )
 
 
 def fetch_all_feeds(feeds=None):
@@ -220,17 +276,77 @@ def fetch_all_feeds(feeds=None):
     # without this, both end up clustered together downstream and both get
     # featured. The cross-day cache in deduplicate() doesn't catch this
     # because the link only appears once outside the current batch.
+    # Keyed on normalize_url so the same article carrying different tracking
+    # params (or an http/www variant) across two feeds collapses to one item.
     seen_links: set[str] = set()
     deduped: list[dict] = []
     for item in all_items:
         link = item.get("link", "")
-        if link and link in seen_links:
+        key = normalize_url(link)
+        if key and key in seen_links:
             continue
-        if link:
-            seen_links.add(link)
+        if key:
+            seen_links.add(key)
         deduped.append(item)
-    enrich_images_with_og_image(deduped)
+    enrich_from_og_metadata(deduped)
     return deduped
+
+
+# Query params that track a click and never identify the article. Stripped
+# before a URL becomes a dedup key. utm_* is matched by prefix. Content-bearing
+# params (?p=, ?id=, ?storyId=) are deliberately NOT here — stripping them would
+# collapse every article on a query-id site into one key.
+_TRACKING_PARAM_PREFIXES = ("utm_",)
+_TRACKING_PARAMS = frozenset({
+    "fbclid", "gclid", "dclid", "msclkid", "yclid", "twclid",
+    "mc_cid", "mc_eid", "igshid", "_ga", "ref_src", "ref_url",
+})
+_AMP_PATH_RE = re.compile(r"/amp/?$", re.IGNORECASE)
+
+
+def normalize_url(url: str) -> str:
+    """Return a canonical dedup key for a URL, or '' if there's nothing to key on.
+
+    Collapses the variations that make one article look like two distinct links:
+    the scheme (http vs https), a www/m/amp host prefix, a trailing slash or
+    /amp path segment, tracking query params (utm_*, fbclid, gclid, mc_cid, …),
+    and the fragment. Remaining query params are kept and sorted, so distinct
+    articles on query-id sites (?p=, ?id=) stay distinct.
+
+    The result is used only for comparison; item['link'] keeps its original URL
+    so the newsletter still links to the real, clickable page.
+    """
+    url = (url or "").strip()
+    if not url:
+        return ""
+    # urlparse only fills netloc when a scheme (or //) is present. Feed links
+    # always carry a scheme; the prefix guards the defensive bare-host case.
+    if "://" not in url:
+        url = "//" + url
+    parts = urlparse(url)
+    host = (parts.netloc or "").lower()
+    if "@" in host:
+        host = host.split("@", 1)[1]
+    for prefix in ("www.", "m.", "amp."):
+        if host.startswith(prefix):
+            host = host[len(prefix):]
+            break
+    path = _AMP_PATH_RE.sub("/", parts.path or "")
+    if path == "/":
+        path = ""
+    elif len(path) > 1:
+        path = path.rstrip("/")
+    kept = [
+        (k, v)
+        for k, v in parse_qsl(parts.query, keep_blank_values=True)
+        if k.lower() not in _TRACKING_PARAMS
+        and not any(k.lower().startswith(p) for p in _TRACKING_PARAM_PREFIXES)
+    ]
+    kept.sort()
+    norm = host + path
+    if kept:
+        norm += "?" + urlencode(kept)
+    return norm
 
 
 def load_seen_links():
@@ -257,9 +373,18 @@ def deduplicate(items):
 
     seen = load_seen_links()
     now  = time.time()
-    seen = {url: ts for url, ts in seen.items() if now - ts < SEVEN_DAYS_S}
+    # Normalize every cached key on read so legacy raw entries (written before
+    # normalize_url existed) still match today's normalized incoming links.
+    # Keep the newest timestamp when two raw keys collapse to one normal form.
+    seen_norm: dict[str, float] = {}
+    for url, ts in seen.items():
+        if now - ts >= SEVEN_DAYS_S:
+            continue
+        key = normalize_url(url)
+        if key and ts > seen_norm.get(key, 0):
+            seen_norm[key] = ts
 
-    fresh = [i for i in items if i["link"] not in seen]
+    fresh = [i for i in items if normalize_url(i["link"]) not in seen_norm]
 
     if not fresh:
         print("  All items seen before - using full list (likely a test run)")
@@ -275,10 +400,12 @@ def record_seen(items):
     seen = load_seen_links()
     now = time.time()
     seen = {url: ts for url, ts in seen.items() if now - ts < SEVEN_DAYS_S}
+    # Store the normalized key so http/www/tracking-param variants of an
+    # article seen today are recognized as duplicates on future runs.
     for item in items:
-        link = item.get("link")
-        if link:
-            seen[link] = now
+        key = normalize_url(item.get("link", ""))
+        if key:
+            seen[key] = now
     save_seen_links(seen)
 
 
