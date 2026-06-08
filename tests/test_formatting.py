@@ -31,6 +31,33 @@ def test_ee_borrows_cluster_sibling_image_when_item_has_none():
     assert links_by_id[1]["image"] == ""  # original dict not mutated
 
 
+def test_write_subject_blurbs_requests_generous_max_tokens():
+    # The batch covers every Other Headlines + Everything Else item (~28). At
+    # max_tokens=1500 the JSON truncated mid-string and the whole batch fell to
+    # title-only. The ceiling must be high enough to emit the full batch.
+    captured = {}
+
+    class _Block:
+        text = '[{"id": 1, "subject": "Canada jobs", "blurb": "Sentence one. Sentence two."}]'
+
+    class _Msg:
+        content = [_Block()]
+        stop_reason = "end_turn"
+
+    class _Messages:
+        def create(self, **kwargs):
+            captured.update(kwargs)
+            return _Msg()
+
+    class _Client:
+        messages = _Messages()
+
+    items = [(1, {"title": "t", "snippet": "s", "source": "x"})]
+    out = formatting.write_subject_blurbs(items, sentences_by_id={1: 2}, client=_Client())
+    assert out[1]["blurb"] == "Sentence one. Sentence two."
+    assert captured["max_tokens"] >= 4000
+
+
 def test_ee_keeps_own_image_and_skips_borrow_without_sibling():
     links_by_id = {
         1: {"link": "http://a/1", "image": "http://a/own.jpg", "title": "A", "snippet": ""},

@@ -1052,10 +1052,17 @@ def write_subject_blurbs(items, sentences_by_id=None, client=None):
         client = client or anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
         message = client.messages.create(
             model="claude-sonnet-4-20250514",
-            max_tokens=1500,
+            # One batch covers every Other Headlines + Everything Else item
+            # (~28 on a heavy day, each a subject + 1-2 sentence blurb). At 1500
+            # the JSON truncated mid-string and json.loads failed, dropping the
+            # whole batch to title-only. 8000 leaves generous headroom and stays
+            # well under the streaming-required ceiling.
+            max_tokens=8000,
             system=SUBJECT_BLURB_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": json.dumps(payload, indent=2)}],
         )
+        if getattr(message, "stop_reason", None) == "max_tokens":
+            print("[subject_blurbs] hit max_tokens; output may be truncated.", flush=True)
         cleaned = re.sub(
             r"^```(json)?\s*|\s*```$", "", message.content[0].text.strip(),
             flags=re.MULTILINE,
