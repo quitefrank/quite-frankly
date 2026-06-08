@@ -667,7 +667,7 @@ def render_other_headlines_for_section(section, tiered_items, links_by_id, used_
     )
 
 
-def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: set, palette: dict = LIGHT) -> str:
+def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: set, palette: dict = LIGHT, is_design_edition: bool = False) -> str:
     """Render the Today in the World list (Layout A) from Claude output lines.
 
     Hero image comes from the first item that has one. The hero image renders
@@ -698,9 +698,16 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
         if link.get("image"):
             img = link["image"]
             href = link.get("link", "")
+            # Design editions show images at their natural aspect ratio (full
+            # width, auto height); regular editions crop to a fixed 200px band.
+            sizing = (
+                "width:100%;max-width:640px;height:auto;"
+                if is_design_edition
+                else "width:100%;max-width:640px;height:200px;object-fit:cover;"
+            )
             img_tag = (
                 f'<img src="{img}" alt="{it["header"]}" '
-                f'style="width:100%;max-width:640px;height:200px;object-fit:cover;'
+                f'style="{sizing}'
                 f'display:block;margin:0 0 12px;border-radius:8px">'
             )
             hero_image_html = (
@@ -759,7 +766,7 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
 
         if _is_today_in_the_world_section(title):
             display_title, display_emoji = _global_pickoff_display(is_design_edition)
-            stories_html = _render_today_in_the_world(lines[1:], links_by_id, used_ids, palette)
+            stories_html = _render_today_in_the_world(lines[1:], links_by_id, used_ids, palette, is_design_edition)
             if not stories_html:
                 continue
             html += (
@@ -832,9 +839,16 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
             stories_html += f'<div style="{border}">'
 
             if article_image:
+                # Design editions show images at their natural aspect ratio
+                # (full width, auto height); regular editions crop to 200px.
+                sizing = (
+                    "width:100%;max-width:640px;height:auto;"
+                    if is_design_edition
+                    else "width:100%;max-width:640px;height:200px;object-fit:cover;"
+                )
                 img_tag = (
                     f'<img src="{article_image}" alt="{s["headline"]}" '
-                    f'style="width:100%;max-width:640px;height:200px;object-fit:cover;'
+                    f'style="{sizing}'
                     f'display:block;margin:0 0 12px;border-radius:8px">'
                 )
                 stories_html += (
