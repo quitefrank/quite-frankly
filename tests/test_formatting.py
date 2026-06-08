@@ -1684,3 +1684,32 @@ def test_write_subject_blurbs_payload_tags_sentence_targets():
     payload = json.loads(captured["user"])
     by_id = {o["id"]: o["sentences"] for o in payload}
     assert by_id == {10: 2, 11: 1}
+
+
+def test_build_everything_else_renders_thumbnail_when_cid_present():
+    from formatting import build_everything_else, LIGHT
+
+    links = {
+        1: {"title": "Alpha story here now", "link": "http://a/1",
+            "source": "Src", "scores": {}, "image": ""},
+    }
+    tiered = [{"id": 1, "section": "Tech & AI", "tier": 2, "scores": {"composite": 5}}]
+    html = build_everything_else(
+        links, used_ids=set(), tiered_items=tiered, palette=LIGHT,
+        images_by_id={1: "ee-1@quitefrankly"},
+    )
+    assert 'src="cid:ee-1@quitefrankly"' in html
+    assert "border-radius:8px" in html
+
+
+def test_build_everything_else_text_only_without_cid():
+    from formatting import build_everything_else, LIGHT
+
+    links = {
+        1: {"title": "Alpha story here now", "link": "http://a/1",
+            "source": "Src", "scores": {}, "image": ""},
+    }
+    tiered = [{"id": 1, "section": "Tech & AI", "tier": 2, "scores": {"composite": 5}}]
+    html = build_everything_else(links, used_ids=set(), tiered_items=tiered, palette=LIGHT)
+    assert "cid:" not in html
+    assert "<img" not in html

@@ -1064,7 +1064,8 @@ def write_subject_blurbs(items, sentences_by_id=None, client=None):
 
 
 def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None,
-                          tiered_items=None, palette: dict = LIGHT, copy_by_id=None):
+                          tiered_items=None, palette: dict = LIGHT, copy_by_id=None,
+                          images_by_id=None):
     """Render up to MAX_EVERYTHING_ELSE items globally, ranked by tier then score.
 
     copy_by_id ({id: {subject, blurb}}) supplies Morning-Brew-style written
@@ -1076,18 +1077,35 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None,
         return ""
 
     copy_by_id = copy_by_id or {}
+    images_by_id = images_by_id or {}
     items_html = ""
     used_emojis: set[str] = set()
     for lid, l in top:
         emoji = pick_everything_else_emoji(l.get("title", ""), l.get("source", ""), used_emojis)
         used_emojis.add(emoji)
         line = _everything_else_line(l, copy_by_id.get(lid), palette)
-        items_html += (
-            f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:{palette["body"]};'
-            f'font-family:Helvetica,Arial,sans-serif">'
-            f'<span style="margin-right:6px">{emoji}</span>'
-            f'{line}</p>'
-        )
+        cid = images_by_id.get(lid)
+        if cid:
+            items_html += (
+                f'<table cellpadding="0" cellspacing="0" border="0" '
+                f'style="width:100%;margin:0 0 14px"><tr>'
+                f'<td valign="top" style="width:80px;padding-right:12px">'
+                f'<img src="cid:{cid}" width="80" height="80" alt="" '
+                f'style="display:block;width:80px;height:80px;object-fit:cover;'
+                f'border-radius:8px"></td>'
+                f'<td valign="top">'
+                f'<p style="margin:0;line-height:22px;font-size:15px;color:{palette["body"]};'
+                f'font-family:Helvetica,Arial,sans-serif">'
+                f'<span style="margin-right:6px">{emoji}</span>{line}</p>'
+                f'</td></tr></table>'
+            )
+        else:
+            items_html += (
+                f'<p style="margin:0 0 14px;line-height:22px;font-size:15px;color:{palette["body"]};'
+                f'font-family:Helvetica,Arial,sans-serif">'
+                f'<span style="margin-right:6px">{emoji}</span>'
+                f'{line}</p>'
+            )
 
     return (
         f'\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid {palette["card_border"]};'
