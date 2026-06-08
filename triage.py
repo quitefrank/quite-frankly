@@ -104,7 +104,12 @@ def call_triage(items: list[dict]) -> tuple[list[dict], dict[str, dict]]:
     """
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     user_message = build_triage_user_message(items)
-    message = client.messages.create(
+    # Stream the response. At max_tokens=32000 the SDK refuses a non-streaming
+    # request ("Streaming is required for operations that may take longer than
+    # 10 minutes"), which silently dropped triage into the legacy fallback and
+    # shipped editions with no Everything Else. get_final_message() reassembles
+    # the same Message (tool_use included) the interpreter expects.
+    with client.messages.stream(
         model="claude-sonnet-4-20250514",
         # 32k (up from 16k) buys headroom now that the og:description snippet
         # backfill makes the prompt denser. A full 120-item weekday load plus
@@ -115,7 +120,8 @@ def call_triage(items: list[dict]) -> tuple[list[dict], dict[str, dict]]:
         tools=[TRIAGE_TOOL],
         tool_choice={"type": "tool", "name": "emit_triage"},
         messages=[{"role": "user", "content": user_message}],
-    )
+    ) as stream:
+        message = stream.get_final_message()
     return _interpret_triage_message(message, input_count=len(items))
 
 

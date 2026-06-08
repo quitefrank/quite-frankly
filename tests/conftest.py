@@ -68,9 +68,27 @@ def fake_anthropic_client(monkeypatch, sample_format_response):
     format_response = FakeMessage([_make_text_block(sample_format_response)])
     responses = iter([triage_response, format_response])
 
+    class _FakeStream:
+        """Mirror anthropic's streaming context manager: `with client.messages
+        .stream(...) as s: s.get_final_message()`."""
+        def __init__(self, message):
+            self._message = message
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *exc):
+            return False
+
+        def get_final_message(self):
+            return self._message
+
     class FakeMessages:
         def create(self, **kwargs):
             return next(responses)
+
+        def stream(self, **kwargs):
+            return _FakeStream(next(responses))
 
     class FakeClient:
         messages = FakeMessages()
