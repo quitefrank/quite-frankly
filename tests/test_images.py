@@ -114,3 +114,42 @@ def test_resolve_omits_item_on_total_failure(tmp_path):
         fetch=lambda u: None, gen=lambda t, s: None,
     )
     assert out == {}
+
+
+def test_resolve_omits_item_when_fetch_raises(tmp_path):
+    def boom(url):
+        raise RuntimeError("network exploded")
+    items = [(5, {"link": "http://a/5", "image": "http://a/og.jpg",
+                  "title": "T5", "snippet": ""})]
+    # Must NOT raise; item is simply omitted.
+    out = images_mod.resolve_ee_thumbnails(
+        items, cache_dir=str(tmp_path), fetch=boom, gen=lambda t, s: None
+    )
+    assert out == {}
+
+
+def test_resolve_omits_item_when_fetched_bytes_are_garbage(tmp_path):
+    items = [(6, {"link": "http://a/6", "image": "http://a/og.jpg",
+                  "title": "T6", "snippet": ""})]
+    out = images_mod.resolve_ee_thumbnails(
+        items, cache_dir=str(tmp_path),
+        fetch=lambda u: b"not an image", gen=lambda t, s: None,
+    )
+    assert out == {}
+    # Nothing valid should have been cached (no file, or only empty/tmp leftovers).
+    cache_files = list(tmp_path.iterdir())
+    assert cache_files == [] or all(p.stat().st_size == 0 for p in cache_files)
+
+
+def test_resolve_treats_empty_cache_file_as_miss(tmp_path):
+    import hashlib
+    url = "http://a/7"
+    digest = hashlib.sha256(url.encode("utf-8")).hexdigest()
+    (tmp_path / f"{digest}.png").write_bytes(b"")  # simulate a partial write
+    items = [(7, {"link": url, "image": "", "title": "T7", "snippet": "s"})]
+    # gen supplies a real image; the empty cache file must NOT be served.
+    out = images_mod.resolve_ee_thumbnails(
+        items, cache_dir=str(tmp_path), fetch=lambda u: None, gen=lambda t, s: _png(40, 40)
+    )
+    assert set(out) == {7}
+    assert out[7].data  # non-empty, real image bytes

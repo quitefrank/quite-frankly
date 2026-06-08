@@ -9,6 +9,7 @@ from __future__ import annotations
 import hashlib
 import io
 import os
+import tempfile
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
@@ -30,18 +31,18 @@ def to_square_thumbnail(raw: bytes, size: int = 80) -> "bytes | None":
     """Center-crop raw image bytes to a square and resize to size×size PNG."""
     try:
         img = Image.open(io.BytesIO(raw)).convert("RGB")
-    except Exception:  # noqa: BLE001 — any decode failure degrades to None
+        w, h = img.size
+        edge = min(w, h)
+        left = (w - edge) // 2
+        top = (h - edge) // 2
+        img = img.crop((left, top, left + edge, top + edge)).resize(
+            (size, size), Image.LANCZOS
+        )
+        out = io.BytesIO()
+        img.save(out, format="PNG")
+        return out.getvalue()
+    except Exception:  # noqa: BLE001 — any decode/crop/save failure degrades to None
         return None
-    w, h = img.size
-    edge = min(w, h)
-    left = (w - edge) // 2
-    top = (h - edge) // 2
-    img = img.crop((left, top, left + edge, top + edge)).resize(
-        (size, size), Image.LANCZOS
-    )
-    out = io.BytesIO()
-    img.save(out, format="PNG")
-    return out.getvalue()
 
 
 def fetch_remote_thumbnail(url: str) -> "bytes | None":
@@ -99,22 +100,49 @@ def _cache_path(cache_dir: str, url: str) -> Path:
     return Path(cache_dir) / f"{digest}.png"
 
 
-def _resolve_one(lid, link, cache_dir, fetch, gen) -> "tuple[int, ThumbAsset | None]":
-    url = link.get("link", "") or str(lid)
-    path = _cache_path(cache_dir, url)
-    if path.exists():
-        return lid, ThumbAsset(cid=f"ee-{lid}@quitefrankly", data=path.read_bytes())
+def _read_valid_cache(path: "Path") -> "bytes | None":
+    """Return cached bytes only if the file exists and decodes as a valid image."""
+    try:
+        raw = path.read_bytes()
+        if not raw:
+            return None
+        Image.open(io.BytesIO(raw)).verify()
+        return raw
+    except Exception:  # noqa: BLE001
+        return None
 
-    raw = fetch(link["image"]) if link.get("image") else gen(
-        link.get("title", ""), link.get("snippet", "")
-    )
-    if raw is None:
+
+def _resolve_one(lid, link, cache_dir, fetch, gen) -> "tuple[int, ThumbAsset | None]":
+    try:
+        url = link.get("link", "") or str(lid)
+        path = _cache_path(cache_dir, url)
+
+        cached = _read_valid_cache(path)
+        if cached is not None:
+            return lid, ThumbAsset(cid=f"ee-{lid}@quitefrankly", data=cached)
+
+        raw = fetch(link["image"]) if link.get("image") else gen(
+            link.get("title", ""), link.get("snippet", "")
+        )
+        if raw is None:
+            return lid, None
+        thumb = to_square_thumbnail(raw, size=EE_THUMB_SIZE)
+        if thumb is None:
+            return lid, None
+
+        # Atomic write: write to a temp file then rename so a crash never leaves
+        # a half-written (corrupt/empty) cache file.
+        fd, tmp = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
+        try:
+            os.write(fd, thumb)
+        finally:
+            os.close(fd)
+        os.replace(tmp, path)
+
+        return lid, ThumbAsset(cid=f"ee-{lid}@quitefrankly", data=thumb)
+    except Exception as e:  # noqa: BLE001 — resolution must never raise into the send path
+        print(f"  [ee-thumb] resolve failed for item {lid} ({e}); falling back to text.", flush=True)
         return lid, None
-    thumb = to_square_thumbnail(raw, size=EE_THUMB_SIZE)
-    if thumb is None:
-        return lid, None
-    path.write_bytes(thumb)
-    return lid, ThumbAsset(cid=f"ee-{lid}@quitefrankly", data=thumb)
 
 
 def resolve_ee_thumbnails(
