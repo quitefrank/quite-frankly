@@ -152,12 +152,12 @@ CRITICAL RULES YOU MUST FOLLOW:
 
 SUBJECT_BLURB_SYSTEM_PROMPT = """You write the short news items for Frank's daily briefing: the per-section Other Headlines lists and the Everything Else section at the end. Both are modeled on Morning Brew's "What else is brewing": each item opens with the story's subject, then flows into a single sentence of context.
 
-You receive a JSON array of news items, each with: id, title, snippet (may be empty), source.
+You receive a JSON array of news items, each with: id, title, snippet (may be empty), source, and sentences (1 or 2 — how many sentences the blurb must be).
 
 For each item, return an object with these three fields:
 - id: the item's id, unchanged.
 - subject: the entity the story is about, the specific person, company, organization, place, or product at its center (e.g. "Google parent Alphabet", "Andrew Left", "Colombia", "Anthropic"). Two to five words. This becomes a hyperlink, so it MUST be the exact opening words of your blurb.
-- blurb: one sentence, 18 to 35 words, that begins with the exact subject string and tells the reader what happened, carrying the single most specific fact the source supports (a number, a ruling, a launch, an amount).
+- blurb: written in exactly the number of sentences given by the item's `sentences` field. It begins with the exact subject string and carries the single most specific fact the source supports. For sentences=1, write one sentence of 18 to 35 words. For sentences=2, write two sentences totalling up to 55 words: the first states what happened, the second adds the most relevant supporting detail.
 
 Voice and style rules. These are mandatory:
 - The blurb is ONE sentence and begins with the exact subject string, reading as natural prose. Example: subject = "Google parent Alphabet", blurb = "Google parent Alphabet will sell $80 billion of stock to fund its AI buildout, with Berkshire Hathaway taking $10 billion of that."

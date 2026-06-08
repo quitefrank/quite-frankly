@@ -1009,23 +1009,27 @@ def _everything_else_line(l, copy, palette):
     return f"{linked_part} {remaining}" if remaining else linked_part
 
 
-def write_subject_blurbs(items, client=None):
+def write_subject_blurbs(items, sentences_by_id=None, client=None):
     """Ask Claude to write a subject + blurb for each short news item.
 
     Shared by Other Headlines and Everything Else. items: list of
-    (id, link_dict). Returns {id: {"subject": str, "blurb": str}}. Any failure
-    returns {} so the renderer falls back to its title-only copy. A bad API call
-    must never break the send.
+    (id, link_dict). sentences_by_id ({id: int}) sets the per-item sentence
+    target; defaults to 1 for any item not in the map. Returns
+    {id: {"subject": str, "blurb": str}}. Any failure returns {} so the
+    renderer falls back to its title-only copy. A bad API call must never
+    break the send.
     """
     if not items:
         return {}
 
+    sentences_by_id = sentences_by_id or {}
     payload = [
         {
             "id": lid,
             "title": l.get("title", ""),
             "snippet": l.get("snippet", ""),
             "source": l.get("source", ""),
+            "sentences": sentences_by_id.get(lid, 1),
         }
         for lid, l in items
     ]
@@ -1138,7 +1142,9 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
     # Without a writer (offline tests), everything renders title-only.
     ee_copy = None
     if blurb_writer is not None:
-        blurb_copy = blurb_writer(oh_items + ee_items)
+        sentences_by_id = {lid: 1 for lid, _ in oh_items}
+        sentences_by_id.update({lid: 2 for lid, _ in ee_items})
+        blurb_copy = blurb_writer(oh_items + ee_items, sentences_by_id=sentences_by_id)
         oh_copy = {lid: blurb_copy[lid] for lid, _ in oh_items if lid in blurb_copy}
         ee_copy = {lid: blurb_copy[lid] for lid, _ in ee_items if lid in blurb_copy}
         if oh_copy:

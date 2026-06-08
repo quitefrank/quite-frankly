@@ -1540,7 +1540,7 @@ def test_build_email_html_invokes_writer_with_selected_items():
     links[99] = {"id": 99, "title": "Featured", "link": "https://e.co/99", "image": "", "source": "CBC", "snippet": ""}
     seen = {}
 
-    def writer(items):
+    def writer(items, sentences_by_id=None):
         for lid, _l in items:
             seen[lid] = True
         return {0: {"subject": "Anthropic", "blurb": "Anthropic filed to go public today."}}
@@ -1585,7 +1585,7 @@ def test_build_email_html_writes_other_headlines_copy():
     text = "## Finance & Markets\n\n**Featured [#99]**\nBody.\nSource: CBC"
     seen_ids = []
 
-    def writer(items):
+    def writer(items, sentences_by_id=None):
         seen_ids.extend(lid for lid, _ in items)
         return {1: {"subject": "The Bank of Canada", "blurb": "The Bank of Canada held its rate at 4.25%."}}
 
@@ -1656,3 +1656,31 @@ def test_near_duplicate_ids_catches_2026_06_06_lennys_incident():
     suppressed = near_duplicate_ids([a, b], links_by_id)
     assert len(suppressed) == 1          # exactly one of the two survives
     assert suppressed == {32}            # higher-scored episode (31) is the representative
+
+
+def test_write_subject_blurbs_payload_tags_sentence_targets():
+    import formatting
+
+    captured = {}
+
+    class _FakeMsg:
+        content = [type("B", (), {"text": "[]"})()]
+
+    class _FakeMessages:
+        def create(self, **kwargs):
+            captured["user"] = kwargs["messages"][0]["content"]
+            return _FakeMsg()
+
+    class _FakeClient:
+        messages = _FakeMessages()
+
+    items = [(10, {"title": "A", "snippet": "", "source": "x"}),
+             (11, {"title": "B", "snippet": "", "source": "y"})]
+    formatting.write_subject_blurbs(
+        items, sentences_by_id={10: 2, 11: 1}, client=_FakeClient()
+    )
+
+    import json
+    payload = json.loads(captured["user"])
+    by_id = {o["id"]: o["sentences"] for o in payload}
+    assert by_id == {10: 2, 11: 1}
