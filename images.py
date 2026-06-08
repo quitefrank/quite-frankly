@@ -6,8 +6,12 @@ here may raise into the send path.
 """
 from __future__ import annotations
 
+import hashlib
 import io
 import os
+from concurrent.futures import ThreadPoolExecutor
+from dataclasses import dataclass
+from pathlib import Path
 
 import requests
 from PIL import Image
@@ -16,6 +20,8 @@ from config import (
     EE_IMAGE_PROMPT_TEMPLATE,
     EE_THUMB_FETCH_MAX_BYTES,
     EE_THUMB_FETCH_TIMEOUT_S,
+    EE_THUMB_MAX_WORKERS,
+    EE_THUMB_SIZE,
     GEMINI_IMAGE_MODEL,
 )
 
@@ -79,3 +85,52 @@ def generate_thumbnail(title: str, snippet: str, *, api_key: "str | None" = None
     except Exception as e:  # noqa: BLE001 — generation must never break the send
         print(f"  [ee-thumb] generation failed ({e}); falling back to text.", flush=True)
         return None
+
+
+@dataclass
+class ThumbAsset:
+    cid: str
+    data: bytes
+    mime: str = "image/png"
+
+
+def _cache_path(cache_dir: str, url: str) -> Path:
+    digest = hashlib.sha256(url.encode("utf-8")).hexdigest()
+    return Path(cache_dir) / f"{digest}.png"
+
+
+def _resolve_one(lid, link, cache_dir, fetch, gen) -> "tuple[int, ThumbAsset | None]":
+    url = link.get("link", "") or str(lid)
+    path = _cache_path(cache_dir, url)
+    if path.exists():
+        return lid, ThumbAsset(cid=f"ee-{lid}@quitefrankly", data=path.read_bytes())
+
+    raw = fetch(link["image"]) if link.get("image") else gen(
+        link.get("title", ""), link.get("snippet", "")
+    )
+    if raw is None:
+        return lid, None
+    thumb = to_square_thumbnail(raw, size=EE_THUMB_SIZE)
+    if thumb is None:
+        return lid, None
+    path.write_bytes(thumb)
+    return lid, ThumbAsset(cid=f"ee-{lid}@quitefrankly", data=thumb)
+
+
+def resolve_ee_thumbnails(
+    items, *, cache_dir, fetch=fetch_remote_thumbnail, gen=generate_thumbnail
+) -> "dict[int, ThumbAsset]":
+    """Resolve a thumbnail per (id, link). Cache -> og:image -> AI generate.
+    Items that fail every path are omitted (row falls back to text)."""
+    Path(cache_dir).mkdir(parents=True, exist_ok=True)
+    out: "dict[int, ThumbAsset]" = {}
+    with ThreadPoolExecutor(max_workers=EE_THUMB_MAX_WORKERS) as ex:
+        futures = [
+            ex.submit(_resolve_one, lid, link, cache_dir, fetch, gen)
+            for lid, link in items
+        ]
+        for fut in futures:
+            lid, asset = fut.result()
+            if asset is not None:
+                out[lid] = asset
+    return out

@@ -61,3 +61,56 @@ def test_fetch_remote_thumbnail_returns_none_on_error(monkeypatch):
 def test_generate_thumbnail_no_key_returns_none(monkeypatch):
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
     assert images_mod.generate_thumbnail("Headline", "snippet") is None
+
+
+def test_resolve_prefers_og_image_then_caches(tmp_path):
+    calls = {"fetch": 0, "gen": 0}
+
+    def fake_fetch(url):
+        calls["fetch"] += 1
+        return _png(120, 120)
+
+    def fake_gen(title, snippet):
+        calls["gen"] += 1
+        return _png(120, 120)
+
+    items = [(1, {"link": "http://a/1", "image": "http://a/og.jpg",
+                  "title": "T1", "snippet": "s1"})]
+
+    out = images_mod.resolve_ee_thumbnails(
+        items, cache_dir=str(tmp_path), fetch=fake_fetch, gen=fake_gen
+    )
+    assert set(out) == {1}
+    assert out[1].cid == "ee-1@quitefrankly"
+    assert out[1].mime == "image/png"
+    assert calls == {"fetch": 1, "gen": 0}
+
+    out2 = images_mod.resolve_ee_thumbnails(
+        items, cache_dir=str(tmp_path), fetch=fake_fetch, gen=fake_gen
+    )
+    assert set(out2) == {1}
+    assert calls == {"fetch": 1, "gen": 0}
+
+
+def test_resolve_generates_when_no_og_image(tmp_path):
+    def fake_fetch(url):
+        raise AssertionError("should not fetch")
+
+    def fake_gen(title, snippet):
+        return _png(64, 64)
+
+    items = [(2, {"link": "http://a/2", "image": "",
+                  "title": "T2", "snippet": "s2"})]
+    out = images_mod.resolve_ee_thumbnails(
+        items, cache_dir=str(tmp_path), fetch=fake_fetch, gen=fake_gen
+    )
+    assert set(out) == {2}
+
+
+def test_resolve_omits_item_on_total_failure(tmp_path):
+    items = [(3, {"link": "http://a/3", "image": "", "title": "T3", "snippet": ""})]
+    out = images_mod.resolve_ee_thumbnails(
+        items, cache_dir=str(tmp_path),
+        fetch=lambda u: None, gen=lambda t, s: None,
+    )
+    assert out == {}
