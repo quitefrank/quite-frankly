@@ -698,6 +698,7 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
         if link.get("image"):
             img = link["image"]
             href = link.get("link", "")
+            print(f"  [hero-img] section hero from id={it['id']} src={link.get('source','?')} img={img[:80]}", flush=True)
             # Design editions show images at their natural aspect ratio (full
             # width, auto height); regular editions crop to a fixed 200px band.
             sizing = (
@@ -833,6 +834,8 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
             article_data = find_article_data(headline_for_lookup, links_by_id)
             article_link = article_data["link"]
             article_image= article_data["image"]
+            _dbg_src = links_by_id.get(article_data["id"], {}).get("source", "?") if article_data["id"] is not None else "?"
+            print(f"  [featured-img] '{s['headline'][:45]}' -> id={article_data['id']} src={_dbg_src} img={article_image[:80] if article_image else 'NONE'}", flush=True)
             if article_data["id"] is not None:
                 used_ids.add(article_data["id"])
 
