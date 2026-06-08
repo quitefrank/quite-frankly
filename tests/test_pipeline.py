@@ -160,6 +160,16 @@ def test_extract_og_image_prefers_real_image_over_generic_logo():
     assert _extract_og_image_from_html(html) == "https://example.com/real-hero.jpg"
 
 
+def test_ee_image_prompt_is_thumbnail_optimized():
+    # The AI fallback renders at 80x80; the prompt must forbid text and ask for a
+    # single bold subject so it stays legible at thumbnail size.
+    from config import EE_IMAGE_PROMPT_TEMPLATE
+    low = EE_IMAGE_PROMPT_TEMPLATE.lower()
+    assert "80" in EE_IMAGE_PROMPT_TEMPLATE  # references the target pixel size
+    assert "no text" in low
+    assert "{title}" in EE_IMAGE_PROMPT_TEMPLATE
+
+
 def test_og_image_max_bytes_covers_deep_head_tags():
     # Yahoo Finance puts og:image at ~62KB into the page; the fetch cap must be
     # large enough to reach it, or finance articles never get a real image.

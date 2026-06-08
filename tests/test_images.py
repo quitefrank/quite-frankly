@@ -51,6 +51,23 @@ def test_fetch_remote_thumbnail_returns_bytes(monkeypatch):
     assert images_mod.fetch_remote_thumbnail("http://x/y.jpg") == b"abcd"
 
 
+def test_fetch_remote_thumbnail_sends_browser_headers(monkeypatch):
+    # Bot-sensitive / hotlink-protected hosts (e.g. betterdwelling) reject a
+    # bare requests UA. The server-side thumbnail download must look like a
+    # browser, with a Referer, or those article images fall to the AI fallback.
+    captured = {}
+
+    def fake_get(url, *a, **k):
+        captured["headers"] = k.get("headers") or {}
+        return _FakeResp([b"img"])
+
+    monkeypatch.setattr(images_mod.requests, "get", fake_get)
+    images_mod.fetch_remote_thumbnail("https://betterdwelling.com/wp/x.jpg")
+    headers = captured["headers"]
+    assert "User-Agent" in headers and "Mozilla" in headers["User-Agent"]
+    assert headers.get("Referer", "").startswith("https://betterdwelling.com")
+
+
 def test_fetch_remote_thumbnail_returns_none_on_error(monkeypatch):
     def boom(*a, **k):
         raise RuntimeError("network down")

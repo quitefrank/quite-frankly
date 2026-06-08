@@ -45,10 +45,36 @@ def to_square_thumbnail(raw: bytes, size: int = 80) -> "bytes | None":
         return None
 
 
+_BROWSER_USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+)
+
+
+def _image_headers(url: str) -> "dict[str, str]":
+    """Browser-like headers for an image download. Many news hosts (and CDNs
+    with hotlink protection) reject a bare requests UA or require a same-origin
+    Referer; without these the server-side thumbnail fetch 403s and the row
+    drops to the AI fallback even though the article has a real image."""
+    from urllib.parse import urlparse
+
+    headers = {
+        "User-Agent": _BROWSER_USER_AGENT,
+        "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    parsed = urlparse(url)
+    if parsed.scheme and parsed.netloc:
+        headers["Referer"] = f"{parsed.scheme}://{parsed.netloc}/"
+    return headers
+
+
 def fetch_remote_thumbnail(url: str) -> "bytes | None":
     """Download an image URL, capped and timed out. None on any failure."""
     try:
-        with requests.get(url, timeout=EE_THUMB_FETCH_TIMEOUT_S, stream=True) as r:
+        with requests.get(
+            url, timeout=EE_THUMB_FETCH_TIMEOUT_S, stream=True, headers=_image_headers(url)
+        ) as r:
             r.raise_for_status()
             buf = bytearray()
             for chunk in r.iter_content(chunk_size=8192):

@@ -338,10 +338,17 @@ GEMINI_IMAGE_MODEL = "gemini-2.5-flash-image"  # confirmed in Task 1
 GEMINI_IMAGE_TIMEOUT_S = 20.0
 
 # Editorial, deliberately non-photoreal so an AI image never reads as a real
-# news photo. {title}/{snippet} are filled per item.
+# news photo, AND optimized to stay legible at the 80x80px thumbnail it becomes.
+# The old prompt produced busy illustrations with tiny charts and stray words
+# that turned to mush at thumbnail size. {title}/{snippet} are filled per item;
+# snippet is intentionally unused now to stop the model from rendering its text.
 EE_IMAGE_PROMPT_TEMPLATE = (
-    "Create a flat, minimal editorial illustration representing this news item. "
-    "Use a calm, muted palette and simple geometric shapes. Absolutely no text, "
-    "no logos, no real faces, no photorealism. Square composition.\n\n"
-    "Headline: {title}\nContext: {snippet}"
+    "Design a single, bold, flat icon representing this news topic. It will be "
+    "displayed at 80x80 pixels, so it must read instantly at that tiny size. "
+    "ONE simple central subject that fills the frame, app-icon style. Use large "
+    "shapes, a high-contrast muted palette, and generous negative space. "
+    "Absolutely NO text, letters, numbers, words, labels, logos, charts, graphs, "
+    "fine detail, small elements, real faces, or photorealism. "
+    "Square composition.\n\n"
+    "Topic: {title}"
 )
