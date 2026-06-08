@@ -62,6 +62,16 @@ def _image_headers(url: str) -> "dict[str, str]":
         "User-Agent": _BROWSER_USER_AGENT,
         "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        # Full Chrome fingerprint: hosts behind a Cloudflare-style WAF 403
+        # datacenter/CI image requests that lack Client-Hints and the
+        # image-subresource Fetch-Metadata headers a real browser sends.
+        "sec-ch-ua": '"Google Chrome";v="126", "Chromium";v="126", "Not.A/Brand";v="24"',
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": '"macOS"',
+        "Sec-Fetch-Dest": "image",
+        "Sec-Fetch-Mode": "no-cors",
+        "Sec-Fetch-Site": "same-origin",
     }
     parsed = urlparse(url)
     if parsed.scheme and parsed.netloc:

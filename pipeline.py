@@ -115,17 +115,27 @@ _BROWSER_USER_AGENT = (
 
 
 def _browser_headers(article_url: str) -> dict[str, str]:
-    """Headers that look like a real browser request — some sites (notably
-    BetterDwelling, which 403's our bot UA from GitHub Actions IPs) check
-    User-Agent and/or Referer before serving the page."""
+    """Headers that mimic a real Chrome top-level navigation. Some hosts
+    (notably BetterDwelling, behind a Cloudflare-style WAF) 403 datacenter/CI
+    requests that lack a full browser fingerprint. The Client-Hints (sec-ch-ua)
+    and Fetch-Metadata (Sec-Fetch-*) headers below are what a genuine Chrome
+    page-load sends; without them the request reads as a bot regardless of UA."""
     parsed = urlparse(article_url)
     referer = f"{parsed.scheme}://{parsed.netloc}/" if parsed.scheme and parsed.netloc else article_url
     return {
         "User-Agent": _BROWSER_USER_AGENT,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate",
+        "Accept-Encoding": "gzip, deflate, br",
         "Referer": referer,
+        "sec-ch-ua": '"Google Chrome";v="126", "Chromium";v="126", "Not.A/Brand";v="24"',
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": '"macOS"',
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-User": "?1",
+        "Upgrade-Insecure-Requests": "1",
     }
 
 
