@@ -56,3 +56,8 @@ def test_fetch_remote_thumbnail_returns_none_on_error(monkeypatch):
         raise RuntimeError("network down")
     monkeypatch.setattr(images_mod.requests, "get", boom)
     assert images_mod.fetch_remote_thumbnail("http://x/y.jpg") is None
+
+
+def test_generate_thumbnail_no_key_returns_none(monkeypatch):
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    assert images_mod.generate_thumbnail("Headline", "snippet") is None
