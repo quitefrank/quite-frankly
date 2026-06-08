@@ -1128,7 +1128,7 @@ def parse_subject_line(claude_response):
     return None, claude_response
 
 
-def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, blurb_writer=None):
+def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, blurb_writer=None, thumbnail_resolver=None):
     clusters_by_item_id = clusters_by_item_id or {}
     toronto_tz  = ZoneInfo("America/Toronto")
     now_toronto = datetime.now(toronto_tz)
@@ -1156,6 +1156,14 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
     )
     ee_items = _select_everything_else(links_by_id, used_ids, tiered_items)
 
+    from config import EE_THUMB_CACHE_DIR
+    ee_images = {}
+    inline_images = []
+    if thumbnail_resolver is not None and ee_items:
+        assets = thumbnail_resolver(ee_items, cache_dir=EE_THUMB_CACHE_DIR)
+        ee_images = {lid: a.cid for lid, a in assets.items()}
+        inline_images = list(assets.values())
+
     # Write Morning-Brew-style subject + blurb copy for exactly the short items
     # that surfaced (Other Headlines + Everything Else), in one batched call.
     # Without a writer (offline tests), everything renders title-only.
@@ -1175,7 +1183,7 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
             )
     everything_else_html    = build_everything_else(
         links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items,
-        palette=c, copy_by_id=ee_copy,
+        palette=c, copy_by_id=ee_copy, images_by_id=ee_images,
     )
 
     html = f"""<!DOCTYPE html>
@@ -1221,7 +1229,7 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
 </td></tr></table>
 </body></html>"""
 
-    return html, subject
+    return html, subject, inline_images
 
 
 # ── Email Sending ──────────────────────────────────────────────────────────────

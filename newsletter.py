@@ -86,7 +86,7 @@ def main():
             format_raw = call_legacy_formatter(headlines)
 
     with _stage("build_html"):
-        html, subject = build_email_html(
+        html, subject, _inline_images = build_email_html(
             format_raw, links_by_id, clusters_by_item_id,
             tiered_items=tiered_items, suppressed_ids=suppressed_ids,
             is_design_edition=is_design_mode(mode),

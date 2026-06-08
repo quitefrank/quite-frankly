@@ -914,7 +914,7 @@ Source: WSJ
         21: {"link": "https://hn.example/21", "image": "", "title": "Second story"},
         30: {"link": "https://wsj.example/30", "image": "https://img/30.jpg", "title": "Fed cut"},
     }
-    html, subject = build_email_html(response, links_by_id, {}, tiered_items=[])
+    html, subject, _ = build_email_html(response, links_by_id, {}, tiered_items=[])
     assert "In the World" in html
     assert "Tech & AI" in html
     assert "US & Global" in html
@@ -1058,7 +1058,7 @@ Source: Hacker News
 """
 
     # Step 4: render through build_email_html.
-    html, subject = build_email_html(response, links_by_id, {}, tiered_items=tiered_items)
+    html, subject, _ = build_email_html(response, links_by_id, {}, tiered_items=tiered_items)
 
     # Assertions: pipeline produced a coherent email.
     assert "In the World" in html
@@ -1167,7 +1167,7 @@ def test_suppressed_cluster_sibling_absent_from_rendered_html():
         "Source: BBC\n"
     )
     cluster_info = {"primary_source": "BBC", "also_in": ["NPR World", "NYT"]}
-    html, _ = build_email_html(
+    html, _, _ = build_email_html(
         formatter_output, links_by_id,
         clusters_by_item_id={i: cluster_info for i in (57, 83, 85, 76)},
         tiered_items=tiered_items,
@@ -1288,14 +1288,14 @@ from formatting import LIGHT, DARK, build_email_html
 
 
 def _weekend_html():
-    html, _ = build_email_html("## Tech & AI\n\n**Hello world [#1]**\nBody text.\nSource: CBC",
+    html, _, _ = build_email_html("## Tech & AI\n\n**Hello world [#1]**\nBody text.\nSource: CBC",
                                {1: {"link": "https://x.co", "image": None, "title": "Hello world", "snippet": ""}},
                                is_design_edition=True)
     return html
 
 
 def _weekday_html():
-    html, _ = build_email_html("## Tech & AI\n\n**Hello world [#1]**\nBody text.\nSource: CBC",
+    html, _, _ = build_email_html("## Tech & AI\n\n**Hello world [#1]**\nBody text.\nSource: CBC",
                                {1: {"link": "https://x.co", "image": None, "title": "Hello world", "snippet": ""}},
                                is_design_edition=False)
     return html
@@ -1422,7 +1422,7 @@ _FULL_LINKS = {
 
 
 def test_full_weekend_build_has_no_light_only_colours():
-    html, _ = build_email_html(_FULL_TEXT, _FULL_LINKS, is_design_edition=True)
+    html, _, _ = build_email_html(_FULL_TEXT, _FULL_LINKS, is_design_edition=True)
     for m in LIGHT_ONLY_MARKERS:
         assert m not in html, f"light-only colour {m} leaked into dark build"
     for m in DARK_ONLY_MARKERS:
@@ -1430,7 +1430,7 @@ def test_full_weekend_build_has_no_light_only_colours():
 
 
 def test_full_weekday_build_has_no_dark_only_colours():
-    html, _ = build_email_html(_FULL_TEXT, _FULL_LINKS, is_design_edition=False)
+    html, _, _ = build_email_html(_FULL_TEXT, _FULL_LINKS, is_design_edition=False)
     for m in DARK_ONLY_MARKERS:
         assert m not in html, f"dark-only colour {m} leaked into light build"
     for m in LIGHT_ONLY_MARKERS:
@@ -1545,7 +1545,7 @@ def test_build_email_html_invokes_writer_with_selected_items():
             seen[lid] = True
         return {0: {"subject": "Anthropic", "blurb": "Anthropic filed to go public today."}}
 
-    html, _ = build_email_html(text, links, {}, tiered_items=_ee_tiers(2) + [{"id": 99, "tier": 1, "section": "Tech & AI", "scores": {}}], blurb_writer=writer)
+    html, _, _ = build_email_html(text, links, {}, tiered_items=_ee_tiers(2) + [{"id": 99, "tier": 1, "section": "Tech & AI", "scores": {}}], blurb_writer=writer)
     assert ">Anthropic</a> filed to go public" in html
     assert 0 in seen and 1 in seen  # writer saw the selected EE items
 
@@ -1589,7 +1589,7 @@ def test_build_email_html_writes_other_headlines_copy():
         seen_ids.extend(lid for lid, _ in items)
         return {1: {"subject": "The Bank of Canada", "blurb": "The Bank of Canada held its rate at 4.25%."}}
 
-    html, _ = build_email_html(text, links, {}, tiered_items=tiered, blurb_writer=writer)
+    html, _, _ = build_email_html(text, links, {}, tiered_items=tiered, blurb_writer=writer)
     assert 1 in seen_ids and 2 in seen_ids           # OH picks reached the writer
     assert ">The Bank of Canada</a> held its rate" in html  # OH copy rendered
     assert "<li" in html                             # bullets kept, no emoji added
@@ -1713,6 +1713,54 @@ def test_build_everything_else_text_only_without_cid():
     html = build_everything_else(links, used_ids=set(), tiered_items=tiered, palette=LIGHT)
     assert "cid:" not in html
     assert "<img" not in html
+
+
+def _minimal_build_email_inputs():
+    """Minimal inputs for build_email_html with at least one EE item.
+
+    One tier-1 item (#99) is mentioned in the Claude response so it becomes a
+    featured story and lands in used_ids. Items #0 and #1 are tier-3 items that
+    are in links_by_id but never featured, so _select_everything_else picks them
+    up as Everything Else candidates.
+    """
+    claude_response = "## Tech & AI\n\n**Featured story [#99]**\nBody.\nSource: CBC\n"
+    links_by_id = {
+        99: {"id": 99, "title": "Featured story", "link": "https://e.co/99",
+             "image": "", "source": "CBC", "snippet": ""},
+        0: {"id": 0, "title": "Headline number 0 here", "link": "https://e.co/0",
+            "image": "", "source": "CBC", "snippet": "Snippet 0."},
+        1: {"id": 1, "title": "Headline number 1 here", "link": "https://e.co/1",
+            "image": "", "source": "CBC", "snippet": "Snippet 1."},
+    }
+    tiered = [
+        {"id": 99, "tier": 1, "section": "Tech & AI", "scores": {}},
+        {"id": 0, "tier": 3, "section": "Tech & AI",
+         "scores": {"cross_source_coverage": 1, "personal_relevance": 0, "section_fit": "none"}},
+        {"id": 1, "tier": 3, "section": "Tech & AI",
+         "scores": {"cross_source_coverage": 1, "personal_relevance": 0, "section_fit": "none"}},
+    ]
+    return claude_response, links_by_id, tiered
+
+
+def test_build_email_html_returns_inline_images():
+    from formatting import build_email_html
+    from images import ThumbAsset
+
+    claude_response, links_by_id, tiered = _minimal_build_email_inputs()
+
+    def fake_resolver(ee_items, *, cache_dir):
+        return {lid: ThumbAsset(cid=f"ee-{lid}@quitefrankly", data=b"x")
+                for lid, _ in ee_items}
+
+    html, subject, inline_images = build_email_html(
+        claude_response, links_by_id, tiered_items=tiered,
+        thumbnail_resolver=fake_resolver,
+    )
+    # Every returned asset's cid must actually appear in the HTML.
+    assert inline_images  # at least one Everything Else item resolved
+    for a in inline_images:
+        assert f"cid:{a.cid}" in html
+    assert isinstance(subject, str)
 
 
 def test_build_email_message_has_related_image_parts():
