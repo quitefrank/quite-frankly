@@ -44,6 +44,71 @@ def test_shape_tool_output_allows_legitimate_empty_response():
     assert clusters == {}
 
 
+import types
+
+
+def _fake_tool_block(payload, name="emit_triage"):
+    return types.SimpleNamespace(type="tool_use", name=name, input=payload)
+
+
+def _fake_message(blocks, stop_reason="tool_use"):
+    return types.SimpleNamespace(content=blocks, stop_reason=stop_reason)
+
+
+def test_interpret_raises_when_triage_empties_a_nonempty_input():
+    # June 8 regression: 120 headlines went in, emit_triage came back with zero
+    # items (output truncated at max_tokens). The pipeline shipped an empty
+    # "No major stories today" edition because nothing raised. This must raise
+    # so newsletter.py falls back to the legacy single-pass formatter.
+    msg = _fake_message(
+        [_fake_tool_block({"items": [], "clusters": []})],
+        stop_reason="max_tokens",
+    )
+    with pytest.raises(RuntimeError, match="0 items"):
+        triage._interpret_triage_message(msg, input_count=120)
+
+
+def test_interpret_surfaces_max_tokens_in_the_error():
+    # The stop_reason is the diagnostic that distinguishes truncation from a
+    # genuinely empty model response, so it must reach the CI log via the error.
+    msg = _fake_message(
+        [_fake_tool_block({"items": [], "clusters": []})],
+        stop_reason="max_tokens",
+    )
+    with pytest.raises(RuntimeError, match="max_tokens"):
+        triage._interpret_triage_message(msg, input_count=120)
+
+
+def test_interpret_allows_empty_result_for_empty_input():
+    # An empty result is only legitimate when nothing was sent in.
+    msg = _fake_message([_fake_tool_block({"items": [], "clusters": []})])
+    items, clusters = triage._interpret_triage_message(msg, input_count=0)
+    assert items == []
+    assert clusters == {}
+
+
+def test_interpret_returns_shaped_items_on_success():
+    payload = {
+        "items": [{
+            "id": 0, "tier": 1, "section": "Tech & AI", "cluster_id": "c1",
+            "cross_source_coverage": 2, "personal_relevance": 2, "section_fit": "good",
+        }],
+        "clusters": [{
+            "id": "c1", "primary_source": "CBC", "also_in": [], "canonical_headline": "x",
+        }],
+    }
+    msg = _fake_message([_fake_tool_block(payload)])
+    items, clusters = triage._interpret_triage_message(msg, input_count=1)
+    assert len(items) == 1
+    assert clusters["c1"]["primary_source"] == "CBC"
+
+
+def test_interpret_raises_when_tool_block_missing():
+    msg = _fake_message([types.SimpleNamespace(type="text", text="hi")])
+    with pytest.raises(RuntimeError, match="missing"):
+        triage._interpret_triage_message(msg, input_count=5)
+
+
 def test_apply_phase2_tier_recomputes_using_traction(monkeypatch):
     monkeypatch.setattr(triage, "fetch_reddit_traction", lambda url, subs: {"score": 5000, "comments": 800, "subreddit_hits": 3})
     monkeypatch.setattr(triage, "fetch_hn_traction", lambda url: {"points": 0, "comments": 0})

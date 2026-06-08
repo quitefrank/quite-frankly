@@ -106,15 +106,41 @@ def call_triage(items: list[dict]) -> tuple[list[dict], dict[str, dict]]:
     user_message = build_triage_user_message(items)
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
-        max_tokens=16000,
+        # 32k (up from 16k) buys headroom now that the og:description snippet
+        # backfill makes the prompt denser. A full 120-item weekday load plus
+        # its clusters can approach the old ceiling; truncation there returned
+        # an empty tool call and shipped a blank edition (the June 8 incident).
+        max_tokens=32000,
         system=TRIAGE_SYSTEM_PROMPT,
         tools=[TRIAGE_TOOL],
         tool_choice={"type": "tool", "name": "emit_triage"},
         messages=[{"role": "user", "content": user_message}],
     )
+    return _interpret_triage_message(message, input_count=len(items))
+
+
+def _interpret_triage_message(message, input_count: int) -> tuple[list[dict], dict[str, dict]]:
+    """Turn the raw API message into (tiered_items, clusters_by_id).
+
+    Raises RuntimeError (which newsletter.py catches to fall back to the legacy
+    single-pass formatter) when:
+      - the emit_triage tool call is absent, or
+      - triage returns zero usable items for a non-empty input. An empty result
+        is only legitimate when nothing was sent in; a 120-in/0-out result means
+        the model truncated or derailed, and shipping it produces a blank
+        "No major stories today" edition. The stop_reason is surfaced so a
+        max_tokens truncation is visible in the CI log.
+    """
     for block in message.content:
         if getattr(block, "type", None) == "tool_use" and block.name == "emit_triage":
-            return _shape_tool_output(block.input)
+            items, clusters = _shape_tool_output(block.input)
+            if input_count > 0 and not items:
+                stop = getattr(message, "stop_reason", None)
+                raise RuntimeError(
+                    f"Triage returned 0 items for {input_count} input item(s) "
+                    f"(stop_reason={stop}); falling back to legacy formatter"
+                )
+            return items, clusters
     raise RuntimeError("Triage tool call missing from response")
 
 
