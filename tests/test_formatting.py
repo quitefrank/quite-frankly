@@ -1713,3 +1713,23 @@ def test_build_everything_else_text_only_without_cid():
     html = build_everything_else(links, used_ids=set(), tiered_items=tiered, palette=LIGHT)
     assert "cid:" not in html
     assert "<img" not in html
+
+
+def test_build_email_message_has_related_image_parts():
+    from formatting import build_email_message
+    from images import ThumbAsset
+
+    assets = [ThumbAsset(cid="ee-1@quitefrankly", data=b"\x89PNG-bytes")]
+    msg = build_email_message("<html><img src='cid:ee-1@quitefrankly'></html>",
+                              "Subject", assets)
+
+    assert msg.get_content_type() == "multipart/related"
+    image_parts = [p for p in msg.walk() if p.get_content_type() == "image/png"]
+    assert len(image_parts) == 1
+    assert image_parts[0]["Content-ID"] == "<ee-1@quitefrankly>"
+
+
+def test_build_email_message_no_images_is_plain_html():
+    from formatting import build_email_message
+    msg = build_email_message("<html>hi</html>", "Subject", [])
+    assert "text/html" in [p.get_content_type() for p in msg.walk()]

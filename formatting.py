@@ -7,6 +7,7 @@ import os
 import re
 import smtplib
 from datetime import datetime
+from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from zoneinfo import ZoneInfo
@@ -1225,18 +1226,33 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
 
 # ── Email Sending ──────────────────────────────────────────────────────────────
 
-def send_email(html, subject):
-    gmail_user     = os.environ["GMAIL_ADDRESS"]
+def build_email_message(html, subject, inline_images=None):
+    """Build a multipart/related message: HTML plus inline CID images."""
+    inline_images = inline_images or []
+    root = MIMEMultipart("related")
+    root["Subject"] = subject
+    root["From"] = f"Quite Frankly <{SENDER}>"
+    root["To"] = RECIPIENT
+
+    alt = MIMEMultipart("alternative")
+    alt.attach(MIMEText(html, "html"))
+    root.attach(alt)
+
+    for asset in inline_images:
+        subtype = asset.mime.split("/", 1)[-1] if "/" in asset.mime else "png"
+        img = MIMEImage(asset.data, _subtype=subtype)
+        img.add_header("Content-ID", f"<{asset.cid}>")
+        img.add_header("Content-Disposition", "inline")
+        root.attach(img)
+
+    return root
+
+
+def send_email(html, subject, inline_images=None):
+    gmail_user = os.environ["GMAIL_ADDRESS"]
     gmail_password = os.environ["GMAIL_APP_PASSWORD"]
-
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = subject
-    msg["From"]    = f"Quite Frankly <{SENDER}>"
-    msg["To"]      = RECIPIENT
-    msg.attach(MIMEText(html, "html"))
-
+    msg = build_email_message(html, subject, inline_images)
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(gmail_user, gmail_password)
         server.sendmail(SENDER, RECIPIENT, msg.as_string())
-
     print(f"Sent: {subject}")
