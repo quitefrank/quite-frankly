@@ -1,6 +1,7 @@
 import json
 import re
 
+import formatting
 from formatting import (
     build_email_html,
     build_everything_else,
@@ -12,6 +13,37 @@ from formatting import (
     suppressed_cluster_ids,
     near_duplicate_ids,
 )
+
+
+def test_ee_borrows_cluster_sibling_image_when_item_has_none():
+    # An EE item from an IP-blocked source (no image) should borrow an
+    # image-bearing cluster sibling's image before the resolver falls to AI.
+    links_by_id = {
+        1: {"link": "http://bd/x", "image": "", "title": "BD", "snippet": "", "source": "BetterDwelling"},
+        2: {"link": "http://st/x", "image": "http://st/og.jpg", "title": "Storeys", "snippet": "", "source": "Storeys"},
+    }
+    tiered_items = [
+        {"id": 1, "cluster_id": "c1", "tier": 2, "scores": {}},
+        {"id": 2, "cluster_id": "c1", "tier": 1, "scores": {}},
+    ]
+    out = dict(formatting._ee_items_with_cluster_image_fallback([(1, links_by_id[1])], links_by_id, tiered_items))
+    assert out[1]["image"] == "http://st/og.jpg"
+    assert links_by_id[1]["image"] == ""  # original dict not mutated
+
+
+def test_ee_keeps_own_image_and_skips_borrow_without_sibling():
+    links_by_id = {
+        1: {"link": "http://a/1", "image": "http://a/own.jpg", "title": "A", "snippet": ""},
+        3: {"link": "http://b/3", "image": "", "title": "B", "snippet": ""},
+    }
+    tiered_items = [
+        {"id": 1, "cluster_id": "c1", "tier": 1, "scores": {}},
+        {"id": 3, "cluster_id": "c2", "tier": 2, "scores": {}},  # alone in its cluster
+    ]
+    out = dict(formatting._ee_items_with_cluster_image_fallback(
+        [(1, links_by_id[1]), (3, links_by_id[3])], links_by_id, tiered_items))
+    assert out[1]["image"] == "http://a/own.jpg"  # own image kept
+    assert out[3]["image"] == ""                   # no sibling -> stays empty -> AI
 
 
 def test_single_source_renders_plain():

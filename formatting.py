@@ -1142,6 +1142,44 @@ def parse_subject_line(claude_response):
     return None, claude_response
 
 
+def _ee_items_with_cluster_image_fallback(ee_items, links_by_id, tiered_items):
+    """Borrow an image-bearing cluster sibling's image for EE items that have
+    none of their own.
+
+    Featured/hero rows already show a sibling's image when a story's lead source
+    carries none (e.g. BetterDwelling, whose page 403s our CI IP). Everything
+    Else rows are individual leftovers, so without this they drop straight to the
+    AI fallback. Returns a new list of (id, link); link dicts are shallow-copied
+    when augmented so links_by_id is never mutated.
+    """
+    tiered_items = tiered_items or []
+    members_by_cluster: dict = {}
+    cluster_by_item: dict = {}
+    for it in tiered_items:
+        cid = it.get("cluster_id")
+        if cid is None:
+            continue
+        members_by_cluster.setdefault(cid, []).append(it["id"])  # tiered order = best first
+        cluster_by_item[it["id"]] = cid
+
+    out = []
+    for lid, link in ee_items:
+        if link.get("image"):
+            out.append((lid, link))
+            continue
+        cid = cluster_by_item.get(lid)
+        borrowed = ""
+        for sib_id in members_by_cluster.get(cid, []):
+            if sib_id == lid:
+                continue
+            sib_image = links_by_id.get(sib_id, {}).get("image")
+            if sib_image:
+                borrowed = sib_image
+                break
+        out.append((lid, {**link, "image": borrowed} if borrowed else link))
+    return out
+
+
 def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, blurb_writer=None, thumbnail_resolver=None):
     clusters_by_item_id = clusters_by_item_id or {}
     toronto_tz  = ZoneInfo("America/Toronto")
@@ -1174,7 +1212,8 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
     ee_images = {}
     inline_images = []
     if thumbnail_resolver is not None and ee_items:
-        assets = thumbnail_resolver(ee_items, cache_dir=EE_THUMB_CACHE_DIR)
+        resolver_items = _ee_items_with_cluster_image_fallback(ee_items, links_by_id, tiered_items)
+        assets = thumbnail_resolver(resolver_items, cache_dir=EE_THUMB_CACHE_DIR)
         ee_images = {lid: a.cid for lid, a in assets.items()}
         inline_images = list(assets.values())
 
