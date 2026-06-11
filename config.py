@@ -8,6 +8,12 @@ SEEN_LINKS_FILE = "seen_links.json"
 SEVEN_DAYS_S = 7 * 24 * 60 * 60
 TEST_MODE = os.environ.get("MODE") == "test"
 
+# "What this means" callout mode. "section" renders one per-section block
+# collecting every relevant item (featured or Other Headlines); "article"
+# restores the legacy one-line-per-featured-story callout. Flip the default
+# (or set CALLOUT_MODE=article in the workflow env) to revert with no loss.
+CALLOUT_MODE = os.environ.get("CALLOUT_MODE", "section")
+
 # Drop feed items whose RSS summary is shorter than this. Hub/index feeds
 # (e.g., the Economist's "the-world-this-week") publish entries with empty
 # descriptions; without a snippet, the formatter has nothing to write a body

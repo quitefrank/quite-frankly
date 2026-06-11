@@ -1840,3 +1840,9 @@ def test_build_email_message_no_images_is_plain_html():
     from formatting import build_email_message
     msg = build_email_message("<html>hi</html>", "Subject", [])
     assert "text/html" in [p.get_content_type() for p in msg.walk()]
+
+
+def test_callout_mode_defaults_to_section():
+    import importlib, config
+    importlib.reload(config)
+    assert config.CALLOUT_MODE == "section"
