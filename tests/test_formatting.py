@@ -1876,3 +1876,59 @@ def test_select_format_prompt_by_mode():
     assert select_format_prompt("article") is FORMAT_SYSTEM_PROMPT_PER_ARTICLE
     # Unknown / None falls back to the configured default ("section").
     assert select_format_prompt(None) is FORMAT_SYSTEM_PROMPT_PER_SECTION
+
+
+def test_section_mode_single_hit_one_block_at_bottom():
+    text = (
+        "## Tech & AI\n\n**Big news [#1]**\nBody paragraph.\nSource: CBC\n"
+        "**Second story [#2]**\nMore body.\nSource: BBC\n"
+        "What this means: One relevant takeaway for you."
+    )
+    links = {
+        1: {"link": "https://a.co", "image": None, "title": "Big news", "snippet": ""},
+        2: {"link": "https://b.co", "image": None, "title": "Second story", "snippet": ""},
+    }
+    html, _ = parse_and_render_sections(text, links, callout_mode="section")
+    assert html.count("What this means:") == 1
+    assert "What this means for you:" not in html
+    assert html.index("What this means:") > html.index("Second story")
+
+
+def test_section_mode_zero_hits_no_block():
+    text = "## Tech & AI\n\n**Big news [#1]**\nBody paragraph.\nSource: CBC"
+    links = {1: {"link": "https://a.co", "image": None, "title": "Big news", "snippet": ""}}
+    html, _ = parse_and_render_sections(text, links, callout_mode="section")
+    assert "What this means" not in html
+
+
+def test_section_mode_tolerates_legacy_for_you_text():
+    text = (
+        "## Tech & AI\n\n**Big news [#1]**\nBody.\nSource: CBC\n"
+        "What this means for you: legacy phrasing still parses."
+    )
+    links = {1: {"link": "https://a.co", "image": None, "title": "Big news", "snippet": ""}}
+    html, _ = parse_and_render_sections(text, links, callout_mode="section")
+    assert "What this means:</strong> legacy phrasing" in html
+    assert "What this means for you:" not in html
+
+
+def test_article_mode_keeps_legacy_per_story_callout():
+    text = "## Tech & AI\n\n**Big news [#1]**\nBody.\nSource: CBC\nWhat this means for you: do X"
+    links = {1: {"link": "https://a.co", "image": None, "title": "Big news", "snippet": ""}}
+    html, _ = parse_and_render_sections(text, links, callout_mode="article")
+    assert "What this means for you:</strong> do X" in html
+
+
+def test_section_mode_today_in_the_world_block_at_bottom():
+    text = (
+        "## Today in the World\n\n🌍 **Rates held [#1]:** markets mixed.\n\n"
+        "🤖 **AI lab news [#2]:** a model shipped.\n"
+        "What this means: The model ship touches the Quite Frankly pipeline."
+    )
+    links = {
+        1: {"link": "https://a.co", "image": None, "title": "Rates held", "snippet": "x"},
+        2: {"link": "https://b.co", "image": None, "title": "AI lab news", "snippet": "y"},
+    }
+    html, _ = parse_and_render_sections(text, links, callout_mode="section")
+    assert html.count("What this means:") == 1
+    assert html.index("What this means:") > html.index("AI lab news")

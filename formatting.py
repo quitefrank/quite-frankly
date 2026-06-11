@@ -754,7 +754,37 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
     return hero_image_html + items_html
 
 
-def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, palette: dict = LIGHT, oh_copy_by_id=None, oh_collect=None):
+_CALLOUT_LINE_RE = re.compile(r"^what this means(?: for you)?:\s*(.*)", re.IGNORECASE)
+
+
+def _render_callout_html(text, palette, label="What this means:"):
+    return (
+        f'<div style="margin:10px 0 0;padding:12px 14px;background:{palette["callout_bg"]};'
+        f'border-left:3px solid {palette["accent"]};font-size:14px;line-height:20px;color:{palette["body"]};'
+        f'font-family:Helvetica,Arial,sans-serif">'
+        f'<strong style="color:{palette["accent"]}">{label}</strong> {text}</div>'
+    )
+
+
+def _extract_section_callout(lines):
+    """Pull a 'What this means[ for you]:' line out of a section's body lines.
+
+    Returns (callout_text, remaining_lines). Tolerates the legacy 'for you'
+    phrasing so an in-flight prompt swap never drops the line. Last match wins.
+    """
+    callout = ""
+    remaining = []
+    for line in lines:
+        m = _CALLOUT_LINE_RE.match(line.strip())
+        if m:
+            callout = m.group(1).strip()
+        else:
+            remaining.append(line)
+    return callout, remaining
+
+
+def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, palette: dict = LIGHT, oh_copy_by_id=None, oh_collect=None, callout_mode=None):
+    mode = callout_mode if callout_mode is not None else CALLOUT_MODE
     clusters_by_item_id = clusters_by_item_id or {}
     tiered_items = tiered_items or []
     # Seed used_ids with suppressed cluster members so the programmatic
@@ -778,11 +808,18 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
 
         emoji = SECTION_EMOJIS.get(title, "")
 
+        section_callout = ""
+        body_lines = lines[1:]
+        if mode == "section":
+            section_callout, body_lines = _extract_section_callout(body_lines)
+
         if _is_today_in_the_world_section(title):
             display_title, display_emoji = _global_pickoff_display(is_design_edition)
-            stories_html = _render_today_in_the_world(lines[1:], links_by_id, used_ids, palette, is_design_edition)
+            stories_html = _render_today_in_the_world(body_lines, links_by_id, used_ids, palette, is_design_edition)
             if not stories_html:
                 continue
+            if mode == "section" and section_callout:
+                stories_html += _render_callout_html(section_callout, palette)
             html += (
                 f'\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid {palette["card_border"]};'
                 f'overflow:hidden;background:{palette["card_bg"]};font-family:Helvetica,Arial,sans-serif">'
@@ -799,7 +836,7 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
         current_story      = None
         in_discarded_block = False  # Claude shouldn't emit OH anymore; skip if it does.
 
-        for line in lines[1:]:
+        for line in body_lines:
             line = line.strip()
 
             if line.startswith("### "):
@@ -905,11 +942,8 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
                 )
 
             if s["callout"]:
-                stories_html += (
-                    f'<div style="margin:10px 0 0;padding:12px 14px;background:{palette["callout_bg"]};'
-                    f'border-left:3px solid {palette["accent"]};font-size:14px;line-height:20px;color:{palette["body"]};'
-                    f'font-family:Helvetica,Arial,sans-serif">'
-                    f'<strong style="color:{palette["accent"]}">What this means for you:</strong> {s["callout"]}</div>'
+                stories_html += _render_callout_html(
+                    s["callout"], palette, label="What this means for you:"
                 )
 
             stories_html += "</div>"
@@ -919,6 +953,9 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
             copy_by_id=oh_copy_by_id, collect=oh_collect,
         )
         stories_html += oh_html
+
+        if mode == "section" and section_callout:
+            stories_html += _render_callout_html(section_callout, palette)
 
         if not stories_html:
             continue
