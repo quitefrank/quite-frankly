@@ -1864,3 +1864,15 @@ def test_callout_mode_defaults_to_section():
     import importlib, config
     importlib.reload(config)
     assert config.CALLOUT_MODE == "section"
+
+
+def test_select_format_prompt_by_mode():
+    from formatting import select_format_prompt
+    from prompts import (
+        FORMAT_SYSTEM_PROMPT_PER_SECTION,
+        FORMAT_SYSTEM_PROMPT_PER_ARTICLE,
+    )
+    assert select_format_prompt("section") is FORMAT_SYSTEM_PROMPT_PER_SECTION
+    assert select_format_prompt("article") is FORMAT_SYSTEM_PROMPT_PER_ARTICLE
+    # Unknown / None falls back to the configured default ("section").
+    assert select_format_prompt(None) is FORMAT_SYSTEM_PROMPT_PER_SECTION

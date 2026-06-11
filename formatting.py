@@ -15,6 +15,7 @@ from zoneinfo import ZoneInfo
 import anthropic
 
 from config import (
+    CALLOUT_MODE,
     EVERYTHING_ELSE_FALLBACK_POOL,
     EVERYTHING_ELSE_KEYWORD_EMOJIS,
     EVERYTHING_ELSE_SOURCE_EMOJIS,
@@ -27,7 +28,8 @@ from config import (
 )
 from prompts import (
     SUBJECT_BLURB_SYSTEM_PROMPT,
-    FORMAT_SYSTEM_PROMPT,
+    FORMAT_SYSTEM_PROMPT_PER_ARTICLE,
+    FORMAT_SYSTEM_PROMPT_PER_SECTION,
     LEGACY_FORMAT_SYSTEM_PROMPT,
 )
 from pipeline import canonical_key, normalize_text
@@ -416,6 +418,18 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
 
 # ── Claude API ─────────────────────────────────────────────────────────────────
 
+def select_format_prompt(callout_mode=None):
+    """Return the FORMAT system prompt for the given callout mode.
+
+    "article" → legacy per-story callout prompt; anything else (including
+    None) → the per-section default.
+    """
+    mode = callout_mode if callout_mode is not None else CALLOUT_MODE
+    if mode == "article":
+        return FORMAT_SYSTEM_PROMPT_PER_ARTICLE
+    return FORMAT_SYSTEM_PROMPT_PER_SECTION
+
+
 def call_formatter(headlines_text):
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     user_message = (
@@ -426,7 +440,7 @@ def call_formatter(headlines_text):
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
         max_tokens=4000,
-        system=FORMAT_SYSTEM_PROMPT,
+        system=select_format_prompt(),
         messages=[{"role": "user", "content": user_message}],
     )
     return message.content[0].text
