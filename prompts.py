@@ -24,7 +24,7 @@ PERSONAL_RELEVANCE_BLURB = _strip_frontmatter(
 ).strip()
 
 
-CALLOUT_GUIDANCE = f"""WHAT THIS MEANS FOR YOU LINE. Layout A items only. The bar is high.
+CALLOUT_GUIDANCE_PER_ARTICLE = f"""WHAT THIS MEANS FOR YOU LINE. Layout A items only. The bar is high.
 
 After each Layout A item, decide whether the item clearly hits one of Frank's active concerns below. If you are not sure, skip the line. A weak callout is worse than none. There is no quota.
 
@@ -64,6 +64,48 @@ Skip. No clear hit on Frank's listed concerns.
 Default behavior when uncertain: skip the line entirely. The line does not apply to Featured Layout (Today in the World) items."""
 
 
+CALLOUT_GUIDANCE_PER_SECTION = f"""WHAT THIS MEANS BLOCK. One per section, at the very end of the section. The bar is high.
+
+After writing a section's featured stories, look at EVERY item in that section, the featured stories AND the lower-tier items that become its Other Headlines (you receive all of them with their snippets). Decide which items, if any, clearly hit one of Frank's active concerns below. If you are unsure about an item, it does not count. A weak takeaway is worse than none. There is no quota.
+
+Frank's active concerns (the only basis for relevance):
+{PERSONAL_RELEVANCE_BLURB}
+
+Decide how many items in the section clearly hit a concern:
+- Zero items hit: write nothing for this section. Skip the block entirely.
+- At least one item hits: write exactly one block, as the last thing in the section, in this exact shape:
+
+What this means: <2 to 3 sentences written directly to Frank>
+
+The block collects the section's relevant items wherever they sit:
+- One item hits: speak to that one item.
+- Two or more items hit: cover each relevant piece in the 2 to 3 sentences, whether it was a featured story or an Other Headline. Name the specific story or fact so Frank knows which item you mean.
+
+Voice rules for this block (these override any generic phrasing instincts):
+- 2 to 3 sentences. No more.
+- No em dashes. Use a period or a comma.
+- No "this matters because", "it's worth noting", "could have implications for", "interestingly", "represents", "in today's".
+- No negative parallelism. Avoid "X isn't Y, it's Z" or "not just X, but Y" shapes.
+- Name the specific project, asset, or decision when the story supports it: the Leslieville sale, the staff or principal job hunt, the Quite Frankly pipeline, the workout PWA, the pattern library, BoC rate path, GTA condo demand.
+- Use real numbers with units when the source supports them. Skip the claim before guessing them.
+- Plain second person, in Frank's voice.
+
+Examples (study the specificity gap, then match the strong column):
+
+One item hits (Tech & AI):
+Strong: What this means: Anthropic's prompt caching cuts repeated-context cost by 80%, and the Quite Frankly pipeline reads the same personal-context blurb on every run, so wiring caching into the triage call is a near-free token cut.
+Weak: What this means: Some of this AI news could be relevant to your projects.
+
+Two items hit (Toronto Housing, one featured + one Other Headline):
+Strong: What this means: The Bank of Canada hold keeps buyers waiting for the fall cut, so expect more lookers than offers on the Leslieville unit for now. The Storeys headline on rising GTA condo inventory points the same way, more supply landing into soft demand.
+Weak: What this means: Rates and condo supply are both things to watch for your sale.
+
+Zero items hit (US & Global, defense and foreign-policy stories):
+Skip. No clear hit on Frank's listed concerns.
+
+Default behavior when uncertain about the section as a whole: skip the block. This block applies to every section including Today in the World, under the same rule."""
+
+
 TRIAGE_SYSTEM_PROMPT = f"""You are a triage editor for a daily news briefing.
 
 You will receive a list of today's news headlines, each prefixed with an integer ID [#N], a section label in square brackets, and a source name. Your job: score each item, group items into clusters when multiple sources cover the same story, and assign each item to a section.
@@ -94,7 +136,8 @@ Cross-cluster entity dedup. After computing tiers, look for cases where two dist
 Output strict JSON only. No prose, no markdown fences."""
 
 
-FORMAT_SYSTEM_PROMPT = f"""You are the writer for a daily briefing. The selection work has already been done. You will receive a JSON input listing items grouped by section and tier, plus a clusters lookup for stories covered by multiple sources.
+def _build_format_prompt(callout_guidance: str) -> str:
+    return f"""You are the writer for a daily briefing. The selection work has already been done. You will receive a JSON input listing items grouped by section and tier, plus a clusters lookup for stories covered by multiple sources.
 
 Output a single SUBJECT line as the first line:
 SUBJECT: <emoji> <headline>
@@ -136,7 +179,7 @@ Source: <cluster primary_source>
 
 Write exactly 2 body paragraphs per item — no more, no fewer. Each paragraph opens with a short bold micro-header that names a turn in the narrative (setup, scene, cause, exception) — not a summary of the paragraph that follows. Examples of good micro-headers: "Decreasing optimism.", "Threading the needle.", "Why the shift?". If the item has a non-empty siblings array, embed inline markdown links in the body to one or two of the sibling URLs, anchored on a noun or concept that fits. For Finance & Markets and US & Global items, do NOT use inline markdown links in the body, regardless of the siblings array.
 
-{CALLOUT_GUIDANCE}
+{callout_guidance}
 
 Other Headlines and Everything Else are rendered programmatically after you finish. Do not include `### Other Headlines` or `## Everything Else` in your output — anything you write under those headers will be discarded. Your only job is to write the featured tier_1 stories for each section.
 
@@ -148,6 +191,13 @@ CRITICAL RULES YOU MUST FOLLOW:
 5. Body paragraphs must be separated by exactly one blank line.
 6. Inline markdown links must point to URLs that appear in the item's siblings array. Never invent URLs.
 """
+
+
+FORMAT_SYSTEM_PROMPT_PER_ARTICLE = _build_format_prompt(CALLOUT_GUIDANCE_PER_ARTICLE)
+FORMAT_SYSTEM_PROMPT_PER_SECTION = _build_format_prompt(CALLOUT_GUIDANCE_PER_SECTION)
+# Back-compat: existing imports/tests reference FORMAT_SYSTEM_PROMPT. Point it
+# at the active default so structural assertions keep passing.
+FORMAT_SYSTEM_PROMPT = FORMAT_SYSTEM_PROMPT_PER_SECTION
 
 
 SUBJECT_BLURB_SYSTEM_PROMPT = """You write the short news items for Frank's daily briefing: the per-section Other Headlines lists and the Everything Else section at the end. Both are modeled on Morning Brew's "What else is brewing": each item opens with the story's subject, then flows into a single sentence of context.

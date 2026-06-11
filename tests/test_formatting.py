@@ -828,6 +828,24 @@ def test_format_prompt_describes_inline_source_links_rule():
     assert "US & Global" in FORMAT_SYSTEM_PROMPT
 
 
+def test_per_section_prompt_has_section_callout_rules():
+    from prompts import (
+        FORMAT_SYSTEM_PROMPT_PER_SECTION,
+        FORMAT_SYSTEM_PROMPT_PER_ARTICLE,
+    )
+    # New per-section prompt: collective block, no "for you", whole-section scope.
+    assert "What this means:" in FORMAT_SYSTEM_PROMPT_PER_SECTION
+    assert "What this means for you:" not in FORMAT_SYSTEM_PROMPT_PER_SECTION
+    assert "Other Headlines" in FORMAT_SYSTEM_PROMPT_PER_SECTION
+    assert "at least one" in FORMAT_SYSTEM_PROMPT_PER_SECTION.lower()
+    # Legacy per-article prompt keeps the old single-sentence rule.
+    assert "What this means for you:" in FORMAT_SYSTEM_PROMPT_PER_ARTICLE
+    # Shared structure survives in both.
+    for p in (FORMAT_SYSTEM_PROMPT_PER_SECTION, FORMAT_SYSTEM_PROMPT_PER_ARTICLE):
+        assert "Layout A" in p
+        assert "Featured Layout" in p
+
+
 def test_featured_story_caps_body_paragraphs_at_two():
     """Renderer caps featured-story body paragraphs at 2 even if Claude emits more."""
     text = """## Toronto Housing
