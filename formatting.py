@@ -954,11 +954,15 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
         )
         stories_html += oh_html
 
-        if mode == "section" and section_callout:
-            stories_html += _render_callout_html(section_callout, palette)
-
+        # Guard before appending the callout, mirroring the Today in the World
+        # path: a section with no stories and no Other Headlines is skipped
+        # entirely, so a stray "What this means" line never renders its own
+        # empty card.
         if not stories_html:
             continue
+
+        if mode == "section" and section_callout:
+            stories_html += _render_callout_html(section_callout, palette)
 
         html += (
             f'\n<div style="margin-bottom:10px;border-radius:15px;border:1px solid {palette["card_border"]};'

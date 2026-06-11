@@ -1932,3 +1932,12 @@ def test_section_mode_today_in_the_world_block_at_bottom():
     html, _ = parse_and_render_sections(text, links, callout_mode="section")
     assert html.count("What this means:") == 1
     assert html.index("What this means:") > html.index("AI lab news")
+
+
+def test_section_mode_callout_only_section_renders_no_card():
+    # A section with a callout line but no stories and no Other Headlines must
+    # not render a stray card holding just the callout.
+    text = "## Tech & AI\n\nWhat this means: nothing to anchor this to."
+    html, _ = parse_and_render_sections(text, {}, callout_mode="section")
+    assert "What this means" not in html
+    assert "Tech & AI" not in html
