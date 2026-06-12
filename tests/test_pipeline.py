@@ -4,6 +4,11 @@ from unittest.mock import patch
 import pipeline
 from pipeline import assign_ids, deduplicate, fetch_all_feeds, fetch_feed, record_seen
 
+# conftest's autouse _no_og_image_http fixture patches pipeline._fetch_og_meta to a
+# no-network stub. Capture the real implementation at import time (before any fixture
+# runs) so the brotli decode test below can exercise the genuine HTTP path.
+_REAL_FETCH_OG_META = pipeline._fetch_og_meta
+
 
 def test_assign_ids_returns_dict_keyed_by_id():
     items = [
@@ -175,6 +180,49 @@ def test_og_image_max_bytes_covers_deep_head_tags():
     # large enough to reach it, or finance articles never get a real image.
     from pipeline import OG_IMAGE_MAX_BYTES
     assert OG_IMAGE_MAX_BYTES >= 96 * 1024
+
+
+def test_fetch_og_meta_decodes_brotli_encoded_head():
+    # Hosts like moneysense.ca honor the `br` in our Accept-Encoding and reply
+    # with Content-Encoding: br. requests only decodes brotli when the `brotli`
+    # package is installed; without it, _fetch_og_meta sees raw compressed bytes,
+    # the og:image regex matches nothing, and every article on that host silently
+    # drops to the AI fallback. This exercises the real requests decode path
+    # (not a mock) against a live br-encoded response, so it fails if `brotli`
+    # is ever dropped from requirements.
+    import http.server
+    import threading
+
+    import brotli  # must be installed for the og:image path to work at all
+
+    body = brotli.compress(
+        b'<html><head><meta property="og:image" '
+        b'content="https://example.com/hero.jpg"></head><body>x</body></html>'
+    )
+
+    class _Handler(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=UTF-8")
+            self.send_header("Content-Encoding", "br")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+        def log_message(self, *args):
+            pass  # keep test output clean
+
+    server = http.server.HTTPServer(("127.0.0.1", 0), _Handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        url = f"http://127.0.0.1:{server.server_address[1]}/article"
+        meta = _REAL_FETCH_OG_META(url)
+    finally:
+        server.shutdown()
+        thread.join()
+
+    assert meta["image"] == "https://example.com/hero.jpg"
 
 
 def test_fetch_all_feeds_skips_og_image_enrichment_for_podcast_sources(monkeypatch):
