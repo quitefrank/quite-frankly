@@ -47,6 +47,7 @@ LIGHT = {
     "header_border": "#222222",
     "heading": "#1a1a1a",
     "body": "#333333",
+    "bold": "#333333",
     "meta": "#999999",
     "meta_label": "#888888",
     "accent": "#1c7ff2",
@@ -65,8 +66,9 @@ DARK = {
     "header_border": "#e6e6e6",
     "heading": "#f5f5f5",
     "body": "#c8c8c8",
-    "meta": "#7f7f7f",
-    "meta_label": "#8a8a8a",
+    "bold": "#ffffff",
+    "meta": "#989898",
+    "meta_label": "#9e9e9e",
     "accent": "#4d9bff",
     "callout_bg": "#16243a",
     "divider": "#3a3d45",
@@ -576,7 +578,13 @@ def _render_body_markdown(text: str, palette: dict = LIGHT) -> str:
         ),
         text,
     )
-    text = _MARKDOWN_BOLD_RE.sub(r"<strong>\1</strong>", text)
+    bold_color = palette.get("bold")
+    if bold_color and bold_color != palette.get("body"):
+        text = _MARKDOWN_BOLD_RE.sub(
+            rf'<strong style="color:{bold_color}">\1</strong>', text
+        )
+    else:
+        text = _MARKDOWN_BOLD_RE.sub(r"<strong>\1</strong>", text)
     return text
 
 

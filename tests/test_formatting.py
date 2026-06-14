@@ -1434,7 +1434,7 @@ def test_other_headlines_dark_palette():
     html = render_other_headlines_for_section("Tech & AI", items, links, set(), palette=DARK)
     assert "#c8c8c8" in html       # link + item body
     assert "#4d9bff" in html       # underline accent
-    assert "#8a8a8a" in html       # "Other Headlines" label
+    assert "#9e9e9e" in html       # "Other Headlines" label
     assert "#3a3d45" in html       # divider (dark)
     assert "#1c7ff2" not in html
 
