@@ -15,6 +15,25 @@ def test_parse_triage_response_returns_items_and_clusters():
     assert clusters["cl_a"]["primary_source"] == "CBC"
 
 
+def _section_enum(tool):
+    return tool["input_schema"]["properties"]["items"]["items"]["properties"]["section"]["enum"]
+
+
+def test_build_triage_tool_gates_design_section_enum():
+    # The tool schema enum is the hard gate: if "Design & Product" isn't in it,
+    # the model literally cannot emit it, so a stray weekday item falls back to
+    # its feed-origin section (Tech & AI) instead of spawning a one-item section.
+    from triage import build_triage_tool
+    assert "Design & Product" in _section_enum(build_triage_tool(design_allowed=True))
+    assert "Design & Product" not in _section_enum(build_triage_tool(design_allowed=False))
+
+
+def test_triage_tool_default_includes_design():
+    # Back-compat: the module-level TRIAGE_TOOL keeps all seven sections.
+    from triage import TRIAGE_TOOL
+    assert "Design & Product" in _section_enum(TRIAGE_TOOL)
+
+
 def test_select_tier_1_items():
     raw = (FIXTURES / "sample_triage_response.json").read_text()
     items, _ = parse_triage_response(raw)

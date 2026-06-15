@@ -106,7 +106,32 @@ Skip. No clear hit on Frank's listed concerns.
 Default behavior when uncertain about the section as a whole: skip the block. This block applies to every section including Today in the World, under the same rule."""
 
 
-TRIAGE_SYSTEM_PROMPT = f"""You are a triage editor for a daily news briefing.
+# Sections the triage LLM may assign an item to. Design & Product is the
+# weekend edition's signature: on weekday editions its feeds aren't fetched, so
+# the only way an item lands there is the LLM reclassifying a weekday source
+# (e.g. Simon Willison writing about writing). triage_sections(design_allowed=
+# False) drops it from the weekday menu so such items fall back to their
+# feed-origin section (Tech & AI) instead of spawning a thin one-item section.
+TRIAGE_SECTIONS = [
+    "Canada & Toronto",
+    "Toronto Housing",
+    "Tech & AI",
+    "Design & Product",
+    "Finance & Markets",
+    "US & Global",
+    "Today in the World",
+]
+
+
+def triage_sections(design_allowed: bool = True) -> list[str]:
+    if design_allowed:
+        return list(TRIAGE_SECTIONS)
+    return [s for s in TRIAGE_SECTIONS if s != "Design & Product"]
+
+
+def build_triage_system_prompt(design_allowed: bool = True) -> str:
+    section_list = ", ".join(f'"{s}"' for s in triage_sections(design_allowed))
+    return f"""You are a triage editor for a daily news briefing.
 
 You will receive a list of today's news headlines, each prefixed with an integer ID [#N], a section label in square brackets, and a source name. Your job: score each item, group items into clusters when multiple sources cover the same story, and assign each item to a section.
 
@@ -118,7 +143,7 @@ Reader context for personal relevance scoring:
 For each item, return:
 - id (integer)
 - tier (1=Featured, 2=Worth Reading, 3=Background, or 0=Dropped)
-- section (one of: "Canada & Toronto", "Toronto Housing", "Tech & AI", "Finance & Markets", "US & Global", "Today in the World", "Design & Product")
+- section (one of: {section_list})
 - cluster_id (string; same id for items covering the same underlying story)
 - scores: cross_source_coverage (integer count of feeds covering it, including itself), personal_relevance (0-3), section_fit ("good" | "weak" | "none")
 
@@ -134,6 +159,11 @@ Also return a "clusters" array. For each cluster_id, list primary_source (the so
 Cross-cluster entity dedup. After computing tiers, look for cases where two distinct clusters cover different stories but share the same protagonists (e.g., a court-case story and a corporate-restructure story both starring Musk and Altman). For each cluster, identify its dominant entities: named people, organizations, or products that appear in the canonical_headline. If two different clusters share 2 or more dominant entities AND both contain Tier 1 or Tier 2 items, demote every item in the lower-scoring cluster by one tier (Tier 1 becomes Tier 2, Tier 2 becomes Tier 3). Lower-scoring is the cluster whose top item has the lower tier-formula score; ties favor the cluster with higher cross_source_coverage. The goal is to prevent two stories about the same protagonists from both being featured in different sections.
 
 Output strict JSON only. No prose, no markdown fences."""
+
+
+# Back-compat default: all seven sections. The weekend path and any direct
+# importer get the full menu unchanged; weekday editions call the builder.
+TRIAGE_SYSTEM_PROMPT = build_triage_system_prompt()
 
 
 def _build_format_prompt(callout_guidance: str) -> str:

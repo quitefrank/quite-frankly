@@ -41,3 +41,30 @@ def test_triage_prompt_has_cross_cluster_entity_dedup_rule():
     assert "demote" in prompt, (
         "Triage prompt must instruct the model to demote the weaker cluster"
     )
+
+
+def test_triage_sections_gates_design_by_weekday():
+    # Design & Product is the weekend edition's signature. On weekday editions
+    # its feeds aren't fetched, so the only way an item lands there is the LLM
+    # reclassifying a weekday source (Simon Willison writing about writing, say).
+    # Dropping it from the weekday menu forces such items back to Tech & AI.
+    from prompts import triage_sections
+    weekend = triage_sections(design_allowed=True)
+    weekday = triage_sections(design_allowed=False)
+    assert "Design & Product" in weekend
+    assert "Design & Product" not in weekday
+    # The other six sections survive the gate untouched.
+    assert [s for s in weekend if s != "Design & Product"] == weekday
+
+
+def test_build_triage_system_prompt_omits_design_on_weekday():
+    from prompts import build_triage_system_prompt
+    assert "Design & Product" in build_triage_system_prompt(design_allowed=True)
+    assert "Design & Product" not in build_triage_system_prompt(design_allowed=False)
+
+
+def test_triage_system_prompt_default_includes_design():
+    # Back-compat: the module-level constant keeps all seven sections so any
+    # caller that imports it directly (and the weekend path) is unchanged.
+    from prompts import TRIAGE_SYSTEM_PROMPT
+    assert "Design & Product" in TRIAGE_SYSTEM_PROMPT

@@ -53,7 +53,7 @@ def main():
         if len(capped_items) < len(items):
             print(f"Capped triage input from {len(items)} to {len(capped_items)} items", flush=True)
         with _stage("triage"):
-            tiered_items, clusters = call_triage(capped_items)
+            tiered_items, clusters = call_triage(capped_items, design_allowed=is_design_mode(mode))
         print(f"Triage returned {len(tiered_items)} scored items, {len(clusters)} clusters", flush=True)
 
         enrich_cluster_metrics(tiered_items, links_by_id)

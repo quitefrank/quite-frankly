@@ -15,63 +15,64 @@ from concurrent.futures import ThreadPoolExecutor
 import anthropic
 
 from config import REDDIT_SUBREDDITS
-from prompts import TRIAGE_SYSTEM_PROMPT
+from prompts import build_triage_system_prompt, triage_sections
 from traction import fetch_hn_traction, fetch_reddit_traction
 
 
 MAX_TRIAGE_INPUT_ITEMS = 120
 
 
-TRIAGE_TOOL = {
-    "name": "emit_triage",
-    "description": "Emit the full triage result for today's headlines. Every input item must appear exactly once in 'items'.",
-    "input_schema": {
-        "type": "object",
-        "properties": {
-            "items": {
-                "type": "array",
+def build_triage_tool(design_allowed: bool = True) -> dict:
+    """The triage structured-output tool. The section enum is the hard gate:
+    if "Design & Product" isn't listed, the model cannot emit it, so a stray
+    weekday item falls back to its feed-origin section instead of spawning a
+    one-item section. See prompts.triage_sections for the weekday rationale."""
+    return {
+        "name": "emit_triage",
+        "description": "Emit the full triage result for today's headlines. Every input item must appear exactly once in 'items'.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
                 "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {"type": "integer", "description": "The exact [#N] id from the input headline."},
-                        "tier": {"type": "integer", "enum": [0, 1, 2, 3]},
-                        "section": {
-                            "type": "string",
-                            "enum": [
-                                "Canada & Toronto",
-                                "Toronto Housing",
-                                "Tech & AI",
-                                "Design & Product",
-                                "Finance & Markets",
-                                "US & Global",
-                                "Today in the World",
-                            ],
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {"type": "integer", "description": "The exact [#N] id from the input headline."},
+                            "tier": {"type": "integer", "enum": [0, 1, 2, 3]},
+                            "section": {
+                                "type": "string",
+                                "enum": triage_sections(design_allowed),
+                            },
+                            "cluster_id": {"type": "string"},
+                            "cross_source_coverage": {"type": "integer", "minimum": 1},
+                            "personal_relevance": {"type": "integer", "minimum": 0, "maximum": 3},
+                            "section_fit": {"type": "string", "enum": ["good", "weak", "none"]},
                         },
-                        "cluster_id": {"type": "string"},
-                        "cross_source_coverage": {"type": "integer", "minimum": 1},
-                        "personal_relevance": {"type": "integer", "minimum": 0, "maximum": 3},
-                        "section_fit": {"type": "string", "enum": ["good", "weak", "none"]},
+                        "required": ["id", "tier", "section", "cluster_id", "cross_source_coverage", "personal_relevance", "section_fit"],
                     },
-                    "required": ["id", "tier", "section", "cluster_id", "cross_source_coverage", "personal_relevance", "section_fit"],
+                },
+                "clusters": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {"type": "string"},
+                            "primary_source": {"type": "string"},
+                            "also_in": {"type": "array", "items": {"type": "string"}},
+                            "canonical_headline": {"type": "string"},
+                        },
+                        "required": ["id", "primary_source", "also_in", "canonical_headline"],
+                    },
                 },
             },
-            "clusters": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {"type": "string"},
-                        "primary_source": {"type": "string"},
-                        "also_in": {"type": "array", "items": {"type": "string"}},
-                        "canonical_headline": {"type": "string"},
-                    },
-                    "required": ["id", "primary_source", "also_in", "canonical_headline"],
-                },
-            },
+            "required": ["items", "clusters"],
         },
-        "required": ["items", "clusters"],
-    },
-}
+    }
+
+
+# Back-compat default: all seven sections.
+TRIAGE_TOOL = build_triage_tool()
 
 
 def cap_items(items: list[dict], cap: int = MAX_TRIAGE_INPUT_ITEMS) -> list[dict]:
@@ -97,10 +98,14 @@ def cap_items(items: list[dict], cap: int = MAX_TRIAGE_INPUT_ITEMS) -> list[dict
     return out[:cap]
 
 
-def call_triage(items: list[dict]) -> tuple[list[dict], dict[str, dict]]:
+def call_triage(items: list[dict], design_allowed: bool = True) -> tuple[list[dict], dict[str, dict]]:
     """Run the triage pass and return (tiered_items, clusters_by_id).
 
     Uses tool-use structured output so required fields are guaranteed.
+
+    design_allowed gates the "Design & Product" section: pass False on weekday
+    editions (where its feeds aren't fetched) so a stray weekday source isn't
+    reclassified into a thin one-item section. Weekend editions pass True.
     """
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     user_message = build_triage_user_message(items)
@@ -116,8 +121,8 @@ def call_triage(items: list[dict]) -> tuple[list[dict], dict[str, dict]]:
         # its clusters can approach the old ceiling; truncation there returned
         # an empty tool call and shipped a blank edition (the June 8 incident).
         max_tokens=32000,
-        system=TRIAGE_SYSTEM_PROMPT,
-        tools=[TRIAGE_TOOL],
+        system=build_triage_system_prompt(design_allowed),
+        tools=[build_triage_tool(design_allowed)],
         tool_choice={"type": "tool", "name": "emit_triage"},
         messages=[{"role": "user", "content": user_message}],
     ) as stream:
