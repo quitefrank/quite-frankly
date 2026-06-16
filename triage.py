@@ -115,7 +115,7 @@ def call_triage(items: list[dict], design_allowed: bool = True) -> tuple[list[di
     # shipped editions with no Everything Else. get_final_message() reassembles
     # the same Message (tool_use included) the interpreter expects.
     with client.messages.stream(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-6",
         # 32k (up from 16k) buys headroom now that the og:description snippet
         # backfill makes the prompt denser. A full 120-item weekday load plus
         # its clusters can approach the old ceiling; truncation there returned

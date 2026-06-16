@@ -440,7 +440,7 @@ def call_formatter(headlines_text):
         + "\n\nGenerate my daily briefing following the exact format specified."
     )
     message = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-6",
         max_tokens=4000,
         system=select_format_prompt(),
         messages=[{"role": "user", "content": user_message}],
@@ -461,7 +461,7 @@ def call_legacy_formatter(headlines_text):
         + "\n\nGenerate my daily briefing following the exact format specified."
     )
     message = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-6",
         max_tokens=4000,
         system=LEGACY_FORMAT_SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_message}],
@@ -1114,7 +1114,7 @@ def write_subject_blurbs(items, sentences_by_id=None, client=None):
     try:
         client = client or anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
         message = client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model="claude-sonnet-4-6",
             # One batch covers every Other Headlines + Everything Else item
             # (~28 on a heavy day, each a subject + 1-2 sentence blurb). At 1500
             # the JSON truncated mid-string and json.loads failed, dropping the
