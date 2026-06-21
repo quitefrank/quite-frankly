@@ -1056,7 +1056,7 @@ def _ee_anchor(text, link, palette):
     if not link:
         return text
     return (
-        f'<a href="{link}" style="color:{palette["body"]};font-weight:700;'
+        f'<a href="{link}" style="color:{palette["bold"]};font-weight:700;'
         f'text-decoration:underline;text-decoration-color:{palette["accent"]};">'
         f'{text}</a>'
     )
