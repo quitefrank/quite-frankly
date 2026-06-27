@@ -226,6 +226,18 @@ TRACTION_MAX_WORKERS = 5
 SECTION_FIT_SCORE = {"good": 1, "weak": 0, "none": -1}
 
 
+def reddit_bonus(reddit: dict) -> int:
+    if reddit.get("score", 0) >= 1000 or reddit.get("subreddit_hits", 0) >= 2:
+        return 2
+    if reddit.get("score", 0) >= 200:
+        return 1
+    return 0
+
+
+def hn_bonus(hn: dict) -> int:
+    return 1 if hn.get("points", 0) >= 200 else 0
+
+
 def compute_phase2_tier(item: dict) -> int:
     scores = item.get("scores", {})
     base = (
@@ -233,19 +245,7 @@ def compute_phase2_tier(item: dict) -> int:
         + scores.get("personal_relevance", 0) * 2
         + SECTION_FIT_SCORE.get(scores.get("section_fit", "none"), 0)
     )
-
-    reddit = item.get("reddit", {})
-    if reddit.get("score", 0) >= 1000 or reddit.get("subreddit_hits", 0) >= 2:
-        reddit_bonus = 2
-    elif reddit.get("score", 0) >= 200:
-        reddit_bonus = 1
-    else:
-        reddit_bonus = 0
-
-    hn = item.get("hn", {})
-    hn_bonus = 1 if hn.get("points", 0) >= 200 else 0
-
-    total = base + reddit_bonus + hn_bonus
+    total = base + reddit_bonus(item.get("reddit", {})) + hn_bonus(item.get("hn", {}))
     if total >= 6:
         return 1
     if total >= 3:
@@ -263,8 +263,8 @@ def _attach_one(item: dict, link: str, subreddits: list) -> None:
 def attach_traction(items: list[dict], links_by_id: dict, subreddits: list = None) -> list[dict]:
     """Attach Reddit + HN traction to each item, in parallel across items.
 
-    Each worker handles one item's full traction (7 subreddit searches + 1 HN
-    query, ~800ms total). With TRACTION_MAX_WORKERS=5 the burst rate to
+    Each worker handles one item's full traction (one search per configured
+    subreddit + 1 HN query, ~800ms total). With TRACTION_MAX_WORKERS=5 the burst rate to
     Reddit stays under the anonymous 60 req/min ceiling.
     """
     subreddits = subreddits if subreddits is not None else REDDIT_SUBREDDITS

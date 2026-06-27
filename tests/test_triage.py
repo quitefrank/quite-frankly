@@ -229,6 +229,16 @@ def test_enrich_treats_empty_cluster_as_singleton():
     assert items[0]["scores"]["cross_source_coverage"] == 1
 
 
+def test_reddit_and_hn_bonus_thresholds():
+    from triage import reddit_bonus, hn_bonus
+    assert reddit_bonus({"score": 1000, "subreddit_hits": 0}) == 2
+    assert reddit_bonus({"score": 0, "subreddit_hits": 2}) == 2
+    assert reddit_bonus({"score": 200, "subreddit_hits": 1}) == 1
+    assert reddit_bonus({"score": 10, "subreddit_hits": 1}) == 0
+    assert hn_bonus({"points": 200}) == 1
+    assert hn_bonus({"points": 199}) == 0
+
+
 def test_apply_phase2_tier_uses_design_subreddits_on_design_editions(monkeypatch):
     import triage
     from config import DESIGN_SUBREDDITS

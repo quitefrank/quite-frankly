@@ -70,7 +70,7 @@ def main():
             print(f"Cluster suppression: hiding {len(suppressed_ids)} duplicate item(s)", flush=True)
 
         with _stage("format"):
-            format_input = build_format_input(tiered_items, clusters, links_by_id, suppressed_ids)
+            format_input = build_format_input(tiered_items, clusters, links_by_id, suppressed_ids, is_design_edition=is_design_mode(mode))
             format_raw = call_formatter(format_input)
 
         clusters_by_item_id = {

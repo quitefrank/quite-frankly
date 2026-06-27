@@ -118,6 +118,21 @@ def _item_score(scores: dict) -> int:
     )
 
 
+def _popularity_score(item: dict) -> int:
+    """Rank the global pickoff by how *talked about* a story is, not how
+    personally relevant. Cross-source coverage dominates (x3 — "most
+    published"), reddit/HN traction adds the "most discussed" signal, and
+    personal relevance is a minor tiebreak (x1)."""
+    from triage import reddit_bonus, hn_bonus
+    scores = item.get("scores", {})
+    return (
+        scores.get("cross_source_coverage", 0) * 3
+        + reddit_bonus(item.get("reddit", {}))
+        + hn_bonus(item.get("hn", {}))
+        + scores.get("personal_relevance", 0)
+    )
+
+
 def suppressed_cluster_ids(tiered_items: list[dict]) -> set[int]:
     """Return the ids of non-representative cluster members.
 
@@ -240,7 +255,8 @@ def near_duplicate_ids(
     return suppressed
 
 
-def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], links_by_id: dict[int, dict], suppressed_ids: set[int] | None = None) -> str:
+def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], links_by_id: dict[int, dict], suppressed_ids: set[int] | None = None, is_design_edition: bool = False) -> str:
+    item_by_id = {it["id"]: it for it in tiered_items}
     # Build cluster_members from the UNCOLLAPSED tiered_items so siblings
     # surface every cluster member's URL — even ones that the global cluster
     # collapse below drops. Order matters: the collapse keeps only one item
@@ -333,8 +349,10 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
             continue
         for item in sec_buckets["tier_1"]:
             global_pool.append((sec, item))
-    # Sort by pure score desc to pick the top 5 regardless of image.
-    global_pool.sort(key=lambda pair: pair[1]["_score"], reverse=True)
+    # Sort by popularity desc to pick the top 5 regardless of image: the
+    # global pickoff reflects "most talked about / most covered", not personal
+    # relevance, so it reads traction off the original tiered_items.
+    global_pool.sort(key=lambda pair: _popularity_score(item_by_id[pair[1]["id"]]), reverse=True)
     picked = global_pool[:TODAY_IN_THE_WORLD_CAP]
 
     # Hero promotion: if any picked item has an image, move the

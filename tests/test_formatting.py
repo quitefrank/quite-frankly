@@ -524,6 +524,22 @@ def test_today_in_the_world_pulls_global_top_five():
     assert 401 not in {x["id"] for x in payload["sections"]["US & Global"]["tier_1"]}
 
 
+def test_pickoff_ranks_by_popularity_not_relevance():
+    # #1: huge personal relevance, no coverage/traction.
+    # #2: low relevance, wide coverage + reddit-hot → more "talked about".
+    tiered_items = [
+        {"id": 1, "section": "Design & Product", "tier": 1, "cluster_id": "c1",
+         "scores": {"cross_source_coverage": 1, "personal_relevance": 3, "section_fit": "good"}},
+        {"id": 2, "section": "Tech & AI", "tier": 1, "cluster_id": "c2",
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 0, "section_fit": "good"},
+         "reddit": {"score": 1500, "subreddit_hits": 3}, "hn": {"points": 300}},
+    ]
+    links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": "s", "image": ""} for i in tiered_items}
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id, is_design_edition=True))
+    world = payload["sections"]["Today in the World"]["tier_1"]
+    assert world[0]["id"] == 2
+
+
 def test_build_format_input_collapses_same_cluster_within_section():
     # Triage clustered both NBC Meet the Press items together (cluster_id
     # "alex_murdaugh"), but build_format_input was treating them as independent
