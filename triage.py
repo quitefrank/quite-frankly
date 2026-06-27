@@ -218,8 +218,9 @@ def build_triage_user_message(items: list[dict]) -> str:
 
 # ---- Phase 2 traction-aware tier scoring ----
 
-# Reddit's anonymous rate limit is ~60 req/min. With 7 subreddits per item +
-# 1 HN call, 5 concurrent workers keeps burst rate under that ceiling.
+# Reddit's anonymous rate limit is ~60 req/min. With up to 7 subreddits per
+# item + 1 HN call, 5 concurrent workers keeps burst rate under that ceiling.
+# (Weekend design editions search the 6-entry DESIGN_SUBREDDITS, strictly fewer.)
 TRACTION_MAX_WORKERS = 5
 
 
