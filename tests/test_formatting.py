@@ -563,6 +563,22 @@ def test_weekday_pickoff_pulls_only_misfit_stories():
     assert payload["sections"]["Tech & AI"]["tier_1"][0]["id"] == 1
 
 
+def test_weekday_pickoff_caps_at_five_by_popularity():
+    # Seven eligible misfit (weak/none fit) items on a weekday: only the top 5
+    # by popularity (cross_source_coverage dominates) survive into In the World.
+    # ccov descends 7..1 so the ranking is unambiguous; ids 1-5 (ccov 7..3) win,
+    # ids 6,7 (ccov 2,1) drop out, exercising the weekday cap + popularity sort.
+    tiered_items = [
+        {"id": i, "section": "Tech & AI", "tier": 1, "cluster_id": f"c{i}",
+         "scores": {"cross_source_coverage": 8 - i, "personal_relevance": 0, "section_fit": "none"}}
+        for i in range(1, 8)
+    ]
+    links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": "s", "image": ""} for i in tiered_items}
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id, is_design_edition=False))
+    world_ids = {x["id"] for x in payload["sections"]["Today in the World"]["tier_1"]}
+    assert world_ids == {1, 2, 3, 4, 5}
+
+
 def test_weekend_pickoff_still_pulls_top_regardless_of_fit():
     # Weekend keeps the highlight-reel behaviour: best item wins even with good fit.
     tiered_items = [
@@ -621,9 +637,9 @@ def test_today_in_the_world_hero_is_highest_scored_with_image():
     # fit="none" so all three are pulled into the weekday pickoff; the test is
     # about image-based hero promotion, not section fit.
     tiered_items = [
-        _item(1, "Tech & AI", tier=1, ccov=4, prel=3, fit="none"),  # 8, no image
-        _item(2, "Tech & AI", tier=1, ccov=3, prel=2, fit="none"),  # 6, with image
-        _item(3, "Tech & AI", tier=1, ccov=2, prel=2, fit="none"),  # 5, with image
+        _item(1, "Tech & AI", tier=1, ccov=4, prel=3, fit="none"),  # highest score, no image
+        _item(2, "Tech & AI", tier=1, ccov=3, prel=2, fit="none"),  # 2nd score, with image
+        _item(3, "Tech & AI", tier=1, ccov=2, prel=2, fit="none"),  # 3rd score, with image
     ]
     links_by_id = {
         1: {"title": "t1", "source": "X", "snippet": "x", "image": ""},
