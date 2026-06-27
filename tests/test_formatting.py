@@ -291,7 +291,9 @@ def test_section_order_is_by_max_score_descending():
         _item(20, "US & Global",      tier=2, ccov=4, prel=3, fit="good"),  # score 8
         _item(30, "Tech & AI",        tier=2, ccov=2, prel=2, fit="good"),  # score 5
         # Tier-1 items in another section so Today in the World is populated.
-        _item(91, "Toronto Housing", tier=1, ccov=4, prel=4, fit="good"),  # score 9
+        # fit="weak" so the weekday pickoff still pulls it (weak/no-fit only);
+        # ccov=5 keeps its composite at 9 so Today in the World still sorts first.
+        _item(91, "Toronto Housing", tier=1, ccov=5, prel=4, fit="weak"),  # score 9
     ]
     links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "CBC", "snippet": ""} for i in tiered_items}
     payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
@@ -513,7 +515,9 @@ def test_today_in_the_world_pulls_global_top_five():
         i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": "x", "image": f"https://img/{i['id']}.jpg"}
         for i in tiered_items
     }
-    payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
+    # is_design_edition=True: top-5-by-score lift regardless of fit is the
+    # weekend highlight-reel behaviour. Weekday now gates on weak/no fit.
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id, is_design_edition=True))
     titw = payload["sections"]["Today in the World"]
     # Top 5 by composite score: 101 (8), 201 (8), 401 (8), 301 (7), 102 (6)
     assert {x["id"] for x in titw["tier_1"]} == {101, 201, 401, 301, 102}
@@ -538,6 +542,37 @@ def test_pickoff_ranks_by_popularity_not_relevance():
     payload = json.loads(build_format_input(tiered_items, {}, links_by_id, is_design_edition=True))
     world = payload["sections"]["Today in the World"]["tier_1"]
     assert world[0]["id"] == 2
+
+
+def test_weekday_pickoff_pulls_only_misfit_stories():
+    # Weekday (is_design_edition=False): only weak/none section_fit items are
+    # eligible for "In the World" — the ones that don't land in a section.
+    tiered_items = [
+        {"id": 1, "section": "Tech & AI", "tier": 1, "cluster_id": "c1",
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # great fit → stays in section
+        {"id": 2, "section": "Tech & AI", "tier": 1, "cluster_id": "c2",
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 0, "section_fit": "none"}},   # no fit → pickoff
+        {"id": 3, "section": "US & Global", "tier": 1, "cluster_id": "c3",
+         "scores": {"cross_source_coverage": 3, "personal_relevance": 0, "section_fit": "weak"}},   # weak fit → pickoff
+    ]
+    links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": "s", "image": ""} for i in tiered_items}
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id, is_design_edition=False))
+    world_ids = {x["id"] for x in payload["sections"]["Today in the World"]["tier_1"]}
+    assert world_ids == {2, 3}
+    # The good-fit story stays in its home section, not the pickoff.
+    assert payload["sections"]["Tech & AI"]["tier_1"][0]["id"] == 1
+
+
+def test_weekend_pickoff_still_pulls_top_regardless_of_fit():
+    # Weekend keeps the highlight-reel behaviour: best item wins even with good fit.
+    tiered_items = [
+        {"id": 1, "section": "Design & Product", "tier": 1, "cluster_id": "c1",
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 2, "section_fit": "good"}},
+    ]
+    links_by_id = {1: {"title": "t1", "source": "X", "snippet": "s", "image": ""}}
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id, is_design_edition=True))
+    world_ids = {x["id"] for x in payload["sections"]["Today in the World"]["tier_1"]}
+    assert world_ids == {1}
 
 
 def test_build_format_input_collapses_same_cluster_within_section():
@@ -583,10 +618,12 @@ def test_build_format_input_does_not_collapse_items_with_empty_cluster_id():
 
 def test_today_in_the_world_hero_is_highest_scored_with_image():
     # Top scorer has no image; second-top has an image. Hero must be the second.
+    # fit="none" so all three are pulled into the weekday pickoff; the test is
+    # about image-based hero promotion, not section fit.
     tiered_items = [
-        _item(1, "Tech & AI", tier=1, ccov=4, prel=3, fit="good"),  # 8, no image
-        _item(2, "Tech & AI", tier=1, ccov=3, prel=2, fit="good"),  # 6, with image
-        _item(3, "Tech & AI", tier=1, ccov=2, prel=2, fit="good"),  # 5, with image
+        _item(1, "Tech & AI", tier=1, ccov=4, prel=3, fit="none"),  # 8, no image
+        _item(2, "Tech & AI", tier=1, ccov=3, prel=2, fit="none"),  # 6, with image
+        _item(3, "Tech & AI", tier=1, ccov=2, prel=2, fit="none"),  # 5, with image
     ]
     links_by_id = {
         1: {"title": "t1", "source": "X", "snippet": "x", "image": ""},
@@ -1043,18 +1080,23 @@ def test_end_to_end_pipeline_from_build_format_input_to_html(tmp_path):
     #     siblings entry pointing at item 11's URL.
     #   - Finance & Markets has 1 item (left after pickoff lifts the highest
     #     scorer), which renders through the unified Layout A path.
+    # The top-5 lift candidates use section_fit="weak" so the weekday pickoff
+    # (which gates on weak/no fit) still lifts them, keeping the downstream
+    # siblings/hero/per-section-cap assertions exercising the same plumbing.
+    # Item 10 carries ccov=6 so it still out-scores its cluster sibling 11 (8)
+    # and stays the cl_a representative even with the weak-fit penalty gone.
     tiered_items = [
         # Top-5 candidates (highest scores → pickoff lifts these into TitW)
         {"id": 10, "section": "Tech & AI", "tier": 1, "cluster_id": "cl_a",
-         "scores": {"cross_source_coverage": 5, "personal_relevance": 3, "section_fit": "good"}},  # 9
+         "scores": {"cross_source_coverage": 6, "personal_relevance": 3, "section_fit": "weak"}},  # 9
         {"id": 20, "section": "Canada & Toronto", "tier": 1, "cluster_id": "cl_b",
-         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # 8
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "weak"}},  # 7
         {"id": 30, "section": "US & Global", "tier": 1, "cluster_id": "cl_c",
-         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # 8
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "weak"}},  # 7
         {"id": 40, "section": "Finance & Markets", "tier": 1, "cluster_id": "cl_d",
-         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # 8
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "weak"}},  # 7
         {"id": 50, "section": "Toronto Housing", "tier": 1, "cluster_id": "cl_e",
-         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # 8
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "weak"}},  # 7
         # Sibling for cluster cl_a — same cluster as item 10 but tier 2; should
         # appear in item 10's siblings array but NOT be picked into TitW.
         {"id": 11, "section": "Tech & AI", "tier": 2, "cluster_id": "cl_a",

@@ -348,6 +348,12 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
         if sec == TODAY_IN_THE_WORLD:
             continue
         for item in sec_buckets["tier_1"]:
+            if not is_design_edition:
+                # Weekday "In the World" surfaces only stories that don't land
+                # cleanly in a section (weak/no fit) — the otherwise-missed pile.
+                fit = item_by_id[item["id"]].get("scores", {}).get("section_fit", "weak")
+                if fit not in ("weak", "none"):
+                    continue
             global_pool.append((sec, item))
     # Sort by popularity desc to pick the top 5 regardless of image: the
     # global pickoff reflects "most talked about / most covered", not personal
