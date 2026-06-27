@@ -59,7 +59,7 @@ def main():
         enrich_cluster_metrics(tiered_items, links_by_id)
 
         with _stage("phase2_tier"):
-            apply_phase2_tier(tiered_items, links_by_id)
+            apply_phase2_tier(tiered_items, links_by_id, design_edition=is_design_mode(mode))
         print("Phase 2 tier reassignment complete.", flush=True)
 
         suppressed_ids = (

@@ -255,18 +255,19 @@ def compute_phase2_tier(item: dict) -> int:
     return 0
 
 
-def _attach_one(item: dict, link: str) -> None:
-    item["reddit"] = fetch_reddit_traction(link, REDDIT_SUBREDDITS)
+def _attach_one(item: dict, link: str, subreddits: list) -> None:
+    item["reddit"] = fetch_reddit_traction(link, subreddits)
     item["hn"] = fetch_hn_traction(link)
 
 
-def attach_traction(items: list[dict], links_by_id: dict) -> list[dict]:
+def attach_traction(items: list[dict], links_by_id: dict, subreddits: list = None) -> list[dict]:
     """Attach Reddit + HN traction to each item, in parallel across items.
 
     Each worker handles one item's full traction (7 subreddit searches + 1 HN
     query, ~800ms total). With TRACTION_MAX_WORKERS=5 the burst rate to
     Reddit stays under the anonymous 60 req/min ceiling.
     """
+    subreddits = subreddits if subreddits is not None else REDDIT_SUBREDDITS
     work = []
     for item in items:
         link = links_by_id.get(item["id"], {}).get("link", "")
@@ -276,19 +277,21 @@ def attach_traction(items: list[dict], links_by_id: dict) -> list[dict]:
     if not work:
         return items
     with ThreadPoolExecutor(max_workers=TRACTION_MAX_WORKERS) as executor:
-        list(executor.map(lambda pair: _attach_one(*pair), work))
+        list(executor.map(lambda pair: _attach_one(pair[0], pair[1], subreddits), work))
     return items
 
 
-def apply_phase2_tier(items: list[dict], links_by_id: dict) -> list[dict]:
+def apply_phase2_tier(items: list[dict], links_by_id: dict, design_edition: bool = False) -> list[dict]:
     """Overwrite each item's tier using the Phase 2 traction-aware formula.
 
     Mutates items in place. If the Reddit/HN fetch raises (network outage,
     library error), log and return items unchanged so the email still ships
     with Claude's original tier assignments.
     """
+    from config import DESIGN_SUBREDDITS
+    subreddits = DESIGN_SUBREDDITS if design_edition else REDDIT_SUBREDDITS
     try:
-        attach_traction(items, links_by_id)
+        attach_traction(items, links_by_id, subreddits)
     except Exception as e:
         print(f"  Phase 2: attach_traction failed ({e}); keeping Claude tiers.", flush=True)
         return items

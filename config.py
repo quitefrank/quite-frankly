@@ -30,6 +30,19 @@ REDDIT_SUBREDDITS = [
     "OntarioHousing",
 ]
 
+# Searched instead of REDDIT_SUBREDDITS on weekend design editions so the
+# reddit "most talked about" signal reflects design/product discussion, not
+# news. Kept to ~6 subs to stay under Reddit's anonymous ~60 req/min ceiling
+# (6 subreddit searches + 1 HN call per item, 5 concurrent workers).
+DESIGN_SUBREDDITS = [
+    "userexperience",
+    "UXDesign",
+    "web_design",
+    "graphic_design",
+    "ProductManagement",
+    "Design",
+]
+
 FEEDS_WEEKDAY = [
     # Canada & Toronto
     {"url": "https://www.cbc.ca/cmlink/rss-canada-toronto",                                               "source": "CBC"},

@@ -227,3 +227,18 @@ def test_enrich_treats_empty_cluster_as_singleton():
     enrich_cluster_metrics(items, {5: {"source": "NYT"}})
     assert items[0]["cluster_size"] == 1
     assert items[0]["scores"]["cross_source_coverage"] == 1
+
+
+def test_apply_phase2_tier_uses_design_subreddits_on_design_editions(monkeypatch):
+    import triage
+    from config import DESIGN_SUBREDDITS
+    captured = {}
+    def fake_reddit(url, subreddits):
+        captured["subs"] = subreddits
+        return {"score": 0, "comments": 0, "subreddit_hits": 0}
+    monkeypatch.setattr(triage, "fetch_reddit_traction", fake_reddit)
+    monkeypatch.setattr(triage, "fetch_hn_traction", lambda url: {"points": 0})
+    items = [{"id": 1, "tier": 1, "scores": {"cross_source_coverage": 1, "personal_relevance": 0, "section_fit": "weak"}}]
+    links_by_id = {1: {"link": "https://example.com/a"}}
+    triage.apply_phase2_tier(items, links_by_id, design_edition=True)
+    assert captured["subs"] == DESIGN_SUBREDDITS
