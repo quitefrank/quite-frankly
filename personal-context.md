@@ -31,7 +31,7 @@ Frank is a senior product designer in Toronto, 4 years at theScore and 8 to 10 y
 
 He lives at 50 McCaul St #301 (downtown Toronto, OCAD / Chinatown area). Walking distance to St. Patrick and Osgoode (Line 1) and the 501/505/510 streetcars. He does not own a car. Use this as the default origin point when planning venues, dates, or commute timing.
 
-He is aiming for a staff or principal product designer role at a consumer product, AI, design-tooling, or Toronto-area tech company. Frank is exiting sports betting, so betting-industry moves do not count as personal relevance.
+He is primarily aiming for a staff product designer role, with principal or lead as situational considerations depending on the opportunity, at a consumer product, AI, design-tooling, or Toronto-area tech company. The reservation about principal and lead is a time-and-freedom versus comp trade-off (see `About Me/memory.md`, Personal Context, 2026-06-24). Frank is exiting sports betting, so betting-industry moves do not count as personal relevance.
 
 ## Career and Personal Brand
 

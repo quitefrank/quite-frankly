@@ -1941,3 +1941,58 @@ def test_section_mode_callout_only_section_renders_no_card():
     html, _ = parse_and_render_sections(text, {}, callout_mode="section")
     assert "What this means" not in html
     assert "Tech & AI" not in html
+
+
+def test_pickoff_item_not_duplicated_in_section_other_headlines():
+    # Item #10 is featured in the global pickoff block AND is a tier-1
+    # Design & Product item, so OH synthesis would re-list it (the bug).
+    text = (
+        "## Design & Product\n"
+        "**DesignOps shifts [#1]**\nSource: UX Collective\nbody one\n\n"
+        "## Today in the World\n"
+        "🎨 **Figma goes code-native [#10]:** Config 2026 recap\n"
+    )
+    tiered_items = [
+        _item(1, "Design & Product", tier=1, ccov=2, prel=2, fit="good"),
+        _item(10, "Design & Product", tier=1, ccov=2, prel=1, fit="good"),
+    ]
+    links_by_id = {
+        1: {"title": "DesignOps shifts", "source": "UX Collective", "snippet": "x", "link": "https://u/1", "image": ""},
+        10: {"title": "Figma goes code-native", "source": "UX Collective", "snippet": "x", "link": "https://u/10", "image": ""},
+    }
+    html, used_ids = parse_and_render_sections(
+        text, links_by_id, {}, tiered_items=tiered_items, is_design_edition=True,
+    )
+    assert html.count('href="https://u/10"') == 1
+    assert 10 in used_ids
+
+
+def test_pickoff_section_renders_first():
+    text = (
+        "## Design & Product\n**A [#1]**\nSource: UX Collective\nbody\n\n"
+        "## Today in the World\n🎨 **B [#2]:** body two\n"
+    )
+    tiered_items = [
+        _item(1, "Design & Product", tier=1, ccov=2, prel=2, fit="good"),
+        _item(2, "Design & Product", tier=1, ccov=2, prel=1, fit="good"),
+    ]
+    links_by_id = {
+        1: {"title": "A", "source": "UX Collective", "snippet": "x", "link": "https://u/1", "image": ""},
+        2: {"title": "B", "source": "UX Collective", "snippet": "x", "link": "https://u/2", "image": ""},
+    }
+    html, _ = parse_and_render_sections(
+        text, links_by_id, {}, tiered_items=tiered_items, is_design_edition=True,
+    )
+    in_design = html.index("In Design")
+    section_idx = next(
+        html.index(t) for t in ("Design &amp; Product", "Design & Product") if t in html
+    )
+    assert in_design < section_idx
+
+
+def test_in_design_emoji_is_paintbrush():
+    from formatting import _global_pickoff_display
+    title, emoji = _global_pickoff_display(is_design_edition=True)
+    assert title == "In Design"
+    assert emoji == "🖌️"
+    assert _global_pickoff_display(is_design_edition=False) == ("In the World", "🌐")

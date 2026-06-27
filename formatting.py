@@ -488,7 +488,7 @@ def _is_today_in_the_world_section(title: str) -> bool:
 
 def _global_pickoff_display(is_design_edition: bool) -> tuple[str, str]:
     if is_design_edition:
-        return ("In Design", "🎨")
+        return ("In Design", "🖌️")
     return ("In the World", "🌐")
 
 
@@ -740,6 +740,8 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
 
     items_html = ""
     for it in items:
+        if it["id"] in used_ids:
+            continue
         used_ids.add(it["id"])
         link = links_by_id.get(it["id"], {})
         href = link.get("link", "")
@@ -802,6 +804,17 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
     # ids found in used_ids.
     used_ids = set(suppressed_ids or ())
     blocks   = re.split(r"\n## ", text)
+
+    # Pin the global pickoff (Today in the World / In the World / In Design)
+    # to render first. Rendering it before any section runs means its item
+    # IDs land in used_ids before render_other_headlines_for_section and
+    # build_everything_else synthesize, so a pickoff story can never re-appear
+    # as a section's Other Headline. Stable sort keeps every other section in
+    # its existing (score-ranked) order.
+    def _block_title(b: str) -> str:
+        return b.split("\n", 1)[0].replace("## ", "").strip()
+    blocks.sort(key=lambda b: 0 if _block_title(b) == TODAY_IN_THE_WORLD else 1)
+
     html     = ""
 
     for block in blocks:
