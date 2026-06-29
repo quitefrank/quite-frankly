@@ -81,7 +81,7 @@ FEEDS_WEEKDAY = [
 
     # Podcasts (cultural currency, route to Today in the World)
     {"url": "https://rss.art19.com/the-daily",                                                           "source": "NYT The Daily"},
-    {"url": "https://feeds.megaphone.fm/todayexplained",                                                 "source": "Today Explained"},
+    {"url": "https://feeds.megaphone.fm/VMP5705694065",                                                  "source": "Today Explained"},
     {"url": "https://www.cbc.ca/podcasting/includes/frontburner.xml",                                    "source": "CBC Frontburner"},
     {"url": "https://podcastfeeds.nbcnews.com/HL4TzgYC",                                                 "source": "NBC Meet the Press"},
 ]

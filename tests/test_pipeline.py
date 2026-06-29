@@ -241,6 +241,72 @@ def test_fetch_all_feeds_skips_og_image_enrichment_for_podcast_sources(monkeypat
     assert calls == []  # _fetch_og_meta must not have been called for skip-list sources
 
 
+def _fake_podcast_parsed(channel_link, entries):
+    """Fake feedparser output for a podcast feed.
+
+    entries: list of (title, link, summary, enclosure_href). A bare/relative
+    `link` (e.g. a guid) mimics CBC Frontburner, whose items carry no <link>
+    and whose guid feedparser resolves into a 404ing /podcasting/includes/ path.
+    """
+    parsed = type("Parsed", (), {})()
+    parsed.feed = type("Feed", (), {"link": channel_link})()
+    parsed.entries = []
+    for title, link, summary, enclosure_href in entries:
+        e = type("Entry", (), {})()
+        e.title = title
+        e.link = link
+        e.summary = summary
+        e.enclosures = [{"type": "audio/mpeg", "href": enclosure_href}] if enclosure_href else []
+        parsed.entries.append(e)
+    return parsed
+
+
+def test_fetch_feed_repairs_frontburner_guid_link_to_channel_homepage():
+    # CBC Frontburner items have no <link>; feedparser exposes the <guid>
+    # (a bare "frontburner-<uuid>") as entry.link, which it resolves against
+    # the feed dir into https://www.cbc.ca/podcasting/includes/frontburner-<uuid>
+    # — a path that 404s. A non-absolute link must be repaired to the channel
+    # homepage so the newsletter never ships the dead URL.
+    entries = [
+        ("What's fueling residential school denialism?",
+         "frontburner-53387ff5-49dd-493e-acdc-e9ae6a374965",
+         "A podcast episode with a meaningful summary sentence for the formatter.",
+         "https://mgln.ai/e/12/cbc.mc.tritondigital.com/frontburner.mp3"),
+    ]
+    parsed = _fake_podcast_parsed("https://www.cbc.ca/frontburner", entries)
+    with patch("pipeline.feedparser.parse", return_value=parsed):
+        items = fetch_feed({"url": "x", "source": "CBC Frontburner"})
+    assert len(items) == 1
+    assert items[0]["link"] == "https://www.cbc.ca/frontburner"
+
+
+def test_fetch_feed_falls_back_to_audio_enclosure_when_no_channel_link():
+    # If a guid-only feed also lacks a usable channel link, the audio enclosure
+    # is the only real resource left — better than a 404 page.
+    entries = [
+        ("Episode", "frontburner-abc",
+         "A podcast episode with a meaningful summary sentence for the formatter.",
+         "https://mgln.ai/e/12/audio.mp3"),
+    ]
+    parsed = _fake_podcast_parsed("", entries)
+    with patch("pipeline.feedparser.parse", return_value=parsed):
+        items = fetch_feed({"url": "x", "source": "CBC Frontburner"})
+    assert items[0]["link"] == "https://mgln.ai/e/12/audio.mp3"
+
+
+def test_fetch_feed_preserves_absolute_item_links():
+    # NYT The Daily / NBC ship valid absolute item links — repair must not touch them.
+    entries = [
+        ("Daily episode", "https://www.nytimes.com/the-daily",
+         "A podcast episode with a meaningful summary sentence for the formatter.",
+         "https://chrt.fm/the-daily.mp3"),
+    ]
+    parsed = _fake_podcast_parsed("https://www.nytimes.com/the-daily", entries)
+    with patch("pipeline.feedparser.parse", return_value=parsed):
+        items = fetch_feed({"url": "x", "source": "NYT The Daily"})
+    assert items[0]["link"] == "https://www.nytimes.com/the-daily"
+
+
 def test_fetch_all_feeds_image_stays_empty_when_og_image_unavailable(monkeypatch):
     entries = [
         ("A story", "https://example.com/story",

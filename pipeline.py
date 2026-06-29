@@ -202,13 +202,39 @@ def extract_image(entry):
     return ""
 
 
+def resolve_entry_link(entry, channel_link: str = "") -> str:
+    """Return a usable article URL for an RSS entry.
+
+    Some feeds omit a per-item <link> and carry only a <guid>. With the RSS
+    default isPermaLink=true, feedparser exposes that guid as entry.link and
+    resolves it against the feed's own directory — e.g. CBC Frontburner's
+    "frontburner-<uuid>" guid becomes cbc.ca/podcasting/includes/frontburner-
+    <uuid>, a path that has never been a real page and 404s. The tell is that
+    entry.link is not an absolute http(s) URL. When that happens, fall back to
+    the channel homepage, then to the audio enclosure; return "" if neither
+    exists so the caller drops the item rather than ship a dead link.
+    """
+    link = (getattr(entry, "link", "") or "").strip()
+    if link.startswith(("http://", "https://")):
+        return link
+    channel_link = (channel_link or "").strip()
+    if channel_link.startswith(("http://", "https://")):
+        return channel_link
+    for enc in getattr(entry, "enclosures", []) or []:
+        href = (enc.get("href", "") or "").strip()
+        if href.startswith(("http://", "https://")):
+            return href
+    return ""
+
+
 def fetch_feed(feed_config):
     items = []
     try:
         headers = {"User-Agent": "Mozilla/5.0 (compatible; QuiteFramkly/1.0)"}
         parsed = feedparser.parse(feed_config["url"], request_headers=headers)
+        channel_link = getattr(getattr(parsed, "feed", None), "link", "") or ""
         for entry in parsed.entries[:10]:
-            link  = getattr(entry, "link",  "") or ""
+            link  = resolve_entry_link(entry, channel_link)
             title = getattr(entry, "title", "") or ""
             summary = re.sub(r"<[^>]+>", "", getattr(entry, "summary", "") or "").strip()
             if title and link and len(summary) >= MIN_SNIPPET_CHARS:
