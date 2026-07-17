@@ -102,7 +102,8 @@ def accumulate(*, now: float | None = None, fetch_feed_fn=None, enrich_fn=None) 
             "link": it.get("link", ""),
         }
 
-    archive = {k: v for k, v in archive.items() if now - v["first_seen_ts"] < SEVEN_DAYS_S}
+    archive = {k: v for k, v in archive.items()
+               if now - v.get("first_seen_ts", 0) < SEVEN_DAYS_S}
 
     if not TEST_MODE:
         save(archive)
