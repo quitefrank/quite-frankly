@@ -76,6 +76,7 @@ def test_triage_sections_restores_tech_ai_when_enabled(monkeypatch):
     from prompts import triage_sections
     monkeypatch.setattr(config, "TECH_AI_ENABLED", True)
     assert "Tech & AI" in triage_sections(design_allowed=True)
+    assert "Tech & AI" in triage_sections(design_allowed=False)
 
 
 def test_build_triage_system_prompt_omits_design_on_weekday():

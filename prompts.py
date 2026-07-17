@@ -111,7 +111,7 @@ Default behavior when uncertain about the section as a whole: skip the block. Th
 # TRIAGE_SECTIONS is the full menu. triage_sections() filters it: Tech & AI is
 # dropped whenever the section is parked (config.TECH_AI_ENABLED is False), and
 # Design & Product is dropped on weekday editions (design_allowed False) so a
-# reclassified weekday source can't spawn a thin one-item design section — it
+# reclassified weekday source can't spawn a thin one-item design section. It
 # falls back to its feed-origin section instead.
 TRIAGE_SECTIONS = [
     "Canada & Toronto",
