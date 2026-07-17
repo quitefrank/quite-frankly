@@ -33,10 +33,15 @@ def main():
     print(f"Mode: {mode.value}")
 
     # Keep the rolling design archive current on every run (all 7 days). This is
-    # out-of-band from the render pipeline and never calls record_seen, so
-    # weekday editions are unaffected.
+    # out-of-band from the render pipeline: it never calls record_seen and its
+    # failures are swallowed, so a design-archive problem can never block a
+    # weekday edition. On weekends an accumulate failure falls through to
+    # pool_for reading the last-good archive, or the live-fetch fallback.
     with _stage("archive_accumulate"):
-        accumulate()
+        try:
+            accumulate()
+        except Exception as e:
+            print(f"archive accumulate failed ({e}); continuing", flush=True)
 
     feeds = get_feeds_for_mode(mode)
     with _stage("fetch_feeds"):

@@ -30,3 +30,22 @@ def test_main_runs_through_two_passes(fake_anthropic_client, monkeypatch):
     monkeypatch.setattr(triage, "fetch_reddit_traction", lambda url, subs: {"score": 0, "comments": 0, "subreddit_hits": 0})
     monkeypatch.setattr(triage, "fetch_hn_traction", lambda url: {"points": 0, "comments": 0})
     newsletter.main()
+
+
+def test_main_survives_accumulate_failure(fake_anthropic_client, monkeypatch):
+    fake_items = [
+        {"title": "Toronto council debates housing supply", "link": "https://example.com/1", "snippet": "", "image": "", "source": "CBC"},
+        {"title": "Bank of Canada holds rates steady", "link": "https://example.com/2", "snippet": "", "image": "", "source": "Yahoo Finance"},
+    ]
+    import newsletter, triage
+    monkeypatch.setattr(newsletter, "fetch_all_feeds", lambda feeds: fake_items)
+    monkeypatch.setattr(newsletter, "deduplicate", lambda items: items)
+    monkeypatch.setattr(newsletter, "record_seen", lambda items: None)
+    monkeypatch.setattr(newsletter, "send_email", lambda html, subject, inline_images=None: None)
+    monkeypatch.setattr(triage, "fetch_reddit_traction", lambda url, subs: {"score": 0, "comments": 0, "subreddit_hits": 0})
+    monkeypatch.setattr(triage, "fetch_hn_traction", lambda url: {"points": 0, "comments": 0})
+    def boom():
+        raise RuntimeError("archive exploded")
+    monkeypatch.setattr(newsletter, "accumulate", boom)
+    monkeypatch.setattr(newsletter, "pool_for", lambda mode: [])
+    newsletter.main()  # must not raise
