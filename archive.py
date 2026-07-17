@@ -54,3 +54,56 @@ def load() -> dict:
 def save(archive: dict) -> None:
     with open(ARCHIVE_FILE, "w") as f:
         json.dump(archive, f, indent=2)
+
+
+def accumulate(*, now: float | None = None, fetch_feed_fn=None, enrich_fn=None) -> dict:
+    """Fetch every design feed, add newly-seen items, prune to 7 days, persist.
+
+    Pure with respect to the render pipeline: no triage, no record_seen. Injected
+    fetch_feed_fn/enrich_fn keep it unit-testable offline; defaults hit the network.
+    Returns the pruned archive (also written to ARCHIVE_FILE unless TEST_MODE).
+    """
+    now = time.time() if now is None else now
+    fetch_feed_fn = fetch_feed_fn or (lambda fc, limit: pipeline.fetch_feed(fc, limit=limit))
+    enrich_fn = enrich_fn or pipeline.enrich_from_og_metadata
+
+    archive = load()
+
+    new_pairs: list[tuple[str, dict]] = []
+    seen_this_run: set[str] = set()
+    for fc in DESIGN_FEEDS:
+        try:
+            fetched = fetch_feed_fn(fc, ARCHIVE_FETCH_LIMIT)
+        except Exception as e:
+            print(f"  archive: error fetching {fc['source']}: {e}")
+            continue
+        for it in fetched:
+            key = normalize_url(it.get("link", ""))
+            if not key or key in archive or key in seen_this_run:
+                continue
+            pub = it.get("published_ts")
+            if pub is not None and now - pub > JUNK_DATE_MAX_AGE_S:
+                continue  # stale backfill (e.g. Trendland's 2023 dates)
+            seen_this_run.add(key)
+            new_pairs.append((key, it))
+
+    # Enrich only the newly-seen items. Fills og image/snippet once per item, so
+    # cost tracks new arrivals, not the whole archive, every day.
+    enrich_fn([it for _, it in new_pairs])
+
+    for key, it in new_pairs:
+        archive[key] = {
+            "title": it.get("title", ""),
+            "source": it.get("source", ""),
+            "snippet": it.get("snippet", ""),
+            "image": it.get("image", ""),
+            "published_ts": it.get("published_ts"),
+            "first_seen_ts": now,
+            "link": it.get("link", ""),
+        }
+
+    archive = {k: v for k, v in archive.items() if now - v["first_seen_ts"] < SEVEN_DAYS_S}
+
+    if not TEST_MODE:
+        save(archive)
+    return archive
