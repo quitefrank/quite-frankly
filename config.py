@@ -8,6 +8,13 @@ SEEN_LINKS_FILE = "seen_links.json"
 SEVEN_DAYS_S = 7 * 24 * 60 * 60
 TEST_MODE = os.environ.get("MODE") == "test"
 
+# --- Parked sections ---
+# Tech & AI parked 2026-07-17: Frank gets more comprehensive tech/AI coverage
+# from another newsletter. Everything below (feeds, SECTION_MAP rows, favicons,
+# emoji, prompt scaffolding) is left in place, inert. To restore the section,
+# flip this to True — no other change is required.
+TECH_AI_ENABLED = False
+
 # "What this means" callout mode. "section" renders one per-section block
 # collecting every relevant item (featured or Other Headlines); "article"
 # restores the legacy one-line-per-featured-story callout. Flip the default
@@ -43,8 +50,14 @@ DESIGN_SUBREDDITS = [
     "Design",
 ]
 
-FEEDS_WEEKDAY = [
-    # Canada & Toronto
+_TECH_AI_FEEDS = [
+    {"url": "https://feeds.feedburner.com/TechCrunch",                                                   "source": "TechCrunch"},
+    {"url": "https://hnrss.org/frontpage",                                                               "source": "Hacker News"},
+    {"url": "https://simonwillison.net/atom/everything/",                                                "source": "Simon Willison"},
+    {"url": "https://stratechery.com/feed/",                                                             "source": "Stratechery"},
+]
+
+_WEEKDAY_FEEDS_CANADA_TORONTO = [
     {"url": "https://www.cbc.ca/cmlink/rss-canada-toronto",                                               "source": "CBC"},
     {"url": "https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/canada/toronto/",             "source": "Globe & Mail"},
     {"url": "https://www.reddit.com/r/toronto/top.rss?t=day",                                            "source": "r/toronto"},
@@ -53,38 +66,54 @@ FEEDS_WEEKDAY = [
     {"url": "https://nationalpost.com/feed",                                                             "source": "National Post"},
     {"url": "https://www.nationalnewswatch.com/feed/",                                                   "source": "National Newswatch"},
     {"url": "https://www.canadaland.com/feed/",                                                          "source": "Canadaland"},
+]
 
-    # Toronto Housing
+_WEEKDAY_FEEDS_HOUSING = [
     {"url": "https://globeandmail.com/arc/outboundfeeds/rss/category/investing/",                        "source": "Globe & Mail Finance"},
     {"url": "https://www.reddit.com/r/canadahousing/top.rss?t=day",                                      "source": "r/canadahousing"},
     {"url": "https://storeys.com/feed/",                                                                 "source": "Storeys"},
     {"url": "https://betterdwelling.com/feed/",                                                          "source": "BetterDwelling"},
     {"url": "https://www.moneysense.ca/category/columns/real-estate/feed/",                              "source": "MoneySense Real Estate"},
+]
 
-    # Tech & AI
-    {"url": "https://feeds.feedburner.com/TechCrunch",                                                   "source": "TechCrunch"},
-    {"url": "https://hnrss.org/frontpage",                                                               "source": "Hacker News"},
-    {"url": "https://simonwillison.net/atom/everything/",                                                "source": "Simon Willison"},
-    {"url": "https://stratechery.com/feed/",                                                             "source": "Stratechery"},
-
-    # Finance & Markets
+_WEEKDAY_FEEDS_FINANCE = [
     {"url": "https://feeds.finance.yahoo.com/rss/2.0/headline?s=^GSPC,^DJI,^IXIC&region=US&lang=en-US",  "source": "Yahoo Finance"},
     {"url": "https://feeds.a.dj.com/rss/RSSWorldNews.xml",                                               "source": "WSJ"},
     {"url": "https://www.moneysense.ca/feed/",                                                           "source": "MoneySense"},
+]
 
-    # US & Global
+_WEEKDAY_FEEDS_US_GLOBAL = [
     {"url": "https://feeds.bbci.co.uk/news/world/rss.xml",                                               "source": "BBC"},
     {"url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",                                 "source": "NYT"},
     {"url": "https://www.economist.com/international/rss.xml",                                           "source": "Economist"},
     {"url": "https://feeds.npr.org/1004/rss.xml",                                                        "source": "NPR World"},
     {"url": "https://api.axios.com/feed/",                                                               "source": "Axios"},
+]
 
-    # Podcasts (cultural currency, route to Today in the World)
+_WEEKDAY_FEEDS_PODCASTS = [
     {"url": "https://rss.art19.com/the-daily",                                                           "source": "NYT The Daily"},
     {"url": "https://feeds.megaphone.fm/VMP5705694065",                                                  "source": "Today Explained"},
     {"url": "https://www.cbc.ca/podcasting/includes/frontburner.xml",                                    "source": "CBC Frontburner"},
     {"url": "https://podcastfeeds.nbcnews.com/HL4TzgYC",                                                 "source": "NBC Meet the Press"},
 ]
+
+
+def _weekday_feeds(tech_enabled: bool) -> list[dict]:
+    """Compose the weekday feed set. Tech & AI is included only when enabled;
+    it is parked by default (see TECH_AI_ENABLED). Keeping _TECH_AI_FEEDS
+    defined and splicing it here makes re-enabling a one-flag change."""
+    feeds = []
+    feeds += _WEEKDAY_FEEDS_CANADA_TORONTO
+    feeds += _WEEKDAY_FEEDS_HOUSING
+    if tech_enabled:
+        feeds += _TECH_AI_FEEDS
+    feeds += _WEEKDAY_FEEDS_FINANCE
+    feeds += _WEEKDAY_FEEDS_US_GLOBAL
+    feeds += _WEEKDAY_FEEDS_PODCASTS
+    return feeds
+
+
+FEEDS_WEEKDAY = _weekday_feeds(TECH_AI_ENABLED)
 
 FEEDS_SATURDAY_STRATEGIC = [
     {"url": "https://uxdesign.cc/feed",                  "source": "UX Collective"},
