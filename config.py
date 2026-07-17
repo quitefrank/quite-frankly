@@ -12,7 +12,7 @@ TEST_MODE = os.environ.get("MODE") == "test"
 # Tech & AI parked 2026-07-17: Frank gets more comprehensive tech/AI coverage
 # from another newsletter. Everything below (feeds, SECTION_MAP rows, favicons,
 # emoji, prompt scaffolding) is left in place, inert. To restore the section,
-# flip this to True — no other change is required.
+# flip this to True. No other change is required.
 TECH_AI_ENABLED = False
 
 # "What this means" callout mode. "section" renders one per-section block
