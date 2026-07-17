@@ -2,6 +2,8 @@
 
 from pathlib import Path
 
+import config
+
 # Personal-relevance context loaded from a sibling Markdown file at import time.
 # The file is a synced copy of ~/Claude/About Me/personal-context.md (canonical);
 # the project copy auto-updates via hooks/pre-commit before each commit. To edit
@@ -106,12 +108,11 @@ Skip. No clear hit on Frank's listed concerns.
 Default behavior when uncertain about the section as a whole: skip the block. This block applies to every section including Today in the World, under the same rule."""
 
 
-# Sections the triage LLM may assign an item to. Design & Product is the
-# weekend edition's signature: on weekday editions its feeds aren't fetched, so
-# the only way an item lands there is the LLM reclassifying a weekday source
-# (e.g. Simon Willison writing about writing). triage_sections(design_allowed=
-# False) drops it from the weekday menu so such items fall back to their
-# feed-origin section (Tech & AI) instead of spawning a thin one-item section.
+# TRIAGE_SECTIONS is the full menu. triage_sections() filters it: Tech & AI is
+# dropped whenever the section is parked (config.TECH_AI_ENABLED is False), and
+# Design & Product is dropped on weekday editions (design_allowed False) so a
+# reclassified weekday source can't spawn a thin one-item design section — it
+# falls back to its feed-origin section instead.
 TRIAGE_SECTIONS = [
     "Canada & Toronto",
     "Toronto Housing",
@@ -124,9 +125,12 @@ TRIAGE_SECTIONS = [
 
 
 def triage_sections(design_allowed: bool = True) -> list[str]:
-    if design_allowed:
-        return list(TRIAGE_SECTIONS)
-    return [s for s in TRIAGE_SECTIONS if s != "Design & Product"]
+    sections = list(TRIAGE_SECTIONS)
+    if not config.TECH_AI_ENABLED:
+        sections = [s for s in sections if s != "Tech & AI"]
+    if not design_allowed:
+        sections = [s for s in sections if s != "Design & Product"]
+    return sections
 
 
 def build_triage_system_prompt(design_allowed: bool = True) -> str:

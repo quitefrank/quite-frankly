@@ -47,7 +47,8 @@ def test_triage_sections_gates_design_by_weekday():
     # Design & Product is the weekend edition's signature. On weekday editions
     # its feeds aren't fetched, so the only way an item lands there is the LLM
     # reclassifying a weekday source (Simon Willison writing about writing, say).
-    # Dropping it from the weekday menu forces such items back to Tech & AI.
+    # Dropping it from the weekday menu forces such items to their feed-origin
+    # section instead.
     from prompts import triage_sections
     weekend = triage_sections(design_allowed=True)
     weekday = triage_sections(design_allowed=False)
@@ -55,6 +56,26 @@ def test_triage_sections_gates_design_by_weekday():
     assert "Design & Product" not in weekday
     # The other six sections survive the gate untouched.
     assert [s for s in weekend if s != "Design & Product"] == weekday
+
+
+def test_triage_sections_drops_tech_ai_when_parked(monkeypatch):
+    import config
+    from prompts import triage_sections
+    monkeypatch.setattr(config, "TECH_AI_ENABLED", False)
+    weekend = triage_sections(design_allowed=True)
+    weekday = triage_sections(design_allowed=False)
+    assert "Tech & AI" not in weekend
+    assert "Tech & AI" not in weekday
+    # Design gate still composes on top of the tech gate.
+    assert "Design & Product" in weekend
+    assert "Design & Product" not in weekday
+
+
+def test_triage_sections_restores_tech_ai_when_enabled(monkeypatch):
+    import config
+    from prompts import triage_sections
+    monkeypatch.setattr(config, "TECH_AI_ENABLED", True)
+    assert "Tech & AI" in triage_sections(design_allowed=True)
 
 
 def test_build_triage_system_prompt_omits_design_on_weekday():
