@@ -67,7 +67,7 @@ def test_exported_feeds_reflect_default_flag():
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `venv/bin/pytest tests/test_config.py -v`
+Run: `venv/bin/python -m pytest tests/test_config.py -v`
 Expected: FAIL — `ImportError: cannot import name '_weekday_feeds' from 'config'`.
 
 - [ ] **Step 3: Add the flag**
@@ -179,7 +179,7 @@ comments that used to head each block (`# Canada & Toronto`, etc.) now name the 
 
 - [ ] **Step 5: Run test to verify it passes**
 
-Run: `venv/bin/pytest tests/test_config.py -v`
+Run: `venv/bin/python -m pytest tests/test_config.py -v`
 Expected: PASS (all three tests).
 
 - [ ] **Step 6: Commit**
@@ -230,7 +230,7 @@ def test_triage_sections_restores_tech_ai_when_enabled(monkeypatch):
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `venv/bin/pytest tests/test_prompts.py::test_triage_sections_drops_tech_ai_when_parked -v`
+Run: `venv/bin/python -m pytest tests/test_prompts.py::test_triage_sections_drops_tech_ai_when_parked -v`
 Expected: FAIL — `assert "Tech & AI" not in weekend` (it's still in the list).
 
 - [ ] **Step 3: Import config into prompts**
@@ -287,7 +287,7 @@ Tech & AI" clause:
 
 - [ ] **Step 6: Run the full prompts suite**
 
-Run: `venv/bin/pytest tests/test_prompts.py -v`
+Run: `venv/bin/python -m pytest tests/test_prompts.py -v`
 Expected: PASS. In particular the pre-existing `test_triage_sections_gates_design_by_weekday`
 still passes: its assertion `[s for s in weekend if s != "Design & Product"] == weekday`
 holds because the tech gate removes "Tech & AI" from both `weekend` and `weekday` equally.
@@ -309,7 +309,7 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 
 - [ ] **Step 1: Run the entire test suite**
 
-Run: `venv/bin/pytest -q`
+Run: `venv/bin/python -m pytest -q`
 Expected: PASS, no regressions. Pay attention to `test_routing.py` (feed routing) and
 `test_triage.py` (menu enum) — both consume the changed config/prompt surfaces.
 

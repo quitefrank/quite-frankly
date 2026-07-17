@@ -90,7 +90,7 @@ def test_fetch_feed_limit_controls_entry_count():
 
 - [ ] **Step 2: Run tests to verify they fail**
 
-Run: `venv/bin/pytest tests/test_pipeline.py -k "published_ts or limit_controls" -v`
+Run: `venv/bin/python -m pytest tests/test_pipeline.py -k "published_ts or limit_controls" -v`
 Expected: FAIL — `KeyError: 'published_ts'` and a `TypeError` for the unexpected `limit` kwarg.
 
 - [ ] **Step 3: Add the published-timestamp helper**
@@ -150,7 +150,7 @@ def fetch_feed(feed_config, limit: int = 10):
 
 - [ ] **Step 5: Run the pipeline suite to verify pass and no regressions**
 
-Run: `venv/bin/pytest tests/test_pipeline.py -v`
+Run: `venv/bin/python -m pytest tests/test_pipeline.py -v`
 Expected: PASS. Existing `fetch_feed` tests still pass — they assert only on `title`/`snippet`
 and never on exact dict equality, so the additive `published_ts` key is invisible to them.
 
@@ -202,7 +202,7 @@ def test_design_feeds_and_source_sets_cover_all_nine():
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `venv/bin/pytest tests/test_archive.py -v`
+Run: `venv/bin/python -m pytest tests/test_archive.py -v`
 Expected: FAIL — `ModuleNotFoundError: No module named 'archive'`.
 
 - [ ] **Step 3: Create the module skeleton**
@@ -270,7 +270,7 @@ def save(archive: dict) -> None:
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `venv/bin/pytest tests/test_archive.py -v`
+Run: `venv/bin/python -m pytest tests/test_archive.py -v`
 Expected: PASS (all three tests).
 
 - [ ] **Step 5: Commit**
@@ -380,7 +380,7 @@ def test_accumulate_enriches_only_new_items(tmp_path, monkeypatch):
 
 - [ ] **Step 2: Run tests to verify they fail**
 
-Run: `venv/bin/pytest tests/test_archive.py -k accumulate -v`
+Run: `venv/bin/python -m pytest tests/test_archive.py -k accumulate -v`
 Expected: FAIL — `AttributeError: module 'archive' has no attribute 'accumulate'`.
 
 - [ ] **Step 3: Implement `accumulate`**
@@ -443,7 +443,7 @@ def accumulate(*, now: float | None = None, fetch_feed_fn=None, enrich_fn=None) 
 
 - [ ] **Step 4: Run tests to verify they pass**
 
-Run: `venv/bin/pytest tests/test_archive.py -k accumulate -v`
+Run: `venv/bin/python -m pytest tests/test_archive.py -k accumulate -v`
 Expected: PASS (all six accumulate tests).
 
 - [ ] **Step 5: Commit**
@@ -532,7 +532,7 @@ def Mode_WEEKDAY(): return Mode.WEEKDAY_DAILY
 
 - [ ] **Step 2: Run tests to verify they fail**
 
-Run: `venv/bin/pytest tests/test_archive.py -k pool_for -v`
+Run: `venv/bin/python -m pytest tests/test_archive.py -k pool_for -v`
 Expected: FAIL — `AttributeError: module 'archive' has no attribute 'pool_for'`.
 
 - [ ] **Step 3: Implement `pool_for`**
@@ -572,7 +572,7 @@ def pool_for(mode: Mode) -> list[dict]:
 
 - [ ] **Step 4: Run tests to verify they pass**
 
-Run: `venv/bin/pytest tests/test_archive.py -v`
+Run: `venv/bin/python -m pytest tests/test_archive.py -v`
 Expected: PASS (entire archive suite).
 
 - [ ] **Step 5: Commit**
@@ -613,7 +613,7 @@ inside the test, alongside the existing `newsletter.*` stubs (after line 22):
 
 - [ ] **Step 2: Run the smoke test to verify it fails**
 
-Run: `venv/bin/pytest tests/test_smoke.py -v`
+Run: `venv/bin/python -m pytest tests/test_smoke.py -v`
 Expected: FAIL — `AttributeError: <module 'newsletter'> does not have the attribute 'accumulate'`
 (the monkeypatch target doesn't exist yet).
 
@@ -665,12 +665,12 @@ through `deduplicate → triage → render → record_seen` identically.
 
 - [ ] **Step 5: Run the smoke test to verify it passes**
 
-Run: `venv/bin/pytest tests/test_smoke.py -v`
+Run: `venv/bin/python -m pytest tests/test_smoke.py -v`
 Expected: PASS.
 
 - [ ] **Step 6: Run the full suite**
 
-Run: `venv/bin/pytest -q`
+Run: `venv/bin/python -m pytest -q`
 Expected: PASS, no regressions.
 
 - [ ] **Step 7: Commit**
@@ -742,7 +742,7 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 
 - [ ] **Step 1: Full suite green**
 
-Run: `venv/bin/pytest -q`
+Run: `venv/bin/python -m pytest -q`
 Expected: PASS.
 
 - [ ] **Step 2: Real accumulate against live feeds (offline-safe read)**
