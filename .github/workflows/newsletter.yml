@@ -41,10 +41,10 @@ jobs:
           PYTHONUNBUFFERED:  "1"
         run: python -u newsletter.py
 
-      - name: Save seen_links cache
+      - name: Save caches
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add seen_links.json
-          git diff --staged --quiet || git commit -m "chore: update seen_links cache [skip ci]"
+          git add seen_links.json design_archive.json
+          git diff --staged --quiet || git commit -m "chore: update caches [skip ci]"
           git push
