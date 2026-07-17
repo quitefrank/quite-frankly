@@ -24,6 +24,7 @@ from pipeline import fetch_all_feeds, deduplicate, record_seen, assign_ids
 from triage import apply_phase2_tier, call_triage, cap_items, enrich_cluster_metrics
 from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email, suppressed_cluster_ids, near_duplicate_ids, write_subject_blurbs
 from images import resolve_ee_thumbnails
+from archive import accumulate, pool_for
 
 
 def main():
@@ -31,9 +32,21 @@ def main():
     mode = get_mode(today)
     print(f"Mode: {mode.value}")
 
+    # Keep the rolling design archive current on every run (all 7 days). This is
+    # out-of-band from the render pipeline and never calls record_seen, so
+    # weekday editions are unaffected.
+    with _stage("archive_accumulate"):
+        accumulate()
+
     feeds = get_feeds_for_mode(mode)
     with _stage("fetch_feeds"):
-        all_items = fetch_all_feeds(feeds)
+        if is_design_mode(mode):
+            all_items = pool_for(mode)
+            if not all_items:
+                print("Design archive empty; falling back to live weekend fetch", flush=True)
+                all_items = fetch_all_feeds(feeds)
+        else:
+            all_items = fetch_all_feeds(feeds)
     print(f"Raw items: {len(all_items)}", flush=True)
 
     with _stage("deduplicate"):

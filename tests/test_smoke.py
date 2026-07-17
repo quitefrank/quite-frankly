@@ -20,6 +20,11 @@ def test_main_runs_through_two_passes(fake_anthropic_client, monkeypatch):
     monkeypatch.setattr(newsletter, "deduplicate", lambda items: items)
     monkeypatch.setattr(newsletter, "record_seen", lambda items: None)
     monkeypatch.setattr(newsletter, "send_email", lambda html, subject, inline_images=None: None)
+    # The archive runs every day now; stub it offline and force the weekend
+    # branch (if today is a weekend) down to the live-fetch fallback, which is
+    # itself stubbed via newsletter.fetch_all_feeds above.
+    monkeypatch.setattr(newsletter, "accumulate", lambda: None)
+    monkeypatch.setattr(newsletter, "pool_for", lambda mode: [])
     # Keep the smoke test offline: stub the live Reddit/HN calls that the
     # new Phase 2 path runs between triage and format.
     monkeypatch.setattr(triage, "fetch_reddit_traction", lambda url, subs: {"score": 0, "comments": 0, "subreddit_hits": 0})
