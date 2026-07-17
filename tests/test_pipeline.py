@@ -59,7 +59,22 @@ def test_fetch_feed_emits_published_ts_from_entry():
                 "A meaningful summary sentence for the formatter to use.", struct)]
     with patch("pipeline.feedparser.parse", return_value=_fake_parsed_with_dates(entries)):
         items = fetch_feed({"url": "x", "source": "UX Collective"})
-    assert items[0]["published_ts"] == calendar.timegm(struct)
+    assert items[0]["published_ts"] == 1_782_000_000
+
+
+def test_entry_published_ts_falls_back_to_updated_parsed():
+    import calendar, time
+    from pipeline import _entry_published_ts
+    struct = time.gmtime(1_782_000_500)
+    e = type("Entry", (), {})()
+    e.updated_parsed = struct  # no published_parsed attribute at all
+    assert _entry_published_ts(e) == calendar.timegm(struct)
+
+
+def test_entry_published_ts_returns_none_without_dates():
+    from pipeline import _entry_published_ts
+    e = type("Entry", (), {})()
+    assert _entry_published_ts(e) is None
 
 
 def test_fetch_feed_published_ts_is_none_when_absent():
