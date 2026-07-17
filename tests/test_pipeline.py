@@ -37,6 +37,48 @@ def _fake_parsed(entries):
     return parsed
 
 
+def _fake_parsed_with_dates(entries):
+    # entries: (title, link, summary, published_struct_or_None)
+    parsed = type("Parsed", (), {})()
+    parsed.entries = []
+    for title, link, summary, published in entries:
+        e = type("Entry", (), {})()
+        e.title = title
+        e.link = link
+        e.summary = summary
+        if published is not None:
+            e.published_parsed = published
+        parsed.entries.append(e)
+    return parsed
+
+
+def test_fetch_feed_emits_published_ts_from_entry():
+    import calendar, time
+    struct = time.gmtime(1_782_000_000)  # a fixed UTC instant
+    entries = [("Design systems in 2026", "https://uxdesign.cc/a",
+                "A meaningful summary sentence for the formatter to use.", struct)]
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed_with_dates(entries)):
+        items = fetch_feed({"url": "x", "source": "UX Collective"})
+    assert items[0]["published_ts"] == calendar.timegm(struct)
+
+
+def test_fetch_feed_published_ts_is_none_when_absent():
+    entries = [("No date here", "https://uxdesign.cc/b",
+                "A meaningful summary sentence for the formatter to use.", None)]
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed_with_dates(entries)):
+        items = fetch_feed({"url": "x", "source": "UX Collective"})
+    assert items[0]["published_ts"] is None
+
+
+def test_fetch_feed_limit_controls_entry_count():
+    entries = [(f"Title {i}", f"https://uxdesign.cc/{i}",
+                "A meaningful summary sentence for the formatter to use.", None)
+               for i in range(25)]
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed_with_dates(entries)):
+        assert len(fetch_feed({"url": "x", "source": "UX Collective"})) == 10          # default
+        assert len(fetch_feed({"url": "x", "source": "UX Collective"}, limit=30)) == 25  # deeper
+
+
 def test_fetch_feed_drops_items_with_empty_or_too_short_snippets():
     # Mirrors the Economist "the-world-this-week" hub items that ship with
     # empty <description> blocks and broke the test email.

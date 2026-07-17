@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import calendar
 import html as html_module
 import json
 import os
@@ -227,13 +228,29 @@ def resolve_entry_link(entry, channel_link: str = "") -> str:
     return ""
 
 
-def fetch_feed(feed_config):
+def _entry_published_ts(entry):
+    """UTC epoch seconds for a feed entry, or None if it carries no usable date.
+
+    Prefers published_parsed, falls back to updated_parsed. Uses calendar.timegm
+    (not time.mktime) so the struct_time, which feedparser returns in UTC, is read
+    as UTC rather than local time.
+    """
+    struct = getattr(entry, "published_parsed", None) or getattr(entry, "updated_parsed", None)
+    if not struct:
+        return None
+    try:
+        return calendar.timegm(struct)
+    except (TypeError, ValueError):
+        return None
+
+
+def fetch_feed(feed_config, limit: int = 10):
     items = []
     try:
         headers = {"User-Agent": "Mozilla/5.0 (compatible; QuiteFramkly/1.0)"}
         parsed = feedparser.parse(feed_config["url"], request_headers=headers)
         channel_link = getattr(getattr(parsed, "feed", None), "link", "") or ""
-        for entry in parsed.entries[:10]:
+        for entry in parsed.entries[:limit]:
             link  = resolve_entry_link(entry, channel_link)
             title = getattr(entry, "title", "") or ""
             summary = re.sub(r"<[^>]+>", "", getattr(entry, "summary", "") or "").strip()
@@ -251,6 +268,7 @@ def fetch_feed(feed_config):
                     "snippet": snippet,
                     "image":   extract_image(entry),
                     "source":  feed_config["source"],
+                    "published_ts": _entry_published_ts(entry),
                 })
     except Exception as e:
         print(f"  Error fetching {feed_config['source']}: {e}")
