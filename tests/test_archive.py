@@ -1,6 +1,17 @@
 import json
 import archive
 from config import FEEDS_SATURDAY_STRATEGIC, FEEDS_SUNDAY_VISUAL
+from routing import Mode
+
+
+def Mode_SAT(): return Mode.SATURDAY_STRATEGIC
+def Mode_SUN(): return Mode.SUNDAY_VISUAL
+def Mode_WEEKDAY(): return Mode.WEEKDAY_DAILY
+
+
+def _archived(link, source, first_seen_ts):
+    return {"title": f"t-{link}", "source": source, "snippet": "s", "image": "",
+            "published_ts": None, "first_seen_ts": first_seen_ts, "link": link}
 
 
 def test_load_missing_file_returns_empty(tmp_path, monkeypatch):
@@ -128,3 +139,50 @@ def test_accumulate_persists_enrich_mutations(tmp_path, monkeypatch):
     )
     key = archive.normalize_url("https://design-milk.com/x")
     assert result[key]["image"] == "https://cdn/og.jpg"
+
+
+def test_pool_for_saturday_returns_only_strategic_sources(tmp_path, monkeypatch):
+    _setup(tmp_path, monkeypatch)
+    archive.save({
+        "a": _archived("https://uxdesign.cc/1", "UX Collective", 10.0),
+        "b": _archived("https://design-milk.com/1", "Design Milk", 20.0),
+    })
+    pool = archive.pool_for(Mode_SAT())
+    sources = {i["source"] for i in pool}
+    assert sources == {"UX Collective"}
+
+
+def test_pool_for_sunday_returns_only_visual_sources(tmp_path, monkeypatch):
+    _setup(tmp_path, monkeypatch)
+    archive.save({
+        "a": _archived("https://uxdesign.cc/1", "UX Collective", 10.0),
+        "b": _archived("https://design-milk.com/1", "Design Milk", 20.0),
+    })
+    pool = archive.pool_for(Mode_SUN())
+    assert {i["source"] for i in pool} == {"Design Milk"}
+
+
+def test_pool_for_caps_per_source_to_most_recent(tmp_path, monkeypatch):
+    _setup(tmp_path, monkeypatch)
+    entries = {f"k{i}": _archived(f"https://sidebar.io/{i}", "Sidebar", float(i))
+               for i in range(40)}
+    archive.save(entries)
+    pool = archive.pool_for(Mode_SUN())
+    sidebar = [i for i in pool if i["source"] == "Sidebar"]
+    assert len(sidebar) == archive.ARCHIVE_PER_SOURCE_CAP
+    links = [i["link"] for i in sidebar]
+    assert links[0] == "https://sidebar.io/39"
+    assert "https://sidebar.io/0" not in links
+
+
+def test_pool_for_items_have_pipeline_shape(tmp_path, monkeypatch):
+    _setup(tmp_path, monkeypatch)
+    archive.save({"a": _archived("https://uxdesign.cc/1", "UX Collective", 10.0)})
+    item = archive.pool_for(Mode_SAT())[0]
+    assert set(item) == {"title", "link", "snippet", "image", "source"}
+
+
+def test_pool_for_weekday_mode_returns_empty(tmp_path, monkeypatch):
+    _setup(tmp_path, monkeypatch)
+    archive.save({"a": _archived("https://uxdesign.cc/1", "UX Collective", 10.0)})
+    assert archive.pool_for(Mode_WEEKDAY()) == []

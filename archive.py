@@ -108,3 +108,34 @@ def accumulate(*, now: float | None = None, fetch_feed_fn=None, enrich_fn=None) 
     if not TEST_MODE:
         save(archive)
     return archive
+
+
+def pool_for(mode: Mode) -> list[dict]:
+    """Return this weekend day's design items from the archive as pipeline-shaped
+    dicts. Saturday draws strategic sources, Sunday visual. Per source, keep the
+    ARCHIVE_PER_SOURCE_CAP most recently first-seen items. Weekday modes get [].
+    """
+    if mode == Mode.SATURDAY_STRATEGIC:
+        sources = STRATEGIC_SOURCES
+    elif mode == Mode.SUNDAY_VISUAL:
+        sources = VISUAL_SOURCES
+    else:
+        return []
+
+    by_source: dict[str, list[dict]] = {}
+    for entry in load().values():
+        if entry.get("source") in sources:
+            by_source.setdefault(entry["source"], []).append(entry)
+
+    pool: list[dict] = []
+    for entries in by_source.values():
+        entries.sort(key=lambda e: e.get("first_seen_ts", 0), reverse=True)
+        for e in entries[:ARCHIVE_PER_SOURCE_CAP]:
+            pool.append({
+                "title": e.get("title", ""),
+                "link": e.get("link", ""),
+                "snippet": e.get("snippet", ""),
+                "image": e.get("image", ""),
+                "source": e.get("source", ""),
+            })
+    return pool
