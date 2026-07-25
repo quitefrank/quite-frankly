@@ -1681,5 +1681,77 @@
     "published_ts": 1784875724,
     "first_seen_ts": 1784887235.3736162,
     "link": "https://karlkoch.me/writing/on-layout-choreography"
+  },
+  "uxdesign.cc/the-aggressively-mediocre-fight-ed47b3f9f8f4?source=rss----138adf9c44c---4": {
+    "title": "The aggressively mediocre fight",
+    "source": "UX Collective",
+    "snippet": "The battle we have with AI and something we can do about it.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2388/1*AmFyXhpWu-1nF8VVDvrZdQ.png",
+    "published_ts": 1784891364,
+    "first_seen_ts": 1784973630.671396,
+    "link": "https://uxdesign.cc/the-aggressively-mediocre-fight-ed47b3f9f8f4?source=rss----138adf9c44c---4"
+  },
+  "nngroup.com/articles/product-sense-definition": {
+    "title": "A Concrete Definition of \u201cProduct Sense\u201d (and How to Build It)",
+    "source": "NN/g",
+    "snippet": "Product sense means predicting which product decisions will succeed based on patterns learned through experimentation \u2014 and knowing when those patterns apply.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Product_Sense1.png",
+    "published_ts": 1784912400,
+    "first_seen_ts": 1784973630.671396,
+    "link": "https://www.nngroup.com/articles/product-sense-definition/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/ux-context-design": {
+    "title": "UX-Context Design: Using UX Knowledge to Inform AI-Generated Design",
+    "source": "NN/g",
+    "snippet": "As more interface work is AI-generated, the output of research and design shifts from documents written for humans to curated context that guides AI.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/UX_Context_Design_1.png",
+    "published_ts": 1784912400,
+    "first_seen_ts": 1784973630.671396,
+    "link": "https://www.nngroup.com/articles/ux-context-design/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/claude-opus-5-review-this-model-is": {
+    "title": "Claude Opus 5 review: this model is brilliant (but annoying)",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now | &#127897;&#65039; I ran Opus 5 through my seven-model benchmark, compared it with six other leading models, and came away with a verdict I genuinely didn&#8217;t expect",
+    "image": "https://substackcdn.com/image/fetch/$s_!vm0F!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad8af59b-f278-4a1f-89fd-23e222f2c65e_1456x1048.png",
+    "published_ts": 1784913325,
+    "first_seen_ts": 1784973630.671396,
+    "link": "https://www.lennysnewsletter.com/p/claude-opus-5-review-this-model-is"
+  },
+  "design-milk.com/friday-five-bryan-young": {
+    "title": "F5: Bryan Young on the Dominican Republic, Alexander Girard Artwork + More",
+    "source": "Design Milk",
+    "snippet": "Architect and designer Bryan Young shares the artwork, music, and places that continue to inspire him.",
+    "image": "https://design-milk.com/images/2026/07/BY-Portrait-Gieves-Anderson-e1784923053858.jpeg",
+    "published_ts": 1784923097,
+    "first_seen_ts": 1784973630.671396,
+    "link": "https://design-milk.com/friday-five-bryan-young/"
+  },
+  "design-milk.com/fishtown-urby-concrete-amsterdam": {
+    "title": "Urby Is Rethinking Apartment Living Through Design and Community",
+    "source": "Design Milk",
+    "snippet": "As its latest residential model opens in Philly, Urby continues to prioritize thoughtful design, shared spaces, and stronger neighborhood connections",
+    "image": "https://design-milk.com/images/2026/07/Concrete-Amsterdam-Fishtown-Urby-1.jpg",
+    "published_ts": 1784914271,
+    "first_seen_ts": 1784973630.671396,
+    "link": "https://design-milk.com/fishtown-urby-concrete-amsterdam/"
+  },
+  "design-milk.com/dora-tokai-designs-the-white-arcade-dubai-villa": {
+    "title": "This Sculptural Dubai Home Turns Arches and Light Into Everyday Luxury",
+    "source": "Design Milk",
+    "snippet": "D\u2019Ora Tokai Designs transformed a once-heavy Spanish-style villa into a serene family home where sculptural arches, layered whites, and bespoke furnishings create a sense of everyday restoration",
+    "image": "https://design-milk.com/images/2026/07/The-White-Arcade-by-DOra-Tokai-Designs_-The-VillaDSC06989-HDR.jpg",
+    "published_ts": 1784902565,
+    "first_seen_ts": 1784973630.671396,
+    "link": "https://design-milk.com/dora-tokai-designs-the-white-arcade-dubai-villa/"
+  },
+  "tympanus.net/codrops/2026/07/24/the-art-of-continuous-transformation-how-garden-eight-blends-integrity-with-play": {
+    "title": "The Art of Continuous Transformation: How Garden Eight Blends Integrity with Play",
+    "source": "Codrops",
+    "snippet": "Inside Garden Eight's approach to creating websites that are not only visually striking, but thoughtfully crafted to evolve, engage, and endure.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/07/codrops_cover-1.jpg?x48895",
+    "published_ts": 1784901967,
+    "first_seen_ts": 1784973630.671396,
+    "link": "https://tympanus.net/codrops/2026/07/24/the-art-of-continuous-transformation-how-garden-eight-blends-integrity-with-play/"
   }
 }
