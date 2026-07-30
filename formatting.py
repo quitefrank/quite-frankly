@@ -47,7 +47,10 @@ LIGHT = {
     "header_border": "#222222",
     "heading": "#1a1a1a",
     "body": "#333333",
-    "bold": "#333333",
+    # Emphasis (bold copy and underlined links). Matches "heading" rather than
+    # "body" so clients that force dark mode by inverting lightness (Gmail
+    # mobile) render it white instead of the mid-grey #333333 inverts to.
+    "bold": "#1a1a1a",
     "meta": "#999999",
     "meta_label": "#888888",
     "accent": "#1c7ff2",
@@ -598,7 +601,7 @@ def _render_body_markdown(text: str, palette: dict = LIGHT) -> str:
     text = _MARKDOWN_LINK_RE.sub(
         lambda m: (
             f'<a href="{m.group(2)}" '
-            f'style="color:{palette["body"]};text-decoration:underline;text-decoration-color:{palette["accent"]};">{m.group(1)}</a>'
+            f'style="color:{palette["bold"]};text-decoration:underline;text-decoration-color:{palette["accent"]};">{m.group(1)}</a>'
         ),
         text,
     )
@@ -629,7 +632,7 @@ def _other_headline_anchor(text, link, palette):
         return text
     return (
         f'<a href="{link}" '
-        f'style="color:{palette["body"]};font-weight:400;text-decoration:underline;'
+        f'style="color:{palette["bold"]};font-weight:400;text-decoration:underline;'
         f'text-decoration-color:{palette["accent"]};">'
         f"{text}</a>"
     )

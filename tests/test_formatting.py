@@ -843,7 +843,7 @@ Source: WSJ
     clusters_by_item_id = {201: {"primary_source": "WSJ", "also_in": []}}
     html, _ = parse_and_render_sections(text, links_by_id, clusters_by_item_id)
     # Stray **rate cut** inside body becomes a strong tag.
-    assert "<strong>rate cut</strong>" in html
+    assert '<strong style="color:#1a1a1a">rate cut</strong>' in html
     # Raw markdown asterisks must not leak through.
     assert "**rate cut**" not in html
 
@@ -864,7 +864,7 @@ Source: WSJ
     html, _ = parse_and_render_sections(text, links_by_id, clusters_by_item_id)
     # Anchor renders with bold-tagged label inside.
     assert '<a href="https://example.com/x"' in html
-    assert "<strong>this</strong>" in html
+    assert '<strong style="color:#1a1a1a">this</strong>' in html
 
 
 def test_format_prompt_describes_featured_layout():
@@ -942,17 +942,17 @@ Source: BlogTO
     html, _ = parse_and_render_sections(text, links_by_id, {}, tiered_items=[])
 
     # First two paragraphs of story 100 render.
-    assert "<strong>Enhanced safeguards.</strong>" in html
-    assert "<strong>Market confidence building.</strong>" in html
+    assert '<strong style="color:#1a1a1a">Enhanced safeguards.</strong>' in html
+    assert '<strong style="color:#1a1a1a">Market confidence building.</strong>' in html
     # Third paragraph of story 100 must NOT render.
-    assert "<strong>Economic ripple effects.</strong>" not in html
+    assert '<strong style="color:#1a1a1a">Economic ripple effects.</strong>' not in html
     assert "Economic ripple effects" not in html
 
     # First two paragraphs of story 101 render.
-    assert "<strong>Exclusive enclave.</strong>" in html
-    assert "<strong>Understated luxury.</strong>" in html
+    assert '<strong style="color:#1a1a1a">Exclusive enclave.</strong>' in html
+    assert '<strong style="color:#1a1a1a">Understated luxury.</strong>' in html
     # Third paragraph of story 101 must NOT render.
-    assert "<strong>Market positioning.</strong>" not in html
+    assert '<strong style="color:#1a1a1a">Market positioning.</strong>' not in html
     assert "Market positioning" not in html
 
 
@@ -972,8 +972,8 @@ Source: WSJ
     clusters_by_item_id = {200: {"primary_source": "WSJ", "also_in": []}}
     html, used_ids = parse_and_render_sections(text, links_by_id, clusters_by_item_id, tiered_items=[])
 
-    assert "<strong>Decreasing optimism.</strong>" in html
-    assert "<strong>Threading the needle.</strong>" in html
+    assert '<strong style="color:#1a1a1a">Decreasing optimism.</strong>' in html
+    assert '<strong style="color:#1a1a1a">Threading the needle.</strong>' in html
     # Hero image rendered.
     assert 'src="https://img/200.jpg"' in html
     # Source line rendered.
@@ -999,8 +999,8 @@ Source: WSJ
     clusters_by_item_id = {300: {"primary_source": "WSJ", "also_in": []}}
     html, used_ids = parse_and_render_sections(text, links_by_id, clusters_by_item_id, tiered_items=[])
     # Two paragraph micro-headers render as bold inside the paragraph.
-    assert "<strong>Decreasing optimism.</strong>" in html
-    assert "<strong>Threading the needle.</strong>" in html
+    assert '<strong style="color:#1a1a1a">Decreasing optimism.</strong>' in html
+    assert '<strong style="color:#1a1a1a">Threading the needle.</strong>' in html
     # Hero image rendered.
     assert 'src="https://img/300.jpg"' in html
     # Source line still rendered.
@@ -1070,10 +1070,10 @@ Source: WSJ
     assert "🤖" in html and "🚇" in html             # Featured Layout emojis
     # Layout A markers
     assert '<a href="https://example.com/x"' in html  # inline link in Tech & AI body
-    assert "<strong>Decreasing optimism.</strong>" in html
-    assert "<strong>Threading the needle.</strong>" in html
-    assert "<strong>Setup.</strong>" in html
-    assert "<strong>Stakes.</strong>" in html
+    assert '<strong style="color:#1a1a1a">Decreasing optimism.</strong>' in html
+    assert '<strong style="color:#1a1a1a">Threading the needle.</strong>' in html
+    assert '<strong style="color:#1a1a1a">Setup.</strong>' in html
+    assert '<strong style="color:#1a1a1a">Stakes.</strong>' in html
 
     # Write the rendered HTML to a tmp file so Frank can open it visually.
     out = tmp_path / "sample-newsletter.html"
@@ -1221,8 +1221,8 @@ Source: Hacker News
     # Featured Layout emoji items render.
     assert "🌐" in html
     # Layout A micro-header markers render as bold inside paragraphs.
-    assert "<strong>Setup.</strong>" in html
-    assert "<strong>Turn.</strong>" in html
+    assert '<strong style="color:#1a1a1a">Setup.</strong>' in html
+    assert '<strong style="color:#1a1a1a">Turn.</strong>' in html
 
 
 def test_suppressed_cluster_ids_keeps_highest_scored_representative():
@@ -1485,9 +1485,25 @@ def test_source_line_uses_palette_accent():
 
 def test_body_markdown_link_uses_palette():
     dark = _render_body_markdown("see [docs](https://x.co)", palette=DARK)
-    assert "#c8c8c8" in dark          # body link colour
+    assert "#ffffff" in dark          # emphasis link colour
     assert "#4d9bff" in dark          # underline accent
     assert "#1c7ff2" not in dark
+
+
+def test_emphasis_uses_bold_colour_not_body():
+    """Underlined links and bold copy must read white in dark mode.
+
+    Clients that force dark mode by inverting lightness (Gmail mobile) turn the
+    body grey into a mid-grey. Emphasis uses the "bold" colour, which sits at
+    heading darkness in LIGHT and pure white in DARK.
+    """
+    light = _render_body_markdown("**hi** and [docs](https://x.co)", palette=LIGHT)
+    assert 'color:#1a1a1a' in light
+    assert 'color:#333333' not in light
+
+    dark = _render_body_markdown("**hi** and [docs](https://x.co)", palette=DARK)
+    assert dark.count("#ffffff") == 2   # strong + anchor
+    assert "#c8c8c8" not in dark
 
 
 from formatting import _render_today_in_the_world, render_other_headlines_for_section
@@ -1506,7 +1522,8 @@ def test_other_headlines_dark_palette():
     items = [{"id": 1, "section": "Tech & AI", "tier": 2, "scores": {}}]
     links = {1: {"link": "https://x.co", "title": "One two three four five six", "snippet": "A sentence."}}
     html = render_other_headlines_for_section("Tech & AI", items, links, set(), palette=DARK)
-    assert "#c8c8c8" in html       # link + item body
+    assert "#c8c8c8" in html       # item body
+    assert "#ffffff" in html       # underlined link reads white in dark mode
     assert "#4d9bff" in html       # underline accent
     assert "#9e9e9e" in html       # "Other Headlines" label
     assert "#3a3d45" in html       # divider (dark)
