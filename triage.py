@@ -22,11 +22,12 @@ from traction import fetch_hn_traction, fetch_reddit_traction
 MAX_TRIAGE_INPUT_ITEMS = 120
 
 
-def build_triage_tool(design_allowed: bool = True) -> dict:
+def build_triage_tool(is_design_edition: bool = True) -> dict:
     """The triage structured-output tool. The section enum is the hard gate:
-    if "Design & Product" isn't listed, the model cannot emit it, so a stray
-    weekday item falls back to its feed-origin section instead of spawning a
-    one-item section. See prompts.triage_sections for the weekday rationale."""
+    a section the model cannot emit is a section that cannot render. It gates
+    both ways — weekday editions drop "Design & Product", design editions drop
+    the six news sections — so an item the model wants to reclassify falls back
+    to its feed-origin section instead. See prompts.triage_sections."""
     return {
         "name": "emit_triage",
         "description": "Emit the full triage result for today's headlines. Every input item must appear exactly once in 'items'.",
@@ -42,7 +43,7 @@ def build_triage_tool(design_allowed: bool = True) -> dict:
                             "tier": {"type": "integer", "enum": [0, 1, 2, 3]},
                             "section": {
                                 "type": "string",
-                                "enum": triage_sections(design_allowed),
+                                "enum": triage_sections(is_design_edition),
                             },
                             "cluster_id": {"type": "string"},
                             "cross_source_coverage": {"type": "integer", "minimum": 1},
@@ -71,7 +72,8 @@ def build_triage_tool(design_allowed: bool = True) -> dict:
     }
 
 
-# Back-compat default: all seven sections.
+# Back-compat constant for direct importers. call_triage builds its own tool
+# per edition, so nothing in the pipeline reads this.
 TRIAGE_TOOL = build_triage_tool()
 
 
@@ -98,14 +100,16 @@ def cap_items(items: list[dict], cap: int = MAX_TRIAGE_INPUT_ITEMS) -> list[dict
     return out[:cap]
 
 
-def call_triage(items: list[dict], design_allowed: bool = True) -> tuple[list[dict], dict[str, dict]]:
+def call_triage(items: list[dict], is_design_edition: bool = True) -> tuple[list[dict], dict[str, dict]]:
     """Run the triage pass and return (tiered_items, clusters_by_id).
 
     Uses tool-use structured output so required fields are guaranteed.
 
-    design_allowed gates the "Design & Product" section: pass False on weekday
-    editions (where its feeds aren't fetched) so a stray weekday source isn't
-    reclassified into a thin one-item section. Weekend editions pass True.
+    is_design_edition selects the section menu the model may assign from. Pass
+    False on weekday editions (the design feeds aren't fetched, so a stray
+    weekday source shouldn't be reclassified into a thin one-item design
+    section) and True on weekend editions (the pool is design feeds only, so a
+    news section can only appear by reclassification).
     """
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     user_message = build_triage_user_message(items)
@@ -121,8 +125,8 @@ def call_triage(items: list[dict], design_allowed: bool = True) -> tuple[list[di
         # its clusters can approach the old ceiling; truncation there returned
         # an empty tool call and shipped a blank edition (the June 8 incident).
         max_tokens=32000,
-        system=build_triage_system_prompt(design_allowed),
-        tools=[build_triage_tool(design_allowed)],
+        system=build_triage_system_prompt(is_design_edition),
+        tools=[build_triage_tool(is_design_edition)],
         tool_choice={"type": "tool", "name": "emit_triage"},
         messages=[{"role": "user", "content": user_message}],
     ) as stream:

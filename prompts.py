@@ -108,11 +108,24 @@ Skip. No clear hit on Frank's listed concerns.
 Default behavior when uncertain about the section as a whole: skip the block. This block applies to every section including Today in the World, under the same rule."""
 
 
-# TRIAGE_SECTIONS is the full menu. triage_sections() filters it: Tech & AI is
-# dropped whenever the section is parked (config.TECH_AI_ENABLED is False), and
-# Design & Product is dropped on weekday editions (design_allowed False) so a
-# reclassified weekday source can't spawn a thin one-item design section. It
-# falls back to its feed-origin section instead.
+# TRIAGE_SECTIONS is the full menu. triage_sections() filters it down to the
+# sections an edition can actually justify, and it filters in both directions
+# because weekday and weekend editions fetch disjoint feed sets:
+#
+#   Weekday: the design feeds aren't fetched, so "Design & Product" comes off
+#   the menu. A design-flavored weekday item (Simon Willison on typography)
+#   falls back to its feed-origin section instead of spawning a thin one-item
+#   design section.
+#
+#   Weekend: the pool is the design feeds only, and all nine of them map to
+#   "Design & Product" in config.SECTION_MAP. So the six news sections come off
+#   the menu. Leaving them on gave the model an escape hatch it took on the
+#   2026-08-02 Sunday edition, filing a Sidebar link-blog post about fake
+#   startup revenue under Finance & Markets and rendering a full news card in
+#   what is supposed to be a design edition.
+#
+# Tech & AI comes off whenever the section is parked (config.TECH_AI_ENABLED is
+# False); on a design edition it was never on the menu to begin with.
 TRIAGE_SECTIONS = [
     "Canada & Toronto",
     "Toronto Housing",
@@ -124,17 +137,20 @@ TRIAGE_SECTIONS = [
 ]
 
 
-def triage_sections(design_allowed: bool = True) -> list[str]:
-    sections = list(TRIAGE_SECTIONS)
+DESIGN_SECTION = "Design & Product"
+
+
+def triage_sections(is_design_edition: bool = True) -> list[str]:
+    if is_design_edition:
+        return [DESIGN_SECTION]
+    sections = [s for s in TRIAGE_SECTIONS if s != DESIGN_SECTION]
     if not config.TECH_AI_ENABLED:
         sections = [s for s in sections if s != "Tech & AI"]
-    if not design_allowed:
-        sections = [s for s in sections if s != "Design & Product"]
     return sections
 
 
-def build_triage_system_prompt(design_allowed: bool = True) -> str:
-    section_list = ", ".join(f'"{s}"' for s in triage_sections(design_allowed))
+def build_triage_system_prompt(is_design_edition: bool = True) -> str:
+    section_list = ", ".join(f'"{s}"' for s in triage_sections(is_design_edition))
     return f"""You are a triage editor for a daily news briefing.
 
 You will receive a list of today's news headlines, each prefixed with an integer ID [#N], a section label in square brackets, and a source name. Your job: score each item, group items into clusters when multiple sources cover the same story, and assign each item to a section.
@@ -165,8 +181,9 @@ Cross-cluster entity dedup. After computing tiers, look for cases where two dist
 Output strict JSON only. No prose, no markdown fences."""
 
 
-# Back-compat default: all seven sections. The weekend path and any direct
-# importer get the full menu unchanged; weekday editions call the builder.
+# Back-compat constant for direct importers. Both live paths (newsletter.py ->
+# call_triage) build their prompt per edition, so this is the design-edition
+# rendering and nothing in the pipeline reads it.
 TRIAGE_SYSTEM_PROMPT = build_triage_system_prompt()
 
 

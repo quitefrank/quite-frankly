@@ -24,8 +24,16 @@ def test_build_triage_tool_gates_design_section_enum():
     # the model literally cannot emit it, so a stray weekday item falls back to
     # its feed-origin section (Tech & AI) instead of spawning a one-item section.
     from triage import build_triage_tool
-    assert "Design & Product" in _section_enum(build_triage_tool(design_allowed=True))
-    assert "Design & Product" not in _section_enum(build_triage_tool(design_allowed=False))
+    assert "Design & Product" in _section_enum(build_triage_tool(is_design_edition=True))
+    assert "Design & Product" not in _section_enum(build_triage_tool(is_design_edition=False))
+
+
+def test_build_triage_tool_enum_is_design_only_on_weekend():
+    # Same hard gate, other direction. A weekend pool is 100% design feeds, so
+    # a news section in the enum is an escape hatch the model will occasionally
+    # take (the 2026-08-02 Finance & Markets card). Remove the hatch.
+    from triage import build_triage_tool
+    assert _section_enum(build_triage_tool(is_design_edition=True)) == ["Design & Product"]
 
 
 def test_triage_tool_default_includes_design():

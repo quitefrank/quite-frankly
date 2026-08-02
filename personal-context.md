@@ -10,7 +10,7 @@ domains:
   taxes: Personal/wiki/taxes/
   active-side-projects:
     - Personal/projects/workout-app/
-    - Personal/projects/dating-hub/
+    - Personal/projects/archive/
     - Personal/projects/quite-frankly/
     - Personal/projects/pattern-library/
 sync_destinations:
@@ -76,7 +76,7 @@ Personal finance for a transitional year. Longer-term wealth building toward ear
 ## Active side projects
 
 - **Workout PWA** at `Personal/projects/workout-app/` (Next.js, Supabase, PWA via @ducanh2912/next-pwa)
-- **Dating agent/assistant** at `Personal/projects/dating-hub/`
+- **Dating agent/assistant** at `Personal/projects/archive/`
 - **Quite Frankly newsletter** at `Personal/projects/quite-frankly/` (the pipeline that reads this file)
 - **Pattern library** at `Personal/projects/pattern-library/` (Vitaly Friedman's Hatch 2024 corpus plus custom synthesis)
 - **Claude-based design research tooling** pulling from Jira, past research, and competitor screens
