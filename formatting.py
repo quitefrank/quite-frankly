@@ -347,34 +347,73 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
     # an image; if none of the picks have images, look for an image-bearing
     # tier-1 candidate beyond the picks and swap one in.
     global_pool = []
+    reserve = []
     for sec, sec_buckets in by_section.items():
         if sec == TODAY_IN_THE_WORLD:
             continue
         for item in sec_buckets["tier_1"]:
             if not is_design_edition:
-                # Weekday "In the World" surfaces only stories that don't land
-                # cleanly in a section (weak/no fit) — the otherwise-missed pile.
+                # Weekday "In the World" prefers stories that don't land cleanly
+                # in a section (weak/no fit) — the otherwise-missed pile. This is
+                # a preference, not a gate. Both inputs that feed this section are
+                # unanchored model judgments: section_fit has no rubric in the
+                # triage prompt, and triage's choice to route an item here is
+                # undefined too. It is also the only section with no tier_2/tier_3
+                # backfill (SECTION_FEATURED_CAPS sets cap 0), so a thin day has
+                # nothing to absorb it. Gating on fit alone shipped 3, 4, 1 and 2
+                # items on 2026-08-04..07 with the Python frozen. Good-fit items
+                # go to the reserve and top up the tail only when supply is short.
                 fit = item_by_id[item["id"]].get("scores", {}).get("section_fit", "weak")
                 if fit not in ("weak", "none"):
+                    reserve.append((sec, item))
                     continue
             global_pool.append((sec, item))
     # Sort by popularity desc to pick the top 5 regardless of image: the
     # global pickoff reflects "most talked about / most covered", not personal
     # relevance, so it reads traction off the original tiered_items.
-    global_pool.sort(key=lambda pair: _popularity_score(item_by_id[pair[1]["id"]]), reverse=True)
-    picked = global_pool[:TODAY_IN_THE_WORLD_CAP]
+    def _by_popularity(pair):
+        return _popularity_score(item_by_id[pair[1]["id"]])
+
+    global_pool.sort(key=_by_popularity, reverse=True)
+    reserve.sort(key=_by_popularity, reverse=True)
+    misfit_ids = {item["id"] for _, item in global_pool}
+
+    # Only pick what the section can actually hold. Triage-routed items are
+    # combined below and take priority, so picking past the remaining room
+    # would delete an item from its home section and then truncate it away,
+    # dropping it out of the featured layout entirely.
+    room = max(TODAY_IN_THE_WORLD_CAP - len(by_section[TODAY_IN_THE_WORLD]["tier_1"]), 0)
+    if len(global_pool) < room:
+        global_pool.extend(reserve[: room - len(global_pool)])
+    picked = global_pool[:room]
+    print(
+        f"  In the World supply: {len(by_section[TODAY_IN_THE_WORLD]['tier_1'])} triage-routed"
+        f" + {len(picked)} picked (pool {len(global_pool)}, reserve {len(reserve)}),"
+        f" cap {TODAY_IN_THE_WORLD_CAP}",
+        flush=True,
+    )
 
     # Hero promotion: if any picked item has an image, move the
     # highest-scored image-bearer to position 0. If none has an image,
     # try to swap in a lower-scored image-bearer from the remaining pool.
+    # A misfit image-bearer wins the hero slot ahead of a good-fit top-up, so
+    # topping up a thin day never puts a story that fits a section at the head
+    # of the otherwise-missed pile. Falls back to any image-bearer rather than
+    # shipping the lead with no hero image at all.
     if picked:
         hero_idx_in_picked = next(
-            (i for i, (_, item) in enumerate(picked) if item["_has_image"]),
+            (i for i, (_, item) in enumerate(picked)
+             if item["_has_image"] and item["id"] in misfit_ids),
             None,
         )
         if hero_idx_in_picked is None:
+            hero_idx_in_picked = next(
+                (i for i, (_, item) in enumerate(picked) if item["_has_image"]),
+                None,
+            )
+        if hero_idx_in_picked is None:
             swap_idx = next(
-                (i for i, (_, item) in enumerate(global_pool[TODAY_IN_THE_WORLD_CAP:], start=TODAY_IN_THE_WORLD_CAP)
+                (i for i, (_, item) in enumerate(global_pool[room:], start=room)
                  if item["_has_image"]),
                 None,
             )
@@ -729,6 +768,12 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
             continue
         m = LAYOUT_A_ITEM_RE.match(line)
         if not m:
+            # Layout A is the strictest parser in the file (every other section
+            # goes through the far more forgiving section parser), and it used to
+            # drop non-matching lines silently. A short lead section then looked
+            # identical whether the pool was starved or the model mis-formatted,
+            # which is what made 2026-08-04..07 undiagnosable from the run logs.
+            print(f"  In the World: unparseable line dropped: {line[:80]!r}", flush=True)
             continue
         item_id = int(m.group("id"))
         items.append({

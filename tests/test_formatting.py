@@ -1,8 +1,12 @@
 import json
 import re
 
+import pytest
+
 import formatting
 from formatting import (
+    TODAY_IN_THE_WORLD_CAP,
+    _render_today_in_the_world,
     build_email_html,
     build_everything_else,
     build_format_input,
@@ -544,12 +548,15 @@ def test_pickoff_ranks_by_popularity_not_relevance():
     assert world[0]["id"] == 2
 
 
-def test_weekday_pickoff_pulls_only_misfit_stories():
-    # Weekday (is_design_edition=False): only weak/none section_fit items are
-    # eligible for "In the World" — the ones that don't land in a section.
+def test_weekday_pickoff_ranks_misfits_ahead_of_good_fit():
+    # Weekday (is_design_edition=False): weak/none section_fit items lead "In the
+    # World" — the ones that don't land in a section. Good-fit items rank behind
+    # them and only appear as a top-up, never displacing a misfit. Exclusion is
+    # only a real invariant when supply is healthy, which
+    # test_weekday_pickoff_ignores_reserve_when_misfit_supply_is_healthy covers.
     tiered_items = [
         {"id": 1, "section": "Tech & AI", "tier": 1, "cluster_id": "c1",
-         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # great fit → stays in section
+         "scores": {"cross_source_coverage": 4, "personal_relevance": 3, "section_fit": "good"}},  # great fit → top-up only
         {"id": 2, "section": "Tech & AI", "tier": 1, "cluster_id": "c2",
          "scores": {"cross_source_coverage": 4, "personal_relevance": 0, "section_fit": "none"}},   # no fit → pickoff
         {"id": 3, "section": "US & Global", "tier": 1, "cluster_id": "c3",
@@ -557,10 +564,115 @@ def test_weekday_pickoff_pulls_only_misfit_stories():
     ]
     links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": "s", "image": ""} for i in tiered_items}
     payload = json.loads(build_format_input(tiered_items, {}, links_by_id, is_design_edition=False))
+    world = [x["id"] for x in payload["sections"]["Today in the World"]["tier_1"]]
+    # Both misfits lead; the good-fit story only fills the tail. Every item here
+    # has image "", so hero promotion cannot reorder them.
+    assert set(world[:2]) == {2, 3}
+    assert world.index(1) > max(world.index(2), world.index(3))
+    # Lifted items leave their home section, so nothing renders twice.
+    assert payload["sections"].get("Tech & AI", {}).get("tier_1", []) == []
+
+
+@pytest.mark.parametrize("n_misfit", [0, 1, 3, 4, 5, 8])
+def test_weekday_lead_section_never_ships_short(n_misfit):
+    # 2026-08-04..07 shipped 3, 4, 1 and 2 items in the lead section while every
+    # other section sat at its cap, with the Python frozen across all four days.
+    # The lead is the only section with no tier_2/tier_3 backfill, so its size
+    # tracked the misfit yield 1:1. It must fill to the cap whatever that yield is.
+    items = []
+    i = 0
+    for sec in ("Canada & Toronto", "Toronto Housing", "Finance & Markets"):
+        for k in range(12):
+            i += 1
+            items.append({"id": i, "section": sec, "cluster_id": f"c{i}",
+                          "tier": 1 if k < 2 else (2 if k < 6 else 3),
+                          "scores": {"cross_source_coverage": 2, "personal_relevance": 1,
+                                     "section_fit": "good"}})
+    for _ in range(n_misfit):
+        i += 1
+        items.append({"id": i, "section": "US & Global", "tier": 1, "cluster_id": f"c{i}",
+                      "scores": {"cross_source_coverage": 4, "personal_relevance": 0,
+                                 "section_fit": "weak"}})
+    links_by_id = {x["id"]: {"title": f"t{x['id']}", "source": "S", "snippet": "s", "image": ""}
+                   for x in items}
+    sections = json.loads(build_format_input(items, {}, links_by_id, is_design_edition=False))["sections"]
+    assert len(sections["Today in the World"]["tier_1"]) == TODAY_IN_THE_WORLD_CAP
+    # The buffered sections still reach their own caps; the top-up doesn't rob them.
+    assert len(sections["Canada & Toronto"]["tier_1"]) == 2
+    assert len(sections["Finance & Markets"]["tier_1"]) == 1
+
+
+def test_weekday_pickoff_ignores_reserve_when_misfit_supply_is_healthy():
+    # Guard against over-correcting: with 5+ misfits available the good-fit
+    # reserve must not be touched at all, however popular its items are.
+    tiered_items = [
+        {"id": i, "section": "US & Global", "tier": 1, "cluster_id": f"c{i}",
+         "scores": {"cross_source_coverage": 8 - i, "personal_relevance": 0, "section_fit": "none"}}
+        for i in range(1, 7)
+    ] + [
+        {"id": 99, "section": "Canada & Toronto", "tier": 1, "cluster_id": "c99",
+         "scores": {"cross_source_coverage": 9, "personal_relevance": 3, "section_fit": "good"}},
+    ]
+    links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": "s", "image": ""} for i in tiered_items}
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id, is_design_edition=False))
     world_ids = {x["id"] for x in payload["sections"]["Today in the World"]["tier_1"]}
-    assert world_ids == {2, 3}
-    # The good-fit story stays in its home section, not the pickoff.
-    assert payload["sections"]["Tech & AI"]["tier_1"][0]["id"] == 1
+    assert world_ids == {1, 2, 3, 4, 5}
+    assert 99 not in world_ids  # most popular item of all, but a good fit
+
+
+def test_pickoff_leaves_room_for_triage_routed_items():
+    # Triage routes items straight to the lead section, bypassing the pool. The
+    # pickoff must only claim the remaining slots: picked items are deleted from
+    # their home sections, so over-picking would truncate them away at the cap
+    # and drop them out of the featured layout entirely.
+    tiered_items = [
+        {"id": i, "section": "Today in the World", "tier": 1, "cluster_id": f"d{i}",
+         "scores": {"cross_source_coverage": 2, "personal_relevance": 0, "section_fit": "weak"}}
+        for i in range(1, 4)
+    ] + [
+        {"id": 10 + i, "section": "US & Global", "tier": 1, "cluster_id": f"c{i}",
+         "scores": {"cross_source_coverage": 9 - i, "personal_relevance": 0, "section_fit": "none"}}
+        for i in range(1, 6)
+    ]
+    links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": "s", "image": ""} for i in tiered_items}
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id, is_design_edition=False))
+    world_ids = [x["id"] for x in payload["sections"]["Today in the World"]["tier_1"]]
+    assert len(world_ids) == TODAY_IN_THE_WORLD_CAP
+    # The 3 triage-routed items are kept and only 2 are picked to fill the rest.
+    assert {1, 2, 3}.issubset(set(world_ids))
+    # The 3 unpicked US & Global items stay home rather than vanishing.
+    assert len(payload["sections"]["US & Global"]["tier_1"]) >= 1
+
+
+def test_topped_up_good_fit_does_not_steal_the_hero_slot():
+    # Hero promotion moves an image-bearer to position 0. Once a thin day tops up
+    # from the good-fit reserve, that could put a story which fits a section fine
+    # at the head of the otherwise-missed pile. A misfit image-bearer wins first.
+    tiered_items = [
+        {"id": i, "section": "US & Global", "tier": 1, "cluster_id": f"m{i}",
+         "scores": {"cross_source_coverage": 9 - i, "personal_relevance": 0, "section_fit": "weak"}}
+        for i in range(1, 4)
+    ] + [
+        {"id": 50, "section": "Canada & Toronto", "tier": 1, "cluster_id": "g50",
+         "scores": {"cross_source_coverage": 9, "personal_relevance": 3, "section_fit": "good"}},
+    ]
+    links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "X", "snippet": "s",
+                             "image": "http://img/x.jpg"} for i in tiered_items}
+    payload = json.loads(build_format_input(tiered_items, {}, links_by_id, is_design_edition=False))
+    world = [x["id"] for x in payload["sections"]["Today in the World"]["tier_1"]]
+    assert world[0] < 50, f"good-fit top-up took the hero slot: {world}"
+
+
+def test_render_today_in_the_world_reports_unparseable_lines(capsys):
+    # A silently dropped line made a short lead section indistinguishable from a
+    # starved pool, which is what made 2026-08-04..07 undiagnosable from the logs.
+    html = _render_today_in_the_world(
+        ["- 🤖 **A [#1]:** body"],  # markdown bullet prefix: does not match Layout A
+        {1: {"title": "t1", "link": "https://x/1", "image": ""}},
+        set(),
+    )
+    assert html == ""
+    assert "unparseable" in capsys.readouterr().out
 
 
 def test_weekday_pickoff_caps_at_five_by_popularity():
