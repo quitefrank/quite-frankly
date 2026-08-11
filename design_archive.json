@@ -1,184 +1,4 @@
 {
-  "uxdesign.cc/ia-for-ai-the-ux-of-contrast-battling-ai-fatigue-4f623495bed8?source=rss----138adf9c44c---4": {
-    "title": "IA for AI, The UX of contrast, Battling AI fatigue",
-    "source": "UX Collective",
-    "snippet": "Weekly curated resources for designers\u200a\u2014\u200athinkers and\u00a0makers.\u201cThe discourse surrounding generative AI in the creative arts is frequently characterised by a sense of historical rupture, a seismic shift unlike any that has come before. Critics often frame the emergence of Large Language Models and dif",
-    "image": "https://cdn-images-1.medium.com/max/1024/0*epT0QWOM1AWfqPEU.png",
-    "published_ts": 1785750426,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://uxdesign.cc/ia-for-ai-the-ux-of-contrast-battling-ai-fatigue-4f623495bed8?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/chat-is-the-wrong-interface-for-ai-de14d352de1b?source=rss----138adf9c44c---4": {
-    "title": "Chat is the wrong interface for AI",
-    "source": "UX Collective",
-    "snippet": "The problem with over-simplification of AI Agents&#x2019; interfaces.Continue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/2600/1*Mh_jrQKEW9tyCwGEODRfhw.jpeg",
-    "published_ts": 1785737439,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://uxdesign.cc/chat-is-the-wrong-interface-for-ai-de14d352de1b?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/what-ive-learned-writing-for-billions-of-users-f4db0c1aa9cb?source=rss----138adf9c44c---4": {
-    "title": "What I\u2019ve learned writing for billions of users",
-    "source": "UX Collective",
-    "snippet": "Insights from products that grow and\u00a0grow.A few years ago, after running a complex global product launch, I wrote down everything I learned. To track my own ideas. To make sense of things. I\u2019ve kept adding to it ever\u00a0since.I\u2019ve worked on products used by a handful of people and products used by a me",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*o4miIuVaPlEoSF-mQx5MYA.png",
-    "published_ts": 1785737331,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://uxdesign.cc/what-ive-learned-writing-for-billions-of-users-f4db0c1aa9cb?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/designing-for-the-proxy-2606ffac2335?source=rss----138adf9c44c---4": {
-    "title": "Designing for the proxy",
-    "source": "UX Collective",
-    "snippet": "Why AI is changing who reads\u00a0first.One meaningful move surrounded by infinite possibilities. As AI makes generation abundant, the differentiator is no longer producing options, it is knowing which one deserves to be\u00a0made.The audience\u00a0changedFor decades, designers had one audience: people.Every metho",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*p9ZSUqRu3IsE9au13EPvLg.png",
-    "published_ts": 1785679969,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://uxdesign.cc/designing-for-the-proxy-2606ffac2335?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/the-architecture-of-watching-work-dcc521fcad1c?source=rss----138adf9c44c---4": {
-    "title": "The architecture of watching work",
-    "source": "UX Collective",
-    "snippet": "For a century we designed the office around a single question&#x200a;&#x2014;&#x200a;how do we see work? AI is quietly changing the question.Continue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/2600/1*_JgMkCR6xFSlxJs24TlYrA.jpeg",
-    "published_ts": 1785666464,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://uxdesign.cc/the-architecture-of-watching-work-dcc521fcad1c?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/design-md-the-one-standard-file-carries-your-visual-identity-for-humans-and-agents-9058d5b39d9b?source=rss----138adf9c44c---4": {
-    "title": "Design.md: the one standard file carries your visual identity, for humans and agents",
-    "source": "UX Collective",
-    "snippet": "A single plain-text file open on a dark screen, its top half typed values and its bottom half written sentences, feeding outward to a design tool, a code editor, and a coding\u00a0agent.Like a mullet, the business is up top for the machine, and the party below for the person. A single file is the standar",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*0UX9PpoAlqNMzMgPmsxhmg.png",
-    "published_ts": 1785666437,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://uxdesign.cc/design-md-the-one-standard-file-carries-your-visual-identity-for-humans-and-agents-9058d5b39d9b?source=rss----138adf9c44c---4"
-  },
-  "nngroup.com/articles/ux-context-design": {
-    "title": "UX-Context Design: Using UX Knowledge to Inform AI-Generated Design",
-    "source": "NN/g",
-    "snippet": "As more interface work is AI-generated, the output of research and design shifts from documents written for humans to curated context that guides AI.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/UX_Context_Design_1.png",
-    "published_ts": 1784912400,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://www.nngroup.com/articles/ux-context-design/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/product-sense-definition": {
-    "title": "A Concrete Definition of \u201cProduct Sense\u201d (and How to Build It)",
-    "source": "NN/g",
-    "snippet": "Product sense means predicting which product decisions will succeed based on patterns learned through experimentation \u2014 and knowing when those patterns apply.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Product_Sense1.png",
-    "published_ts": 1784912400,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://www.nngroup.com/articles/product-sense-definition/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/this-cpo-regrets-that-product-management": {
-    "title": "This CPO regrets that product management exists | Tom Verrilli (CPO of Whatnot)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now | Tom Verrilli explains why fewer, more senior PMs doing real IC work outperform any ratio-driven org structure",
-    "image": "https://substackcdn.com/image/fetch/$s_!8A68!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd9aedec2-27a8-486a-bafb-10c17689569f_2048x2048.png",
-    "published_ts": 1785673922,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://www.lennysnewsletter.com/p/this-cpo-regrets-that-product-management"
-  },
-  "lennysnewsletter.com/p/community-wisdom-staying-on-a-clients": {
-    "title": "\ud83e\udde0 Community Wisdom: Staying on a client\u2019s radar during pilot purgatory, pairing Linear with a discovery tool, the limits of what AI can automate, whether Techstars is worth it, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 194",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1784995304,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-staying-on-a-clients"
-  },
-  "lennysnewsletter.com/p/claude-opus-5-review-this-model-is": {
-    "title": "Claude Opus 5 review: this model is brilliant (but annoying)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now | &#127897;&#65039; I ran Opus 5 through my seven-model benchmark, compared it with six other leading models, and came away with a verdict I genuinely didn&#8217;t expect",
-    "image": "https://substackcdn.com/image/fetch/$s_!vm0F!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad8af59b-f278-4a1f-89fd-23e222f2c65e_1456x1048.png",
-    "published_ts": 1784913325,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://www.lennysnewsletter.com/p/claude-opus-5-review-this-model-is"
-  },
-  "itsnicethat.com/articles/creative-career-conundrums-if-you-could-jobs-030826": {
-    "title": "We need you! Submit your burning Creative Career Conundrums",
-    "source": "It's Nice That",
-    "snippet": "Found yourself in a career slump? In a jam with a colleague? Feeling burnt out? Well, we\u2019re here to help. Submit your career or workplaces questions to Creative Career Conundrums, our weekly advice column.",
-    "image": "https://admin.itsnicethat.com/images/OBo1koRzcLcAtwf5OcPsB7kS50c=/280445/width-1440%7Cformat-jpeg/CCC_Square_SUBMIT_YOUR_CREATIVE_CAREER_QUESTIONS_TODAY.png",
-    "published_ts": 1785744000,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://www.itsnicethat.com/articles/creative-career-conundrums-if-you-could-jobs-030826"
-  },
-  "itsnicethat.com/articles/oio-mattering-mur-mur-product-design-animation-project-030826": {
-    "title": "Less of an object, more of a place: Oio\u2019s Mur Mur is a portable speaker that holds an entire ecosystem within",
-    "source": "It's Nice That",
-    "snippet": "Using generative AI in inventive ways, Oio and Mattering\u2019s Mur Mur is looking at home technology in a new way, seeing the portable speaker as a way to build worlds with digital critters and calming ambience.",
-    "image": "https://media.itsnicethat.com/original_images/oio-mur-mur-product-design-itsnicethat-1.gif",
-    "published_ts": 1785744000,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://www.itsnicethat.com/articles/oio-mattering-mur-mur-product-design-animation-project-030826"
-  },
-  "itsnicethat.com/articles/elizabeth-goodspeed-zohran-mamdani-new-york-grocery-store-civic-branding-graphic-design-030826": {
-    "title": "Elizabeth Goodspeed on the branding challenge behind Mayor Zohran\u2019s new municipal grocery stores",
-    "source": "It's Nice That",
-    "snippet": "Everyone wants to know who will win New York City\u2019s grocery store RFP \u2013\u00a0the more interesting question is what public identities should actually do.",
-    "image": "https://admin.itsnicethat.com/images/OJTecYK-i-lPABcJPKkaxNkBvx0=/280537/width-1440%7Cformat-jpeg/Meta_Image_XFcpbfg.png",
-    "published_ts": 1785744000,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://www.itsnicethat.com/articles/elizabeth-goodspeed-zohran-mamdani-new-york-grocery-store-civic-branding-graphic-design-030826"
-  },
-  "itsnicethat.com/articles/adoratorio-studio-indice-rebrand-graphic-design-project-030826": {
-    "title": "Adoratorio Studio takes a new lens on eyewear with a soft but technical rebrand for Indice",
-    "source": "It's Nice That",
-    "snippet": "By creating a visual world around the brand that positions it away from anything conventional in the category, the agency have made the label feel more like a lifestyle brand than luxury retail.",
-    "image": "https://admin.itsnicethat.com/images/AsKF3ahT9zEC8yzB5Xd2BwVU78w=/280542/width-1440/AdoratorioStudio_IndiceVision_Rebranding_ItsNiceThat_IG_2.jpg",
-    "published_ts": 1785744000,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://www.itsnicethat.com/articles/adoratorio-studio-indice-rebrand-graphic-design-project-030826"
-  },
-  "tympanus.net/codrops/2026/07/24/the-art-of-continuous-transformation-how-garden-eight-blends-integrity-with-play": {
-    "title": "The Art of Continuous Transformation: How Garden Eight Blends Integrity with Play",
-    "source": "Codrops",
-    "snippet": "Inside Garden Eight's approach to creating websites that are not only visually striking, but thoughtfully crafted to evolve, engage, and endure.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/07/codrops_cover-1.jpg?x48895",
-    "published_ts": 1784901967,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://tympanus.net/codrops/2026/07/24/the-art-of-continuous-transformation-how-garden-eight-blends-integrity-with-play/"
-  },
-  "go.granola.ai/sidebar": {
-    "title": "The AI Notepad for back-to-back meetings",
-    "source": "Sidebar",
-    "snippet": "Notes, actions and memory. Without a meeting bot. Give it a try on your next meeting.",
-    "image": "",
-    "published_ts": 1785729600,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://go.granola.ai/sidebar"
-  },
-  "simone.computer": {
-    "title": "Web desktops",
-    "source": "Sidebar",
-    "snippet": "The web's biggest hand curated directory of apps and experiments that simulate desktop operating systems.",
-    "image": "https://repository-images.githubusercontent.com/13191631/03057880-b9ff-11e9-9c2f-d158cf8d03b8",
-    "published_ts": 1785729600,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://simone.computer/#/webdesktops"
-  },
-  "killthecookiebanner.eu": {
-    "title": "Kill the cookie banner",
-    "source": "Sidebar",
-    "snippet": "Tired of misleading cookie banners? The EU Commission has finally proposed a solution.",
-    "image": "",
-    "published_ts": 1785729600,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://killthecookiebanner.eu/"
-  },
-  "nytimes.com/2026/07/20/technology/google-ai-open-web.html?smid=url-share&unlocked_article_code=1.2VA.tHaD.87T7tIi8zNbs": {
-    "title": "Google is building an AI fence around the web it once championed",
-    "source": "Sidebar",
-    "snippet": "As Google incorporates more artificial intelligence into search, people are spending more time on Google. Some website operators are crying foul.",
-    "image": "",
-    "published_ts": 1785729600,
-    "first_seen_ts": 1785751237.16014,
-    "link": "https://www.nytimes.com/2026/07/20/technology/google-ai-open-web.html?unlocked_article_code=1.2VA.tHaD.87T7tIi8zNbs&smid=url-share"
-  },
   "uxdesign.cc/how-korea-and-japan-turned-ordering-food-into-a-ux-masterclass-f64c31bd4c98?source=rss----138adf9c44c---4": {
     "title": "How Korea & Japan turned ordering food into a UX masterclass",
     "source": "UX Collective",
@@ -1267,5 +1087,167 @@
     "published_ts": 1786348088,
     "first_seen_ts": 1786356031.4490378,
     "link": "https://joost.blog/future-of-the-website/"
+  },
+  "uxdesign.cc/bottle-your-judgment-chat-is-the-wrong-ui-design-md-2484e8d870af?source=rss----138adf9c44c---4": {
+    "title": "Bottle your judgment, Chat is the wrong UI, Design.md",
+    "source": "UX Collective",
+    "snippet": "Weekly curated resources for designers\u200a\u2014\u200athinkers and\u00a0makers.\u201cRight now I\u2019m helping build software whose whole job is to package how one particular person thinks. The point is not to have this product replace anyone\u2019s thinking with hers, but to take the way she works through a hard decision, the met",
+    "image": "https://cdn-images-1.medium.com/max/1024/0*xBpCJGB0ENbEwo8-.png",
+    "published_ts": 1786360289,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://uxdesign.cc/bottle-your-judgment-chat-is-the-wrong-ui-design-md-2484e8d870af?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/why-your-clients-arent-buying-and-how-to-change-that-cd7104bf14fd?source=rss----138adf9c44c---4": {
+    "title": "Why your clients aren\u2019t buying and how to change that",
+    "source": "UX Collective",
+    "snippet": "You know it&#x2019;s the right thing to do. The data screams it. Yet they still say no. Here&#x2019;s the playbook that actually works.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2600/0*i2N4XMd9xIxpJ-cX",
+    "published_ts": 1786360111,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://uxdesign.cc/why-your-clients-arent-buying-and-how-to-change-that-cd7104bf14fd?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/the-side-of-the-egg-8c1a6737fad2?source=rss----138adf9c44c---4": {
+    "title": "The side of the egg",
+    "source": "UX Collective",
+    "snippet": "On the next hack for our humanity, in the age of AIContinue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2600/1*KT3ICjeHes7zK9CHNroXdA.png",
+    "published_ts": 1786360088,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://uxdesign.cc/the-side-of-the-egg-8c1a6737fad2?source=rss----138adf9c44c---4"
+  },
+  "lennysnewsletter.com/p/how-i-ai-build-an-ai-code-review": {
+    "title": "\ud83c\udf99\ufe0f How I AI: Build an AI code review bot in 30 minutes + Claude Code for normal people",
+    "source": "Lenny's Newsletter",
+    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/347cb3d0-f0ab-4f9c-8574-b7c60b248320_1456x1048.png",
+    "published_ts": 1786374109,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://www.lennysnewsletter.com/p/how-i-ai-build-an-ai-code-review"
+  },
+  "lennysnewsletter.com/p/claude-code-for-normal-people-skills": {
+    "title": "Claude Code for normal people: skills, voice mode, and how to collaborate with AI",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now | &#127897;&#65039; Grace Clarke rebuilt her service business in Claude, turning 20 hours of weekly admin into one automated pipeline for proposals, client tracking, and email",
+    "image": "https://substackcdn.com/image/fetch/$s_!EgWC!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8faca4f2-b7b9-4ff4-ba1f-b6315e8e014a_1456x1048.png",
+    "published_ts": 1786363304,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://www.lennysnewsletter.com/p/claude-code-for-normal-people-skills"
+  },
+  "lennysnewsletter.com/p/community-wisdom-getting-started": {
+    "title": "\ud83e\udde0 Community Wisdom: Getting started with open source models, making a U.S. business trip worth it, preparing for a possible layoff, when marketing can\u2019t keep up with product, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 195",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1785605118,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-getting-started"
+  },
+  "design-milk.com/ennua-element-01-mclaren-designers": {
+    "title": "Former McLaren Designers Bring Supercar Thinking to Furniture",
+    "source": "Design Milk",
+    "snippet": "With a carbon fiber structure, bespoke finishes, and automotive-level precision, Ennua\u2019s Element 01 translates supercar designs into functional art",
+    "image": "https://design-milk.com/images/2026/08/Ennua_015.jpg",
+    "published_ts": 1786381209,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://design-milk.com/ennua-element-01-mclaren-designers/"
+  },
+  "design-milk.com/sustainable-home-furnishings-healthy-living": {
+    "title": "6 Sustainable Home Furnishings for Healthy Living",
+    "source": "Design Milk",
+    "snippet": "From solar-powered outdoor lighting to 3D-printed homewares, these eco-conscious picks prove sustainable design can still be chic",
+    "image": "https://design-milk.com/images/2026/07/14LaurenGoodman_FreshCatch_insitu_1-1280x900-1.jpg",
+    "published_ts": 1785589222,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://design-milk.com/sustainable-home-furnishings-healthy-living/"
+  },
+  "itsnicethat.com/articles/studio-dial-graphic-design-discover-110826": {
+    "title": "\u201cWe treat code as material\u201d: Studio Dial weaves motion design into cocktail menus, Afghan textiles and city plans",
+    "source": "It's Nice That",
+    "snippet": "The life of a design studio means designing a cocktail menu one day, coding motion design for entire cities the next. What Studio Dial does best is make it all intoxicating to behold.",
+    "image": "https://media.itsnicethat.com/original_images/studio-dial-graphic-design-itsnicethat-Azra_INT_01.gif",
+    "published_ts": 1786435200,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://www.itsnicethat.com/articles/studio-dial-graphic-design-discover-110826"
+  },
+  "itsnicethat.com/articles/kwazi-design-type-around-town-graphic-design-project-110826": {
+    "title": "Type Around Town asks us to pay attention to the letterforms that surround us every day",
+    "source": "It's Nice That",
+    "snippet": "Kwazi Design\u2019s years-long typographic archival project pays homage to the city of Kolkata and reveals the hyper-local and cultural context behind the aesthetic it celebrates.",
+    "image": "https://admin.itsnicethat.com/images/fUVCI9KjlPB08WJJYioztMoBVJE=/280581/width-1440%7Cformat-jpeg/kwazi-design-type-around-town-graphic-design-project-itsnicethat-2.png",
+    "published_ts": 1786431600,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://www.itsnicethat.com/articles/kwazi-design-type-around-town-graphic-design-project-110826"
+  },
+  "itsnicethat.com/articles/acrylicize-physical-culture-sponsored-content-100826": {
+    "title": "\u201cPlaces need to offer something that pixels can\u2019t replicate\u201d: Acrylicize on designing spaces for real connection",
+    "source": "It's Nice That",
+    "snippet": "The multidisciplinary studio believes culture, creativity and belonging is too often swapped out for basic function \u2013\u00a0instead it should be \u201cfelt, embodied, and experienced through physical space\u201d.",
+    "image": "https://admin.itsnicethat.com/images/udF29gdeEfAPha8ksHbvBYJC2-I=/280788/width-1440/SOFTER_Digital_Futures_at_The_Art_House_copy.jpg",
+    "published_ts": 1786352400,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://www.itsnicethat.com/articles/acrylicize-physical-culture-sponsored-content-100826"
+  },
+  "itsnicethat.com/articles/pov-no-reading-is-not-dead-publication-creative-industry-100826": {
+    "title": "POV: No, reading is not dead \u2013 it\u2019s far more complicated than that",
+    "source": "It's Nice That",
+    "snippet": "The Stack Reading Habits Report digs deep into how and what people are reading nowadays, and \u2013\u00a0importantly \u2013\u00a0why. Here, Stack founder Steven Watson shares some of its fascinating results and his opinions on our changing attitude to the printed word.",
+    "image": "https://admin.itsnicethat.com/images/xdq0uYFeJ47NN7IOVOxI48dkUCM=/280777/width-1440%7Cformat-jpeg/44_POV_Hero.png",
+    "published_ts": 1786348800,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://www.itsnicethat.com/articles/pov-no-reading-is-not-dead-publication-creative-industry-100826"
+  },
+  "tympanus.net/codrops/2026/08/10/from-brand-systems-to-cultural-worlds-inside-antinomy-and-27b": {
+    "title": "From Brand Systems to Cultural Worlds: Inside Antinomy and 27b",
+    "source": "Codrops",
+    "snippet": "A look inside two connected studios building brands across strategy, design, and experience, with the same instinct for clarity, culture, and edge.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/07/Antinomy27b-1.png?x57826",
+    "published_ts": 1786367648,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://tympanus.net/codrops/2026/08/10/from-brand-systems-to-cultural-worlds-inside-antinomy-and-27b/"
+  },
+  "uxdesign.cc/bottle-your-judgment-and-make-it-outlive-you-14f422772262": {
+    "title": "Bottle your judgment and make it outlive you",
+    "source": "Sidebar",
+    "snippet": "The most valuable thing you own dies with you, unless you get it out of your head. Let a machine and the person next to you finally use it.",
+    "image": "",
+    "published_ts": 1786425383,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://uxdesign.cc/bottle-your-judgment-and-make-it-outlive-you-14f422772262"
+  },
+  "thehtml.review/05": {
+    "title": "The HTML review 05",
+    "source": "Sidebar",
+    "snippet": "An annual journal of literature made to exist on the web.",
+    "image": "https://thehtml.review/images/issue-05.png",
+    "published_ts": 1786425342,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://thehtml.review/05/"
+  },
+  "blog.senko.net/code-was-never-the-hard-part-is-an-insult-to-all-programmers": {
+    "title": "\u201cCode was never the hard part\u201d is an insult to all programmers",
+    "source": "Sidebar",
+    "snippet": "The software development profession is in the midst of upheaval. And there's a gross insult to all programmers everywhere.",
+    "image": "https://cdn.writeas.net/img/w-sq-light.png",
+    "published_ts": 1786425296,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://blog.senko.net/code-was-never-the-hard-part-is-an-insult-to-all-programmers"
+  },
+  "aipotluck.org/map": {
+    "title": "AI Potluck",
+    "source": "Sidebar",
+    "snippet": "Mapping the open source AI stack to understand what\u2019s missing. Now, together, we can close them.",
+    "image": "https://www.aipotluck.org/gapmap-og.png",
+    "published_ts": 1786425236,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://www.aipotluck.org/map"
+  },
+  "martin.janiczek.cz/2026/07/24/systems-and-delays.html": {
+    "title": "Systems and delays",
+    "source": "Sidebar",
+    "snippet": "Where delays are shown to be counterintuitive.",
+    "image": "",
+    "published_ts": 1786425160,
+    "first_seen_ts": 1786442428.124428,
+    "link": "https://martin.janiczek.cz/2026/07/24/systems-and-delays.html"
   }
 }
