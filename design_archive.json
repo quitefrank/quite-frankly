@@ -1,58 +1,4 @@
 {
-  "smashingmagazine.com/2026/07/weaponizing-defending-react-flight-protocol": {
-    "title": "Weaponizing And Defending The React Flight Protocol: Deserialization Sinks In RSCs",
-    "source": "Smashing Magazine",
-    "snippet": "While React Server Components rely on the custom Flight protocol to stream interactive UIs, this same mechanism introduces powerful deserialization sinks that attackers can exploit. Durgesh Pawar breaks down the mechanics behind the CVSS 10.0 \u201cReact2Shell\u201d vulnerability to show how protocol manipula",
-    "image": "http://files.smashing.media/articles/weaponizing-defending-react-flight-protocol/weaponizing-defending-react-flight-protocol.jpg",
-    "published_ts": 1784628000,
-    "first_seen_ts": 1786269625.3824024,
-    "link": "https://smashingmagazine.com/2026/07/weaponizing-defending-react-flight-protocol/"
-  },
-  "lennysnewsletter.com/p/community-wisdom-crafting-outreach": {
-    "title": "\ud83e\udde0 Community Wisdom: Crafting outreach that reads as authentic, finding design partners, what counts as a moat when anyone can build, making a product vision stick, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 196",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1786208894,
-    "first_seen_ts": 1786269625.3824024,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-crafting-outreach"
-  },
-  "lennysnewsletter.com/p/how-to-take-a-sabbatical": {
-    "title": "Why a sabbatical can change everything",
-    "source": "Lenny's Newsletter",
-    "snippet": "How to take Big Time Off",
-    "image": "https://substackcdn.com/image/fetch/$s_!vNGP!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F63592fe7-75fd-4e63-9fb2-a33c9301e39f_1456x970.png",
-    "published_ts": 1784637910,
-    "first_seen_ts": 1786269625.3824024,
-    "link": "https://www.lennysnewsletter.com/p/how-to-take-a-sabbatical"
-  },
-  "itsnicethat.com/features/the-weekend-with-zara-mcintosh-310726": {
-    "title": "The Weekend With Zara McIntosh",
-    "source": "It's Nice That",
-    "snippet": "A pop culture connoisseur and the queen of physical media, whatzaraloves gives us the run down on her ideal weekend, and there\u2019s no gatekeeping here. The creative hands us her tips for the best London spots, the queer mags that are on her reading list and the soundtrack to her summer.",
-    "image": "https://admin.itsnicethat.com/images/cwd-KswyejkoKIABsUUKi-cRVeE=/280306/width-1440%7Cformat-jpeg/00-01_Q35FR6y.png",
-    "published_ts": 1785484800,
-    "first_seen_ts": 1786269625.3824024,
-    "link": "https://www.itsnicethat.com/features/the-weekend-with-zara-mcintosh-310726"
-  },
-  "tympanus.net/codrops/2026/08/08/designing-a-flexible-digital-archive-for-chems-studios-creative-practice": {
-    "title": "Designing a Flexible Digital Archive for Chems.Studio\u2019s Creative Practice",
-    "source": "Codrops",
-    "snippet": "A film-led website for Chems Studio, bringing years of creative direction and moving image together through a quiet, flexible digital framework.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/chems.png?x57826",
-    "published_ts": 1786202011,
-    "first_seen_ts": 1786269625.3824024,
-    "link": "https://tympanus.net/codrops/2026/08/08/designing-a-flexible-digital-archive-for-chems-studios-creative-practice/"
-  },
-  "tympanus.net/codrops/2026/07/30/building-an-infinite-gsap-scroll-gallery-with-parallax-and-flip-transitions": {
-    "title": "Building an Infinite GSAP Scroll Gallery with Parallax and Flip Transitions",
-    "source": "Codrops",
-    "snippet": "Learn how to build an infinite GSAP gallery with parallax scrolling, reveal animations, and Flip-powered fullscreen transitions.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/07/infinitescrollGSAP.png?x57826",
-    "published_ts": 1785420987,
-    "first_seen_ts": 1786269625.3824024,
-    "link": "https://tympanus.net/codrops/2026/07/30/building-an-infinite-gsap-scroll-gallery-with-parallax-and-flip-transitions/"
-  },
   "uxdesign.cc/the-loom-that-raised-its-hand-4e8981b3ef88?source=rss----138adf9c44c---4": {
     "title": "The loom that raised its hand",
     "source": "UX Collective",
@@ -1096,5 +1042,104 @@
     "published_ts": 1785925334,
     "first_seen_ts": 1786788030.6385884,
     "link": "https://tympanus.net/codrops/2026/08/05/a-canvas-for-individuality-creating-websites-that-feel-unmistakably-human-with-readymag/"
+  },
+  "uxdesign.cc/how-to-become-an-ai-designer-ff8ee8aed205?source=rss----138adf9c44c---4": {
+    "title": "How to become an AI Designer",
+    "source": "UX Collective",
+    "snippet": "A realistic guide to shipping your own\u00a0designs.Your company wants you to use more tokens. Engineers are shipping faster than you can prototype. Vibecoded slop is all over your LinkedIn feed. Agents are the future. Figma\u2019s over. Anthropic just released Claude Design. Taste is everything. Eng just shi",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*DPP633WIrk6_3kIrF0tOWQ.png",
+    "published_ts": 1786799788,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://uxdesign.cc/how-to-become-an-ai-designer-ff8ee8aed205?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/who-gets-the-meter-7cd1cd1ad5e4?source=rss----138adf9c44c---4": {
+    "title": "Who gets the meter?",
+    "source": "UX Collective",
+    "snippet": "We&#x2019;ve spent 180 years trying not to feel the cost of the machine. AI just turned the meter back on.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/1169/0*sKAWsl_jj2DSQlng",
+    "published_ts": 1786799707,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://uxdesign.cc/who-gets-the-meter-7cd1cd1ad5e4?source=rss----138adf9c44c---4"
+  },
+  "smashingmagazine.com/2026/08/how-baseline-can-help-ship-less-javascript": {
+    "title": "How Baseline Can Help You Ship Less JavaScript",
+    "source": "Smashing Magazine",
+    "snippet": "The gap between \u201cyou need a library for this\u201d and \u201cthe browser does this\u201d keeps closing. A practical guide to auditing your dependencies and finding what the web platform can now handle for you.",
+    "image": "http://files.smashing.media/articles/how-baseline-can-help-ship-less-javascript/how-baseline-can-help-ship-less-javascript.jpg",
+    "published_ts": 1786107600,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://smashingmagazine.com/2026/08/how-baseline-can-help-ship-less-javascript/"
+  },
+  "nngroup.com/articles/dogfooding": {
+    "title": "Dogfooding vs. QA vs. User Research",
+    "source": "NN/g",
+    "snippet": "Dogfooding, or using your own products internally, helps catch bugs, but it can't replace user research: your team knows too much to represent real users.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Dogfooding1.png",
+    "published_ts": 1786122000,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://www.nngroup.com/articles/dogfooding/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/prove-framework": {
+    "title": "How to Decide When an AI Tool Is Worth Keeping",
+    "source": "NN/g",
+    "snippet": "Pressure to adopt AI isn't evidence that a tool helps. The PROVE framework tests one tool against one task and produces a provisional decision you can defend.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/How_to_Decide_When_an_AI_Tool_Is_Worth_Keeping_1.png",
+    "published_ts": 1786122000,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://www.nngroup.com/articles/prove-framework/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/community-wisdom-recovering-from": {
+    "title": "\ud83e\udde0 Community Wisdom: Recovering from burnout, what Airtable\u2019s sale says about the ceiling on a startup, keeping architecture docs up to date, running competitor analysis, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 197",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1786813273,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-recovering-from"
+  },
+  "design-milk.com/cj-hendry-pastel-salon-94-bead-installation": {
+    "title": "Dive Into \u2018Pastel,\u2019 Cj Hendry\u2019s Million-Bead Installation at Salon 94 Design",
+    "source": "Design Milk",
+    "snippet": "The artist transforms the Upper East Side gallery into an interactive bead pit where visitors can dive in, make jewelry, and take home pieces of the installation",
+    "image": "https://design-milk.com/images/2026/08/S94D-CJH-Install-ZH-MR.jpg",
+    "published_ts": 1786118764,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://design-milk.com/cj-hendry-pastel-salon-94-bead-installation/"
+  },
+  "itsnicethat.com/articles/nicer-tuesdays-september-2026-launch-070826": {
+    "title": "Nicer Tuesdays London: Get tickets for Mother Design, Foam Magazine, Studio Kiln and Joanna Bl\u00e9mont in September!",
+    "source": "It's Nice That",
+    "snippet": "Join us for our next Nicer Tuesdays event in London, where you can catch exciting talks about hand-painted films, internationally acclaimed magazines and brand identities that breathe life and inspire play.",
+    "image": "https://admin.itsnicethat.com/images/safqVIhx4CuLNhWMepkzJYsuTYI=/277581/width-1440%7Cformat-jpeg/NT_LDN_2026_Meta.png",
+    "published_ts": 1786100400,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-september-2026-launch-070826"
+  },
+  "itsnicethat.com/articles/nicer-tuesdays-september-la-launch-070826": {
+    "title": "Nicer Tuesdays LA: Get tickets for The New Company, Arielle Bobb-Willis, ilovecreatives and Bill Rebholz in September!",
+    "source": "It's Nice That",
+    "snippet": "Nicer Tuesdays is returning to LA! Just in time for fall, this September\u2019s line-up promises to bring some fresh inspiration with talks on all things branding, design, photography and folk art!",
+    "image": "https://admin.itsnicethat.com/images/_dbFhTmBL88QBNhDlVb8ugh49yY=/262851/width-1440%7Cformat-jpeg/INT_NT_META_April_2025.png",
+    "published_ts": 1786100400,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-september-la-launch-070826"
+  },
+  "tympanus.net/codrops/2026/08/15/inside-haoqi-design-letting-dom-and-webgl-share-a-retro-futurist-stage": {
+    "title": "Inside HAOQI.DESIGN: Letting DOM and WebGL Share a Retro-Futurist Stage",
+    "source": "Codrops",
+    "snippet": "A technical look at the making of HAOQI.DESIGN, exploring scroll sync, glass shaders, and the interplay of DOM, CSS, and WebGL in a retro-futurist portfolio.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/Cover.png?x57826",
+    "published_ts": 1786800533,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://tympanus.net/codrops/2026/08/15/inside-haoqi-design-letting-dom-and-webgl-share-a-retro-futurist-stage/"
+  },
+  "tympanus.net/codrops/2026/08/07/the-department-is-open-building-the-px-push-website": {
+    "title": "The Department Is Open: Building the PX PUSH Website",
+    "source": "Codrops",
+    "snippet": "How a design subscription studio built its website around a single governing idea: an old, always-on machine, running underneath a modern Nuxt and Three.js stack.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/07/PXPUSH-Codrops.jpg?x57826",
+    "published_ts": 1786113488,
+    "first_seen_ts": 1786874437.6172872,
+    "link": "https://tympanus.net/codrops/2026/08/07/the-department-is-open-building-the-px-push-website/"
   }
 }
