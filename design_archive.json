@@ -1141,5 +1141,149 @@
     "published_ts": 1786113488,
     "first_seen_ts": 1786874437.6172872,
     "link": "https://tympanus.net/codrops/2026/08/07/the-department-is-open-building-the-px-push-website/"
+  },
+  "uxdesign.cc/ai-adoption-and-the-slow-erosion-of-design-idealism-fab75761ebd6?source=rss----138adf9c44c---4": {
+    "title": "AI adoption and the slow erosion of design idealism",
+    "source": "UX Collective",
+    "snippet": "Why years of client work, deadlines, and professional practice reshape a designer\u2019s relationship with emerging technology.Photo by K. K. on\u00a0UnsplashI was having lunch with a couple of friends the other day. Both happen to be designers. They\u2019re also around my age, in their early forties, and they\u2019ve ",
+    "image": "https://cdn-images-1.medium.com/max/1024/0*2F5T3iNd9kt_Mq0q",
+    "published_ts": 1786952247,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://uxdesign.cc/ai-adoption-and-the-slow-erosion-of-design-idealism-fab75761ebd6?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/you-already-know-how-to-make-it-accessible-b29513a9b217?source=rss----138adf9c44c---4": {
+    "title": "You already know how to make it accessible",
+    "source": "UX Collective",
+    "snippet": "A translation guide for designers who think accessibility is a separate skill\u00a0setEvery year, WebAIM crawls the home pages of the top one million websites and runs them through an automated accessibility scanner. The 2026 results, published this spring, found errors on 95.9% of home pages, averaging ",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*CO1y6Yw8YXLpYBVkhLV_nw.png",
+    "published_ts": 1786874918,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://uxdesign.cc/you-already-know-how-to-make-it-accessible-b29513a9b217?source=rss----138adf9c44c---4"
+  },
+  "smashingmagazine.com/2026/07/weaponizing-defending-react-flight-protocol": {
+    "title": "Weaponizing And Defending The React Flight Protocol: Deserialization Sinks In RSCs",
+    "source": "Smashing Magazine",
+    "snippet": "While React Server Components rely on the custom Flight protocol to stream interactive UIs, this same mechanism introduces powerful deserialization sinks that attackers can exploit. Durgesh Pawar breaks down the mechanics behind the CVSS 10.0 \u201cReact2Shell\u201d vulnerability to show how protocol manipula",
+    "image": "http://files.smashing.media/articles/weaponizing-defending-react-flight-protocol/weaponizing-defending-react-flight-protocol.jpg",
+    "published_ts": 1784628000,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://smashingmagazine.com/2026/07/weaponizing-defending-react-flight-protocol/"
+  },
+  "lennysnewsletter.com/p/openais-head-of-design-this-is-the": {
+    "title": "OpenAI\u2019s Head of Design: This is the best time in history to be a designer | Ian Silber",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now | OpenAI&#8217;s head of product design on why this is the best time in history to be a designer, where humans still beat AI, and how to escape the overwhelm",
+    "image": "https://substackcdn.com/image/fetch/$s_!2SoR!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd5a39af-249c-450d-ad9a-927f0abb810b_2048x2048.png",
+    "published_ts": 1786883502,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://www.lennysnewsletter.com/p/openais-head-of-design-this-is-the"
+  },
+  "lennysnewsletter.com/p/community-wisdom-crafting-outreach": {
+    "title": "\ud83e\udde0 Community Wisdom: Crafting outreach that reads as authentic, finding design partners, what counts as a moat when anyone can build, making a product vision stick, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 196",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1786208894,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-crafting-outreach"
+  },
+  "itsnicethat.com/articles/the-view-from-tokyo-why-a-japanese-potato-chip-bag-lost-its-colour-graphic-design-170826": {
+    "title": "Why a Japanese potato chip bag lost its colour",
+    "source": "It's Nice That",
+    "snippet": "...and how economic and political turbulence is resetting the defaults of Japanese design.",
+    "image": "https://admin.itsnicethat.com/images/utYCv7IHg8A6E5l-LVqi06h_mPE=/280800/width-1440%7Cformat-jpeg/TVF_Meta_iQv0QvE.png",
+    "published_ts": 1786953600,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://www.itsnicethat.com/articles/the-view-from-tokyo-why-a-japanese-potato-chip-bag-lost-its-colour-graphic-design-170826"
+  },
+  "itsnicethat.com/articles/creative-career-conundrums-if-you-could-jobs-170826": {
+    "title": "\u201cEngineering and creativity are not mutually exclusive\u201d",
+    "source": "It's Nice That",
+    "snippet": "Moving between roles is a hard business, let alone when you\u2019re trying to move into a different style of role \u2013\u00a0or another field entirely. But it\u2019s far from impossible, as Kat Wong, founder of career change platform Oh Yeah, explains in this week\u2019s Creative Career Conundrums.",
+    "image": "https://admin.itsnicethat.com/images/LYAyIaLMFodOWyYEScZTR_nW7Sc=/280795/width-1440%7Cformat-jpeg/CCC_Square_HOW_DO_I_MOVE_FROM_A_TECHNICAL_POSITION_TO_A_CREATIVE_ROLE.png",
+    "published_ts": 1786953600,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://www.itsnicethat.com/articles/creative-career-conundrums-if-you-could-jobs-170826"
+  },
+  "itsnicethat.com/articles/turkina-faso-film-project-170826": {
+    "title": "Turkina Faso is reshaping her multidisciplinary practice through stories of female identity, desire and everyday life",
+    "source": "It's Nice That",
+    "snippet": "After stepping back from the pace of fashion shoots and commercial campaigns, the London-based photographer is turning to narrative cinema to explore new forms of storytelling.",
+    "image": "https://admin.itsnicethat.com/images/4ZUEArJdNx8h94Lu4W2cfaCX-Kw=/280812/width-1440/changing_room_03.jpg",
+    "published_ts": 1786953600,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://www.itsnicethat.com/articles/turkina-faso-film-project-170826"
+  },
+  "itsnicethat.com/articles/ian-teeple-illustration-graphic-design-discover-170826": {
+    "title": "Ian Teeple\u2019s punk flyers look like they\u2019ve been dragged through a photocopier and a mosh pit",
+    "source": "It's Nice That",
+    "snippet": "Using ink, oil pastels, crayons, paint, collage and repeated photocopying, this graphic designer makes gig posters as loud as a guitar through a million fuzz pedals.",
+    "image": "https://admin.itsnicethat.com/images/WkvtubY0E6fEHLJ1-fPclDG6aDk=/280845/width-1440/ian-teeple-illustration-itsnicethat-Self_Portrait.jpg",
+    "published_ts": 1786953600,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://www.itsnicethat.com/articles/ian-teeple-illustration-graphic-design-discover-170826"
+  },
+  "itsnicethat.com/features/the-weekend-with-the-last-dinner-party-140826": {
+    "title": "The Weekend With The Last Dinner Party",
+    "source": "It's Nice That",
+    "snippet": "We caught up with the indie rock band\u2019s lead vocalist and bass guitarist to see what goes on behind the scenes of their enamouring live shows and life on the road.",
+    "image": "https://admin.itsnicethat.com/images/LoVk9G22a57YgbTxIlSqKPSrr3Y=/280729/width-1440%7Cformat-jpeg/The_Weekend_HERO_hFXGZK4.png",
+    "published_ts": 1786694400,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://www.itsnicethat.com/features/the-weekend-with-the-last-dinner-party-140826"
+  },
+  "tympanus.net/codrops/2026/08/08/designing-a-flexible-digital-archive-for-chems-studios-creative-practice": {
+    "title": "Designing a Flexible Digital Archive for Chems.Studio\u2019s Creative Practice",
+    "source": "Codrops",
+    "snippet": "A film-led website for Chems Studio, bringing years of creative direction and moving image together through a quiet, flexible digital framework.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/chems.png?x57826",
+    "published_ts": 1786202011,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://tympanus.net/codrops/2026/08/08/designing-a-flexible-digital-archive-for-chems-studios-creative-practice/"
+  },
+  "bit.ly/side-gra2": {
+    "title": "Take your meeting context to new places",
+    "source": "Sidebar",
+    "snippet": "Granola's new Model Context Protocol (MCP) integration connects your meeting notes to your AI app of choice.",
+    "image": "",
+    "published_ts": 1786953180,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://bit.ly/side-gra2"
+  },
+  "superposition.jem.computer/design-is-how-it-tastes": {
+    "title": "Design is how it tastes",
+    "source": "Sidebar",
+    "snippet": "If our design specs only tell models what the interface is made of, they have already forgotten what the interface is for",
+    "image": "https://storage.ghost.io/c/c5/62/c56200eb-3619-42a7-83b5-b407f6e3a328/content/images/2026/04/replicate-prediction-0ax4zwxcnhrmw0cxr58scnbb30.png",
+    "published_ts": 1786953153,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://superposition.jem.computer/design-is-how-it-tastes/"
+  },
+  "eigendrum.com": {
+    "title": "Eigendrum",
+    "source": "Sidebar",
+    "snippet": "Draw any shape and hear it as a drum. Every frequency is solved from your outline with finite elements, never sampled.",
+    "image": "https://eigendrum.com/docs/hero.png",
+    "published_ts": 1786953122,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://eigendrum.com/#p=circle"
+  },
+  "buttondown.com/nic-steenhout/archive/accessibility-getting-dropped-in-the-process": {
+    "title": "Accessibility getting dropped in the process",
+    "source": "Sidebar",
+    "snippet": "When accessible designs become inaccessible products.",
+    "image": "https://assets.buttondown.email/images/0c59d13a-2be4-42ce-bc20-562c1390ff5a.jpg?w=960&amp;fit=max",
+    "published_ts": 1786953047,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://buttondown.com/nic-steenhout/archive/accessibility-getting-dropped-in-the-process/"
+  },
+  "minoradventures.co/blog/the-making-of-cursors-icons": {
+    "title": "The making of Cursor\u2019s icons",
+    "source": "Sidebar",
+    "snippet": "A year of drawing, testing, and shipping a complete icon system for the world\u2019s favourite coding agent.",
+    "image": "https://minoradventures.co/images/blog/the-making-of-cursors-icons/hero.png",
+    "published_ts": 1786952993,
+    "first_seen_ts": 1786960830.5606647,
+    "link": "https://www.minoradventures.co/blog/the-making-of-cursors-icons"
   }
 }
