@@ -1,103 +1,4 @@
 {
-  "uxdesign.cc/how-to-become-an-ai-designer-ff8ee8aed205?source=rss----138adf9c44c---4": {
-    "title": "How to become an AI Designer",
-    "source": "UX Collective",
-    "snippet": "A realistic guide to shipping your own\u00a0designs.Your company wants you to use more tokens. Engineers are shipping faster than you can prototype. Vibecoded slop is all over your LinkedIn feed. Agents are the future. Figma\u2019s over. Anthropic just released Claude Design. Taste is everything. Eng just shi",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*DPP633WIrk6_3kIrF0tOWQ.png",
-    "published_ts": 1786799788,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://uxdesign.cc/how-to-become-an-ai-designer-ff8ee8aed205?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/who-gets-the-meter-7cd1cd1ad5e4?source=rss----138adf9c44c---4": {
-    "title": "Who gets the meter?",
-    "source": "UX Collective",
-    "snippet": "We&#x2019;ve spent 180 years trying not to feel the cost of the machine. AI just turned the meter back on.Continue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/1169/0*sKAWsl_jj2DSQlng",
-    "published_ts": 1786799707,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://uxdesign.cc/who-gets-the-meter-7cd1cd1ad5e4?source=rss----138adf9c44c---4"
-  },
-  "smashingmagazine.com/2026/08/how-baseline-can-help-ship-less-javascript": {
-    "title": "How Baseline Can Help You Ship Less JavaScript",
-    "source": "Smashing Magazine",
-    "snippet": "The gap between \u201cyou need a library for this\u201d and \u201cthe browser does this\u201d keeps closing. A practical guide to auditing your dependencies and finding what the web platform can now handle for you.",
-    "image": "http://files.smashing.media/articles/how-baseline-can-help-ship-less-javascript/how-baseline-can-help-ship-less-javascript.jpg",
-    "published_ts": 1786107600,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://smashingmagazine.com/2026/08/how-baseline-can-help-ship-less-javascript/"
-  },
-  "nngroup.com/articles/dogfooding": {
-    "title": "Dogfooding vs. QA vs. User Research",
-    "source": "NN/g",
-    "snippet": "Dogfooding, or using your own products internally, helps catch bugs, but it can't replace user research: your team knows too much to represent real users.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Dogfooding1.png",
-    "published_ts": 1786122000,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://www.nngroup.com/articles/dogfooding/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/prove-framework": {
-    "title": "How to Decide When an AI Tool Is Worth Keeping",
-    "source": "NN/g",
-    "snippet": "Pressure to adopt AI isn't evidence that a tool helps. The PROVE framework tests one tool against one task and produces a provisional decision you can defend.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/How_to_Decide_When_an_AI_Tool_Is_Worth_Keeping_1.png",
-    "published_ts": 1786122000,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://www.nngroup.com/articles/prove-framework/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/community-wisdom-recovering-from": {
-    "title": "\ud83e\udde0 Community Wisdom: Recovering from burnout, what Airtable\u2019s sale says about the ceiling on a startup, keeping architecture docs up to date, running competitor analysis, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 197",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1786813273,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-recovering-from"
-  },
-  "design-milk.com/cj-hendry-pastel-salon-94-bead-installation": {
-    "title": "Dive Into \u2018Pastel,\u2019 Cj Hendry\u2019s Million-Bead Installation at Salon 94 Design",
-    "source": "Design Milk",
-    "snippet": "The artist transforms the Upper East Side gallery into an interactive bead pit where visitors can dive in, make jewelry, and take home pieces of the installation",
-    "image": "https://design-milk.com/images/2026/08/S94D-CJH-Install-ZH-MR.jpg",
-    "published_ts": 1786118764,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://design-milk.com/cj-hendry-pastel-salon-94-bead-installation/"
-  },
-  "itsnicethat.com/articles/nicer-tuesdays-september-2026-launch-070826": {
-    "title": "Nicer Tuesdays London: Get tickets for Mother Design, Foam Magazine, Studio Kiln and Joanna Bl\u00e9mont in September!",
-    "source": "It's Nice That",
-    "snippet": "Join us for our next Nicer Tuesdays event in London, where you can catch exciting talks about hand-painted films, internationally acclaimed magazines and brand identities that breathe life and inspire play.",
-    "image": "https://admin.itsnicethat.com/images/safqVIhx4CuLNhWMepkzJYsuTYI=/277581/width-1440%7Cformat-jpeg/NT_LDN_2026_Meta.png",
-    "published_ts": 1786100400,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-september-2026-launch-070826"
-  },
-  "itsnicethat.com/articles/nicer-tuesdays-september-la-launch-070826": {
-    "title": "Nicer Tuesdays LA: Get tickets for The New Company, Arielle Bobb-Willis, ilovecreatives and Bill Rebholz in September!",
-    "source": "It's Nice That",
-    "snippet": "Nicer Tuesdays is returning to LA! Just in time for fall, this September\u2019s line-up promises to bring some fresh inspiration with talks on all things branding, design, photography and folk art!",
-    "image": "https://admin.itsnicethat.com/images/_dbFhTmBL88QBNhDlVb8ugh49yY=/262851/width-1440%7Cformat-jpeg/INT_NT_META_April_2025.png",
-    "published_ts": 1786100400,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-september-la-launch-070826"
-  },
-  "tympanus.net/codrops/2026/08/15/inside-haoqi-design-letting-dom-and-webgl-share-a-retro-futurist-stage": {
-    "title": "Inside HAOQI.DESIGN: Letting DOM and WebGL Share a Retro-Futurist Stage",
-    "source": "Codrops",
-    "snippet": "A technical look at the making of HAOQI.DESIGN, exploring scroll sync, glass shaders, and the interplay of DOM, CSS, and WebGL in a retro-futurist portfolio.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/Cover.png?x57826",
-    "published_ts": 1786800533,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://tympanus.net/codrops/2026/08/15/inside-haoqi-design-letting-dom-and-webgl-share-a-retro-futurist-stage/"
-  },
-  "tympanus.net/codrops/2026/08/07/the-department-is-open-building-the-px-push-website": {
-    "title": "The Department Is Open: Building the PX PUSH Website",
-    "source": "Codrops",
-    "snippet": "How a design subscription studio built its website around a single governing idea: an old, always-on machine, running underneath a modern Nuxt and Three.js stack.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/07/PXPUSH-Codrops.jpg?x57826",
-    "published_ts": 1786113488,
-    "first_seen_ts": 1786874437.6172872,
-    "link": "https://tympanus.net/codrops/2026/08/07/the-department-is-open-building-the-px-push-website/"
-  },
   "uxdesign.cc/ai-adoption-and-the-slow-erosion-of-design-idealism-fab75761ebd6?source=rss----138adf9c44c---4": {
     "title": "AI adoption and the slow erosion of design idealism",
     "source": "UX Collective",
@@ -1105,5 +1006,194 @@
     "published_ts": 1786625165,
     "first_seen_ts": 1787479229.9915743,
     "link": "https://tympanus.net/codrops/2026/08/13/from-motion-to-meaning-denis-avramenkos-approach-to-interactive-design/"
+  },
+  "uxdesign.cc/stop-using-oklch-lightness-for-your-color-scale-02025deca49d?source=rss----138adf9c44c---4": {
+    "title": "Stop using OKLCH lightness for your color scale",
+    "source": "UX Collective",
+    "snippet": "It&#x2019;s brilliant at generating color, but it can&#x2019;t predict contrast&#x200a;&#x2014;&#x200a;and there&#x2019;s a better number for your palette weights.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2600/1*rYTMOiBmAldBeY_imswJpA.png",
+    "published_ts": 1787517436,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://uxdesign.cc/stop-using-oklch-lightness-for-your-color-scale-02025deca49d?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/nobody-wants-a-blank-page-nobody-touches-a-perfect-one-48d452a26dae?source=rss----138adf9c44c---4": {
+    "title": "Nobody wants a blank page. Nobody touches a perfect one.",
+    "source": "UX Collective",
+    "snippet": "Why people can&#x2019;t begin from nothing, and won&#x2019;t touch anything finished.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/1600/0*B_NyIQXcamP4wKu9",
+    "published_ts": 1787484128,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://uxdesign.cc/nobody-wants-a-blank-page-nobody-touches-a-perfect-one-48d452a26dae?source=rss----138adf9c44c---4"
+  },
+  "smashingmagazine.com/2026/07/bull-and-bear-case-digital-design-age-ai": {
+    "title": "The Bull And Bear Case For Digital Design In The Age Of AI",
+    "source": "Smashing Magazine",
+    "snippet": "As AI reshapes product design, it could give designers greater autonomy or expose the gaps that autonomy makes harder to hide. Exploring both the bull and bear cases, Andy Budd examines what happens when designers need less permission to act.",
+    "image": "http://files.smashing.media/articles/bull-and-bear-case-digital-design-age-ai/bull-and-bear-case-digital-design-age-ai.jpg",
+    "published_ts": 1785330000,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://smashingmagazine.com/2026/07/bull-and-bear-case-digital-design-age-ai/"
+  },
+  "smashingmagazine.com/2026/07/digital-design-ai-era": {
+    "title": "Thinking Outside The Box: Digital Design In The AI Era",
+    "source": "Smashing Magazine",
+    "snippet": "Many of the AI tools we interact with take the form of text boxes. But what if there was a different way to interact with AI? Oleksii Hrzhehorzhevskyi explores a different approach to creating a new AI assistant and how designers can navigate the field as AI continues to change it.",
+    "image": "http://files.smashing.media/articles/digital-design-ai-era/digital-design-ai-era.jpg",
+    "published_ts": 1785232800,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://smashingmagazine.com/2026/07/digital-design-ai-era/"
+  },
+  "nngroup.com/training/november": {
+    "title": "UX Conference November Announced (Nov 9 - Nov 13)",
+    "source": "NN/g",
+    "snippet": "Take up to 5 in-depth training courses, teaching user experience best practices for successful design. Courses focused on long-lasting skills for UX professionals. November 9 - 13, 2026.",
+    "image": "https://media.nngroup.com/media/events/opengraph_images/Social-Card-_Nov_LOT.png",
+    "published_ts": 1787554080,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.nngroup.com/training/november/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/psychological-ownership": {
+    "title": "Psychological Ownership: Own the Right Things",
+    "source": "NN/g",
+    "snippet": "Psychological ownership can make you more effective, but you\u2019ll struggle if it attaches to things you can\u2019t control. Spot misplaced ownership and redirect it.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Psychological_Ownership1.png",
+    "published_ts": 1786726800,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.nngroup.com/articles/psychological-ownership/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/eval-ai-output": {
+    "title": "One AI Output Is an Example, Not an Evaluation",
+    "source": "NN/g",
+    "snippet": "One output cannot establish how well an AI system performs. Evaluate with multiple representative inputs, repeated runs, and confidence intervals.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/One_AI_Output1_2JVhrNe.png",
+    "published_ts": 1786726800,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.nngroup.com/articles/eval-ai-output/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/training/october-eu": {
+    "title": "UX Conference October Announced (Oct 26 - Oct 29)",
+    "source": "NN/g",
+    "snippet": "Take up to 2 in-depth training courses, teaching user experience best practices for successful design. Training focused on long-lasting skills for UX professionals. October 26 - October 29, 2026.",
+    "image": "https://media.nngroup.com/media/files/images/heroMap_americas_to_dubai_150-10.png",
+    "published_ts": 1785833012,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.nngroup.com/training/october-eu/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/how-to-close-100k-1m-deals-step-by": {
+    "title": "How to close $100K+ enterprise deals, step by step | Jen Abel",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now | Jen Abel returns for a third time to walk us through every step of the enterprise sales cycle&#8212;from the first cold outreach to the final contract signature",
+    "image": "https://substackcdn.com/image/fetch/$s_!O6sx!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F27d47f94-8ec2-436e-84ac-0ee454a29f3d_2048x2048.png",
+    "published_ts": 1787488303,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.lennysnewsletter.com/p/how-to-close-100k-1m-deals-step-by"
+  },
+  "lennysnewsletter.com/p/build-an-ai-code-review-bot-in-30": {
+    "title": "Build an AI code review bot in 30 minutes with Vercel Eve",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now | &#127897;&#65039; I used Vercel Eve agents and Codex to build Merge Mommy: a PR review bot that scores risk, auto-approves the easy ones, and pings me in Slack for the rest",
+    "image": "https://substackcdn.com/image/fetch/$s_!RJsg!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3cae02ce-02fb-44be-b868-068bf837985d_1456x1048.png",
+    "published_ts": 1785931441,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.lennysnewsletter.com/p/build-an-ai-code-review-bot-in-30"
+  },
+  "lennysnewsletter.com/p/productpass-summer2026launch": {
+    "title": "11 products I love, free for a year\u2014the biggest Product Pass expansion in 2 years",
+    "source": "Lenny's Newsletter",
+    "snippet": "Runway, Higgsfield, Waking Up, Brain.fm, Customer.io, Resend, Pangram, Mercury Personal, Supercut, Readwise, and Jam are joining Product Pass today, all included with Annual and Insider memberships",
+    "image": "https://substackcdn.com/image/fetch/$s_!zA4i!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffd82569d-7b1e-43f1-a487-c9cb4da0435b_1456x970.png",
+    "published_ts": 1785254064,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.lennysnewsletter.com/p/productpass-summer2026launch"
+  },
+  "design-milk.com/nothing-ear-3a-audio-snapshot-earbuds": {
+    "title": "Nothing\u2019s Ear (3a) Makes Audio as Easy to Capture as a Screenshot",
+    "source": "Design Milk",
+    "snippet": "Nothing\u2019s latest earbuds introduce Audio Snapshot, a new feature for capturing snippets of music, podcasts, calls, and more",
+    "image": "https://design-milk.com/images/2026/08/Nothing_Jumpluff_LifestyleStills_Shot_04_16x9_CLEAN-e1786568197426.jpg",
+    "published_ts": 1786716010,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://design-milk.com/nothing-ear-3a-audio-snapshot-earbuds/"
+  },
+  "itsnicethat.com/articles/pov-no-shortcuts-why-ai-threatens-creative-instinct-creative-industry-240826": {
+    "title": "No shortcuts: why AI threatens creative instinct",
+    "source": "It's Nice That",
+    "snippet": "The capacity for judgement now matters more than the capacity for execution. Handling this shift well ultimately depends on how designers frame their relationship to AI: as a collaborator to work alongside, or as an oracle to defer to.",
+    "image": "https://admin.itsnicethat.com/images/xcJIZTGV2kTr-qV8ZjCkBkaio0o=/281224/width-1440%7Cformat-jpeg/45_POV_Hero.png",
+    "published_ts": 1787558400,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.itsnicethat.com/articles/pov-no-shortcuts-why-ai-threatens-creative-instinct-creative-industry-240826"
+  },
+  "itsnicethat.com/features/teddy-blanks-chips-film-title-typography-graphic-design-spotlight-240826": {
+    "title": "From Barbie logos to medieval manuscripts: step inside Teddy Blanks\u2019 film title design process",
+    "source": "It's Nice That",
+    "snippet": "Teddy Blanks, the Chips co-founder behind the title sequences for Barbie, Weapons and Robert Eggers\u2019 upcoming Werwulf, explains how Ebay dolls, hidden AA symbolism and a 14th Century manuscript all found their way into his lettering.",
+    "image": "https://admin.itsnicethat.com/images/Az5o5pELIspJTTVICaV1DF88xK4=/281212/width-1440/werwulf_titles_teddy_blanks_chips_itsnicethat_hero.jpg",
+    "published_ts": 1787558400,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.itsnicethat.com/features/teddy-blanks-chips-film-title-typography-graphic-design-spotlight-240826"
+  },
+  "itsnicethat.com/articles/laura-clink-phillips-print-graphic-design-project-240826": {
+    "title": "Laura Clink designs a flexible identity for family-run print shop Phillips Print",
+    "source": "It's Nice That",
+    "snippet": "Created around nine interchangeable logos and a hands-on approach to print, the designer\u2019s new identity reflects the warmth, versatility and community at the heart of the third-generation business.",
+    "image": "https://admin.itsnicethat.com/images/aK_Zd4jUAejuZRYnx6gO7OjuxLY=/281128/width-1440/Laura-Clink-Phillips-Print-graphic-design-Itsnicethat-11.jpg",
+    "published_ts": 1787558400,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.itsnicethat.com/articles/laura-clink-phillips-print-graphic-design-project-240826"
+  },
+  "itsnicethat.com/articles/creative-career-condundrums-if-you-could-jobs-advice-240826": {
+    "title": "\u201cThe truth is we are in sales\u201d",
+    "source": "It's Nice That",
+    "snippet": "Without the structures and parameters of conventional work places, career progression in the creative industry can become hazy. How do you measure your professional growth with no yardstick to compare it to? In this week\u2019s Creative Career Conundrums, Katie Cadwell offers her advice on the matter.",
+    "image": "https://admin.itsnicethat.com/images/ZcQpvn-ZTe3Nq0ij_gzNLuBnNaE=/281106/width-1440%7Cformat-jpeg/CCC_Square_HOW_CAN_I_MEASURE_PROGRESS_IN_A_CREATIVE_COMPANY.png",
+    "published_ts": 1787558400,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://www.itsnicethat.com/articles/creative-career-condundrums-if-you-could-jobs-advice-240826"
+  },
+  "bit.ly/side-gra3": {
+    "title": "The AI Notepad for back-to-back meetings",
+    "source": "Sidebar",
+    "snippet": "Notes, actions and memory for your AI Agents. Without a meeting bot. Try it in your next meeting.",
+    "image": "",
+    "published_ts": 1787557500,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://bit.ly/side-gra3"
+  },
+  "var0.xyz/posts/perfection-is-not-over-engineering.html": {
+    "title": "Perfection is not over-engineering",
+    "source": "Sidebar",
+    "snippet": "The industry conflates perfection with over-engineering. They\u2019re not the same.",
+    "image": "",
+    "published_ts": 1787557429,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://var0.xyz/posts/perfection-is-not-over-engineering.html"
+  },
+  "elliotjaystocks.com/blog/keeping-type-consistent": {
+    "title": "Keeping type consistent in changing conditions",
+    "source": "Sidebar",
+    "snippet": "How typographic grade preserves visual balance across screens and print substrates without altering layout geometry.",
+    "image": "https://elliotjaystocks.com/media/pages/blog/keeping-type-consistent/b8e4feaf63-1786527781/illustration.webp",
+    "published_ts": 1787557380,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://elliotjaystocks.com/blog/keeping-type-consistent"
+  },
+  "utopia.fyi/type/calculator": {
+    "title": "Fluid type scale calculator",
+    "source": "Sidebar",
+    "snippet": "Generate CSS clamp functions for fluid typography scales, automating responsive font sizing across viewports.",
+    "image": "https://utopia.fyi/og.png",
+    "published_ts": 1787557315,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://utopia.fyi/type/calculator/"
+  },
+  "how.complexsystems.fail": {
+    "title": "How complex systems fail",
+    "source": "Sidebar",
+    "snippet": "Latent flaws, hindsight bias, and operator adaptation. Offering product teams a framework for system safety.",
+    "image": "",
+    "published_ts": 1787557228,
+    "first_seen_ts": 1787565627.7484632,
+    "link": "https://how.complexsystems.fail/"
   }
 }
