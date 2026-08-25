@@ -1,148 +1,4 @@
 {
-  "uxdesign.cc/ai-adoption-and-the-slow-erosion-of-design-idealism-fab75761ebd6?source=rss----138adf9c44c---4": {
-    "title": "AI adoption and the slow erosion of design idealism",
-    "source": "UX Collective",
-    "snippet": "Why years of client work, deadlines, and professional practice reshape a designer\u2019s relationship with emerging technology.Photo by K. K. on\u00a0UnsplashI was having lunch with a couple of friends the other day. Both happen to be designers. They\u2019re also around my age, in their early forties, and they\u2019ve ",
-    "image": "https://cdn-images-1.medium.com/max/1024/0*2F5T3iNd9kt_Mq0q",
-    "published_ts": 1786952247,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://uxdesign.cc/ai-adoption-and-the-slow-erosion-of-design-idealism-fab75761ebd6?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/you-already-know-how-to-make-it-accessible-b29513a9b217?source=rss----138adf9c44c---4": {
-    "title": "You already know how to make it accessible",
-    "source": "UX Collective",
-    "snippet": "A translation guide for designers who think accessibility is a separate skill\u00a0setEvery year, WebAIM crawls the home pages of the top one million websites and runs them through an automated accessibility scanner. The 2026 results, published this spring, found errors on 95.9% of home pages, averaging ",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*CO1y6Yw8YXLpYBVkhLV_nw.png",
-    "published_ts": 1786874918,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://uxdesign.cc/you-already-know-how-to-make-it-accessible-b29513a9b217?source=rss----138adf9c44c---4"
-  },
-  "smashingmagazine.com/2026/07/weaponizing-defending-react-flight-protocol": {
-    "title": "Weaponizing And Defending The React Flight Protocol: Deserialization Sinks In RSCs",
-    "source": "Smashing Magazine",
-    "snippet": "While React Server Components rely on the custom Flight protocol to stream interactive UIs, this same mechanism introduces powerful deserialization sinks that attackers can exploit. Durgesh Pawar breaks down the mechanics behind the CVSS 10.0 \u201cReact2Shell\u201d vulnerability to show how protocol manipula",
-    "image": "http://files.smashing.media/articles/weaponizing-defending-react-flight-protocol/weaponizing-defending-react-flight-protocol.jpg",
-    "published_ts": 1784628000,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://smashingmagazine.com/2026/07/weaponizing-defending-react-flight-protocol/"
-  },
-  "lennysnewsletter.com/p/openais-head-of-design-this-is-the": {
-    "title": "OpenAI\u2019s Head of Design: This is the best time in history to be a designer | Ian Silber",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now | OpenAI&#8217;s head of product design on why this is the best time in history to be a designer, where humans still beat AI, and how to escape the overwhelm",
-    "image": "https://substackcdn.com/image/fetch/$s_!2SoR!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd5a39af-249c-450d-ad9a-927f0abb810b_2048x2048.png",
-    "published_ts": 1786883502,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://www.lennysnewsletter.com/p/openais-head-of-design-this-is-the"
-  },
-  "lennysnewsletter.com/p/community-wisdom-crafting-outreach": {
-    "title": "\ud83e\udde0 Community Wisdom: Crafting outreach that reads as authentic, finding design partners, what counts as a moat when anyone can build, making a product vision stick, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 196",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1786208894,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-crafting-outreach"
-  },
-  "itsnicethat.com/articles/the-view-from-tokyo-why-a-japanese-potato-chip-bag-lost-its-colour-graphic-design-170826": {
-    "title": "Why a Japanese potato chip bag lost its colour",
-    "source": "It's Nice That",
-    "snippet": "...and how economic and political turbulence is resetting the defaults of Japanese design.",
-    "image": "https://admin.itsnicethat.com/images/utYCv7IHg8A6E5l-LVqi06h_mPE=/280800/width-1440%7Cformat-jpeg/TVF_Meta_iQv0QvE.png",
-    "published_ts": 1786953600,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://www.itsnicethat.com/articles/the-view-from-tokyo-why-a-japanese-potato-chip-bag-lost-its-colour-graphic-design-170826"
-  },
-  "itsnicethat.com/articles/creative-career-conundrums-if-you-could-jobs-170826": {
-    "title": "\u201cEngineering and creativity are not mutually exclusive\u201d",
-    "source": "It's Nice That",
-    "snippet": "Moving between roles is a hard business, let alone when you\u2019re trying to move into a different style of role \u2013\u00a0or another field entirely. But it\u2019s far from impossible, as Kat Wong, founder of career change platform Oh Yeah, explains in this week\u2019s Creative Career Conundrums.",
-    "image": "https://admin.itsnicethat.com/images/LYAyIaLMFodOWyYEScZTR_nW7Sc=/280795/width-1440%7Cformat-jpeg/CCC_Square_HOW_DO_I_MOVE_FROM_A_TECHNICAL_POSITION_TO_A_CREATIVE_ROLE.png",
-    "published_ts": 1786953600,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://www.itsnicethat.com/articles/creative-career-conundrums-if-you-could-jobs-170826"
-  },
-  "itsnicethat.com/articles/turkina-faso-film-project-170826": {
-    "title": "Turkina Faso is reshaping her multidisciplinary practice through stories of female identity, desire and everyday life",
-    "source": "It's Nice That",
-    "snippet": "After stepping back from the pace of fashion shoots and commercial campaigns, the London-based photographer is turning to narrative cinema to explore new forms of storytelling.",
-    "image": "https://admin.itsnicethat.com/images/4ZUEArJdNx8h94Lu4W2cfaCX-Kw=/280812/width-1440/changing_room_03.jpg",
-    "published_ts": 1786953600,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://www.itsnicethat.com/articles/turkina-faso-film-project-170826"
-  },
-  "itsnicethat.com/articles/ian-teeple-illustration-graphic-design-discover-170826": {
-    "title": "Ian Teeple\u2019s punk flyers look like they\u2019ve been dragged through a photocopier and a mosh pit",
-    "source": "It's Nice That",
-    "snippet": "Using ink, oil pastels, crayons, paint, collage and repeated photocopying, this graphic designer makes gig posters as loud as a guitar through a million fuzz pedals.",
-    "image": "https://admin.itsnicethat.com/images/WkvtubY0E6fEHLJ1-fPclDG6aDk=/280845/width-1440/ian-teeple-illustration-itsnicethat-Self_Portrait.jpg",
-    "published_ts": 1786953600,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://www.itsnicethat.com/articles/ian-teeple-illustration-graphic-design-discover-170826"
-  },
-  "itsnicethat.com/features/the-weekend-with-the-last-dinner-party-140826": {
-    "title": "The Weekend With The Last Dinner Party",
-    "source": "It's Nice That",
-    "snippet": "We caught up with the indie rock band\u2019s lead vocalist and bass guitarist to see what goes on behind the scenes of their enamouring live shows and life on the road.",
-    "image": "https://admin.itsnicethat.com/images/LoVk9G22a57YgbTxIlSqKPSrr3Y=/280729/width-1440%7Cformat-jpeg/The_Weekend_HERO_hFXGZK4.png",
-    "published_ts": 1786694400,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://www.itsnicethat.com/features/the-weekend-with-the-last-dinner-party-140826"
-  },
-  "tympanus.net/codrops/2026/08/08/designing-a-flexible-digital-archive-for-chems-studios-creative-practice": {
-    "title": "Designing a Flexible Digital Archive for Chems.Studio\u2019s Creative Practice",
-    "source": "Codrops",
-    "snippet": "A film-led website for Chems Studio, bringing years of creative direction and moving image together through a quiet, flexible digital framework.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/chems.png?x57826",
-    "published_ts": 1786202011,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://tympanus.net/codrops/2026/08/08/designing-a-flexible-digital-archive-for-chems-studios-creative-practice/"
-  },
-  "bit.ly/side-gra2": {
-    "title": "Take your meeting context to new places",
-    "source": "Sidebar",
-    "snippet": "Granola's new Model Context Protocol (MCP) integration connects your meeting notes to your AI app of choice.",
-    "image": "",
-    "published_ts": 1786953180,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://bit.ly/side-gra2"
-  },
-  "superposition.jem.computer/design-is-how-it-tastes": {
-    "title": "Design is how it tastes",
-    "source": "Sidebar",
-    "snippet": "If our design specs only tell models what the interface is made of, they have already forgotten what the interface is for",
-    "image": "https://storage.ghost.io/c/c5/62/c56200eb-3619-42a7-83b5-b407f6e3a328/content/images/2026/04/replicate-prediction-0ax4zwxcnhrmw0cxr58scnbb30.png",
-    "published_ts": 1786953153,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://superposition.jem.computer/design-is-how-it-tastes/"
-  },
-  "eigendrum.com": {
-    "title": "Eigendrum",
-    "source": "Sidebar",
-    "snippet": "Draw any shape and hear it as a drum. Every frequency is solved from your outline with finite elements, never sampled.",
-    "image": "https://eigendrum.com/docs/hero.png",
-    "published_ts": 1786953122,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://eigendrum.com/#p=circle"
-  },
-  "buttondown.com/nic-steenhout/archive/accessibility-getting-dropped-in-the-process": {
-    "title": "Accessibility getting dropped in the process",
-    "source": "Sidebar",
-    "snippet": "When accessible designs become inaccessible products.",
-    "image": "https://assets.buttondown.email/images/0c59d13a-2be4-42ce-bc20-562c1390ff5a.jpg?w=960&amp;fit=max",
-    "published_ts": 1786953047,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://buttondown.com/nic-steenhout/archive/accessibility-getting-dropped-in-the-process/"
-  },
-  "minoradventures.co/blog/the-making-of-cursors-icons": {
-    "title": "The making of Cursor\u2019s icons",
-    "source": "Sidebar",
-    "snippet": "A year of drawing, testing, and shipping a complete icon system for the world\u2019s favourite coding agent.",
-    "image": "https://minoradventures.co/images/blog/the-making-of-cursors-icons/hero.png",
-    "published_ts": 1786952993,
-    "first_seen_ts": 1786960830.5606647,
-    "link": "https://www.minoradventures.co/blog/the-making-of-cursors-icons"
-  },
   "uxdesign.cc/rethinking-leadership-judgment-as-bottleneck-ethical-ux-for-machines-5927df9a399e?source=rss----138adf9c44c---4": {
     "title": "Rethinking leadership, Judgment as bottleneck, Ethical UX for machines",
     "source": "UX Collective",
@@ -1195,5 +1051,176 @@
     "published_ts": 1787557228,
     "first_seen_ts": 1787565627.7484632,
     "link": "https://how.complexsystems.fail/"
+  },
+  "uxdesign.cc/no-log-off-how-to-become-an-ai-designer-vibe-coded-portfolios-deb7ca0e0f5d?source=rss----138adf9c44c---4": {
+    "title": "No log off, How to become an AI Designer, vibe coded portfolios",
+    "source": "UX Collective",
+    "snippet": "Weekly curated resources for designers\u200a\u2014\u200athinkers and\u00a0makers.\u201cOnline used to be a place you could leave. We designed the exit out of it because an exit reads as a leak. Here is why building it back is a design responsibility, and what that means now that AI is dissolving the last\u00a0seam.\u201dWe used to lo",
+    "image": "https://cdn-images-1.medium.com/max/1024/0*YbJpdLVM_7GERGTS.png",
+    "published_ts": 1787570125,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://uxdesign.cc/no-log-off-how-to-become-an-ai-designer-vibe-coded-portfolios-deb7ca0e0f5d?source=rss----138adf9c44c---4"
+  },
+  "smashingmagazine.com/2026/08/why-website-should-never-stop-changing": {
+    "title": "Why Your Website Should Never Stop Changing",
+    "source": "Smashing Magazine",
+    "snippet": "Every website peaks on launch day and slowly drifts from there, not because it breaks, but because nobody has time to keep it current. Autonomous websites, continuously optimized by agents after launch, aim to change that. Pierre Burgy shares what they learned building for full website autonomy and ",
+    "image": "http://files.smashing.media/articles/why-website-should-never-stop-changing/why-website-should-never-stop-changing.jpg",
+    "published_ts": 1787644800,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://smashingmagazine.com/2026/08/why-website-should-never-stop-changing/"
+  },
+  "smashingmagazine.com/2026/08/how-baseline-can-help-ship-less-javascript": {
+    "title": "How Baseline Can Help You Ship Less JavaScript",
+    "source": "Smashing Magazine",
+    "snippet": "The gap between \u201cyou need a library for this\u201d and \u201cthe browser does this\u201d keeps closing. A practical guide to auditing your dependencies and finding what the web platform can now handle for you.",
+    "image": "http://files.smashing.media/articles/how-baseline-can-help-ship-less-javascript/how-baseline-can-help-ship-less-javascript.jpg",
+    "published_ts": 1786107600,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://smashingmagazine.com/2026/08/how-baseline-can-help-ship-less-javascript/"
+  },
+  "nngroup.com/articles/prove-framework": {
+    "title": "How to Decide When an AI Tool Is Worth Keeping",
+    "source": "NN/g",
+    "snippet": "Pressure to adopt AI isn't evidence that a tool helps. The PROVE framework tests one tool against one task and produces a provisional decision you can defend.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/How_to_Decide_When_an_AI_Tool_Is_Worth_Keeping_1.png",
+    "published_ts": 1786122000,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://www.nngroup.com/articles/prove-framework/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/dogfooding": {
+    "title": "Dogfooding vs. QA vs. User Research",
+    "source": "NN/g",
+    "snippet": "Dogfooding, or using your own products internally, helps catch bugs, but it can't replace user research: your team knows too much to represent real users.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Dogfooding1.png",
+    "published_ts": 1786122000,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://www.nngroup.com/articles/dogfooding/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/how-i-ai-grok-bot-grok-46whats-great": {
+    "title": "\ud83c\udf99\ufe0f How I AI: Grok Bot + Grok 4.6\u2014what\u2019s great (and what\u2019s still hype) & Lessons from spending $20,000 on Devin in one month",
+    "source": "Lenny's Newsletter",
+    "snippet": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/7296b676-dd90-4432-83e2-b0c0db7fe86e_1456x1048.png",
+    "published_ts": 1787583743,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://www.lennysnewsletter.com/p/how-i-ai-grok-bot-grok-46whats-great"
+  },
+  "lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month": {
+    "title": "I spent $20,000 on Devin in a month. Here\u2019s what I learned | Ryan Carson (solo founder)",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now | &#127897;&#65039; Solo founder Ryan Carson runs 15 concurrent Devin agents to handle engineering, customer success, and investor updates, and he uses a handwritten list to keep it all straight",
+    "image": "https://substackcdn.com/image/fetch/$s_!Jzy5!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa5c5ada9-a8ea-4778-bed5-b3e6137079b4_1456x1048.png",
+    "published_ts": 1787573042,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month"
+  },
+  "lennysnewsletter.com/p/community-wisdom-recovering-from": {
+    "title": "\ud83e\udde0 Community Wisdom: Recovering from burnout, what Airtable\u2019s sale says about the ceiling on a startup, keeping architecture docs up to date, running competitor analysis, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 197",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1786813273,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-recovering-from"
+  },
+  "design-milk.com/valspar-2027-color-of-the-year-cottage-door": {
+    "title": "Valspar\u2019s 2027 Color of the Year Makes a Case for Blue as the New Neutral",
+    "source": "Design Milk",
+    "snippet": "Cottage Door is a muted mid-tone blue designed to bring a little more color\u2014and personality\u2014to the neutral home",
+    "image": "https://design-milk.com/images/2026/08/Courtesy-of-Valspar_Cottage-Door-8004-38E_Dining-Room.jpg",
+    "published_ts": 1787597237,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://design-milk.com/valspar-2027-color-of-the-year-cottage-door/"
+  },
+  "design-milk.com/new-chair-designs-2026": {
+    "title": "8 Chairs Rethinking a Familiar Form",
+    "source": "Design Milk",
+    "snippet": "From circular materials and residential-inspired office seating to colorful updates of design classics, these chairs prove there\u2019s still plenty of room to reinvent how we sit",
+    "image": "https://design-milk.com/images/2026/08/x-Ocee-3.png",
+    "published_ts": 1787572845,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://design-milk.com/new-chair-designs-2026/"
+  },
+  "itsnicethat.com/articles/marianne-tricot-petit-bois-illustration-project-250826": {
+    "title": "Can scientific research be beautiful? Inside Marianne Tricot\u2019s tactile book of drawings from the Quebec forest",
+    "source": "It's Nice That",
+    "snippet": "For Petit Bois, the artist combined oil pastels and collage to capture the personal and poetic experience of exploring the forest.",
+    "image": "https://admin.itsnicethat.com/images/GnGzcltWQS_Zd15W5Mzw3X89_lE=/281197/width-1440/Marianne-Tricot-petit-bois-Illustration-itsnicethat-2.jpg",
+    "published_ts": 1787644800,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://www.itsnicethat.com/articles/marianne-tricot-petit-bois-illustration-project-250826"
+  },
+  "itsnicethat.com/articles/alina-derya-yakaboylu-graphic-design-discover-250826": {
+    "title": "Alina Derya Yakaboylu combines research and intuition to create culturally rooted design",
+    "source": "It's Nice That",
+    "snippet": "The designer and art director approaches each project holistically, using close observation, conversation and a poetic sensibility to uncover its deeper stories.",
+    "image": "https://admin.itsnicethat.com/images/zrdksh68FvriFdkP-iYY3ChEpx4=/281253/width-1440/Alina-Derya-Yakaboylu-Graphic-Design-ItsNiceThat-1.jpg",
+    "published_ts": 1787644800,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://www.itsnicethat.com/articles/alina-derya-yakaboylu-graphic-design-discover-250826"
+  },
+  "tympanus.net/codrops/2026/08/24/blender-to-three-js-and-back-10-tips-for-a-better-workflow": {
+    "title": "Blender to Three.js and Back: 10 Tips for a Better Workflow",
+    "source": "Codrops",
+    "snippet": "A practical collection of tips for combining AI, Blender, and Blender MCP to streamline your Three.js workflow.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/og-image.webp?x57826",
+    "published_ts": 1787579615,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://tympanus.net/codrops/2026/08/24/blender-to-three-js-and-back-10-tips-for-a-better-workflow/"
+  },
+  "tympanus.net/codrops/2026/08/15/inside-haoqi-design-letting-dom-and-webgl-share-a-retro-futurist-stage": {
+    "title": "Inside HAOQI.DESIGN: Letting DOM and WebGL Share a Retro-Futurist Stage",
+    "source": "Codrops",
+    "snippet": "A technical look at the making of HAOQI.DESIGN, exploring scroll sync, glass shaders, and the interplay of DOM, CSS, and WebGL in a retro-futurist portfolio.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/Cover.png?x57826",
+    "published_ts": 1786800533,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://tympanus.net/codrops/2026/08/15/inside-haoqi-design-letting-dom-and-webgl-share-a-retro-futurist-stage/"
+  },
+  "ilyabirman.net/meanwhile/all/vibe-coding-and-quality": {
+    "title": "Vibe coding and\u00a0quality",
+    "source": "Sidebar",
+    "snippet": "Just last year, vibe coding seemed like a\u00a0toy. Today I think that high quality is achievable only through vibe coding",
+    "image": "https://ilyabirman.net/meanwhile/pictures/userpic/userpic-large@2x.jpg?1573933764",
+    "published_ts": 1787635739,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://ilyabirman.net/meanwhile/all/vibe-coding-and-quality/"
+  },
+  "blog.murphytrueman.com/every-fork-looks-like-adoption": {
+    "title": "Every fork looks like adoption",
+    "source": "Sidebar",
+    "snippet": "How we measure design system adoption and how the graph keeps going up anyway.",
+    "image": "https://storage.ghost.io/c/4e/57/4e57da7f-7503-46c8-b61e-0031c03eb394/content/images/size/w1200/2026/08/0_0.jpeg",
+    "published_ts": 1787635666,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://blog.murphytrueman.com/every-fork-looks-like-adoption/"
+  },
+  "is-agentic.com": {
+    "title": "Is Agentic",
+    "source": "Sidebar",
+    "snippet": "Score how ready a website is for AI agents, then get evidence and recommendations to improve it.",
+    "image": "https://is-agentic.com/opengraph-image?v=2",
+    "published_ts": 1787635598,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://is-agentic.com/"
+  },
+  "balsa-ui.com": {
+    "title": "Balsa UI",
+    "source": "Sidebar",
+    "snippet": "Balsa UI is an agent-native, open-code component system for Vue and React.",
+    "image": "https://balsa-ui.com/og-image.webp",
+    "published_ts": 1787635540,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://balsa-ui.com/"
+  },
+  "youtube.com/watch?v=YEvLKzsEwMw": {
+    "title": "Susan Kare: Designing icons & graphics for the original Mac",
+    "source": "Sidebar",
+    "snippet": "Stories behind the Happy Mac, Command key, Chicago font, and more, along with the design lessons Susan learned from Steve Jobs and others.",
+    "image": "",
+    "published_ts": 1787635510,
+    "first_seen_ts": 1787652030.985917,
+    "link": "https://www.youtube.com/watch?v=YEvLKzsEwMw"
   }
 }
