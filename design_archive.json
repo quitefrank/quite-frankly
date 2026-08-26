@@ -1,382 +1,4 @@
 {
-  "uxdesign.cc/rethinking-leadership-judgment-as-bottleneck-ethical-ux-for-machines-5927df9a399e?source=rss----138adf9c44c---4": {
-    "title": "Rethinking leadership, Judgment as bottleneck, Ethical UX for machines",
-    "source": "UX Collective",
-    "snippet": "Weekly curated resources for designers\u200a\u2014\u200athinkers and\u00a0makers.\u201cDesign leadership is currently suffering from a bad case of mechanical thinking. We talk endlessly about cross-functional alignment, product development and operations, and predicting roadmaps. But mechanical systems are brittle. They cra",
-    "image": "https://cdn-images-1.medium.com/max/1024/0*n1q2BNwJWNmCEciK.png",
-    "published_ts": 1786965798,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://uxdesign.cc/rethinking-leadership-judgment-as-bottleneck-ethical-ux-for-machines-5927df9a399e?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/the-feature-was-fine-so-why-did-users-keep-hiding-it-58082b6f3abf?source=rss----138adf9c44c---4": {
-    "title": "The feature was fine. So why did users keep hiding it?",
-    "source": "UX Collective",
-    "snippet": "The retention killer that never shows up in a requirements doc.This image was the consumer-generated collage of the \u2018typical MISSHA user\u2019 at the time: loud, immature, trying too hard, and far removed from the identity consumers actually aspired to. The consumer imagery shown here reflects perception",
-    "image": "https://cdn-images-1.medium.com/max/869/1*-F8_7vtTvvF-J3ZILI7KWg.png",
-    "published_ts": 1786965730,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://uxdesign.cc/the-feature-was-fine-so-why-did-users-keep-hiding-it-58082b6f3abf?source=rss----138adf9c44c---4"
-  },
-  "lennysnewsletter.com/p/how-i-ai-how-a-solo-founder-used": {
-    "title": "\ud83c\udf99\ufe0f How I AI: How a solo founder used Codex and ChatGPT to launch a fashion brand without engineers",
-    "source": "Lenny's Newsletter",
-    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/3a20691b-3814-4c2d-8bca-2aeaac598ba4_1456x1048.png",
-    "published_ts": 1786978996,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://www.lennysnewsletter.com/p/how-i-ai-how-a-solo-founder-used"
-  },
-  "lennysnewsletter.com/p/how-a-solo-founder-used-codex-and": {
-    "title": "How a solo founder used Codex and ChatGPT to launch a fashion brand without engineers | Yana Welinder",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now | &#127897;&#65039;From hand-drawn sketch to 3D-printed gown, Yana Welinder shows how Codex plus computer use makes previously unmanufacturable garments and full e-commerce builds possible for a solo founder",
-    "image": "https://substackcdn.com/image/fetch/$s_!osy8!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc8ca6bda-f257-4878-a278-55d996de7447_1456x1048.png",
-    "published_ts": 1786968242,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://www.lennysnewsletter.com/p/how-a-solo-founder-used-codex-and"
-  },
-  "design-milk.com/hotel-chalet-mirabell-south-tyrol-italy": {
-    "title": "Hotel Chalet Mirabell Makes the South Tyrolean Landscape the Main Attraction",
-    "source": "Design Milk",
-    "snippet": "With a 64,000-square-foot spa, tiered timber architecture, and sweeping alpine views, the Italian retreat is designed around finding room to slow down",
-    "image": "https://design-milk.com/images/2026/08/Chalet-Mirabell-9.jpg",
-    "published_ts": 1786971649,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://design-milk.com/hotel-chalet-mirabell-south-tyrol-italy/"
-  },
-  "itsnicethat.com/articles/the-phoney-club-graphic-design-discover-180826": {
-    "title": "Rotterdam studio The Phoney Club is redrawing the rules for AI-made worlds",
-    "source": "It's Nice That",
-    "snippet": "Using licensed AI twins, hybrid photography and self-imposed rules around authenticity, the creative studio is deciding how much of the real world an artificial one is allowed to borrow.",
-    "image": "https://media.itsnicethat.com/original_images/The_Phoney_Club_-_Nicole_Huisman_visual_identity_-_stationary_Copyright_Th.gif",
-    "published_ts": 1787032800,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://www.itsnicethat.com/articles/the-phoney-club-graphic-design-discover-180826"
-  },
-  "itsnicethat.com/articles/owl-and-dog-playbooks-yooree-ko-collectors-street-illustration-publication-project-180826": {
-    "title": "What\u2019s hiding inside London homes? Yooree Ko and Owl & Dog Playbooks map a neighbourhood of collectors",
-    "source": "It's Nice That",
-    "snippet": "This beautifully illustrated picture book lets you become the nosy parker you\u2019ve always wanted to be, peering into the multi-layered treasure troves of collector\u2019s homes.",
-    "image": "https://admin.itsnicethat.com/images/MMKcSw_K0e7NpJCvjtuofSImaUo=/280934/width-1440/owl-and-dog-playbooks-illustration-itsnicethat3.jpg",
-    "published_ts": 1787032800,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://www.itsnicethat.com/articles/owl-and-dog-playbooks-yooree-ko-collectors-street-illustration-publication-project-180826"
-  },
-  "itsnicethat.com/features/designing-for-3-billion-how-instagram-built-a-brand-system-that-celebrates-everyones-point-of-view-partnership-170826": {
-    "title": "Designing for 3 billion: how Instagram built a brand system that celebrates everyone\u2019s point of view",
-    "source": "It's Nice That",
-    "snippet": "From a huge collaborative team to millions of tiny decisions, Meta\u2019s Jasmine Probst and May Hartono reveal how a decade-defining rebrand comes together \u2013 and why the hardest work is meant to look effortless.",
-    "image": "https://admin.itsnicethat.com/images/BXTE4_1M5krX-MUHkkniDPpL9gA=/280914/width-1440%7Cformat-jpeg/IG_Wordmark_Process_16x9_2.png",
-    "published_ts": 1786971600,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://www.itsnicethat.com/features/designing-for-3-billion-how-instagram-built-a-brand-system-that-celebrates-everyones-point-of-view-partnership-170826"
-  },
-  "tympanus.net/codrops/2026/08/17/creativity-at-enterprise-scale-without-compromise-the-offbrand-story": {
-    "title": "Creativity at Enterprise-Scale, Without Compromise: The OFF+BRAND. Story",
-    "source": "Codrops",
-    "snippet": "Telling stories on some of the biggest canvases on the web, from Awwwards Site of the Year to the front door of Microsoft.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/offbrand-scaled.jpg?x57826",
-    "published_ts": 1786972164,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://tympanus.net/codrops/2026/08/17/creativity-at-enterprise-scale-without-compromise-the-offbrand-story/"
-  },
-  "brentfitzgerald.com/posts/the-human-is-the-loop": {
-    "title": "The human is the loop",
-    "source": "Sidebar",
-    "snippet": "After a few weeks away from AI, I see my usage wasn\u2019t always productive or healthy.",
-    "image": "",
-    "published_ts": 1787037705,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://brentfitzgerald.com/posts/the-human-is-the-loop/"
-  },
-  "morphicons.com": {
-    "title": "Morphicons",
-    "source": "Sidebar",
-    "snippet": "Morph any SVG icon into any other with spring physics. Animate in React, Vue, Svelte, React Native, Astro or vanilla JS. Zero dependencies.",
-    "image": "https://www.morphicons.com/opengraph-image?53a2ee2d3a765ead",
-    "published_ts": 1787037684,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://www.morphicons.com/"
-  },
-  "medium.com/design-bootcamp/how-to-make-your-design-system-agent-ready-ea4cfc062270": {
-    "title": "How to make your design system agent-ready",
-    "source": "Sidebar",
-    "snippet": "If you don\u2019t want your AI agent to choke on your design.md, stop putting your entire design system into one file.",
-    "image": "https://miro.medium.com/v2/resize:fit:1200/1*e0A4A-pZvMSAOMSLGIYUTw.jpeg",
-    "published_ts": 1787037603,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://medium.com/design-bootcamp/how-to-make-your-design-system-agent-ready-ea4cfc062270"
-  },
-  "azgaar.github.io/Fantasy-Map-Generator": {
-    "title": "Azgaar\u2019s fantasy map generator",
-    "source": "Sidebar",
-    "snippet": "A web app that helps fantasy writers, game masters, and cartographers create and edit fantasy maps.",
-    "image": "images/preview.png",
-    "published_ts": 1787037566,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://azgaar.github.io/Fantasy-Map-Generator/"
-  },
-  "patronview.com/news/99-percent-of-my-website-traffic-is-bots": {
-    "title": "99% of my website traffic is bots",
-    "source": "Sidebar",
-    "snippet": "A year of fighting scrapers on my 1.5 million-page website. What I tried, how I failed, and what\u2019s working now.",
-    "image": "https://patronview.com/images/blog/bots/only-human-hero.jpg",
-    "published_ts": 1787037522,
-    "first_seen_ts": 1787047231.17645,
-    "link": "https://patronview.com/news/99-percent-of-my-website-traffic-is-bots/"
-  },
-  "uxdesign.cc/is-the-future-of-software-certain-once-ai-is-everywhere-f93e1bc5697f?source=rss----138adf9c44c---4": {
-    "title": "Is the future of software certain once AI is everywhere?",
-    "source": "UX Collective",
-    "snippet": "Extinction is the wrong lens. Evolution is the right\u00a0one.In August 2025, enterprise software had one of its worst weeks on the market in\u00a0years.CNN chronicled the slide in software shares and blamed AI, worrying that as models get better at building and doing, demand for conventional software erodes.",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*S9Babiz8jzdfqAKTlQlaag.png",
-    "published_ts": 1787131572,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://uxdesign.cc/is-the-future-of-software-certain-once-ai-is-everywhere-f93e1bc5697f?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/what-the-matrix-got-right-about-ai-c741b38dca68?source=rss----138adf9c44c---4": {
-    "title": "What The Matrix got right about AI",
-    "source": "UX Collective",
-    "snippet": "The famous choice was never about the pills, it was about whether to see the system at all. AI assisted.More Than 25 Years On, The First Film\u2019s Picture Of Machine Intelligence Reads Less Like Science Fiction And More Like A Product\u00a0RoadmapThe Matrix arrived in 1999 wearing sunglasses and a trench co",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*0Oq1k5xQnH5uULrX58MU3g.png",
-    "published_ts": 1787089381,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://uxdesign.cc/what-the-matrix-got-right-about-ai-c741b38dca68?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/what-is-the-purpose-of-software-410e155567e3?source=rss----138adf9c44c---4": {
-    "title": "What is the purpose of software",
-    "source": "UX Collective",
-    "snippet": "Practical and existential questions for IT Design and Development.I first asked myself this question for a bit of a laugh. This was at the dawn of 2023, during the rise of the LLM. Doomsayers and prophets alike said AI will allow us to produce so much more, so much more\u00a0quickly.But I had to ask\u2026 so ",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*veD-eFZXnsDROYFMHCHDlQ.png",
-    "published_ts": 1787089302,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://uxdesign.cc/what-is-the-purpose-of-software-410e155567e3?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/how-to-experiment-when-designing-in-a-regulated-field-like-healthcare-64fca3bb7655?source=rss----138adf9c44c---4": {
-    "title": "How to experiment when designing in a regulated field like Healthcare",
-    "source": "UX Collective",
-    "snippet": "You can&#x2019;t vibe code your way through HIPAA violationsContinue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/2600/1*7jHOyZSPQj-eemyK6vDdBw.jpeg",
-    "published_ts": 1787089272,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://uxdesign.cc/how-to-experiment-when-designing-in-a-regulated-field-like-healthcare-64fca3bb7655?source=rss----138adf9c44c---4"
-  },
-  "smashingmagazine.com/2026/07/desktop-wallpaper-calendars-august-2026": {
-    "title": "Small Joys And Big Adventures (August 2026 Wallpapers Edition)",
-    "source": "Smashing Magazine",
-    "snippet": "Whether you\u2019re enjoying some well-earned time off this August or are jumping headfirst into a new project, how about some new desktop wallpapers to accompany you on all those big and small adventures the month might bring? Well, we\u2019ve got you covered!",
-    "image": "http://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/9d979d10-f87f-4935-828a-de2ecd2de311/aug-17-happiness-happens-in-august-preview.png",
-    "published_ts": 1785484800,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://smashingmagazine.com/2026/07/desktop-wallpaper-calendars-august-2026/"
-  },
-  "nngroup.com/articles/no-new-name-ux": {
-    "title": "No New Name Has Replaced \u201cUX\u201d",
-    "source": "NN/g",
-    "snippet": "A survey of 604 tech and design professionals found that \u201cUX\u201d remains the default name for our field, while alternative names remain fragmented.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/UX_Needs_clarity_1.png",
-    "published_ts": 1785517200,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.nngroup.com/articles/no-new-name-ux/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/mentorship": {
-    "title": "Why You Need Mentorship and How to Get It Right",
-    "source": "NN/g",
-    "snippet": "Mentorship is an essential growth tool that offers substantial personal and career benefits, but only if you engage in it properly.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Mentorships_1_oZCQX4H.png",
-    "published_ts": 1785517200,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.nngroup.com/articles/mentorship/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/i-tested-grok-bot-grok-46-and-cursor": {
-    "title": "I tested Grok Bot, Grok 4.6, and Cursor Origin - here\u2019s my honest take",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now | &#127897;&#65039; I tested Grok Bot, Cursor Origin, and Grok 4.6 head-to-head against my favorite models and ranked them on the Claire Index: here's what actually moved the needle",
-    "image": "https://substackcdn.com/image/fetch/$s_!cSS7!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e6072f7-47b7-4ad3-8270-8f456e9a5d8c_1456x1048.png",
-    "published_ts": 1787088631,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.lennysnewsletter.com/p/i-tested-grok-bot-grok-46-and-cursor"
-  },
-  "lennysnewsletter.com/p/announcing-lennys-jobs-the-best-place": {
-    "title": "Announcing Lenny\u2019s Jobs: The best place in the world to find, vet, and land your dream job",
-    "source": "Lenny's Newsletter",
-    "snippet": "Where product managers, engineers, designers, and growth/marketing professionals discover high-quality open roles at tech companies",
-    "image": "https://substackcdn.com/image/fetch/$s_!PFZn!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0f696879-6374-42d6-a171-47933f6eb126_1456x970.png",
-    "published_ts": 1787067606,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.lennysnewsletter.com/p/announcing-lennys-jobs-the-best-place"
-  },
-  "lennysnewsletter.com/p/how-i-ai-build-an-ai-code-review": {
-    "title": "\ud83c\udf99\ufe0f How I AI: Build an AI code review bot in 30 minutes + Claude Code for normal people",
-    "source": "Lenny's Newsletter",
-    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/347cb3d0-f0ab-4f9c-8574-b7c60b248320_1456x1048.png",
-    "published_ts": 1786374109,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.lennysnewsletter.com/p/how-i-ai-build-an-ai-code-review"
-  },
-  "lennysnewsletter.com/p/claude-code-for-normal-people-skills": {
-    "title": "Claude Code for normal people: skills, voice mode, and how to collaborate with AI",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now | &#127897;&#65039; Grace Clarke rebuilt her service business in Claude, turning 20 hours of weekly admin into one automated pipeline for proposals, client tracking, and email",
-    "image": "https://substackcdn.com/image/fetch/$s_!EgWC!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8faca4f2-b7b9-4ff4-ba1f-b6315e8e014a_1456x1048.png",
-    "published_ts": 1786363304,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.lennysnewsletter.com/p/claude-code-for-normal-people-skills"
-  },
-  "lennysnewsletter.com/p/the-playbook-for-building-high-talent": {
-    "title": "The playbook for building high-talent-density teams | Adam Ward, Head of Talent at Cursor",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now | Cursor&#8217;s Adam Ward on &#8220;funnel of doom&#8221; hiring, treating every hire like an executive search, and why caring is the biggest unfair advantage in recruiting",
-    "image": "https://substackcdn.com/image/fetch/$s_!t0cy!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdb7d18ab-2730-4483-8917-2bf3afca7b36_2048x2048.png",
-    "published_ts": 1786278689,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.lennysnewsletter.com/p/the-playbook-for-building-high-talent"
-  },
-  "lennysnewsletter.com/p/community-wisdom-getting-started": {
-    "title": "\ud83e\udde0 Community Wisdom: Getting started with open source models, making a U.S. business trip worth it, preparing for a possible layoff, when marketing can\u2019t keep up with product, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 195",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1785605118,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-getting-started"
-  },
-  "design-milk.com/polaroid-pokemon-instant-camera-collection": {
-    "title": "Polaroid Turns Pikachu and Friends Into Instant Cameras",
-    "source": "Design Milk",
-    "snippet": "A nine-piece collaboration translates the colors and forms of Pok\u00e9mon into cameras, film, and accessories",
-    "image": "https://design-milk.com/images/2026/08/Polaroid-Pokemon-Comms-16x9-Lifestyle-Accessories-A3d532-768x432.png",
-    "published_ts": 1787087244,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://design-milk.com/polaroid-pokemon-instant-camera-collection/"
-  },
-  "design-milk.com/lidan-sfadia-toluca-lake-home": {
-    "title": "Inside a Toluca Lake House That Finds Depth in a Narrow Palette",
-    "source": "Design Milk",
-    "snippet": "Lidan Sfadia layers mohair, linen, limestone, oak, and aged metals to give a restrained Los Angeles interior dimension without relying on color",
-    "image": "https://design-milk.com/images/2026/08/toluca-lake-lidan-sfadia-8.jpg",
-    "published_ts": 1787058016,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://design-milk.com/lidan-sfadia-toluca-lake-home/"
-  },
-  "design-milk.com/ennua-element-01-mclaren-designers": {
-    "title": "Former McLaren Designers Bring Supercar Thinking to Furniture",
-    "source": "Design Milk",
-    "snippet": "With a carbon fiber structure, bespoke finishes, and automotive-level precision, Ennua\u2019s Element 01 translates supercar designs into functional art",
-    "image": "https://design-milk.com/images/2026/08/Ennua_015.jpg",
-    "published_ts": 1786381209,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://design-milk.com/ennua-element-01-mclaren-designers/"
-  },
-  "itsnicethat.com/features/i-bumped-into-my-ex-boss-harriet-richardson-on-life-after-design-creative-industry-spotlight-190826": {
-    "title": "I bumped into my ex (boss): Harriet Richardson on life after design",
-    "source": "It's Nice That",
-    "snippet": "A chance encounter causes the graphic designer turned performance artist to look back on her design career and consider the creative skills that she took with her into the next (professional) life.",
-    "image": "https://admin.itsnicethat.com/images/cXN6NlFZs-t5etqZ_OvdzS4ZBok=/280869/width-1440%7Cformat-jpeg/Harriet_Tara_Booth_4.png",
-    "published_ts": 1787122800,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.itsnicethat.com/features/i-bumped-into-my-ex-boss-harriet-richardson-on-life-after-design-creative-industry-spotlight-190826"
-  },
-  "itsnicethat.com/features/in-house-4creative-miketta-lane-david-wigglesworth-creative-industry-190826": {
-    "title": "4Creative\u2019s Miketta Lane and David Wigglesworth on why the best creative work happens quickly",
-    "source": "It's Nice That",
-    "snippet": "The leaders of Channel 4\u2019s in-house agency share their approach to building momentum around ideas, working without a traditional hierarchy and making work that can cut through a noisy media landscape.",
-    "image": "https://admin.itsnicethat.com/images/sFHgMDSzM60Exfb3Aji0jApSTaQ=/281184/width-1440%7Cformat-jpeg/KEY_ART_16X9_CVoRna2.png",
-    "published_ts": 1787122800,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.itsnicethat.com/features/in-house-4creative-miketta-lane-david-wigglesworth-creative-industry-190826"
-  },
-  "itsnicethat.com/articles/mattia-balsamini-robotics-photography-project-190826": {
-    "title": "Mattia Balsamini subverts sci-fi cliches of robotics with striking portraits of mechas and mechanical dogs",
-    "source": "It's Nice That",
-    "snippet": "This photographer is less interested in capturing a menacing robot or a completely charming one. Instead, he sees human innovation in technology and centres it in these steely, evocative photographs.",
-    "image": "https://admin.itsnicethat.com/images/_y4ezC5U2dNldvhG0xxWjQidODU=/280828/width-1440/mattia-balasmini-photography-itsnicethat9.jpg",
-    "published_ts": 1787122800,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.itsnicethat.com/articles/mattia-balsamini-robotics-photography-project-190826"
-  },
-  "itsnicethat.com/articles/charlotte-rohde-oficia-mono-typography-graphic-design-project-190826": {
-    "title": "Charlotte Rohde\u2019s new typeface has heart-dotted i\u2019s and a plan to overwrite problematic men",
-    "source": "It's Nice That",
-    "snippet": "The designer\u2019s latest letterset had so much personality she decided to make it the protagonist of her new sci-fi fintech feminist novel.",
-    "image": "https://admin.itsnicethat.com/images/AzrNQ5vOyZj2aRrFnHEyJuXUWtw=/280948/width-1440/oficiakampagne_regular3.jpg",
-    "published_ts": 1787122800,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.itsnicethat.com/articles/charlotte-rohde-oficia-mono-typography-graphic-design-project-190826"
-  },
-  "itsnicethat.com/articles/nicer-tuesdays-london-july-lily-kong-180826": {
-    "title": "How Lily Kong\u2019s paintings of nature offer \u201ca collective memory of sharing a space\u201d",
-    "source": "It's Nice That",
-    "snippet": "Illustrator and artist Lily Kong joined London\u2019s Nicer Tuesdays stage in July once again to infect the audience with her typically optimistic outlook on art and design \u2013 in her own words, illustration is great at \u201cbringing lightness to talking about seriously saddening problems\u201d. Lily\u2019s talk details",
-    "image": "https://www.itsnicethat.com/images/social.jpg",
-    "published_ts": 1787058000,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-london-july-lily-kong-180826"
-  },
-  "tympanus.net/codrops/2026/08/18/building-an-animated-testimonial-hero-using-the-gsap-timeline-and-dynamic-cms-data": {
-    "title": "Building an Animated Testimonial Hero Using the GSAP Timeline and Dynamic CMS Data",
-    "source": "Codrops",
-    "snippet": "Learn how to build a dynamic testimonial hero in Webflow using CMS data, a custom JavaScript counter, and GSAP\u2019s visual timeline.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/Animated-Testimonial-teaser-16-9.jpg?x57826",
-    "published_ts": 1787060375,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://tympanus.net/codrops/2026/08/18/building-an-animated-testimonial-hero-using-the-gsap-timeline-and-dynamic-cms-data/"
-  },
-  "tympanus.net/codrops/2026/08/10/from-brand-systems-to-cultural-worlds-inside-antinomy-and-27b": {
-    "title": "From Brand Systems to Cultural Worlds: Inside Antinomy and 27b",
-    "source": "Codrops",
-    "snippet": "A look inside two connected studios building brands across strategy, design, and experience, with the same instinct for clarity, culture, and edge.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/07/Antinomy27b-1.png?x57826",
-    "published_ts": 1786367648,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://tympanus.net/codrops/2026/08/10/from-brand-systems-to-cultural-worlds-inside-antinomy-and-27b/"
-  },
-  "uxdesign.cc/rethinking-design-leadership-with-swarms-and-flocks-9298db8c59d2": {
-    "title": "Rethinking design leadership with swarms and flocks",
-    "source": "Sidebar",
-    "snippet": "How structured emergence solves manager burnout, team bottlenecks, and systemic design debt.",
-    "image": "https://miro.medium.com/v2/resize:fit:1200/0*MYZe9Xn4c2bYGWYy.png",
-    "published_ts": 1787114777,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://uxdesign.cc/rethinking-design-leadership-with-swarms-and-flocks-9298db8c59d2"
-  },
-  "agentbehavior.dev": {
-    "title": "Agent behavior",
-    "source": "Sidebar",
-    "snippet": "A standard format for describing expected agent behavior for trace review and evaluation.",
-    "image": "https://agentbehavior.dev/og-image.jpg",
-    "published_ts": 1787114744,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.agentbehavior.dev/"
-  },
-  "figma.com/blog/try-these-10-skills-and-show-off-your-own": {
-    "title": "Try these 10 skills\u2014and show off your own",
-    "source": "Sidebar",
-    "snippet": "Now you can author skills for our agent, directly in Figma, to put your point of view to work. Here are 10 of our favorites to get you started.",
-    "image": "",
-    "published_ts": 1787114717,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://www.figma.com/blog/try-these-10-skills-and-show-off-your-own/"
-  },
-  "play.ertdfgcvb.xyz": {
-    "title": "Play",
-    "source": "Sidebar",
-    "snippet": "A browser-based live-code environment with text-only output.",
-    "image": "",
-    "published_ts": 1787114676,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://play.ertdfgcvb.xyz/"
-  },
-  "blog.ronbronson.com/agent-experience-needs-failure-affordances": {
-    "title": "Agent experience needs failure affordances",
-    "source": "Sidebar",
-    "snippet": "A system that operates with some autonomy needs a way to tell the rest of the system when ordinary control is no longer adequate.",
-    "image": "",
-    "published_ts": 1787114632,
-    "first_seen_ts": 1787133631.1735916,
-    "link": "https://blog.ronbronson.com/agent-experience-needs-failure-affordances"
-  },
   "uxdesign.cc/it-really-wasnt-your-fault-coyote-e82dbecc43bd?source=rss----138adf9c44c---4": {
     "title": "It really wasn\u2019t your fault, Coyote",
     "source": "UX Collective",
@@ -1222,5 +844,158 @@
     "published_ts": 1787635510,
     "first_seen_ts": 1787652030.985917,
     "link": "https://www.youtube.com/watch?v=YEvLKzsEwMw"
+  },
+  "uxdesign.cc/the-function-the-role-of-software-in-society-8339c99398f3?source=rss----138adf9c44c---4": {
+    "title": "The function\u200a\u2014\u200athe role of software in society",
+    "source": "UX Collective",
+    "snippet": "A story of inputs, outputs, and the tools between.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/1254/1*tgwP6PabWR7AR_60MHnIxQ.png",
+    "published_ts": 1787695984,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://uxdesign.cc/the-function-the-role-of-software-in-society-8339c99398f3?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/what-blade-runner-got-right-about-ai-99cc75c0f761?source=rss----138adf9c44c---4": {
+    "title": "What Blade Runner got right about AI",
+    "source": "UX Collective",
+    "snippet": "The future the film imagined was analog, cramped, and rain-lit\u200a\u2014\u200aand it got the feeling of the work exactly right. AI assisted.A 1982 film and its 2017 sequel predicted the design problems we are still failing to solve, from synthetic memory to the interfaces we now argue about\u00a0daily.Ridley Scott\u2019s ",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*Jt5aI_258oO1g5G2-x6_1A.png",
+    "published_ts": 1787677923,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://uxdesign.cc/what-blade-runner-got-right-about-ai-99cc75c0f761?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/what-luxury-bags-can-teach-designers-about-how-to-adapt-to-a-changing-deal-3c06caba673d?source=rss----138adf9c44c---4": {
+    "title": "What luxury bags can teach designers about how to adapt to a changing deal",
+    "source": "UX Collective",
+    "snippet": "Design isn&#x2019;t becoming lame. Your screens don&#x2019;t vouch for you anymore.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2520/1*i8e-1k5JodKftaeK72FcAQ.jpeg",
+    "published_ts": 1787656719,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://uxdesign.cc/what-luxury-bags-can-teach-designers-about-how-to-adapt-to-a-changing-deal-3c06caba673d?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/researcher-in-the-loop-18a8ffddf48e?source=rss----138adf9c44c---4": {
+    "title": "Researcher-in-the-loop",
+    "source": "UX Collective",
+    "snippet": "A model for AI-enabled UX research where the researcher governs.A UXR researcher governing AI (AI generated)For a few years now, the UX research field has been arguing with itself over whether AI is coming to replace us or whether AI can\u2019t do \u201creal\u201d research and we need to hold the line. Is AI comin",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*wtfCVtevl7C-Ud0-q25MaA.png",
+    "published_ts": 1787656717,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://uxdesign.cc/researcher-in-the-loop-18a8ffddf48e?source=rss----138adf9c44c---4"
+  },
+  "lennysnewsletter.com/p/how-to-figure-out-your-next-career": {
+    "title": "How to figure out your next career move",
+    "source": "Lenny's Newsletter",
+    "snippet": "Six essential questions to help you navigate change",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/1a88a225-3e0f-4c00-b34f-3bdcabd91bb3_1456x970.png",
+    "published_ts": 1787663055,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://www.lennysnewsletter.com/p/how-to-figure-out-your-next-career"
+  },
+  "lennysnewsletter.com/p/openais-head-of-design-this-is-the": {
+    "title": "OpenAI\u2019s Head of Design: This is the best time in history to be a designer | Ian Silber",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now | OpenAI&#8217;s head of product design on why this is the best time in history to be a designer, where humans still beat AI, and how to escape the overwhelm",
+    "image": "https://substackcdn.com/image/fetch/$s_!2SoR!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd5a39af-249c-450d-ad9a-927f0abb810b_2048x2048.png",
+    "published_ts": 1786883502,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://www.lennysnewsletter.com/p/openais-head-of-design-this-is-the"
+  },
+  "lennysnewsletter.com/p/community-wisdom-crafting-outreach": {
+    "title": "\ud83e\udde0 Community Wisdom: Crafting outreach that reads as authentic, finding design partners, what counts as a moat when anyone can build, making a product vision stick, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 196",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1786208894,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-crafting-outreach"
+  },
+  "design-milk.com/andover-audio-freeplay-portable-speaker": {
+    "title": "Andover Audio Gives Portable Hi-Fi a More Refined Look",
+    "source": "Design Milk",
+    "snippet": "Andover Audio\u2019s FreePlay brings true stereo sound outdoors without adopting the bulky visual language of traditional rugged speakers",
+    "image": "https://design-milk.com/images/2026/08/FreePlay-Beach-2-1500x1000.png",
+    "published_ts": 1787688774,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://design-milk.com/andover-audio-freeplay-portable-speaker/"
+  },
+  "itsnicethat.com/articles/studio-thonik-phion-symphony-orchestra-graphic-design-discover-260826": {
+    "title": "Studio Thonik\u2019s typographic orchestra identity mimics the movement of a conductor\u2019s baton",
+    "source": "It's Nice That",
+    "snippet": "The Amsterdam-based studio used Grilli Type\u2019s GT Planar to create a coherent identity for Phion Symphony Orchestra capable of adapting to each concert\u2019s musical atmosphere.",
+    "image": "https://media.itsnicethat.com/original_images/7_Thonik_Phion-Social-ezgif.com-video-to-gif-converter.gif",
+    "published_ts": 1787731200,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://www.itsnicethat.com/articles/studio-thonik-phion-symphony-orchestra-graphic-design-discover-260826"
+  },
+  "itsnicethat.com/articles/holly-thomas-illustration-project-260826": {
+    "title": "In Holly Thomas\u2019 comics beauty and grief collide to confront \u201cthe weird mystery of death and dying\u201d",
+    "source": "It's Nice That",
+    "snippet": "Inspired by diary entries from a solo trip to the Andean mountains, the illustrator\u2019s comic series became a way to process the passing of her father.",
+    "image": "https://admin.itsnicethat.com/images/8Zh-M7ywAxIF0mnVIHd84J9Xj0Q=/281351/width-1440/Holly-Thomas-Picking-up-a-toad-illustration-itsnicethat-5.jpg",
+    "published_ts": 1787731200,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://www.itsnicethat.com/articles/holly-thomas-illustration-project-260826"
+  },
+  "itsnicethat.com/features/the-warehouse-project-20th-anniversary-photography-spotlight-260826": {
+    "title": "20 years, a bunch of photographers, one very sweaty archive: how to shoot The Warehouse Project",
+    "source": "It's Nice That",
+    "snippet": "As WHP launches a new archive documenting two decades of dance music, Gary Brown, Harriet Bols and Jody Hartley share the process behind photographing its crowds, artists and fleeting moments.",
+    "image": "https://admin.itsnicethat.com/images/B9wAdpvAUi5csw36SNlX1B240Og=/281065/width-1440/the-warehouse-project-photography-itsnicethat-45.jpg",
+    "published_ts": 1787731200,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://www.itsnicethat.com/features/the-warehouse-project-20th-anniversary-photography-spotlight-260826"
+  },
+  "tympanus.net/codrops/2026/08/25/building-a-mouse-following-square-lens-effect-with-three-js-and-glsl": {
+    "title": "Building a Mouse-Following Square Lens Effect with Three.js and GLSL",
+    "source": "Codrops",
+    "snippet": "A step-by-step tutorial on using Three.js and GLSL to create a mouse-following square lens effect with image distortion, RGB shifting, and animated shader effects.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/pointer-square-lens-distortion-with-rgb-Shift.webp?x57826",
+    "published_ts": 1787652914,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://tympanus.net/codrops/2026/08/25/building-a-mouse-following-square-lens-effect-with-three-js-and-glsl/"
+  },
+  "uxdesign.cc/what-is-the-purpose-of-software-410e155567e3": {
+    "title": "What is the purpose of software",
+    "source": "Sidebar",
+    "snippet": "Mapping 50 years of economic data to measure software's productivity yield.",
+    "image": "https://miro.medium.com/v2/resize:fit:1200/1*nxU5qzkEe6qayvSfU6NN0Q.jpeg",
+    "published_ts": 1787728226,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://uxdesign.cc/what-is-the-purpose-of-software-410e155567e3"
+  },
+  "gkurt.com/tegaki": {
+    "title": "Tegaki",
+    "source": "Sidebar",
+    "snippet": "Animated handwriting from any font.",
+    "image": "/tegaki/tegaki-card.png",
+    "published_ts": 1787728101,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://gkurt.com/tegaki/"
+  },
+  "karlkoch.me/writing/on-teaching-ai-how-you-work": {
+    "title": "On teaching AI how you work",
+    "source": "Sidebar",
+    "snippet": "Personal skills turn years of writing into loadable judgement you can install instead of re-explaining, and one command that runs all of it.",
+    "image": "https://karlkoch.me/api/og?title=On%20teaching%20AI%20how%20you%20work&amp;v=3",
+    "published_ts": 1787728062,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://karlkoch.me/writing/on-teaching-ai-how-you-work/"
+  },
+  "interfaces.kylejeong.com": {
+    "title": "The AI Interface Museum",
+    "source": "Sidebar",
+    "snippet": "A visual history of how humans learned to interact with AI.",
+    "image": "",
+    "published_ts": 1787728009,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://interfaces.kylejeong.com/"
+  },
+  "about.gitlab.com/blog/when-code-is-abundant": {
+    "title": "When code is abundant",
+    "source": "Sidebar",
+    "snippet": "Producing code is getting cheap. Trusting it is not. Why enterprises need a durable layer of context, verification, and governance around AI.",
+    "image": "https://res.cloudinary.com/about-gitlab-com/image/upload/v1785336708/ww4mlighwlvvzgnmbe6w.png",
+    "published_ts": 1787727977,
+    "first_seen_ts": 1787738448.0892723,
+    "link": "https://about.gitlab.com/blog/when-code-is-abundant/"
   }
 }
