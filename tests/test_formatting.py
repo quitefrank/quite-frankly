@@ -284,30 +284,114 @@ def test_fallback_fills_tier_1_to_section_cap_when_tier_1_empty():
     assert {x["id"] for x in housing["tier_1"]} == {1, 2}
 
 
-def test_section_order_is_by_max_score_descending():
-    # With the global pickoff, top tier-1 items get lifted into Today in the
-    # World, which then naturally sorts first by max score. Remaining sections
-    # sort by their highest-scored leftover item. Use tier-2 items that stay
-    # in their home sections (the pickoff only pulls from tier-1) to verify
-    # inter-section ordering still holds for the non-TitW sections.
+def test_weekday_section_order_is_fixed():
+    """The declared running order for the weekday edition. Tech & AI is parked
+    and Design & Product is weekend-only, so these five are what actually ship."""
+    from formatting import SECTION_ORDER
+    weekday = [s for s in SECTION_ORDER if s not in ("Tech & AI", "Design & Product")]
+    assert weekday == [
+        "Today in the World",
+        "Canada & Toronto",
+        "Toronto Housing",
+        "US & Global",
+        "Finance & Markets",
+    ]
+
+
+def test_section_order_ignores_scores():
+    # Scores run opposite to the declared order: Finance & Markets holds the
+    # highest-scored leftover and Canada & Toronto the lowest. Under the old
+    # max-score sort that inverted the page. The order must not move.
     tiered_items = [
-        _item(10, "Canada & Toronto", tier=2, ccov=1, prel=1, fit="weak"),  # score 2
-        _item(20, "US & Global",      tier=2, ccov=4, prel=3, fit="good"),  # score 8
-        _item(30, "Tech & AI",        tier=2, ccov=2, prel=2, fit="good"),  # score 5
-        # Tier-1 items in another section so Today in the World is populated.
-        # fit="weak" so the weekday pickoff still pulls it (weak/no-fit only);
-        # ccov=5 keeps its composite at 9 so Today in the World still sorts first.
-        _item(91, "Toronto Housing", tier=1, ccov=5, prel=4, fit="weak"),  # score 9
+        _item(10, "Canada & Toronto",  tier=2, ccov=1, prel=1, fit="weak"),  # score 2
+        _item(20, "Toronto Housing",   tier=2, ccov=2, prel=2, fit="good"),  # score 5
+        _item(30, "US & Global",       tier=2, ccov=3, prel=3, fit="good"),  # score 7
+        _item(40, "Finance & Markets", tier=2, ccov=4, prel=4, fit="good"),  # score 9
+        # A tier-1 item so the global pickoff populates Today in the World.
+        # fit="weak" so the weekday pickoff pulls it (weak/no-fit only).
+        _item(91, "Canada & Toronto",  tier=1, ccov=1, prel=1, fit="weak"),  # score 2
     ]
     links_by_id = {i["id"]: {"title": f"t{i['id']}", "source": "CBC", "snippet": ""} for i in tiered_items}
     payload = json.loads(build_format_input(tiered_items, {}, links_by_id))
     populated_order = [s for s, b in payload["sections"].items() if any(b.values())]
-    # Today in the World sorts first (holds the global top pick, score 9).
-    assert populated_order[0] == "Today in the World"
-    # Remaining sections sort by max score of leftover items.
-    assert populated_order[1] == "US & Global"   # score 8
-    assert populated_order[2] == "Tech & AI"     # score 5
-    assert populated_order[3] == "Canada & Toronto"  # score 2
+    assert populated_order == [
+        "Today in the World",
+        "Canada & Toronto",
+        "Toronto Housing",
+        "US & Global",
+        "Finance & Markets",
+    ]
+
+
+def test_renderer_reimposes_section_order_on_a_disordered_response():
+    # The formatter emits the sections backwards. The renderer must fix it
+    # rather than trusting the model to have followed the prompt rule.
+    text = (
+        "## Finance & Markets\n"
+        "**Markets headline [#4]**\n"
+        "**Setup.** Body one.\n\n"
+        "**Scene.** Body two.\n"
+        "Source: Yahoo Finance\n\n"
+        "## US & Global\n"
+        "**Global headline [#3]**\n"
+        "**Setup.** Body one.\n\n"
+        "**Scene.** Body two.\n"
+        "Source: BBC\n\n"
+        "## Toronto Housing\n"
+        "**Housing headline [#2]**\n"
+        "**Setup.** Body one.\n\n"
+        "**Scene.** Body two.\n"
+        "Source: Storeys\n\n"
+        "## Canada & Toronto\n"
+        "**Canada headline [#1]**\n"
+        "**Setup.** Body one.\n\n"
+        "**Scene.** Body two.\n"
+        "Source: CBC\n"
+    )
+    links_by_id = {
+        1: {"title": "Canada headline", "link": "https://e.com/1", "source": "CBC", "snippet": "s", "image": ""},
+        2: {"title": "Housing headline", "link": "https://e.com/2", "source": "Storeys", "snippet": "s", "image": ""},
+        3: {"title": "Global headline", "link": "https://e.com/3", "source": "BBC", "snippet": "s", "image": ""},
+        4: {"title": "Markets headline", "link": "https://e.com/4", "source": "Yahoo Finance", "snippet": "s", "image": ""},
+    }
+    html, _ = parse_and_render_sections(text, links_by_id)
+    positions = [
+        html.index(">🇨🇦 Canada</p>"),
+        html.index(">🏠 Toronto Housing</p>"),
+        html.index(">🌍 US &amp; Global</p>") if ">🌍 US &amp; Global</p>" in html else html.index(">🌍 US & Global</p>"),
+        html.index(">📈 Finance &amp; Markets</p>") if ">📈 Finance &amp; Markets</p>" in html else html.index(">📈 Finance & Markets</p>"),
+    ]
+    assert positions == sorted(positions), "sections must render in SECTION_ORDER regardless of the formatter's block order"
+
+
+def test_canada_and_toronto_renders_as_canada():
+    """Label-only rename: the heading reads Canada, the section key does not
+    change, so triage routing and SECTION_MAP are untouched."""
+    from formatting import section_display_name
+    from config import SECTION_MAP, SECTION_EMOJIS
+
+    assert section_display_name("Canada & Toronto") == "Canada"
+    # Every other section renders under its own name.
+    assert section_display_name("Toronto Housing") == "Toronto Housing"
+    assert section_display_name("US & Global") == "US & Global"
+    # The internal key survives everywhere it does routing work.
+    assert "Canada & Toronto" in SECTION_MAP.values()
+    assert "Canada & Toronto" in SECTION_EMOJIS
+
+
+def test_canada_heading_renders_in_the_email():
+    text = (
+        "## Canada & Toronto\n"
+        "**Canada headline [#1]**\n"
+        "**Setup.** Body one.\n\n"
+        "**Scene.** Body two.\n"
+        "Source: CBC\n"
+    )
+    links_by_id = {1: {"title": "Canada headline", "link": "https://e.com/1", "source": "CBC", "snippet": "s", "image": ""}}
+    html, _ = parse_and_render_sections(text, links_by_id)
+    assert ">🇨🇦 Canada</p>" in html
+    assert "Canada &amp; Toronto" not in html
+    assert "Canada & Toronto" not in html
 
 
 def test_render_other_headlines_for_section_caps_at_three_and_skips_used_ids():

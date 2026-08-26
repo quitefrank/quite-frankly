@@ -81,15 +81,50 @@ DARK = {
 }
 
 
+# The running order of the briefing, top to bottom. This is the authority in
+# both directions: build_format_input emits the formatter JSON in this order,
+# and parse_and_render_sections re-imposes it on the model's blocks, so a
+# formatter that ignores the "render sections in input order" rule can't drift
+# the email. Everything Else is appended after these by build_email_html.
+#
+# Fixed order set 2026-08-26, replacing a per-run sort by each section's
+# highest-scoring item. That sort made the running order move day to day, and
+# the global pickoff amplified it: confiscating a section's best story into
+# In the World also dropped that section down the page.
+#
+# Tech & AI sits where it sat under the old declared order (after Toronto
+# Housing) so flipping config.TECH_AI_ENABLED back on restores a sane slot
+# without a second decision. Design & Product is the only section on weekend
+# editions, so its position never competes with anything.
 SECTION_ORDER = [
-    "Canada & Toronto",
+    "Today in the World",   # renders as "In the World" / "In Design"
+    "Canada & Toronto",     # renders as "Canada"
     "Toronto Housing",
-    "Tech & AI",
-    "Design & Product",
-    "Finance & Markets",
+    "Tech & AI",            # parked; see config.TECH_AI_ENABLED
     "US & Global",
-    "Today in the World",
+    "Finance & Markets",
+    "Design & Product",     # weekend editions only
 ]
+
+# Email-facing labels that differ from the internal section key. The key stays
+# canonical everywhere else (SECTION_MAP routing, the triage menu, SECTION_EMOJIS)
+# so renaming a heading never changes which stories land in the section.
+# The global pickoff has its own edition-aware version in _global_pickoff_display.
+SECTION_DISPLAY_NAMES = {
+    "Canada & Toronto": "Canada",
+}
+
+
+def section_display_name(section: str) -> str:
+    return SECTION_DISPLAY_NAMES.get(section, section)
+
+
+def _section_rank(section: str) -> int:
+    """Position in SECTION_ORDER; unknown sections sort to the end, stably."""
+    try:
+        return SECTION_ORDER.index(section)
+    except ValueError:
+        return len(SECTION_ORDER)
 
 
 SECTION_FIT_SCORE = {"good": 1, "weak": 0, "none": -1}
@@ -462,14 +497,12 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
                 break
         buckets["tier_1"] = buckets["tier_1"][:cap]
 
-    def _section_max_score(buckets: dict) -> int:
-        all_scores = [item["_score"] for bucket in buckets.values() for item in bucket]
-        return max(all_scores) if all_scores else -100
-
+    # Fixed running order. by_section was seeded from SECTION_ORDER so it is
+    # already in this order; sorting explicitly keeps that true if the dict is
+    # ever built or mutated some other way.
     sorted_sections = dict(sorted(
         by_section.items(),
-        key=lambda kv: _section_max_score(kv[1]),
-        reverse=True,
+        key=lambda kv: _section_rank(kv[0]),
     ))
 
     for section_buckets in sorted_sections.values():
@@ -877,15 +910,21 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
     used_ids = set(suppressed_ids or ())
     blocks   = re.split(r"\n## ", text)
 
-    # Pin the global pickoff (Today in the World / In the World / In Design)
-    # to render first. Rendering it before any section runs means its item
-    # IDs land in used_ids before render_other_headlines_for_section and
-    # build_everything_else synthesize, so a pickoff story can never re-appear
-    # as a section's Other Headline. Stable sort keeps every other section in
-    # its existing (score-ranked) order.
+    # Re-impose SECTION_ORDER on the model's blocks. The formatter is told to
+    # render sections in input order, but nothing downstream used to check, so
+    # a deviation shipped as-is. Sorting here makes the running order a Python
+    # guarantee rather than a prompt rule the model has to keep.
+    #
+    # It also keeps the property the old pin existed for: Today in the World is
+    # first in SECTION_ORDER, so its item IDs land in used_ids before
+    # render_other_headlines_for_section and build_everything_else synthesize,
+    # and a pickoff story can never re-appear as a section's Other Headline.
+    # The sort is stable, so any block whose title isn't a known section (a
+    # preamble fragment from the split, a hallucinated heading) keeps its
+    # relative position at the end.
     def _block_title(b: str) -> str:
         return b.split("\n", 1)[0].replace("## ", "").strip()
-    blocks.sort(key=lambda b: 0 if _block_title(b) == TODAY_IN_THE_WORLD else 1)
+    blocks.sort(key=lambda b: _section_rank(_block_title(b)))
 
     html     = ""
 
@@ -1062,7 +1101,7 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
             f'overflow:hidden;background:{palette["card_bg"]};font-family:Helvetica,Arial,sans-serif">'
             f'\n  <div style="padding:15px 15px 0">'
             f'\n    <p style="color:{palette["accent"]};margin:0 0 12px;font-size:13px;font-weight:700;'
-            f'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">{emoji} {title}</p>'
+            f'letter-spacing:0.08em;text-transform:uppercase;line-height:22px">{emoji} {section_display_name(title)}</p>'
             f'\n  </div>'
             f'\n  <div style="padding:0 15px 15px">{stories_html}</div>'
             f'\n</div>'

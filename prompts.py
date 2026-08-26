@@ -202,15 +202,15 @@ The input "sections" object is keyed by section name. Render each populated sect
 ## <section name, exactly as it appears as the JSON key>
 
 The section name must be exactly one of these strings, copied verbatim from the JSON key, with no extra characters, no markdown, no IDs:
+- Today in the World
 - Canada & Toronto
 - Toronto Housing
 - Tech & AI
-- Design & Product
-- Finance & Markets
 - US & Global
-- Today in the World
+- Finance & Markets
+- Design & Product
 
-Section ordering is determined by the input dict key order. Skip a section entirely if it has no items in any tier. Never use a story headline as a section heading.
+Section ordering is determined by the input dict key order, which is fixed and matches the list above. Skip a section entirely if it has no items in any tier. Never use a story headline as a section heading. Some sections render under a different heading in the final email; that renaming happens after you finish, so always write the JSON key verbatim.
 
 Each section uses one of two layouts depending on its name.
 
