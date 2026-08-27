@@ -1,6 +1,7 @@
 """Static configuration for the Quite Frankly newsletter."""
 
 import os
+from pathlib import Path
 
 RECIPIENT = "suarez.milan@gmail.com"
 SENDER = "frank@quitefrank.co"
@@ -382,21 +383,14 @@ EE_THUMB_FETCH_TIMEOUT_S = 4.0         # download an og:image
 EE_THUMB_FETCH_MAX_BYTES = 5_000_000   # cap a downloaded image at 5 MB
 EE_THUMB_MAX_WORKERS = 6               # concurrent resolves
 
-GEMINI_IMAGE_MODEL = "gemini-2.5-flash-image"  # confirmed in Task 1
-GEMINI_IMAGE_TIMEOUT_S = 20.0
-
-# Editorial, deliberately non-photoreal so an AI image never reads as a real
-# news photo, AND optimized to stay legible at the 80x80px thumbnail it becomes.
-# The old prompt produced busy illustrations with tiny charts and stray words
-# that turned to mush at thumbnail size. {title}/{snippet} are filled per item;
-# snippet is intentionally unused now to stop the model from rendering its text.
-EE_IMAGE_PROMPT_TEMPLATE = (
-    "Design a single, bold, flat icon representing this news topic. It will be "
-    "displayed at 80x80 pixels, so it must read instantly at that tiny size. "
-    "ONE simple central subject that fills the frame, app-icon style. Use large "
-    "shapes, a high-contrast muted palette, and generous negative space. "
-    "Absolutely NO text, letters, numbers, words, labels, logos, charts, graphs, "
-    "fine detail, small elements, real faces, or photorealism. "
-    "Square composition.\n\n"
-    "Topic: {title}"
-)
+# Per-source fallback tiles, replacing the Gemini image generation that used to
+# sit here. Generation was billed per call, unbounded in the send path, and
+# failed three separate ways in two weeks (quota 429s across four editions, an
+# output safety block, and no timeout at all). A committed PNG has none of those
+# failure modes. Files are named by images._tile_slug of the source name, so
+# "National Post" -> national-post.png, and anything unmapped gets the default.
+# Absolute, resolved against this file rather than the working directory: a
+# relative path would silently yield zero tiles and drop every row to text if
+# anything ever ran the newsletter from elsewhere.
+EE_TILE_DIR = str(Path(__file__).resolve().parent / "assets" / "ee_tiles")
+EE_TILE_DEFAULT = "_default.png"

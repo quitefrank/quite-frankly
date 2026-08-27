@@ -56,6 +56,10 @@ LIGHT = {
     "accent": "#1c7ff2",
     "callout_bg": "#f0f4ff",
     "divider": "#f0f0f0",
+    # Hairline around an Everything Else thumbnail. Without it a pale image
+    # bleeds into the card and reads as a hole: a white fallback tile on the
+    # white weekday card, or a photo with a blown-out sky.
+    "thumb_ring": "#d9d9d9",
     "footer_bg": "#E9EBF7",
     "footer_text": "#79787d",
     "color_scheme": "light",
@@ -75,6 +79,9 @@ DARK = {
     "accent": "#4d9bff",
     "callout_bg": "#16243a",
     "divider": "#3a3d45",
+    # Lighter than card_border: it has to separate a near-black tile (NYT, CBC,
+    # National Post) from the dark weekend card, where the two are within 1.3:1.
+    "thumb_ring": "#5a606b",
     "footer_bg": "#1a1c2e",
     "footer_text": "#8b8ba3",
     "color_scheme": "dark",
@@ -1301,6 +1308,7 @@ def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None,
                 f'<td valign="top" style="width:80px;padding-right:12px">'
                 f'<img src="cid:{cid}" width="80" height="80" alt="" '
                 f'style="display:block;width:80px;height:80px;object-fit:cover;'
+                f'box-sizing:border-box;border:1px solid {palette["thumb_ring"]};'
                 f'border-radius:8px"></td>'
                 f'<td valign="top">'
                 f'<p style="margin:0;line-height:22px;font-size:15px;color:{palette["body"]};'

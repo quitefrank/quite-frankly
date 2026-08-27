@@ -9,3 +9,4 @@ case-study-raw.md
 tmp/
 venv/
 .superpowers/
+.playwright-mcp/

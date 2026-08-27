@@ -175,11 +175,14 @@ def _fetch_og_meta(article_url: str, timeout: float = OG_IMAGE_TIMEOUT_S) -> dic
     return out
 
 
-def extract_image(entry):
+def extract_image(entry, channel_image: str = ""):
     """Return an image URL from the RSS entry's own fields, or '' if none.
 
     og:image is no longer fetched here — it's done in parallel later by
     enrich_from_og_metadata after every feed has been read.
+
+    channel_image is the feed-level artwork, used only as a last resort for
+    podcast feeds where the episode carries no art of its own.
     """
     if hasattr(entry, "media_content") and entry.media_content:
         for m in entry.media_content:
@@ -200,7 +203,19 @@ def extract_image(entry):
     if img_match:
         return img_match.group(1)
 
-    return ""
+    # <itunes:image href>, which feedparser surfaces as entry.image. Podcast
+    # enclosures are audio/mpeg so they fail the type test above, and every
+    # podcast source is in SOURCES_SKIP_OG_IMAGE, so this is the only image a
+    # podcast episode can ever supply. Without it those rows were unwinnable.
+    ep_image = getattr(entry, "image", None)
+    if isinstance(ep_image, dict):
+        href = ep_image.get("href") or ep_image.get("url") or ""
+        if href:
+            return href
+
+    # Show artwork. Identical across every episode of a podcast, so it is a
+    # last resort, but it beats a generic tile for a Frontburner row.
+    return channel_image or ""
 
 
 def resolve_entry_link(entry, channel_link: str = "") -> str:
@@ -250,6 +265,9 @@ def fetch_feed(feed_config, limit: int = 10):
         headers = {"User-Agent": "Mozilla/5.0 (compatible; QuiteFramkly/1.0)"}
         parsed = feedparser.parse(feed_config["url"], request_headers=headers)
         channel_link = getattr(getattr(parsed, "feed", None), "link", "") or ""
+        channel_img = getattr(getattr(parsed, "feed", None), "image", None) or {}
+        channel_image = (channel_img.get("href") or channel_img.get("url") or "") \
+            if isinstance(channel_img, dict) else ""
         for entry in parsed.entries[:limit]:
             link  = resolve_entry_link(entry, channel_link)
             title = getattr(entry, "title", "") or ""
@@ -266,7 +284,7 @@ def fetch_feed(feed_config, limit: int = 10):
                     "title":   title,
                     "link":    link,
                     "snippet": snippet,
-                    "image":   extract_image(entry),
+                    "image":   extract_image(entry, channel_image),
                     "source":  feed_config["source"],
                     "published_ts": _entry_published_ts(entry),
                 })

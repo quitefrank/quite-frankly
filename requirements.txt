@@ -4,4 +4,3 @@ requests>=2.31.0
 brotli>=1.1.0          # decode Content-Encoding: br responses (e.g. moneysense.ca); without it
                        # requests hands back raw compressed bytes and og:image extraction silently fails
 Pillow>=10.0.0
-google-genai>=0.3.0

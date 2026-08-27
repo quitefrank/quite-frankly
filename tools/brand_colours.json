@@ -1,0 +1,240 @@
+{
+ "cbc.ca": {
+  "bg": "#D8232A",
+  "fg_hint": "light",
+  "source": "brand-guide",
+  "note": "CBC brand red #D8232A, the gem-logo red; matches the dominant hex in cbc.ca's own stylesheet",
+  "confidence": "high"
+ },
+ "theglobeandmail.com": {
+  "bg": "#DA161F",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Design token --color-red-500 = #DA161F, also the page's declared theme-color",
+  "confidence": "high"
+ },
+ "reddit.com": {
+  "bg": "#FF4500",
+  "fg_hint": "light",
+  "source": "brand-guide",
+  "note": "Official Reddit orangered #FF4500; confirmed in reddit.com markup",
+  "confidence": "high"
+ },
+ "blogto.com": {
+  "bg": "#F61600",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "blogTO red #F61600, used as a live background colour on five elements of the homepage",
+  "confidence": "high"
+ },
+ "thestar.com": {
+  "bg": "#006ED2",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "CSS var --accent-color = #006ED2, same value as msapplication-TileColor",
+  "confidence": "high"
+ },
+ "nationalpost.com": {
+  "bg": "#1B1919",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Masthead is a black bar with a white wordmark; used their near-black #1B1919 rather than white",
+  "confidence": "medium"
+ },
+ "nationalnewswatch.com": {
+  "bg": "#000000",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Site chrome is overwhelmingly black (91 elements) with a red accent #D81319; chose black to avoid colliding with CBC red",
+  "confidence": "medium"
+ },
+ "canadaland.com": {
+  "bg": "#0731F9",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "safari-pinned-tab mask-icon colour #0731F9 is the only brand hue declared; site itself is white",
+  "confidence": "medium"
+ },
+ "storeys.com": {
+  "bg": "#FFFFFF",
+  "fg_hint": "dark",
+  "source": "brand-guide",
+  "note": "Real 980px apple-touch-icon: black and blue chevrons on white, the brand presentation",
+  "confidence": "high"
+ },
+ "betterdwelling.com": {
+  "bg": "#FFFFFF",
+  "fg_hint": "dark",
+  "source": "brand-guide",
+  "note": "Their SVG defines fill #51B3CD with petals at opacity 0.35; the translucent rosette is the intended mark, shown on white as their site presents it",
+  "confidence": "high"
+ },
+ "moneysense.ca": {
+  "bg": "#102F32",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Masthead nav background is #102F32 dark teal and the logo file served there is the light-on-dark variant",
+  "confidence": "high"
+ },
+ "techcrunch.com": {
+  "bg": "#0AA43E",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "2024 theme token green-300 #0AA43E; the logo mark itself is mint #68F176 sitting on near-black in situ",
+  "confidence": "high"
+ },
+ "news.ycombinator.com": {
+  "bg": "#FF6600",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Hacker News orange #FF6600 confirmed in page source; the Y mark is white on orange",
+  "confidence": "high"
+ },
+ "simonwillison.net": {
+  "bg": "#733B96",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Site accent is a lavender family; #733B96 is the saturated purple behind the #EDE3F1 tint blocks, which are too pale for a tile",
+  "confidence": "medium"
+ },
+ "stratechery.com": {
+  "bg": "#FAA634",
+  "fg_hint": "dark",
+  "source": "website",
+  "note": "Theme preset --wp--preset--color--primary = #FAA634, the Stratechery gold",
+  "confidence": "medium"
+ },
+ "finance.yahoo.com": {
+  "bg": "#6001D2",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Yahoo purple #6001D2, painted as a background on 47 elements and defined as --purple-100-dark",
+  "confidence": "high"
+ },
+ "wsj.com": {
+  "bg": "#0274B6",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Masthead is black on white, so used the WSJ primary blue #0274B6 (--color-primary400) to keep the tile visible",
+  "confidence": "high"
+ },
+ "bbc.com": {
+  "bg": "#BB1919",
+  "fg_hint": "light",
+  "source": "brand-guide",
+  "note": "bbc.com chrome is greyscale now; used the BBC News red #BB1919 as the accent so the tile is not black or white",
+  "confidence": "medium"
+ },
+ "nytimes.com": {
+  "bg": "#000000",
+  "fg_hint": "light",
+  "source": "brand-guide",
+  "note": "NYT is black-on-white with no accent; used black so the tile reads against a white email",
+  "confidence": "high"
+ },
+ "economist.com": {
+  "bg": "#E3120B",
+  "fg_hint": "light",
+  "source": "brand-guide",
+  "note": "Design system token --mb-colour-brand-red = #E3120B; the masthead is a white wordmark in a red box",
+  "confidence": "high"
+ },
+ "npr.org": {
+  "bg": "#237BBD",
+  "fg_hint": "light",
+  "source": "brand-guide",
+  "note": "NPR True Blue #237BBD, taken from the logo SVG on npr.org (blocks are #D62021 red and #237BBD blue with white letterforms)",
+  "confidence": "high"
+ },
+ "axios.com": {
+  "bg": "#1C3B7A",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "--bg-nav-primary = #1C3B7A, the navy actually painted behind the Axios nav; the A mark is #3B6BE3 and #222222",
+  "confidence": "high"
+ },
+ "uxdesign.cc": {
+  "bg": "#191919",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Medium-hosted publication with no custom brand hue; used --color-border-brand-primary #191919 rather than white",
+  "confidence": "medium"
+ },
+ "smashingmagazine.com": {
+  "bg": "#D33A2C",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Declared theme-color #D33A2C, the Smashing cat red",
+  "confidence": "high"
+ },
+ "nngroup.com": {
+  "bg": "#C32000",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "#C32000 is the red NN/g paints on CTAs; their primary scale runs #BB181C to #ED0000, logo itself is black on white",
+  "confidence": "medium"
+ },
+ "lennysnewsletter.com": {
+  "bg": "#F47C55",
+  "fg_hint": "dark",
+  "source": "website",
+  "note": "Substack accent token --color_theme_accent = #F47C55, Lenny's configured campfire coral",
+  "confidence": "high"
+ },
+ "design-milk.com": {
+  "bg": "#1A1818",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Purely black-on-white with no accent colour anywhere on the page; used their near-black #1A1818",
+  "confidence": "medium"
+ },
+ "itsnicethat.com": {
+  "bg": "#6219FF",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "msapplication-TileColor and mask-icon both declare #6219FF, the It's Nice That violet",
+  "confidence": "high"
+ },
+ "tympanus.net": {
+  "bg": "#485AE1",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Codrops stylesheet defines --color-brand: #485AE1",
+  "confidence": "high"
+ },
+ "sidebar.io": {
+  "bg": "#F36C3D",
+  "fg_hint": "dark",
+  "source": "website",
+  "note": "#F36C3D is the custom orange layered over Sidebar's Bootstrap defaults",
+  "confidence": "medium"
+ },
+ "trendland.com": {
+  "bg": "#222222",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "Trendland is black-and-white editorial; #222222 dominates the stylesheet and the logo has a white-on-dark variant",
+  "confidence": "medium"
+ },
+ "vox.com": {
+  "bg": "#FFF200",
+  "fg_hint": "dark",
+  "source": "brand-guide",
+  "note": "Vox yellow #FFF200, confirmed as the most-used hex on vox.com; the V mark is black on yellow",
+  "confidence": "high"
+ },
+ "nbcnews.com": {
+  "bg": "#102039",
+  "fg_hint": "light",
+  "source": "website",
+  "note": "NBC News nav navy, 18 occurrences across their stylesheets; peacock reads without the blue-on-blue clash",
+  "confidence": "high"
+ },
+ "__default__": {
+  "bg": "#1F1F1F",
+  "fg_hint": "light",
+  "source": "brand-guide",
+  "note": "Quite Frankly mark in white on the newsletter header black, so an unmapped source reads as ours rather than as a missing asset",
+  "confidence": "high"
+ }
+}
