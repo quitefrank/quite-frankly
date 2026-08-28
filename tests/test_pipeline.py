@@ -745,3 +745,139 @@ def test_channel_artwork_does_not_suppress_og_image_enrichment(monkeypatch):
     assert items[0]["image"] == NP_ARTICLE_PHOTO, (
         "Channel artwork must not shadow the article's real og:image"
     )
+
+
+# --- Image URL resolution and reachability -----------------------------------
+# Captured at import time: conftest's autouse _no_image_reachability_http
+# fixture replaces pipeline._probe_image_url with a stub, and these tests need
+# the genuine classifier.
+_REAL_PROBE_IMAGE_URL = pipeline._probe_image_url
+
+
+def test_absolute_image_url_resolves_relative_src_against_the_article():
+    # Sidebar shipped '/tegaki/tegaki-card.png' into design_archive.json. An
+    # email has no base URL, so that renders broken for every reader.
+    assert pipeline.absolute_image_url(
+        "/tegaki/tegaki-card.png", "https://gkurt.com/tegaki/"
+    ) == "https://gkurt.com/tegaki/tegaki-card.png"
+
+
+def test_absolute_image_url_leaves_absolute_and_protocol_relative_urls_usable():
+    assert pipeline.absolute_image_url("https://cdn.example/a.jpg", "https://x.test/p") \
+        == "https://cdn.example/a.jpg"
+    assert pipeline.absolute_image_url("//cdn.example/a.jpg", "https://x.test/p") \
+        == "https://cdn.example/a.jpg"
+    assert pipeline.absolute_image_url("", "https://x.test/p") == ""
+
+
+def test_fetch_feed_absolutizes_a_relative_image_from_the_summary():
+    entries = [("Tegaki", "https://gkurt.com/tegaki/",
+                'A handwriting tool. <img src="/tegaki/tegaki-card.png"> Long enough.')]
+    with patch("pipeline.feedparser.parse", return_value=_fake_parsed(entries)):
+        items = fetch_feed({"url": "x", "source": "Sidebar"})
+    assert items[0]["image"] == "https://gkurt.com/tegaki/tegaki-card.png"
+
+
+class _Resp:
+    def __init__(self, status_code, ctype="image/jpeg"):
+        self.status_code = status_code
+        self.headers = {"Content-Type": ctype} if ctype else {}
+
+
+def _probe_with(monkeypatch, outcome, ctype="image/jpeg"):
+    """Drive the real classifier with a scripted requests.request."""
+    calls = []
+
+    def fake_request(method, url, **kw):
+        calls.append(method)
+        if isinstance(outcome, Exception):
+            raise outcome
+        code = outcome[len(calls) - 1] if isinstance(outcome, list) else outcome
+        return _Resp(code, ctype)
+
+    monkeypatch.setattr("pipeline.requests.request", fake_request)
+    return calls
+
+
+def test_probe_treats_dead_host_and_404_as_proof_of_absence(monkeypatch):
+    import requests as _requests
+    _probe_with(monkeypatch, _requests.exceptions.ConnectionError("no such host"))
+    assert _REAL_PROBE_IMAGE_URL("https://smartcdn.prod.postmedia.digital/x.png") \
+        == (False, "unreachable_host")
+
+    _probe_with(monkeypatch, 404)
+    assert _REAL_PROBE_IMAGE_URL("https://www.itsnicethat.com/images/social.jpg") \
+        == (False, "http_404")
+
+
+def test_probe_keeps_images_behind_hotlink_protection_and_timeouts(monkeypatch):
+    # 401/403 are a WAF rejecting a datacenter IP far more often than a missing
+    # image, and the reader's own client is not making this request. Dropping on
+    # them would delete good photos. A timeout is likewise not proof of absence.
+    _probe_with(monkeypatch, [403, 403])  # HEAD retries as GET, GET also 403
+    assert _REAL_PROBE_IMAGE_URL("https://cdn.example/photo.jpg")[0] is True
+
+    import requests as _requests
+    _probe_with(monkeypatch, _requests.exceptions.Timeout("slow"))
+    assert _REAL_PROBE_IMAGE_URL("https://cdn.example/photo.jpg")[0] is True
+
+
+def test_probe_retries_as_get_when_a_cdn_refuses_head(monkeypatch):
+    calls = _probe_with(monkeypatch, [405, 200])
+    assert _REAL_PROBE_IMAGE_URL("https://cdn.example/photo.jpg") == (True, "200")
+    assert calls == ["HEAD", "GET"]
+
+
+def test_probe_rejects_a_schemeless_url_without_touching_the_network(monkeypatch):
+    calls = _probe_with(monkeypatch, 200)
+    assert _REAL_PROBE_IMAGE_URL("/tegaki/tegaki-card.png") == (False, "schemeless")
+    assert calls == [], "A schemeless path needs no request to be known bad"
+
+
+def test_drop_unreachable_images_blanks_only_the_unusable_ones(monkeypatch):
+    dead = "https://smartcdn.prod.postmedia.digital/np-masthead.png"
+    live = "https://smartcdn.gprod.postmedia.digital/nepal-photo.jpg"
+    monkeypatch.setattr("pipeline._probe_image_url",
+                        lambda url: (False, "unreachable_host") if url == dead else (True, "200"))
+    items = [
+        {"link": "a", "image": dead, "source": "National Post"},
+        {"link": "b", "image": live, "source": "National Post"},
+        {"link": "c", "image": "", "source": "Reddit"},
+    ]
+    pipeline.drop_unreachable_images(items)
+    assert [i["image"] for i in items] == ["", live, ""]
+
+
+def test_drop_unreachable_images_probes_each_distinct_url_once(monkeypatch):
+    # A publisher masthead lands on every item from that source, so probing per
+    # item instead of per URL would multiply the request count by ~10.
+    seen = []
+    monkeypatch.setattr("pipeline._probe_image_url",
+                        lambda url: seen.append(url) or (True, "200"))
+    same = "https://cdn.example/one.jpg"
+    pipeline.drop_unreachable_images([{"image": same} for _ in range(10)])
+    assert seen == [same]
+
+
+def test_probe_rejects_a_redirect_that_never_lands(monkeypatch):
+    # WSJ's masthead: http://online.wsj.com/img/wsj_sm_logo.gif redirects to its
+    # own https form, which answers 301 again. requests has already followed the
+    # chain, so a 3xx here means there is no resource at the end of it.
+    _probe_with(monkeypatch, 301, ctype="application/xml")
+    assert _REAL_PROBE_IMAGE_URL("http://online.wsj.com/img/wsj_sm_logo.gif") \
+        == (False, "unresolved_redirect_301")
+
+
+def test_probe_rejects_an_error_document_served_on_an_image_path(monkeypatch):
+    _probe_with(monkeypatch, 200, ctype="text/html")
+    assert _REAL_PROBE_IMAGE_URL("https://cdn.example/gone.jpg") \
+        == (False, "content_type_text/html")
+
+
+def test_probe_keeps_images_with_an_odd_or_absent_content_type(monkeypatch):
+    # Some CDNs serve real photos as octet-stream or send no header at all.
+    # "not image/*" would drop those, which is why the rule lists known-bad only.
+    _probe_with(monkeypatch, 200, ctype="application/octet-stream")
+    assert _REAL_PROBE_IMAGE_URL("https://cdn.example/photo.jpg")[0] is True
+    _probe_with(monkeypatch, 200, ctype=None)
+    assert _REAL_PROBE_IMAGE_URL("https://cdn.example/photo.jpg")[0] is True

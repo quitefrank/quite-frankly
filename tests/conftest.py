@@ -16,6 +16,21 @@ def _no_og_image_http(monkeypatch):
     )
 
 
+@pytest.fixture(autouse=True)
+def _no_image_reachability_http(monkeypatch):
+    """Neutralize the image reachability probe so tests never hit the network.
+
+    Mirrors _no_og_image_http above. Patches the network leaf rather than
+    drop_unreachable_images itself, so the blanking logic still runs in tests
+    that want it; those override this with their own _probe_image_url stub.
+    """
+    monkeypatch.setattr(
+        "pipeline._probe_image_url",
+        lambda url: (True, "stubbed"),
+        raising=False,
+    )
+
+
 @pytest.fixture
 def sample_feed_xml():
     return (FIXTURES / "sample_feed.xml").read_text()

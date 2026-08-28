@@ -90,6 +90,11 @@ def accumulate(*, now: float | None = None, fetch_feed_fn=None, enrich_fn=None) 
     # Enrich only the newly-seen items. Fills og image/snippet once per item, so
     # cost tracks new arrivals, not the whole archive, every day.
     enrich_fn([it for _, it in new_pairs])
+    # Before the URL is frozen into the archive. accumulate() skips keys it has
+    # already seen, so a dead URL written here survives every later fix until
+    # the 7-day prune drops it. That is how four Sidebar entries outlived the
+    # channel-artwork fix and were still queued for the Sunday edition.
+    pipeline.drop_unreachable_images([it for _, it in new_pairs])
 
     for key, it in new_pairs:
         archive[key] = {

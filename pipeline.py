@@ -10,7 +10,7 @@ import re
 import time
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from urllib.parse import parse_qsl, urlencode, urlparse
+from urllib.parse import parse_qsl, urlencode, urljoin, urlparse
 
 import feedparser
 import requests
@@ -23,6 +23,9 @@ from config import (
     SOURCES_SKIP_OG_IMAGE,
     TEST_MODE,
 )
+# Shared rather than copied: two browser fingerprints for the same publisher
+# CDNs would drift, and a stale one here would read as a dead image below.
+from images import _image_headers
 
 
 OG_IMAGE_TIMEOUT_S = 3.0
@@ -218,6 +221,25 @@ def extract_image(entry, channel_image: str = ""):
     return channel_image or ""
 
 
+def absolute_image_url(url: str, base_url: str) -> str:
+    """Resolve a feed-supplied image URL against the article it came from.
+
+    Some feeds inline <img src="/path/card.png"> in the summary, and the regex
+    above returns that src verbatim. An email has no base URL to resolve it
+    against, so a schemeless path is a guaranteed broken image for every reader.
+    Sidebar shipped exactly that ('/tegaki/tegaki-card.png') into the design
+    archive. Applied at the one call site rather than at each return inside
+    extract_image, so a seventh extraction path added later cannot miss it.
+    """
+    if not url or not base_url:
+        return url
+    if url.startswith(("http://", "https://", "data:", "cid:")):
+        return url
+    if url.startswith("//"):
+        return "https:" + url
+    return urljoin(base_url, url)
+
+
 def resolve_entry_link(entry, channel_link: str = "") -> str:
     """Return a usable article URL for an RSS entry.
 
@@ -295,13 +317,107 @@ def fetch_feed(feed_config, limit: int = 10):
                     "title":   title,
                     "link":    link,
                     "snippet": snippet,
-                    "image":   extract_image(entry, channel_image),
+                    "image":   absolute_image_url(extract_image(entry, channel_image), link),
                     "source":  feed_config["source"],
                     "published_ts": _entry_published_ts(entry),
                 })
     except Exception as e:
         print(f"  Error fetching {feed_config['source']}: {e}")
     return items
+
+
+IMAGE_CHECK_TIMEOUT_S = 6.0
+IMAGE_CHECK_MAX_WORKERS = 10
+# Statuses that prove the image is gone. 401 and 403 are deliberately absent:
+# publisher CDNs reject a datacenter IP far more often than they actually lose
+# an image, and images.py exists because of exactly that. Treating a 403 as
+# absence would delete good photos on the strength of a WAF rule.
+IMAGE_GONE_STATUSES = frozenset({404, 410})
+# Content types that are an error document wearing an image path. Deliberately a
+# list of known-bad rather than a "must be image/*" rule: some CDNs serve real
+# photos as application/octet-stream or send no Content-Type at all, and those
+# must not be dropped. WSJ's masthead is the live example, an .gif URL that
+# redirects to itself and answers application/xml.
+NON_IMAGE_CONTENT_TYPES = frozenset({
+    "text/html", "text/plain", "text/xml", "application/xml", "application/json",
+})
+
+
+def _probe_image_url(url: str) -> "tuple[bool, str]":
+    """Return (usable, reason) for one image URL. The network leaf, patched in tests.
+
+    HEAD first, falling back to GET when a CDN refuses the method. A timeout is
+    not proof of absence, so it counts as usable; only a dead host, a 404/410 or
+    a schemeless path are treated as proof.
+    """
+    if not url.lower().startswith(("http://", "https://")):
+        return False, "schemeless"
+    for method in ("HEAD", "GET"):
+        try:
+            r = requests.request(
+                method, url, timeout=IMAGE_CHECK_TIMEOUT_S,
+                allow_redirects=True, headers=_image_headers(url), stream=True,
+            )
+        except requests.exceptions.ConnectionError:
+            return False, "unreachable_host"
+        except Exception as e:  # noqa: BLE001 — a timeout or TLS hiccup is not absence
+            return True, type(e).__name__
+        if method == "HEAD" and r.status_code in (403, 405, 501):
+            continue  # some CDNs refuse HEAD outright; ask for the body instead
+        if r.status_code in IMAGE_GONE_STATUSES:
+            return False, f"http_{r.status_code}"
+        if 300 <= r.status_code < 400:
+            # requests already followed the chain, so still sitting on a 3xx
+            # means it never lands on a resource at all.
+            return False, f"unresolved_redirect_{r.status_code}"
+        ctype = (r.headers.get("Content-Type") or "").split(";")[0].strip().lower()
+        if ctype in NON_IMAGE_CONTENT_TYPES:
+            return False, f"content_type_{ctype}"
+        return True, str(r.status_code)
+    return True, "head_refused"
+
+
+def drop_unreachable_images(items: "list[dict]") -> None:
+    """Blank item['image'] where the URL is provably unusable. Mutates in place.
+
+    Runs after og enrichment so it sees the final URL. Checking reachability
+    rather than URL shape is the point: the National Post masthead that shipped
+    a broken hero on 2026-08-28 was a perfectly well-formed https URL, and a
+    shape check would have passed it. So would It's Nice That's placeholder,
+    which 404s on a host that resolves fine.
+
+    Blanking here rather than at render time means every consumer inherits it at
+    once: the In the World hero, the featured-story image, Everything Else, and
+    the design archive. It also stops a story with a dead image winning the hero
+    slot, since formatting.py sorts and promotes on bool(link['image']).
+    """
+    urls = sorted({item["image"] for item in items if item.get("image")})
+    if not urls:
+        return
+    started = time.time()
+    with ThreadPoolExecutor(max_workers=IMAGE_CHECK_MAX_WORKERS) as executor:
+        verdicts = dict(zip(urls, executor.map(_probe_image_url, urls)))
+    dropped: "dict[str, str]" = {}
+    for item in items:
+        url = item.get("image")
+        if not url:
+            continue
+        usable, reason = verdicts.get(url, (True, "unchecked"))
+        if not usable:
+            item["image"] = ""
+            dropped[url] = reason
+    print(
+        f"  image reachability: {len(urls)} URL(s) checked, {len(dropped)} unusable "
+        f"in {time.time() - started:.1f}s"
+    )
+    for url, reason in sorted(dropped.items()):
+        print(f"    [image] DROP {reason} {url}", flush=True)
+    if dropped:
+        print(
+            f"::warning title=Dead image URLs::{len(dropped)} image URL(s) dropped as "
+            f"unreachable: " + ", ".join(sorted(dropped)[:5]),
+            flush=True,
+        )
 
 
 OG_DESCRIPTION_SNIPPET_CAP = 300  # Match fetch_feed's RSS-snippet cap.
@@ -392,6 +508,7 @@ def fetch_all_feeds(feeds=None):
             seen_links.add(key)
         deduped.append(item)
     enrich_from_og_metadata(deduped)
+    drop_unreachable_images(deduped)
     return deduped
 
 
