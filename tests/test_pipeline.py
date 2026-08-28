@@ -662,3 +662,86 @@ def test_deduplicate_matches_legacy_raw_seen_keys(tmp_path, monkeypatch):
     assert [i["link"] for i in fresh] == ["https://example.com/b"], (
         "Legacy raw seen key should match its normalized incoming form"
     )
+
+
+# --- Channel artwork scoping (regression, 2026-08-28) -------------------------
+# ccf2fba added the feed-level <channel><image> as a last-resort item image and
+# applied it to every feed, not the podcast feeds its docstring scoped it to.
+# National Post's masthead lives on a hostname Postmedia retired, so the edition
+# shipped a broken hero image, and ~50 items an edition silently lost their real
+# article photo because a truthy image field skips og:meta enrichment.
+
+NP_CHANNEL_LOGO = (
+    "https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/"
+    "uploads/2017/09/nationalpost-38x2501.png"
+)
+NP_ARTICLE_PHOTO = (
+    "https://smartcdn.gprod.postmedia.digital/nationalpost/wp-content/"
+    "uploads/2026/08/2291679013_304873473.jpg"
+)
+NEPAL_ENTRY = [(
+    "Nepal tunnel rescue race",
+    "https://nationalpost.com/news/rescuers-race-to-save-nepalese-tunnel",
+    "More than 100 workers remain trapped inside a hydropower tunnel in Rasuwa.",
+)]
+
+
+def _fake_parsed_with_channel_image(entries, channel_image):
+    """A feed whose <channel> carries <image><url>, as most publisher RSS does.
+
+    _fake_parsed builds a Parsed with no .feed attribute at all, so every test
+    using it saw channel_image == "" and the fallback branch was unreachable.
+    That blind spot is why 47 passing pipeline tests missed this.
+    """
+    parsed = _fake_parsed(entries)
+    feed = type("Feed", (), {})()
+    feed.link = ""
+    feed.image = {"href": channel_image}
+    parsed.feed = feed
+    return parsed
+
+
+def test_fetch_feed_ignores_channel_artwork_for_non_podcast_feeds():
+    with patch("pipeline.feedparser.parse",
+               return_value=_fake_parsed_with_channel_image(NEPAL_ENTRY, NP_CHANNEL_LOGO)):
+        items = fetch_feed({"url": "x", "source": "National Post"})
+    assert items[0]["image"] == "", (
+        "Publisher masthead must not become the item image on an og:image-enriched source"
+    )
+
+
+def test_fetch_feed_uses_channel_artwork_for_podcast_feeds():
+    # The behaviour ccf2fba was actually after. A podcast episode carries no art
+    # of its own and its source is never og:image-enriched, so show artwork is
+    # the only image the row can ever get.
+    art = "https://cbc.ca/frontburner-show-art.jpg"
+    entries = [("Episode 812", "https://cbc.ca/frontburner/812",
+                "An episode description long enough to clear MIN_SNIPPET_CHARS.")]
+    with patch("pipeline.feedparser.parse",
+               return_value=_fake_parsed_with_channel_image(entries, art)):
+        items = fetch_feed({"url": "x", "source": "CBC Frontburner"})
+    assert items[0]["image"] == art
+
+
+def test_fetch_feed_keeps_per_entry_image_when_channel_artwork_is_dropped():
+    # The gate must only remove the fallback, never a real per-item image.
+    parsed = _fake_parsed_with_channel_image(NEPAL_ENTRY, NP_CHANNEL_LOGO)
+    parsed.entries[0].media_thumbnail = [{"url": NP_ARTICLE_PHOTO}]
+    with patch("pipeline.feedparser.parse", return_value=parsed):
+        items = fetch_feed({"url": "x", "source": "National Post"})
+    assert items[0]["image"] == NP_ARTICLE_PHOTO
+
+
+def test_channel_artwork_does_not_suppress_og_image_enrichment(monkeypatch):
+    # The mechanism behind the visible break. enrich_from_og_metadata only
+    # fetches items whose image is falsy, so a masthead-filled image field
+    # removed the item from the candidate list before it could find the real
+    # photo (85 fetches on 2026-08-27, 20 on 2026-08-28).
+    monkeypatch.setattr("pipeline._fetch_og_meta",
+                        lambda url, **kw: {"image": NP_ARTICLE_PHOTO, "description": ""})
+    with patch("pipeline.feedparser.parse",
+               return_value=_fake_parsed_with_channel_image(NEPAL_ENTRY, NP_CHANNEL_LOGO)):
+        items = fetch_all_feeds([{"url": "x", "source": "National Post"}])
+    assert items[0]["image"] == NP_ARTICLE_PHOTO, (
+        "Channel artwork must not shadow the article's real og:image"
+    )

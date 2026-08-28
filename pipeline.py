@@ -268,6 +268,17 @@ def fetch_feed(feed_config, limit: int = 10):
         channel_img = getattr(getattr(parsed, "feed", None), "image", None) or {}
         channel_image = (channel_img.get("href") or channel_img.get("url") or "") \
             if isinstance(channel_img, dict) else ""
+        # Channel artwork is the publisher's masthead, identical on every item,
+        # so it is only ever a defensible fallback where enrich_from_og_metadata
+        # will not run to find the real article photo. Everywhere else it does
+        # active harm twice over: a truthy item["image"] drops the item from that
+        # function's candidate list, and the masthead then gets hotlinked into
+        # the hero slot in place of the photo it suppressed. Ungated, this cost
+        # 61 items their real photo in one edition (og enrichment fell from 85
+        # candidates to 20), and National Post's masthead sits on a hostname
+        # Postmedia retired, so 2026-08-28 shipped a visibly broken hero image.
+        if feed_config["source"] not in SOURCES_SKIP_OG_IMAGE:
+            channel_image = ""
         for entry in parsed.entries[:limit]:
             link  = resolve_entry_link(entry, channel_link)
             title = getattr(entry, "title", "") or ""

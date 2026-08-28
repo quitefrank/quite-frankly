@@ -192,6 +192,14 @@ SECTION_MAP = {
 # Sources whose RSS "link" points to a podcast/audio resource rather than an
 # article page. og:image fetches against these always 404 — skip the HTTP
 # call to keep CI logs clean.
+#
+# This set does double duty: fetch_feed also reads it to decide which feeds may
+# fall back to the channel's own artwork, because that fallback is only
+# defensible where og:image enrichment will never run. Adding a source here
+# therefore hands its items the publisher's masthead as their image. Do not add
+# a source just to silence noisy og fetches — WSJ (401) and The Economist (403)
+# are tempting and would both break, since their channel artwork is a dead URL.
+# Silencing log noise wants a separate constant.
 SOURCES_SKIP_OG_IMAGE = {
     "CBC Frontburner",
     "NYT The Daily",
