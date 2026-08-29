@@ -1024,5 +1024,149 @@
     "published_ts": 1787895024,
     "first_seen_ts": 1787911226.948432,
     "link": "https://www.gatesnotes.com/a-turbulent-ai-era-and-critical-choices-to-make"
+  },
+  "smashingmagazine.com/2026/08/timing-charts-blueprint-smil-animations": {
+    "title": "Timing Charts: A Blueprint For SMIL Animations",
+    "source": "Smashing Magazine",
+    "snippet": "Discover SMIL, the often-overlooked way to animate SVGs that works inside `` tags and can fully animate everything in an SVG without JavaScript.",
+    "image": "",
+    "published_ts": 1787230800,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://smashingmagazine.com/2026/08/timing-charts-blueprint-smil-animations/"
+  },
+  "smashingmagazine.com/2026/08/building-tactile-ux-honoring-intentional-design-lottie": {
+    "title": "Building Tactile UX: Honoring Intentional Design With Lottie",
+    "source": "Smashing Magazine",
+    "snippet": "When tasked with building a highly interactive, tactile web experience, the architecture must serve the art direction. In this article, Alexey Kopytin explains their architectural rationale for building a digital stress-relief squeeze toy game using Lottie animations, DOM events, and distance-based ",
+    "image": "http://files.smashing.media/articles/building-tactile-ux-honoring-intentional-design-lottie/building-tactile-ux-honoring-intentional-design-lottie.jpg",
+    "published_ts": 1786442400,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://smashingmagazine.com/2026/08/building-tactile-ux-honoring-intentional-design-lottie/"
+  },
+  "nngroup.com/articles/ai-empathy-mapping": {
+    "title": "AI Can't Replace Real Research in Empathy Mapping",
+    "source": "NN/g",
+    "snippet": "AI can help you organize research you\u2019ve already collected, but it can\u2019t create research evidence about the specific, messy experience of real users.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/AI_Cant_Replace_Real_Research_in_Empathy_Mapping-1_ZfBI0Xv.png",
+    "published_ts": 1787936400,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://www.nngroup.com/articles/ai-empathy-mapping/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/ai-ux-debt": {
+    "title": "The Custodial Era of UX: Cleaning Up After AI",
+    "source": "NN/g",
+    "snippet": "AI lets teams build faster than UX can evaluate. UX can adapt by building shared judgment, accelerating evaluation, and guiding AI-generated designs.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_Custodial_Era_of_UX-1_eRbQrXo.png",
+    "published_ts": 1787936400,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://www.nngroup.com/articles/ai-ux-debt/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/news/item/people-culture-generalist-remote": {
+    "title": "Job Opening: People & Culture Generalist (Remote, US Based)",
+    "source": "NN/g",
+    "snippet": "NN/G is hiring a People & Culture Generalist.\n\nThis is a fully remote, permanent role running the day-to-day of our People function. Three to five years of People Operations or HR generalist experience.\n\nApplications close Friday, August 28.",
+    "image": "",
+    "published_ts": 1785612300,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://www.nngroup.com/news/item/people-culture-generalist-remote/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/how-to-make-people-care-about-your": {
+    "title": "How to make people care about your startup",
+    "source": "Lenny's Newsletter",
+    "snippet": "Three founder archetypes&#8212;and how to turn your origin story into a communications strategy",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/a4a1e7f9-6872-47ef-ac7f-f6b0d04612cf_1456x970.png",
+    "published_ts": 1786455067,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://www.lennysnewsletter.com/p/how-to-make-people-care-about-your"
+  },
+  "lennysnewsletter.com/p/how-i-ai-chatgpt-codex-voice-browser": {
+    "title": "\ud83c\udf99\ufe0f How I AI: ChatGPT Codex Voice + browser + Sites: an expert\u2019s AI workflow | Nick Baumann (OpenAI)",
+    "source": "Lenny's Newsletter",
+    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/d0b180ff-17e2-480a-b76a-8e8fed15b822_1456x1048.png",
+    "published_ts": 1785769341,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://www.lennysnewsletter.com/p/how-i-ai-chatgpt-codex-voice-browser"
+  },
+  "lennysnewsletter.com/p/chatgpt-codex-voice-browser-sites": {
+    "title": "ChatGPT Codex Voice + browser + Sites: an expert\u2019s AI workflow | Nick Baumann (OpenAI)",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now | &#127897;&#65039;ChatGPT Voice now manages multiple threads, reads your screen, and runs background tasks, and Nick Baumann walks me through the whole workflow live",
+    "image": "https://substackcdn.com/image/fetch/$s_!AS5z!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff4423948-a10c-4b2a-ab02-3d4cff43de69_1920x1080.png",
+    "published_ts": 1785758666,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://www.lennysnewsletter.com/p/chatgpt-codex-voice-browser-sites"
+  },
+  "design-milk.com/transparent-tech-gadgets-retro-design": {
+    "title": "The Clear-Tech Comeback Is Putting Everything on Display",
+    "source": "Design Milk",
+    "snippet": "Clear cases and visible circuitry give modern electronics a decidedly retro edge",
+    "image": "https://design-milk.com/images/2026/08/181359_b-e1787862175214.jpg",
+    "published_ts": 1787922048,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://design-milk.com/transparent-tech-gadgets-retro-design/"
+  },
+  "design-milk.com/korean-hanok-inspired-moscow-apartment": {
+    "title": "A Moscow Apartment Reinterprets the Architecture of a Korean Hanok",
+    "source": "Design Milk",
+    "snippet": "Inga Kordya translates the hanok\u2019s filtered light, flexible partitions, and adaptable spaces into a contemporary family home",
+    "image": "https://design-milk.com/images/2026/08/moscow-apartment-inga-kordya-8-e1787345476571.jpg",
+    "published_ts": 1787266059,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://design-milk.com/korean-hanok-inspired-moscow-apartment/"
+  },
+  "itsnicethat.com/features/the-weekend-with-james-junk-210826": {
+    "title": "The Weekend With James Junk",
+    "source": "It's Nice That",
+    "snippet": "The week\u2019s over! Log off and touch grass with the LA-based designer, art director and creator.",
+    "image": "https://admin.itsnicethat.com/images/qRKvLduwPBna9YQzx_SWePXGAJg=/281148/width-1440%7Cformat-jpeg/The_Weekend-01_copy_cVCSJFu.png",
+    "published_ts": 1787299200,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://www.itsnicethat.com/features/the-weekend-with-james-junk-210826"
+  },
+  "itsnicethat.com/articles/nicer-tuesdays-london-july-alfie-whiteman-200826": {
+    "title": "Former Tottenham goalkeeper Alfie Whiteman on his journey from professional footballer to photographer and director",
+    "source": "It's Nice That",
+    "snippet": "Alfie Whiteman might be the ultimate multi-hyphenate: a former Tottenham Hotspur goalkeeper turned director and photographer. While playing professionally, he began building what he calls a \u201cparallel life\u201d in the creative world until the two could no longer run alongside each other.\u00a0Eventually he tr",
+    "image": "",
+    "published_ts": 1787230800,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-london-july-alfie-whiteman-200826"
+  },
+  "itsnicethat.com/articles/simji-park-illustration-discover-200826": {
+    "title": "Simji Park turns everyday moments into dreamlike vignettes",
+    "source": "It's Nice That",
+    "snippet": "Calm, tactile, and impressionistic, Simji\u2019s drawings give her feelings a form \u2013\u00a0and making them \u201cfeels a bit like therapy\u201d.",
+    "image": "https://media.itsnicethat.com/original_images/Simji-Park-illustration-itsnicethat-4.gif",
+    "published_ts": 1787212800,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://www.itsnicethat.com/articles/simji-park-illustration-discover-200826"
+  },
+  "itsnicethat.com/articles/nicer-tuesdays-london-july-jazz-grant-190826": {
+    "title": "Jazz Grant uses collage as a radical form of archiving for The V&A and Hackney City Library",
+    "source": "It's Nice That",
+    "snippet": "Multimedia artist Jazz Grant joined London\u2019s Nicer Tuesdays stage in July hot off the heels of her group show Are We Really Here? The collagist draws upon her dual heritage and the vast potential of physical materials \u2013 and Jazz takes our audience through her career, from the origin of her interest ",
+    "image": "",
+    "published_ts": 1787137200,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-london-july-jazz-grant-190826"
+  },
+  "tympanus.net/codrops/2026/08/20/run-rob-run-building-a-music-reactive-goo-with-three-js-and-webgpu": {
+    "title": "Run Rob Run: Building a Music-Reactive Goo with Three.js and WebGPU",
+    "source": "Codrops",
+    "snippet": "Exploring the techniques behind an audio-reactive 3D scene, from custom geometry deformation and music analysis to scroll-driven morphing, damping, and performance optimization.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/runrobrun.png?x57826",
+    "published_ts": 1787232923,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://tympanus.net/codrops/2026/08/20/run-rob-run-building-a-music-reactive-goo-with-three-js-and-webgpu/"
+  },
+  "tympanus.net/codrops/2026/08/19/relighting-images-with-depth-maps-and-three-js": {
+    "title": "Relighting Images with Depth Maps and Three.js",
+    "source": "Codrops",
+    "snippet": "Explore how depth maps, TSL, and WebGPU can be combined to turn flat 2D images into dynamic surfaces with realistic lighting, surface detail, and self-shadowing.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/mother.png?x57826",
+    "published_ts": 1787150539,
+    "first_seen_ts": 1787997624.0751667,
+    "link": "https://tympanus.net/codrops/2026/08/19/relighting-images-with-depth-maps-and-three-js/"
   }
 }
