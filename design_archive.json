@@ -1,49 +1,4 @@
 {
-  "nngroup.com/articles/artificial-intelligence-glossary": {
-    "title": "Artificial Intelligence: Glossary",
-    "source": "NN/g",
-    "snippet": "Plain-language definitions of the AI terms that come up in product and design work, from tokens and context windows to agents, evals, and prompt injection.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Artificial__Intelligence__Glossary_1.png",
-    "published_ts": 1787331600,
-    "first_seen_ts": 1787392828.8123884,
-    "link": "https://www.nngroup.com/articles/artificial-intelligence-glossary/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/ai-generated-images": {
-    "title": "AI-Generated Images Can Perform as Well as Stock Photography",
-    "source": "NN/g",
-    "snippet": "When users didn\u2019t know whether an image was AI-generated, the images we tested did not create any perception penalty compared to stock photos.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/AI-Generated_Images_1.png",
-    "published_ts": 1787331600,
-    "first_seen_ts": 1787392828.8123884,
-    "link": "https://www.nngroup.com/articles/ai-generated-images/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "design-milk.com/ford-bronco-filson": {
-    "title": "Ford + Filson Rethink What a Luxury Bronco Looks Like",
-    "source": "Design Milk",
-    "snippet": "The Bronco Filson trades conventional luxury cues for rugged materials, functional details, and an interior designed to get better with use",
-    "image": "https://design-milk.com/images/2026/08/New_2027_Bronco_Filson_Family_03_180-e1787343894534.jpg",
-    "published_ts": 1787344430,
-    "first_seen_ts": 1787392828.8123884,
-    "link": "https://design-milk.com/ford-bronco-filson/"
-  },
-  "design-milk.com/kevin-klein-designer-friday-five": {
-    "title": "Kevin Klein on Korean Dancheong, Ferraris, Lake Maracaibo + More",
-    "source": "Design Milk",
-    "snippet": "The Los Angeles designer shares 5 sources of inspiration\u2014from Korean decorative painting to Italian automotive design\u2014alongside 5 projects that define his own approach.",
-    "image": "https://design-milk.com/images/2026/08/Hollywood-Roosevelt-ph_-Adrian-Gaut.jpg",
-    "published_ts": 1787340778,
-    "first_seen_ts": 1787392828.8123884,
-    "link": "https://design-milk.com/kevin-klein-designer-friday-five/"
-  },
-  "itsnicethat.com/articles/nicer-tuesdays-london-july-daisy-chain-210826": {
-    "title": "How Daisy Chain made it\u2019s brilliantly icky animation for Crack Magazine about a smoker inhaling a fly",
-    "source": "It's Nice That",
-    "snippet": "Harry Butt and Connor Campbell, the co-director duo behind motion studio Daisy Chain, shared the Nicer Tuesdays stage in July to walk the audience through their electric portfolio of colourful and dreamy animations. As well as that, the duo spoke about their collaboration with Crack Magazine, which ",
-    "image": "",
-    "published_ts": 1787058000,
-    "first_seen_ts": 1787392828.8123884,
-    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-london-july-daisy-chain-210826"
-  },
   "uxdesign.cc/sterling-cooper-built-your-ux-process-we-need-to-redefine-it-in-the-age-of-ai-and-systems-520a2d3b2a60?source=rss----138adf9c44c---4": {
     "title": "Sterling Cooper built your UX process. We need to redefine it in the age of AI and systems.",
     "source": "UX Collective",
@@ -1168,5 +1123,14 @@
     "published_ts": 1787150539,
     "first_seen_ts": 1787997624.0751667,
     "link": "https://tympanus.net/codrops/2026/08/19/relighting-images-with-depth-maps-and-three-js/"
+  },
+  "lennysnewsletter.com/p/community-wisdom-building-without": {
+    "title": "\ud83e\udde0 Community Wisdom: Building without clear PM requirements, selling a product before building it, pricing fast-moving B2B SaaS, a year of job hunting, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 199",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1788029988,
+    "first_seen_ts": 1788084026.8216467,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-building-without"
   }
 }
