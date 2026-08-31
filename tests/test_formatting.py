@@ -2283,3 +2283,104 @@ def test_in_design_emoji_is_paintbrush():
     assert title == "In Design"
     assert emoji == "🖌️"
     assert _global_pickoff_display(is_design_edition=False) == ("In the World", "🌐")
+
+
+# ---- Per-source diversity caps on design editions (Fix 2) ----
+
+import json as _json
+from formatting import (
+    build_format_input as _bfi,
+    _select_everything_else as _see,
+    render_other_headlines_for_section as _roh,
+)
+
+
+def _design_links():
+    return {
+        0: {"id": 0, "title": "Lenny post one", "link": "https://l.co/0", "image": "",
+            "source": "Lenny's Newsletter", "snippet": "s"},
+        1: {"id": 1, "title": "Lenny post two", "link": "https://l.co/1", "image": "",
+            "source": "Lenny's Newsletter", "snippet": "s"},
+        2: {"id": 2, "title": "UXC essay", "link": "https://uxdesign.cc/2", "image": "",
+            "source": "UX Collective", "snippet": "s"},
+        3: {"id": 3, "title": "NNg study", "link": "https://nngroup.com/3", "image": "",
+            "source": "NN/g", "snippet": "s"},
+    }
+
+
+def _design_tiered():
+    def sc(pr):
+        return {"cross_source_coverage": 1, "personal_relevance": pr, "section_fit": "good"}
+    return [
+        {"id": 0, "tier": 2, "section": "Design & Product", "cluster_id": "c0", "scores": sc(3)},
+        {"id": 1, "tier": 2, "section": "Design & Product", "cluster_id": "c1", "scores": sc(3)},
+        {"id": 2, "tier": 2, "section": "Design & Product", "cluster_id": "c2", "scores": sc(2)},
+        {"id": 3, "tier": 2, "section": "Design & Product", "cluster_id": "c3", "scores": sc(1)},
+    ]
+
+
+def _featured_sources(is_design):
+    out = _json.loads(_bfi(_design_tiered(), {}, _design_links(),
+                           suppressed_ids=set(), is_design_edition=is_design))
+    return [i["source"] for i in out["sections"]["Design & Product"]["tier_1"]]
+
+
+def test_design_featured_slots_cannot_both_come_from_one_source():
+    """Two featured slots, one publisher flooding the top of tier 2. The cap
+    forces the second slot to a different source."""
+    assert _featured_sources(is_design=True) == ["Lenny's Newsletter", "UX Collective"]
+
+
+def test_weekday_featured_slots_keep_legacy_behaviour():
+    """The cap is design-edition only; weekday editions are unchanged."""
+    assert _featured_sources(is_design=False) == ["Lenny's Newsletter", "Lenny's Newsletter"]
+
+
+def _flood_links():
+    links = {}
+    for i in range(5):
+        links[i] = {"id": i, "title": f"Sidebar item {i}", "link": f"https://sidebar.io/{i}",
+                    "image": "", "source": "Sidebar", "snippet": "s"}
+    for i in range(5, 8):
+        links[i] = {"id": i, "title": f"Codrops item {i}", "link": f"https://codrops.com/{i}",
+                    "image": "", "source": "Codrops", "snippet": "s"}
+    return links
+
+
+def _flood_tiered(section="Design & Product", tier=3):
+    return [
+        {"id": i, "tier": tier, "section": section, "cluster_id": f"c{i}",
+         "scores": {"cross_source_coverage": 1,
+                    "personal_relevance": 3 if i < 5 else 1,
+                    "section_fit": "good"}}
+        for i in range(8)
+    ]
+
+
+def test_everything_else_caps_one_source_on_design_editions():
+    """Aug 15 shipped 7/7 UX Collective and Aug 8 shipped 7/7 Lenny's. One feed
+    must not own the whole block."""
+    picked = _see(_flood_links(), set(), _flood_tiered(), is_design_edition=True)
+    sources = [l["source"] for _lid, l in picked]
+    assert sources.count("Sidebar") == 3
+    assert sources.count("Codrops") == 3
+
+
+def test_everything_else_uncapped_on_weekday_editions():
+    picked = _see(_flood_links(), set(), _flood_tiered(), is_design_edition=False)
+    sources = [l["source"] for _lid, l in picked]
+    assert len(picked) == 7
+    assert sources.count("Sidebar") == 5
+
+
+def test_other_headlines_caps_one_source_on_design_editions():
+    tiered = _flood_tiered(tier=2)
+    html = _roh("Design & Product", tiered, _flood_links(), set(), is_design_edition=True)
+    assert html.count("Sidebar item") == 2
+    assert html.count("Codrops item") == 1
+
+
+def test_other_headlines_uncapped_on_weekday_editions():
+    tiered = _flood_tiered(section="Tech & AI", tier=2)
+    html = _roh("Tech & AI", tiered, _flood_links(), set(), is_design_edition=False)
+    assert html.count("Sidebar item") == 3

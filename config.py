@@ -118,6 +118,14 @@ FEEDS_WEEKDAY = _weekday_feeds(TECH_AI_ENABLED)
 
 FEEDS_SATURDAY_STRATEGIC = [
     {"url": "https://uxdesign.cc/feed",                  "source": "UX Collective"},
+    # UX Collective's newer property. Its Medium feed is hard capped at 10
+    # entries covering ~6 days, and the lead story of recent newsletter
+    # editions now lives here, so uxdesign.cc/feed alone cannot see the
+    # publication's flagship writing. Same "source" name on purpose: folded
+    # under one publisher it inherits the per-source caps in formatting.py
+    # instead of dodging them as fake source diversity. normalize_url dedupes
+    # the cross-posts.
+    {"url": "https://doc.cc/feed",                       "source": "UX Collective"},
     {"url": "https://www.smashingmagazine.com/feed/",    "source": "Smashing Magazine"},
     {"url": "https://www.nngroup.com/feed/rss/",         "source": "NN/g"},
     {"url": "https://www.lennysnewsletter.com/feed",     "source": "Lenny's Newsletter"},

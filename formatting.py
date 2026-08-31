@@ -6,6 +6,7 @@ import json
 import os
 import re
 import smtplib
+from collections import Counter
 from datetime import datetime
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
@@ -152,6 +153,15 @@ SECTION_FEATURED_CAPS = {
 }
 MAX_OTHER_HEADLINES_PER_SECTION = 3
 MAX_EVERYTHING_ELSE = 7
+
+# Per-source diversity caps, design editions only. Weekend editions draw every
+# item from one section ("Design & Product"), so selection was a bare sort on
+# (tier, score) with no source awareness and one feed could take a whole block:
+# the 2026-08-15 Everything Else was 7/7 UX Collective, 2026-08-08 was 7/7
+# Lenny's. Weekday editions spread across seven sections and are left alone.
+DESIGN_MAX_FEATURED_PER_SOURCE = 1
+DESIGN_MAX_OTHER_HEADLINES_PER_SOURCE = 2
+DESIGN_MAX_EVERYTHING_ELSE_PER_SOURCE = 3
 FEATURED_STORY_PARAGRAPH_CAP = 2
 
 
@@ -493,13 +503,36 @@ def build_format_input(tiered_items: list[dict], clusters: dict[str, dict], link
             # (used for Today in the World, which is populated by the
             # global pickoff above).
             continue
+        # Design editions cap the featured slots at one item per source. Tier 1
+        # is arithmetically unreachable on a design edition (every item is one
+        # section, so cross_source_coverage stays 1 and the formula tops out at
+        # 5 against a threshold of 6), which means both featured slots are
+        # always filled from this tier-2 promotion and would otherwise go to
+        # whichever publisher happens to own the top of the pile.
+        per_source_cap = DESIGN_MAX_FEATURED_PER_SOURCE if is_design_edition else None
+        used_sources = Counter(it.get("source", "") for it in buckets["tier_1"])
+
+        def _promotable(bucket):
+            for idx, cand in enumerate(bucket):
+                if per_source_cap is None:
+                    return idx
+                if used_sources[cand.get("source", "")] < per_source_cap:
+                    return idx
+            return None
+
         while len(buckets["tier_1"]) < cap:
             promoted = False
             for fallback_tier in ("tier_2", "tier_3"):
-                if buckets[fallback_tier]:
-                    buckets["tier_1"].append(buckets[fallback_tier].pop(0))
-                    promoted = True
-                    break
+                if not buckets[fallback_tier]:
+                    continue
+                idx = _promotable(buckets[fallback_tier])
+                if idx is None:
+                    continue
+                cand = buckets[fallback_tier].pop(idx)
+                buckets["tier_1"].append(cand)
+                used_sources[cand.get("source", "")] += 1
+                promoted = True
+                break
             if not promoted:
                 break
         buckets["tier_1"] = buckets["tier_1"][:cap]
@@ -741,7 +774,8 @@ def _other_headline_line(l, copy, palette):
 
 
 def render_other_headlines_for_section(section, tiered_items, links_by_id, used_ids,
-                                       palette: dict = LIGHT, copy_by_id=None, collect=None):
+                                       palette: dict = LIGHT, copy_by_id=None, collect=None,
+                                       is_design_edition=False):
     """Synthesize the Other Headlines subsection for one section.
 
     Picks the top MAX_OTHER_HEADLINES_PER_SECTION Tier 1 overflow and Tier 2
@@ -769,7 +803,11 @@ def render_other_headlines_for_section(section, tiered_items, links_by_id, used_
         candidates.append((tier, -_item_score(it.get("scores", {})), it["id"]))
 
     candidates.sort()
-    picked = [lid for _tier, _neg_score, lid in candidates[:MAX_OTHER_HEADLINES_PER_SECTION]]
+    per_source = DESIGN_MAX_OTHER_HEADLINES_PER_SOURCE if is_design_edition else None
+    picked = _cap_by_source(
+        [lid for _tier, _neg_score, lid in candidates],
+        links_by_id, MAX_OTHER_HEADLINES_PER_SECTION, per_source,
+    )
     if not picked:
         return ""
 
@@ -1090,6 +1128,7 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
         oh_html = render_other_headlines_for_section(
             title, tiered_items, links_by_id, used_ids, palette,
             copy_by_id=oh_copy_by_id, collect=oh_collect,
+            is_design_edition=is_design_edition,
         )
         stories_html += oh_html
 
@@ -1150,7 +1189,26 @@ def pick_everything_else_emoji(title: str, source: str, used: set | None = None)
     return candidates[0]
 
 
-def _select_everything_else(links_by_id, used_ids, tiered_items=None):
+def _cap_by_source(candidates, links_by_id, total_cap, per_source_cap):
+    """Take up to total_cap candidates in order, allowing at most per_source_cap
+    from any one source. candidates is an ordered list of link ids.
+
+    per_source_cap None disables the source rule (weekday behaviour).
+    """
+    picked, seen = [], Counter()
+    for lid in candidates:
+        if len(picked) >= total_cap:
+            break
+        source = links_by_id.get(lid, {}).get("source", "")
+        if per_source_cap is not None and seen[source] >= per_source_cap:
+            continue
+        picked.append(lid)
+        seen[source] += 1
+    return picked
+
+
+def _select_everything_else(links_by_id, used_ids, tiered_items=None,
+                            is_design_edition=False):
     """Pick and order the Everything Else items.
 
     Tier 1 overflow (items capped out of featured) ranks first, then tier 2
@@ -1179,7 +1237,10 @@ def _select_everything_else(links_by_id, used_ids, tiered_items=None):
         candidates.append((tier, -score, lid, l))
 
     candidates.sort()  # tier asc, then score desc (because we stored -score)
-    return [(lid, l) for _tier, _neg_score, lid, l in candidates[:MAX_EVERYTHING_ELSE]]
+    ordered = [lid for _tier, _neg_score, lid, _l in candidates]
+    per_source = DESIGN_MAX_EVERYTHING_ELSE_PER_SOURCE if is_design_edition else None
+    picked = _cap_by_source(ordered, links_by_id, MAX_EVERYTHING_ELSE, per_source)
+    return [(lid, links_by_id[lid]) for lid in picked]
 
 
 def _ee_anchor(text, link, palette):
@@ -1281,14 +1342,14 @@ def write_subject_blurbs(items, sentences_by_id=None, client=None):
 
 def build_everything_else(links_by_id, used_ids, clusters_by_item_id=None,
                           tiered_items=None, palette: dict = LIGHT, copy_by_id=None,
-                          images_by_id=None):
+                          images_by_id=None, is_design_edition=False):
     """Render up to MAX_EVERYTHING_ELSE items globally, ranked by tier then score.
 
     copy_by_id ({id: {subject, blurb}}) supplies Morning-Brew-style written
     copy per item; items without an entry render title-only. Pass None to
     render every item title-only (used by offline tests).
     """
-    top = _select_everything_else(links_by_id, used_ids, tiered_items)
+    top = _select_everything_else(links_by_id, used_ids, tiered_items, is_design_edition)
     if not top:
         return ""
 
@@ -1408,7 +1469,8 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
         tiered_items=tiered_items, suppressed_ids=suppressed_ids,
         is_design_edition=is_design_edition, palette=c, oh_collect=oh_items,
     )
-    ee_items = _select_everything_else(links_by_id, used_ids, tiered_items)
+    ee_items = _select_everything_else(links_by_id, used_ids, tiered_items,
+                                       is_design_edition)
 
     from config import EE_THUMB_CACHE_DIR
     ee_images = {}
@@ -1439,6 +1501,7 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
     everything_else_html    = build_everything_else(
         links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items,
         palette=c, copy_by_id=ee_copy, images_by_id=ee_images,
+        is_design_edition=is_design_edition,
     )
 
     html = f"""<!DOCTYPE html>

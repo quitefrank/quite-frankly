@@ -35,6 +35,22 @@ ARCHIVE_PER_SOURCE_CAP = 20
 # cannot judge them) and governed by first_seen_ts.
 JUNK_DATE_MAX_AGE_S = 30 * 24 * 60 * 60
 
+# Pool freshness. The archive prunes on first_seen_ts, so a feed carrying a deep
+# backlog (Lenny's ships 26 days of posts, NN/g 49) drops all of it into a
+# nominally 7-day pool on first sight and holds those slots for another 7 days.
+# On the 2026-08-29 edition that gave NN/g two leads and eight features off ten
+# items, none of which were published inside the previous week, while UX
+# Collective (7 of 10 items under 7 days old) took briefs. Filtering the pool on
+# publish date is what stops backlog outranking current writing.
+POOL_MAX_PUBLISH_AGE_S = 14 * 24 * 60 * 60
+# A slow publishing week must not starve the edition: 17 rendered slots need
+# real supply. When the fresh pool falls short, top it up with the NEWEST stale
+# items rather than readmitting the whole backlog. An all-or-nothing fallback
+# would be a no-op in practice: the live Saturday pool holds ~24 items inside
+# 14 days, so any threshold high enough to protect a thin week would readmit
+# all 21 backlog items on a normal one.
+POOL_MIN_ITEMS = 25
+
 DESIGN_FEEDS = FEEDS_SATURDAY_STRATEGIC + FEEDS_SUNDAY_VISUAL
 STRATEGIC_SOURCES = {f["source"] for f in FEEDS_SATURDAY_STRATEGIC}
 VISUAL_SOURCES = {f["source"] for f in FEEDS_SUNDAY_VISUAL}
@@ -115,10 +131,27 @@ def accumulate(*, now: float | None = None, fetch_feed_fn=None, enrich_fn=None) 
     return archive
 
 
-def pool_for(mode: Mode) -> list[dict]:
+def _fresh_enough(entry: dict, now: float, max_age_s: float) -> bool:
+    """True if the entry was published inside the window, or carries no date.
+
+    An entry with no parseable publish date cannot be judged, so first_seen_ts
+    pruning governs it. Same rule accumulate() applies to junk dates.
+    """
+    pub = entry.get("published_ts")
+    if pub is None:
+        return True
+    return now - pub <= max_age_s
+
+
+def pool_for(mode: Mode, now: float | None = None) -> list[dict]:
     """Return this weekend day's design items from the archive as pipeline-shaped
     dicts. Saturday draws strategic sources, Sunday visual. Per source, keep the
-    ARCHIVE_PER_SOURCE_CAP most recently first-seen items. Weekday modes get [].
+    ARCHIVE_PER_SOURCE_CAP most recently published items. Weekday modes get [].
+
+    Items published more than POOL_MAX_PUBLISH_AGE_S ago are dropped so a feed's
+    backlog cannot outrank current writing. If that leaves fewer than
+    POOL_MIN_ITEMS, the window relaxes to POOL_RELAXED_PUBLISH_AGE_S rather than
+    shipping a thin edition.
     """
     if mode == Mode.SATURDAY_STRATEGIC:
         sources = STRATEGIC_SOURCES
@@ -127,14 +160,35 @@ def pool_for(mode: Mode) -> list[dict]:
     else:
         return []
 
+    now = time.time() if now is None else now
+    in_scope = [e for e in load().values() if e.get("source") in sources]
+
+    def _published(e):
+        return e.get("published_ts") or e.get("first_seen_ts", 0)
+
+    kept, stale = [], []
+    for e in in_scope:
+        (kept if _fresh_enough(e, now, POOL_MAX_PUBLISH_AGE_S) else stale).append(e)
+
+    if len(kept) < POOL_MIN_ITEMS and stale:
+        stale.sort(key=_published, reverse=True)
+        topup = stale[: POOL_MIN_ITEMS - len(kept)]
+        print(f"  archive pool: {len(kept)} item(s) inside "
+              f"{POOL_MAX_PUBLISH_AGE_S // 86400}d, topping up with "
+              f"{len(topup)} newest of {len(stale)} older item(s)")
+        kept += topup
+
     by_source: dict[str, list[dict]] = {}
-    for entry in load().values():
-        if entry.get("source") in sources:
-            by_source.setdefault(entry["source"], []).append(entry)
+    for entry in kept:
+        by_source.setdefault(entry["source"], []).append(entry)
 
     pool: list[dict] = []
     for entries in by_source.values():
-        entries.sort(key=lambda e: e.get("first_seen_ts", 0), reverse=True)
+        # Publish date, not first-seen: a backlog item seen today is not new.
+        entries.sort(
+            key=lambda e: (e.get("published_ts") or e.get("first_seen_ts", 0)),
+            reverse=True,
+        )
         for e in entries[:ARCHIVE_PER_SOURCE_CAP]:
             pool.append({
                 "title": e.get("title", ""),

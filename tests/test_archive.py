@@ -186,3 +186,79 @@ def test_pool_for_weekday_mode_returns_empty(tmp_path, monkeypatch):
     _setup(tmp_path, monkeypatch)
     archive.save({"a": _archived("https://uxdesign.cc/1", "UX Collective", 10.0)})
     assert archive.pool_for(Mode_WEEKDAY()) == []
+
+
+# ---- Pool freshness filter (Fix 3) ----
+
+def _dated(link, source, first_seen_ts, published_ts):
+    e = _archived(link, source, first_seen_ts)
+    e["published_ts"] = published_ts
+    return e
+
+
+NOW = 1_800_000_000.0
+DAY = 86400.0
+
+
+def test_pool_for_drops_stale_items_when_fresh_supply_is_healthy(tmp_path, monkeypatch):
+    """A backlog item must not take a slot from current writing."""
+    _setup(tmp_path, monkeypatch)
+    entries = {}
+    for i in range(13):
+        entries[f"u{i}"] = _dated(f"https://uxdesign.cc/{i}", "UX Collective",
+                                  NOW, NOW - 3 * DAY)
+        entries[f"s{i}"] = _dated(f"https://smashingmagazine.com/{i}", "Smashing Magazine",
+                                  NOW, NOW - 4 * DAY)
+    entries["stale"] = _dated("https://nngroup.com/stale", "NN/g", NOW, NOW - 25 * DAY)
+    archive.save(entries)
+    pool = archive.pool_for(Mode_SAT(), now=NOW)
+    assert len(pool) == 26
+    assert "NN/g" not in {i["source"] for i in pool}
+
+
+def test_pool_for_tops_up_with_newest_stale_when_fresh_supply_is_thin(tmp_path, monkeypatch):
+    """A slow week still fills the edition, but backlog enters newest-first
+    instead of the whole 30-day window coming back."""
+    _setup(tmp_path, monkeypatch)
+    entries = {"fresh": _dated("https://uxdesign.cc/f", "UX Collective", NOW, NOW - DAY)}
+    for i in range(30):
+        entries[f"n{i}"] = _dated(f"https://nngroup.com/{i}", "NN/g",
+                                  NOW, NOW - (16 + i) * DAY)
+    archive.save(entries)
+    links = [i["link"] for i in archive.pool_for(Mode_SAT(), now=NOW)]
+    assert "https://nngroup.com/0" in links      # newest stale, topped up
+    assert "https://nngroup.com/29" not in links  # oldest stale, still excluded
+
+
+def test_pool_for_keeps_items_with_no_publish_date(tmp_path, monkeypatch):
+    """published_ts None is unjudgeable, so first_seen pruning governs it."""
+    _setup(tmp_path, monkeypatch)
+    archive.save({"a": _archived("https://uxdesign.cc/1", "UX Collective", NOW)})
+    assert len(archive.pool_for(Mode_SAT(), now=NOW)) == 1
+
+
+def test_pool_for_relaxes_max_age_when_pool_too_small(tmp_path, monkeypatch):
+    """A slow publishing week must not starve the edition."""
+    _setup(tmp_path, monkeypatch)
+    entries = {
+        f"s{i}": _dated(f"https://nngroup.com/{i}", "NN/g", NOW, NOW - 20 * DAY)
+        for i in range(10)
+    }
+    entries["fresh"] = _dated("https://uxdesign.cc/f", "UX Collective", NOW, NOW - 1 * DAY)
+    archive.save(entries)
+    pool = archive.pool_for(Mode_SAT(), now=NOW)
+    # 1 fresh item is below POOL_MIN_ITEMS, so the 20-day-old items come back.
+    assert len(pool) == 11
+
+
+def test_pool_for_sorts_by_published_date_not_first_seen(tmp_path, monkeypatch):
+    _setup(tmp_path, monkeypatch)
+    archive.save({
+        # Seen most recently, but published longest ago.
+        "old": _dated("https://uxdesign.cc/old", "UX Collective", NOW, NOW - 6 * DAY),
+        "new": _dated("https://uxdesign.cc/new", "UX Collective", NOW - 5 * DAY, NOW - 1 * DAY),
+    })
+    pool = archive.pool_for(Mode_SAT(), now=NOW)
+    assert [i["link"] for i in pool] == [
+        "https://uxdesign.cc/new", "https://uxdesign.cc/old",
+    ]
