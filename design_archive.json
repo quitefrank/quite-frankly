@@ -1087,5 +1087,77 @@
     "published_ts": 1787829991,
     "first_seen_ts": 1788602426.7051847,
     "link": "https://tympanus.net/codrops/2026/08/27/goodgrowth-boot-sequences-spinning-discs-and-the-art-of-the-portfolio/"
+  },
+  "smashingmagazine.com/2026/08/timing-charts-blueprint-smil-animations": {
+    "title": "Timing Charts: A Blueprint For SMIL Animations",
+    "source": "Smashing Magazine",
+    "snippet": "Discover SMIL, the often-overlooked way to animate SVGs that works inside `` tags and can fully animate everything in an SVG without JavaScript.",
+    "image": "",
+    "published_ts": 1787230800,
+    "first_seen_ts": 1788688823.6283395,
+    "link": "https://smashingmagazine.com/2026/08/timing-charts-blueprint-smil-animations/"
+  },
+  "smashingmagazine.com/2026/08/building-tactile-ux-honoring-intentional-design-lottie": {
+    "title": "Building Tactile UX: Honoring Intentional Design With Lottie",
+    "source": "Smashing Magazine",
+    "snippet": "When tasked with building a highly interactive, tactile web experience, the architecture must serve the art direction. In this article, Alexey Kopytin explains their architectural rationale for building a digital stress-relief squeeze toy game using Lottie animations, DOM events, and distance-based ",
+    "image": "http://files.smashing.media/articles/building-tactile-ux-honoring-intentional-design-lottie/building-tactile-ux-honoring-intentional-design-lottie.jpg",
+    "published_ts": 1786442400,
+    "first_seen_ts": 1788688823.6283395,
+    "link": "https://smashingmagazine.com/2026/08/building-tactile-ux-honoring-intentional-design-lottie/"
+  },
+  "nngroup.com/articles/ai-empathy-mapping": {
+    "title": "AI Can't Replace Real Research in Empathy Mapping",
+    "source": "NN/g",
+    "snippet": "AI can help you organize research you\u2019ve already collected, but it can\u2019t create research evidence about the specific, messy experience of real users.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/AI_Cant_Replace_Real_Research_in_Empathy_Mapping-1_ZfBI0Xv.png",
+    "published_ts": 1787936400,
+    "first_seen_ts": 1788688823.6283395,
+    "link": "https://www.nngroup.com/articles/ai-empathy-mapping/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/ai-ux-debt": {
+    "title": "The Custodial Era of UX: Cleaning Up After AI",
+    "source": "NN/g",
+    "snippet": "AI lets teams build faster than UX can evaluate. UX can adapt by building shared judgment, accelerating evaluation, and guiding AI-generated designs.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_Custodial_Era_of_UX-1_eRbQrXo.png",
+    "published_ts": 1787936400,
+    "first_seen_ts": 1788688823.6283395,
+    "link": "https://www.nngroup.com/articles/ai-ux-debt/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/community-wisdom-driving-ai-adoption": {
+    "title": "\ud83e\udde0 Community Wisdom: Driving AI adoption when habits are the bottleneck, leveling up from APM to a mid-level PM role, converting a wave of new users to subscription, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 200",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1788627646,
+    "first_seen_ts": 1788688823.6283395,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-driving-ai-adoption"
+  },
+  "lennysnewsletter.com/p/how-to-make-people-care-about-your": {
+    "title": "How to make people care about your startup",
+    "source": "Lenny's Newsletter",
+    "snippet": "Three founder archetypes&#8212;and how to turn your origin story into a communications strategy",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/a4a1e7f9-6872-47ef-ac7f-f6b0d04612cf_1456x970.png",
+    "published_ts": 1786455067,
+    "first_seen_ts": 1788688823.6283395,
+    "link": "https://www.lennysnewsletter.com/p/how-to-make-people-care-about-your"
+  },
+  "design-milk.com/transparent-tech-gadgets-retro-design": {
+    "title": "The Clear-Tech Comeback Is Putting Everything on Display",
+    "source": "Design Milk",
+    "snippet": "Clear cases and visible circuitry give modern electronics a decidedly retro edge",
+    "image": "https://design-milk.com/images/2026/08/181359_b-e1787862175214.jpg",
+    "published_ts": 1787922048,
+    "first_seen_ts": 1788688823.6283395,
+    "link": "https://design-milk.com/transparent-tech-gadgets-retro-design/"
+  },
+  "tympanus.net/codrops/2026/09/05/building-an-infinite-loom-unravelling-images-into-threads-with-three-js": {
+    "title": "Building an Infinite Loom: Unravelling Images into Threads with Three.js",
+    "source": "Codrops",
+    "snippet": "An experimental Three.js demo that transforms images into flowing ribbons, weaving them together and unraveling them as they move across the screen.",
+    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/09/unvowen_cover.png?x57826",
+    "published_ts": 1788612625,
+    "first_seen_ts": 1788688823.6283395,
+    "link": "https://tympanus.net/codrops/2026/09/05/building-an-infinite-loom-unravelling-images-into-threads-with-three-js/"
   }
 }
