@@ -10,16 +10,16 @@ domains:
   taxes: Personal/wiki/taxes/
   active-side-projects:
     - Personal/projects/workout-app/
-    - Personal/projects/archive/
+    - Personal/projects/.archive/
     - Personal/projects/quite-frankly/
-    - Personal/projects/pattern-library/
+    - Work/projects/pattern-library/
 sync_destinations:
   - ~/Claude/Personal/projects/quite-frankly/personal-context.md
 ---
 
 # Personal Context
 
-Canonical relevance-and-identity context for Frank. Used by any application that needs to score topics, recommendations, or content against who Frank is and what he cares about right now. The newsletter (Quite Frankly) is the first consumer; future apps (dating agent, finance assistant) read from the same source.
+Canonical relevance-and-identity context for Frank. Used by any application that needs to score topics, recommendations, or content against who Frank is and what he cares about right now. The newsletter (Quite Frankly) is the first consumer; future apps (finance assistant, and others) read from the same source.
 
 Edit this file directly. Project-side copies sync from here automatically at commit time via each consumer's pre-commit hook. Do not edit project copies; changes will be overwritten.
 
@@ -76,9 +76,9 @@ Personal finance for a transitional year. Longer-term wealth building toward ear
 ## Active side projects
 
 - **Workout PWA** at `Personal/projects/workout-app/` (Next.js, Supabase, PWA via @ducanh2912/next-pwa)
-- **Dating agent/assistant** at `Personal/projects/archive/`
+- **Archive** at `Personal/projects/.archive/` (private, local only)
 - **Quite Frankly newsletter** at `Personal/projects/quite-frankly/` (the pipeline that reads this file)
-- **Pattern library** at `Personal/projects/pattern-library/` (Vitaly Friedman's Hatch 2024 corpus plus custom synthesis)
+- **Pattern library** at `Work/projects/pattern-library/` (Vitaly Friedman's Hatch 2024 corpus plus custom synthesis)
 - **Claude-based design research tooling** pulling from Jira, past research, and competitor screens
 
 News about the stacks or domains these projects touch counts.
