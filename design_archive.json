@@ -1,229 +1,4 @@
 {
-  "uxdesign.cc/when-the-canvas-starts-acting-whos-really-in-control-0128f641223c?source=rss----138adf9c44c---4": {
-    "title": "When the canvas starts acting, who\u2019s really in control?",
-    "source": "UX Collective",
-    "snippet": "How agentic interfaces are changing what designers control, from interactions to agency, orchestration and attention.Agentic canvas can now brings context from across tools into one place, then acts on it without needing step by step instructions. AI-generated visual, Aur\u00e9lie Radom\u00a0\u00a9.For most of the",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*rDh7sc1FjwfRZMRmRciEnw.png",
-    "published_ts": 1788387210,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://uxdesign.cc/when-the-canvas-starts-acting-whos-really-in-control-0128f641223c?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/ai-took-away-engineerings-right-to-say-no-839b9b6256f2?source=rss----138adf9c44c---4": {
-    "title": "AI took away engineering\u2019s right to say no",
-    "source": "UX Collective",
-    "snippet": "The closed system of software engineering, where the complexity of the code acted as both a wall and a gatekeeper.AI didn\u2019t touch what engineers actually know. It ended their power to be the only ones who could say what was possible.When I started out as an information architect, one of my first pro",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*xLTIGhGp-sD2qCLrYrKjFg.jpeg",
-    "published_ts": 1788387191,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://uxdesign.cc/ai-took-away-engineerings-right-to-say-no-839b9b6256f2?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/making-ky%C5%8Dwa-possible-with-ai-9f4bf8fae315?source=rss----138adf9c44c---4": {
-    "title": "Making ky\u014dwa possible with AI",
-    "source": "UX Collective",
-    "snippet": "On unbundling the Send button, so that words can work as sketchesContinue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/2600/1*w_S9Inq1V81oYQqr7hxPaw.png",
-    "published_ts": 1788347714,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://uxdesign.cc/making-ky%C5%8Dwa-possible-with-ai-9f4bf8fae315?source=rss----138adf9c44c---4"
-  },
-  "smashingmagazine.com/2026/08/why-website-should-never-stop-changing": {
-    "title": "Why Your Website Should Never Stop Changing",
-    "source": "Smashing Magazine",
-    "snippet": "Every website peaks on launch day and slowly drifts from there, not because it breaks, but because nobody has time to keep it current. Autonomous websites, continuously optimized by agents after launch, aim to change that. Pierre Burgy shares what they learned building for full website autonomy and ",
-    "image": "http://files.smashing.media/articles/why-website-should-never-stop-changing/why-website-should-never-stop-changing.jpg",
-    "published_ts": 1787644800,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://smashingmagazine.com/2026/08/why-website-should-never-stop-changing/"
-  },
-  "smashingmagazine.com/2026/08/how-baseline-can-help-ship-less-javascript": {
-    "title": "How Baseline Can Help You Ship Less JavaScript",
-    "source": "Smashing Magazine",
-    "snippet": "The gap between \u201cyou need a library for this\u201d and \u201cthe browser does this\u201d keeps closing. A practical guide to auditing your dependencies and finding what the web platform can now handle for you.",
-    "image": "http://files.smashing.media/articles/how-baseline-can-help-ship-less-javascript/how-baseline-can-help-ship-less-javascript.jpg",
-    "published_ts": 1786107600,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://smashingmagazine.com/2026/08/how-baseline-can-help-ship-less-javascript/"
-  },
-  "nngroup.com/articles/prove-framework": {
-    "title": "How to Decide When an AI Tool Is Worth Keeping",
-    "source": "NN/g",
-    "snippet": "Pressure to adopt AI isn't evidence that a tool helps. The PROVE framework tests one tool against one task and produces a provisional decision you can defend.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/How_to_Decide_When_an_AI_Tool_Is_Worth_Keeping_1.png",
-    "published_ts": 1786122000,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.nngroup.com/articles/prove-framework/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/dogfooding": {
-    "title": "Dogfooding vs. QA vs. User Research",
-    "source": "NN/g",
-    "snippet": "Dogfooding, or using your own products internally, helps catch bugs, but it can't replace user research: your team knows too much to represent real users.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Dogfooding1.png",
-    "published_ts": 1786122000,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.nngroup.com/articles/dogfooding/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/grok-bot-vs-openclaw-how-i-replaced": {
-    "title": "Grok Bot vs. OpenClaw: How I replaced my entire agent stack",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now | &#127897;&#65039; I&#8217;ve been running Grok Bot for several weeks, and I&#8217;ve killed every OpenClaw I had. Here are the nine bots doing real work across my inbox, my kids&#8217; school pickups, my PR queue, and my wardrobe",
-    "image": "https://substackcdn.com/image/fetch/$s_!hX8-!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8f02962f-e431-49ff-9ead-de8e6dcca042_1456x1048.png",
-    "published_ts": 1788350619,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.lennysnewsletter.com/p/grok-bot-vs-openclaw-how-i-replaced"
-  },
-  "lennysnewsletter.com/p/how-i-ai-grok-bot-grok-46whats-great": {
-    "title": "\ud83c\udf99\ufe0f How I AI: Grok Bot + Grok 4.6\u2014what\u2019s great (and what\u2019s still hype) & Lessons from spending $20,000 on Devin in one month",
-    "source": "Lenny's Newsletter",
-    "snippet": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/7296b676-dd90-4432-83e2-b0c0db7fe86e_1456x1048.png",
-    "published_ts": 1787583743,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.lennysnewsletter.com/p/how-i-ai-grok-bot-grok-46whats-great"
-  },
-  "lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month": {
-    "title": "I spent $20,000 on Devin in a month. Here\u2019s what I learned | Ryan Carson (solo founder)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now | &#127897;&#65039; Solo founder Ryan Carson runs 15 concurrent Devin agents to handle engineering, customer success, and investor updates, and he uses a handwritten list to keep it all straight",
-    "image": "https://substackcdn.com/image/fetch/$s_!Jzy5!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa5c5ada9-a8ea-4778-bed5-b3e6137079b4_1456x1048.png",
-    "published_ts": 1787573042,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month"
-  },
-  "lennysnewsletter.com/p/community-wisdom-recovering-from": {
-    "title": "\ud83e\udde0 Community Wisdom: Recovering from burnout, what Airtable\u2019s sale says about the ceiling on a startup, keeping architecture docs up to date, running competitor analysis, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 197",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1786813273,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-recovering-from"
-  },
-  "design-milk.com/snoopy-in-style-nyc-fashion-exhibition": {
-    "title": "Snoopy\u2019s Fashion R\u00e9sum\u00e9 Gets a New Chapter in New York",
-    "source": "Design Milk",
-    "snippet": "'Snoopy in Style NYC' pairs archival looks with new designs from BODE, Christopher John Rogers, Sandy Liang, LUAR, and more",
-    "image": "https://design-milk.com/images/2026/09/260901_PEANUTS_NYC_EVENT_SPACE_0223-e1788378656914.jpg",
-    "published_ts": 1788380377,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://design-milk.com/snoopy-in-style-nyc-fashion-exhibition/"
-  },
-  "design-milk.com/joe-flacco-new-jersey-home-bergman-vass": {
-    "title": "Joe Flacco\u2019s Family Home Puts Function Before Flash",
-    "source": "Design Milk",
-    "snippet": "Designed by Bergman Vass with Asher Slaunwhite + Partners, the New Jersey home pairs a refined, minimalist aesthetic with the practical demands of raising five active children",
-    "image": "https://design-milk.com/images/2026/08/250821_Bergman_LaneOfAcres_Jpeg-4200px-300dpi_048.jpg",
-    "published_ts": 1788373604,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://design-milk.com/joe-flacco-new-jersey-home-bergman-vass/"
-  },
-  "design-milk.com/piccolo-morini-soho-nusla-design": {
-    "title": "Piccolo Morini Gives a Soho Favorite a Younger Point of View",
-    "source": "Design Milk",
-    "snippet": "Nusla Design layers pieces from the original Osteria Morini with bold color, vintage finds, and contemporary details for the restaurant\u2019s next chapter",
-    "image": "https://design-milk.com/images/2026/09/PICCOLOMORINI-PRESS-76.jpg",
-    "published_ts": 1788366886,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://design-milk.com/piccolo-morini-soho-nusla-design/"
-  },
-  "itsnicethat.com/articles/lisa-mouchet-marine-prunier-fermenta-publication-art-project-030926": {
-    "title": "An artist and former funeral professional have collaborated on a book about the bizarre and beautiful rituals of death",
-    "source": "It's Nice That",
-    "snippet": "This book about death, decay and disappearance finds new and brilliant ways to sensitively engage with a topic that has been done, well \u2013 to death.",
-    "image": "https://admin.itsnicethat.com/images/-e5PYM6w3epEqH_TqzSbjUEheLM=/281447/width-1440/lisa-mouchet-marine-prunier-art-itsnicethat-1.jpg",
-    "published_ts": 1788422400,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.itsnicethat.com/articles/lisa-mouchet-marine-prunier-fermenta-publication-art-project-030926"
-  },
-  "itsnicethat.com/articles/tor-weibull-kanon-foundry-clippy-graphic-design-project-030926": {
-    "title": "Paperclip Contour, meet Clippy: Kanon Foundry takes a 1973 typeface and makes it flexible across 15 different styles",
-    "source": "It's Nice That",
-    "snippet": "Ad Werner\u2019s Paperclip Contour is a highly original and cool typeface, but it was held back by being bound to print, as well as variations never being made commercially available. Kanon Foundry\u2019s Tor Weibull has stepped in to change that.",
-    "image": "https://m.itsnicethat.com/original_images/kanon-foundry-graphic-design-itsnicethat-5.gif",
-    "published_ts": 1788422400,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.itsnicethat.com/articles/tor-weibull-kanon-foundry-clippy-graphic-design-project-030926"
-  },
-  "itsnicethat.com/articles/marianne-tricot-petit-bois-illustration-project-250826": {
-    "title": "Can scientific research be beautiful? Inside Marianne Tricot\u2019s tactile book of drawings from the Quebec forest",
-    "source": "It's Nice That",
-    "snippet": "For Petit Bois, the artist combined oil pastels and collage to capture the personal and poetic experience of exploring the forest.",
-    "image": "https://admin.itsnicethat.com/images/GnGzcltWQS_Zd15W5Mzw3X89_lE=/281197/width-1440/Marianne-Tricot-petit-bois-Illustration-itsnicethat-2.jpg",
-    "published_ts": 1787644800,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.itsnicethat.com/articles/marianne-tricot-petit-bois-illustration-project-250826"
-  },
-  "itsnicethat.com/articles/alina-derya-yakaboylu-graphic-design-discover-250826": {
-    "title": "Alina Derya Yakaboylu combines research and intuition to create culturally rooted design",
-    "source": "It's Nice That",
-    "snippet": "The designer and art director approaches each project holistically, using close observation, conversation and a poetic sensibility to uncover its deeper stories.",
-    "image": "https://admin.itsnicethat.com/images/zrdksh68FvriFdkP-iYY3ChEpx4=/281253/width-1440/Alina-Derya-Yakaboylu-Graphic-Design-ItsNiceThat-1.jpg",
-    "published_ts": 1787644800,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.itsnicethat.com/articles/alina-derya-yakaboylu-graphic-design-discover-250826"
-  },
-  "tympanus.net/codrops/2026/09/02/breaking-the-frame-building-a-real-time-datamosh-effect-with-three-js": {
-    "title": "Breaking the Frame: Building a Real-Time Datamosh Effect with Three.js",
-    "source": "Codrops",
-    "snippet": "A hands-on exploration of how Three.js, shaders, and codec-inspired techniques can turn a scene transition into a convincing real-time datamosh effect.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/datamoch_cover.png?x57826",
-    "published_ts": 1788359805,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://tympanus.net/codrops/2026/09/02/breaking-the-frame-building-a-real-time-datamosh-effect-with-three-js/"
-  },
-  "tympanus.net/codrops/2026/08/24/blender-to-three-js-and-back-10-tips-for-a-better-workflow": {
-    "title": "Blender to Three.js and Back: 10 Tips for a Better Workflow",
-    "source": "Codrops",
-    "snippet": "A practical collection of tips for combining AI, Blender, and Blender MCP to streamline your Three.js workflow.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/08/og-image.webp?x57826",
-    "published_ts": 1787579615,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://tympanus.net/codrops/2026/08/24/blender-to-three-js-and-back-10-tips-for-a-better-workflow/"
-  },
-  "uxdesign.cc/the-call-for-an-agentic-standard-we-need-to-stop-shipping-the-same-form-four-different-times-be5b9d40e370": {
-    "title": "The call for an agentic standard",
-    "source": "Sidebar",
-    "snippet": "We need to stop shipping the same form four different times.",
-    "image": "https://miro.medium.com/v2/resize:fit:1200/1*UqCs8JJOwBhWmepdUSg3-Q.png",
-    "published_ts": 1788412402,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://uxdesign.cc/the-call-for-an-agentic-standard-we-need-to-stop-shipping-the-same-form-four-different-times-be5b9d40e370"
-  },
-  "soverybright.com": {
-    "title": "Make your logo brighter than white",
-    "source": "Sidebar",
-    "snippet": "Upload a logo, choose what glows, download an HDR JPEG. Free \u2014 nothing is stored.",
-    "image": "https://soverybright.com/og.png",
-    "published_ts": 1788412361,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.soverybright.com/"
-  },
-  "commandline.microsoft.com/design-product-simplicity-seamless-ux-ui-agentic-ai-azure-developer-services-foundry": {
-    "title": "Designing product simplicity for the agentic AI era",
-    "source": "Sidebar",
-    "snippet": "Shared design components aren\u2019t enough to ensure a seamless product experience. Can designers create consistency by embracing simplicity?",
-    "image": "https://commandline.microsoft.com/wp-content/uploads/2026/08/Hero.png",
-    "published_ts": 1788412340,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://commandline.microsoft.com/design-product-simplicity-seamless-ux-ui-agentic-ai-azure-developer-services-foundry/"
-  },
-  "mesurer.dev": {
-    "title": "Mesurer",
-    "source": "Sidebar",
-    "snippet": "Inspect, annotate, and give feedback on any live interface. Share feedback with your agents and your team.",
-    "image": "https://mesurer.dev/og.png",
-    "published_ts": 1788412250,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://mesurer.dev/"
-  },
-  "stripeeconomics.com/p/ai-and-the-city": {
-    "title": "AI and the city",
-    "source": "Sidebar",
-    "snippet": "More businesses are forming outside major metros, but big cities still matter for frontier tech.",
-    "image": "https://substackcdn.com/image/fetch/$s_!5LnS!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F701a5b23-bfa4-4709-946c-08832c282389_1240x1198.png",
-    "published_ts": 1788412208,
-    "first_seen_ts": 1788429627.6015508,
-    "link": "https://www.stripeeconomics.com/p/ai-and-the-city"
-  },
   "uxdesign.cc/what-minority-report-got-wrong-about-ai-so-far-9048573aa70f?source=rss----138adf9c44c---4": {
     "title": "What Minority Report got wrong about AI (so far)",
     "source": "UX Collective",
@@ -1375,5 +1150,149 @@
     "published_ts": 1789016460,
     "first_seen_ts": 1789034424.2337816,
     "link": "https://ibelick.com/anatomy-ai-input"
+  },
+  "uxdesign.cc/8-voice-aiux-patterns-81324c8feaa0?source=rss----138adf9c44c---4": {
+    "title": "8 voice AIUX patterns",
+    "source": "UX Collective",
+    "snippet": "8 voice AI UX\u00a0patternsMapping emerging Voice AI UX patterns, perceived agent roles, key design decisions and limitationsRadio Rex (1922) was the first voice-activated toy ever sold. Rex the dog lived in a little doghouse held shut by an electromagnet. When you said \u201cRex,\u201d the sound energy of the let",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*yoggBwjdzBWtH9OpJjrZ9g.jpeg",
+    "published_ts": 1789080055,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://uxdesign.cc/8-voice-aiux-patterns-81324c8feaa0?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/how-authentication-friction-frustrates-users-and-how-to-stop-it-552635e50a77?source=rss----138adf9c44c---4": {
+    "title": "How authentication friction frustrates users\u200a\u2014\u200aand how to stop it",
+    "source": "UX Collective",
+    "snippet": "We&#x2019;ve been doing authentication all wrong. Here&#x2019;s how to fix it.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2600/0*YkgbdIzcyt4bGcE0",
+    "published_ts": 1789079997,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://uxdesign.cc/how-authentication-friction-frustrates-users-and-how-to-stop-it-552635e50a77?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/death-of-the-ipod-1f22d3d1d065?source=rss----138adf9c44c---4": {
+    "title": "Death of the iPod?",
+    "source": "UX Collective",
+    "snippet": "The hacks that made chip-derived sound a standard feature of digital interactionContinue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2500/1*xA4VwRPPKrVV2Fexc79JkA.png",
+    "published_ts": 1789079904,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://uxdesign.cc/death-of-the-ipod-1f22d3d1d065?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/five-eras-of-ux-design-and-the-lessons-to-keep-in-the-ai-era-d76a548747a9?source=rss----138adf9c44c---4": {
+    "title": "Five eras of UX design and the lessons to keep in the AI era",
+    "source": "UX Collective",
+    "snippet": "Sixty years of UX, compressed into one horizon line\u200a\u2014\u200aeach era solving the last one and seeding the next. AI assisted.Human factors has reinvented itself every decade since Bell Labs, the oldest lessons are the ones pointing the way\u00a0forward.User Experience did not begin with Don Norman\u2019s job title a",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*Xdi3OgwGMpD_b_QXO53AoQ.png",
+    "published_ts": 1789079892,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://uxdesign.cc/five-eras-of-ux-design-and-the-lessons-to-keep-in-the-ai-era-d76a548747a9?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/a-short-history-of-logos-made-of-data-bd6a89e732ce?source=rss----138adf9c44c---4": {
+    "title": "A short history of logos made of data",
+    "source": "UX Collective",
+    "snippet": "An idea kept coming back in most branding projects I worked on in the past years: what if we embedded data in the logo? Real data, not symbols of information but information itself. Data that meant something for the client, that would shape the logo and create something unique. This idea came back a",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*s9o4aDKCZblvQG4IHWk_CQ.jpeg",
+    "published_ts": 1789055871,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://uxdesign.cc/a-short-history-of-logos-made-of-data-bd6a89e732ce?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/your-first-draft-now-has-a-log-ee378eb7b3e9?source=rss----138adf9c44c---4": {
+    "title": "Your first draft now has a log",
+    "source": "UX Collective",
+    "snippet": "Workplace surveillance has reached the one place it couldn\u2019t: the thought before the\u00a0thought.Cover image: generated by the author with\u00a0AI.People tell AI what they tell no one else. A 2024 study with the fitting title Trust No Bot went through real conversations between people and language models and",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*FY8icI2migdzBvCBEzqJ3g.png",
+    "published_ts": 1789055837,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://uxdesign.cc/your-first-draft-now-has-a-log-ee378eb7b3e9?source=rss----138adf9c44c---4"
+  },
+  "design-milk.com/lang-architecture-east-village-apartment": {
+    "title": "Lang Architecture Reimagines Art Deco in an East Village Apartment",
+    "source": "Design Milk",
+    "snippet": "Two units inside a 1930s New York City building become one 1,650-square-foot family home, where subtle Art Deco references meet vintage furnishings and personal details",
+    "image": "https://design-milk.com/images/2026/09/east-village-apartment-lang-architecture-11.jpg",
+    "published_ts": 1789064287,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://design-milk.com/lang-architecture-east-village-apartment/"
+  },
+  "design-milk.com/emirates-a380-us-open-suite": {
+    "title": "Emirates Fits Out a U.S. Open Suite With the Design Language of Its A380",
+    "source": "Design Milk",
+    "snippet": "The airline\u2019s 15th year at the tournament brings cream leather, lacquered woodgrain, and the A380\u2019s onboard bar to a nearly 1,600-square-foot suite inside Arthur Ashe Stadium",
+    "image": "https://design-milk.com/images/2026/09/2026-US-Open-Emirates-Suite-2.jpg",
+    "published_ts": 1789054204,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://design-milk.com/emirates-a380-us-open-suite/"
+  },
+  "design-milk.com/outside-in-nature-of-things-soho-fog-architecture": {
+    "title": "Outside In and Nature of Things Rethink Beauty Retail in NYC",
+    "source": "Design Milk",
+    "snippet": "Designed by F.O.G. Architecture, the new Crosby Street destination brings beauty, fragrance, hospitality, and a hidden garden together through light and sensory experience",
+    "image": "https://design-milk.com/images/2026/09/CH_Outside_In_NYC_Store_FragranceGallery.jpeg",
+    "published_ts": 1789048835,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://design-milk.com/outside-in-nature-of-things-soho-fog-architecture/"
+  },
+  "design-milk.com/bvlgari-auruboros-high-line-new-york": {
+    "title": "Bvlgari\u2019s Golden Serpent Slithers Onto New York\u2019s High Line",
+    "source": "Design Milk",
+    "snippet": "A temporary installation by Berlin-based duo Plastique Fantastique turns the jewelry house\u2019s familiar Serpenti motif into a monumental, air-filled intervention in the city",
+    "image": "https://design-milk.com/images/2026/09/Schenck-Bvlgari-2026_09_08-DSC_5979.jpeg",
+    "published_ts": 1789048800,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://design-milk.com/bvlgari-auruboros-high-line-new-york/"
+  },
+  "itsnicethat.com/features/the-weekend-with-anaiis-110926": {
+    "title": "The Weekend With anaiis",
+    "source": "It's Nice That",
+    "snippet": "The French-Senegalese singer let us in on whats been pouring into her gentle soul and R&amp;B tracks while we pick her brains for what you should get up to on your next day off.",
+    "image": "https://admin.itsnicethat.com/images/qJlF_GnYledUChGPaPA5v-OAmTA=/281768/width-1440%7Cformat-jpeg/The_Weekend_HERO_DlVaR7v.png",
+    "published_ts": 1788508800,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://www.itsnicethat.com/features/the-weekend-with-anaiis-110926"
+  },
+  "sjg.io/writing/ai-is-making-us-build-too-much": {
+    "title": "AI is making us build too much",
+    "source": "Sidebar",
+    "snippet": "AI has made code, tests, policy, documentation, and organisational machinery almost free to produce. It has not made any of them free to own.",
+    "image": "https://sjg.io/_astro/over-engineered-much.DKHLgf5s.webp",
+    "published_ts": 1789103100,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://sjg.io/writing/ai-is-making-us-build-too-much/"
+  },
+  "edoardolunardi.github.io/kugiri": {
+    "title": "Kugiri (\u533a\u5207\u308a)",
+    "source": "Sidebar",
+    "snippet": "Splits text into lines, words and characters exactly where the browser already broke it.",
+    "image": "",
+    "published_ts": 1789103040,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://edoardolunardi.github.io/kugiri/"
+  },
+  "dontasktoask.com": {
+    "title": "Don\u2019t ask to ask, just ask",
+    "source": "Sidebar",
+    "snippet": "If you're not willing to do the work to solve your problem, why should we?",
+    "image": "https://dontasktoask.com/favicon.png",
+    "published_ts": 1789102980,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://dontasktoask.com/"
+  },
+  "worseonpurpose.com/p/on-quality": {
+    "title": "Why products get worse",
+    "source": "Sidebar",
+    "snippet": "Where quality lives, and how companies drain it from your products without a metric moving.",
+    "image": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,quality=80,width=1200,onerror=redirect/uploads/asset/file/0eea3ac4-ffcd-46a1-86a4-5e0a42f07503/On_Quality_card_1200_630.png?t=1784669810",
+    "published_ts": 1789102920,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://www.worseonpurpose.com/p/on-quality"
+  },
+  "ky.fyi/posts/data-driven": {
+    "title": "Building data-driven design systems",
+    "source": "Sidebar",
+    "snippet": "How I scaled Scribe\u2019s design system to help serve over 6 million users.",
+    "image": "",
+    "published_ts": 1789102860,
+    "first_seen_ts": 1789120826.7344432,
+    "link": "https://ky.fyi/posts/data-driven"
   }
 }
