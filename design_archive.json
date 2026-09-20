@@ -1,139 +1,4 @@
 {
-  "uxdesign.cc/youre-not-behind-the-feed-is-built-to-make-you-feel-that-way-7719d6a967dc?source=rss----138adf9c44c---4": {
-    "title": "You\u2019re not behind. The feed is built to make you feel that way.",
-    "source": "UX Collective",
-    "snippet": "Almost everyone in tech thinks the rest of the industry is further ahead. Most of them are wrong, and for the same reasons.Continue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/1035/1*9BofWoJ9HHua9I75cT1bbw.png",
-    "published_ts": 1789160643,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://uxdesign.cc/youre-not-behind-the-feed-is-built-to-make-you-feel-that-way-7719d6a967dc?source=rss----138adf9c44c---4"
-  },
-  "smashingmagazine.com/2026/09/building-ux-roi-case-survives-boardroom": {
-    "title": "Building A UX ROI Case That Survives The Boardroom",
-    "source": "Smashing Magazine",
-    "snippet": "Strong UX ideas do not secure investment on their own. Through a worked example, Alex Williams breaks down how to define business value, calculate costs, test causality, and build a credible case for the return on a design initiative. - UX - Design - Business",
-    "image": "http://files.smashing.media/articles/building-ux-roi-case-survives-boardroom/building-ux-roi-case-survives-boardroom.jpg",
-    "published_ts": 1789131600,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://smashingmagazine.com/2026/09/building-ux-roi-case-survives-boardroom/"
-  },
-  "smashingmagazine.com/2026/08/why-website-should-never-stop-changing": {
-    "title": "Why Your Website Should Never Stop Changing",
-    "source": "Smashing Magazine",
-    "snippet": "Every website peaks on launch day and slowly drifts from there, not because it breaks, but because nobody has time to keep it current. Autonomous websites, continuously optimized by agents after launch, aim to change that. Pierre Burgy shares what they learned building for full website autonomy and ",
-    "image": "http://files.smashing.media/articles/why-website-should-never-stop-changing/why-website-should-never-stop-changing.jpg",
-    "published_ts": 1787644800,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://smashingmagazine.com/2026/08/why-website-should-never-stop-changing/"
-  },
-  "nngroup.com/articles/test-earlier-with-ai": {
-    "title": "Test Complex Interactions Earlier with AI Prototyping",
-    "source": "NN/g",
-    "snippet": "AI tools make it feasible to build fully interactive prototypes of complex interfaces so you can test them with users earlier in the design process.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Test_Complex_Interactions_Earlier_with_AI_Prototyping_1_j3hM3sB.png",
-    "published_ts": 1789146000,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://www.nngroup.com/articles/test-earlier-with-ai/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/ai-editorial-process": {
-    "title": "AI Can Help Write an Article, but It Can\u2019t Stand Behind It",
-    "source": "NN/g",
-    "snippet": "NN/G uses AI for clarity, formatting, and critique, but humans retain editorial judgment and responsibility for every article.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/G_Uses_AI_in_Its_Editorial_Process-1.png",
-    "published_ts": 1789146000,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://www.nngroup.com/articles/ai-editorial-process/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/grok-bot-vs-openclaw-how-i-replaced": {
-    "title": "Grok Bot vs. OpenClaw: How I replaced my entire agent stack",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now | &#127897;&#65039; I&#8217;ve been running Grok Bot for several weeks, and I&#8217;ve killed every OpenClaw I had. Here are the nine bots doing real work across my inbox, my kids&#8217; school pickups, my PR queue, and my wardrobe",
-    "image": "https://substackcdn.com/image/fetch/$s_!hX8-!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8f02962f-e431-49ff-9ead-de8e6dcca042_1456x1048.png",
-    "published_ts": 1788350619,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://www.lennysnewsletter.com/p/grok-bot-vs-openclaw-how-i-replaced"
-  },
-  "lennysnewsletter.com/p/how-i-ai-grok-bot-grok-46whats-great": {
-    "title": "\ud83c\udf99\ufe0f How I AI: Grok Bot + Grok 4.6\u2014what\u2019s great (and what\u2019s still hype) & Lessons from spending $20,000 on Devin in one month",
-    "source": "Lenny's Newsletter",
-    "snippet": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/7296b676-dd90-4432-83e2-b0c0db7fe86e_1456x1048.png",
-    "published_ts": 1787583743,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://www.lennysnewsletter.com/p/how-i-ai-grok-bot-grok-46whats-great"
-  },
-  "lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month": {
-    "title": "I spent $20,000 on Devin in a month. Here\u2019s what I learned | Ryan Carson (solo founder)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now | &#127897;&#65039; Solo founder Ryan Carson runs 15 concurrent Devin agents to handle engineering, customer success, and investor updates, and he uses a handwritten list to keep it all straight",
-    "image": "https://substackcdn.com/image/fetch/$s_!Jzy5!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa5c5ada9-a8ea-4778-bed5-b3e6137079b4_1456x1048.png",
-    "published_ts": 1787573042,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month"
-  },
-  "design-milk.com/room-new-brand-identity-workplace-design": {
-    "title": "ROOM\u2019s New Identity Puts People at the Center of Workplace Design",
-    "source": "Design Milk",
-    "snippet": "The workplace brand looks to fashion for a visual refresh that shifts attention away from its products and toward people and everyday moments around them",
-    "image": "https://design-milk.com/images/2026/09/ROOM-Refresh_Room-L.jpg",
-    "published_ts": 1789151214,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://design-milk.com/room-new-brand-identity-workplace-design/"
-  },
-  "design-milk.com/awechair-accessible-lift-chair-design": {
-    "title": "The AWEchair Makes a Case for More Beautiful Accessible Design",
-    "source": "Design Milk",
-    "snippet": "After struggling to find a lift chair for her aging parents that didn\u2019t look like medical equipment, Janet Feldman spent a decade developing a more considered alternative",
-    "image": "https://design-milk.com/images/2026/09/20250908-AWEchair-317.jpg",
-    "published_ts": 1789148213,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://design-milk.com/awechair-accessible-lift-chair-design/"
-  },
-  "design-milk.com/nicole-alexander-siren-betty-friday-five": {
-    "title": "Nicole Alexander Shares 5 Siren Betty Projects Full of Personality",
-    "source": "Design Milk",
-    "snippet": "From a nostalgic Italian-American restaurant to a former bank turned neighborhood bar, the Siren Betty founder shares five projects that capture her studio\u2019s layered approach to interiors",
-    "image": "https://design-milk.com/images/2026/09/Dimmi-Dimmi-Photo-by-Kevin-E.-White.jpg",
-    "published_ts": 1789131635,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://design-milk.com/nicole-alexander-siren-betty-friday-five/"
-  },
-  "itsnicethat.com/articles/lisa-mouchet-marine-prunier-fermenta-publication-art-project-030926": {
-    "title": "An artist and former funeral professional have collaborated on a book about the bizarre and beautiful rituals of death",
-    "source": "It's Nice That",
-    "snippet": "This book about death, decay and disappearance finds new and brilliant ways to sensitively engage with a topic that has been done, well \u2013 to death.",
-    "image": "https://admin.itsnicethat.com/images/-e5PYM6w3epEqH_TqzSbjUEheLM=/281447/width-1440/lisa-mouchet-marine-prunier-art-itsnicethat-1.jpg",
-    "published_ts": 1788422400,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://www.itsnicethat.com/articles/lisa-mouchet-marine-prunier-fermenta-publication-art-project-030926"
-  },
-  "itsnicethat.com/articles/tor-weibull-kanon-foundry-clippy-graphic-design-project-030926": {
-    "title": "Paperclip Contour, meet Clippy: Kanon Foundry takes a 1973 typeface and makes it flexible across 15 different styles",
-    "source": "It's Nice That",
-    "snippet": "Ad Werner\u2019s Paperclip Contour is a highly original and cool typeface, but it was held back by being bound to print, as well as variations never being made commercially available. Kanon Foundry\u2019s Tor Weibull has stepped in to change that.",
-    "image": "https://m.itsnicethat.com/original_images/kanon-foundry-graphic-design-itsnicethat-5.gif",
-    "published_ts": 1788422400,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://www.itsnicethat.com/articles/tor-weibull-kanon-foundry-clippy-graphic-design-project-030926"
-  },
-  "tympanus.net/codrops/2026/09/12/yestalgia-bringing-decathlons-90s-spirit-to-life-through-a-playful-digital-experience": {
-    "title": "Yestalgia: Bringing Decathlon\u2019s \u201990s Spirit to Life Through a Playful Digital Experience",
-    "source": "Codrops",
-    "snippet": "A closer look at how Yestalgia brings Decathlon\u2019s \u201990s-inspired vision to the web through art direction, interaction, animation, and creative development.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/09/yestalgia.jpg?x57826",
-    "published_ts": 1789202431,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://tympanus.net/codrops/2026/09/12/yestalgia-bringing-decathlons-90s-spirit-to-life-through-a-playful-digital-experience/"
-  },
-  "tympanus.net/codrops/2026/09/09/turning-names-into-digital-architecture-with-three-js": {
-    "title": "Turning Names Into Digital Architecture with Three.js",
-    "source": "Codrops",
-    "snippet": "For the Three.js Conference in Paris, BL/S\u00ae created an interactive experiment that transforms your name into a dynamic 3D structure.",
-    "image": "https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2026/09/serhii.png?x57826",
-    "published_ts": 1788976500,
-    "first_seen_ts": 1789207226.4659564,
-    "link": "https://tympanus.net/codrops/2026/09/09/turning-names-into-digital-architecture-with-three-js/"
-  },
   "uxdesign.cc/why-people-hate-viral-ai-food-posters-db2b4329ae11?source=rss----138adf9c44c---4": {
     "title": "The real reason everyone hates the viral AI food slop images",
     "source": "UX Collective",
@@ -1186,5 +1051,23 @@
     "published_ts": 1789027200,
     "first_seen_ts": 1789812024.032245,
     "link": "https://www.itsnicethat.com/articles/kristina-rozhkova-gut-feeling-photography-publication-project-100926"
+  },
+  "lennysnewsletter.com/p/community-wisdom-finding-your-first": {
+    "title": "\ud83e\udde0 Community Wisdom: Finding your first users before the product exists, debriefing your own interviews, what to optimize for in the early years of your career, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 299",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1789846944,
+    "first_seen_ts": 1789898424.0084982,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-finding-your-first"
+  },
+  "itsnicethat.com/features/the-weekend-with-anaiis-110926": {
+    "title": "The Weekend With anaiis",
+    "source": "It's Nice That",
+    "snippet": "The French-Senegalese singer let us in on whats been pouring into her gentle soul and R&amp;B tracks while we pick her brains for what you should get up to on your next day off.",
+    "image": "https://admin.itsnicethat.com/images/qJlF_GnYledUChGPaPA5v-OAmTA=/281768/width-1440%7Cformat-jpeg/The_Weekend_HERO_DlVaR7v.png",
+    "published_ts": 1789113600,
+    "first_seen_ts": 1789898424.0084982,
+    "link": "https://www.itsnicethat.com/features/the-weekend-with-anaiis-110926"
   }
 }
