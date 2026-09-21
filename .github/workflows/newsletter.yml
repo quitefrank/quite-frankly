@@ -28,6 +28,21 @@ jobs:
         with:
           python-version: '3.11'
 
+      # Fail in seconds if the Gmail App Password is dead (revoked via Security
+      # Checkup, Google password change, or 2SV toggled). Without this the run
+      # spends ~6 minutes of Anthropic calls before send_email discovers it.
+      - name: Check Gmail credentials
+        env:
+          GMAIL_ADDRESS:      ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          python - <<'EOF'
+          import os, smtplib
+          with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=20) as s:
+              s.login(os.environ["GMAIL_ADDRESS"], os.environ["GMAIL_APP_PASSWORD"])
+          print("SMTP login OK")
+          EOF
+
       - name: Install dependencies
         run: pip install -r requirements.txt
 

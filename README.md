@@ -147,6 +147,8 @@ Check, in order:
 3. The GitHub Actions tab for failed workflow runs (the script itself may have failed)
 4. Anthropic API quota, Gmail SMTP auth (less common)
 
+A `535 5.7.8 Username and Password not accepted` from `smtp.gmail.com` means the Gmail App Password was revoked: Google Security Checkup lists it as an app using your password and offers to remove it, and Google also revokes all app passwords on a Google password change or when 2-Step Verification is toggled. Leave the row named `QuiteFrankly GHActions SMTP` alone in future checkups. To rotate: create a new one at https://myaccount.google.com/apppasswords (signed in as the `GMAIL_ADDRESS` account), then `gh secret set GMAIL_APP_PASSWORD -R quitefrank/quite-frankly` and paste the 16 characters without spaces. The `Check Gmail credentials` workflow step fails within seconds on a dead password, before any Anthropic spend.
+
 ### Rotating the PAT
 
 When the GitHub PAT expires or is suspected of leaking:
