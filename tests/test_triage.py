@@ -168,22 +168,26 @@ def test_apply_phase2_tier_recomputes_without_traction(monkeypatch):
     assert result[0]["tier"] == 1
 
 
-def test_apply_phase2_tier_falls_back_when_attach_traction_raises(monkeypatch, capsys):
+def test_apply_phase2_tier_still_scores_when_attach_traction_raises(monkeypatch, capsys):
+    # Triage no longer emits a tier, so a traction outage can't fall back to
+    # one. Tiers are computed from the scores alone, with both bonuses at zero.
+    # Incoming tier 0 is the placeholder _shape_tool_output writes: if this
+    # ever regressed to preserving the incoming value, both asserts would fail.
     def boom(items, links_by_id):
         raise RuntimeError("Reddit blew up")
 
     monkeypatch.setattr(triage, "attach_traction", boom)
 
     items = [
-        {"id": 0, "tier": 1, "scores": {"cross_source_coverage": 3, "personal_relevance": 3, "section_fit": "good"}},
-        {"id": 1, "tier": 3, "scores": {"cross_source_coverage": 0, "personal_relevance": 1, "section_fit": "weak"}},
+        {"id": 0, "tier": 0, "scores": {"cross_source_coverage": 3, "personal_relevance": 3, "section_fit": "good"}},
+        {"id": 1, "tier": 0, "scores": {"cross_source_coverage": 0, "personal_relevance": 1, "section_fit": "weak"}},
     ]
     links_by_id = {0: {"link": "https://a"}, 1: {"link": "https://b"}}
 
     result = apply_phase2_tier(items, links_by_id)
 
-    assert result[0]["tier"] == 1  # Claude's tier preserved
-    assert result[1]["tier"] == 3  # Claude's tier preserved
+    assert result[0]["tier"] == 1  # 3*3 + 3*2 + 1 = 16
+    assert result[1]["tier"] == 3  # 0*3 + 1*2 + 0 = 2
     out = capsys.readouterr().out
     assert "attach_traction failed" in out
 

@@ -40,17 +40,20 @@ def build_triage_tool(is_design_edition: bool = True) -> dict:
                         "type": "object",
                         "properties": {
                             "id": {"type": "integer", "description": "The exact [#N] id from the input headline."},
-                            "tier": {"type": "integer", "enum": [0, 1, 2, 3]},
                             "section": {
                                 "type": "string",
                                 "enum": triage_sections(is_design_edition),
                             },
                             "cluster_id": {"type": "string"},
-                            "cross_source_coverage": {"type": "integer", "minimum": 1},
                             "personal_relevance": {"type": "integer", "minimum": 0, "maximum": 3},
                             "section_fit": {"type": "string", "enum": ["good", "weak", "none"]},
                         },
-                        "required": ["id", "tier", "section", "cluster_id", "cross_source_coverage", "personal_relevance", "section_fit"],
+                        # tier and cross_source_coverage are deliberately absent.
+                        # apply_phase2_tier and enrich_cluster_metrics compute both
+                        # from real data and overwrite whatever the model says, so
+                        # asking for them only bought output tokens (~35% of the
+                        # per-item payload) and truncation risk. Removed 2026-09-22.
+                        "required": ["id", "section", "cluster_id", "personal_relevance", "section_fit"],
                     },
                 },
                 "clusters": {
@@ -165,16 +168,20 @@ def _shape_tool_output(payload: dict) -> tuple[list[dict], dict[str, dict]]:
     items: list[dict] = []
     dropped = 0
     for it in raw_items:
-        if "id" not in it or "tier" not in it or "section" not in it:
+        if "id" not in it or "section" not in it:
             dropped += 1
             continue
         items.append({
             "id": it["id"],
-            "tier": it["tier"],
+            # Placeholder. apply_phase2_tier overwrites this for every item
+            # before anything reads it; it exists so a KeyError can't reach
+            # the formatter if that call is ever skipped.
+            "tier": 0,
             "section": it["section"],
             "cluster_id": it.get("cluster_id", ""),
             "scores": {
-                "cross_source_coverage": it.get("cross_source_coverage", 1),
+                # cross_source_coverage is set by enrich_cluster_metrics from
+                # real cluster membership, which runs immediately after triage.
                 "personal_relevance": it.get("personal_relevance", 0),
                 "section_fit": it.get("section_fit", "weak"),
             },
@@ -290,16 +297,17 @@ def apply_phase2_tier(items: list[dict], links_by_id: dict, design_edition: bool
     """Overwrite each item's tier using the Phase 2 traction-aware formula.
 
     Mutates items in place. If the Reddit/HN fetch raises (network outage,
-    library error), log and return items unchanged so the email still ships
-    with Claude's original tier assignments.
+    library error), tiers are still computed from the triage scores alone:
+    reddit_bonus and hn_bonus both read missing dicts as zero, so the formula
+    degrades to its base term. Triage no longer emits a tier of its own, so
+    this is the only thing that assigns one.
     """
     from config import DESIGN_SUBREDDITS
     subreddits = DESIGN_SUBREDDITS if design_edition else REDDIT_SUBREDDITS
     try:
         attach_traction(items, links_by_id, subreddits)
     except Exception as e:
-        print(f"  Phase 2: attach_traction failed ({e}); keeping Claude tiers.", flush=True)
-        return items
+        print(f"  Phase 2: attach_traction failed ({e}); scoring without traction.", flush=True)
     for item in items:
         item["tier"] = compute_phase2_tier(item)
     return items

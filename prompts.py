@@ -162,21 +162,13 @@ Reader context for personal relevance scoring:
 
 For each item, return:
 - id (integer)
-- tier (1=Featured, 2=Worth Reading, 3=Background, or 0=Dropped)
 - section (one of: {section_list})
 - cluster_id (string; same id for items covering the same underlying story)
-- scores: cross_source_coverage (integer count of feeds covering it, including itself), personal_relevance (0-3), section_fit ("good" | "weak" | "none")
+- scores: personal_relevance (0-3), section_fit ("good" | "weak" | "none")
 
-Tier mapping (sum cross_source_coverage + personal_relevance + section_fit_score):
-- section_fit_score: good=1, weak=0, none=-1
-- Tier 1 if total >= 6
-- Tier 2 if total 3-5
-- Tier 3 if total 1-2
-- Dropped if total <= 0
+Do not assign tiers or count how many feeds cover a story. Both are computed downstream from real cluster membership and traction data, and anything you emit for them is discarded.
 
 Also return a "clusters" array. For each cluster_id, list primary_source (the source whose headline is most distinctive), also_in (other sources in the cluster), and canonical_headline.
-
-Cross-cluster entity dedup. After computing tiers, look for cases where two distinct clusters cover different stories but share the same protagonists (e.g., a court-case story and a corporate-restructure story both starring Musk and Altman). For each cluster, identify its dominant entities: named people, organizations, or products that appear in the canonical_headline. If two different clusters share 2 or more dominant entities AND both contain Tier 1 or Tier 2 items, demote every item in the lower-scoring cluster by one tier (Tier 1 becomes Tier 2, Tier 2 becomes Tier 3). Lower-scoring is the cluster whose top item has the lower tier-formula score; ties favor the cluster with higher cross_source_coverage. The goal is to prevent two stories about the same protagonists from both being featured in different sections.
 
 Output strict JSON only. No prose, no markdown fences."""
 

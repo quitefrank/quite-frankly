@@ -27,20 +27,23 @@ def test_triage_system_prompt_includes_personal_relevance():
     assert PERSONAL_RELEVANCE_BLURB in TRIAGE_SYSTEM_PROMPT
 
 
-def test_triage_prompt_has_cross_cluster_entity_dedup_rule():
-    # Two clusters covering different angles of the same protagonists
-    # (e.g., a court-case story and a corporate-structure story both
-    # starring Musk + Altman) should not both be featured: the lower-
-    # scoring cluster is demoted one tier so the reader doesn't see
-    # two "duplicate-feeling" stories across sections.
+def test_triage_prompt_does_not_ask_for_tier_or_coverage():
+    # Removed 2026-09-22. apply_phase2_tier and enrich_cluster_metrics
+    # overwrite tier and cross_source_coverage from traction and real cluster
+    # membership, so every token the model spent on them was discarded. They
+    # were ~35% of the per-item output payload and part of the June 8
+    # truncation that shipped a blank edition.
+    #
+    # The cross-cluster entity dedup rule went with them: it demoted the
+    # weaker of two clusters sharing 2+ protagonists, expressed entirely in
+    # tiers, and that demotion was already being overwritten in production.
+    # If that behaviour is wanted for real it belongs in code after
+    # apply_phase2_tier, reading cluster canonical_headlines.
     from prompts import TRIAGE_SYSTEM_PROMPT
     prompt = TRIAGE_SYSTEM_PROMPT.lower()
-    assert "dominant entities" in prompt, (
-        "Triage prompt must define 'dominant entities' for cross-cluster dedup"
-    )
-    assert "demote" in prompt, (
-        "Triage prompt must instruct the model to demote the weaker cluster"
-    )
+    assert "tier mapping" not in prompt
+    assert "cross_source_coverage" not in prompt
+    assert "- tier (" not in prompt, "Triage must not be asked to emit a tier"
 
 
 def test_triage_sections_drops_design_on_weekday():
