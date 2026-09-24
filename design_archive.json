@@ -1,193 +1,4 @@
 {
-  "uxdesign.cc/lost-dog-or-lost-designer-d5de922e54d9?source=rss----138adf9c44c---4": {
-    "title": "Lost dog\u2014or lost designer?",
-    "source": "UX Collective",
-    "snippet": "Why the ethics of AI-generated design depend on context, intention, and consequenceImage: Generated with ChatGPT using a one-shot\u00a0promptI recently saw a missing-dog poster that caught my attention because it was the first time I had seen one clearly made with AI. We all know the style by now. The ov",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*ZitKQGiwfpPEeKDf9pS7lw.png",
-    "published_ts": 1789619492,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://uxdesign.cc/lost-dog-or-lost-designer-d5de922e54d9?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/what-shakespeare-got-wrong-about-ai-73e9f58bfbc8?source=rss----138adf9c44c---4": {
-    "title": "What Shakespeare got wrong about AI",
-    "source": "UX Collective",
-    "snippet": "He wrote about a magic you could always stop. We built the kind that gets\u00a0loose.He understood us better than science fiction ever has. The one thing he couldn\u2019t imagine was what we actually\u00a0built.Shakespeare\u2019s magic always had an off switch. Somebody could summon it and shut it down. It wore off on ",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*HDjZ1AZIyFg2FA1Cnz5RnQ.jpeg",
-    "published_ts": 1789572094,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://uxdesign.cc/what-shakespeare-got-wrong-about-ai-73e9f58bfbc8?source=rss----138adf9c44c---4"
-  },
-  "smashingmagazine.com/2026/09/stop-treating-css-container-queries-traditional-media-queries": {
-    "title": "Stop Treating CSS Container Queries Like Traditional Media Queries",
-    "source": "Smashing Magazine",
-    "snippet": "Despite broad browser support, container queries remain surprisingly underused and frequently misunderstood. Let\u2019s look at how they differ from media queries, when to reach for each, and how container queries help reusable components respond naturally to the contexts in which they appear. - CSS - To",
-    "image": "http://files.smashing.media/articles/stop-treating-css-container-queries-traditional-media-queries/stop-treating-css-container-queries-traditional-media-queries.jpg",
-    "published_ts": 1789563600,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://smashingmagazine.com/2026/09/stop-treating-css-container-queries-traditional-media-queries/"
-  },
-  "nngroup.com/training/december": {
-    "title": "UX Conference December Announced (Dec 2 - Dec 15)",
-    "source": "NN/g",
-    "snippet": "Take up to 5 in-depth training courses, teaching user experience best practices for successful design. Training focused on long-lasting skills for UX professionals. December 2 - December 15, 2026.",
-    "image": "https://media.nngroup.com/media/events/opengraph_images/Social_Card_Dec_2026.png",
-    "published_ts": 1789541959,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.nngroup.com/training/december/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/artificial-intelligence-glossary": {
-    "title": "Artificial Intelligence: Glossary",
-    "source": "NN/g",
-    "snippet": "Plain-language definitions of the AI terms that come up in product and design work, from tokens and context windows to agents, evals, and prompt injection.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Artificial__Intelligence__Glossary_1.png",
-    "published_ts": 1787331600,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.nngroup.com/articles/artificial-intelligence-glossary/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/ai-generated-images": {
-    "title": "AI-Generated Images Can Perform as Well as Stock Photography",
-    "source": "NN/g",
-    "snippet": "When users didn\u2019t know whether an image was AI-generated, the images we tested did not create any perception penalty compared to stock photos.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/AI-Generated_Images_1.png",
-    "published_ts": 1787331600,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.nngroup.com/articles/ai-generated-images/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/muse-review-the-personal-ai-agent": {
-    "title": "Muse review: The personal AI agent that gets consumer UX right",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (38 mins) | &#127897;&#65039; I gave Meta&#8217;s Muse my calendar, my email, and my kids&#8217; chaotic schedule, and it produced a one-shot family PDF more beautiful than anything I&#8217;ve ever made with Claude or Codex",
-    "image": "https://substackcdn.com/image/fetch/$s_!XRfU!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcddf6ad4-b5cc-420a-91c3-31b44a3d7dc4_1456x1048.png",
-    "published_ts": 1789560134,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.lennysnewsletter.com/p/muse-review-the-personal-ai-agent"
-  },
-  "lennysnewsletter.com/p/how-i-ai-gpt-6-astra-is-a-banger": {
-    "title": "\ud83c\udf99\ufe0f How I AI: GPT-6 Astra is a banger + Stripe\u2019s AI playbook + Grok Bot vs. OpenClaw: why I replaced my entire agent stack",
-    "source": "Lenny's Newsletter",
-    "snippet": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/0efca35d-b22d-4ad2-bce1-4ca72972d416_1456x1048.png",
-    "published_ts": 1788793361,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.lennysnewsletter.com/p/how-i-ai-gpt-6-astra-is-a-banger"
-  },
-  "lennysnewsletter.com/p/build-your-own-company-brain-the": {
-    "title": "Build your own company brain: the enterprise AI playbook from Stripe\u2019s engineering team | Sharadh Krishnamurthy",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now | &#127897;&#65039; Learn how Stripe scaled AI to everyone at a complex global company by building context, governance, and a shared skills platform directly into their internal agent",
-    "image": "https://substackcdn.com/image/fetch/$s_!QHTh!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd17990f1-5eab-42b4-8fb1-d70d405f5385_1456x1048.png",
-    "published_ts": 1788782659,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.lennysnewsletter.com/p/build-your-own-company-brain-the"
-  },
-  "lennysnewsletter.com/p/ais-third-era-the-rise-of-persistent": {
-    "title": "AI\u2019s third era: the rise of persistent AI coworkers | Tara Seshan (Product Lead ChatGPT Work)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now | Tara Seshan, head of Codex and ChatGPT Work at OpenAI, on why ambition is now the differentiator, steering vs. rowing, and why you need to build for where the models will be in two to three months",
-    "image": "https://substackcdn.com/image/fetch/$s_!GR_e!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc5ed22db-f59d-4fe6-b41a-ee485418cf56_2048x2048.png",
-    "published_ts": 1788093090,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.lennysnewsletter.com/p/ais-third-era-the-rise-of-persistent"
-  },
-  "lennysnewsletter.com/p/community-wisdom-building-without": {
-    "title": "\ud83e\udde0 Community Wisdom: Building without clear PM requirements, selling a product before building it, pricing fast-moving B2B SaaS, a year of job hunting, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 296",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1788029988,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-building-without"
-  },
-  "design-milk.com/laneige-seoul-flagship-playlab": {
-    "title": "Laneige Turns Skincare Customization Into a Four-Story Experience",
-    "source": "Design Milk",
-    "snippet": "Designed by PlayLab, Laneige\u2019s Seoul flagship scales up personalized beauty with interactive installations and bold architectural gestures",
-    "image": "https://design-milk.com/images/2026/09/Laneige-Seoul-Flagship.png",
-    "published_ts": 1789594725,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://design-milk.com/laneige-seoul-flagship-playlab/"
-  },
-  "design-milk.com/elizabeth-unique-venice-cannaregio": {
-    "title": "Inside a New Venice Hotel With a Lighter Take on Venetian Grandeur",
-    "source": "Design Milk",
-    "snippet": "Elizabeth Unique Venice brings Cristina Celestino\u2019s contemporary mix of color, material, and Italian design to a 17th-century palazzo in Cannaregio",
-    "image": "https://design-milk.com/images/2026/09/336-DH-ElizabethVenice-e1789581722231.jpeg",
-    "published_ts": 1789583269,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://design-milk.com/elizabeth-unique-venice-cannaregio/"
-  },
-  "itsnicethat.com/articles/alistair-nicholls-running-late-animation-project-170926": {
-    "title": "Crocs and walking alarm clocks: Alistair Nicholls embraces \u201cpure silliness\u201d in his self-funded claymation",
-    "source": "It's Nice That",
-    "snippet": "Created between paid commissions, Running Late follows a surreal morning routine populated by stubby-legged alarm clocks and a crocodile that dispenses toothpaste.",
-    "image": "https://m.itsnicethat.com/original_images/Alistair-Nicholls-Running-Late-Animation-ItsNiceThat-6.jpg?class=w1440",
-    "published_ts": 1789632000,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.itsnicethat.com/articles/alistair-nicholls-running-late-animation-project-170926"
-  },
-  "itsnicethat.com/articles/studio-trikken-banana-art-book-publication-project-160926": {
-    "title": "Absolutely bananas! In a new book, 100 artists celebrate the fruit basket\u2019s favourite class clown",
-    "source": "It's Nice That",
-    "snippet": "Self-funded by Studio Trikken, Banana Art Book includes over 100 banana artworks created by artists from all over the world \u2013 from students and emerging illustrators to renowned design studios",
-    "image": "https://admin.itsnicethat.com/images/YU-W3NpW2Ij_e8SwKjpzLSFUZF8=/281632/width-1440/Studio-Trikken-Banana-Art-Book-Publication-ItsNiceThat-16.jpg",
-    "published_ts": 1789545600,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.itsnicethat.com/articles/studio-trikken-banana-art-book-publication-project-160926"
-  },
-  "itsnicethat.com/articles/nomad-manchester-city-women-graphic-design-project-080926": {
-    "title": "Manchester City Women becomes the first WSL team have its own distinct identity",
-    "source": "It's Nice That",
-    "snippet": "Football specialist Nomad Studio has been enlisted to bring something unique and \u2018ownable\u2019 to women-first fans, resulting in a sleek monogram made out of \u2018light\u2019.",
-    "image": "https://admin.itsnicethat.com/images/IGPl0QZ-IIKVtFISgr9uC28tDGg=/281797/width-1440%7Cformat-jpeg/MCW7.png",
-    "published_ts": 1788858000,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.itsnicethat.com/articles/nomad-manchester-city-women-graphic-design-project-080926"
-  },
-  "itsnicethat.com/articles/will-norman-christopher-notlan-the-oddersy-film-project-080926": {
-    "title": "iMacs, not Imax: An exclusive interview with Christopher Notlan, director of the Oddersy",
-    "source": "It's Nice That",
-    "snippet": "If we\u2019ve caught you before your morning coffee, no, this isn\u2019t an interview with Christopher Nolan, but Christopher Notlan (AKA Will Norman) the extremely serious director of the London-based micro budget epic The Oddersey, which trades Imax for iMacs...",
-    "image": "",
-    "published_ts": 1788854400,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://www.itsnicethat.com/articles/will-norman-christopher-notlan-the-oddersy-film-project-080926"
-  },
-  "emesstyle.com/a11y-design": {
-    "title": "WCAG Accessibility Guidelines Explorer",
-    "source": "Sidebar",
-    "snippet": "Learn and understand web accessibility standards with interactive demos showing violations vs. solutions.",
-    "image": "https://emesstyle.com/a11y-design/og-image.png",
-    "published_ts": 1789619979,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://emesstyle.com/a11y-design/"
-  },
-  "martinfowler.com/rachels-ramblings/code-review.html": {
-    "title": "Maybe we shouldn\u2019t be reviewing all this code",
-    "source": "Sidebar",
-    "snippet": "Or, perhaps the problem isn\u2019t that AI has broken code review, maybe it\u2019s that we\u2019ve been using code review to solve the wrong problems",
-    "image": "https://martinfowler.com/rachels-ramblings/card.png",
-    "published_ts": 1789619949,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://martinfowler.com/rachels-ramblings/code-review.html"
-  },
-  "liamnugent.me/posts/what-you-dont-build": {
-    "title": "The most important product decision is what you don\u2019t build",
-    "source": "Sidebar",
-    "snippet": "Ask a team what they shipped this year and you\u2019ll get a list. Ask what they killed and the room goes quiet.",
-    "image": "https://liamnugent.me/img/og_image-1.jpg",
-    "published_ts": 1789619905,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://liamnugent.me/posts/what-you-dont-build/"
-  },
-  "yegge.ai/essays/seats-and-sunsets": {
-    "title": "Seats and sunsets",
-    "source": "Sidebar",
-    "snippet": "Understanding agent orchestration economics, model capability thresholds, token burn rates, and structural failure modes.",
-    "image": "https://yegge.ai/images/essays/seats-and-sunsets/hero.jpg",
-    "published_ts": 1789619878,
-    "first_seen_ts": 1789639223.355985,
-    "link": "https://yegge.ai/essays/seats-and-sunsets/"
-  },
   "uxdesign.cc/altman-and-amodeis-unsafe-at-any-prompt-moment-for-ai-6a73f144b56e?source=rss----138adf9c44c---4": {
     "title": "Altman and Amodei\u2019s \u201cunsafe at any prompt\u201d moment for AI",
     "source": "UX Collective",
@@ -1114,5 +925,149 @@
     "published_ts": 1790136788,
     "first_seen_ts": 1790157626.727619,
     "link": "https://addyosmani.com/blog/audit-your-agent-files/"
+  },
+  "lennysnewsletter.com/p/60-creative-growth-ideas": {
+    "title": "60+ new creative growth ideas",
+    "source": "Lenny's Newsletter",
+    "snippet": "How to stand out when everyone is running the same playbook",
+    "image": "https://substackcdn.com/image/fetch/$s_!NVVg!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F20cbbe62-5c82-4d4f-a316-de9b885e56f2_1456x970.png",
+    "published_ts": 1789476328,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://www.lennysnewsletter.com/p/60-creative-growth-ideas"
+  },
+  "lennysnewsletter.com/p/why-companies-are-becoming-a-series": {
+    "title": "Why companies are becoming a series of loops | Anish Acharya (a16z)",
+    "source": "Lenny's Newsletter",
+    "snippet": "Anish Acharya on why the permanent-underclass fear is wrong, how every job function becomes a loop, and where consumer AI is headed",
+    "image": "https://substackcdn.com/image/fetch/$s_!oe1_!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa2aed490-0fc1-453b-a199-218c5dba062a_1920x1080.png",
+    "published_ts": 1788697920,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://www.lennysnewsletter.com/p/why-companies-are-becoming-a-series"
+  },
+  "design-milk.com/taste-curious-lives-of-vegetables": {
+    "title": "The Artful\u2014and Thoughtful\u2014Side of Vegetables",
+    "source": "Design Milk",
+    "snippet": "'The Curious Lives of Vegetables' looks beyond the plate to uncover the history, biodiversity, and beauty hiding in the foods we know best",
+    "image": "https://design-milk.com/images/2026/09/The-Curious-Lives-of-Vegetables.png",
+    "published_ts": 1790203396,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://design-milk.com/taste-curious-lives-of-vegetables/"
+  },
+  "design-milk.com/design-forward-listening-rooms": {
+    "title": "Listening Rooms Are Having a Design Moment",
+    "source": "Design Milk",
+    "snippet": "A new generation of design-forward listening rooms puts acoustics, atmosphere, and the shared experience of music at the center.",
+    "image": "https://design-milk.com/images/2026/09/connorrancan-9207.jpg",
+    "published_ts": 1790200128,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://design-milk.com/design-forward-listening-rooms/"
+  },
+  "design-milk.com/chloe-fineman-home-interior-design": {
+    "title": "Chloe Fineman Designs Her Life Like a Film Set",
+    "source": "Design Milk",
+    "snippet": "In the latest episode of the 'Ideas of Order' podcast, the 'SNL' star talks bicoastal design influences, a creative upbringing in Berkeley, and more",
+    "image": "https://design-milk.com/images/2026/09/CC-CHLOE-FINEMAN-00010-HIGHRES-1280x900-1.jpg",
+    "published_ts": 1790172053,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://design-milk.com/chloe-fineman-home-interior-design/"
+  },
+  "design-milk.com/schedio-vancouver-special-renovation": {
+    "title": "A 1978 Vancouver Special Gets a \u201cSophisti-Quirk\u201d Reinvention",
+    "source": "Design Milk",
+    "snippet": "Sch\u00e9dio transforms a familiar Vancouver housing type with vaulted ceilings, unexpected color, local craftsmanship, and a catamaran-inspired net suspended between floors",
+    "image": "https://design-milk.com/images/2026/09/1.-Schedio_StGeroge-395.jpg",
+    "published_ts": 1789650053,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://design-milk.com/schedio-vancouver-special-renovation/"
+  },
+  "itsnicethat.com/articles/mestiza-studio-canica-graphic-design-project-240926": {
+    "title": "Mestiza Studio built this play cafe brand like a game, fusing aesthetics to appeal to all ages",
+    "source": "It's Nice That",
+    "snippet": "The brand for Canica combines constructivist geometry with expressive illustration, creating a visual world that\u2019s fun but not too childish.",
+    "image": "https://admin.itsnicethat.com/images/ZPcnT6wcRhN-ynHPpEi4I47JPnI=/281854/width-1440/canica_3.jpg",
+    "published_ts": 1790240400,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://www.itsnicethat.com/articles/mestiza-studio-canica-graphic-design-project-240926"
+  },
+  "itsnicethat.com/articles/bea-korsch-intrusive-thots-art-project-240926": {
+    "title": "Bea Korsch\u2019s Intrusive Thots is an explosive zine about depression, treatment and recovery",
+    "source": "It's Nice That",
+    "snippet": "Made during a year-long outpatient programme, the experimental comic combines drawings, journals, ephemera and text messages to document the artist\u2019s turbulent inner world.",
+    "image": "https://admin.itsnicethat.com/images/mzB6g57ONMyBa0QwwqBMPfxuHNQ=/281443/width-1440/bea-korsch-art-itsnicethat-12.jpg",
+    "published_ts": 1790236800,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://www.itsnicethat.com/articles/bea-korsch-intrusive-thots-art-project-240926"
+  },
+  "itsnicethat.com/articles/victor-hwang-mater-graphic-design-160926": {
+    "title": "Victor Hwang on why we should be updating existing websites rather than making new ones",
+    "source": "It's Nice That",
+    "snippet": "From the Yellow Pages and Rolodex to the early internet, this web designer is drawing on references from the past to make the sustainable websites of the future.",
+    "image": "https://admin.itsnicethat.com/images/q3Gv4ZPwilr8BPYx1MOpWZz-GLo=/281874/width-1440%7Cformat-jpeg/Mater-ItsNiceThat-0.png",
+    "published_ts": 1789545600,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://www.itsnicethat.com/articles/victor-hwang-mater-graphic-design-160926"
+  },
+  "itsnicethat.com/articles/marina-willer-pentagram-bfi-london-film-festival-graphic-design-160926": {
+    "title": "Marina Willer crafts letters with light and projection for BFI London Film Festival\u2019s new identity and campaign",
+    "source": "It's Nice That",
+    "snippet": "In an age of streaming domination and scattergun viewing habits, how do you pay homage to the slow craft of cinema? The Pentagram partner\u2019s analogue identity for London\u2019s biggest film festival lights the way.",
+    "image": "https://admin.itsnicethat.com/images/ustkghc2XWGm_YapSl7BYtJmAYk=/282007/width-1440%7Cformat-jpeg/BFI_LFF_Logo.png",
+    "published_ts": 1789545600,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://www.itsnicethat.com/articles/marina-willer-pentagram-bfi-london-film-festival-graphic-design-160926"
+  },
+  "itsnicethat.com/articles/elizabeth-goodspeed-on-what-makes-a-mako-photography-creative-industry-160926": {
+    "title": "Elizabeth Goodspeed on Szilveszter Mak\u00f3 and the commercial appeal of the auteur",
+    "source": "It's Nice That",
+    "snippet": "Szilveszter Mak\u00f3\u2019s surreal portraits have become nearly as recognisable as the celebrities he photographs. Our US editor-at-large considers what subjects bring to a signature style \u2013\u00a0and what happens when a point of view can be commissioned on demand.",
+    "image": "https://m.itsnicethat.com/original_images/Meta_Image_hP7sZ6J.png?class=w1440",
+    "published_ts": 1789542000,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://www.itsnicethat.com/articles/elizabeth-goodspeed-on-what-makes-a-mako-photography-creative-industry-160926"
+  },
+  "voiceinthemachine.com/2026/09/21/the-fear-of-ai": {
+    "title": "The fear of AI",
+    "source": "Sidebar",
+    "snippet": "When numbers do not match the fear, and where fear should be aimed.",
+    "image": "https://i0.wp.com/voiceinthemachine.com/wp-content/uploads/2026/09/gemini_generated_image_jyqoiwjyqoiwjyqo.jpeg?fit=1200%2C670&#038;ssl=1",
+    "published_ts": 1790234911,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://voiceinthemachine.com/2026/09/21/the-fear-of-ai/"
+  },
+  "paulbakaus.com/i-gave-my-website-a-boss-fight": {
+    "title": "I gave my website a boss fight",
+    "source": "Sidebar",
+    "snippet": "Building a little piece of it involved Claude, 4,096 colors, and a surprisingly difficult pair of legs.",
+    "image": "https://www.paulbakaus.com/assets/images/article/rooftop.jpg",
+    "published_ts": 1790234844,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://www.paulbakaus.com/i-gave-my-website-a-boss-fight/"
+  },
+  "categorycolors.com": {
+    "title": "Category colors",
+    "source": "Sidebar",
+    "snippet": "A browser-based optimizer for categorical color palettes.",
+    "image": "https://categorycolors.com/og.png",
+    "published_ts": 1790234797,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://categorycolors.com/"
+  },
+  "loading.dev": {
+    "title": "loading.dev",
+    "source": "Sidebar",
+    "snippet": "A lightweight library full of beautiful loading indicators for React.",
+    "image": "https://ru2qm1zsj1gavqlm.public.blob.vercel-storage.com/loading-og-image.png",
+    "published_ts": 1790234750,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://loading.dev/"
+  },
+  "tonyward.dev/articles/code-as-the-source-of-truth": {
+    "title": "Code as the source of truth",
+    "source": "Sidebar",
+    "snippet": "With AI tooling, code being the source of truth just makes sense.",
+    "image": "https://www.tonyward.dev/og/code-as-the-source-of-truth.jpg",
+    "published_ts": 1790234717,
+    "first_seen_ts": 1790244063.2089434,
+    "link": "https://www.tonyward.dev/articles/code-as-the-source-of-truth"
   }
 }
