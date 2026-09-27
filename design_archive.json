@@ -1,22 +1,4 @@
 {
-  "lennysnewsletter.com/p/community-wisdom-finding-your-first": {
-    "title": "\ud83e\udde0 Community Wisdom: Finding your first users before the product exists, debriefing your own interviews, what to optimize for in the early years of your career, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 299",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1789846944,
-    "first_seen_ts": 1789898424.0084982,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-finding-your-first"
-  },
-  "itsnicethat.com/features/the-weekend-with-anaiis-110926": {
-    "title": "The Weekend With anaiis",
-    "source": "It's Nice That",
-    "snippet": "The French-Senegalese singer let us in on whats been pouring into her gentle soul and R&amp;B tracks while we pick her brains for what you should get up to on your next day off.",
-    "image": "https://admin.itsnicethat.com/images/qJlF_GnYledUChGPaPA5v-OAmTA=/281768/width-1440%7Cformat-jpeg/The_Weekend_HERO_DlVaR7v.png",
-    "published_ts": 1789113600,
-    "first_seen_ts": 1789898424.0084982,
-    "link": "https://www.itsnicethat.com/features/the-weekend-with-anaiis-110926"
-  },
   "uxdesign.cc/ai-nutrition-facts-cbfa8f9874e8?source=rss----138adf9c44c---4": {
     "title": "AI nutrition facts",
     "source": "UX Collective",
@@ -1015,5 +997,59 @@
     "published_ts": 1789718400,
     "first_seen_ts": 1790416826.955063,
     "link": "https://www.itsnicethat.com/features/the-weekend-with-can-can-press-180926"
+  },
+  "smashingmagazine.com/2026/09/death-button-why-best-interface-is-no-interface": {
+    "title": "The Death Of The Button: Why The Best Interface Is No Interface",
+    "source": "Smashing Magazine",
+    "snippet": "TThe web is evolving beyond menus, forms, and endless clicks toward experiences shaped around human intent. For UX designers, understanding this shift means re-evaluating their role, moving from designing visible interfaces to guiding transparent, intent-driven AI experiences.",
+    "image": "",
+    "published_ts": 1788948000,
+    "first_seen_ts": 1790503228.9085312,
+    "link": "https://smashingmagazine.com/2026/09/death-button-why-best-interface-is-no-interface/"
+  },
+  "nngroup.com/articles/designing-ai-study-guide": {
+    "title": "Designing AI Products and Features: Study Guide",
+    "source": "NN/g",
+    "snippet": "Unsure where to start? Use this collection of links to our articles and videos to learn about recommendations for designing AI products and features.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Designing-AI-Products-1.png",
+    "published_ts": 1789750800,
+    "first_seen_ts": 1790503228.9085312,
+    "link": "https://www.nngroup.com/articles/designing-ai-study-guide/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/3-agent-context-roles": {
+    "title": "The 3 Roles of Context for AI Agents",
+    "source": "NN/g",
+    "snippet": "AI-agent power users curate 3 kinds of context: global (across tasks), local (task-specific), and ambient (raw streams like email).",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_3_Roles_of_Context_for_AI_Agents-1-SocialCard.png",
+    "published_ts": 1789750800,
+    "first_seen_ts": 1790503228.9085312,
+    "link": "https://www.nngroup.com/articles/3-agent-context-roles/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/training/september": {
+    "title": "UX Conference September Announced (Sep 14 - Sep 25)",
+    "source": "NN/g",
+    "snippet": "Take up to 5 in-depth training courses, teaching user experience best practices for successful design. Training focused on long-lasting skills for UX professionals. September 14 - September 25, 2026.",
+    "image": "https://media.nngroup.com/media/metadata/opengraph_images/Virtual_UX_Training_Overview.jpg",
+    "published_ts": 1788295065,
+    "first_seen_ts": 1790503228.9085312,
+    "link": "https://www.nngroup.com/training/september/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/community-wisdom-ai-doomerism-speeding": {
+    "title": "\ud83e\udde0 Community Wisdom: AI doomerism, speeding up discovery in a big org, verifying engineering answers as a new PM, where analytics adds the most value, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 300",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1790445242,
+    "first_seen_ts": 1790503228.9085312,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-ai-doomerism-speeding"
+  },
+  "itsnicethat.com/articles/nicer-tuesdays-october-2026-launch-180926": {
+    "title": "Nicer Tuesdays London: Get tickets for ManvsMachine, Silvana Trevale and Luci Pina in October!",
+    "source": "It's Nice That",
+    "snippet": "At October\u2019s event in London, expect talks about photography of Venezuelan youth, high-profile motion design and playful multi-media illustration.",
+    "image": "https://m.itsnicethat.com/original_images/NT_LDN_2026_Meta.png?class=w1440",
+    "published_ts": 1789718400,
+    "first_seen_ts": 1790503228.9085312,
+    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-october-2026-launch-180926"
   }
 }
