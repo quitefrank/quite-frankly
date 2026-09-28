@@ -240,20 +240,39 @@ def absolute_image_url(url: str, base_url: str) -> str:
     return urljoin(base_url, url)
 
 
-def resolve_entry_link(entry, channel_link: str = "") -> str:
+def _is_resolved_relative_guid(entry, link: str, feed_url: str) -> bool:
+    """True when entry.link is a bare guid feedparser absolutized against the feed.
+
+    feedparser sets guidislink when an item has no <link> and its <guid> stands
+    in, and it resolves a relative guid against the feed URL's directory. So a
+    guid-sourced link sitting in the feed's own folder was never a page: CBC
+    Frontburner's "frontburner-<uuid>" arrives as the absolute, 404ing
+    https://www.cbc.ca/podcasting/includes/frontburner-<uuid>. A guid that was a
+    real permalink points elsewhere and passes.
+    """
+    if not getattr(entry, "guidislink", False) or not feed_url:
+        return False
+    feed_dir = urljoin(feed_url, "./")
+    return bool(feed_dir) and link.startswith(feed_dir) and link != feed_dir
+
+
+def resolve_entry_link(entry, channel_link: str = "", feed_url: str = "") -> str:
     """Return a usable article URL for an RSS entry.
 
     Some feeds omit a per-item <link> and carry only a <guid>. With the RSS
     default isPermaLink=true, feedparser exposes that guid as entry.link and
     resolves it against the feed's own directory — e.g. CBC Frontburner's
     "frontburner-<uuid>" guid becomes cbc.ca/podcasting/includes/frontburner-
-    <uuid>, a path that has never been a real page and 404s. The tell is that
-    entry.link is not an absolute http(s) URL. When that happens, fall back to
-    the channel homepage, then to the audio enclosure; return "" if neither
-    exists so the caller drops the item rather than ship a dead link.
+    <uuid>, a path that has never been a real page and 404s. Because the
+    resolved link is absolute, an http(s) prefix check alone never catches it
+    (it shipped the 2026-09-28 Tumbler Ridge episode as a 404); the tell is a
+    guid-sourced link inside the feed's directory, or a link with no scheme.
+    When that happens, fall back to the channel homepage, then to the audio
+    enclosure; return "" if neither exists so the caller drops the item rather
+    than ship a dead link.
     """
     link = (getattr(entry, "link", "") or "").strip()
-    if link.startswith(("http://", "https://")):
+    if link.startswith(("http://", "https://")) and not _is_resolved_relative_guid(entry, link, feed_url):
         return link
     channel_link = (channel_link or "").strip()
     if channel_link.startswith(("http://", "https://")):
@@ -302,7 +321,9 @@ def fetch_feed(feed_config, limit: int = 10):
         if feed_config["source"] not in SOURCES_SKIP_OG_IMAGE:
             channel_image = ""
         for entry in parsed.entries[:limit]:
-            link  = resolve_entry_link(entry, channel_link)
+            # parsed.href is the post-redirect URL feedparser resolved against.
+            feed_url = getattr(parsed, "href", "") or feed_config["url"]
+            link  = resolve_entry_link(entry, channel_link, feed_url)
             title = getattr(entry, "title", "") or ""
             summary = re.sub(r"<[^>]+>", "", getattr(entry, "summary", "") or "").strip()
             if title and link and len(summary) >= MIN_SNIPPET_CHARS:

@@ -327,6 +327,42 @@ def test_fetch_feed_repairs_frontburner_guid_link_to_channel_homepage():
     assert items[0]["link"] == "https://www.cbc.ca/frontburner"
 
 
+FRONTBURNER_FEED = "https://www.cbc.ca/podcasting/includes/frontburner.xml"
+
+
+def test_fetch_feed_repairs_frontburner_guid_after_feedparser_absolutizes_it():
+    # What real feedparser hands back, unlike the bare-guid fake above: the
+    # guid already resolved to an absolute https URL in the feed's directory,
+    # with guidislink=True. The http(s) prefix check passed this, and the
+    # 2026-09-28 edition linked "ChatGPT and the Tumbler Ridge shooter" to it.
+    entries = [
+        ("ChatGPT and the Tumbler Ridge shooter",
+         "https://www.cbc.ca/podcasting/includes/frontburner-88c9238b-d070-4d5a-8350-8ae477ea503c",
+         "A podcast episode with a meaningful summary sentence for the formatter.",
+         "https://mgln.ai/e/12/cbc.mc.tritondigital.com/frontburner.mp3"),
+    ]
+    parsed = _fake_podcast_parsed("https://www.cbc.ca/frontburner", entries)
+    parsed.href = FRONTBURNER_FEED
+    parsed.entries[0].guidislink = True
+    with patch("pipeline.feedparser.parse", return_value=parsed):
+        items = fetch_feed({"url": FRONTBURNER_FEED, "source": "CBC Frontburner"})
+    assert items[0]["link"] == "https://www.cbc.ca/frontburner"
+
+
+def test_fetch_feed_keeps_a_guid_permalink_that_points_outside_the_feed_dir():
+    # A guid that is a genuine permalink (no <link>, guidislink=True) must survive.
+    entries = [
+        ("Episode", "https://www.cbc.ca/radio/frontburner/some-episode-9.1234567",
+         "A podcast episode with a meaningful summary sentence for the formatter.",
+         "https://mgln.ai/e/12/audio.mp3"),
+    ]
+    parsed = _fake_podcast_parsed("https://www.cbc.ca/frontburner", entries)
+    parsed.entries[0].guidislink = True
+    with patch("pipeline.feedparser.parse", return_value=parsed):
+        items = fetch_feed({"url": FRONTBURNER_FEED, "source": "CBC Frontburner"})
+    assert items[0]["link"] == "https://www.cbc.ca/radio/frontburner/some-episode-9.1234567"
+
+
 def test_fetch_feed_falls_back_to_audio_enclosure_when_no_channel_link():
     # If a guid-only feed also lacks a usable channel link, the audio enclosure
     # is the only real resource left — better than a 404 page.
