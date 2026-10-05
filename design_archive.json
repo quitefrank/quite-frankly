@@ -1,58 +1,4 @@
 {
-  "smashingmagazine.com/2026/09/death-button-why-best-interface-is-no-interface": {
-    "title": "The Death Of The Button: Why The Best Interface Is No Interface",
-    "source": "Smashing Magazine",
-    "snippet": "TThe web is evolving beyond menus, forms, and endless clicks toward experiences shaped around human intent. For UX designers, understanding this shift means re-evaluating their role, moving from designing visible interfaces to guiding transparent, intent-driven AI experiences.",
-    "image": "",
-    "published_ts": 1788948000,
-    "first_seen_ts": 1790503228.9085312,
-    "link": "https://smashingmagazine.com/2026/09/death-button-why-best-interface-is-no-interface/"
-  },
-  "nngroup.com/articles/designing-ai-study-guide": {
-    "title": "Designing AI Products and Features: Study Guide",
-    "source": "NN/g",
-    "snippet": "Unsure where to start? Use this collection of links to our articles and videos to learn about recommendations for designing AI products and features.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Designing-AI-Products-1.png",
-    "published_ts": 1789750800,
-    "first_seen_ts": 1790503228.9085312,
-    "link": "https://www.nngroup.com/articles/designing-ai-study-guide/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/3-agent-context-roles": {
-    "title": "The 3 Roles of Context for AI Agents",
-    "source": "NN/g",
-    "snippet": "AI-agent power users curate 3 kinds of context: global (across tasks), local (task-specific), and ambient (raw streams like email).",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_3_Roles_of_Context_for_AI_Agents-1-SocialCard.png",
-    "published_ts": 1789750800,
-    "first_seen_ts": 1790503228.9085312,
-    "link": "https://www.nngroup.com/articles/3-agent-context-roles/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/training/september": {
-    "title": "UX Conference September Announced (Sep 14 - Sep 25)",
-    "source": "NN/g",
-    "snippet": "Take up to 5 in-depth training courses, teaching user experience best practices for successful design. Training focused on long-lasting skills for UX professionals. September 14 - September 25, 2026.",
-    "image": "https://media.nngroup.com/media/metadata/opengraph_images/Virtual_UX_Training_Overview.jpg",
-    "published_ts": 1788295065,
-    "first_seen_ts": 1790503228.9085312,
-    "link": "https://www.nngroup.com/training/september/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/community-wisdom-ai-doomerism-speeding": {
-    "title": "\ud83e\udde0 Community Wisdom: AI doomerism, speeding up discovery in a big org, verifying engineering answers as a new PM, where analytics adds the most value, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 300",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1790445242,
-    "first_seen_ts": 1790503228.9085312,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-ai-doomerism-speeding"
-  },
-  "itsnicethat.com/articles/nicer-tuesdays-october-2026-launch-180926": {
-    "title": "Nicer Tuesdays London: Get tickets for ManvsMachine, Silvana Trevale and Luci Pina in October!",
-    "source": "It's Nice That",
-    "snippet": "At October\u2019s event in London, expect talks about photography of Venezuelan youth, high-profile motion design and playful multi-media illustration.",
-    "image": "https://m.itsnicethat.com/original_images/NT_LDN_2026_Meta.png?class=w1440",
-    "published_ts": 1789718400,
-    "first_seen_ts": 1790503228.9085312,
-    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-october-2026-launch-180926"
-  },
   "uxdesign.cc/how-we-save-entry-level-ux-work-that-teaches-craft-in-the-time-of-ai-our-field-depends-on-this-e1684a0d67eb?source=rss----138adf9c44c---4": {
     "title": "How we save entry-level UX work that teaches craft in the time of AI. Our field depends on this.",
     "source": "UX Collective",
@@ -1087,5 +1033,122 @@
     "published_ts": 1791046849,
     "first_seen_ts": 1791108027.5568345,
     "link": "https://www.lennysnewsletter.com/p/community-wisdom-getting-value-from"
+  },
+  "uxdesign.cc/the-building-was-there-first-26c6c4e49ba8?source=rss----138adf9c44c---4": {
+    "title": "The building was there first",
+    "source": "UX Collective",
+    "snippet": "A style&#x2019;s real output isn&#x2019;t what it makes. It&#x2019;s the category it installs in whoever looks.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2500/1*D81JpDsqoeWmW9smhqc5Qw.jpeg",
+    "published_ts": 1791124468,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://uxdesign.cc/the-building-was-there-first-26c6c4e49ba8?source=rss----138adf9c44c---4"
+  },
+  "nngroup.com/articles/ai-functionality-study-guide": {
+    "title": "How AI Works and How Users Think About It: Study Guide",
+    "source": "NN/g",
+    "snippet": "Unsure where to start? Use this collection of links to our articles and videos to learn about how artificial intelligence works, and how users think about it.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/How-AI-Works-Study-Guide-1_rBL76lj.png",
+    "published_ts": 1790355600,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://www.nngroup.com/articles/ai-functionality-study-guide/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/disclose-ai-paced": {
+    "title": "When Should You Disclose AI Use? The PACED Framework",
+    "source": "NN/g",
+    "snippet": "How people react to being told that AI helped create a piece of content varies with audience, context, the nature and degree of AI use.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/PACED_1.png",
+    "published_ts": 1790355600,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://www.nngroup.com/articles/disclose-ai-paced/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/openais-head-of-chatgpt-were-entering": {
+    "title": "OpenAI\u2019s Head of ChatGPT: We\u2019re entering a new era of AI (again) | Tibo Sottiaux",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now (37 mins) | Tibo Sottiaux on why Dots is OpenAI&#8217;s biggest bet, why agents will dominate internet traffic, and what builders are still getting wrong",
+    "image": "https://substackcdn.com/image/fetch/$s_!R1rY!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa31d716a-4c6c-432d-9a84-40d81a122526_2048x2048.png",
+    "published_ts": 1791117167,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://www.lennysnewsletter.com/p/openais-head-of-chatgpt-were-entering"
+  },
+  "itsnicethat.com/articles/creative-career-condundrums-if-you-could-jobs-advice-051026": {
+    "title": "\u201cKnow your \u2018why\u2019 behind what you want to prove\u201d",
+    "source": "It's Nice That",
+    "snippet": "Achieving \u2018success\u2019 in creative education is interesting when it comes to transitioning into a workplace environment, because it\u2019s not one-to-one comparable. Education has its set boundaries (essays, modules, terms, years) which don\u2019t necessarily translate to working in the field. So, if you\u2019re a hi",
+    "image": "https://admin.itsnicethat.com/images/_4oXRDTux5hmUlrgT8t5T-lPmDU=/283109/width-1440%7Cformat-jpeg/CCC_Square_HOW_DO_I_STOP_PAST_SUCCESS_DEFINING_WHAT_COMES_NEXT.png",
+    "published_ts": 1791190800,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://www.itsnicethat.com/articles/creative-career-condundrums-if-you-could-jobs-advice-051026"
+  },
+  "itsnicethat.com/features/nick-haymes-chronograph-photography-spotlight-051026": {
+    "title": "Nick Haymes\u2019 new photobook is a sprawling testament to the blood, tears and joy of growing up",
+    "source": "It's Nice That",
+    "snippet": "Chronograph collects 25 years of photographs of his children turning into adults. It\u2019s funny, bittersweet and sometimes heart-wrenching. We speak to Nick Haymes and his two sons about the trials and tribulations of childhood and parenting, as well as the process of recording life.",
+    "image": "https://admin.itsnicethat.com/images/tcgorf0THm6zm1-jh9gAp_9ZzvI=/282084/width-1440/nick-haymes-photography-itsnicethat-NH_Chronograph_8_ql0J9Hn.jpg",
+    "published_ts": 1791187200,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://www.itsnicethat.com/features/nick-haymes-chronograph-photography-spotlight-051026"
+  },
+  "itsnicethat.com/articles/tobie-tse-animation-discover-051026": {
+    "title": "Tobie Tse\u2019s hand-stitched works turns crochet and lace into delicate animations",
+    "source": "It's Nice That",
+    "snippet": "Inspired by early animation techniques, the multimedia artist combines hand-stitched textiles, illustration and digital motion to create visual responses to music.",
+    "image": "https://m.itsnicethat.com/original_images/star.gif",
+    "published_ts": 1791187200,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://www.itsnicethat.com/articles/tobie-tse-animation-discover-051026"
+  },
+  "itsnicethat.com/articles/luke-powell-judy-hudson-powell-xsolla-pentagram-graphic-design-project-051026": {
+    "title": "Xsolla (the biggest gaming company you\u2019ve never heard of) gets a retro-futuristic identity from Pentagram partners",
+    "source": "It's Nice That",
+    "snippet": "Xsolla remains tragically overlooked, but as Luke Powell and Judy Hudson-Powell tell It\u2019s Nice That, what the company needed was a strong identity rooted in UI and gaming worlds \u2013 and that\u2019s what it got.",
+    "image": "https://admin.itsnicethat.com/images/Hcpkcb-kPmvq-A8VFNSjbkDaRNg=/283129/width-1440%7Cformat-jpeg/pentagram-xsolla-graphic-design-itsnicethat-8.png",
+    "published_ts": 1791187200,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://www.itsnicethat.com/articles/luke-powell-judy-hudson-powell-xsolla-pentagram-graphic-design-project-051026"
+  },
+  "bit.ly/side-wis1": {
+    "title": "Save time with Wispr Flow (4x faster than typing)",
+    "source": "Sidebar",
+    "snippet": "The voice-to-text AI that turns speech into clear, polished writing in every app.",
+    "image": "https://cdn.prod.website-files.com/682f84b3838c89f8ff7667db/6a724a4fff322698a57a7d97_dictation-og%20(1).jpg",
+    "published_ts": 1791173100,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://bit.ly/side-wis1"
+  },
+  "uxdesign.cc/how-to-de-slopify-your-designs-4c40c57c1dc9": {
+    "title": "How to de-slopify your designs",
+    "source": "Sidebar",
+    "snippet": "Tips for anyone who vibecodes.",
+    "image": "",
+    "published_ts": 1791173040,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://uxdesign.cc/how-to-de-slopify-your-designs-4c40c57c1dc9"
+  },
+  "tomacco.github.io/amazing-glass": {
+    "title": "Amazing glass",
+    "source": "Sidebar",
+    "snippet": "Glass that bends the page behind it. Liquid glass web components for HTML, React and Vue, tuned pixel by pixel against Apple\u2019s own renderer.",
+    "image": "",
+    "published_ts": 1791172980,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://tomacco.github.io/amazing-glass/"
+  },
+  "unsung.aresluna.org/a-loading-state-within-a-loading-state": {
+    "title": "A loading state within a loading state",
+    "source": "Sidebar",
+    "snippet": "Loading is a complex space, where sometimes the most natural solution is a bad one.",
+    "image": "https://unsung.aresluna.org/_media/a-loading-state-within-a-loading-state/ogimage.jpg",
+    "published_ts": 1791172920,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://unsung.aresluna.org/a-loading-state-within-a-loading-state/"
+  },
+  "hitesh.in/2026/best-ai-still-feels-broken": {
+    "title": "Google has the best AI money can buy. Its products still feel broken.",
+    "source": "Sidebar",
+    "snippet": "Google\u2019s AI-era products keep breaking an old trust contract with users, and the model isn\u2019t the reason.",
+    "image": "https://hitesh.in/2026/best-ai-still-feels-broken/images/cover.png",
+    "published_ts": 1791172860,
+    "first_seen_ts": 1791194426.4770317,
+    "link": "https://hitesh.in/2026/best-ai-still-feels-broken/"
   }
 }
