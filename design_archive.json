@@ -1,112 +1,4 @@
 {
-  "uxdesign.cc/stop-blaming-the-model-for-slow-ai-heres-how-to-design-for-it-doherty-s-threshold-as-a-guideline-5fa6d52e23fc?source=rss----138adf9c44c---4": {
-    "title": "Stop blaming the model for slow AI. Using Doherty\u2019s threshold as a guideline.",
-    "source": "UX Collective",
-    "snippet": "Two eras of computing, held to the same 400 millisecond standard.Doherty\u2019s threshold set the rules and has now moved from the answer to the acknowledgment. The fix is a week of front-end work and a definition of done, not cheaper inference.Productivity soars when a computer and its users interact at",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*DfgDMmR-elZfFiXjEu8_KQ.png",
-    "published_ts": 1790895146,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://uxdesign.cc/stop-blaming-the-model-for-slow-ai-heres-how-to-design-for-it-doherty-s-threshold-as-a-guideline-5fa6d52e23fc?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/designs-consensus-was-ai-s-first-casualty-8143c1bada80?source=rss----138adf9c44c---4": {
-    "title": "Design\u2019s consensus was AI\u2019s first casualty",
-    "source": "UX Collective",
-    "snippet": "The same evidence about AI is being read two opposite ways, leaving designers to choose without a clear consensus to lean on.Continue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/2500/1*k4Gl0Tb1QEUT4UCinL8mng.jpeg",
-    "published_ts": 1790895062,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://uxdesign.cc/designs-consensus-was-ai-s-first-casualty-8143c1bada80?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/ai-beyond-average-from-chatting-to-collaborating-7b308dd9317a?source=rss----138adf9c44c---4": {
-    "title": "AI beyond average: from chatting to collaborating",
-    "source": "UX Collective",
-    "snippet": "How context, skills, and feedback turn the same model into a different kind of collaboratorContinue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/1456/0*QUMNBmWOyUMJce0y.png",
-    "published_ts": 1790894991,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://uxdesign.cc/ai-beyond-average-from-chatting-to-collaborating-7b308dd9317a?source=rss----138adf9c44c---4"
-  },
-  "design-milk.com/williamsburg-duplex-brooklyn": {
-    "title": "A Williamsburg Duplex Draws From Brooklyn\u2019s Industrial Past",
-    "source": "Design Milk",
-    "snippet": "Makers Collective Design layers walnut, blackened steel, marble, and loft-like proportions into a new Brooklyn residence rooted in its neighborhood",
-    "image": "https://design-milk.com/images/2026/10/2993-Photo-credit-Giada-Paoloni-1.jpg",
-    "published_ts": 1790915516,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://design-milk.com/williamsburg-duplex-brooklyn/"
-  },
-  "design-milk.com/laila-gohar-highland-park": {
-    "title": "Laila Gohar Turns Whisky Tasting Into a Visual Experience",
-    "source": "Design Milk",
-    "snippet": "The artist translates the flavors and memories sparked by Highland Park\u2019s 17-year-old single malt into surreal illustrated packaging",
-    "image": "https://design-milk.com/images/2026/10/HPK-2026-BYI-2-Still-BTS-Laila-Global-Unbranded-16x9-RGB-e1790882757568-1500x998.jpg",
-    "published_ts": 1790883080,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://design-milk.com/laila-gohar-highland-park/"
-  },
-  "design-milk.com/minimalist-bedroom-design-essentials": {
-    "title": "6 Design-Forward Essentials for the Minimalist Bedroom",
-    "source": "Design Milk",
-    "snippet": "Clean lines, natural materials, and clever storage bring a sense of calm to these six furnishings designed for pared-back spaces",
-    "image": "https://design-milk.com/images/2026/09/Ratio-Series-Wood-Storage-Furniture-FRAMA-6-1280x900-1.jpg",
-    "published_ts": 1790863226,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://design-milk.com/minimalist-bedroom-design-essentials/"
-  },
-  "design-milk.com/bitreel-ai-knowledge-agents": {
-    "title": "Bitreel\u2019s AI Knowledge Agents Are Reshaping the Design Process",
-    "source": "Design Milk",
-    "snippet": "By streamlining tedious behind-the-scenes tasks, Bitreel\u2019s AI Knowledge Agents give designers more time to focus on the creative work that matters.",
-    "image": "https://design-milk.com/images/2026/09/Virtual_environment_render.png",
-    "published_ts": 1790859626,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://design-milk.com/bitreel-ai-knowledge-agents/"
-  },
-  "renatovaldes.com/essays/what-happens-when-you-can-build-it-all-yourself": {
-    "title": "What happens when you can build it all yourself",
-    "source": "Sidebar",
-    "snippet": "What speed is doing to my expectations, my attention and the case for startup funding.",
-    "image": "https://www.renatovaldes.com/assets/og/essays-what-happens-when-you-can-build-it-all-yourself.png",
-    "published_ts": 1790931808,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://www.renatovaldes.com/essays/what-happens-when-you-can-build-it-all-yourself/"
-  },
-  "thinkingorbs.com": {
-    "title": "Thinking orbs",
-    "source": "Sidebar",
-    "snippet": "A React component library of well-crafted, animated orbs for AI: thinking, searching, compacting and more status indicators. Free, open source.",
-    "image": "https://www.thinkingorbs.com/opengraph-image?d821f01087a1e0d1",
-    "published_ts": 1790931767,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://www.thinkingorbs.com/"
-  },
-  "useblume.dev": {
-    "title": "Blume",
-    "source": "Sidebar",
-    "snippet": "The open-source docs framework for humans and agents. Drop Markdown into a folder and ship a fast docs site.",
-    "image": "https://useblume.dev/opengraph-image.png",
-    "published_ts": 1790931732,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://useblume.dev/"
-  },
-  "philipwalton.com/articles/modern-web-types": {
-    "title": "Modern web types",
-    "source": "Sidebar",
-    "snippet": "TypeScript intentionally doesn\u2019t support all new APIs, but there\u2019s an easy fix.",
-    "image": "https://philipwalton.com/static/modern-web-types-poster.DcxfbTvi_17vfdo.webp",
-    "published_ts": 1790931680,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://philipwalton.com/articles/modern-web-types/"
-  },
-  "brookslybrand.com/posts/do-frameworks-matter-anymore": {
-    "title": "Do frameworks matter anymore?",
-    "source": "Sidebar",
-    "snippet": "How abstractions constrain AI agents, helping engineering teams evaluate long-term web architecture choices.",
-    "image": "",
-    "published_ts": 1790931636,
-    "first_seen_ts": 1790935228.5506136,
-    "link": "https://brookslybrand.com/posts/do-frameworks-matter-anymore/"
-  },
   "uxdesign.cc/in-tension-modeling-what-gives-us-the-right-01740248eb45?source=rss----138adf9c44c---4": {
     "title": "In/tension modeling: what gives us the right?",
     "source": "UX Collective",
@@ -898,5 +790,320 @@
     "published_ts": 1791444600,
     "first_seen_ts": 1791453633.0996084,
     "link": "https://wattenberger.com/thoughts/ai-is-still-in-its-terminal-era/"
+  },
+  "uxdesign.cc/teslers-law-complexity-survived-the-chat-field-it-just-moved-to-a-different-place-in-the-journey-8a63f099f490?source=rss----138adf9c44c---4": {
+    "title": "Tesler\u2019s Law: complexity moved to a different part of the journey",
+    "source": "UX Collective",
+    "snippet": "The complexity never left the building. It changed hands, and nothing printed a receipt. AI assisted.AI did not remove the complexity of software. It removed the interface that told you where the complexity went, and who is now paying for\u00a0it.Larry Tesler is the reason you can cut, copy, and paste. A",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*3075AKBZYzb99y7ImuTgDQ.png",
+    "published_ts": 1791501478,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://uxdesign.cc/teslers-law-complexity-survived-the-chat-field-it-just-moved-to-a-different-place-in-the-journey-8a63f099f490?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/are-synthetic-users-really-the-future-of-ux-research-fd76fcb479ec?source=rss----138adf9c44c---4": {
+    "title": "Are synthetic users (really) the future of UX research?",
+    "source": "UX Collective",
+    "snippet": "Human-centered design demands a limited use of AI-generated personas, if at\u00a0allA big debate among UX researchers is whether to use synthetic users in their studies. There\u2019s one group of researchers who consider it no less than an abomination, unethical to use an artificial persona to test a product ",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*a8n0oMQn0pBX9xsL69g09Q.png",
+    "published_ts": 1791501402,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://uxdesign.cc/are-synthetic-users-really-the-future-of-ux-research-fd76fcb479ec?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/synthetic-users-are-making-me-rethink-imperfect-research-abbadb8ec082?source=rss----138adf9c44c---4": {
+    "title": "Synthetic users are making me rethink \u201cimperfect research\u201d",
+    "source": "UX Collective",
+    "snippet": "Why I\u2019m reconsidering a principle I\u2019ve believed for\u00a0years.I\u2019ve always believed that imperfect research is better than no research at\u00a0all.Synthetic users have made me reconsider that. When synthetic responses are treated like findings from real users, they can create something far more dangerous than",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*lF5eUoCldIiPHLYyLvq4Ew.jpeg",
+    "published_ts": 1791501390,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://uxdesign.cc/synthetic-users-are-making-me-rethink-imperfect-research-abbadb8ec082?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/ai-generated-ui-is-fast-design-not-ux-855ca8abcd28?source=rss----138adf9c44c---4": {
+    "title": "AI-generated UI is fast design, not UX",
+    "source": "UX Collective",
+    "snippet": "The call for problem discovery, the freedom and wander, and craft in the age of\u00a0AII grew up surrounded by 17th- and 18th-century architecture my stepfather salvaged from around the world. My mother had a knack for convincing him to put some of his salvaged pieces in our house, which meant I got to e",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*nQhL0-yld2rIQVYaNb-d1Q.png",
+    "published_ts": 1791501370,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://uxdesign.cc/ai-generated-ui-is-fast-design-not-ux-855ca8abcd28?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/what-the-ai-era-owes-you-d472b3859bf3?source=rss----138adf9c44c---4": {
+    "title": "What the AI era owes you",
+    "source": "UX Collective",
+    "snippet": "A handloom weaver in 1820 could not have named a single job his trade would turn into. Neither can anyone\u00a0today.No one is going to save your career from AI. That\u2019s the most useful thing anyone can tell you about your job, and the sooner you believe it, the sooner you start building a version of your",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*nBeSBxur8pZlEyZnohMfoA.jpeg",
+    "published_ts": 1791501343,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://uxdesign.cc/what-the-ai-era-owes-you-d472b3859bf3?source=rss----138adf9c44c---4"
+  },
+  "smashingmagazine.com/2026/09/desktop-wallpaper-calendars-october-2026": {
+    "title": "Under Autumn\u2019s Spell (October 2026 Wallpapers Edition)",
+    "source": "Smashing Magazine",
+    "snippet": "October is just around the corner, which means it\u2019s time for some new desktop wallpapers! Designed by the community for the community, they\u2019re here to brighten your screens, and maybe spark some creativity along the way.",
+    "image": "http://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0fdda8cd-7c63-4b61-86f6-f3188d312aaf/oct-20-magical-october-preview-opt.png",
+    "published_ts": 1790775000,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://smashingmagazine.com/2026/09/desktop-wallpaper-calendars-october-2026/"
+  },
+  "smashingmagazine.com/2026/09/building-ux-roi-case-survives-boardroom": {
+    "title": "Building A UX ROI Case That Survives The Boardroom",
+    "source": "Smashing Magazine",
+    "snippet": "Strong UX ideas do not secure investment on their own. Through a worked example, Alex Williams breaks down how to define business value, calculate costs, test causality, and build a credible case for the return on a design initiative. - UX - Design - Business",
+    "image": "http://files.smashing.media/articles/building-ux-roi-case-survives-boardroom/building-ux-roi-case-survives-boardroom.jpg",
+    "published_ts": 1789131600,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://smashingmagazine.com/2026/09/building-ux-roi-case-survives-boardroom/"
+  },
+  "nngroup.com/articles/test-earlier-with-ai": {
+    "title": "Test Complex Interactions Earlier with AI Prototyping",
+    "source": "NN/g",
+    "snippet": "AI tools make it feasible to build fully interactive prototypes of complex interfaces so you can test them with users earlier in the design process.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Test_Complex_Interactions_Earlier_with_AI_Prototyping_1_j3hM3sB.png",
+    "published_ts": 1789146000,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.nngroup.com/articles/test-earlier-with-ai/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/ai-editorial-process": {
+    "title": "AI Can Help Write an Article, but It Can\u2019t Stand Behind It",
+    "source": "NN/g",
+    "snippet": "NN/G uses AI for clarity, formatting, and critique, but humans retain editorial judgment and responsibility for every article.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/G_Uses_AI_in_Its_Editorial_Process-1.png",
+    "published_ts": 1789146000,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.nngroup.com/articles/ai-editorial-process/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/openai-dev-day-2026-the-releases": {
+    "title": "OpenAI Dev Day 2026: The releases that actually matter",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now (24 mins) | &#127897;&#65039; Claire tests OpenAI&#8217;s DevDay releases, from Dots, Spaces, and Sites to AI-picked thumbnails and a $97 game, and shares what&#8217;s worth trying first",
+    "image": "https://substackcdn.com/image/fetch/$s_!6ixD!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb6256887-3024-418c-8857-0d548934b780_1456x1048.png",
+    "published_ts": 1790779515,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.lennysnewsletter.com/p/openai-dev-day-2026-the-releases"
+  },
+  "lennysnewsletter.com/p/jev-8-real-use-cases-for-the-fastest": {
+    "title": "Jev: 8 real use cases for the fastest, cheapest model I\u2019ve ever used | John Lindquist",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now (46 mins) | &#127897;&#65039; Educator and developer John Lindquist shares eight Jev demos, from live voice classification and deduplication to agent routing, showing how low costs make once-impractical ideas worth trying",
+    "image": "https://substackcdn.com/image/fetch/$s_!HO95!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd369b1e-3cc2-4785-bd6d-ef4a9224c48a_1456x1048.png",
+    "published_ts": 1790769867,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.lennysnewsletter.com/p/jev-8-real-use-cases-for-the-fastest"
+  },
+  "lennysnewsletter.com/p/all-of-the-lenny-and-friends-summit": {
+    "title": "All of the Lenny & Friends Summit talks are now online!",
+    "source": "Lenny's Newsletter",
+    "snippet": "Plus, some reflections and takeaways from the day",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/9fed347c-0e02-4190-a590-1236719b99de_9213x6142.jpeg",
+    "published_ts": 1790687757,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.lennysnewsletter.com/p/all-of-the-lenny-and-friends-summit"
+  },
+  "lennysnewsletter.com/p/opus-55-vs-gpt-6-sol-which-model": {
+    "title": "Opus 5.5 vs. GPT-6 Sol: which model won my blind taste test?",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now (39 mins) | &#127897;&#65039; I ran blind evaluations across writing, frontend prototypes, long-running agentic tasks, SVGs, coding, and video editing, then put Opus 5.5 through Barbie Bench",
+    "image": "https://substackcdn.com/image/fetch/$s_!VNgD!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff26f6b66-fa0d-4d14-b7f7-2bd6cd7ecc29_1456x1048.png",
+    "published_ts": 1790118769,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.lennysnewsletter.com/p/opus-55-vs-gpt-6-sol-which-model"
+  },
+  "lennysnewsletter.com/p/i-left-claude-for-months-opus-55": {
+    "title": "I left Claude for months. Opus 5.5 is why I'm back",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now (25 mins) | &#127897;&#65039; I abandoned Claude for months because it drove me insane. Opus 5.5 changed that, and I'll show you exactly where it's earning a spot back in my stack for frontend, SVGs, and agentic tasks",
+    "image": "https://substackcdn.com/image/fetch/$s_!wVKF!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4c59d773-c775-4a90-b915-59ca3d168924_1456x1048.png",
+    "published_ts": 1790104000,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.lennysnewsletter.com/p/i-left-claude-for-months-opus-55"
+  },
+  "lennysnewsletter.com/p/advanced-evals-how-to-find-and-fix": {
+    "title": "Advanced evals: How to find (and fix) hidden AI failures in your product",
+    "source": "Lenny's Newsletter",
+    "snippet": "Why you should never skip error discovery",
+    "image": "https://substackcdn.com/image/fetch/$s_!0_d7!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6f6018cf-fa53-4f40-99d9-b1c9980dd031_1456x970.png",
+    "published_ts": 1790081114,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.lennysnewsletter.com/p/advanced-evals-how-to-find-and-fix"
+  },
+  "lennysnewsletter.com/p/how-i-ai-metas-muse-review-how-warp": {
+    "title": "\ud83c\udf99\ufe0f How I AI: Meta\u2019s Muse review + How Warp ships 2,000 PRs a month with AI factories",
+    "source": "Lenny's Newsletter",
+    "snippet": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/67497542-645c-4aa8-a1d2-c5aa697d2bd1_1456x1048.png",
+    "published_ts": 1790003031,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.lennysnewsletter.com/p/how-i-ai-metas-muse-review-how-warp"
+  },
+  "lennysnewsletter.com/p/how-warp-ships-2000-prs-a-month-with": {
+    "title": "How Warp ships 2,000 PRs a month with AI factories | Zach Lloyd (CEO, Warp)",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now (47 mins) | &#127897;&#65039; Warp CEO Zach Lloyd shows how his team turns requests from Slack, Linear, and GitHub into tracked, tested pull requests, then measures and improves its cloud-based AI software factory over time",
+    "image": "https://substackcdn.com/image/fetch/$s_!L1XN!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0a5a9d57-6a08-4b62-9638-3b412c2dab49_1456x1048.png",
+    "published_ts": 1789992251,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.lennysnewsletter.com/p/how-warp-ships-2000-prs-a-month-with"
+  },
+  "lennysnewsletter.com/p/90-minutes-of-unfiltered-product": {
+    "title": "90 minutes of unfiltered product advice from Snap and Discord\u2019s product chief | Peter Sellis",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now (97 mins) | Peter Sellis on designing teams like terrorist organizations, riding your best people hard, and the three oxymorons of a truly great PM",
+    "image": "https://substackcdn.com/image/fetch/$s_!kQAf!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4a2b9e24-30da-40f5-bc4f-088306c2d8c8_2048x2048.png",
+    "published_ts": 1789907537,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.lennysnewsletter.com/p/90-minutes-of-unfiltered-product"
+  },
+  "design-milk.com/garage-italia-fiat-500-spiaggina-electric": {
+    "title": "Garage Italia Gives the Fiat 500 an Electric Makeover",
+    "source": "Design Milk",
+    "snippet": "The custom shop reimagines the Italian icon as an open-air electric runabout with woven seating, marine-grade materials, and nearly endless ways to make it your own",
+    "image": "https://design-milk.com/images/2026/10/garage-italia-fiat.png",
+    "published_ts": 1791497582,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://design-milk.com/garage-italia-fiat-500-spiaggina-electric/"
+  },
+  "design-milk.com/garde-hvalsoe-kitchen-copenhagen-paper-island": {
+    "title": "A 5-Year-Old Kitchen Finds a New Home on Copenhagen\u2019s Paper Island",
+    "source": "Design Milk",
+    "snippet": "Garde Hvals\u00f8e relocates an ash-and-zinc kitchen from Josephine Yaa Akuamoa\u2019s studio to her waterfront home, where familiar materials take on a new context",
+    "image": "https://design-milk.com/images/2026/10/Garde-Hvalsoe_Paper-Island-Home_3.jpg",
+    "published_ts": 1791490966,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://design-milk.com/garde-hvalsoe-kitchen-copenhagen-paper-island/"
+  },
+  "itsnicethat.com/features/the-weekend-with-i-cant-afford-this-but-maybe-she-can-091026": {
+    "title": "The Weekend With I can\u2019t afford this but maybe she can",
+    "source": "It's Nice That",
+    "snippet": "Inject shop founders Malika Favre and George Wu\u2019s delicious design taste into your next weekend plans...",
+    "image": "https://admin.itsnicethat.com/images/WfKGL3AIEvt3qq3d_-wlnNPT-xo=/283357/width-1440%7Cformat-jpeg/The_Weekend-01_3xSIkDk.png",
+    "published_ts": 1791536400,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.itsnicethat.com/features/the-weekend-with-i-cant-afford-this-but-maybe-she-can-091026"
+  },
+  "itsnicethat.com/articles/mox-formula-e-graphic-design-project-011026": {
+    "title": "Mox reimagine racing entertainment with a brand refresh for Formula E, one of the fastest and sleekest sports in the world",
+    "source": "It's Nice That",
+    "snippet": "Boasting a bold colour palette, bespoke blocky type and a system that tilts as if it\u2019s ready to tear up tarmac, this refresh pulls up with the future of racecar racing.",
+    "image": "",
+    "published_ts": 1790841600,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.itsnicethat.com/articles/mox-formula-e-graphic-design-project-011026"
+  },
+  "itsnicethat.com/articles/sandy-christ-illustration-discover-011026": {
+    "title": "Sandy Christ crafts fuzzy, out-of-focus illustrations that make you embrace ambiguity",
+    "source": "It's Nice That",
+    "snippet": "The London-based creative tells us how sitting with things \u201cbeyond comprehension\u201d, embracing surrealism and making self-published zines helped her bring a dreamy, introspective visual world to life.",
+    "image": "https://m.itsnicethat.com/original_images/Sandy_Christ-Terry_Bleu_-_Afro_Hair_Styles_Zine_2024.gif",
+    "published_ts": 1790841600,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.itsnicethat.com/articles/sandy-christ-illustration-discover-011026"
+  },
+  "itsnicethat.com/articles/sveinung-sudbos-illustration-publication-project-300926": {
+    "title": "What does flavour feel like? This Thai recipe book uses hand-ripped collage and vivid pigments to figure it out",
+    "source": "It's Nice That",
+    "snippet": "Part collage art, part cookbook, Sveinung Sudb\u00f8 didn\u2019t want to simply map out flavour profiles, he brings them to life through collage and a loudness that suits the complex tastes of Thailand.",
+    "image": "https://admin.itsnicethat.com/images/k-5owJyoNhOBi7hyvZBdieHs5-0=/281498/width-1440/sveinung-sudbo-illustration-itsnicethat-1.jpg",
+    "published_ts": 1790755200,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.itsnicethat.com/articles/sveinung-sudbos-illustration-publication-project-300926"
+  },
+  "itsnicethat.com/articles/emily-klaebe-graphic-design-discover-300926": {
+    "title": "Swirls, beads and Art Nouveau roots: Emily Klaebe on type design as world building",
+    "source": "It's Nice That",
+    "snippet": "Inspired by subway tiles, mosaics, snail shells and lollipops, this designer uses typography as a way of creating microcosms of larger ideas which expand how typography lives.",
+    "image": "https://admin.itsnicethat.com/images/QAmpIVhKEazRfAVlR8Rsr3of4E8=/283020/width-1440%7Cformat-jpeg/Screenshot_2026-09-23_at_15.00.39.png",
+    "published_ts": 1790755200,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.itsnicethat.com/articles/emily-klaebe-graphic-design-discover-300926"
+  },
+  "itsnicethat.com/features/ones-to-watch-talent-showcase-launch-2026-290926": {
+    "title": "The next generation of creative talent: Introducing It\u2019s Nice That\u2019s Ones to Watch 2026",
+    "source": "It's Nice That",
+    "snippet": "Meet 72 of the most exciting emerging graphic designers, illustrators, animators, artists, filmmakers and photographers from around the world, selected by It\u2019s Nice That.",
+    "image": "https://m.itsnicethat.com/original_images/00_Meta_oSnMrtN.png?class=w1440",
+    "published_ts": 1790676000,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.itsnicethat.com/features/ones-to-watch-talent-showcase-launch-2026-290926"
+  },
+  "jovo.design/writing/ai-invasive-design": {
+    "title": "AI invasive design",
+    "source": "Sidebar",
+    "snippet": "We can all agree \u201dAI\u00a0native\u201c is a little bit bullshit, but does it have to be so dystopian?",
+    "image": "https://cdn.prod.website-files.com/662bda772e75f4d26ae47f9c/6a934623a6476f50bcb29a1b_ai-invasive-design.jpg",
+    "published_ts": 1791531139,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://jovo.design/writing/ai-invasive-design"
+  },
+  "contralabs.com/creative-intelligence-report-2026": {
+    "title": "Creative Intelligence Report",
+    "source": "Sidebar",
+    "snippet": "We surveyed 150k+ working creatives to explore how AI is changing creative work.",
+    "image": "https://framerusercontent.com/assets/oSI7dUGVE1UGkUJshFGUoOjBVvI.png",
+    "published_ts": 1791531111,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://contralabs.com/creative-intelligence-report-2026"
+  },
+  "matthenry.fyi/posts/a-system-is-what-it-does": {
+    "title": "A design system is what it does",
+    "source": "Sidebar",
+    "snippet": "A comparison of how two design systems handle the humble text component.",
+    "image": "",
+    "published_ts": 1791531077,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://matthenry.fyi/posts/a-system-is-what-it-does/"
+  },
+  "ldlr.design/field-notes": {
+    "title": "Field Notes: Design Outcomes",
+    "source": "Sidebar",
+    "snippet": "Tactics from the best design teams and individuals working today, with notes on how the work got made.",
+    "image": "https://ldlr.design/images/work-header.png",
+    "published_ts": 1791531050,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://ldlr.design/field-notes"
+  },
+  "itsnicethat.com/features/the-view-from-sao-paulo-retro-bar-and-restaurant-branding-graphic-design-140926": {
+    "title": "Bringing warmth and fun to S\u00e3o Paulo\u2019s bars and restaurants",
+    "source": "Sidebar",
+    "snippet": "References, details and techniques being deployed by Brazilian design studios to bring playfulness and nostalgia to the city\u2019s streets.",
+    "image": "https://m.itsnicethat.com/original_images/TVF_Meta_WGRsslO.png?class=w1440",
+    "published_ts": 1791531016,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://www.itsnicethat.com/features/the-view-from-sao-paulo-retro-bar-and-restaurant-branding-graphic-design-140926"
+  },
+  "trendland.com/louis-vuitton-porsche-and-singer-just-built-the-wildest-911s-in-paris": {
+    "title": "Louis Vuitton, Porsche and Singer Just Built the Wildest 911s in Paris",
+    "source": "Trendland",
+    "snippet": "Words nova\nPAUSE Magazine just got a first look at the Louis Vuitton x Porsche x Singer 911 collaboration cars in Paris, and they are exactly as over the top as that sentence suggests. Revealed during Paris Fashion Week, the builds pair Singer&#8217;s obsessively reimagined 911 with full Louis Vuitt",
+    "image": "https://trendland.com/wp-content/uploads/2026/09/photo-10-1-770x1026.jpg",
+    "published_ts": 1790718964,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://trendland.com/louis-vuitton-porsche-and-singer-just-built-the-wildest-911s-in-paris/"
+  },
+  "trendland.com/kaws-holiday-hangzhou-west-lake-2026": {
+    "title": "Moon Gazer: KAWS Parks a 30-Meter Robot on Hangzhou\u2019s West Lake",
+    "source": "Trendland",
+    "snippet": "Words nova\nFor the Mid-Autumn Festival, KAWS and AllRightsReserved brought the HOLIDAY world tour to Hangzhou with its most cinematic stop yet: a 30-meter-long reclining COMPANION, reworked as a futuristic robot and cast in osmanthus yellow, laid out on the lawns of &#8220;Orioles Singing in the Wil",
+    "image": "https://trendland.com/wp-content/uploads/2026/09/kaws-hangzhou-01-770x962.jpg",
+    "published_ts": 1790718181,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://trendland.com/kaws-holiday-hangzhou-west-lake-2026/"
+  },
+  "trendland.com/east-meets-east-aethos-shoreditch-fuses-industrial-london-with-japanese-craft": {
+    "title": "East Meets East: Aethos Shoreditch Fuses Industrial London With Japanese Craft",
+    "source": "Trendland",
+    "snippet": "Words nova\nBoutique hotel brand Aethos has opened its first London outpost in Shoreditch, and the interiors \u2014 by Barcelona-based Astet Studio \u2014 refuse to pick a side. Set inside a Ron Arad Associates building that was formerly home to Nobu Hotel Shoreditch, the hotel keeps the building's industrial ",
+    "image": "https://trendland.com/wp-content/uploads/2026/09/int-aethos-6-770x472.jpg",
+    "published_ts": 1790717446,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://trendland.com/east-meets-east-aethos-shoreditch-fuses-industrial-london-with-japanese-craft/"
+  },
+  "trendland.com/progressive-permanence-a-louise-bourgeois-rug-meets-a-rubber-chair-in-shoreditch": {
+    "title": "Progressive Permanence: A Louise Bourgeois Rug Meets a Rubber Chair in Shoreditch",
+    "source": "Trendland",
+    "snippet": "Words nova\nLondon Design Festival closed this weekend, and the most quietly radical room in the city wasn't in a museum \u2014 it was inside a rug studio on Calvin Street. For Progressive Permanence, gallerist Max Radford invited his roster of emerging furniture designers into the Shoreditch studio of Ch",
+    "image": "https://trendland.com/wp-content/uploads/2026/09/design-mrg-3-770x556.jpg",
+    "published_ts": 1790709144,
+    "first_seen_ts": 1791540062.4964228,
+    "link": "https://trendland.com/progressive-permanence-a-louise-bourgeois-rug-meets-a-rubber-chair-in-shoreditch/"
   }
 }
