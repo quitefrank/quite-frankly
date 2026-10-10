@@ -1,112 +1,4 @@
 {
-  "uxdesign.cc/in-tension-modeling-what-gives-us-the-right-01740248eb45?source=rss----138adf9c44c---4": {
-    "title": "In/tension modeling: what gives us the right?",
-    "source": "UX Collective",
-    "snippet": "How to navigate opposing voices and lived tensions.By Julia Beard, Naman Mandhan, &amp; Stacie\u00a0SheldonAsking the Hardest Question\u00a0First\u201cWhat gives us the right to make the interventions and choices we are contemplating on behalf of others?\u201d asks Erika Hall, cofounder of Mule Design. For UX professio",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*s1PFRyHGimBBh-Dabcvf6Q.png",
-    "published_ts": 1790939396,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://uxdesign.cc/in-tension-modeling-what-gives-us-the-right-01740248eb45?source=rss----138adf9c44c---4"
-  },
-  "doc.cc/articles/fastest-gun": {
-    "title": "The fastest gun in UX: Why your team is telling the wrong story",
-    "source": "UX Collective",
-    "snippet": "Designers are skipping steps of the process in a rush for faster outputs. But the contest that really matters is the race towards stakeholder alignment. Designers are both uniquely vulnerable to losing this race and uniquely positioned to win it.",
-    "image": "https://images.prismic.io/doc-ux-collective/1E74HSi3A6FZc6um_SEO.jpg?auto=format,compress&rect=0,0,2400,1240&w=1200&h=620",
-    "published_ts": 1790360259,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://www.doc.cc/articles/fastest-gun"
-  },
-  "smashingmagazine.com/2026/09/stop-treating-css-container-queries-traditional-media-queries": {
-    "title": "Stop Treating CSS Container Queries Like Traditional Media Queries",
-    "source": "Smashing Magazine",
-    "snippet": "Despite broad browser support, container queries remain surprisingly underused and frequently misunderstood. Let\u2019s look at how they differ from media queries, when to reach for each, and how container queries help reusable components respond naturally to the contexts in which they appear. - CSS - To",
-    "image": "http://files.smashing.media/articles/stop-treating-css-container-queries-traditional-media-queries/stop-treating-css-container-queries-traditional-media-queries.jpg",
-    "published_ts": 1789563600,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://smashingmagazine.com/2026/09/stop-treating-css-container-queries-traditional-media-queries/"
-  },
-  "nngroup.com/articles/big-ball-of-mud-ai": {
-    "title": "The New Big Ball of Mud: Why Agentic AI Systems Turn Fragile",
-    "source": "NN/g",
-    "snippet": "AI makes building nearly free, so users grow agentic systems piecemeal into fragile messes they no longer understand.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_New_Big_Ball_of_Mud-1_9sFs80W.png",
-    "published_ts": 1790960400,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://www.nngroup.com/articles/big-ball-of-mud-ai/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/empathy-mapping": {
-    "title": "Empathy Mapping: The First Step in Design Thinking",
-    "source": "NN/g",
-    "snippet": "Empathy maps help UX teams visualize user attitudes and behaviors, building a shared understanding of end users while highlighting gaps in existing user data.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Empathy_Mapping-1.png",
-    "published_ts": 1790960400,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://www.nngroup.com/articles/empathy-mapping/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/training/december": {
-    "title": "UX Conference December Announced (Dec 2 - Dec 15)",
-    "source": "NN/g",
-    "snippet": "Take up to 5 in-depth training courses, teaching user experience best practices for successful design. Training focused on long-lasting skills for UX professionals. December 2 - December 15, 2026.",
-    "image": "https://media.nngroup.com/media/events/opengraph_images/Social_Card_Dec_2026.png",
-    "published_ts": 1789541959,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://www.nngroup.com/training/december/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/muse-review-the-personal-ai-agent": {
-    "title": "Muse review: The personal AI agent that gets consumer UX right",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (38 mins) | &#127897;&#65039; I gave Meta&#8217;s Muse my calendar, my email, and my kids&#8217; chaotic schedule, and it produced a one-shot family PDF more beautiful than anything I&#8217;ve ever made with Claude or Codex",
-    "image": "https://substackcdn.com/image/fetch/$s_!XRfU!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcddf6ad4-b5cc-420a-91c3-31b44a3d7dc4_1456x1048.png",
-    "published_ts": 1789560134,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://www.lennysnewsletter.com/p/muse-review-the-personal-ai-agent"
-  },
-  "lennysnewsletter.com/p/60-creative-growth-ideas": {
-    "title": "60+ new creative growth ideas",
-    "source": "Lenny's Newsletter",
-    "snippet": "How to stand out when everyone is running the same playbook",
-    "image": "https://substackcdn.com/image/fetch/$s_!NVVg!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F20cbbe62-5c82-4d4f-a316-de9b885e56f2_1456x970.png",
-    "published_ts": 1789476328,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://www.lennysnewsletter.com/p/60-creative-growth-ideas"
-  },
-  "design-milk.com/suzie-de-rohan-willner-friday-five": {
-    "title": "Suzie de Rohan Willner on Anni Albers, the Glass House, William Mitchell + More",
-    "source": "Design Milk",
-    "snippet": "The Toast CEO shares the artists, architecture, and material-driven practices that inspire her, from Ruth Asawa\u2019s wire sculptures to the work of her stepfather, William Mitchell.",
-    "image": "https://design-milk.com/images/2026/10/250328_JB_TOAST_LNS_EVENT_577-e1790990529551.jpg",
-    "published_ts": 1790990904,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://design-milk.com/suzie-de-rohan-willner-friday-five/"
-  },
-  "design-milk.com/paola-lenti-sao-paulo-flagship": {
-    "title": "Paola Lenti\u2019s S\u00e3o Paulo Flagship Turns Architecture Into a Living Frame",
-    "source": "Design Milk",
-    "snippet": "Armentano Arquitetura pairs a precise metal-and-glass structure with a planted fa\u00e7ade that will continue to transform the Italian furniture brand\u2019s S\u00e3o Paulo home",
-    "image": "https://design-milk.com/images/2026/10/T2A6796.jpg",
-    "published_ts": 1790942443,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://design-milk.com/paola-lenti-sao-paulo-flagship/"
-  },
-  "itsnicethat.com/features/the-weekend-with-claire-marie-healy-250926": {
-    "title": "The Weekend With Claire Marie Healy",
-    "source": "It's Nice That",
-    "snippet": "The writer, editor and founder of Girlhood Studies unpacks her ideal weekend lineup: gallery shows, vintage shopping and Gregg Araki films included.",
-    "image": "https://admin.itsnicethat.com/images/uHKByXtHTKLbVxBl0g0z6IpQ0Fo=/283097/width-1440%7Cformat-jpeg/TWW_Hero_1.png",
-    "published_ts": 1790323200,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://www.itsnicethat.com/features/the-weekend-with-claire-marie-healy-250926"
-  },
-  "itsnicethat.com/articles/mestiza-studio-canica-graphic-design-project-240926": {
-    "title": "Mestiza Estudio built this play cafe brand like a game, fusing aesthetics to appeal to all ages",
-    "source": "It's Nice That",
-    "snippet": "The brand for Canica combines constructivist geometry with expressive illustration, creating a visual world that\u2019s fun but not too childish.",
-    "image": "https://admin.itsnicethat.com/images/ZPcnT6wcRhN-ynHPpEi4I47JPnI=/281854/width-1440/canica_3.jpg",
-    "published_ts": 1790240400,
-    "first_seen_ts": 1791021625.3593166,
-    "link": "https://www.itsnicethat.com/articles/mestiza-studio-canica-graphic-design-project-240926"
-  },
   "uxdesign.cc/the-feed-i-produce-myself-11e4192f394c?source=rss----138adf9c44c---4": {
     "title": "The feed I produce myself",
     "source": "UX Collective",
@@ -1105,5 +997,50 @@
     "published_ts": 1790709144,
     "first_seen_ts": 1791540062.4964228,
     "link": "https://trendland.com/progressive-permanence-a-louise-bourgeois-rug-meets-a-rubber-chair-in-shoreditch/"
+  },
+  "uxdesign.cc/designing-for-an-idea-before-it-exists-ecd8cb19999a?source=rss----138adf9c44c---4": {
+    "title": "Designing for an idea before it exists",
+    "source": "UX Collective",
+    "snippet": "On empty seats, metaphors, and the useful parts that don&#x2019;t quite fitContinue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2596/1*Eh2lcjsP8dAxfwd3RZTOUw.png",
+    "published_ts": 1791577922,
+    "first_seen_ts": 1791626429.3802154,
+    "link": "https://uxdesign.cc/designing-for-an-idea-before-it-exists-ecd8cb19999a?source=rss----138adf9c44c---4"
+  },
+  "nngroup.com/articles/ai-assistant-context": {
+    "title": "The New Siri\u2019s Biggest Strength Is Not Intelligence",
+    "source": "NN/g",
+    "snippet": "A useful AI assistant needs relevant personal context, the capability to use it, and an experience that helps users understand its limits.",
+    "image": "",
+    "published_ts": 1791565200,
+    "first_seen_ts": 1791626429.3802154,
+    "link": "https://www.nngroup.com/articles/ai-assistant-context/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/context-libraries": {
+    "title": "Context Libraries: How AI Power Users Manage Context Engineering",
+    "source": "NN/g",
+    "snippet": "Claude power users rarely edit their context files and often can\u2019t find them. Your AI agent is only as powerful as its context library.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Context_Libraries-1.png",
+    "published_ts": 1791565200,
+    "first_seen_ts": 1791626429.3802154,
+    "link": "https://www.nngroup.com/articles/context-libraries/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "design-milk.com/freitag-reference-collection": {
+    "title": "Freitag Turns Used Truck Tarps Into a New Kind of Luxury",
+    "source": "Design Milk",
+    "snippet": "The new Reference collection pairs one-of-a-kind patina with streamlined silhouettes, unexpected industrial details, and repair kits designed to extend each bag\u2019s life",
+    "image": "https://design-milk.com/images/2026/10/FREITAG-REFERENCE-R203-MAZIE-TimothySchaumburg-RGB-04.jpg",
+    "published_ts": 1791586033,
+    "first_seen_ts": 1791626429.3802154,
+    "link": "https://design-milk.com/freitag-reference-collection/"
+  },
+  "design-milk.com/veronica-mishaan-bogota-penthouse": {
+    "title": "Friday Five with Veronica Mishaan: Inside the Making of a Bogot\u00e1 Penthouse",
+    "source": "Design Milk",
+    "snippet": "The designer draws on 30 years of family memories, a personal art collection, and the surrounding Andes to reimagine a longtime home for its next chapter",
+    "image": "https://design-milk.com/images/2026/10/Veronica-Mishaan-photo.png",
+    "published_ts": 1791574752,
+    "first_seen_ts": 1791626429.3802154,
+    "link": "https://design-milk.com/veronica-mishaan-bogota-penthouse/"
   }
 }
