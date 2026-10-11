@@ -1042,5 +1042,77 @@
     "published_ts": 1791574752,
     "first_seen_ts": 1791626429.3802154,
     "link": "https://design-milk.com/veronica-mishaan-bogota-penthouse/"
+  },
+  "doc.cc/articles/fastest-gun": {
+    "title": "The fastest gun in UX: Why your team is telling the wrong story",
+    "source": "UX Collective",
+    "snippet": "Designers are skipping steps of the process in a rush for faster outputs. But the contest that really matters is the race towards stakeholder alignment. Designers are both uniquely vulnerable to losing this race and uniquely positioned to win it.",
+    "image": "https://images.prismic.io/doc-ux-collective/1E74HSi3A6FZc6um_SEO.jpg?auto=format,compress&rect=0,0,2400,1240&w=1200&h=620",
+    "published_ts": 1790360259,
+    "first_seen_ts": 1791712826.0233185,
+    "link": "https://www.doc.cc/articles/fastest-gun"
+  },
+  "smashingmagazine.com/2026/09/stop-treating-css-container-queries-traditional-media-queries": {
+    "title": "Stop Treating CSS Container Queries Like Traditional Media Queries",
+    "source": "Smashing Magazine",
+    "snippet": "Despite broad browser support, container queries remain surprisingly underused and frequently misunderstood. Let\u2019s look at how they differ from media queries, when to reach for each, and how container queries help reusable components respond naturally to the contexts in which they appear. - CSS - To",
+    "image": "http://files.smashing.media/articles/stop-treating-css-container-queries-traditional-media-queries/stop-treating-css-container-queries-traditional-media-queries.jpg",
+    "published_ts": 1789563600,
+    "first_seen_ts": 1791712826.0233185,
+    "link": "https://smashingmagazine.com/2026/09/stop-treating-css-container-queries-traditional-media-queries/"
+  },
+  "nngroup.com/articles/empathy-mapping": {
+    "title": "Empathy Mapping: The First Step in Design Thinking",
+    "source": "NN/g",
+    "snippet": "Empathy maps help UX teams visualize user attitudes and behaviors, building a shared understanding of end users while highlighting gaps in existing user data.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Empathy_Mapping-1.png",
+    "published_ts": 1790960400,
+    "first_seen_ts": 1791712826.0233185,
+    "link": "https://www.nngroup.com/articles/empathy-mapping/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/big-ball-of-mud-ai": {
+    "title": "The New Big Ball of Mud: Why Agentic AI Systems Turn Fragile",
+    "source": "NN/g",
+    "snippet": "AI makes building nearly free, so users grow agentic systems piecemeal into fragile messes they no longer understand.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_New_Big_Ball_of_Mud-1_0E2mXK6.png",
+    "published_ts": 1790960400,
+    "first_seen_ts": 1791712826.0233185,
+    "link": "https://www.nngroup.com/articles/big-ball-of-mud-ai/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/training/december": {
+    "title": "UX Conference December Announced (Dec 2 - Dec 15)",
+    "source": "NN/g",
+    "snippet": "Take up to 5 in-depth training courses, teaching user experience best practices for successful design. Training focused on long-lasting skills for UX professionals. December 2 - December 15, 2026.",
+    "image": "https://media.nngroup.com/media/events/opengraph_images/Social_Card_Dec_2026.png",
+    "published_ts": 1789541959,
+    "first_seen_ts": 1791712826.0233185,
+    "link": "https://www.nngroup.com/training/december/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/community-wisdom-community-wisdom": {
+    "title": "\ud83e\udde0 Community Wisdom: Community Wisdom Top Contributors Summer Class 2026 + ML recommendation systems, getting back into product after being fired, deciding when to quit a side project, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 301",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1791637298,
+    "first_seen_ts": 1791712826.0233185,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-community-wisdom"
+  },
+  "lennysnewsletter.com/p/muse-review-the-personal-ai-agent": {
+    "title": "Muse review: The personal AI agent that gets consumer UX right",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now (38 mins) | &#127897;&#65039; I gave Meta&#8217;s Muse my calendar, my email, and my kids&#8217; chaotic schedule, and it produced a one-shot family PDF more beautiful than anything I&#8217;ve ever made with Claude or Codex",
+    "image": "https://substackcdn.com/image/fetch/$s_!XRfU!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcddf6ad4-b5cc-420a-91c3-31b44a3d7dc4_1456x1048.png",
+    "published_ts": 1789560134,
+    "first_seen_ts": 1791712826.0233185,
+    "link": "https://www.lennysnewsletter.com/p/muse-review-the-personal-ai-agent"
+  },
+  "design-milk.com/in-broken-light-ry-van-der-hout": {
+    "title": "Ry Van Der Hout Reassembles Memory in \u2018In Broken Light\u2019",
+    "source": "Design Milk",
+    "snippet": "At Toronto\u2019s Spadina Museum, shattered mirrors, stained glass, photography, and sound turn fragments of family history into five site-specific interventions",
+    "image": "https://design-milk.com/images/2026/10/Ry-Van-der-Hout_United-Contemporary4.jpg",
+    "published_ts": 1791681265,
+    "first_seen_ts": 1791712826.0233185,
+    "link": "https://design-milk.com/in-broken-light-ry-van-der-hout/"
   }
 }
