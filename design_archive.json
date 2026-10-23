@@ -1024,5 +1024,194 @@
     "published_ts": 1792641660,
     "first_seen_ts": 1792663230.783361,
     "link": "https://www.anthropic.com/research/employment-at-anthropic"
+  },
+  "uxdesign.cc/buy-versus-build-is-now-also-a-ux-decision-especially-in-enterprise-6b4345715c63?source=rss----138adf9c44c---4": {
+    "title": "Buy vs. build is now also a UX decision, especially in enterprise",
+    "source": "UX Collective",
+    "snippet": "A product team weighs a purchased tool against an internal build at the same\u00a0table.Artificial intelligence made building cheap and buying easy. The trade-off now turns on who owns the upkeep, the seams between tools, the chat surfaces, and the\u00a0data.For most of my career, product management owned buy",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*nj8TtjChBWaVUnj1eBPjYQ.png",
+    "published_ts": 1792706136,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://uxdesign.cc/buy-versus-build-is-now-also-a-ux-decision-especially-in-enterprise-6b4345715c63?source=rss----138adf9c44c---4"
+  },
+  "doc.cc/humankind/self-portrait": {
+    "title": "Prompting as Self-Portrait",
+    "source": "UX Collective",
+    "snippet": "AI installed a distorted mirror where the blank page used to be.",
+    "image": "https://images.prismic.io/doc-ux-collective/t-pnA9Hdpq8cqEpV_SEO.jpg?auto=format,compress&rect=0,0,2400,1240&w=1200&h=620",
+    "published_ts": 1790529444,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.doc.cc/humankind/self-portrait"
+  },
+  "doc.cc/humankind/doubt": {
+    "title": "Who Owns the Doubt?",
+    "source": "UX Collective",
+    "snippet": "The cost of getting used to answers that never waver.",
+    "image": "https://images.prismic.io/doc-ux-collective/uv6XwHYLQO8_07Bo_Branded-1.png?auto=format,compress&rect=0,242,1000,517&w=1200&h=620",
+    "published_ts": 1790529443,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.doc.cc/humankind/doubt"
+  },
+  "doc.cc/humankind/hesitation": {
+    "title": "The Discipline of Hesitation",
+    "source": "UX Collective",
+    "snippet": "The cost of getting used to answers that never waver.",
+    "image": "https://images.prismic.io/doc-ux-collective/Fbko7G4ja_Wirsrw_SEO-3.jpg?auto=format,compress&rect=0,0,2400,1240&w=1200&h=620",
+    "published_ts": 1790529440,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.doc.cc/humankind/hesitation"
+  },
+  "smashingmagazine.com/2026/10/how-name-things": {
+    "title": "A Practical Guide To Naming Things",
+    "source": "Smashing Magazine",
+    "snippet": "A practical guide to naming UI components, with useful resources, naming conventions, and structures. You\u2019ll find more [useful guides](https://www.smashingmagazine.com/category/guides/) and [online workshops](https://smashingconf.com/online-workshops) here on Smashing Magazine, so make sure to brows",
+    "image": "",
+    "published_ts": 1791280800,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://smashingmagazine.com/2026/10/how-name-things/"
+  },
+  "lennysnewsletter.com/p/metas-new-muse-wonder-model-good": {
+    "title": "Meta\u2019s new \u2018Muse Wonder\u2019 model: good for AI agents, bad for design",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now (24 mins) | &#127897;&#65039;Meta launched Muse Wonder with claims of frontier agentic performance, so I ran it headlessly through Claude Code against nearly 20 tasks to find out if any of it is true",
+    "image": "https://substackcdn.com/image/fetch/$s_!KXFn!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f168491-8e02-4135-9c6b-a9966afc9613_1456x1048.png",
+    "published_ts": 1791979445,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.lennysnewsletter.com/p/metas-new-muse-wonder-model-good"
+  },
+  "lennysnewsletter.com/p/how-i-ai-jev-for-beginners-i-left": {
+    "title": "\ud83c\udf99\ufe0f How I AI: Jev for beginners + I left Claude for months, Opus 5.5 brought me back + Opus 5.5 vs. GPT-6 Sol bench",
+    "source": "Lenny's Newsletter",
+    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/ce9775f1-a48e-4a11-9177-4230d3be80a8_1456x1048.png",
+    "published_ts": 1790607793,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.lennysnewsletter.com/p/how-i-ai-jev-for-beginners-i-left"
+  },
+  "lennysnewsletter.com/p/jev-for-beginners-how-to-use-it-and": {
+    "title": "Jev for beginners: how to use it and what to build",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now (26 mins) | &#127897;&#65039; Jev returns type-safe structured values instead of text, which makes it the fastest, cheapest classification layer I&#8217;ve ever put in a pipeline&#8212;and this week I shipped three real projects with it",
+    "image": "https://substackcdn.com/image/fetch/$s_!WC3I!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7482159b-0fa1-424f-8231-d869d856d954_1456x1048.png",
+    "published_ts": 1790596984,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.lennysnewsletter.com/p/jev-for-beginners-how-to-use-it-and"
+  },
+  "design-milk.com/swizz-beatz-cb2-casa-dean-collection": {
+    "title": "Swizz Beatz Brings His Creative World Home With CB2",
+    "source": "Design Milk",
+    "snippet": "Music producer Swizz Beatz and designer Evan Jerry bring art, music, and creative living together in a new CB2 collection",
+    "image": "https://design-milk.com/images/2026/10/CB2FA26_SB_Portrait_4_02_Hero-e1792712003705.jpg",
+    "published_ts": 1792712754,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://design-milk.com/swizz-beatz-cb2-casa-dean-collection/"
+  },
+  "design-milk.com/donabe-cooking-singlethread-farm": {
+    "title": "How a Humble Clay Pot Redesigns the Ritual of Eating",
+    "source": "Design Milk",
+    "snippet": "A visit to SingleThread Farm for its annual FieldNotes gathering reveals the art of donabe cooking, a centuries-old Japanese tradition that transforms the rituals of preparing, serving, and sharing food.",
+    "image": "https://design-milk.com/images/2026/10/01-DJI_0695-Enhanced-NR-e1792625319720.jpg",
+    "published_ts": 1792708694,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://design-milk.com/donabe-cooking-singlethread-farm/"
+  },
+  "design-milk.com/softville-art-dessert-orchard-street-nyc": {
+    "title": "Softville Brings Art, Design, and Dessert to NYC\u2019s Lower East Side",
+    "source": "Design Milk",
+    "snippet": "Studio Jeremyville and Gelato Messina bring playful sculptures, inventive sundaes, and a restored 1920s storefront together on New York\u2019s Lower East Side.",
+    "image": "https://design-milk.com/images/2026/10/0P3A0143.jpg",
+    "published_ts": 1792690212,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://design-milk.com/softville-art-dessert-orchard-street-nyc/"
+  },
+  "design-milk.com/cadillac-escalade-v-125th-anniversary-collector-series": {
+    "title": "Cadillac Celebrates 125 Years With a Limited-Edition Escalade-V",
+    "source": "Design Milk",
+    "snippet": "Carbon fiber, exclusive finishes, and Santorini Blue accents bring Cadillac\u2019s performance heritage into focus in a collector\u2019s edition limited to just 252 vehicles",
+    "image": "https://design-milk.com/images/2026/10/MY27_Cadillac_Escalade_V_Collector_AP1_2095-1.jpg",
+    "published_ts": 1792686657,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://design-milk.com/cadillac-escalade-v-125th-anniversary-collector-series/"
+  },
+  "itsnicethat.com/articles/nicer-tuesdays-new-york-september-arsh-raziuddin-231026": {
+    "title": "Design as a unifying language: Arsh Raziuddin on how her World Cup identity united NYC",
+    "source": "It's Nice That",
+    "snippet": "Designer, illustrator and creative director Arsh Raziuddin gives the New York Nicer Tuesday\u2019s crowd an look behind the curtain of her career to date, demonstrating how her background in editorial and book cover design shaped her approach to image making and how all her work \u2013 particularly her identi",
+    "image": "",
+    "published_ts": 1792742400,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-new-york-september-arsh-raziuddin-231026"
+  },
+  "itsnicethat.com/articles/foto-foto-photography-publication-sponsored-content-221026": {
+    "title": "Foto Foto is the design-focused brand bringing back the physical photo album",
+    "source": "It's Nice That",
+    "snippet": "The automated platform puts the creative direction and design in your hands, so you can build a bespoke photo album that\u2019s as nice to look at as it is nostalgic.",
+    "image": "https://admin.itsnicethat.com/images/f2QQFyEHTg6ai18ARsbpPxp4FAg=/283568/width-1440/fotofoto-itsnicethat-04.jpg",
+    "published_ts": 1792674000,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.itsnicethat.com/articles/foto-foto-photography-publication-sponsored-content-221026"
+  },
+  "itsnicethat.com/articles/nicer-tuesdays-new-york-september-mona-chalabi-221026": {
+    "title": "Mona Chalabi on making sense of the unmeasurable",
+    "source": "It's Nice That",
+    "snippet": "The multi award-winning illustrator joins our US editor-at-large Elizabeth Goodspeed on the New York Nicer Tuesdays stage to talk about everything from her first job at the UN to how she first got into creating infographics and the difficulty of working with data in journalism when the world can nev",
+    "image": "",
+    "published_ts": 1792674000,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-new-york-september-mona-chalabi-221026"
+  },
+  "shannadige.com/blog/performance-is-design": {
+    "title": "Fast is a design decision",
+    "source": "Sidebar",
+    "snippet": "Building a site has never been cheaper, but making it fast still costs attention and your user\u2019s resources.",
+    "image": "https://shannadige.com/_astro/signal.DzT1D-ML_Z2sKYlS.jpeg",
+    "published_ts": 1792739343,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://shannadige.com/blog/performance-is-design/"
+  },
+  "visualrambling.space/moving-objects-in-3d": {
+    "title": "Moving objects in 3D space",
+    "source": "Sidebar",
+    "snippet": "Have you ever wondered how to move objects along a spherical helix path?",
+    "image": "https://visualrambling.space/moving-objects-in-3d/85145b9e1fd1a7a5f240.png",
+    "published_ts": 1792739311,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://visualrambling.space/moving-objects-in-3d/"
+  },
+  "antonsten.com/articles/where-decisions-live": {
+    "title": "Where decisions live",
+    "source": "Sidebar",
+    "snippet": "Slack for discussion, meetings to resolve, notes for thinking, and a dated decisions log for where things landed.",
+    "image": "https://www.antonsten.com/images/og/where-decisions-live.webp",
+    "published_ts": 1792739222,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.antonsten.com/articles/where-decisions-live/"
+  },
+  "creativeboom.com/news/apple-musics-new-logo-was-shaped-by-fred-again-and-a-bath-of-mineral-oil": {
+    "title": "Apple Music\u2019s new logo was shaped by sound and mineral oil",
+    "source": "Sidebar",
+    "snippet": "Created with TBWA\\Media Arts Lab, the new identity is full of ripples made by sound.",
+    "image": "https://media.creativeboom.com/f0483d4b-6893-4edc-bad5-edb4885a88f9/conversions/b62c93fdc8522ade2ae9125200ea39fa538362f8-medium.webp",
+    "published_ts": 1792739182,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://www.creativeboom.com/news/apple-musics-new-logo-was-shaped-by-fred-again-and-a-bath-of-mineral-oil/"
+  },
+  "backgrounds.supply/gradient-lab": {
+    "title": "Gradient background generator",
+    "source": "Sidebar",
+    "snippet": "A free gradient background generator with 20+ animated shader modes.",
+    "image": "https://backgrounds.supply/api/og?title=The+animated+gradient+background+generator.&amp;eyebrow=Free+tool&amp;pills=30%2B+shaders%2CExport+MP4+%26+PNG%2CNo+watermark",
+    "published_ts": 1792739134,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://backgrounds.supply/gradient-lab"
+  },
+  "trendland.com/208-cool-babies-invade-the-japan-pavilion-at-the-venice-biennale": {
+    "title": "208 Cool Babies Invade the Japan Pavilion at the Venice Biennale",
+    "source": "Trendland",
+    "snippet": "Words nova\nAt the 61st Venice Biennale, the Japan Pavilion has been taken over by 208 baby dolls in sunglasses and colorful onesies. Ei Arakawa-Nash&#8217;s Grass Babies, Moon Babies turns the Giardini pavilion into a surreal nursery: dolls dangle from ropes, scale scaffolding towers and lounge on p",
+    "image": "https://trendland.com/wp-content/uploads/2026/09/img5-artnewsjapan-770x578.jpg",
+    "published_ts": 1790560803,
+    "first_seen_ts": 1792749630.5143332,
+    "link": "https://trendland.com/208-cool-babies-invade-the-japan-pavilion-at-the-venice-biennale/"
   }
 }
