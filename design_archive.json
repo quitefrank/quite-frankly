@@ -1096,5 +1096,50 @@
     "published_ts": 1792742400,
     "first_seen_ts": 1792836033.298256,
     "link": "https://www.itsnicethat.com/features/the-weekend-with-jasmine-dowling-231026"
+  },
+  "smashingmagazine.com/2026/10/is-your-organization-messing-up-ai-adoption": {
+    "title": "Is Your Organization Messing Up AI Adoption?",
+    "source": "Smashing Magazine",
+    "snippet": "What can digital transformation teach us about AI adoption? Paul Boag revisits his book Digital Adaptation to show how lessons from the past can help organizations navigate the challenges of AI today.",
+    "image": "http://files.smashing.media/articles/is-your-organization-messing-up-ai-adoption/is-your-organization-messing-up-ai-adoption.jpg",
+    "published_ts": 1792144800,
+    "first_seen_ts": 1792922424.6690404,
+    "link": "https://smashingmagazine.com/2026/10/is-your-organization-messing-up-ai-adoption/"
+  },
+  "nngroup.com/articles/synthetic-users-vs-human-respondents": {
+    "title": "Synthetic Users vs. Human Respondents: Same Conclusion, Less Variation",
+    "source": "NN/g",
+    "snippet": "Data from AI-generated respondents pointed to the same conclusion as a survey of 604 humans but contained far fewer distinct answers.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Synthetic_Users_vs._Human_Respondents__Same_Conclusion_Less_Variation.png",
+    "published_ts": 1792170000,
+    "first_seen_ts": 1792922424.6690404,
+    "link": "https://www.nngroup.com/articles/synthetic-users-vs-human-respondents/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/ux-maps-glossary": {
+    "title": "UX Maps: Glossary",
+    "source": "NN/g",
+    "snippet": "Use this glossary to quickly clarify key terms and concepts related to UX maps.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/UX_Mapping__Glossary.png",
+    "published_ts": 1792170000,
+    "first_seen_ts": 1792922424.6690404,
+    "link": "https://www.nngroup.com/articles/ux-maps-glossary/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/community-wisdom-negotiating-a-lowball": {
+    "title": "\ud83e\udde0 Community Wisdom: Negotiating a lowball offer, designers earning a seat in product decisions, resources for building an MCP server, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 303",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1792854702,
+    "first_seen_ts": 1792922424.6690404,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-negotiating-a-lowball"
+  },
+  "design-milk.com/napa-bistro-charlotte-fictionworks": {
+    "title": "Napa Valley Meets Paris in This Charlotte Bistro by FictionWorks",
+    "source": "Design Milk",
+    "snippet": "A former taco spot, the restaurant is now a layered interior of warm woods, stained glass, and intimate dining spaces",
+    "image": "https://design-milk.com/images/2026/10/Napa-Charlotte-Napa-Bistro0679-Edit-e1792698823198.jpeg",
+    "published_ts": 1792846857,
+    "first_seen_ts": 1792922424.6690404,
+    "link": "https://design-milk.com/napa-bistro-charlotte-fictionworks/"
   }
 }
