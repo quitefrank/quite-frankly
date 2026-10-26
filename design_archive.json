@@ -1,310 +1,4 @@
 {
-  "smashingmagazine.com/2026/09/desktop-wallpaper-calendars-october-2026": {
-    "title": "Under Autumn\u2019s Spell (October 2026 Wallpapers Edition)",
-    "source": "Smashing Magazine",
-    "snippet": "October is just around the corner, which means it\u2019s time for some new desktop wallpapers! Designed by the community for the community, they\u2019re here to brighten your screens, and maybe spark some creativity along the way.",
-    "image": "http://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0fdda8cd-7c63-4b61-86f6-f3188d312aaf/oct-20-magical-october-preview-opt.png",
-    "published_ts": 1790775000,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://smashingmagazine.com/2026/09/desktop-wallpaper-calendars-october-2026/"
-  },
-  "lennysnewsletter.com/p/community-wisdom-prds-for-agents": {
-    "title": "\ud83e\udde0 Community Wisdom: PRDs for agents, tracking competitor messaging, whether software moats still exist, exercising startup options when you leave, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 302",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1792245237,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-prds-for-agents"
-  },
-  "lennysnewsletter.com/p/openai-dev-day-2026-the-releases": {
-    "title": "OpenAI Dev Day 2026: The releases that actually matter",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (24 mins) | &#127897;&#65039; Claire tests OpenAI&#8217;s DevDay releases, from Dots, Spaces, and Sites to AI-picked thumbnails and a $97 game, and shares what&#8217;s worth trying first",
-    "image": "https://substackcdn.com/image/fetch/$s_!6ixD!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb6256887-3024-418c-8857-0d548934b780_1456x1048.png",
-    "published_ts": 1790779515,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://www.lennysnewsletter.com/p/openai-dev-day-2026-the-releases"
-  },
-  "lennysnewsletter.com/p/jev-8-real-use-cases-for-the-fastest": {
-    "title": "Jev: 8 real use cases for the fastest, cheapest model I\u2019ve ever used | John Lindquist",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (46 mins) | &#127897;&#65039; Educator and developer John Lindquist shares eight Jev demos, from live voice classification and deduplication to agent routing, showing how low costs make once-impractical ideas worth trying",
-    "image": "https://substackcdn.com/image/fetch/$s_!HO95!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd369b1e-3cc2-4785-bd6d-ef4a9224c48a_1456x1048.png",
-    "published_ts": 1790769867,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://www.lennysnewsletter.com/p/jev-8-real-use-cases-for-the-fastest"
-  },
-  "lennysnewsletter.com/p/all-of-the-lenny-and-friends-summit": {
-    "title": "All of the Lenny & Friends Summit talks are now online!",
-    "source": "Lenny's Newsletter",
-    "snippet": "Plus, some reflections and takeaways from the day",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/9fed347c-0e02-4190-a590-1236719b99de_9213x6142.jpeg",
-    "published_ts": 1790687757,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://www.lennysnewsletter.com/p/all-of-the-lenny-and-friends-summit"
-  },
-  "lennysnewsletter.com/p/opus-55-vs-gpt-6-sol-which-model": {
-    "title": "Opus 5.5 vs. GPT-6 Sol: which model won my blind taste test?",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (39 mins) | &#127897;&#65039; I ran blind evaluations across writing, frontend prototypes, long-running agentic tasks, SVGs, coding, and video editing, then put Opus 5.5 through Barbie Bench",
-    "image": "https://substackcdn.com/image/fetch/$s_!VNgD!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff26f6b66-fa0d-4d14-b7f7-2bd6cd7ecc29_1456x1048.png",
-    "published_ts": 1790118769,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://www.lennysnewsletter.com/p/opus-55-vs-gpt-6-sol-which-model"
-  },
-  "lennysnewsletter.com/p/i-left-claude-for-months-opus-55": {
-    "title": "I left Claude for months. Opus 5.5 is why I'm back",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (25 mins) | &#127897;&#65039; I abandoned Claude for months because it drove me insane. Opus 5.5 changed that, and I'll show you exactly where it's earning a spot back in my stack for frontend, SVGs, and agentic tasks",
-    "image": "https://substackcdn.com/image/fetch/$s_!wVKF!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4c59d773-c775-4a90-b915-59ca3d168924_1456x1048.png",
-    "published_ts": 1790104000,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://www.lennysnewsletter.com/p/i-left-claude-for-months-opus-55"
-  },
-  "trendland.com/louis-vuitton-porsche-and-singer-just-built-the-wildest-911s-in-paris": {
-    "title": "Louis Vuitton, Porsche and Singer Just Built the Wildest 911s in Paris",
-    "source": "Trendland",
-    "snippet": "Words nova\nPAUSE Magazine just got a first look at the Louis Vuitton x Porsche x Singer 911 collaboration cars in Paris, and they are exactly as over the top as that sentence suggests. Revealed during Paris Fashion Week, the builds pair Singer&#8217;s obsessively reimagined 911 with full Louis Vuitt",
-    "image": "https://trendland.com/wp-content/uploads/2026/09/photo-10-1-770x1026.jpg",
-    "published_ts": 1790718964,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://trendland.com/louis-vuitton-porsche-and-singer-just-built-the-wildest-911s-in-paris/"
-  },
-  "trendland.com/kaws-holiday-hangzhou-west-lake-2026": {
-    "title": "Moon Gazer: KAWS Parks a 30-Meter Robot on Hangzhou\u2019s West Lake",
-    "source": "Trendland",
-    "snippet": "Words nova\nFor the Mid-Autumn Festival, KAWS and AllRightsReserved brought the HOLIDAY world tour to Hangzhou with its most cinematic stop yet: a 30-meter-long reclining COMPANION, reworked as a futuristic robot and cast in osmanthus yellow, laid out on the lawns of &#8220;Orioles Singing in the Wil",
-    "image": "https://trendland.com/wp-content/uploads/2026/09/kaws-hangzhou-01-770x962.jpg",
-    "published_ts": 1790718181,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://trendland.com/kaws-holiday-hangzhou-west-lake-2026/"
-  },
-  "trendland.com/east-meets-east-aethos-shoreditch-fuses-industrial-london-with-japanese-craft": {
-    "title": "East Meets East: Aethos Shoreditch Fuses Industrial London With Japanese Craft",
-    "source": "Trendland",
-    "snippet": "Words nova\nBoutique hotel brand Aethos has opened its first London outpost in Shoreditch, and the interiors \u2014 by Barcelona-based Astet Studio \u2014 refuse to pick a side. Set inside a Ron Arad Associates building that was formerly home to Nobu Hotel Shoreditch, the hotel keeps the building's industrial ",
-    "image": "https://trendland.com/wp-content/uploads/2026/09/int-aethos-6-770x472.jpg",
-    "published_ts": 1790717446,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://trendland.com/east-meets-east-aethos-shoreditch-fuses-industrial-london-with-japanese-craft/"
-  },
-  "trendland.com/progressive-permanence-a-louise-bourgeois-rug-meets-a-rubber-chair-in-shoreditch": {
-    "title": "Progressive Permanence: A Louise Bourgeois Rug Meets a Rubber Chair in Shoreditch",
-    "source": "Trendland",
-    "snippet": "Words nova\nLondon Design Festival closed this weekend, and the most quietly radical room in the city wasn't in a museum \u2014 it was inside a rug studio on Calvin Street. For Progressive Permanence, gallerist Max Radford invited his roster of emerging furniture designers into the Shoreditch studio of Ch",
-    "image": "https://trendland.com/wp-content/uploads/2026/09/design-mrg-3-770x556.jpg",
-    "published_ts": 1790709144,
-    "first_seen_ts": 1792317628.9910212,
-    "link": "https://trendland.com/progressive-permanence-a-louise-bourgeois-rug-meets-a-rubber-chair-in-shoreditch/"
-  },
-  "uxdesign.cc/beyond-the-canvas-03fce0bcbf7b?source=rss----138adf9c44c---4": {
-    "title": "Beyond the Canvas",
-    "source": "UX Collective",
-    "snippet": "What Config India 2026 revealed about the expanding possibilities of\u00a0design.Something is changing in the world of design, and Bengaluru offered a fascinating glimpse of where it\u2019s heading. Thousands of designers, exciting new capabilities, and conversations that went far beyond the latest Figma feat",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*Hj51wgAScBlQrb6FZZntFA.png",
-    "published_ts": 1792402160,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://uxdesign.cc/beyond-the-canvas-03fce0bcbf7b?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/how-to-build-a-brand-foundation-with-ai-without-losing-your-craft-d616b05cb838?source=rss----138adf9c44c---4": {
-    "title": "How to build a brand foundation with AI without losing your craft",
-    "source": "UX Collective",
-    "snippet": "Here is how to use Claude and a handful of guardrails to build a design system that developers respect and clients can actually ship.Continue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/2600/0*_5ttT6EZkGD9kUqe",
-    "published_ts": 1792350409,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://uxdesign.cc/how-to-build-a-brand-foundation-with-ai-without-losing-your-craft-d616b05cb838?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/design-in-the-material-you-ship-7adf198388ee?source=rss----138adf9c44c---4": {
-    "title": "Design in the material you ship",
-    "source": "UX Collective",
-    "snippet": "Designers should understand code the way an architect understands stone: what it can do, not how to cut it. AI now does the\u00a0cutting.The same card in the design file and in the browser with real data. Image by the\u00a0author.Early in The Fountainhead, Howard Roark is expelled from architecture school for",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*lWh48fMxFr6rcnextAR_dQ.png",
-    "published_ts": 1792325503,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://uxdesign.cc/design-in-the-material-you-ship-7adf198388ee?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/a-thousand-days-of-stale-popcorn-54f62d06c42b?source=rss----138adf9c44c---4": {
-    "title": "A thousand days of stale popcorn",
-    "source": "UX Collective",
-    "snippet": "A gym, a morning radio broadcast, and a streak counter are all answers to one question: how do you get someone to keep going when you&#x2026;Continue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/2600/0*PdHugz-cwcOc1gNF",
-    "published_ts": 1792325490,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://uxdesign.cc/a-thousand-days-of-stale-popcorn-54f62d06c42b?source=rss----138adf9c44c---4"
-  },
-  "doc.cc/articles/fastest-gun": {
-    "title": "The fastest gun in UX: Why your team is telling the wrong story",
-    "source": "UX Collective",
-    "snippet": "Designers are skipping steps of the process in a rush for faster outputs. But the contest that really matters is the race towards stakeholder alignment. Designers are both uniquely vulnerable to losing this race and uniquely positioned to win it.",
-    "image": "https://images.prismic.io/doc-ux-collective/1E74HSi3A6FZc6um_SEO.jpg?auto=format,compress&rect=0,0,2400,1240&w=1200&h=620",
-    "published_ts": 1790360259,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.doc.cc/articles/fastest-gun"
-  },
-  "nngroup.com/articles/ai-assistant-context": {
-    "title": "The New Siri\u2019s Biggest Strength Is Not Intelligence",
-    "source": "NN/g",
-    "snippet": "A useful AI assistant needs relevant personal context, the capability to use it, and an experience that helps users understand its limits.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_New_Siri-1.png",
-    "published_ts": 1791565200,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.nngroup.com/articles/ai-assistant-context/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/context-libraries": {
-    "title": "Context Libraries: How AI Power Users Manage Context Engineering",
-    "source": "NN/g",
-    "snippet": "Claude power users rarely edit their context files and often can\u2019t find them. Your AI agent is only as powerful as its context library.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Context_Libraries-1.png",
-    "published_ts": 1791565200,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.nngroup.com/articles/context-libraries/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/empathy-mapping": {
-    "title": "Empathy Mapping: The First Step in Design Thinking",
-    "source": "NN/g",
-    "snippet": "Empathy maps help UX teams visualize user attitudes and behaviors, building a shared understanding of end users while highlighting gaps in existing user data.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Empathy_Mapping-1.png",
-    "published_ts": 1790960400,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.nngroup.com/articles/empathy-mapping/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/big-ball-of-mud-ai": {
-    "title": "The New Big Ball of Mud: Why Agentic AI Systems Turn Fragile",
-    "source": "NN/g",
-    "snippet": "AI makes building nearly free, so users grow agentic systems piecemeal into fragile messes they no longer understand.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_New_Big_Ball_of_Mud-1_0E2mXK6.png",
-    "published_ts": 1790960400,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.nngroup.com/articles/big-ball-of-mud-ai/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/a-mind-expanding-conversation-on": {
-    "title": "Inside the black box of AI: How AI models actually think | Emmanuel Ameisen (Anthropic)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now (72 mins) | Emmanuel Ameisen of Anthropic explains what looking inside language models reveals about planning, consciousness, and AI safety",
-    "image": "https://substackcdn.com/image/fetch/$s_!o0oD!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8f3a8d75-7772-4f8c-94ee-8551142a5986_2048x2048.png",
-    "published_ts": 1792326696,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.lennysnewsletter.com/p/a-mind-expanding-conversation-on"
-  },
-  "lennysnewsletter.com/p/community-wisdom-community-wisdom": {
-    "title": "\ud83e\udde0 Community Wisdom: Community Wisdom Top Contributors Summer Class 2026 + ML recommendation systems, getting back into product after being fired, deciding when to quit a side project, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 301",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1791637298,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-community-wisdom"
-  },
-  "itsnicethat.com/articles/pov-sex-not-seggs-erotic-review-online-censorship-publication-191026": {
-    "title": "Sex not Seggs \u2013 in a censored digital landscape, erotic commentary is freer on the printed page",
-    "source": "It's Nice That",
-    "snippet": "Erotic Review director Lucy Roeber describes the brick walls the publication has faced in building an online presence as a result of landing in the \u2018erotic dustbin\u2019 of the internet \u2013\u00a0with limited room for expression and discussion.",
-    "image": "https://admin.itsnicethat.com/images/3hjBj2Exb_GBQx0Q9NAwdnVyDrc=/283594/width-1440%7Cformat-jpeg/50_POV2.png",
-    "published_ts": 1792400400,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.itsnicethat.com/articles/pov-sex-not-seggs-erotic-review-online-censorship-publication-191026"
-  },
-  "itsnicethat.com/articles/nik-arthur-animation-discover-191026": {
-    "title": "Nik Arthur\u2019s ultimate creative partner is the natural world in his organic animations for A24 and J. Cole",
-    "source": "It's Nice That",
-    "snippet": "This experimental animator moulds natural elements around client briefs, utilising swamp waters and decaying plants in inventive stop motion capture.",
-    "image": "https://admin.itsnicethat.com/images/MPTWD448LikvUjgGJ93s9i8uPoM=/283068/width-1440/nik-arthur-animation-itsnicethat-Still_1.1_-_A24_by_Nik_Arthur__Emi_Takaha.jpg",
-    "published_ts": 1792396800,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.itsnicethat.com/articles/nik-arthur-animation-discover-191026"
-  },
-  "itsnicethat.com/articles/music-f37-foundry-fulham-football-club-refresh-graphic-design-project-191026": {
-    "title": "Fulham F.C gets a brand refresh built on hand-rendered lettering found on the walls of its stadium",
-    "source": "It's Nice That",
-    "snippet": "Creative agency Music, in collaboration with F37 Foundry, translate the architectural references to Fulham as an area and the heritage of Fulham as a football team into a functioning type system.",
-    "image": "https://admin.itsnicethat.com/images/J6o72-Bf2cCveai3P-lFinFbP7E=/283550/width-1440/music-f37-graphic-design-itsnicethat-21.jpg",
-    "published_ts": 1792396800,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.itsnicethat.com/articles/music-f37-foundry-fulham-football-club-refresh-graphic-design-project-191026"
-  },
-  "itsnicethat.com/features/sourcetype-laurenz-brunner-dictionary-of-the-illegible-graphic-design-publication-spotlight-191026": {
-    "title": "SourceType\u2019s Dictionary of the Illegible explores what happens when typography stops making sense",
-    "source": "It's Nice That",
-    "snippet": "From metal band logos, watermelon emojis and comic book grawlixes to coded messages designed to evade online censorship, SourceType\u2019s new book examines how illegible text can communicate and connect us.",
-    "image": "https://admin.itsnicethat.com/images/Pto0aa-GyPk26SrUCB3_TmxXC0U=/282132/width-1440%7Cformat-jpeg/laurenz-brunner-graphic-design-itsnicethat-18.png",
-    "published_ts": 1792396800,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.itsnicethat.com/features/sourcetype-laurenz-brunner-dictionary-of-the-illegible-graphic-design-publication-spotlight-191026"
-  },
-  "itsnicethat.com/articles/the-view-from-singapore-rmt-paper-signs-graphic-design-191026": {
-    "title": "Design disasters or creative solutions? The self-made paper signs replacing wayfinding in Singapore\u2019s railway stations",
-    "source": "It's Nice That",
-    "snippet": "As the Southeast Asian nation plans to expand its rail network to about 360 km by the early 2030s \u2013 matching cities such as Hong Kong, London, Tokyo and New York \u2013 station managers have designed their own signs to help passengers navigate the growing maze.",
-    "image": "https://m.itsnicethat.com/original_images/TVF_Meta_i47E4Xm.png?class=w1440",
-    "published_ts": 1792396800,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.itsnicethat.com/articles/the-view-from-singapore-rmt-paper-signs-graphic-design-191026"
-  },
-  "itsnicethat.com/articles/creative-career-condundrums-if-you-could-jobs-advice-191026": {
-    "title": "\u201cYou\u2019ve already proof-tested the answer for years\u201d",
-    "source": "It's Nice That",
-    "snippet": "Does working in the creative industry without a creative degree impact your validation, self-worth or creative fulfilment? And, in the context of an increasingly gate-kept space, can it evoke feelings of imposter syndrome too? Kat Wong, founder of career change platform Oh Yeah, has her say in this ",
-    "image": "https://admin.itsnicethat.com/images/YVBbm6I6TxQwZqJw1_bvabAFSV0=/283526/width-1440%7Cformat-jpeg/CCC_Square_DO_I_NEED_A_DEGREE_FOR_THE_FIELD_IM_ALREADY_WORKING_IN.png",
-    "published_ts": 1792396800,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.itsnicethat.com/articles/creative-career-condundrums-if-you-could-jobs-advice-191026"
-  },
-  "itsnicethat.com/articles/adobe-99u-creative-industry-sponsored-content-191026": {
-    "title": "When anyone can make anything, personal taste and craftsmanship matters more than ever",
-    "source": "It's Nice That",
-    "snippet": "Where does AI belong in your practice? At the Adobe 99U Conference, the discussion went beyond AI unease to instead explore where creative adoption can be more useful, intentional and bespoke.",
-    "image": "https://admin.itsnicethat.com/images/rbA0y25mBpUBBtVM_IV8t8q6nB0=/280860/width-1440/adobe-99u-creative-industry-news-itsnicethat-6.jpg",
-    "published_ts": 1792396800,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://www.itsnicethat.com/articles/adobe-99u-creative-industry-sponsored-content-191026"
-  },
-  "bit.ly/side-hug1": {
-    "title": "Beautiful icons that make products feel premium",
-    "source": "Sidebar",
-    "snippet": "Hugeicons offers 60,000+ icons across 10 styles for Figma, React, Font, and more. Fully customizable, beautifully crafted.",
-    "image": "https://hugeicons.com/og_preview.png",
-    "published_ts": 1792386660,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://bit.ly/side-hug1"
-  },
-  "karrisaarinen.com/posts/someone-behind-the-software": {
-    "title": "Someone behind the software",
-    "source": "Sidebar",
-    "snippet": "I think good products carry something of the people who make them. Their experience, what they care about, and how they think things should work.",
-    "image": "https://karrisaarinen.com/static/linear-assets/081de7ffce667bb13cb63d8b2a1d312e19d747ea1d3818af2c5cc1e5a9445e21.webp",
-    "published_ts": 1792386600,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://karrisaarinen.com/posts/someone-behind-the-software/"
-  },
-  "programasweights.com/claudish": {
-    "title": "English \u2194 Claudish",
-    "source": "Sidebar",
-    "snippet": "A bidirectional English and Claudish translator powered by compiled 0.6B neural programs.",
-    "image": "https://programasweights.com/claudish/og.png",
-    "published_ts": 1792386558,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://programasweights.com/claudish"
-  },
-  "technooptimism.org": {
-    "title": "Techno-optimism archive",
-    "source": "Sidebar",
-    "snippet": "Old promises of new technologies.",
-    "image": "",
-    "published_ts": 1792386464,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://technooptimism.org/"
-  },
-  "marcabraham.com/2026/10/15/personal-agents-are-getting-their-own-computers": {
-    "title": "Personal agents are getting their own computers",
-    "source": "Sidebar",
-    "snippet": "The question is no longer whether an agent can answer my questions. It\u2019s whether I\u2019m willing to let it act on my behalf.",
-    "image": "https://i0.wp.com/marcabraham.com/wp-content/uploads/2026/10/personal-agents.png?fit=1200%2C627&#038;ssl=1",
-    "published_ts": 1792386420,
-    "first_seen_ts": 1792404028.7481406,
-    "link": "https://marcabraham.com/2026/10/15/personal-agents-are-getting-their-own-computers/"
-  },
   "uxdesign.cc/anthropic-october-2026-study-human-attention-is-the-new-old-bottleneck-d7bc4642668a?source=rss----138adf9c44c---4": {
     "title": "Human attention is the new old bottleneck. We have to design for it even more.",
     "source": "UX Collective",
@@ -1141,5 +835,122 @@
     "published_ts": 1792846857,
     "first_seen_ts": 1792922424.6690404,
     "link": "https://design-milk.com/napa-bistro-charlotte-fictionworks/"
+  },
+  "uxdesign.cc/the-context-advantage-of-human-ux-design-thinking-39883603c337?source=rss----138adf9c44c---4": {
+    "title": "The context advantage of human UX",
+    "source": "UX Collective",
+    "snippet": "Context is today&#x2019;s human advantage, but it is also the raw material AI is rapidly learning to absorb.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/1672/1*hJmXIyyM-DoayKXxgRZfwA.png",
+    "published_ts": 1792931643,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://uxdesign.cc/the-context-advantage-of-human-ux-design-thinking-39883603c337?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/nobody-asked-for-the-sparkle-button-ae54ab5065c6?source=rss----138adf9c44c---4": {
+    "title": "Nobody asked for the sparkle button",
+    "source": "UX Collective",
+    "snippet": "Products ship with the same AI panel; people hunt for the off switch, and spend has outrun returns. Build features with AI, not AI features.Illustration by Jon Sabutis, built in HTML and\u00a0CSSOpen any product you pay for and look at the top right corner. There is a sparkle. Behind it is a panel that s",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*zO6YRwfqZ98I2mbNC4MBNw.png",
+    "published_ts": 1792931637,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://uxdesign.cc/nobody-asked-for-the-sparkle-button-ae54ab5065c6?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/where-to-draw-the-line-before-ai-reaches-professional-users-09d61f61b2b5?source=rss----138adf9c44c---4": {
+    "title": "Where to draw the line before AI reaches professional users",
+    "source": "UX Collective",
+    "snippet": "Every roadmap has a chat box on it. Fewer have an answer for who it\u2019s\u00a0for.Six questions to ask for whether a conversational layer will speed experts up or quietly put a keyboard between them and the work they already\u00a0know.Nearly every B2B application I\u2019ve seen has a chat box on it. Sometimes a sideb",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*Di003Ys9ARp2QsB9IF15Eg.png",
+    "published_ts": 1792931505,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://uxdesign.cc/where-to-draw-the-line-before-ai-reaches-professional-users-09d61f61b2b5?source=rss----138adf9c44c---4"
+  },
+  "lennysnewsletter.com/p/an-86-minute-guide-to-finding-pmf": {
+    "title": "An 86-minute guide to finding PMF | Rob Snyder (Author, The Power of Pull)",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now (86 mins) | The founder who helped over 50 startups hit $1M ARR shares his PULL framework for finding real product-market fit",
+    "image": "https://substackcdn.com/image/fetch/$s_!VnwF!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F945d9351-92d1-4bae-8b26-267a7694402e_2048x2048.png",
+    "published_ts": 1792931494,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://www.lennysnewsletter.com/p/an-86-minute-guide-to-finding-pmf"
+  },
+  "itsnicethat.com/features/braulio-amado-graphic-design-spotlight-261026": {
+    "title": "Mistakes, chaos and meditation: inside the mind of Br\u00e1ulio Amado",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s Nice That chats to one of the most revered graphic designers of his generation, about finding idea gems in the sprawl of New York, and the routines and parameters that forge his best work.",
+    "image": "https://admin.itsnicethat.com/images/fxIu2lkThnbQN2U0O6hauzX6pC8=/283855/width-1440%7Cformat-jpeg/Braulio_Hero.png",
+    "published_ts": 1793005200,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://www.itsnicethat.com/features/braulio-amado-graphic-design-spotlight-261026"
+  },
+  "itsnicethat.com/articles/studio-hono-temper-branding-project-261026": {
+    "title": "Hono\u2019s label branding for Temper cider animates the last rally of the 2008 Wimbledon final",
+    "source": "It's Nice That",
+    "snippet": "The one one-off collaboration between Temper \u2013 a studio for tennis objects and experiences \u2013 and cidermaker Luka Zeichmann is marked with labels that unfolds like a flip book when lined up.",
+    "image": "https://m.itsnicethat.com/original_images/Temper-Hero-Close_1.gif",
+    "published_ts": 1793005200,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://www.itsnicethat.com/articles/studio-hono-temper-branding-project-261026"
+  },
+  "itsnicethat.com/articles/creative-career-condundrums-if-you-could-jobs-advice-261026": {
+    "title": "\u201cYou deserve a chance to try and find a role that challenges you\u201d",
+    "source": "It's Nice That",
+    "snippet": "Big movie stars say they do \u2018one for them\u2019 and \u2018one for me\u2019 \u2013 one creatively fulfilling job and one commercial cash grab. But as creatives, not movie stars, the choice between the two can be an incredibly difficult one to make. If you\u2019re feeling creatively cornered, where should you turn? Katie Cadw",
+    "image": "https://admin.itsnicethat.com/images/OTQcWkadb8ls_9VAzGjNVseQvJI=/283866/width-1440%7Cformat-jpeg/CCC_Square_IM_FEELING_COMPLACENT_EARLY_ON_IN_MY_CAREER_DO_I_STAY_OR_DO_I_JHAgwwu.png",
+    "published_ts": 1793005200,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://www.itsnicethat.com/articles/creative-career-condundrums-if-you-could-jobs-advice-261026"
+  },
+  "itsnicethat.com/articles/madeline-rupard-2002-forrester-subaru-art-discover-261026": {
+    "title": "Madeline Rupard finds the sublime in the mundane landscapes of western America",
+    "source": "It's Nice That",
+    "snippet": "From glowing petrol stations and fizzy drinks to vast mountain ranges, the Utah-based painter captures the strange, everyday magic of the American West through the window of her vintage Subaru.",
+    "image": "https://admin.itsnicethat.com/images/EzKkxc3P8PGvXnmEgy_3CtcCwHg=/283436/width-1440/madeline-rupard-art-itsnicethat-12.jpg",
+    "published_ts": 1793005200,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://www.itsnicethat.com/articles/madeline-rupard-2002-forrester-subaru-art-discover-261026"
+  },
+  "craftwork.design?ref=sidebar": {
+    "title": "Craftwork: UI made by real designers",
+    "source": "Sidebar",
+    "snippet": "Figma UI kits, Framer templates, fonts, React components, icons, 3D and mockups made by real designers. Use them in Figma or through your AI agent.",
+    "image": "https://craftwork.design/opengraph-image.png",
+    "published_ts": 1793002500,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://craftwork.design/?ref=sidebar"
+  },
+  "hrih.si/articles/who-holds-the-off-switch": {
+    "title": "Who holds the off switch?",
+    "source": "Sidebar",
+    "snippet": "What the 2026 numbers say about privacy and control, and guesses for where the privacy business goes next.",
+    "image": "https://hrih.si/og/who-holds-the-off-switch.png?v=571bc6ed",
+    "published_ts": 1793002424,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://hrih.si/articles/who-holds-the-off-switch/"
+  },
+  "archive.org/details/vintageai": {
+    "title": "Vintage AI",
+    "source": "Sidebar",
+    "snippet": "A curated collection of early computer software claiming some aspect of artificial intelligence as a primary feature.",
+    "image": "",
+    "published_ts": 1793002373,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://archive.org/details/vintageai"
+  },
+  "youtube.com/watch?v=AK8zLQeRI2M": {
+    "title": "Design and engineering are the same thing",
+    "source": "Sidebar",
+    "snippet": "John Maeda on why makers need to understand people and communicate.",
+    "image": "",
+    "published_ts": 1793002309,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://www.youtube.com/watch?v=AK8zLQeRI2M"
+  },
+  "intentapp.dev/design-system?dark-mode=": {
+    "title": "Intent Design System",
+    "source": "Sidebar",
+    "snippet": "Intent logos, colors, typography, iconography, foundations, and components.",
+    "image": "https://www.intentapp.dev/opengraph.png",
+    "published_ts": 1793002220,
+    "first_seen_ts": 1793008830.5809908,
+    "link": "https://intentapp.dev/design-system?dark-mode="
   }
 }
