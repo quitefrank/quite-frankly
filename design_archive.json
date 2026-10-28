@@ -1,355 +1,4 @@
 {
-  "uxdesign.cc/anthropic-october-2026-study-human-attention-is-the-new-old-bottleneck-d7bc4642668a?source=rss----138adf9c44c---4": {
-    "title": "Human attention is the new old bottleneck. We have to design for it even more.",
-    "source": "UX Collective",
-    "snippet": "A wide office floor where one person reads at a desk while dozens of screens around them keep filling with new work for them to\u00a0address.Agents at Anthropic now log six hours for every human hour, and reading their output would eat half a week. The job is to create judgement systems for what deserves",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*sE14LY9q2J83iqFOPTgcmg.png",
-    "published_ts": 1792445967,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://uxdesign.cc/anthropic-october-2026-study-human-attention-is-the-new-old-bottleneck-d7bc4642668a?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/playing-the-sanshin-without-a-sound-3ac88df6f65c?source=rss----138adf9c44c---4": {
-    "title": "Playing the sanshin without a sound",
-    "source": "UX Collective",
-    "snippet": "The slot machine and the checklist: a dilemma in feedback design.Continue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/2400/1*-9c3qFwy0_rjTxZU4sUsqw.jpeg",
-    "published_ts": 1792445900,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://uxdesign.cc/playing-the-sanshin-without-a-sound-3ac88df6f65c?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/why-design-still-matters-taste-is-not-a-methodology-borrowed-slopes-62701d4c33dc?source=rss----138adf9c44c---4": {
-    "title": "Why design (still) matters, Taste is not a methodology, Borrowed slopes",
-    "source": "UX Collective",
-    "snippet": "Weekly curated resources for designers\u200a\u2014\u200athinkers and\u00a0makers.AI companies have spent the past year hiring forward-deployed engineers: engineers who sit inside a customer\u2019s team, hear the problem firsthand, and ship against it. One count of 1,000 listings found the role grew 1,165% in a single year. ",
-    "image": "https://cdn-images-1.medium.com/max/1024/0*_AFc-N6YBG0m1h14.png",
-    "published_ts": 1792410605,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://uxdesign.cc/why-design-still-matters-taste-is-not-a-methodology-borrowed-slopes-62701d4c33dc?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/what-if-ai-sets-us-free-084f4310709b?source=rss----138adf9c44c---4": {
-    "title": "What if AI sets us free?",
-    "source": "UX Collective",
-    "snippet": "What can destroy us can also save us. Here\u2019s how I think we can stay in charge of the\u00a0choice.From the Rocky Horror Picture Show,\u00a0sourceCasey Harrell is a climate activist. For years, ALS had been slowly taking his speech, until even the people closest to him struggled to understand what he was\u00a0sayin",
-    "image": "https://cdn-images-1.medium.com/max/761/0*NDkwg7zEfl4MUzXA.jpeg",
-    "published_ts": 1792408349,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://uxdesign.cc/what-if-ai-sets-us-free-084f4310709b?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/ux-designers-are-not-designing-interfaces-they-design-personalities-d94d874bb43d?source=rss----138adf9c44c---4": {
-    "title": "UX designers are not designing interfaces, they design personalities",
-    "source": "UX Collective",
-    "snippet": "How tech culture impacts how we understand ourselves through\u00a0appsPhoto by blue sky on\u00a0UnsplashIn the last 20 years, the tech world has transformed parts of humanity into one-dimensional digital zombies. Sadly, you can hold me personally responsible. Let me tell you why. It started in 1995, when I wa",
-    "image": "https://cdn-images-1.medium.com/max/1024/0*AN3LC1K2RIhbxkXx",
-    "published_ts": 1792408332,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://uxdesign.cc/ux-designers-are-not-designing-interfaces-they-design-personalities-d94d874bb43d?source=rss----138adf9c44c---4"
-  },
-  "lennysnewsletter.com/p/how-i-ai-meta-muse-wonder-how-brooke": {
-    "title": "\ud83c\udf99\ufe0f How I AI: Meta Muse Wonder + How Brooke Lacey is scaling video with AI",
-    "source": "Lenny's Newsletter",
-    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/a075d5ce-5408-4b1f-947e-23a1210dafa2_1456x1048.png",
-    "published_ts": 1792422215,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://www.lennysnewsletter.com/p/how-i-ai-meta-muse-wonder-how-brooke"
-  },
-  "lennysnewsletter.com/p/claude-cuts-my-tiktok-how-this-creator": {
-    "title": "\u201cClaude cuts my TikTok\u201d: How this creator is scaling video with AI | Brooke Lacey",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (37 mins) | &#127897;&#65039; Brooke Lacey shows live how Claude Code turns a raw phone video into a captioned, jump-cut TikTok in about 15 seconds",
-    "image": "https://substackcdn.com/image/fetch/$s_!ac6V!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1333497-5596-41e3-848a-39f03ad1597a_728x524.png",
-    "published_ts": 1792411492,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://www.lennysnewsletter.com/p/claude-cuts-my-tiktok-how-this-creator"
-  },
-  "design-milk.com/boldizar-senteski-erosion-collection-mirrors": {
-    "title": "Boldizar Senteski Explores the Beauty of Decay in the Erosion Collection",
-    "source": "Design Milk",
-    "snippet": "Oxidation, corrosion, and chance shape three one-of-a-kind mirrors that blur the boundaries between functional design and sculptural art",
-    "image": "https://design-milk.com/images/2026/10/erosion_mirror_all_front-e1792170643189.jpg",
-    "published_ts": 1792433531,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://design-milk.com/boldizar-senteski-erosion-collection-mirrors/"
-  },
-  "design-milk.com/hommeboys-interiors-los-altos-hills-home": {
-    "title": "Hommeboys Interiors Brings Warmth to a Los Altos Hills Home",
-    "source": "Design Milk",
-    "snippet": "Oak paneling, richly veined marble, and three distinctive fireplaces turn a California remodel into an inviting family retreat",
-    "image": "https://design-milk.com/images/2026/10/101.jpg",
-    "published_ts": 1792424913,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://design-milk.com/hommeboys-interiors-los-altos-hills-home/"
-  },
-  "itsnicethat.com/articles/studio-herrstrom-milkshake-graphic-design-201026": {
-    "title": "Studio Herrstr\u00f6m gives disruptor music label a lightning logomark and palette made of milkshake flavours",
-    "source": "It's Nice That",
-    "snippet": "Drawing on the familiar forms of car window stickers, Studio Herrstr\u00f6m\u2019s gives music label Milkshake the visual structure it needs to scale.",
-    "image": "https://admin.itsnicethat.com/images/qJJd5hOLz2lykOGy0d8yb8_fiAc=/283653/width-1440%7Cformat-jpeg/studio-herrstrom-milkshake-graphic-design-project-itsnicethat-1.png",
-    "published_ts": 1792483200,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://www.itsnicethat.com/articles/studio-herrstrom-milkshake-graphic-design-201026"
-  },
-  "itsnicethat.com/articles/carolina-incerti-a-book-for-making-books-publication-project-201026": {
-    "title": "Carolina Incerti\u2019s A Book for Making Books is designed to be torn apart and remade",
-    "source": "It's Nice That",
-    "snippet": "The graphic designer\u2019s hands-on guide transforms into eight different book and zine templates, inviting readers to explore self-publishing through experimentation and play.",
-    "image": "https://admin.itsnicethat.com/images/tryTC5qHFeCJG3OeMlCFe0_oA4I=/283282/width-1440/ABFMB_carolinaincerti_1.jpg",
-    "published_ts": 1792483200,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://www.itsnicethat.com/articles/carolina-incerti-a-book-for-making-books-publication-project-201026"
-  },
-  "itsnicethat.com/articles/laika-wildwood-london-exhibition-event-sponsored-content-201026": {
-    "title": "See the process behind Laika\u2019s stop-motion fantasy fable, Wildwood, in London exhibition",
-    "source": "It's Nice That",
-    "snippet": "To coincide with the stop-motion studio\u2019s upcoming release, London\u2019s Design Museum welcomes Wildwood, exhibiting the inner workings and design of Laika\u2019s nature-inspired epic.",
-    "image": "https://admin.itsnicethat.com/images/voIgWAhhA9UAL7zyawmNQadYHg4=/283514/width-1440/LAIKA_Wildwood_2.jpg",
-    "published_ts": 1792483200,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://www.itsnicethat.com/articles/laika-wildwood-london-exhibition-event-sponsored-content-201026"
-  },
-  "uxdesign.cc/design-in-the-material-you-ship-7adf198388ee": {
-    "title": "Design in the material you ship",
-    "source": "Sidebar",
-    "snippet": "Designers should understand code the way an architect understands stone: what it can do, not how to cut it. AI now does the cutting.",
-    "image": "",
-    "published_ts": 1792487233,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://uxdesign.cc/design-in-the-material-you-ship-7adf198388ee"
-  },
-  "davedavies.dev/state-of-ecommerce-accessibility": {
-    "title": "State of Ecommerce Accessibility 2026",
-    "source": "Sidebar",
-    "snippet": "An audit of 59,400 ecommerce product pages. 64% had at least one automatically detected accessibility failure rated critical.",
-    "image": "https://davedavies.dev/images/opengraph-images/state-of-ecommerce-accessibility-2026.png",
-    "published_ts": 1792487199,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://davedavies.dev/state-of-ecommerce-accessibility/"
-  },
-  "world.hey.com/jorge/acceptance-8487bd37": {
-    "title": "Acceptance",
-    "source": "Sidebar",
-    "snippet": "If you haven\u2019t accepted that these things are smarter than you, even in your own domain of expertise, I\u2019m sorry.",
-    "image": "https://world.hey.com/jorge/8487bd37/representations/eyJfcmFpbHMiOnsiZGF0YSI6Mjc0NDMwOTIwNSwicHVyIjoiYmxvYl9pZCJ9fQ--b010b8ddab626bc42640cec65f3a5844019ae4091f67ef00d851f6b27752071b/eyJfcmFpbHMiOnsiZGF0YSI6eyJyZXNpemVfdG9fZmlsbCI6WzEyMDAsNjMwXSwicXVhbGl0eSI6NDAsInN0cmlwIjp0cnVlfSwicHVyIjoidmFyaWF0aW9uIn19--850460abb6619f326eb585ef63fdb0b416ee8bffff0b16dfc60dcb6699d89ebd/crossroads.jpg",
-    "published_ts": 1792487172,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://world.hey.com/jorge/acceptance-8487bd37"
-  },
-  "logo.dev/docs/mcp/introduction": {
-    "title": "Logo.dev MCP server",
-    "source": "Sidebar",
-    "snippet": "Connect Claude, Cursor, VS Code, Codex, or any MCP client to Logo.dev, and let your agent look up brands, logos, and brandmarks.",
-    "image": "",
-    "published_ts": 1792487142,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://www.logo.dev/docs/mcp/introduction"
-  },
-  "newsletter.posthog.com/p/38-things-weve-learned-about-building": {
-    "title": "38 things we\u2019ve learned about building AI products",
-    "source": "Sidebar",
-    "snippet": "Lessons from four years of building AI products at PostHog.",
-    "image": "https://substackcdn.com/image/fetch/$s_!oh73!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F98a0b0d2-ed58-4ef4-83a4-a3719fec9228_1200x630.png",
-    "published_ts": 1792487114,
-    "first_seen_ts": 1792490429.9189918,
-    "link": "https://newsletter.posthog.com/p/38-things-weve-learned-about-building"
-  },
-  "uxdesign.cc/design-vs-adhd-4411c3b81d1b?source=rss----138adf9c44c---4": {
-    "title": "Design vs ADHD",
-    "source": "UX Collective",
-    "snippet": "ADHD is a complex and common mental disorder which changes how the person processes information, behaves, and functions in society. Common recommendations for \u201cADHD-friendly design\u201d include reducing clutter, avoiding distractions, and simplifying information architecture. I argue that these suggesti",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*ZIx57HKnoydu-3n9grnLCQ.png",
-    "published_ts": 1792570705,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://uxdesign.cc/design-vs-adhd-4411c3b81d1b?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/let-ai-have-the-average-user-why-user-research-should-focus-on-bad-days-e7bba55f855f?source=rss----138adf9c44c---4": {
-    "title": "Let AI have the average user: Why User Research should focus on bad days",
-    "source": "UX Collective",
-    "snippet": "Nn/g found that synthetic research captures common responses. The bad days are still up to you.Continue reading on UX Collective \u00bb",
-    "image": "https://cdn-images-1.medium.com/max/2600/1*0RuE6NZm_DgJUlA0IGG-Aw.jpeg",
-    "published_ts": 1792531852,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://uxdesign.cc/let-ai-have-the-average-user-why-user-research-should-focus-on-bad-days-e7bba55f855f?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/ai-doesnt-care-about-your-job-title-c08dd4fdf8d8?source=rss----138adf9c44c---4": {
-    "title": "AI doesn\u2019t care about your job title",
-    "source": "UX Collective",
-    "snippet": "One person works across a design file, a product roadmap, and a code editor at a single desk, with their badge face down beside the keyboard. AI assisted, steampunk style.Exposure to artificial intelligence runs through the tasks you do each week, not the role on your badge. Here\u2019s how to measure yo",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*rkrQndbiq5v4xo32eVP06A.png",
-    "published_ts": 1792531768,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://uxdesign.cc/ai-doesnt-care-about-your-job-title-c08dd4fdf8d8?source=rss----138adf9c44c---4"
-  },
-  "smashingmagazine.com/2026/10/embracing-playful-imperfection-css-random-function": {
-    "title": "Embracing Playful Imperfection With The CSS `random()` Function",
-    "source": "Smashing Magazine",
-    "snippet": "Design systems thrive on consistency, so where does randomness fit in? Through playful demos of organic typography, bouncing letters, and splayed cards, Brecht De Ruyte shows how the new CSS `random()` function brings a little imperfection to the web without JavaScript libraries or preprocessor loop",
-    "image": "http://files.smashing.media/articles/embracing-playful-imperfection-css-random-function/embracing-playful-imperfection-css-random-function.jpg",
-    "published_ts": 1792490400,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://smashingmagazine.com/2026/10/embracing-playful-imperfection-css-random-function/"
-  },
-  "nngroup.com/articles/ai-functionality-study-guide": {
-    "title": "How AI Works and How Users Think About It: Study Guide",
-    "source": "NN/g",
-    "snippet": "Unsure where to start? Use this collection of links to our articles and videos to learn about how artificial intelligence works, and how users think about it.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/How-AI-Works-Study-Guide-1_rBL76lj.png",
-    "published_ts": 1790355600,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.nngroup.com/articles/ai-functionality-study-guide/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/disclose-ai-paced": {
-    "title": "When Should You Disclose AI Use? The PACED Framework",
-    "source": "NN/g",
-    "snippet": "How people react to being told that AI helped create a piece of content varies with audience, context, the nature and degree of AI use.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/PACED_1.png",
-    "published_ts": 1790355600,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.nngroup.com/articles/disclose-ai-paced/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/how-i-ai-how-meta-designed-muse-with": {
-    "title": "\ud83c\udf99\ufe0f How I AI: How Meta designed Muse with Alex Cornell",
-    "source": "Lenny's Newsletter",
-    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/135a1e19-04d6-423c-86c8-c957635b14f1_1456x1048.png",
-    "published_ts": 1791817238,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.lennysnewsletter.com/p/how-i-ai-how-meta-designed-muse-with"
-  },
-  "lennysnewsletter.com/p/how-meta-designed-muse-an-ai-agent": {
-    "title": "How Meta designed Muse: an AI agent people actually want to talk to | Alex Cornell (Design Director)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now | &#127897;&#65039;Alex Cornell explains how Muse serves your mom and an engineer with the same interface, and demos a SkyMall-style catalog, golf recaps, and a blog turned podcast",
-    "image": "https://substackcdn.com/image/fetch/$s_!yABS!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc58e849c-296a-45c1-beb0-cc3fa26540cd_1456x1048.png",
-    "published_ts": 1791806635,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.lennysnewsletter.com/p/how-meta-designed-muse-an-ai-agent"
-  },
-  "lennysnewsletter.com/p/why-every-company-now-needs-to-think": {
-    "title": "Why every company now needs to think and operate like a lab team | Josh Woodward (Google Labs, Gemini, AI Studio)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now (62 mins) | Josh Woodward of Google Labs on where great ideas come from, knowing when to kill them, and building for a world where what&#8217;s possible changes every week",
-    "image": "https://substackcdn.com/image/fetch/$s_!gR4X!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbe29befe-a94a-46d4-b82c-7f3f47cf652a_2048x2048.png",
-    "published_ts": 1791721919,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.lennysnewsletter.com/p/why-every-company-now-needs-to-think"
-  },
-  "lennysnewsletter.com/p/openais-head-of-chatgpt-were-entering": {
-    "title": "OpenAI\u2019s Head of ChatGPT: We\u2019re entering a new era of AI (again) | Tibo Sottiaux",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now (37 mins) | Tibo Sottiaux on why Dots is OpenAI&#8217;s biggest bet, why agents will dominate internet traffic, and what builders are still getting wrong",
-    "image": "https://substackcdn.com/image/fetch/$s_!R1rY!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa31d716a-4c6c-432d-9a84-40d81a122526_2048x2048.png",
-    "published_ts": 1791117167,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.lennysnewsletter.com/p/openais-head-of-chatgpt-were-entering"
-  },
-  "lennysnewsletter.com/p/community-wisdom-getting-value-from": {
-    "title": "\ud83e\udde0 Community Wisdom: Getting value from personal AI agents without handing over your inbox, the ego threat of going from IC to manager, uncommon perks to negotiate for, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 301",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1791046849,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-getting-value-from"
-  },
-  "design-milk.com/cersaie-2026-tile-trends": {
-    "title": "6 Tile Trends Shaping Design From Cersaie 2026",
-    "source": "Design Milk",
-    "snippet": "From saturated colors to sculptural textures, these six tile trends brought fresh energy to Bologna\u2019s annual design fair.",
-    "image": "https://design-milk.com/images/2026/10/6.-DECORATIVE-TULI-PIQUE-Ceramica-Bardelli-by-Ronald-Van-Der-Hilst-e1792522324510-768x512.png",
-    "published_ts": 1792539032,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://design-milk.com/cersaie-2026-tile-trends/"
-  },
-  "design-milk.com/artful-rugs-pattern-texture-craft": {
-    "title": "10 Artful Rug Collections That Bring Pattern, Texture, and Craft to the Floor",
-    "source": "Design Milk",
-    "snippet": "From sculptural botanical shapes to luminous silk fields, these 10 rug collections bring artistic experimentation and generations of craft to the floor",
-    "image": "https://design-milk.com/images/2026/10/BENI-ROYALE-HR-67_credit-Harry-Crowder.jpg",
-    "published_ts": 1792534949,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://design-milk.com/artful-rugs-pattern-texture-craft/"
-  },
-  "design-milk.com/davis-furniture-debuts-faba-by-mario-ferrarini": {
-    "title": "Davis Furniture Debuts Faba by Mario Ferrarini",
-    "source": "Design Milk",
-    "snippet": "Mario Ferrarini\u2019s platform-and-cushion system for Davis Furniture takes its character from the interiors it furnishes.",
-    "image": "https://design-milk.com/images/2026/09/Brief_Faba_6.jpg",
-    "published_ts": 1792501257,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://design-milk.com/davis-furniture-debuts-faba-by-mario-ferrarini/"
-  },
-  "itsnicethat.com/articles/somesuch-editions-book-trailers-film-publication-project-201026": {
-    "title": "The era of the book trailer: why Somesuch Editions are promoting novels like films",
-    "source": "It's Nice That",
-    "snippet": "This production studio slash publishing house is all about cross-pollination. Tapping into its network of filmmakers, it makes \u201cvisual blurbs\u201d to bring the pages of its novels to life for a more digitally native world.",
-    "image": "https://admin.itsnicethat.com/images/XkJgzawUINioPdElXWgE7WPUHXQ=/283688/width-1440/MARLOESHAARMANS_SOMESUCH_NOWBURNSBLUE_2_sggwhlY.jpeg",
-    "published_ts": 1792569600,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.itsnicethat.com/articles/somesuch-editions-book-trailers-film-publication-project-201026"
-  },
-  "itsnicethat.com/articles/tbf-day-job-graphic-design-project-211026": {
-    "title": "The brand for Lance Oppenheim\u2019s production company has chaos built in",
-    "source": "It's Nice That",
-    "snippet": "Far from being one singular idea, Day Job\u2019s brand for To Be Formed is the culmination of experimentation and playing with Oppenheim\u2019s irreverent cinematic world.",
-    "image": "https://admin.itsnicethat.com/images/mxCtDbHRRgbIHlQ5z9LlrRsbpUI=/283713/width-1440%7Cformat-jpeg/day-job-tbf-graphic-design-project-itsnicethat-7.png",
-    "published_ts": 1792569600,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.itsnicethat.com/articles/tbf-day-job-graphic-design-project-211026"
-  },
-  "itsnicethat.com/articles/nicer-tuesdays-new-york-september-no-ideas-201026": {
-    "title": "Why self-publishing pays off: No Ideas studio on the journey behind building their own imprint",
-    "source": "It's Nice That",
-    "snippet": "Philip DiBello and Devin Washburn of Brooklyn-based design studio No Ideas take to the New York Nicer Tuesdays stage to talk about the creative process behind two of their largest book projects to date: Design Harder by Erik Carter and Figma\u2019s 2026 Config zine. The pair discuss how taking a risk and",
-    "image": "",
-    "published_ts": 1792494000,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-new-york-september-no-ideas-201026"
-  },
-  "apeatling.com/2026/10/19/your-product-is-not-the-center-of-the-universe": {
-    "title": "Your product is not the center of the universe",
-    "source": "Sidebar",
-    "snippet": "Established products have a problem. They assume they\u2019re the center of someone\u2019s universe, and everything should feed through them.",
-    "image": "https://apeatling.com/wp-content/uploads/2026/10/featured-orbit-1024x488.webp",
-    "published_ts": 1792571314,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://apeatling.com/2026/10/19/your-product-is-not-the-center-of-the-universe/"
-  },
-  "seangoedecke.com/ai-is-driving-a-boom-in-modestly-successful-software": {
-    "title": "AI is driving a boom in modestly successful software projects",
-    "source": "Sidebar",
-    "snippet": "If AI is so great, why aren\u2019t we seeing an explosion of new, amazing software products?",
-    "image": "",
-    "published_ts": 1792571284,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.seangoedecke.com/ai-is-driving-a-boom-in-modestly-successful-software/"
-  },
-  "toolcraft.sh": {
-    "title": "Toolcraft",
-    "source": "Sidebar",
-    "snippet": "An open-source starter kit and UI library for building custom design apps with AI.",
-    "image": "https://toolcraft.sh/social-previews/og-toolcraft-v2.jpg",
-    "published_ts": 1792571255,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://toolcraft.sh/"
-  },
-  "editui.app": {
-    "title": "EditUI",
-    "source": "Sidebar",
-    "snippet": "Point at your UI. Tell your coding agent what to change.",
-    "image": "",
-    "published_ts": 1792571204,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://www.editui.app/"
-  },
-  "maxschmitt.me/posts/calm": {
-    "title": "A simple guide to calm UI",
-    "source": "Sidebar",
-    "snippet": "A few basic rules to keep in mind to make simple UIs feel a lot better.",
-    "image": "https://maxschmitt.me/api/og?title=A%20Simple%20Guide%20to%20Calm%20UI",
-    "published_ts": 1792571167,
-    "first_seen_ts": 1792576827.7357054,
-    "link": "https://maxschmitt.me/posts/calm"
-  },
   "uxdesign.cc/a-founder-with-a-tool-is-not-a-founder-with-a-clue-65bccb0dc2f8?source=rss----138adf9c44c---4": {
     "title": "A founder with a tool is not a founder with a clue",
     "source": "UX Collective",
@@ -1240,5 +889,158 @@
     "published_ts": 1790709144,
     "first_seen_ts": 1793095225.9995074,
     "link": "https://trendland.com/progressive-permanence-a-louise-bourgeois-rug-meets-a-rubber-chair-in-shoreditch/"
+  },
+  "uxdesign.cc/smaller-teams-want-design-leaders-who-make-again-heres-how-b8939221bd7b?source=rss----138adf9c44c---4": {
+    "title": "Smaller teams want design leaders who make, again. Here\u2019s how.",
+    "source": "UX Collective",
+    "snippet": "A design lead works on a screen alongside two designers at a shared table. AI assisted.AI is shrinking teams we run and raising the bar what each person is expected to produce. That changes what a leader has to bring, starting with their own\u00a0hands.Bill Russell coached the Boston Celtics for three se",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*C6ckPKkjzXCbYxsEwU-pqg.png",
+    "published_ts": 1793180277,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://uxdesign.cc/smaller-teams-want-design-leaders-who-make-again-heres-how-b8939221bd7b?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/the-agent-woke-up-before-you-did-a61cfc3948c7?source=rss----138adf9c44c---4": {
+    "title": "The agent woke up before you did",
+    "source": "UX Collective",
+    "snippet": "The last assumption of user-centered design just fell &#x2014; and four companies pushed it at once.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2600/1*xF61mJn34Pwxg-ICAafEsg.jpeg",
+    "published_ts": 1793180058,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://uxdesign.cc/the-agent-woke-up-before-you-did-a61cfc3948c7?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/the-time-ai-saves-designers-usually-disappears-heres-how-to-keep-it-61eb38e1ed69?source=rss----138adf9c44c---4": {
+    "title": "The time AI saves designers usually disappears. Here\u2019s how to keep it.",
+    "source": "UX Collective",
+    "snippet": "What a survey of 521 UX professionals found about AI in UXContinue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/2600/1*dZrEcUcZH_5ulg0g4yd0zQ.jpeg",
+    "published_ts": 1793099625,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://uxdesign.cc/the-time-ai-saves-designers-usually-disappears-heres-how-to-keep-it-61eb38e1ed69?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/going-nowhere-fast-7436dd29c54f?source=rss----138adf9c44c---4": {
+    "title": "Going nowhere fast",
+    "source": "UX Collective",
+    "snippet": "When speed disguises itself as progress.One driver worked hard to get to a stoplight. (Rounded Bevel\u00a0Icons)I distinctly remember my father driving the speed limit down a two-way street in the Bronx when a car swung out from behind us and cut into our lane with a few feet to spare. It wasn\u2019t the firs",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*IwXAfMroOpeuRe7S5QtCxQ.png",
+    "published_ts": 1793099583,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://uxdesign.cc/going-nowhere-fast-7436dd29c54f?source=rss----138adf9c44c---4"
+  },
+  "design-milk.com/the-up-studio-hamptons-home": {
+    "title": "The Up Studio Designs a Hamptons Home for Living Well and Aging in Place",
+    "source": "Design Milk",
+    "snippet": "Set on a wooded Long Island property, the 7,000-square-foot residence with a flexible layout designed to evolve with its owners",
+    "image": "https://design-milk.com/images/2026/10/victory-lap-residence-the-up-studio-3.jpg",
+    "published_ts": 1793121318,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://design-milk.com/the-up-studio-hamptons-home/"
+  },
+  "design-milk.com/jae-ko-paper-sculptures-striated": {
+    "title": "Jae Ko Transforms Everyday Paper Into Colorful Sculptural Landscapes",
+    "source": "Design Milk",
+    "snippet": "For more than four decades, the Korean-born artist has transformed recycled paper into intricate, often monumental forms",
+    "image": "https://design-milk.com/images/2026/10/JaeKo-JK-ForceOfNature-TimesArtMuseumBeijing-\u00a9-3717.jpg",
+    "published_ts": 1793109657,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://design-milk.com/jae-ko-paper-sculptures-striated/"
+  },
+  "design-milk.com/maia-homes-hand-tufted-rugs": {
+    "title": "Maia Homes Makes Hand-Tufted Statement Rugs for Art Lovers",
+    "source": "Design Milk",
+    "snippet": "From Fauvism to Japanese Woodblock, these handmade rugs reinterpret art history as statement rugs for modern interiors",
+    "image": "https://design-milk.com/images/2026/09/evolving-shapes-hand-tufted-rug-room-scene-1280x900-1.jpg",
+    "published_ts": 1793106021,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://design-milk.com/maia-homes-hand-tufted-rugs/"
+  },
+  "design-milk.com/adrien-broom-living-tableaux-hotel-swexan": {
+    "title": "Adrien Broom Brings a Surreal Topiary Garden to H\u00f4tel Swexan in Dallas",
+    "source": "Design Milk",
+    "snippet": "The photographer\u2019s immersive Living Tableaux series transforms a terrace into a fantastical world",
+    "image": "https://design-milk.com/images/2026/10/img-ab2f2834-196d-47b0-a256-29fa28318645-e1793046959115.jpg",
+    "published_ts": 1793106008,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://design-milk.com/adrien-broom-living-tableaux-hotel-swexan/"
+  },
+  "itsnicethat.com/articles/estudio-cru-graphic-design-discover-281026": {
+    "title": "Estudio Cru wants it\u2019s responsive design to pose questions rather than offer answers",
+    "source": "It's Nice That",
+    "snippet": "With critical thinking and creative concept at the core of its practice, the Rio de Janeiro-based studio recognises the influential dialogue that design can create between company and consumer.",
+    "image": "https://admin.itsnicethat.com/images/gMVSIZOXtZPmKVyCWnEhI2GjzNQ=/283761/width-1440%7Cformat-jpeg/estudio-cru-graphic-design-discover-itsnicethat-9.png",
+    "published_ts": 1793178000,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://www.itsnicethat.com/articles/estudio-cru-graphic-design-discover-281026"
+  },
+  "itsnicethat.com/articles/a2-type-louisiana-museum-of-modern-art-graphic-design-project-281026": {
+    "title": "A2 Type adds Louisiana Museum of Modern Art to its repertoire of typefaces for iconic institutions",
+    "source": "It's Nice That",
+    "snippet": "Rigour and research underpin A2 Type\u2019s typographic system, drawing directly from the museum\u2019s architecture and extensive print archive.",
+    "image": "https://admin.itsnicethat.com/images/zW8Vv5Hg2pGTvlgNoTrVKPksD94=/283691/width-1440/A2-TYPE-Louisiana-Museum-of-Modern-Art_page_001.jpg",
+    "published_ts": 1793178000,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://www.itsnicethat.com/articles/a2-type-louisiana-museum-of-modern-art-graphic-design-project-281026"
+  },
+  "itsnicethat.com/features/apple-music-rebrand-graphic-design-spotlight-281026": {
+    "title": "Exactly how Apple Music used sound to build its new brand identity",
+    "source": "It's Nice That",
+    "snippet": "For its rebrand of Apple Music, TBWA\\Media Arts Lab set out to visualise sound. The result involved months of experimentation, a surprising amount of oil, and a renewed appreciation for showing your workings.",
+    "image": "",
+    "published_ts": 1793178000,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://www.itsnicethat.com/features/apple-music-rebrand-graphic-design-spotlight-281026"
+  },
+  "itsnicethat.com/articles/ilovecreatives-nicer-tuesdays-la-271026": {
+    "title": "\u201cYou\u2019re not scattered, you\u2019re multidimensional\u201d: ilovecreatives on owning your \u2018slashiness\u2019",
+    "source": "It's Nice That",
+    "snippet": "Class is in session! Founder of ilovecreatives (the digital trade school and branding and design studio) Jennifer Puno walks us through the ins and outs of her squiggly career to date \u2013 no details missed out. The designer, content creator and \u2018edutainer\u2019 worked out early in her career that picking o",
+    "image": "",
+    "published_ts": 1793091600,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://www.itsnicethat.com/articles/ilovecreatives-nicer-tuesdays-la-271026"
+  },
+  "uxdesign.cc/nobody-asked-for-the-sparkle-button-ae54ab5065c6": {
+    "title": "Nobody asked for the sparkle button",
+    "source": "Sidebar",
+    "snippet": "Products ship with the same AI panel; people hunt for the off switch, and spend has outrun returns. Build features with AI, not AI features.",
+    "image": "",
+    "published_ts": 1793160300,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://uxdesign.cc/nobody-asked-for-the-sparkle-button-ae54ab5065c6"
+  },
+  "niklasroy.com/gtc": {
+    "title": "Glash\u00fctte Trash Clock",
+    "source": "Sidebar",
+    "snippet": "A fully functioning clockwork made from trash and other stuff that I found in Glash\u00fctte, Saxony.",
+    "image": "https://www.niklasroy.com/og/gtc.jpg",
+    "published_ts": 1793160240,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://niklasroy.com/gtc/"
+  },
+  "justinjay.wang/design-as-a-garden": {
+    "title": "Design as a garden",
+    "source": "Sidebar",
+    "snippet": "A different way to think about creative work.",
+    "image": "",
+    "published_ts": 1793160180,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://justinjay.wang/design-as-a-garden/"
+  },
+  "digital-collections.princeton.edu/collections/soviet_posters": {
+    "title": "Russian and East European posters",
+    "source": "Sidebar",
+    "snippet": "Poster art as used in advertising for performances and films in a variety of Party-sponsored campaigns and ephemera.",
+    "image": "https://iiif-cloud.princeton.edu/iiif/2/b1%2F28%2Fb6%2Fb128b61c4d4e49e6a54fb259bb1d6095%2Fintermediate_file/1017,324,6294,4196/750,/0/default.jpg",
+    "published_ts": 1793160120,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://digital-collections.princeton.edu/collections/soviet_posters"
+  },
+  "denodell.com/blog/design-systems-should-be-fast-by-default": {
+    "title": "Design systems should be fast by default",
+    "source": "Sidebar",
+    "snippet": "If a design system\u2019s components are slow to interact with, so are any apps built with it.",
+    "image": "https://denodell.com/_astro/design-systems-should-be-fast-by-default.BV46fYgK_f3VjL.jpg",
+    "published_ts": 1793160060,
+    "first_seen_ts": 1793181628.0394104,
+    "link": "https://denodell.com/blog/design-systems-should-be-fast-by-default"
   }
 }
