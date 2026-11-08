@@ -1267,5 +1267,41 @@
     "published_ts": 1793981189,
     "first_seen_ts": 1794049234.9552064,
     "link": "https://trendland.com/vitrine-first-agentic-shopping-experience/"
+  },
+  "uxdesign.cc/otherwise-youre-just-a-machine-a9d3b21179b5?source=rss----138adf9c44c---4": {
+    "title": "Otherwise you\u2019re just a machine",
+    "source": "UX Collective",
+    "snippet": "AI is getting better at design. Designers should\u00a0too.The skills behind the\u00a0work.I spend a lot of time looking at design work. Reviewing portfolios. Hiring designers. Working with design leaders, seniors and juniors. Sitting in critiques. Watching people explain how they arrived at a solution. And ov",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*DPDKtw_Qr-hC8-5aISbtwg.png",
+    "published_ts": 1794082542,
+    "first_seen_ts": 1794135629.1650903,
+    "link": "https://uxdesign.cc/otherwise-youre-just-a-machine-a9d3b21179b5?source=rss----138adf9c44c---4"
+  },
+  "smashingmagazine.com/2026/10/desktop-wallpaper-calendars-november-2026": {
+    "title": "A Spark Of Color In November\u2019s Gray (2026 Wallpapers Edition)",
+    "source": "Smashing Magazine",
+    "snippet": "Let\u2019s kick of November with a new collection of desktop wallpapers! Designed by creatives from across the globe, the wallpapers come in a variety of screen resolutions and can be downloaded for free. Enjoy!",
+    "image": "http://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8edeb776-d8d5-4b5b-867f-6964f7addcd6/nov-17-colorful-autumn-preview-opt.png",
+    "published_ts": 1793433600,
+    "first_seen_ts": 1794135629.1650903,
+    "link": "https://smashingmagazine.com/2026/10/desktop-wallpaper-calendars-november-2026/"
+  },
+  "nngroup.com/articles/ux-agentic-software-factories": {
+    "title": "The Role of UX in Agentic Software Factories",
+    "source": "NN/g",
+    "snippet": "AI-native software development lifecycles reduce UX to AI context. UX must discover user needs, shape what\u2019s built, and evaluate it before and after launch.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_Role_of_UX_in_Agentic_Software_Factories.png",
+    "published_ts": 1793379600,
+    "first_seen_ts": 1794135629.1650903,
+    "link": "https://www.nngroup.com/articles/ux-agentic-software-factories/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/ux-vs-experience-design": {
+    "title": "Experience Design: Dropping the \u201cUser\u201d from \u201cUser Experience\u201d",
+    "source": "NN/g",
+    "snippet": "AI is expanding UX beyond human users to agents acting on their behalf. Experience  design names this broader field, which still centers on people\u2019s goals.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_Role_of_UX_in_Agentic_Software_Factories_YO2Q558.png",
+    "published_ts": 1793379600,
+    "first_seen_ts": 1794135629.1650903,
+    "link": "https://www.nngroup.com/articles/ux-vs-experience-design/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
   }
 }
