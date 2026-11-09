@@ -1,49 +1,4 @@
 {
-  "smashingmagazine.com/2026/10/how-name-things": {
-    "title": "A Practical Guide To Naming Things",
-    "source": "Smashing Magazine",
-    "snippet": "A practical guide to naming UI components, with useful resources, naming conventions, and structures. You\u2019ll find more [useful guides](https://www.smashingmagazine.com/category/guides/) and [online workshops](https://smashingconf.com/online-workshops) here on Smashing Magazine, so make sure to brows",
-    "image": "",
-    "published_ts": 1791280800,
-    "first_seen_ts": 1793530830.3442998,
-    "link": "https://smashingmagazine.com/2026/10/how-name-things/"
-  },
-  "lennysnewsletter.com/p/community-wisdom-the-biggest-sources": {
-    "title": "\ud83e\udde0 Community Wisdom: The biggest sources of interruptions for PMs, hiring junior PMs with case studies vs. behavioral interviews, building a product harness for AI-driven development, and more",
-    "source": "Lenny's Newsletter",
-    "snippet": "Community Wisdom 304",
-    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
-    "published_ts": 1793463281,
-    "first_seen_ts": 1793530830.3442998,
-    "link": "https://www.lennysnewsletter.com/p/community-wisdom-the-biggest-sources"
-  },
-  "lennysnewsletter.com/p/metas-new-muse-wonder-model-good": {
-    "title": "Meta\u2019s new \u2018Muse Wonder\u2019 model: good for AI agents, bad for design",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (24 mins) | &#127897;&#65039;Meta launched Muse Wonder with claims of frontier agentic performance, so I ran it headlessly through Claude Code against nearly 20 tasks to find out if any of it is true",
-    "image": "https://substackcdn.com/image/fetch/$s_!KXFn!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f168491-8e02-4135-9c6b-a9966afc9613_1456x1048.png",
-    "published_ts": 1791979445,
-    "first_seen_ts": 1793530830.3442998,
-    "link": "https://www.lennysnewsletter.com/p/metas-new-muse-wonder-model-good"
-  },
-  "itsnicethat.com/articles/nicer-tuesdays-new-york-september-arsh-raziuddin-231026": {
-    "title": "Design as a unifying language: Arsh Raziuddin on how her World Cup identity united NYC",
-    "source": "It's Nice That",
-    "snippet": "Designer, illustrator and creative director Arsh Raziuddin gives the New York Nicer Tuesday\u2019s crowd an look behind the curtain of her career to date, demonstrating how her background in editorial and book cover design shaped her approach to image making and how all her work \u2013 particularly her identi",
-    "image": "",
-    "published_ts": 1792742400,
-    "first_seen_ts": 1793530830.3442998,
-    "link": "https://www.itsnicethat.com/articles/nicer-tuesdays-new-york-september-arsh-raziuddin-231026"
-  },
-  "itsnicethat.com/articles/foto-foto-photography-publication-sponsored-content-221026": {
-    "title": "Foto Foto is the design-focused brand bringing back the physical photo album",
-    "source": "It's Nice That",
-    "snippet": "The automated platform puts the creative direction and design in your hands, so you can build a bespoke photo album that\u2019s as nice to look at as it is nostalgic.",
-    "image": "https://admin.itsnicethat.com/images/f2QQFyEHTg6ai18ARsbpPxp4FAg=/283568/width-1440/fotofoto-itsnicethat-04.jpg",
-    "published_ts": 1792674000,
-    "first_seen_ts": 1793530830.3442998,
-    "link": "https://www.itsnicethat.com/articles/foto-foto-photography-publication-sponsored-content-221026"
-  },
   "uxdesign.cc/sparkle-buttons-autonomy-by-design-ai-reckoning-in-ux-figma-with-mcp-c93e38fa36e3?source=rss----138adf9c44c---4": {
     "title": "Sparkle buttons, Autonomy by design, AI reckoning in UX, Figma with MCP",
     "source": "UX Collective",
@@ -1303,5 +1258,221 @@
     "published_ts": 1793379600,
     "first_seen_ts": 1794135629.1650903,
     "link": "https://www.nngroup.com/articles/ux-vs-experience-design/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/what-it-actually-takes-to-build-frontier": {
+    "title": "Why PMs are suddenly valuable again | Tulsee Doshi (Head of Product, Gemini)",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now (59 mins) | Tulsee Doshi on building Google&#8217;s frontier models, why evals and vibes both matter, and her 60-20-20 framework for shipping ahead of the curve",
+    "image": "https://substackcdn.com/image/fetch/$s_!x5Az!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9b496bab-b722-4989-9db9-e83d735501ad_2048x2048.png",
+    "published_ts": 1794144692,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.lennysnewsletter.com/p/what-it-actually-takes-to-build-frontier"
+  },
+  "itsnicethat.com/articles/creative-career-condundrums-if-you-could-jobs-advice-091126": {
+    "title": "\u201cYou will always be a designer, whether that\u2019s full time or not\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s not the same world as it used to be. Leave university, get a job and stay in that job for forty years. It\u2019s also not the same as a mere five years ago, where you leave university, get a job and stay in that job for three years before moving on to another either. Creatives are forming uniquely s",
+    "image": "https://admin.itsnicethat.com/images/gdROPPbUM1FJM2xl_eqwq3HbllA=/284602/width-1440%7Cformat-jpeg/CCC_Square_WILL_I_LOSE_MY_CREATIVE_IDENTITY_WITH_A_SECOND_INCOME.png",
+    "published_ts": 1794214800,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/articles/creative-career-condundrums-if-you-could-jobs-advice-091126"
+  },
+  "itsnicethat.com/articles/elizabeth-goodspeed-art-school-economics-education-creative-industry-091126": {
+    "title": "Elizabeth Goodspeed on the impossible economics of art education in the US",
+    "source": "It's Nice That",
+    "snippet": "American art schools are closing even as tuition fees reach extraordinary heights, with new funding cuts set to make attendance even less attainable for many would-be students. But if an art education is worth more than the salary it produces, why have we accepted that only those who can afford it s",
+    "image": "https://m.itsnicethat.com/original_images/Who_gets_to_go_to_art_school_.png?class=w1440",
+    "published_ts": 1794214800,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/articles/elizabeth-goodspeed-art-school-economics-education-creative-industry-091126"
+  },
+  "itsnicethat.com/features/mona-chalabi-ten-lives-illustration-spotlight-091126": {
+    "title": "Mona Chalabi\u2019s illustrated book about wealth inequality will make you talk to your friends about money",
+    "source": "It's Nice That",
+    "snippet": "Think you\u2019re not a \u2018numbers person\u2019? The Pulitzer Prize-winning illustrator and journalist Mona Chalabi wants you to think again. On the release of her new book, Ten Lives, she chats about how pictures have the power to make economics accessible.",
+    "image": "https://admin.itsnicethat.com/images/9MilPHr5FxTXohsq6_KMcFg_ld4=/284596/width-1440%7Cformat-jpeg/Skyline.png",
+    "published_ts": 1794214800,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/features/mona-chalabi-ten-lives-illustration-spotlight-091126"
+  },
+  "itsnicethat.com/features/career-predictions-for-junior-creatives-creative-industry-091126": {
+    "title": "Starting a creative career has never felt harder \u2013 28 industry voices on what comes next",
+    "source": "It's Nice That",
+    "snippet": "What will starting a creative career look like in the next few years? And what can everyone \u2013 new creatives and the organisations who employ them \u2013 do to navigate this situation?",
+    "image": "https://admin.itsnicethat.com/images/q7dVyEamihodk28nn1eAY6QNdT4=/284599/width-1440/pov-final-2.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/features/career-predictions-for-junior-creatives-creative-industry-091126"
+  },
+  "itsnicethat.com/career-predictions/oliver-benjamin": {
+    "title": "A New Direction\u2019s Oliver Benjamin: \u201cMake stuff and use the process to understand what you\u2019re good at\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/oliver-benjamin"
+  },
+  "itsnicethat.com/career-predictions/hilary-chittenden": {
+    "title": "Hilary Chittenden: \u201cMore emerging creatives will start portfolio careers\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/hilary-chittenden"
+  },
+  "itsnicethat.com/career-predictions/joe-cooper": {
+    "title": "Represent\u2019s Joe Cooper: \u201cYoung creatives will increasingly have to make their own way in\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/joe-cooper"
+  },
+  "itsnicethat.com/career-predictions/dan-crowder": {
+    "title": "Craft\u2019s Dan Crowder: \u201cThe typical first creative role will be a 6-12 month contract\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/dan-crowder"
+  },
+  "itsnicethat.com/career-predictions/paul-drake": {
+    "title": "D&AD\u2019s Paul Drake: \u201cCareers will become less linear\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/paul-drake"
+  },
+  "itsnicethat.com/career-predictions/rachel-gannon": {
+    "title": "Rachel Gannon: \u201cThe graduates who thrive will be those who can hold uncertainty\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/rachel-gannon"
+  },
+  "itsnicethat.com/career-predictions/nik-gunn": {
+    "title": "Creative PEC\u2019s Nik Gunn: \u201cCreative flair, technological innovation and entrepreneurial know-how remain crucial\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/nik-gunn"
+  },
+  "itsnicethat.com/career-predictions/anna-kiernan": {
+    "title": "Dr Anna Kiernan: \u201cAs AI absorbs more routine work, how will new creatives find their feet?\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/anna-kiernan"
+  },
+  "itsnicethat.com/career-predictions/joseph-lebus": {
+    "title": "Joseph Lebus: \u201cFollow the creative spark that drew you to the industry in the first place\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/joseph-lebus"
+  },
+  "itsnicethat.com/career-predictions/fran-plowright": {
+    "title": "Meet a Mentor\u2019s Fran Plowright: \"Creative careers will demand greater adaptability, tenacity and initiative\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/fran-plowright"
+  },
+  "itsnicethat.com/career-predictions/mina-popa": {
+    "title": "Mina Popa: \u201cStarting a creative career will be all about not waiting for permission\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/mina-popa"
+  },
+  "itsnicethat.com/career-predictions/isabel-sachs": {
+    "title": "I Like Networking\u2019s Isabel Sachs: \u201cMake your own work, be proactive, and go and meet people\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/isabel-sachs"
+  },
+  "itsnicethat.com/career-predictions/lisa-smith": {
+    "title": "Lisa Smith: \u201cBuild a life that gives you something to say\u201d",
+    "source": "It's Nice That",
+    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
+    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/pov-final-3.jpg",
+    "published_ts": 1794211200,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://www.itsnicethat.com/career-predictions/lisa-smith"
+  },
+  "bit.ly/side-mag5": {
+    "title": "Vote in Readymag Websites of the Year 2026",
+    "source": "Sidebar",
+    "snippet": "The award spotlights inventive projects made with Readymag, a design tool for creating outstanding websites. Explore the shortlist and vote.",
+    "image": "https://c-p.rmcdn.net/50dad5df6b52d70000000006/Image-adc2122c-1117-453f-a83e-2797554fa0e4.png",
+    "published_ts": 1794200700,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://bit.ly/side-mag5"
+  },
+  "uxdesign.cc/otherwise-youre-just-a-machine-a9d3b21179b5": {
+    "title": "Otherwise you\u2019re just a machine",
+    "source": "Sidebar",
+    "snippet": "AI is getting better at design. Designers should too.",
+    "image": "",
+    "published_ts": 1794200640,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://uxdesign.cc/otherwise-youre-just-a-machine-a9d3b21179b5"
+  },
+  "seanvoisen.com/writing/design-system-ai-readiness": {
+    "title": "What does design system AI readiness mean, anyway?",
+    "source": "Sidebar",
+    "snippet": "Maybe it\u2019s less about machine-legible artifacts and more about where humans stay in the loop.",
+    "image": "https://seanvoisen.com/assets/images/og/sean_voisen_og@1200x630.png",
+    "published_ts": 1794200580,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://seanvoisen.com/writing/design-system-ai-readiness/"
+  },
+  "edge-aura.js.org": {
+    "title": "edge-aura",
+    "source": "Sidebar",
+    "snippet": "An organic glow that hugs the edge of your screen. Zero-dependency Canvas 2D engine with a thin React adapter.",
+    "image": "https://raw.githubusercontent.com/takuyajodai/edge-aura/main/docs/hero.png",
+    "published_ts": 1794200520,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://edge-aura.js.org/"
+  },
+  "ishadeed.com/article/beyond-the-viewport": {
+    "title": "Site Seeing",
+    "source": "Sidebar",
+    "snippet": "See how a web page will behave in different contexts that force unusual viewport sizes.",
+    "image": "https://ishadeed.com/assets/beyond-the-viewport/thumb.jpg",
+    "published_ts": 1794200460,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://ishadeed.com/article/beyond-the-viewport/"
+  },
+  "trendland.com/be-ooo-index-retreats-festivals-parties": {
+    "title": "BE OOO: The First Curated Index of Wellness Retreats, Festivals and Parties",
+    "source": "Trendland",
+    "snippet": "Words nova\nWellness retreats, festivals, parties \u2014 the gatherings actually worth leaving home for, hand-picked into one index. BE OOO is live now, with the app on the way.",
+    "image": "https://trendland.com/wp-content/uploads/2026/11/beooo-app-three-phones-dark-770x481.jpg",
+    "published_ts": 1794157703,
+    "first_seen_ts": 1794222030.672442,
+    "link": "https://trendland.com/be-ooo-index-retreats-festivals-parties/"
   }
 }
