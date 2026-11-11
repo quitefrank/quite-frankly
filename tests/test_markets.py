@@ -75,12 +75,13 @@ def fmp_key(monkeypatch):
 def test_strip_is_tickers_with_session_moves():
     tiles = fetch_strip(SESSION, FakeSession(GOOD_ROUTES))
     assert [t["label"] for t in tiles] == ["SPY", "NVDA", "XOM", "JPM", "GC"]
-    assert tiles[1] == {"label": "NVDA", "change": "-5.47%", "direction": "down"}
+    assert tiles[1] == {"label": "NVDA", "area": "Tech", "change": "-5.47%", "direction": "down"}
+    assert [t["area"] for t in tiles] == ["Market", "Tech", "Energy", "Banks", "Gold"]
     assert tiles[3]["direction"] == "flat"
 
 
 def test_near_zero_move_is_flat_not_red():
-    assert markets.tile("JPM", -0.003) == {"label": "JPM", "change": "0.00%", "direction": "flat"}
+    assert markets.tile("JPM", -0.003) == {"label": "JPM", "area": "", "change": "0.00%", "direction": "flat"}
 
 
 def test_one_gated_symbol_costs_one_tile():
@@ -361,7 +362,7 @@ def test_no_fmp_still_researches_previous_weekday():
 def test_render_block(palette):
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
     html = render_markets_block(data, palette)
-    for s in ("SPY", "NVDA", "XOM", "JPM", "GC", "-5.47%", "gold futures", "Markets:", "MU",
+    for s in ("Market", "Tech", "Energy", "Banks", "Gold", "SPY", "NVDA", "XOM", "JPM", "GC", "-5.47%", "gold futures", "Markets:", "MU",
               "&#9650; +19.0%", "&#9660; -5.0%", "Daily % moves, Nov 10 close", REUTERS):
         assert s in html
     assert palette["up"] in html and palette["down"] in html

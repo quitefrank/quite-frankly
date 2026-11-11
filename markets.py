@@ -52,12 +52,13 @@ MIN_MOVE_PCT = 2.0  # below this a stock isn't a "mover" (the Nov 10 test picked
 # real estate stock and every gold miner, so a ticker Frank could buy has to
 # be one of the megacaps it does serve. A bellwether is one company, not its
 # sector: NVDA fell 5.5% on Nov 10 while the average tech stock rose.
+# (FMP symbol, ticker shown, area name shown above the ticker)
 STRIP_TILES = (
-    ("SPY", "SPY"),     # S&P 500 ETF: the market
-    ("NVDA", "NVDA"),   # tech and AI
-    ("XOM", "XOM"),     # energy
-    ("JPM", "JPM"),     # banks
-    ("GCUSD", "GC"),    # gold futures, the standard GC code
+    ("SPY", "SPY", "Market"),   # S&P 500 ETF
+    ("NVDA", "NVDA", "Tech"),
+    ("XOM", "XOM", "Energy"),
+    ("JPM", "JPM", "Banks"),
+    ("GCUSD", "GC", "Gold"),    # gold futures, the standard GC code
 )
 SESSION_ANCHOR = "SPY"  # its last completed daily close defines the session
 
@@ -88,12 +89,13 @@ def fmp_quote(symbol: str, session=requests) -> dict:
     return _fmp_get("quote", {"symbol": symbol}, session)[0]
 
 
-def tile(label: str, pct: float) -> dict:
+def tile(label: str, pct: float, area: str = "") -> dict:
     # Direction from the displayed value, so -0.003% reads as a flat 0.00%,
     # not a red "-0.00%".
     shown = round(pct, 2) + 0.0  # + 0.0 turns -0.0 into 0.0
     return {
         "label": label,
+        "area": area,
         "change": format_pct(shown) if shown else "0.00%",
         "direction": "up" if shown > 0 else "down" if shown < 0 else "flat",
     }
@@ -158,9 +160,9 @@ def latest_session(today: date, session=requests) -> date | None:
 def fetch_strip(session_date: date, session=requests) -> list[dict]:
     """One tile per STRIP_TILES entry that has a close for session_date."""
     tiles = []
-    for symbol, label in STRIP_TILES:
+    for symbol, label, area in STRIP_TILES:
         try:
-            tiles.append(tile(label, fmp_session_change(symbol, session_date, session)))
+            tiles.append(tile(label, fmp_session_change(symbol, session_date, session), area))
         except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError) as e:
             print(f"[markets] {label} unavailable ({e})", flush=True)
     return tiles

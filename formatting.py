@@ -950,7 +950,9 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT) -> str:
         cells = "".join(
             f'<td width="{width}" style="padding:8px 4px;text-align:center;vertical-align:top;'
             f'border-top:1px solid {palette["divider"]};border-bottom:1px solid {palette["divider"]};{font}">'
-            f'<div style="font-size:11px;font-weight:700;letter-spacing:0.04em;color:{palette["meta_label"]};line-height:16px;white-space:nowrap">{escape(t["label"])}</div>'
+            # Area name, then the ticker at the movers' 14px bold, then the move.
+            + (f'<div style="font-size:11px;font-weight:700;letter-spacing:0.04em;color:{palette["meta_label"]};line-height:16px;white-space:nowrap">{escape(t["area"])}</div>' if t.get("area") else '')
+            + f'<div style="font-size:14px;font-weight:700;color:{palette["bold"]};line-height:20px;white-space:nowrap">{escape(t["label"])}</div>'
             f'<div style="font-size:14px;font-weight:700;color:{color(t["direction"])};line-height:20px;white-space:nowrap">{escape(t["change"])}</div>'
             f'</td>'
             for t in tiles
