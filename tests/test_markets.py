@@ -143,7 +143,7 @@ def test_mover_cross_check_uses_session_close_not_live_quote():
     client = FakeClient([
         fake_response([search_block(REUTERS), text_block(REUTERS, "Nvidia fell 5.47% on Tuesday")]),
         fake_response([report_block(market_summary="", summary_source_url=None,
-                                    candidates=[cand("NVDA", -5.47)])]),
+                                    candidates=[cand("NVDA", -5.47, name="Nvidia Corp")])]),
     ])
     data = build_markets_data(TODAY, client=client, session=FakeSession(routes))
     assert [m["symbol"] for m in data["movers"]] == ["NVDA"]
@@ -160,8 +160,8 @@ def test_previous_weekday_monday_covers_friday():
 
 # ── Verification ──────────────────────────────────────────────────────────────
 
-def cand(sym, pct, url=REUTERS, tag="none", exchange="NASDAQ"):
-    return {"symbol": sym, "name": sym.title(), "exchange": exchange, "change_pct": pct,
+def cand(sym, pct, url=REUTERS, tag="none", exchange="NASDAQ", name=None):
+    return {"symbol": sym, "name": name or sym.title(), "exchange": exchange, "change_pct": pct,
             "why": "Because reasons — apparently.", "source_url": url, "interest_tag": tag}
 
 
@@ -210,10 +210,39 @@ def test_fmp_agreement_keeps_and_tsx_skips_cross_check():
         calls.append(sym)
         return 3.3
 
-    ev = evidence([cand("NVDA", 3.2), cand("SHOP", 19.0, exchange="TSX")])
+    ev = evidence([cand("NVDA", 3.2, name="Nvidia Corp"), cand("SHOP", 19.0, exchange="TSX")])
     out = verify_candidates(ev, change_fn=q)
     assert [c["symbol"] for c in out] == ["NVDA", "SHOP"]
+    assert out[0]["change_pct"] == 3.3  # FMP's figure is what renders
     assert calls == ["NVDA"]
+
+
+def test_feed_match_accepts_without_verbatim_figure():
+    # Cited snippet is a cut-off table: names the company, no % for it.
+    ev = evidence([cand("CHTR", 11.2, name="Charter Communications", exchange="NASDAQ")],
+                  cited={REUTERS: ["Top S&P 500 movers Tuesday | Ticker | CHTR | Charter Communications |"]})
+    out = verify_candidates(ev, change_fn=lambda s: 11.04)
+    assert out[0]["change_pct"] == 11.04
+
+
+def test_feed_match_still_needs_company_named():
+    ev = evidence([cand("LEN", -5.4, name="Lennar Corp", exchange="NYSE")],
+                  cited={REUTERS: ["The 10 S&P 500 stocks with the highest returns on Tuesday"]})
+    assert verify_candidates(ev, change_fn=lambda s: -5.4) == []
+
+
+def test_company_named_in_url_counts():
+    url = "https://www.tikr.com/blog/charter-soars-11-on-tender-offer"
+    ev = evidence([cand("CHTR", 11.0, url=url, name="Charter Communications")],
+                  cited={url: ["The company announced a $1.5 billion tender offer."]}, searched={url})
+    assert verify_candidates(ev, change_fn=lambda s: 11.1)
+
+
+def test_premium_us_symbol_falls_back_to_verbatim():
+    ev = evidence([cand("NVDA", 3.2, name="Nvidia Corp")])
+    assert verify_candidates(ev, change_fn=no_fmp)  # "3.2 percent" is in the text
+    ev = evidence([cand("NVDA", 4.0, name="Nvidia Corp")])
+    assert verify_candidates(ev, change_fn=no_fmp) == []
 
 
 def test_summary_needs_cited_source():

@@ -94,14 +94,22 @@ New module `markets.py`, called from `newsletter.py` on weekday editions only
      banks, or none)
    Search is steered to S&P 500 and TSX 60 names and to wire and
    newspaper coverage (Reuters, AP, Globe and Mail, CNBC, Bloomberg).
-3. **`verify(candidates, citations)`**, in code:
-   - Each % figure must appear in the cited text Claude returns for that
-     candidate (tolerance: rounding to 1 decimal). Fail → drop.
-   - `source_url` must be one of the URLs the search actually returned. Fail → drop.
-   - If FMP serves the symbol, a quote call cross-checks the %. A gap over
-     0.5 points → drop. A premium response skips this check, and the article
-     check alone still applies.
-   - Same rules for the TSX tile. If it fails, the strip shows 4 tiles.
+3. **`verify(candidates, citations)`**, in code (revised 2026-11-11 after
+   three live runs):
+   - Every mover: `source_url` must be a URL the search returned and that
+     Claude cited at least once. Fail → drop.
+   - US stocks FMP serves: the article's % must match FMP's **daily close**
+     for that session within 0.5 points (not the live quote, which during
+     market hours is today's move), and the company's ticker or name must
+     appear in the cited text or the URL. The row shows FMP's figure.
+   - TSX and FMP-premium symbols: the % must appear word for word in the
+     cited text (rounded to the source's precision).
+   - Why the change: cited snippets are short and on market pages usually
+     cut-off tables, so the word-for-word rule dropped 6 of 6 correct
+     candidates in CI run 43074369231, NVDA included at an exact match.
+   - Research runs in two calls: search plus cited prose findings, then a
+     forced `report_markets` call. Offered the report tool in one turn, the
+     model skipped the prose and produced 0 citations (run 43073024456).
 4. **`pick_three(verified)`**, in code: largest positive %, largest negative %,
    then the largest |%| remaining among candidates with an `interest_tag`,
    falling back to the largest |%| remaining. Fewer than 3 verified → show

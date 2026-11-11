@@ -372,28 +372,66 @@ def verify_summary(evidence: dict) -> str:
     return ""
 
 
+_NAME_STOPWORDS = {"the", "inc", "corp", "corporation", "company", "co", "group", "holdings", "ltd", "limited", "plc"}
+
+
+def _mentions_company(c: dict, text: str, url: str) -> bool:
+    """Ticker (as a word) or the first distinctive word of the name appears in
+    the cited text or the page URL. Ties the cited page to this stock, so a
+    reason can't be borrowed from a page about something else."""
+    sym = c.get("symbol", "")
+    if sym and (re.search(rf"\b{re.escape(sym)}\b", text) or re.search(rf"\b{re.escape(sym.lower())}\b", url.lower())):
+        return True
+    words = [w for w in re.findall(r"[A-Za-z][A-Za-z&'-]+", c.get("name", "")) if w.lower() not in _NAME_STOPWORDS]
+    if words and len(words[0]) >= 3:
+        word = words[0].lower()
+        return word in text.lower() or word in url.lower()
+    return False
+
+
 def verify_candidates(evidence: dict, change_fn) -> list[dict]:
-    """change_fn(symbol) -> the session's % move from FMP daily closes."""
+    """Keep movers whose figure and source hold up. change_fn(symbol) returns
+    the session's % from FMP daily closes.
+
+    US stocks FMP serves: the article's % must match FMP within 0.5 points,
+    the page must be a searched, cited result that names the company, and the
+    tile shows FMP's figure. Cited snippets are short and often cut-off
+    tables, so a word-for-word match rejected correct figures (CI run
+    43074369231: 6 of 6 dropped). Everything else (TSX, FMP-premium symbols)
+    keeps the word-for-word check.
+    """
     verified = []
     for c in evidence["report"].get("candidates", []):
         sym = c.get("symbol", "?")
-        text = _evidence_for(c.get("source_url"), evidence)
+        url = c.get("source_url") or ""
+        text = _evidence_for(url, evidence)
         if not text:
             print(f"[markets] {sym}: source not from search or uncited; dropped", flush=True)
-            _explain_drop(sym, c.get("source_url"), evidence)
+            _explain_drop(sym, url, evidence)
             continue
-        if not _pct_in_text(c["change_pct"], text):
-            print(f"[markets] {sym}: {c['change_pct']}% not in cited text; dropped", flush=True)
-            _explain_drop(sym, c.get("source_url"), evidence)
-            continue
+
+        fmp_pct = None
         if c.get("exchange", "").upper() in US_EXCHANGES:
             try:
                 fmp_pct = change_fn(sym)
-                if abs(fmp_pct - c["change_pct"]) > FMP_MAX_GAP_POINTS:
-                    print(f"[markets] {sym}: article {c['change_pct']}% vs FMP {fmp_pct:.2f}%; dropped", flush=True)
-                    continue
             except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError):
-                pass  # premium symbol: article check alone stands
+                fmp_pct = None  # premium symbol: fall back to the word-for-word check
+
+        if fmp_pct is not None:
+            if abs(fmp_pct - c["change_pct"]) > FMP_MAX_GAP_POINTS:
+                print(f"[markets] {sym}: article {c['change_pct']}% vs FMP {fmp_pct:.2f}%; dropped", flush=True)
+                continue
+            if not _mentions_company(c, text, url):
+                print(f"[markets] {sym}: cited page doesn't name the company; dropped", flush=True)
+                _explain_drop(sym, url, evidence)
+                continue
+            verified.append({**c, "change_pct": round(fmp_pct, 2)})
+            continue
+
+        if not _pct_in_text(c["change_pct"], text):
+            print(f"[markets] {sym}: {c['change_pct']}% not in cited text; dropped", flush=True)
+            _explain_drop(sym, url, evidence)
+            continue
         verified.append(c)
     return verified
 
