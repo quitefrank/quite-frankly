@@ -7,22 +7,23 @@ import markets
 from markets import (
     FMPUnavailable,
     build_markets_data,
-    cad_usd_from_usdcad,
-    fetch_strip,
+    fetch_gold_tile,
+    fetch_index_tiles,
+    gold_change_pct,
     pick_three,
     previous_weekday,
     research_movers,
-    ten_year_tile,
     verify_candidates,
+    verify_etfs,
     verify_summary,
-    verify_tsx,
 )
 from formatting import DARK, LIGHT, render_markets_block
 
 TODAY = date(2026, 11, 11)
+SESSION = date(2026, 11, 10)
 SESSION_TS = int(datetime(2026, 11, 10, 16, 0, tzinfo=markets.TORONTO).timestamp())
 REUTERS = "https://www.reuters.com/markets/wrap"
-GLOBE = "https://www.theglobeandmail.com/investing/tsx-close"
+TMX = "https://money.tmx.com/quote/XEQT"
 
 
 # ── FMP fakes ─────────────────────────────────────────────────────────────────
@@ -51,15 +52,20 @@ class FakeSession:
         return FakeResp(text="Premium Query Parameter: not available")
 
 
-def quote(price, pct, prev=None, ts=SESSION_TS):
-    return [{"price": price, "changePercentage": pct, "previousClose": prev or price, "timestamp": ts}]
+def quote(pct, ts=SESSION_TS):
+    return [{"price": 1.0, "changePercentage": pct, "timestamp": ts}]
 
+
+GOLD_ROWS = [
+    {"date": "2026-11-11", "price": 4009.7},  # this morning's partial session
+    {"date": "2026-11-10", "price": 4030.2},
+    {"date": "2026-11-09", "price": 4114.5},
+]
 
 GOOD_ROUTES = {
-    "^GSPC": quote(7629.97, 1.44982),
-    "^IXIC": quote(25602.314, 2.14012),
-    "USDCAD": quote(1.42463, 0.41799, prev=1.4187),
-    "treasury-rates": [{"date": "2026-11-10", "year10": 4.98}, {"date": "2026-11-07", "year10": 4.95}],
+    "^GSPC": quote(1.44982),
+    "^IXIC": quote(2.14012),
+    "historical-price-eod/light": GOLD_ROWS,
 }
 
 
@@ -68,27 +74,25 @@ def fmp_key(monkeypatch):
     monkeypatch.setenv("FMP_API_KEY", "test")
 
 
-# ── Strip ─────────────────────────────────────────────────────────────────────
+# ── FMP tiles ─────────────────────────────────────────────────────────────────
 
-def test_fetch_strip_builds_four_tiles_in_order():
-    tiles, as_of = fetch_strip(TODAY, FakeSession(GOOD_ROUTES))
-    assert [t["label"] for t in tiles] == ["S&P 500", "Nasdaq", "US 10Y", "CAD/USD"]
-    assert tiles[0]["value"] == "7,629.97" and tiles[0]["change"] == "+1.45%"
-    assert tiles[1]["value"] == "25,602"  # 10,000+ drops decimals
-    assert as_of == date(2026, 11, 10)
+def test_index_tiles_are_ticker_and_change_only():
+    tiles, as_of = fetch_index_tiles(TODAY, FakeSession(GOOD_ROUTES))
+    assert tiles["SPX"] == {"label": "SPX", "change": "+1.45%", "direction": "up"}
+    assert tiles["IXIC"]["change"] == "+2.14%"
+    assert as_of == SESSION
 
 
-def test_one_gated_endpoint_costs_one_tile():
+def test_one_gated_index_costs_one_tile():
     routes = {k: v for k, v in GOOD_ROUTES.items() if k != "^IXIC"}
-    tiles, _ = fetch_strip(TODAY, FakeSession(routes))
-    assert "Nasdaq" not in [t["label"] for t in tiles]
-    assert len(tiles) == 3
+    tiles, _ = fetch_index_tiles(TODAY, FakeSession(routes))
+    assert list(tiles) == ["SPX"]
 
 
-def test_stale_quote_skips_strip():
+def test_stale_index_quote_is_skipped():
     old = int(datetime(2026, 11, 2, 16, tzinfo=markets.TORONTO).timestamp())
-    routes = {**GOOD_ROUTES, "^GSPC": quote(7000, 1.0, ts=old)}
-    assert fetch_strip(TODAY, FakeSession(routes)) == ([], None)
+    tiles, as_of = fetch_index_tiles(TODAY, FakeSession({"^GSPC": quote(1.0, ts=old)}))
+    assert tiles == {} and as_of is None
 
 
 def test_missing_key_is_unavailable(monkeypatch):
@@ -97,15 +101,14 @@ def test_missing_key_is_unavailable(monkeypatch):
         markets.fmp_quote("^GSPC", FakeSession(GOOD_ROUTES))
 
 
-def test_cad_usd_inverts_price_and_direction():
-    cad, pct = cad_usd_from_usdcad(1.42463, 1.4187)
-    assert round(cad, 4) == 0.7019
-    assert pct < 0  # USD/CAD up means the loonie fell
+def test_gold_uses_session_close_not_this_morning():
+    pct = gold_change_pct(GOLD_ROWS, SESSION)
+    assert round(pct, 2) == round((4030.2 / 4114.5 - 1) * 100, 2)
 
 
-def test_ten_year_bps_sorted_by_date():
-    tile = ten_year_tile([{"date": "2026-11-10", "year10": 4.98}, {"date": "2026-11-07", "year10": 4.95}])
-    assert tile["value"] == "4.98%" and tile["change"] == "+3 bps" and tile["direction"] == "up"
+def test_gold_missing_session_close_drops_tile():
+    assert fetch_gold_tile(date(2026, 11, 12), FakeSession(GOOD_ROUTES)) is None
+    assert fetch_gold_tile(SESSION, FakeSession({})) is None
 
 
 def test_previous_weekday_monday_covers_friday():
@@ -123,7 +126,7 @@ def evidence(candidates, cited=None, searched=None, **report):
     return {
         "report": {"candidates": candidates, **report},
         "cited": cited if cited is not None else {REUTERS: ["Micron jumped 19% while Ferrari fell 5.0% and Nvidia rose 3.2 percent"]},
-        "searched": searched if searched is not None else {REUTERS, GLOBE},
+        "searched": searched if searched is not None else {REUTERS, TMX},
     }
 
 
@@ -170,12 +173,17 @@ def test_fmp_agreement_keeps_and_tsx_skips_cross_check():
     assert calls == ["NVDA"]
 
 
-def test_tsx_needs_close_and_pct_in_citation():
-    ev = evidence([], cited={GLOBE: ["The S&P/TSX composite index closed up 0.4% at 25,812.34"]},
-                  tsx_close=25812.34, tsx_change_pct=0.4, tsx_source_url=GLOBE)
-    assert verify_tsx(ev)["value"] == "25,812"
-    ev["report"]["tsx_close"] = 26100.0
-    assert verify_tsx(ev) is None
+def test_etfs_need_pct_in_cited_searched_source():
+    ev = evidence([], cited={TMX: ["XEQT closed at $38.12, up 0.62% on the day"]},
+                  etfs=[{"symbol": "XEQT", "change_pct": 0.62, "source_url": TMX},
+                        {"symbol": "XGRO", "change_pct": 0.48, "source_url": TMX}])
+    tiles = verify_etfs(ev)
+    assert tiles == {"XEQT": {"label": "XEQT", "change": "+0.62%", "direction": "up"}}
+
+
+def test_etfs_ignore_unknown_symbols():
+    ev = evidence([], cited={TMX: ["up 1.0%"]}, etfs=[{"symbol": "VFV", "change_pct": 1.0, "source_url": TMX}])
+    assert verify_etfs(ev) == {}
 
 
 def test_summary_needs_cited_source():
@@ -240,7 +248,7 @@ def test_research_collects_evidence_across_pause_turn():
         fake_response([search_block(REUTERS)], stop="pause_turn"),
         fake_response([text_block(REUTERS, "Micron jumped 19%"), report_block(candidates=[cand("MU", 19.0)])]),
     ])
-    ev = research_movers(date(2026, 11, 10), client)
+    ev = research_movers(SESSION, client)
     assert ev["searched"] == {REUTERS}
     assert ev["cited"] == {REUTERS: ["Micron jumped 19%"]}
     # Continuation resends one assistant turn holding everything so far.
@@ -249,17 +257,18 @@ def test_research_collects_evidence_across_pause_turn():
 
 
 def test_research_without_report_returns_none():
-    assert research_movers(date(2026, 11, 10), FakeClient([fake_response([search_block(REUTERS)])])) is None
+    assert research_movers(SESSION, FakeClient([fake_response([search_block(REUTERS)])])) is None
 
 
 # ── Orchestrator ──────────────────────────────────────────────────────────────
 
 def full_client():
     return FakeClient([fake_response([
-        search_block(REUTERS, GLOBE),
-        text_block(GLOBE, "The S&P/TSX composite index closed up 0.4% at 25,812.34"),
+        search_block(REUTERS, TMX),
+        text_block(TMX, "XEQT up 0.62% and XGRO up 0.48% on the session"),
         text_block(REUTERS, "Micron jumped 19% while Ferrari fell 5.0%"),
-        report_block(tsx_close=25812.34, tsx_change_pct=0.4, tsx_source_url=GLOBE,
+        report_block(etfs=[{"symbol": "XEQT", "change_pct": 0.62, "source_url": TMX},
+                           {"symbol": "XGRO", "change_pct": 0.48, "source_url": TMX}],
                      market_summary="AI names carried the day.", summary_source_url=REUTERS,
                      candidates=[cand("MU", 19.0), cand("RACE", -5.0, exchange="NYSE"), cand("FAKE", 40.0)]),
     ])])
@@ -267,11 +276,12 @@ def full_client():
 
 def test_build_markets_data_end_to_end():
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
-    assert [t["label"] for t in data["tiles"]] == ["TSX", "S&P 500", "Nasdaq", "US 10Y", "CAD/USD"]
+    assert [t["label"] for t in data["tiles"]] == ["SPX", "IXIC", "XGRO", "XEQT", "Gold"]
+    assert data["tiles"][4]["direction"] == "down"
     assert [m["symbol"] for m in data["movers"]] == ["MU", "RACE"]  # FAKE uncited, dropped
     assert data["summary"] == "AI names carried the day."
     assert data["movers"][0]["why"] == "Because reasons, apparently."
-    assert data["as_of"] == date(2026, 11, 10)
+    assert data["as_of"] == SESSION and data["strip_intraday"] is False
 
 
 def test_build_markets_data_never_raises():
@@ -279,11 +289,21 @@ def test_build_markets_data_never_raises():
         messages = property(lambda self: (_ for _ in ()).throw(RuntimeError("api down")))
 
     data = build_markets_data(TODAY, client=Boom(), session=FakeSession(GOOD_ROUTES))
-    assert data["movers"] == [] and len(data["tiles"]) == 4
+    assert data["movers"] == [] and [t["label"] for t in data["tiles"]] == ["SPX", "IXIC", "Gold"]
 
 
 def test_build_markets_data_none_when_nothing_survives():
     assert build_markets_data(TODAY, client=FakeClient([fake_response([])]), session=FakeSession({})) is None
+
+
+def test_intraday_strip_is_labelled_and_research_targets_last_session():
+    live = int(datetime(2026, 11, 11, 12, 30, tzinfo=markets.TORONTO).timestamp())
+    routes = {**GOOD_ROUTES, "^GSPC": quote(1.51, ts=live), "^IXIC": quote(2.0, ts=live)}
+    client = full_client()
+    data = build_markets_data(TODAY, client=client, session=FakeSession(routes))
+    assert data["strip_intraday"] is True and data["as_of"] == SESSION
+    assert "Tuesday, November 10, 2026" in client.calls[0]["messages"][0]["content"]
+    assert "SPX and IXIC intraday" in render_markets_block(data, LIGHT)
 
 
 # ── Render ────────────────────────────────────────────────────────────────────
@@ -292,7 +312,8 @@ def test_build_markets_data_none_when_nothing_survives():
 def test_render_block(palette):
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
     html = render_markets_block(data, palette)
-    for s in ("TSX", "S&amp;P 500", "CAD/USD", "Markets:", "MU", "&#9650; +19.0%", "&#9660; -5.0%", "As of Nov 10 close", REUTERS):
+    for s in ("SPX", "IXIC", "XGRO", "XEQT", "Gold", "+1.45%", "Markets:", "MU",
+              "&#9650; +19.0%", "&#9660; -5.0%", "Daily % moves, Nov 10 close", REUTERS):
         assert s in html
     assert palette["up"] in html and palette["down"] in html
     assert "border-left" not in html
@@ -325,13 +346,3 @@ def test_block_renders_inside_finance_card_above_story(sample_format_response):
     assert finance < with_block.index("Markets:") < with_block.index("Bank of Canada holds rates steady")
     assert with_block.index("Canada") < finance  # Canada card untouched, still above
     assert "Markets:" not in without
-
-
-def test_intraday_strip_is_labelled_and_research_targets_last_session():
-    live = int(datetime(2026, 11, 11, 12, 30, tzinfo=markets.TORONTO).timestamp())
-    routes = {**GOOD_ROUTES, "^GSPC": quote(7634.17, 1.51, ts=live)}
-    client = full_client()
-    data = build_markets_data(TODAY, client=client, session=FakeSession(routes))
-    assert data["strip_intraday"] is True and data["as_of"] == date(2026, 11, 10)
-    assert "Tuesday, November 10, 2026" in client.calls[0]["messages"][0]["content"]
-    assert "Index tiles intraday" in render_markets_block(data, LIGHT)

@@ -16,7 +16,12 @@ from the previous session's movers.
 - **Universe:** US and TSX large caps. No micro-caps, no leveraged ETFs.
 - **Selection:** biggest gainer, biggest loser, and one mover weighted toward
   Frank's interests (AI, design tools, Canadian housing and banks).
-- **Strip:** TSX, S&P 500, Nasdaq, US 10-year, CAD/USD. No Dow, no Bitcoin.
+- **Strip:** SPX, IXIC, XGRO, XEQT, Gold, shown as ticker plus daily % only,
+  no price levels, to save width. (Revised same day from TSX, S&P 500,
+  Nasdaq, US 10Y, CAD/USD with values.) Gold uses FMP daily closes for
+  `GCUSD`, because futures trade overnight and an 8am quote is that morning's
+  move. XGRO and XEQT are premium on FMP, so they come from the web-search
+  call under the same verbatim check; a tile that fails is hidden that day.
 - **Data:** hybrid. FMP free tier for the numbers it serves, Claude web search
   for the TSX close and the 3 movers.
 - **Grounding rule:** every "why" comes from a retrieved article. A mover without
@@ -43,10 +48,9 @@ Everything already in the section stays unchanged.
 
 ```
 📈 FINANCE & MARKETS
-┌ TSX ───┬ S&P 500 ┬ Nasdaq ─┬ US 10Y ─┬ CAD/USD ┐
-│ 25,812 │ 7,629.97│ 25,602  │ 4.98%   │ 0.7019  │
-│ +0.4%  │ +1.45%  │ +2.14%  │ +3 bps  │ −0.42%  │
-└────────┴─────────┴─────────┴─────────┴─────────┘
+┌ SPX ───┬ IXIC ──┬ XGRO ──┬ XEQT ──┬ Gold ──┐
+│ +1.45% │ +2.14% │ +0.48% │ +0.62% │ −2.05% │
+└────────┴────────┴────────┴────────┴────────┘
 Markets: One sentence on the day, from the cited market wrap.
 
 ▲ CRWV  CoreWeave   +25.4%  Why it moved, one sentence.

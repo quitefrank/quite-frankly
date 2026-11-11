@@ -951,8 +951,7 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT) -> str:
             f'<td width="{width}" style="padding:8px 4px;text-align:center;vertical-align:top;'
             f'border-top:1px solid {palette["divider"]};border-bottom:1px solid {palette["divider"]};{font}">'
             f'<div style="font-size:11px;font-weight:700;letter-spacing:0.04em;color:{palette["meta_label"]};line-height:16px">{escape(t["label"])}</div>'
-            f'<div style="font-size:14px;font-weight:700;color:{palette["heading"]};line-height:20px;white-space:nowrap">{escape(t["value"])}</div>'
-            f'<div style="font-size:12px;color:{color(t["direction"])};line-height:16px;white-space:nowrap">{escape(t["change"])}</div>'
+            f'<div style="font-size:14px;font-weight:700;color:{color(t["direction"])};line-height:20px;white-space:nowrap">{escape(t["change"])}</div>'
             f'</td>'
             for t in tiles
         )
@@ -985,13 +984,13 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT) -> str:
     as_of = data.get("as_of")
     if as_of:
         when = (
-            f'Index tiles intraday; movers from {as_of.strftime("%b %-d")} close.'
+            f'SPX and IXIC intraday; the rest from {as_of.strftime("%b %-d")} close.'
             if data.get("strip_intraday")
-            else f'As of {as_of.strftime("%b %-d")} close.'
+            else f'Daily % moves, {as_of.strftime("%b %-d")} close.'
         )
         out += (
             f'<p style="margin:6px 0 0;font-size:11px;color:{palette["meta"]};{font}">'
-            f'{when} Indices, 10Y and CAD/USD via FMP; TSX and movers from linked coverage.</p>'
+            f'{when} SPX, IXIC and Gold via FMP; XGRO, XEQT and movers from linked coverage.</p>'
         )
 
     return f'<div style="border-bottom:1px solid {palette["divider"]};padding-bottom:16px;margin-bottom:16px">{out}</div>'
