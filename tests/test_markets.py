@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date
 from types import SimpleNamespace as NS
 
 import pytest
@@ -7,13 +7,12 @@ import markets
 from markets import (
     FMPUnavailable,
     build_markets_data,
-    fetch_gold_tile,
-    fetch_sector_tiles,
-    fetch_index_tiles,
-    session_change_pct,
+    fetch_strip,
+    latest_session,
     pick_three,
     previous_weekday,
     research_movers,
+    session_change_pct,
     verify_candidates,
     verify_summary,
 )
@@ -21,7 +20,6 @@ from formatting import DARK, LIGHT, render_markets_block
 
 TODAY = date(2026, 11, 11)
 SESSION = date(2026, 11, 10)
-SESSION_TS = int(datetime(2026, 11, 10, 16, 0, tzinfo=markets.TORONTO).timestamp())
 REUTERS = "https://www.reuters.com/markets/wrap"
 TMX = "https://money.tmx.com/quote/XEQT"
 
@@ -39,47 +37,31 @@ class FakeResp:
 
 
 class FakeSession:
-    """Routes FMP paths to canned payloads; anything else is 'premium'."""
+    """Routes FMP daily-close requests by symbol; anything else is 'premium'."""
 
     def __init__(self, routes):
         self.routes = routes
 
     def get(self, url, params=None, timeout=None):
         path = url.rsplit("/stable/", 1)[1]
-        if path == "quote":
-            key = params.get("symbol")
-        elif path == "sector-performance-snapshot":
-            key = f"sectors:{params.get('exchange')}"
-        elif path == "historical-price-eod/light":
-            key = f"eod:{params.get('symbol')}"
-        else:
-            key = path
+        key = f"eod:{params.get('symbol')}" if path == "historical-price-eod/light" else path
         if key in self.routes:
             return FakeResp(self.routes[key])
         return FakeResp(text="Premium Query Parameter: not available")
 
 
-def quote(pct, ts=SESSION_TS):
-    return [{"price": 1.0, "changePercentage": pct, "timestamp": ts}]
-
-
-GOLD_ROWS = [
-    {"date": "2026-11-11", "price": 4009.7},  # this morning's partial session
-    {"date": "2026-11-10", "price": 4030.2},
-    {"date": "2026-11-09", "price": 4114.5},
-]
-
-def sectors(**avg):
-    names = {"tech": "Technology", "energy": "Energy", "fin": "Financial Services",
-             "re": "Real Estate", "health": "Healthcare"}
-    return [{"date": "2026-11-10", "sector": names[k], "averageChange": v} for k, v in avg.items()]
+def closes(nov9, nov10, nov11=None):
+    """Daily rows, newest first like FMP. nov11 is today's partial session."""
+    rows = [{"date": "2026-11-10", "price": nov10}, {"date": "2026-11-09", "price": nov9}]
+    return ([{"date": "2026-11-11", "price": nov11}] if nov11 else []) + rows
 
 
 GOOD_ROUTES = {
-    "^GSPC": quote(1.44982),
-    "eod:GCUSD": GOLD_ROWS,
-    "sectors:NYSE": sectors(tech=1.16, energy=1.85, fin=1.46, re=0.73, health=1.12),
-    "sectors:NASDAQ": sectors(tech=-0.24, energy=0.54, fin=0.51, re=0.69, health=-0.31),
+    "eod:SPY": closes(675.0, 672.5, 683.0),       # -0.37% on Nov 10
+    "eod:NVDA": closes(178.67, 168.89, 176.49),   # -5.47%
+    "eod:XOM": closes(118.0, 117.81),
+    "eod:JPM": closes(305.0, 305.0),              # flat
+    "eod:GCUSD": closes(4114.5, 4030.2, 4009.7),  # -2.05%
 }
 
 
@@ -88,70 +70,56 @@ def fmp_key(monkeypatch):
     monkeypatch.setenv("FMP_API_KEY", "test")
 
 
-# ── FMP tiles ─────────────────────────────────────────────────────────────────
+# ── Strip ─────────────────────────────────────────────────────────────────────
 
-def test_index_tiles_are_ticker_and_change_only():
-    tiles, as_of = fetch_index_tiles(TODAY, FakeSession(GOOD_ROUTES))
-    assert tiles == {"SPX": {"label": "SPX", "change": "+1.45%", "direction": "up"}}
-    assert as_of == SESSION
-
-
-def test_gated_index_drops_tile():
-    tiles, as_of = fetch_index_tiles(TODAY, FakeSession({}))
-    assert tiles == {} and as_of is None
+def test_strip_is_tickers_with_session_moves():
+    tiles = fetch_strip(SESSION, FakeSession(GOOD_ROUTES))
+    assert [t["label"] for t in tiles] == ["SPY", "NVDA", "XOM", "JPM", "GC"]
+    assert tiles[1] == {"label": "NVDA", "change": "-5.47%", "direction": "down"}
+    assert tiles[3]["direction"] == "flat"
 
 
-def test_sector_tiles_average_both_exchanges():
-    tiles = fetch_sector_tiles(SESSION, FakeSession(GOOD_ROUTES))
-    assert list(tiles) == ["Tech", "Energy", "Finance", "Realty"]  # Healthcare not shown
-    assert tiles["Tech"]["change"] == "+0.46%"     # (1.16 + -0.24) / 2
-    assert tiles["Energy"]["change"] == "+1.20%"
+def test_near_zero_move_is_flat_not_red():
+    assert markets.tile("JPM", -0.003) == {"label": "JPM", "change": "0.00%", "direction": "flat"}
 
 
-def test_sector_tiles_survive_one_exchange_missing():
-    routes = {k: v for k, v in GOOD_ROUTES.items() if k != "sectors:NASDAQ"}
-    assert fetch_sector_tiles(SESSION, FakeSession(routes))["Tech"]["change"] == "+1.16%"
+def test_one_gated_symbol_costs_one_tile():
+    routes = {k: v for k, v in GOOD_ROUTES.items() if k != "eod:XOM"}
+    assert [t["label"] for t in fetch_strip(SESSION, FakeSession(routes))] == ["SPY", "NVDA", "JPM", "GC"]
 
 
-def test_sector_rows_for_other_dates_are_ignored():
-    stale = [dict(r, date="2026-11-07") for r in GOOD_ROUTES["sectors:NYSE"]]
-    assert fetch_sector_tiles(SESSION, FakeSession({"sectors:NYSE": stale})) == {}
+def test_latest_session_skips_todays_partial_row():
+    assert latest_session(TODAY, FakeSession(GOOD_ROUTES)) == SESSION
 
 
-def test_stale_index_quote_is_skipped():
-    old = int(datetime(2026, 11, 2, 16, tzinfo=markets.TORONTO).timestamp())
-    tiles, as_of = fetch_index_tiles(TODAY, FakeSession({"^GSPC": quote(1.0, ts=old)}))
-    assert tiles == {} and as_of is None
+def test_latest_session_stale_or_missing_is_none():
+    old = {"eod:SPY": [{"date": "2026-11-02", "price": 1.0}, {"date": "2026-10-30", "price": 1.0}]}
+    assert latest_session(TODAY, FakeSession(old)) is None
+    assert latest_session(TODAY, FakeSession({})) is None
 
 
 def test_missing_key_is_unavailable(monkeypatch):
     monkeypatch.delenv("FMP_API_KEY")
     with pytest.raises(FMPUnavailable):
-        markets.fmp_quote("^GSPC", FakeSession(GOOD_ROUTES))
+        markets.fmp_quote("SPY", FakeSession(GOOD_ROUTES))
 
 
-def test_gold_uses_session_close_not_this_morning():
-    pct = session_change_pct(GOLD_ROWS, SESSION)
+def test_session_change_uses_session_close_not_this_morning():
+    pct = session_change_pct(GOOD_ROUTES["eod:GCUSD"], SESSION)
     assert round(pct, 2) == round((4030.2 / 4114.5 - 1) * 100, 2)
+    with pytest.raises(FMPUnavailable):
+        session_change_pct(GOOD_ROUTES["eod:GCUSD"], date(2026, 11, 12))
 
 
-def test_mover_cross_check_uses_session_close_not_live_quote():
-    # Live quote says +4.5% (today); the Nov 10 close says -5.47%, as the article does.
-    routes = {**GOOD_ROUTES, "NVDA": quote(4.5),
-              "eod:NVDA": [{"date": "2026-11-11", "price": 176.49}, {"date": "2026-11-10", "price": 168.89},
-                           {"date": "2026-11-09", "price": 178.67}]}
+def test_mover_cross_check_uses_session_close():
+    # Today's partial row says +4.5%; the Nov 10 close says -5.47%, as the article does.
     client = FakeClient([
         fake_response([search_block(REUTERS), text_block(REUTERS, "Nvidia fell 5.47% on Tuesday")]),
         fake_response([report_block(market_summary="", summary_source_url=None,
                                     candidates=[cand("NVDA", -5.47, name="Nvidia Corp")])]),
     ])
-    data = build_markets_data(TODAY, client=client, session=FakeSession(routes))
-    assert [m["symbol"] for m in data["movers"]] == ["NVDA"]
-
-
-def test_gold_missing_session_close_drops_tile():
-    assert fetch_gold_tile(date(2026, 11, 12), FakeSession(GOOD_ROUTES)) is None
-    assert fetch_gold_tile(SESSION, FakeSession({})) is None
+    data = build_markets_data(TODAY, client=client, session=FakeSession(GOOD_ROUTES))
+    assert [(m["symbol"], m["change_pct"]) for m in data["movers"]] == [("NVDA", -5.47)]
 
 
 def test_previous_weekday_monday_covers_friday():
@@ -271,7 +239,13 @@ def test_pick_three_one_direction_fills_by_size():
 
 def test_pick_three_short_list():
     assert pick_three([]) == []
-    assert len(pick_three([cand("A", 1.0)])) == 1
+    assert len(pick_three([cand("A", 2.5)])) == 1
+
+
+def test_pick_three_ignores_small_moves():
+    # The Nov 10 test picked BMO at -0.2% as the interest slot.
+    picks = pick_three([cand("A", 9.0), cand("B", -7.0), cand("BMO", -0.2, tag="banks"), cand("C", 1.9)])
+    assert [p["symbol"] for p in picks] == ["A", "B"]
 
 
 # ── Research call ─────────────────────────────────────────────────────────────
@@ -348,12 +322,11 @@ def full_client():
 
 def test_build_markets_data_end_to_end():
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
-    assert [t["label"] for t in data["tiles"]] == ["SPX", "Tech", "Energy", "Finance", "Realty", "Gold"]
-    assert data["tiles"][5]["direction"] == "down"
+    assert [t["label"] for t in data["tiles"]] == ["SPY", "NVDA", "XOM", "JPM", "GC"]
     assert [m["symbol"] for m in data["movers"]] == ["MU", "RACE"]  # FAKE uncited, dropped
     assert data["summary"] == "AI names carried the day."
     assert data["movers"][0]["why"] == "Because reasons, apparently."
-    assert data["as_of"] == SESSION and data["strip_intraday"] is False
+    assert data["as_of"] == SESSION
 
 
 def test_build_markets_data_never_raises():
@@ -361,7 +334,7 @@ def test_build_markets_data_never_raises():
         messages = property(lambda self: (_ for _ in ()).throw(RuntimeError("api down")))
 
     data = build_markets_data(TODAY, client=Boom(), session=FakeSession(GOOD_ROUTES))
-    assert data["movers"] == [] and [t["label"] for t in data["tiles"]] == ["SPX", "Tech", "Energy", "Finance", "Realty", "Gold"]
+    assert data["movers"] == [] and [t["label"] for t in data["tiles"]] == ["SPY", "NVDA", "XOM", "JPM", "GC"]
 
 
 def test_build_markets_data_none_when_nothing_survives():
@@ -369,14 +342,17 @@ def test_build_markets_data_none_when_nothing_survives():
     assert build_markets_data(TODAY, client=client, session=FakeSession({})) is None
 
 
-def test_intraday_strip_is_labelled_and_research_targets_last_session():
-    live = int(datetime(2026, 11, 11, 12, 30, tzinfo=markets.TORONTO).timestamp())
-    routes = {**GOOD_ROUTES, "^GSPC": quote(1.51, ts=live)}
+def test_midday_run_still_targets_last_completed_session():
     client = full_client()
-    data = build_markets_data(TODAY, client=client, session=FakeSession(routes))
-    assert data["strip_intraday"] is True and data["as_of"] == SESSION
+    data = build_markets_data(TODAY, client=client, session=FakeSession(GOOD_ROUTES))
+    assert data["as_of"] == SESSION
     assert "Tuesday, November 10, 2026" in client.calls[0]["messages"][0]["content"]
-    assert "SPX intraday" in render_markets_block(data, LIGHT)
+
+
+def test_no_fmp_still_researches_previous_weekday():
+    client = full_client()
+    data = build_markets_data(TODAY, client=client, session=FakeSession({}))
+    assert data["tiles"] == [] and data["as_of"] == SESSION
 
 
 # ── Render ────────────────────────────────────────────────────────────────────
@@ -385,7 +361,7 @@ def test_intraday_strip_is_labelled_and_research_targets_last_session():
 def test_render_block(palette):
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
     html = render_markets_block(data, palette)
-    for s in ("SPX", "Tech", "Energy", "Finance", "Realty", "Gold", "+1.45%", "average US stock", "Markets:", "MU",
+    for s in ("SPY", "NVDA", "XOM", "JPM", "GC", "-5.47%", "gold futures", "Markets:", "MU",
               "&#9650; +19.0%", "&#9660; -5.0%", "Daily % moves, Nov 10 close", REUTERS):
         assert s in html
     assert palette["up"] in html and palette["down"] in html

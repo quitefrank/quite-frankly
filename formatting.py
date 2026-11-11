@@ -983,14 +983,10 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT) -> str:
 
     as_of = data.get("as_of")
     if as_of:
-        when = (
-            f'SPX intraday; the rest from {as_of.strftime("%b %-d")} close.'
-            if data.get("strip_intraday")
-            else f'Daily % moves, {as_of.strftime("%b %-d")} close.'
-        )
+        when = f'Daily % moves, {as_of.strftime("%b %-d")} close.'
         out += (
             f'<p style="margin:6px 0 0;font-size:11px;color:{palette["meta"]};{font}">'
-            f'{when} Sectors show the average US stock (NYSE and Nasdaq). Movers from linked coverage.</p>'
+            f'{when} SPY is the S&amp;P 500, GC is gold futures. Movers from linked coverage.</p>'
         )
 
     return f'<div style="border-bottom:1px solid {palette["divider"]};padding-bottom:16px;margin-bottom:16px">{out}</div>'

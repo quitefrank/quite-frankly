@@ -1,19 +1,20 @@
 """Markets block for the Finance & Markets section.
 
-Morning-Brew-style strip of daily % moves (SPX, Tech, Energy, Finance,
-Real Estate, Gold) plus three featured movers from the previous session, each
-with a sourced one-line "why". The strip shows movement only, no price levels,
-to keep it narrow.
+Morning-Brew-style strip of daily % moves (SPY, NVDA, XOM, JPM, GC) plus
+three featured movers from the previous session, each with a sourced one-line
+"why". The strip shows ticker and movement only, no price levels, to keep it
+narrow. Tickers rather than sector names so every tile is something a reader
+could look up or buy.
 
 Two sources, one rule:
-  - FMP free tier supplies the whole strip straight from a feed: the S&P 500
-    quote, the sector snapshot, and gold's daily closes.
+  - FMP free tier supplies the whole strip from daily closes, so every tile
+    and every mover cross-check is the same completed session.
   - One Claude call with the web_search server tool supplies the mover
     candidates, because the free tier's gainers/losers lists are micro-caps
     and leveraged ETFs and it has no stock news.
   - A model-reported number only renders if it appears in text Claude cited
     from the URL it names, and the URL came back from a real search. When FMP
-    also serves the symbol, the % has to agree with FMP's quote. Anything that
+    also serves the symbol, the % has to agree with FMP's close. Anything that
     fails is dropped, never explained from model knowledge.
 
 Everything here is additive: build_markets_data() swallows every failure and
@@ -44,22 +45,21 @@ FMP_MAX_GAP_POINTS = 0.5    # article % vs FMP % disagreement that drops a mover
 US_EXCHANGES = {"NYSE", "NASDAQ", "AMEX", "NYSEARCA", "NYSE AMERICAN"}
 INTEREST_TAGS = {"ai", "design", "housing", "banks"}
 
-# Strip order, left to right: market anchor, four sectors, gold.
-# Gold isn't labelled by ticker: GOLD is Barrick's, and the futures code GC
-# means nothing to a reader.
-INDEX_TILES = (("^GSPC", "SPX"),)
-# FMP sector name -> tile label. The sector snapshot is the equal-weighted
-# average stock per exchange, so a Tech tile is breadth, not XLK: hundreds of
-# small Nasdaq names can pull it red on a day Nvidia rallies. The size-weighted
-# sector ETFs (XLK, XLE, XLF, XLRE) are premium on FMP.
-SECTOR_TILES = (
-    ("Technology", "Tech"),
-    ("Energy", "Energy"),
-    ("Financial Services", "Finance"),
-    ("Real Estate", "Realty"),
+MIN_MOVE_PCT = 2.0  # below this a stock isn't a "mover" (the Nov 10 test picked BMO at -0.2%)
+
+# Strip, left to right: (FMP symbol, label). One bellwether per area, because
+# the free tier blocks every sector ETF (XLK, XLE, XLF, XLRE, GLD, QQQ), every
+# real estate stock and every gold miner, so a ticker Frank could buy has to
+# be one of the megacaps it does serve. A bellwether is one company, not its
+# sector: NVDA fell 5.5% on Nov 10 while the average tech stock rose.
+STRIP_TILES = (
+    ("SPY", "SPY"),     # S&P 500 ETF: the market
+    ("NVDA", "NVDA"),   # tech and AI
+    ("XOM", "XOM"),     # energy
+    ("JPM", "JPM"),     # banks
+    ("GCUSD", "GC"),    # gold futures, the standard GC code
 )
-SECTOR_EXCHANGES = ("NYSE", "NASDAQ")
-GOLD_SYMBOL, GOLD_LABEL = "GCUSD", "Gold"
+SESSION_ANCHOR = "SPY"  # its last completed daily close defines the session
 
 
 # ── FMP ───────────────────────────────────────────────────────────────────────
@@ -89,19 +89,18 @@ def fmp_quote(symbol: str, session=requests) -> dict:
 
 
 def tile(label: str, pct: float) -> dict:
+    # Direction from the displayed value, so -0.003% reads as a flat 0.00%,
+    # not a red "-0.00%".
+    shown = round(pct, 2) + 0.0  # + 0.0 turns -0.0 into 0.0
     return {
         "label": label,
-        "change": format_pct(pct),
-        "direction": "up" if pct > 0 else "down" if pct < 0 else "flat",
+        "change": format_pct(shown) if shown else "0.00%",
+        "direction": "up" if shown > 0 else "down" if shown < 0 else "flat",
     }
 
 
 def format_pct(pct: float) -> str:
     return f"{pct:+.2f}%"
-
-
-def session_date_from_quote(quote: dict) -> date:
-    return datetime.fromtimestamp(quote["timestamp"], TORONTO).date()
 
 
 def previous_weekday(d: date) -> date:
@@ -111,64 +110,17 @@ def previous_weekday(d: date) -> date:
     return d
 
 
-def fetch_index_tiles(today: date, session=requests) -> tuple[dict[str, dict], date | None]:
-    """Index tiles (SPX) keyed by label, plus the date their quotes carry.
-
-    Each tile fails on its own. A stale quote timestamp drops both rather
-    than showing last week's move as yesterday's.
-    """
-    tiles: dict[str, dict] = {}
-    as_of: date | None = None
-    for symbol, label in INDEX_TILES:
-        try:
-            q = fmp_quote(symbol, session)
-            stamp = session_date_from_quote(q)
-        except (FMPUnavailable, requests.RequestException, KeyError) as e:
-            print(f"[markets] {label} unavailable ({e})", flush=True)
-            continue
-        if (today - stamp).days > STALE_AFTER_DAYS:
-            print(f"[markets] {label} stale (as of {stamp}); skipping", flush=True)
-            continue
-        as_of = as_of or stamp
-        tiles[label] = tile(label, q["changePercentage"])
-    return tiles, as_of
-
-
-def fetch_sector_tiles(session_date: date, session=requests) -> dict[str, dict]:
-    """Sector tiles keyed by label: the mean of the NYSE and Nasdaq averages.
-
-    Either exchange alone still produces a tile; a sector missing from both
-    is skipped.
-    """
-    by_sector: dict[str, list[float]] = {}
-    for exchange in SECTOR_EXCHANGES:
-        try:
-            rows = _fmp_get(
-                "sector-performance-snapshot",
-                {"date": session_date.isoformat(), "exchange": exchange},
-                session,
-            )
-        except (FMPUnavailable, requests.RequestException) as e:
-            print(f"[markets] sectors on {exchange} unavailable ({e})", flush=True)
-            continue
-        for r in rows:
-            if r.get("date") == session_date.isoformat() and "averageChange" in r:
-                by_sector.setdefault(r.get("sector"), []).append(r["averageChange"])
-    tiles = {}
-    for sector, label in SECTOR_TILES:
-        values = by_sector.get(sector)
-        if values:
-            tiles[label] = tile(label, sum(values) / len(values))
-    return tiles
+def _daily_rows(symbol: str, since: date, session=requests) -> list[dict]:
+    return _fmp_get("historical-price-eod/light", {"symbol": symbol, "from": since.isoformat()}, session)
 
 
 def session_change_pct(rows: list[dict], session_date: date) -> float:
     """Close-to-close % for session_date from FMP daily rows.
 
-    Used for gold (futures trade overnight, so a live quote at 8am is that
-    morning's move) and the movers cross-check (a live quote during market
-    hours is today's move: CI run 43074369231 compared NVDA's Nov 10 -5.47%
-    against a live +4.55% and dropped a correct figure).
+    Daily closes rather than live quotes everywhere: gold futures trade
+    overnight (an 8am quote is that morning's move), and during market hours
+    a live quote is today's move (CI run 43074369231 compared NVDA's Nov 10
+    -5.47% against a live +4.55% and dropped a correct figure).
     """
     by_date = sorted((r for r in rows if r["date"] <= session_date.isoformat()), key=lambda r: r["date"])
     if len(by_date) < 2 or by_date[-1]["date"] != session_date.isoformat():
@@ -178,25 +130,40 @@ def session_change_pct(rows: list[dict], session_date: date) -> float:
 
 
 def fmp_session_change(symbol: str, session_date: date, session=requests) -> float:
-    rows = _fmp_get(
-        "historical-price-eod/light",
-        {"symbol": symbol, "from": (session_date - timedelta(days=10)).isoformat()},
-        session,
-    )
-    return session_change_pct(rows, session_date)
+    return session_change_pct(_daily_rows(symbol, session_date - timedelta(days=10), session), session_date)
 
 
-def fetch_gold_tile(session_date: date, session=requests) -> dict | None:
+def latest_session(today: date, session=requests) -> date | None:
+    """The last completed session: SPY's newest daily close before today.
+
+    Today's row (present during market hours) is a partial session and is
+    skipped. A close older than STALE_AFTER_DAYS means FMP is behind, so the
+    strip is skipped rather than showing last week's moves as yesterday's.
+    """
     try:
-        rows = _fmp_get(
-            "historical-price-eod/light",
-            {"symbol": GOLD_SYMBOL, "from": (session_date - timedelta(days=10)).isoformat()},
-            session,
-        )
-        return tile(GOLD_LABEL, session_change_pct(rows, session_date))
-    except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError) as e:
-        print(f"[markets] Gold unavailable ({e})", flush=True)
+        rows = _daily_rows(SESSION_ANCHOR, today - timedelta(days=10), session)
+    except (FMPUnavailable, requests.RequestException) as e:
+        print(f"[markets] session lookup failed ({e})", flush=True)
         return None
+    dates = sorted(r["date"] for r in rows if r.get("date", "") < today.isoformat())
+    if not dates:
+        return None
+    last = date.fromisoformat(dates[-1])
+    if (today - last).days > STALE_AFTER_DAYS:
+        print(f"[markets] FMP closes stale (last {last}); skipping strip", flush=True)
+        return None
+    return last
+
+
+def fetch_strip(session_date: date, session=requests) -> list[dict]:
+    """One tile per STRIP_TILES entry that has a close for session_date."""
+    tiles = []
+    for symbol, label in STRIP_TILES:
+        try:
+            tiles.append(tile(label, fmp_session_change(symbol, session_date, session)))
+        except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError) as e:
+            print(f"[markets] {label} unavailable ({e})", flush=True)
+    return tiles
 
 
 # ── Web-search research ───────────────────────────────────────────────────────
@@ -438,9 +405,10 @@ def verify_candidates(evidence: dict, change_fn) -> list[dict]:
 
 def pick_three(verified: list[dict]) -> list[dict]:
     """Biggest gainer, biggest loser, then the biggest remaining interest-tagged
-    mover (falling back to the biggest remaining move). Order: as picked."""
+    mover (falling back to the biggest remaining move). Order: as picked.
+    Moves under MIN_MOVE_PCT never qualify."""
     picks: list[dict] = []
-    remaining = list(verified)
+    remaining = [c for c in verified if abs(c["change_pct"]) >= MIN_MOVE_PCT]
 
     def take(pool, key):
         if pool:
@@ -468,22 +436,12 @@ def build_markets_data(today: date | None = None, client=None, session=requests)
     """Assemble the block. Never raises; returns None when nothing survives."""
     today = today or datetime.now(TORONTO).date()
     try:
-        index_tiles, as_of = fetch_index_tiles(today, session)
+        found = latest_session(today, session)
+        tiles = fetch_strip(found, session) if found else []
     except Exception as e:
-        print(f"[markets] index tiles failed ({e})", flush=True)
-        index_tiles, as_of = {}, None
-    # The 8am run sees yesterday's close. A manual run during market hours
-    # sees live index prices stamped today: label those intraday, and point
-    # gold and the research at the last completed session instead.
-    intraday = as_of == today
-    session_date = previous_weekday(today) if (intraday or as_of is None) else as_of
-
-    try:
-        sector_tiles = fetch_sector_tiles(session_date, session)
-    except Exception as e:
-        print(f"[markets] sector tiles failed ({e})", flush=True)
-        sector_tiles = {}
-    gold = fetch_gold_tile(session_date, session)
+        print(f"[markets] strip failed ({e})", flush=True)
+        found, tiles = None, []
+    session_date = found or previous_weekday(today)
 
     movers, summary = [], ""
     try:
@@ -503,16 +461,12 @@ def build_markets_data(today: date | None = None, client=None, session=requests)
     except Exception as e:
         print(f"[markets] research failed ({e})", flush=True)
 
-    by_label = {**index_tiles, **sector_tiles, **({GOLD_LABEL: gold} if gold else {})}
-    order = [label for _, label in INDEX_TILES] + [label for _, label in SECTOR_TILES] + [GOLD_LABEL]
-    tiles = [by_label[label] for label in order if label in by_label]
     if not tiles and not movers:
         return None
     for m in movers:
         m["why"] = _clean(m["why"])
     return {
         "as_of": session_date,
-        "strip_intraday": intraday and bool(index_tiles),
         "tiles": tiles,
         "summary": summary,
         "movers": movers,

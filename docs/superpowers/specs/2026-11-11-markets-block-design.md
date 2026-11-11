@@ -16,20 +16,24 @@ from the previous session's movers.
 - **Universe:** US and TSX large caps. No micro-caps, no leveraged ETFs.
 - **Selection:** biggest gainer, biggest loser, and one mover weighted toward
   Frank's interests (AI, design tools, Canadian housing and banks).
-- **Strip:** SPX, Tech, Energy, Finance, Realty, Gold: a sector overview,
-  daily % only, no price levels, to save width. All six come straight from
-  the FMP free tier, so the strip needs no citation check.
-  - SPX: `quote?symbol=^GSPC`.
-  - Sectors: `sector-performance-snapshot` for NYSE and Nasdaq, averaged.
-    This is the equal-weighted average stock, not a size-weighted sector ETF
-    (XLK, XLE, XLF, XLRE are premium), so a Tech tile can read red on a day
-    Nvidia rallies. The footnote says "average US stock".
-  - Gold: daily closes for `GCUSD`, because futures trade overnight and an
-    8am quote is that morning's move.
+- **Strip:** SPY · NVDA · XOM · JPM · GC, ticker plus daily % only. Frank
+  wants tickers he could look up or buy, one per area: the market, tech/AI,
+  energy, banks, gold futures. All five come from FMP free daily closes for
+  the last completed session (SPY's newest close before today), so the strip,
+  the movers cross-check and the summary always describe the same day.
+  - The free tier blocks every sector ETF (XLK, XLE, XLF, XLRE, GLD, QQQ,
+    IWM, DIA), every real estate stock (PLD, AMT, O) and every gold miner
+    (NEM, GOLD, AEM), so there is no free real estate tile and gold is the
+    futures contract. Paid FMP Starter (reportedly ~$22/mo, unverified) would
+    allow real sector ETFs.
+  - A bellwether is one company, not its sector: NVDA fell 5.5% on Nov 10
+    while the average tech stock rose.
   - History, all 2026-11-11: TSX/S&P/Nasdaq/10Y/CAD-USD with values →
-    SPX/IXIC/XGRO/XEQT/Gold as % only → this sector set. XGRO and XEQT were
-    dropped because they needed web search (premium on FMP) and Frank wanted
-    a sector read rather than his own funds.
+    SPX/IXIC/XGRO/XEQT/Gold → SPX plus sector averages (Tech, Energy, Finance,
+    Realty, Gold) → these tickers, after Frank found sector names too vague
+    to act on.
+- **Movers need a 2% move.** The Nov 10 test picked BMO at -0.2% for the
+  interest slot.
 - **Data:** hybrid. FMP free tier for the numbers it serves, Claude web search
   for the TSX close and the 3 movers.
 - **Grounding rule:** every "why" comes from a retrieved article. A mover without
