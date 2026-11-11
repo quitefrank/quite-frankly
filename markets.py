@@ -1,16 +1,16 @@
 """Markets block for the Finance & Markets section.
 
-Morning-Brew-style strip of daily % moves (SPX, IXIC, XGRO, XEQT, Gold) plus
-three featured movers from the previous session, each with a sourced one-line
-"why". The strip shows movement only, no price levels, to keep it narrow.
+Morning-Brew-style strip of daily % moves (SPX, Tech, Energy, Finance,
+Real Estate, Gold) plus three featured movers from the previous session, each
+with a sourced one-line "why". The strip shows movement only, no price levels,
+to keep it narrow.
 
 Two sources, one rule:
-  - FMP free tier supplies what it serves straight from a feed: the S&P 500
-    and Nasdaq quotes, and gold's daily closes.
-  - One Claude call with the web_search server tool supplies XGRO and XEQT
-    (TSX-listed, premium on FMP) and the mover candidates, because the free
-    tier has no Canadian data and its gainers/losers lists are micro-caps and
-    leveraged ETFs.
+  - FMP free tier supplies the whole strip straight from a feed: the S&P 500
+    quote, the sector snapshot, and gold's daily closes.
+  - One Claude call with the web_search server tool supplies the mover
+    candidates, because the free tier's gainers/losers lists are micro-caps
+    and leveraged ETFs and it has no stock news.
   - A model-reported number only renders if it appears in text Claude cited
     from the URL it names, and the URL came back from a real search. When FMP
     also serves the symbol, the % has to agree with FMP's quote. Anything that
@@ -44,10 +44,21 @@ FMP_MAX_GAP_POINTS = 0.5    # article % vs FMP % disagreement that drops a mover
 US_EXCHANGES = {"NYSE", "NASDAQ", "AMEX", "NYSEARCA", "NYSE AMERICAN"}
 INTEREST_TAGS = {"ai", "design", "housing", "banks"}
 
-# Strip order, left to right. Labels are tickers, except gold: its ticker GOLD
-# is Barrick's, and the futures code GC means nothing to a reader.
-INDEX_TILES = (("^GSPC", "SPX"), ("^IXIC", "IXIC"))
-ETF_TILES = ("XGRO", "XEQT")
+# Strip order, left to right: market anchor, four sectors, gold.
+# Gold isn't labelled by ticker: GOLD is Barrick's, and the futures code GC
+# means nothing to a reader.
+INDEX_TILES = (("^GSPC", "SPX"),)
+# FMP sector name -> tile label. The sector snapshot is the equal-weighted
+# average stock per exchange, so a Tech tile is breadth, not XLK: hundreds of
+# small Nasdaq names can pull it red on a day Nvidia rallies. The size-weighted
+# sector ETFs (XLK, XLE, XLF, XLRE) are premium on FMP.
+SECTOR_TILES = (
+    ("Technology", "Tech"),
+    ("Energy", "Energy"),
+    ("Financial Services", "Finance"),
+    ("Real Estate", "Realty"),
+)
+SECTOR_EXCHANGES = ("NYSE", "NASDAQ")
 GOLD_SYMBOL, GOLD_LABEL = "GCUSD", "Gold"
 
 
@@ -101,7 +112,7 @@ def previous_weekday(d: date) -> date:
 
 
 def fetch_index_tiles(today: date, session=requests) -> tuple[dict[str, dict], date | None]:
-    """SPX and IXIC tiles keyed by label, plus the date their quotes carry.
+    """Index tiles (SPX) keyed by label, plus the date their quotes carry.
 
     Each tile fails on its own. A stale quote timestamp drops both rather
     than showing last week's move as yesterday's.
@@ -121,6 +132,34 @@ def fetch_index_tiles(today: date, session=requests) -> tuple[dict[str, dict], d
         as_of = as_of or stamp
         tiles[label] = tile(label, q["changePercentage"])
     return tiles, as_of
+
+
+def fetch_sector_tiles(session_date: date, session=requests) -> dict[str, dict]:
+    """Sector tiles keyed by label: the mean of the NYSE and Nasdaq averages.
+
+    Either exchange alone still produces a tile; a sector missing from both
+    is skipped.
+    """
+    by_sector: dict[str, list[float]] = {}
+    for exchange in SECTOR_EXCHANGES:
+        try:
+            rows = _fmp_get(
+                "sector-performance-snapshot",
+                {"date": session_date.isoformat(), "exchange": exchange},
+                session,
+            )
+        except (FMPUnavailable, requests.RequestException) as e:
+            print(f"[markets] sectors on {exchange} unavailable ({e})", flush=True)
+            continue
+        for r in rows:
+            if r.get("date") == session_date.isoformat() and "averageChange" in r:
+                by_sector.setdefault(r.get("sector"), []).append(r["averageChange"])
+    tiles = {}
+    for sector, label in SECTOR_TILES:
+        values = by_sector.get(sector)
+        if values:
+            tiles[label] = tile(label, sum(values) / len(values))
+    return tiles
 
 
 def gold_change_pct(rows: list[dict], session_date: date) -> float:
@@ -153,22 +192,10 @@ def fetch_gold_tile(session_date: date, session=requests) -> dict | None:
 
 REPORT_TOOL = {
     "name": "report_markets",
-    "description": "Report the session's ETF moves, a one-line market summary, and mover candidates. Call exactly once, after searching and after writing the evidence lines.",
+    "description": "Report the session's one-line market summary and mover candidates. Call exactly once, after searching and after writing the evidence lines.",
     "input_schema": {
         "type": "object",
         "properties": {
-            "etfs": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "symbol": {"type": "string", "enum": list(ETF_TILES)},
-                        "change_pct": {"type": "number", "description": "Signed, e.g. -0.42"},
-                        "source_url": {"type": "string"},
-                    },
-                    "required": ["symbol", "change_pct", "source_url"],
-                },
-            },
             "market_summary": {"type": "string"},
             "summary_source_url": {"type": ["string", "null"]},
             "candidates": {
@@ -189,7 +216,7 @@ REPORT_TOOL = {
                 },
             },
         },
-        "required": ["etfs", "market_summary", "summary_source_url", "candidates"],
+        "required": ["market_summary", "summary_source_url", "candidates"],
     },
 }
 
@@ -199,14 +226,13 @@ def research_prompt(session_date: date) -> str:
     return f"""Research the stock market session of {day} for a Toronto reader's morning newsletter.
 
 Find:
-1. The daily % change on that session for two TSX-listed ETFs: XGRO (iShares Core Growth ETF Portfolio) and XEQT (iShares Core Equity ETF Portfolio). Use a quote or price-history page (TMX Money, The Globe and Mail, Morningstar, BlackRock iShares Canada, Barchart) that states the % change for that date.
-2. A one-sentence summary of why markets moved that day, from wire or newspaper closing coverage (Reuters, AP, The Globe and Mail, CNBC, Bloomberg, Financial Post).
-3. Up to 6 large-cap stocks (S&P 500 or TSX 60 members only) that made notable moves that day and have a reported reason. Include the biggest reported gainers and losers. Prefer, where they moved notably, companies in AI, design and creative software, Canadian housing, or Canadian banks, and tag those. No penny stocks, no ETFs, no stocks without a reported reason.
+1. A one-sentence summary of why markets moved that day, from wire or newspaper closing coverage (Reuters, AP, The Globe and Mail, CNBC, Bloomberg, Financial Post).
+2. Up to 6 large-cap stocks (S&P 500 or TSX 60 members only) that made notable moves that day and have a reported reason. Include the biggest reported gainers and losers. Prefer, where they moved notably, companies in AI, design and creative software, Canadian housing, or Canadian banks, and tag those. No penny stocks, no ETFs, no stocks without a reported reason.
 
-Before calling report_markets, write one short evidence line per figure, quoting the source text that states it (each ETF's % change, the market summary's reason, and each stock's % move). These lines must cite the source; they are how the figures get checked. Then call report_markets once.
+Before calling report_markets, write one short evidence line per figure, quoting the source text that states it (the market summary's reason and each stock's % move). These lines must cite the source; they are how the figures get checked. Then call report_markets once.
 
 Rules:
-- Only report figures and reasons stated in the sources you found. If a source doesn't state a figure for that session, leave it out (omit the ETF or stock).
+- Only report figures and reasons stated in the sources you found. If a source doesn't state a stock's % move or reason for that session, leave that stock out.
 - change_pct is the % move for that session, signed. source_url is the page the figure came from.
 - "why" is one sentence, under 25 words, plain and specific, with a light dry touch at most. No em dashes. Don't start with the company name.
 - market_summary is one sentence, under 30 words, no em dashes."""
@@ -300,22 +326,6 @@ def _evidence_for(url: str | None, evidence: dict) -> str:
     return " ".join(evidence["cited"].get(url, []))
 
 
-def verify_etfs(evidence: dict) -> dict[str, dict]:
-    """XGRO/XEQT tiles keyed by label; each needs its % in a cited, searched source."""
-    tiles: dict[str, dict] = {}
-    for e in evidence["report"].get("etfs") or []:
-        sym = e.get("symbol")
-        if sym not in ETF_TILES or sym in tiles:
-            continue
-        text = _evidence_for(e.get("source_url"), evidence)
-        if text and _pct_in_text(e["change_pct"], text):
-            tiles[sym] = tile(sym, e["change_pct"])
-        else:
-            print(f"[markets] {sym} {e.get('change_pct')}% failed verification; dropping tile", flush=True)
-            _explain_drop(sym, e.get("source_url"), evidence)
-    return tiles
-
-
 def verify_summary(evidence: dict) -> str:
     """The summary has no number to match, so it needs a searched, cited source."""
     rep = evidence["report"]
@@ -394,9 +404,13 @@ def build_markets_data(today: date | None = None, client=None, session=requests)
     intraday = as_of == today
     session_date = previous_weekday(today) if (intraday or as_of is None) else as_of
 
+    try:
+        sector_tiles = fetch_sector_tiles(session_date, session)
+    except Exception as e:
+        print(f"[markets] sector tiles failed ({e})", flush=True)
+        sector_tiles = {}
     gold = fetch_gold_tile(session_date, session)
 
-    etf_tiles: dict[str, dict] = {}
     movers, summary = [], ""
     try:
         evidence = research_movers(session_date, client)
@@ -404,18 +418,17 @@ def build_markets_data(today: date | None = None, client=None, session=requests)
             rep = evidence["report"]
             print(
                 f"[markets] research: {len(evidence['searched'])} urls searched, "
-                f"{len(evidence['cited'])} cited, {len(rep.get('etfs') or [])} etfs, "
+                f"{len(evidence['cited'])} cited, "
                 f"{len(rep.get('candidates') or [])} candidates",
                 flush=True,
             )
-            etf_tiles = verify_etfs(evidence)
             movers = pick_three(verify_candidates(evidence, quote_fn=lambda s: fmp_quote(s, session)))
             summary = verify_summary(evidence)
     except Exception as e:
         print(f"[markets] research failed ({e})", flush=True)
 
-    by_label = {**index_tiles, **etf_tiles, **({GOLD_LABEL: gold} if gold else {})}
-    order = [label for _, label in INDEX_TILES] + list(ETF_TILES) + [GOLD_LABEL]
+    by_label = {**index_tiles, **sector_tiles, **({GOLD_LABEL: gold} if gold else {})}
+    order = [label for _, label in INDEX_TILES] + [label for _, label in SECTOR_TILES] + [GOLD_LABEL]
     tiles = [by_label[label] for label in order if label in by_label]
     if not tiles and not movers:
         return None

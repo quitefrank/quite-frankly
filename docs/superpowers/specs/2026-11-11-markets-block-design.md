@@ -16,12 +16,20 @@ from the previous session's movers.
 - **Universe:** US and TSX large caps. No micro-caps, no leveraged ETFs.
 - **Selection:** biggest gainer, biggest loser, and one mover weighted toward
   Frank's interests (AI, design tools, Canadian housing and banks).
-- **Strip:** SPX, IXIC, XGRO, XEQT, Gold, shown as ticker plus daily % only,
-  no price levels, to save width. (Revised same day from TSX, S&P 500,
-  Nasdaq, US 10Y, CAD/USD with values.) Gold uses FMP daily closes for
-  `GCUSD`, because futures trade overnight and an 8am quote is that morning's
-  move. XGRO and XEQT are premium on FMP, so they come from the web-search
-  call under the same verbatim check; a tile that fails is hidden that day.
+- **Strip:** SPX, Tech, Energy, Finance, Realty, Gold: a sector overview,
+  daily % only, no price levels, to save width. All six come straight from
+  the FMP free tier, so the strip needs no citation check.
+  - SPX: `quote?symbol=^GSPC`.
+  - Sectors: `sector-performance-snapshot` for NYSE and Nasdaq, averaged.
+    This is the equal-weighted average stock, not a size-weighted sector ETF
+    (XLK, XLE, XLF, XLRE are premium), so a Tech tile can read red on a day
+    Nvidia rallies. The footnote says "average US stock".
+  - Gold: daily closes for `GCUSD`, because futures trade overnight and an
+    8am quote is that morning's move.
+  - History, all 2026-11-11: TSX/S&P/Nasdaq/10Y/CAD-USD with values →
+    SPX/IXIC/XGRO/XEQT/Gold as % only → this sector set. XGRO and XEQT were
+    dropped because they needed web search (premium on FMP) and Frank wanted
+    a sector read rather than his own funds.
 - **Data:** hybrid. FMP free tier for the numbers it serves, Claude web search
   for the TSX close and the 3 movers.
 - **Grounding rule:** every "why" comes from a retrieved article. A mover without
@@ -48,9 +56,9 @@ Everything already in the section stays unchanged.
 
 ```
 📈 FINANCE & MARKETS
-┌ SPX ───┬ IXIC ──┬ XGRO ──┬ XEQT ──┬ Gold ──┐
-│ +1.45% │ +2.14% │ +0.48% │ +0.62% │ −2.05% │
-└────────┴────────┴────────┴────────┴────────┘
+┌ SPX ──┬ Tech ─┬ Energy┬Finance┬ Realty┬ Gold ─┐
+│+1.45% │+0.46% │+1.19% │+0.99% │+0.71% │-2.05% │
+└───────┴───────┴───────┴───────┴───────┴───────┘
 Markets: One sentence on the day, from the cited market wrap.
 
 ▲ CRWV  CoreWeave   +25.4%  Why it moved, one sentence.

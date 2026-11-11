@@ -8,13 +8,13 @@ from markets import (
     FMPUnavailable,
     build_markets_data,
     fetch_gold_tile,
+    fetch_sector_tiles,
     fetch_index_tiles,
     gold_change_pct,
     pick_three,
     previous_weekday,
     research_movers,
     verify_candidates,
-    verify_etfs,
     verify_summary,
 )
 from formatting import DARK, LIGHT, render_markets_block
@@ -46,7 +46,12 @@ class FakeSession:
 
     def get(self, url, params=None, timeout=None):
         path = url.rsplit("/stable/", 1)[1]
-        key = params.get("symbol", path) if path == "quote" else path
+        if path == "quote":
+            key = params.get("symbol")
+        elif path == "sector-performance-snapshot":
+            key = f"sectors:{params.get('exchange')}"
+        else:
+            key = path
         if key in self.routes:
             return FakeResp(self.routes[key])
         return FakeResp(text="Premium Query Parameter: not available")
@@ -62,10 +67,17 @@ GOLD_ROWS = [
     {"date": "2026-11-09", "price": 4114.5},
 ]
 
+def sectors(**avg):
+    names = {"tech": "Technology", "energy": "Energy", "fin": "Financial Services",
+             "re": "Real Estate", "health": "Healthcare"}
+    return [{"date": "2026-11-10", "sector": names[k], "averageChange": v} for k, v in avg.items()]
+
+
 GOOD_ROUTES = {
     "^GSPC": quote(1.44982),
-    "^IXIC": quote(2.14012),
     "historical-price-eod/light": GOLD_ROWS,
+    "sectors:NYSE": sectors(tech=1.16, energy=1.85, fin=1.46, re=0.73, health=1.12),
+    "sectors:NASDAQ": sectors(tech=-0.24, energy=0.54, fin=0.51, re=0.69, health=-0.31),
 }
 
 
@@ -78,15 +90,30 @@ def fmp_key(monkeypatch):
 
 def test_index_tiles_are_ticker_and_change_only():
     tiles, as_of = fetch_index_tiles(TODAY, FakeSession(GOOD_ROUTES))
-    assert tiles["SPX"] == {"label": "SPX", "change": "+1.45%", "direction": "up"}
-    assert tiles["IXIC"]["change"] == "+2.14%"
+    assert tiles == {"SPX": {"label": "SPX", "change": "+1.45%", "direction": "up"}}
     assert as_of == SESSION
 
 
-def test_one_gated_index_costs_one_tile():
-    routes = {k: v for k, v in GOOD_ROUTES.items() if k != "^IXIC"}
-    tiles, _ = fetch_index_tiles(TODAY, FakeSession(routes))
-    assert list(tiles) == ["SPX"]
+def test_gated_index_drops_tile():
+    tiles, as_of = fetch_index_tiles(TODAY, FakeSession({}))
+    assert tiles == {} and as_of is None
+
+
+def test_sector_tiles_average_both_exchanges():
+    tiles = fetch_sector_tiles(SESSION, FakeSession(GOOD_ROUTES))
+    assert list(tiles) == ["Tech", "Energy", "Finance", "Realty"]  # Healthcare not shown
+    assert tiles["Tech"]["change"] == "+0.46%"     # (1.16 + -0.24) / 2
+    assert tiles["Energy"]["change"] == "+1.20%"
+
+
+def test_sector_tiles_survive_one_exchange_missing():
+    routes = {k: v for k, v in GOOD_ROUTES.items() if k != "sectors:NASDAQ"}
+    assert fetch_sector_tiles(SESSION, FakeSession(routes))["Tech"]["change"] == "+1.16%"
+
+
+def test_sector_rows_for_other_dates_are_ignored():
+    stale = [dict(r, date="2026-11-07") for r in GOOD_ROUTES["sectors:NYSE"]]
+    assert fetch_sector_tiles(SESSION, FakeSession({"sectors:NYSE": stale})) == {}
 
 
 def test_stale_index_quote_is_skipped():
@@ -173,19 +200,6 @@ def test_fmp_agreement_keeps_and_tsx_skips_cross_check():
     assert calls == ["NVDA"]
 
 
-def test_etfs_need_pct_in_cited_searched_source():
-    ev = evidence([], cited={TMX: ["XEQT closed at $38.12, up 0.62% on the day"]},
-                  etfs=[{"symbol": "XEQT", "change_pct": 0.62, "source_url": TMX},
-                        {"symbol": "XGRO", "change_pct": 0.48, "source_url": TMX}])
-    tiles = verify_etfs(ev)
-    assert tiles == {"XEQT": {"label": "XEQT", "change": "+0.62%", "direction": "up"}}
-
-
-def test_etfs_ignore_unknown_symbols():
-    ev = evidence([], cited={TMX: ["up 1.0%"]}, etfs=[{"symbol": "VFV", "change_pct": 1.0, "source_url": TMX}])
-    assert verify_etfs(ev) == {}
-
-
 def test_summary_needs_cited_source():
     ev = evidence([], market_summary="Tech rallied — again.", summary_source_url=REUTERS)
     assert verify_summary(ev) == "Tech rallied, again."
@@ -265,19 +279,16 @@ def test_research_without_report_returns_none():
 def full_client():
     return FakeClient([fake_response([
         search_block(REUTERS, TMX),
-        text_block(TMX, "XEQT up 0.62% and XGRO up 0.48% on the session"),
         text_block(REUTERS, "Micron jumped 19% while Ferrari fell 5.0%"),
-        report_block(etfs=[{"symbol": "XEQT", "change_pct": 0.62, "source_url": TMX},
-                           {"symbol": "XGRO", "change_pct": 0.48, "source_url": TMX}],
-                     market_summary="AI names carried the day.", summary_source_url=REUTERS,
+        report_block(market_summary="AI names carried the day.", summary_source_url=REUTERS,
                      candidates=[cand("MU", 19.0), cand("RACE", -5.0, exchange="NYSE"), cand("FAKE", 40.0)]),
     ])])
 
 
 def test_build_markets_data_end_to_end():
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
-    assert [t["label"] for t in data["tiles"]] == ["SPX", "IXIC", "XGRO", "XEQT", "Gold"]
-    assert data["tiles"][4]["direction"] == "down"
+    assert [t["label"] for t in data["tiles"]] == ["SPX", "Tech", "Energy", "Finance", "Realty", "Gold"]
+    assert data["tiles"][5]["direction"] == "down"
     assert [m["symbol"] for m in data["movers"]] == ["MU", "RACE"]  # FAKE uncited, dropped
     assert data["summary"] == "AI names carried the day."
     assert data["movers"][0]["why"] == "Because reasons, apparently."
@@ -289,7 +300,7 @@ def test_build_markets_data_never_raises():
         messages = property(lambda self: (_ for _ in ()).throw(RuntimeError("api down")))
 
     data = build_markets_data(TODAY, client=Boom(), session=FakeSession(GOOD_ROUTES))
-    assert data["movers"] == [] and [t["label"] for t in data["tiles"]] == ["SPX", "IXIC", "Gold"]
+    assert data["movers"] == [] and [t["label"] for t in data["tiles"]] == ["SPX", "Tech", "Energy", "Finance", "Realty", "Gold"]
 
 
 def test_build_markets_data_none_when_nothing_survives():
@@ -298,12 +309,12 @@ def test_build_markets_data_none_when_nothing_survives():
 
 def test_intraday_strip_is_labelled_and_research_targets_last_session():
     live = int(datetime(2026, 11, 11, 12, 30, tzinfo=markets.TORONTO).timestamp())
-    routes = {**GOOD_ROUTES, "^GSPC": quote(1.51, ts=live), "^IXIC": quote(2.0, ts=live)}
+    routes = {**GOOD_ROUTES, "^GSPC": quote(1.51, ts=live)}
     client = full_client()
     data = build_markets_data(TODAY, client=client, session=FakeSession(routes))
     assert data["strip_intraday"] is True and data["as_of"] == SESSION
     assert "Tuesday, November 10, 2026" in client.calls[0]["messages"][0]["content"]
-    assert "SPX and IXIC intraday" in render_markets_block(data, LIGHT)
+    assert "SPX intraday" in render_markets_block(data, LIGHT)
 
 
 # ── Render ────────────────────────────────────────────────────────────────────
@@ -312,7 +323,7 @@ def test_intraday_strip_is_labelled_and_research_targets_last_session():
 def test_render_block(palette):
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
     html = render_markets_block(data, palette)
-    for s in ("SPX", "IXIC", "XGRO", "XEQT", "Gold", "+1.45%", "Markets:", "MU",
+    for s in ("SPX", "Tech", "Energy", "Finance", "Realty", "Gold", "+1.45%", "average US stock", "Markets:", "MU",
               "&#9650; +19.0%", "&#9660; -5.0%", "Daily % moves, Nov 10 close", REUTERS):
         assert s in html
     assert palette["up"] in html and palette["down"] in html
