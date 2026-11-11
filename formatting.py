@@ -926,7 +926,52 @@ _CALLOUT_LINE_RE = re.compile(r"^what this means(?: for you)?:\s*(.*)", re.IGNOR
 FINANCE_SECTION = "Finance & Markets"
 
 
-STRIP_COLUMNS = 3  # tiles per strip row; 6 tiles make a 2 x 3 grid that fits a 375px phone
+# Strip layout and type, tuned by eye in tools/strip_tuner.py, which saves
+# strip_style.json next to this file. Missing or unknown keys fall back to
+# these defaults, so a bad or absent file can never break the email.
+STRIP_STYLE_DEFAULTS = {
+    "rows": 2,               # 1 or 2; tiles beyond rows x columns are not shown
+    "columns": 3,            # tiles per row
+    "area_size": 11,         # px, area name above the ticker
+    "area_uppercase": False,
+    "ticker_size": 14,       # px; 14 matches the mover tickers below
+    "pct_size": 14,          # px
+    "pct_decimals": 2,
+    "tile_pad_y": 8,         # px above and below each tile's content
+    "tile_pad_x": 4,         # px either side
+    "area_gap": 0,           # px between area name and ticker
+    "pct_gap": 0,            # px between ticker and % move
+    "strip_gap_below": 12,   # px between the strip and the Markets line
+    "row_dividers": True,    # rules above, between and below the rows
+}
+STRIP_STYLE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "strip_style.json")
+
+
+def load_strip_style(path: str | None = None) -> dict:
+    style = dict(STRIP_STYLE_DEFAULTS)
+    try:
+        with open(path or STRIP_STYLE_FILE) as f:
+            saved = json.load(f)
+        for key, default in STRIP_STYLE_DEFAULTS.items():
+            if key in saved and type(saved[key]) is type(default):
+                style[key] = saved[key]
+    except (OSError, ValueError):
+        pass
+    style["rows"] = min(max(style["rows"], 1), 2)
+    style["columns"] = min(max(style["columns"], 1), 8)
+    style["pct_decimals"] = min(max(style["pct_decimals"], 0), 2)
+    return style
+
+
+def format_strip_pct(pct: float, decimals: int) -> tuple[str, str]:
+    """Display text and direction at the chosen precision: -0.3% at 0 decimals
+    reads as a grey 0%, not a red -0%."""
+    shown = round(pct, decimals) + 0.0
+    if not shown:
+        return f"{0:.{decimals}f}%", "flat"
+    return f"{shown:+.{decimals}f}%", "up" if shown > 0 else "down"
+
+
 # Footnote explanations for strip tickers whose meaning isn't obvious; only
 # those actually shown are printed.
 TICKER_NOTES = {"SPY": "SPY tracks the S&amp;P 500.", "GC": "GC is gold futures."}
@@ -938,7 +983,7 @@ def _source_domain(url: str) -> str:
     return host[4:] if host.startswith("www.") else host
 
 
-def render_markets_block(data: dict | None, palette: dict = LIGHT) -> str:
+def render_markets_block(data: dict | None, palette: dict = LIGHT, style: dict | None = None) -> str:
     """Strip of ticker tiles in rows of three, a one-line summary, up to three
     movers, and what to watch today.
 
@@ -963,32 +1008,45 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT) -> str:
             return escape(text)
         return f'<a href="{escape(url, quote=True)}" style="{link}">{escape(text)}</a>'
 
+    st = style or load_strip_style()
     out = ""
-    tiles = data.get("tiles") or []
+    cols = st["columns"]
+    tiles = (data.get("tiles") or [])[: st["rows"] * cols]
     if tiles:
-        width = f"{100 // STRIP_COLUMNS}%"
-        rows = [tiles[i:i + STRIP_COLUMNS] for i in range(0, len(tiles), STRIP_COLUMNS)]
+        width = f"{100 // cols}%"
+        rule = f"1px solid {palette['divider']}"
+        pad = f"padding:{st['tile_pad_y']}px {st['tile_pad_x']}px"
+        area_case = "text-transform:uppercase;" if st["area_uppercase"] else ""
+        rows = [tiles[i:i + cols] for i in range(0, len(tiles), cols)]
         row_html = ""
         for r, row in enumerate(rows):
             # Every row shares the top rule; the last also closes the strip.
-            edge = f"border-top:1px solid {palette['divider']};"
-            if r == len(rows) - 1:
-                edge += f"border-bottom:1px solid {palette['divider']};"
-            cells = "".join(
-                f'<td width="{width}" style="padding:8px 4px;text-align:center;vertical-align:top;{edge}{font}">'
-                # Area name, then the ticker at the movers' 14px bold, then the move.
-                + (f'<div style="font-size:11px;font-weight:700;letter-spacing:0.04em;color:{palette["meta_label"]};line-height:16px;white-space:nowrap">{escape(t["area"])}</div>' if t.get("area") else "")
-                + f'<div style="font-size:14px;line-height:20px;white-space:nowrap">{ticker(t["label"], t.get("url"))}</div>'
-                f'<div style="font-size:14px;font-weight:700;color:{color(t["direction"])};line-height:20px;white-space:nowrap">{escape(t["change"])}</div>'
-                f'</td>'
-                for t in row
-            )
+            edge = ""
+            if st["row_dividers"]:
+                edge = f"border-top:{rule};" + (f"border-bottom:{rule};" if r == len(rows) - 1 else "")
+            cells = ""
+            for t in row:
+                if "pct" in t:
+                    change, direction = format_strip_pct(t["pct"], st["pct_decimals"])
+                else:
+                    change, direction = t["change"], t["direction"]
+                cells += (
+                    f'<td width="{width}" style="{pad};text-align:center;vertical-align:top;{edge}{font}">'
+                    + (f'<div style="font-size:{st["area_size"]}px;font-weight:700;letter-spacing:0.04em;{area_case}'
+                       f'color:{palette["meta_label"]};line-height:{st["area_size"] + 5}px;white-space:nowrap;'
+                       f'margin-bottom:{st["area_gap"]}px">{escape(t["area"])}</div>' if t.get("area") else "")
+                    + f'<div style="font-size:{st["ticker_size"]}px;line-height:{st["ticker_size"] + 6}px;white-space:nowrap;'
+                    f'margin-bottom:{st["pct_gap"]}px">{ticker(t["label"], t.get("url"))}</div>'
+                    f'<div style="font-size:{st["pct_size"]}px;font-weight:700;color:{color(direction)};'
+                    f'line-height:{st["pct_size"] + 6}px;white-space:nowrap">{escape(change)}</div>'
+                    f'</td>'
+                )
             # Pad a short last row so its tiles keep the column grid.
-            cells += f'<td width="{width}" style="{edge}"></td>' * (STRIP_COLUMNS - len(row))
+            cells += f'<td width="{width}" style="{edge}"></td>' * (cols - len(row))
             row_html += f"<tr>{cells}</tr>"
         out += (
             f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" '
-            f'style="border-collapse:collapse;table-layout:fixed;margin:0 0 12px">{row_html}</table>'
+            f'style="border-collapse:collapse;table-layout:fixed;margin:0 0 {st["strip_gap_below"]}px">{row_html}</table>'
         )
 
     if data.get("summary"):

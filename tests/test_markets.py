@@ -71,20 +71,27 @@ def fmp_key(monkeypatch):
     monkeypatch.setenv("FMP_API_KEY", "test")
 
 
+@pytest.fixture(autouse=True)
+def default_strip_style(monkeypatch, tmp_path):
+    """Render with the built-in defaults, whatever strip_style.json says."""
+    import formatting
+    monkeypatch.setattr(formatting, "STRIP_STYLE_FILE", str(tmp_path / "absent.json"))
+
+
 # ── Strip ─────────────────────────────────────────────────────────────────────
 
 def test_strip_is_tickers_with_session_moves():
     tiles = fetch_strip(SESSION, FakeSession(GOOD_ROUTES))
     assert [t["label"] for t in tiles] == ["SPY", "NVDA", "XOM", "JPM", "GC"]
     assert tiles[1] == {"label": "NVDA", "area": "Tech", "url": "https://finance.yahoo.com/quote/NVDA",
-                        "change": "-5.47%", "direction": "down"}
+                        "pct": -5.47, "change": "-5.47%", "direction": "down"}
     assert tiles[4]["url"] == "https://finance.yahoo.com/quote/GC=F"
     assert [t["area"] for t in tiles] == ["Market", "Tech", "Energy", "Banks", "Gold"]
     assert tiles[3]["direction"] == "flat"
 
 
 def test_near_zero_move_is_flat_not_red():
-    assert markets.tile("JPM", -0.003) == {"label": "JPM", "area": "", "url": "", "change": "0.00%", "direction": "flat"}
+    assert markets.tile("JPM", -0.003) == {"label": "JPM", "area": "", "url": "", "pct": 0.0, "change": "0.00%", "direction": "flat"}
 
 
 def test_one_gated_symbol_costs_one_tile():
@@ -419,6 +426,33 @@ def test_footnote_explains_only_tickers_shown():
     assert "GC is gold" not in html and "SPY tracks" not in html
     gc = [markets.tile("GC", -2.0, "Gold", "u")]
     assert "GC is gold futures." in render_markets_block({"tiles": gc, "movers": [], "as_of": d(2026, 11, 10)}, LIGHT)
+
+
+def test_style_controls_grid_type_and_decimals():
+    from formatting import STRIP_STYLE_DEFAULTS
+    style = dict(STRIP_STYLE_DEFAULTS, rows=1, columns=4, ticker_size=16, pct_size=12, pct_decimals=1,
+                 area_size=10, tile_pad_y=5, strip_gap_below=6)
+    html = render_markets_block({"tiles": _strip(6), "movers": [], "as_of": None}, LIGHT, style)
+    assert html.count("<tr>") == 1 and html.count('width="25%"') == 4   # 1 row of 4; 2 tiles not shown
+    assert "font-size:16px" in html and "font-size:12px" in html and "font-size:10px" in html
+    assert "+1.0%" in html and "+1.00%" not in html
+    assert "padding:5px 4px" in html and "margin:0 0 6px" in html
+
+
+def test_zero_decimals_never_show_red_minus_zero():
+    from formatting import format_strip_pct
+    assert format_strip_pct(-0.3, 0) == ("0%", "flat")
+    assert format_strip_pct(-0.6, 0) == ("-1%", "down")
+
+
+def test_bad_style_file_falls_back_to_defaults(tmp_path):
+    from formatting import STRIP_STYLE_DEFAULTS, load_strip_style
+    f = tmp_path / "s.json"
+    f.write_text('{"rows": 9, "columns": "three", "ticker_size": 18}')
+    st = load_strip_style(str(f))
+    assert st["rows"] == 2 and st["columns"] == STRIP_STYLE_DEFAULTS["columns"] and st["ticker_size"] == 18
+    f.write_text("not json")
+    assert load_strip_style(str(f)) == STRIP_STYLE_DEFAULTS
 
 
 def test_every_strip_ticker_is_a_link():

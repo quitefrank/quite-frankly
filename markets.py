@@ -107,6 +107,7 @@ def tile(label: str, pct: float, area: str = "", url: str = "") -> dict:
         "label": label,
         "area": area,
         "url": url,
+        "pct": shown,
         "change": format_pct(shown) if shown else "0.00%",
         "direction": "up" if shown > 0 else "down" if shown < 0 else "flat",
     }
