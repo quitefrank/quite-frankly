@@ -32,6 +32,18 @@ from the previous session's movers.
     SPX/IXIC/XGRO/XEQT/Gold → SPX plus sector averages (Tech, Energy, Finance,
     Realty, Gold) → these tickers, after Frank found sector names too vague
     to act on.
+- **Layout (revised 2026-11-11):** the strip is a 2 x 3 grid of sector tiles
+  (area name, ticker, % move), movers stay as rows with their sourced "why",
+  then **What to watch today**: up to 4 scheduled events (US/Canada economic
+  releases with ET times, Fed/BoC, large-cap earnings), found by the same
+  research call and kept only with a searched, cited source. Every ticker
+  links to its Yahoo Finance quote (TSX listings get `.TO`); each mover and
+  watch item also links to its source. Chosen over Frank's "flip" (movers in
+  the strip, sectors as rows) because the strip is a daily habit that needs
+  fixed contents and the movers' "why" is the part people read.
+- **Target strip:** SPY · XLK · XLE · XLF · (sixth TBD, mocked as XLRE) · GLD.
+  Blocked on data: none are on free FMP. Interim strip stays SPY · NVDA ·
+  XOM · JPM · GC in the same grid.
 - **Movers need a 2% move.** The Nov 10 test picked BMO at -0.2% for the
   interest slot.
 - **Data:** hybrid. FMP free tier for the numbers it serves, Claude web search

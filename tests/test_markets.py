@@ -15,6 +15,7 @@ from markets import (
     session_change_pct,
     verify_candidates,
     verify_summary,
+    verify_watch,
 )
 from formatting import DARK, LIGHT, render_markets_block
 
@@ -75,13 +76,15 @@ def fmp_key(monkeypatch):
 def test_strip_is_tickers_with_session_moves():
     tiles = fetch_strip(SESSION, FakeSession(GOOD_ROUTES))
     assert [t["label"] for t in tiles] == ["SPY", "NVDA", "XOM", "JPM", "GC"]
-    assert tiles[1] == {"label": "NVDA", "area": "Tech", "change": "-5.47%", "direction": "down"}
+    assert tiles[1] == {"label": "NVDA", "area": "Tech", "url": "https://finance.yahoo.com/quote/NVDA",
+                        "change": "-5.47%", "direction": "down"}
+    assert tiles[4]["url"] == "https://finance.yahoo.com/quote/GC=F"
     assert [t["area"] for t in tiles] == ["Market", "Tech", "Energy", "Banks", "Gold"]
     assert tiles[3]["direction"] == "flat"
 
 
 def test_near_zero_move_is_flat_not_red():
-    assert markets.tile("JPM", -0.003) == {"label": "JPM", "area": "", "change": "0.00%", "direction": "flat"}
+    assert markets.tile("JPM", -0.003) == {"label": "JPM", "area": "", "url": "", "change": "0.00%", "direction": "flat"}
 
 
 def test_one_gated_symbol_costs_one_tile():
@@ -121,6 +124,12 @@ def test_mover_cross_check_uses_session_close():
     ])
     data = build_markets_data(TODAY, client=client, session=FakeSession(GOOD_ROUTES))
     assert [(m["symbol"], m["change_pct"]) for m in data["movers"]] == [("NVDA", -5.47)]
+
+
+def test_yahoo_url_handles_tsx_and_class_shares():
+    assert markets.yahoo_url("NVDA", "NASDAQ") == "https://finance.yahoo.com/quote/NVDA"
+    assert markets.yahoo_url("BMO", "TSX") == "https://finance.yahoo.com/quote/BMO.TO"
+    assert markets.yahoo_url("BRK.B", "NYSE") == "https://finance.yahoo.com/quote/BRK-B"
 
 
 def test_previous_weekday_monday_covers_friday():
@@ -183,6 +192,8 @@ def test_fmp_agreement_keeps_and_tsx_skips_cross_check():
     out = verify_candidates(ev, change_fn=q)
     assert [c["symbol"] for c in out] == ["NVDA", "SHOP"]
     assert out[0]["change_pct"] == 3.3  # FMP's figure is what renders
+    assert out[0]["quote_url"] == "https://finance.yahoo.com/quote/NVDA"
+    assert out[1]["quote_url"] == "https://finance.yahoo.com/quote/SHOP.TO"
     assert calls == ["NVDA"]
 
 
@@ -219,6 +230,18 @@ def test_summary_needs_cited_source():
     assert verify_summary(ev) == "Tech rallied, again."
     ev["report"]["summary_source_url"] = "https://made.up"
     assert verify_summary(ev) == ""
+
+
+def test_watch_items_need_cited_source():
+    ev = evidence([], cited={REUTERS: ["October CPI is due at 8:30 a.m. ET"]},
+                  watch=[{"time": "8:30 ET", "event": "US CPI — October", "source_url": REUTERS},
+                         {"time": "After close", "event": "Made-up earnings", "source_url": "https://made.up"}])
+    assert verify_watch(ev) == [{"time": "8:30 ET", "event": "US CPI, October", "source_url": REUTERS}]
+
+
+def test_watch_capped_at_four():
+    items = [{"time": "9:00", "event": f"E{i}", "source_url": REUTERS} for i in range(6)]
+    assert len(verify_watch(evidence([], watch=items))) == 4
 
 
 # ── Picking ───────────────────────────────────────────────────────────────────
@@ -315,8 +338,10 @@ def full_client():
     return FakeClient([fake_response([
         search_block(REUTERS, TMX),
         text_block(REUTERS, "Micron jumped 19% while Ferrari fell 5.0%"),
+        text_block(TMX, "Statistics Canada releases September retail sales at 8:30 a.m."),
     ]), fake_response([
         report_block(market_summary="AI names carried the day.", summary_source_url=REUTERS,
+                     watch=[{"time": "8:30 ET", "event": "Canada retail sales", "source_url": TMX}],
                      candidates=[cand("MU", 19.0), cand("RACE", -5.0, exchange="NYSE"), cand("FAKE", 40.0)]),
     ])])
 
@@ -328,6 +353,7 @@ def test_build_markets_data_end_to_end():
     assert data["summary"] == "AI names carried the day."
     assert data["movers"][0]["why"] == "Because reasons, apparently."
     assert data["as_of"] == SESSION
+    assert data["watch"] == [{"time": "8:30 ET", "event": "Canada retail sales", "source_url": TMX}]
 
 
 def test_build_markets_data_never_raises():
@@ -347,7 +373,9 @@ def test_midday_run_still_targets_last_completed_session():
     client = full_client()
     data = build_markets_data(TODAY, client=client, session=FakeSession(GOOD_ROUTES))
     assert data["as_of"] == SESSION
-    assert "Tuesday, November 10, 2026" in client.calls[0]["messages"][0]["content"]
+    prompt = client.calls[0]["messages"][0]["content"]
+    assert "session of Tuesday, November 10, 2026" in prompt
+    assert "What to watch on Wednesday, November 11, 2026" in prompt
 
 
 def test_no_fmp_still_researches_previous_weekday():
@@ -363,10 +391,39 @@ def test_render_block(palette):
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
     html = render_markets_block(data, palette)
     for s in ("Market", "Tech", "Energy", "Banks", "Gold", "SPY", "NVDA", "XOM", "JPM", "GC", "-5.47%", "gold futures", "Markets:", "MU",
-              "&#9650; +19.0%", "&#9660; -5.0%", "Daily % moves, Nov 10 close", REUTERS):
+              "&#9650; +19.0%", "&#9660; -5.0%", "Daily % moves, Nov 10 close", REUTERS,
+              "What to watch today", "Canada retail sales", "8:30 ET", "reuters.com",
+              'href="https://finance.yahoo.com/quote/NVDA"', 'href="https://finance.yahoo.com/quote/MU"'):
         assert s in html
     assert palette["up"] in html and palette["down"] in html
     assert "border-left" not in html
+
+
+def _strip(n):
+    return [markets.tile(f"T{i}", 1.0, "Area", f"https://finance.yahoo.com/quote/T{i}") for i in range(n)]
+
+
+def test_six_tiles_render_as_two_rows_of_three():
+    html = render_markets_block({"tiles": _strip(6), "movers": [], "as_of": None}, LIGHT)
+    assert html.count("<tr>") == 2 and html.count('width="33%"') == 6
+
+
+def test_short_last_row_is_padded_to_the_grid():
+    html = render_markets_block({"tiles": _strip(5), "movers": [], "as_of": None}, LIGHT)
+    assert html.count("<tr>") == 2 and html.count('width="33%"') == 6  # 5 tiles + 1 spacer
+
+
+def test_footnote_explains_only_tickers_shown():
+    from datetime import date as d
+    html = render_markets_block({"tiles": _strip(3), "movers": [], "as_of": d(2026, 11, 10)}, LIGHT)
+    assert "GC is gold" not in html and "SPY tracks" not in html
+    gc = [markets.tile("GC", -2.0, "Gold", "u")]
+    assert "GC is gold futures." in render_markets_block({"tiles": gc, "movers": [], "as_of": d(2026, 11, 10)}, LIGHT)
+
+
+def test_every_strip_ticker_is_a_link():
+    html = render_markets_block({"tiles": _strip(6), "movers": [], "as_of": None}, LIGHT)
+    assert all(f'href="https://finance.yahoo.com/quote/T{i}"' in html for i in range(6))
 
 
 def test_render_escapes_model_text():

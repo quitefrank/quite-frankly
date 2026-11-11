@@ -926,40 +926,69 @@ _CALLOUT_LINE_RE = re.compile(r"^what this means(?: for you)?:\s*(.*)", re.IGNOR
 FINANCE_SECTION = "Finance & Markets"
 
 
-def render_markets_block(data: dict | None, palette: dict = LIGHT) -> str:
-    """Strip of tiles, a one-line summary, and up to three movers.
+STRIP_COLUMNS = 3  # tiles per strip row; 6 tiles make a 2 x 3 grid that fits a 375px phone
+# Footnote explanations for strip tickers whose meaning isn't obvious; only
+# those actually shown are printed.
+TICKER_NOTES = {"SPY": "SPY tracks the S&amp;P 500.", "GC": "GC is gold futures."}
 
-    Tables, not flex or grid, so Gmail and Outlook keep the tiles in one row.
-    Values from the model are escaped; ticker links go to the cited article.
+
+def _source_domain(url: str) -> str:
+    from urllib.parse import urlparse
+    host = urlparse(url).netloc.lower()
+    return host[4:] if host.startswith("www.") else host
+
+
+def render_markets_block(data: dict | None, palette: dict = LIGHT) -> str:
+    """Strip of ticker tiles in rows of three, a one-line summary, up to three
+    movers, and what to watch today.
+
+    Tables, not flex or grid, so Gmail and Outlook keep the layout. Every
+    ticker links to its Yahoo Finance quote; each mover and watch item also
+    links to the coverage it came from. Values from the model are escaped.
     """
-    if not data or (not data.get("tiles") and not data.get("movers")):
+    if not data or not (data.get("tiles") or data.get("movers") or data.get("watch")):
         return ""
     from html import escape
 
     font = "font-family:Helvetica,Arial,sans-serif"
     # Entities, not raw glyphs: survives clients that mis-detect the charset.
     arrow = {"up": "&#9650;", "down": "&#9660;", "flat": ""}
+    link = f"color:{palette['bold']};font-weight:700;text-decoration:underline"
 
     def color(direction):
         return palette.get(direction, palette["meta"])
 
+    def ticker(text, url):
+        if not url:
+            return escape(text)
+        return f'<a href="{escape(url, quote=True)}" style="{link}">{escape(text)}</a>'
+
     out = ""
     tiles = data.get("tiles") or []
     if tiles:
-        width = f"{100 // len(tiles)}%"
-        cells = "".join(
-            f'<td width="{width}" style="padding:8px 4px;text-align:center;vertical-align:top;'
-            f'border-top:1px solid {palette["divider"]};border-bottom:1px solid {palette["divider"]};{font}">'
-            # Area name, then the ticker at the movers' 14px bold, then the move.
-            + (f'<div style="font-size:11px;font-weight:700;letter-spacing:0.04em;color:{palette["meta_label"]};line-height:16px;white-space:nowrap">{escape(t["area"])}</div>' if t.get("area") else '')
-            + f'<div style="font-size:14px;font-weight:700;color:{palette["bold"]};line-height:20px;white-space:nowrap">{escape(t["label"])}</div>'
-            f'<div style="font-size:14px;font-weight:700;color:{color(t["direction"])};line-height:20px;white-space:nowrap">{escape(t["change"])}</div>'
-            f'</td>'
-            for t in tiles
-        )
+        width = f"{100 // STRIP_COLUMNS}%"
+        rows = [tiles[i:i + STRIP_COLUMNS] for i in range(0, len(tiles), STRIP_COLUMNS)]
+        row_html = ""
+        for r, row in enumerate(rows):
+            # Every row shares the top rule; the last also closes the strip.
+            edge = f"border-top:1px solid {palette['divider']};"
+            if r == len(rows) - 1:
+                edge += f"border-bottom:1px solid {palette['divider']};"
+            cells = "".join(
+                f'<td width="{width}" style="padding:8px 4px;text-align:center;vertical-align:top;{edge}{font}">'
+                # Area name, then the ticker at the movers' 14px bold, then the move.
+                + (f'<div style="font-size:11px;font-weight:700;letter-spacing:0.04em;color:{palette["meta_label"]};line-height:16px;white-space:nowrap">{escape(t["area"])}</div>' if t.get("area") else "")
+                + f'<div style="font-size:14px;line-height:20px;white-space:nowrap">{ticker(t["label"], t.get("url"))}</div>'
+                f'<div style="font-size:14px;font-weight:700;color:{color(t["direction"])};line-height:20px;white-space:nowrap">{escape(t["change"])}</div>'
+                f'</td>'
+                for t in row
+            )
+            # Pad a short last row so its tiles keep the column grid.
+            cells += f'<td width="{width}" style="{edge}"></td>' * (STRIP_COLUMNS - len(row))
+            row_html += f"<tr>{cells}</tr>"
         out += (
             f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" '
-            f'style="border-collapse:collapse;margin:0 0 12px"><tr>{cells}</tr></table>'
+            f'style="border-collapse:collapse;table-layout:fixed;margin:0 0 12px">{row_html}</table>'
         )
 
     if data.get("summary"):
@@ -972,23 +1001,41 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT) -> str:
     for i, m in enumerate(movers):
         direction = "up" if m["change_pct"] > 0 else "down"
         top = f"border-top:1px solid {palette['divider']};" if i else ""
+        source = m.get("source_url") or ""
         out += (
             f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" '
             f'style="border-collapse:collapse"><tr>'
             f'<td style="{top}padding:8px 0;{font};font-size:14px;line-height:20px;color:{palette["body"]}">'
-            f'<a href="{escape(m["source_url"], quote=True)}" style="color:{palette["bold"]};font-weight:700;text-decoration:underline">'
-            f'{escape(m["symbol"])}</a> '
+            f'{ticker(m["symbol"], m.get("quote_url") or source)} '
             f'<span style="color:{palette["meta_label"]}">{escape(m["name"])}</span> '
             f'<span style="color:{color(direction)};font-weight:700;white-space:nowrap">{arrow[direction]} {m["change_pct"]:+.1f}%</span>'
-            f'<br>{escape(m["why"])}</td></tr></table>'
+            f'<br>{escape(m["why"])}'
+            + (f' <a href="{escape(source, quote=True)}" style="color:{palette["meta"]};font-size:12px;text-decoration:underline;white-space:nowrap">{escape(_source_domain(source))}</a>' if source else "")
+            + '</td></tr></table>'
+        )
+
+    watch = data.get("watch") or []
+    if watch:
+        items = "".join(
+            f'<tr><td style="padding:3px 10px 3px 0;{font};font-size:13px;line-height:18px;font-weight:700;'
+            f'color:{palette["bold"]};white-space:nowrap;vertical-align:top">{escape(w["time"])}</td>'
+            f'<td style="padding:3px 0;{font};font-size:14px;line-height:18px;color:{palette["body"]};vertical-align:top">'
+            f'<a href="{escape(w["source_url"], quote=True)}" style="color:{palette["body"]};text-decoration:underline">{escape(w["event"])}</a></td></tr>'
+            for w in watch
+        )
+        out += (
+            f'<p style="margin:12px 0 4px;font-size:15px;line-height:22px;color:{palette["bold"]};font-weight:700;{font}">What to watch today</p>'
+            f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse">{items}</table>'
         )
 
     as_of = data.get("as_of")
+    shown = {t["label"] for t in tiles}
     if as_of:
-        when = f'Daily % moves, {as_of.strftime("%b %-d")} close.'
         out += (
-            f'<p style="margin:6px 0 0;font-size:11px;color:{palette["meta"]};{font}">'
-            f'{when} SPY is the S&amp;P 500, GC is gold futures. Movers from linked coverage.</p>'
+            f'<p style="margin:10px 0 0;font-size:11px;color:{palette["meta"]};{font}">'
+            f'Daily % moves, {as_of.strftime("%b %-d")} close. Tickers open Yahoo Finance quotes.'
+            + "".join(f" {note}" for label, note in TICKER_NOTES.items() if label in shown)
+            + '</p>'
         )
 
     return f'<div style="border-bottom:1px solid {palette["divider"]};padding-bottom:16px;margin-bottom:16px">{out}</div>'

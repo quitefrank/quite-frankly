@@ -52,14 +52,18 @@ MIN_MOVE_PCT = 2.0  # below this a stock isn't a "mover" (the Nov 10 test picked
 # real estate stock and every gold miner, so a ticker Frank could buy has to
 # be one of the megacaps it does serve. A bellwether is one company, not its
 # sector: NVDA fell 5.5% on Nov 10 while the average tech stock rose.
-# (FMP symbol, ticker shown, area name shown above the ticker)
+# (FMP symbol, ticker shown, area name shown above it, Yahoo Finance symbol).
+# Rendered as rows of 3. Interim free set: the sector ETFs Frank picked
+# (XLK, XLE, XLF, GLD and a sixth) need a data source beyond free FMP.
 STRIP_TILES = (
-    ("SPY", "SPY", "Market"),   # S&P 500 ETF
-    ("NVDA", "NVDA", "Tech"),
-    ("XOM", "XOM", "Energy"),
-    ("JPM", "JPM", "Banks"),
-    ("GCUSD", "GC", "Gold"),    # gold futures, the standard GC code
+    ("SPY", "SPY", "Market", "SPY"),    # S&P 500 ETF
+    ("NVDA", "NVDA", "Tech", "NVDA"),
+    ("XOM", "XOM", "Energy", "XOM"),
+    ("JPM", "JPM", "Banks", "JPM"),
+    ("GCUSD", "GC", "Gold", "GC=F"),    # gold futures, the standard GC code
 )
+YAHOO_QUOTE = "https://finance.yahoo.com/quote/{}"
+WATCH_MAX = 4
 SESSION_ANCHOR = "SPY"  # its last completed daily close defines the session
 
 
@@ -89,13 +93,20 @@ def fmp_quote(symbol: str, session=requests) -> dict:
     return _fmp_get("quote", {"symbol": symbol}, session)[0]
 
 
-def tile(label: str, pct: float, area: str = "") -> dict:
+def yahoo_url(symbol: str, exchange: str = "") -> str:
+    """Quote page link. TSX listings take Yahoo's .TO suffix."""
+    sym = symbol.replace(".", "-") if exchange.upper() != "TSX" else f"{symbol.replace('.', '-')}.TO"
+    return YAHOO_QUOTE.format(sym)
+
+
+def tile(label: str, pct: float, area: str = "", url: str = "") -> dict:
     # Direction from the displayed value, so -0.003% reads as a flat 0.00%,
     # not a red "-0.00%".
     shown = round(pct, 2) + 0.0  # + 0.0 turns -0.0 into 0.0
     return {
         "label": label,
         "area": area,
+        "url": url,
         "change": format_pct(shown) if shown else "0.00%",
         "direction": "up" if shown > 0 else "down" if shown < 0 else "flat",
     }
@@ -160,9 +171,10 @@ def latest_session(today: date, session=requests) -> date | None:
 def fetch_strip(session_date: date, session=requests) -> list[dict]:
     """One tile per STRIP_TILES entry that has a close for session_date."""
     tiles = []
-    for symbol, label, area in STRIP_TILES:
+    for symbol, label, area, yahoo in STRIP_TILES:
         try:
-            tiles.append(tile(label, fmp_session_change(symbol, session_date, session), area))
+            pct = fmp_session_change(symbol, session_date, session)
+            tiles.append(tile(label, pct, area, YAHOO_QUOTE.format(yahoo)))
         except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError) as e:
             print(f"[markets] {label} unavailable ({e})", flush=True)
     return tiles
@@ -178,6 +190,19 @@ REPORT_TOOL = {
         "properties": {
             "market_summary": {"type": "string"},
             "summary_source_url": {"type": ["string", "null"]},
+            "watch": {
+                "type": "array",
+                "maxItems": WATCH_MAX,
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "time": {"type": "string", "description": "e.g. '8:30 ET', 'Before open', 'After close', 'All day'"},
+                        "event": {"type": "string"},
+                        "source_url": {"type": "string"},
+                    },
+                    "required": ["time", "event", "source_url"],
+                },
+            },
             "candidates": {
                 "type": "array",
                 "maxItems": 6,
@@ -201,19 +226,21 @@ REPORT_TOOL = {
 }
 
 
-def research_prompt(session_date: date) -> str:
+def research_prompt(session_date: date, edition_date: date | None = None) -> str:
     """Phase 1: search and write the evidence as cited prose. No report tool
     is offered here, because given one the model skips straight to it and
     writes no text for citations to attach to (CI run 43073024456: 40 URLs
     searched, 0 cited)."""
     day = session_date.strftime("%A, %B %-d, %Y")
-    return f"""Research the stock market session of {day} for a Toronto reader's morning newsletter.
+    edition = (edition_date or session_date).strftime("%A, %B %-d, %Y")
+    return f"""Research the stock market session of {day} for a Toronto reader's morning newsletter, which goes out the morning of {edition}.
 
 Find:
 1. Why markets moved that day, from wire or newspaper closing coverage (Reuters, AP, The Globe and Mail, CNBC, Bloomberg, Financial Post).
 2. Up to 6 large-cap stocks (S&P 500 or TSX 60 members only) that made notable moves that day and have a reported reason. Include the biggest reported gainers and losers. Prefer, where they moved notably, companies in AI, design and creative software, Canadian housing, or Canadian banks. No penny stocks, no ETFs, no stocks without a reported reason.
+3. What to watch on {edition}: up to 4 scheduled events that could move markets that day, from an economic or earnings calendar or a preview article. US and Canadian economic releases (CPI, jobs, GDP, retail sales) with their Eastern time, central bank decisions or speeches (Federal Reserve, Bank of Canada), and earnings from large companies (S&P 500 or TSX 60), noting before the open or after the close. Only events scheduled for {edition}.
 
-Write your findings as short plain sentences: one for the market's move, and one per stock stating its ticker, its % move for that session as the source states it, and the reported reason. Each sentence must draw directly on a search result so it carries a citation; the cited figures are checked against the source. Leave out any stock whose % move or reason for that session you can't find in a source."""
+Write your findings as short plain sentences: one for the market's move, and one per stock stating its ticker, its % move for that session as the source states it, and the reported reason, and one per event to watch with its time. Each sentence must draw directly on a search result so it carries a citation; the cited figures are checked against the source. Leave out any stock whose % move or reason for that session you can't find in a source."""
 
 
 REPORT_INSTRUCTIONS = """Now call report_markets once, using only the findings you just wrote.
@@ -222,7 +249,8 @@ REPORT_INSTRUCTIONS = """Now call report_markets once, using only the findings y
 - change_pct is the session's % move, signed, exactly as the source states it.
 - "why" is one sentence, under 25 words, plain and specific, with a light dry touch at most. No em dashes. Don't start with the company name.
 - market_summary is one sentence, under 30 words, no em dashes.
-- interest_tag: ai, design, housing or banks where it clearly fits, else none."""
+- interest_tag: ai, design, housing or banks where it clearly fits, else none.
+- watch: only events from your cited findings that are scheduled for the edition day. "event" is under 10 words (e.g. "US CPI for October", "Shopify earnings"). source_url is the search result you cited for it. Leave the list empty if you found none."""
 
 
 def _collect_evidence(content: list) -> tuple[dict[str, list[str]], set[str], dict | None]:
@@ -250,7 +278,7 @@ def _collect_evidence(content: list) -> tuple[dict[str, list[str]], set[str], di
     return cited, searched, report
 
 
-def research_movers(session_date: date, client=None) -> dict | None:
+def research_movers(session_date: date, client=None, edition_date: date | None = None) -> dict | None:
     """Two Claude calls: cited research, then a forced report. Returns report +
     evidence, or None."""
     if client is None:
@@ -259,7 +287,7 @@ def research_movers(session_date: date, client=None) -> dict | None:
 
     # Phase 1: search and cited findings, resuming any paused server-tool turn
     # as one assistant message so the model continues where it stopped.
-    user = {"role": "user", "content": research_prompt(session_date)}
+    user = {"role": "user", "content": research_prompt(session_date, edition_date)}
     messages = [user]
     findings: list = []
     for _ in range(MAX_CONTINUATIONS + 1):
@@ -330,6 +358,19 @@ def _evidence_for(url: str | None, evidence: dict) -> str:
     return " ".join(evidence["cited"].get(url, []))
 
 
+def verify_watch(evidence: dict) -> list[dict]:
+    """Events to watch, each from a searched, cited source. No number to match,
+    so the source check is the grounding."""
+    kept = []
+    for w in (evidence["report"].get("watch") or [])[:WATCH_MAX]:
+        if w.get("event") and _evidence_for(w.get("source_url"), evidence):
+            kept.append({"time": _clean(w.get("time") or ""), "event": _clean(w["event"]),
+                         "source_url": w["source_url"]})
+        else:
+            print(f"[markets] watch item uncited; dropped: {w.get('event')!r}", flush=True)
+    return kept
+
+
 def verify_summary(evidence: dict) -> str:
     """The summary has no number to match, so it needs a searched, cited source."""
     rep = evidence["report"]
@@ -394,14 +435,15 @@ def verify_candidates(evidence: dict, change_fn) -> list[dict]:
                 print(f"[markets] {sym}: cited page doesn't name the company; dropped", flush=True)
                 _explain_drop(sym, url, evidence)
                 continue
-            verified.append({**c, "change_pct": round(fmp_pct, 2)})
+            verified.append({**c, "change_pct": round(fmp_pct, 2),
+                             "quote_url": yahoo_url(sym, c.get("exchange", ""))})
             continue
 
         if not _pct_in_text(c["change_pct"], text):
             print(f"[markets] {sym}: {c['change_pct']}% not in cited text; dropped", flush=True)
             _explain_drop(sym, url, evidence)
             continue
-        verified.append(c)
+        verified.append({**c, "quote_url": yahoo_url(sym, c.get("exchange", ""))})
     return verified
 
 
@@ -445,9 +487,9 @@ def build_markets_data(today: date | None = None, client=None, session=requests)
         found, tiles = None, []
     session_date = found or previous_weekday(today)
 
-    movers, summary = [], ""
+    movers, summary, watch = [], "", []
     try:
-        evidence = research_movers(session_date, client)
+        evidence = research_movers(session_date, client, edition_date=today)
         if evidence:
             rep = evidence["report"]
             print(
@@ -460,10 +502,11 @@ def build_markets_data(today: date | None = None, client=None, session=requests)
                 evidence, change_fn=lambda s: fmp_session_change(s, session_date, session)
             ))
             summary = verify_summary(evidence)
+            watch = verify_watch(evidence)
     except Exception as e:
         print(f"[markets] research failed ({e})", flush=True)
 
-    if not tiles and not movers:
+    if not tiles and not movers and not watch:
         return None
     for m in movers:
         m["why"] = _clean(m["why"])
@@ -472,4 +515,5 @@ def build_markets_data(today: date | None = None, client=None, session=requests)
         "tiles": tiles,
         "summary": summary,
         "movers": movers,
+        "watch": watch,
     }
