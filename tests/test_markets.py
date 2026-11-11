@@ -10,7 +10,7 @@ from markets import (
     fetch_gold_tile,
     fetch_sector_tiles,
     fetch_index_tiles,
-    gold_change_pct,
+    session_change_pct,
     pick_three,
     previous_weekday,
     research_movers,
@@ -50,6 +50,8 @@ class FakeSession:
             key = params.get("symbol")
         elif path == "sector-performance-snapshot":
             key = f"sectors:{params.get('exchange')}"
+        elif path == "historical-price-eod/light":
+            key = f"eod:{params.get('symbol')}"
         else:
             key = path
         if key in self.routes:
@@ -75,7 +77,7 @@ def sectors(**avg):
 
 GOOD_ROUTES = {
     "^GSPC": quote(1.44982),
-    "historical-price-eod/light": GOLD_ROWS,
+    "eod:GCUSD": GOLD_ROWS,
     "sectors:NYSE": sectors(tech=1.16, energy=1.85, fin=1.46, re=0.73, health=1.12),
     "sectors:NASDAQ": sectors(tech=-0.24, energy=0.54, fin=0.51, re=0.69, health=-0.31),
 }
@@ -129,8 +131,22 @@ def test_missing_key_is_unavailable(monkeypatch):
 
 
 def test_gold_uses_session_close_not_this_morning():
-    pct = gold_change_pct(GOLD_ROWS, SESSION)
+    pct = session_change_pct(GOLD_ROWS, SESSION)
     assert round(pct, 2) == round((4030.2 / 4114.5 - 1) * 100, 2)
+
+
+def test_mover_cross_check_uses_session_close_not_live_quote():
+    # Live quote says +4.5% (today); the Nov 10 close says -5.47%, as the article does.
+    routes = {**GOOD_ROUTES, "NVDA": quote(4.5),
+              "eod:NVDA": [{"date": "2026-11-11", "price": 176.49}, {"date": "2026-11-10", "price": 168.89},
+                           {"date": "2026-11-09", "price": 178.67}]}
+    client = FakeClient([
+        fake_response([search_block(REUTERS), text_block(REUTERS, "Nvidia fell 5.47% on Tuesday")]),
+        fake_response([report_block(market_summary="", summary_source_url=None,
+                                    candidates=[cand("NVDA", -5.47)])]),
+    ])
+    data = build_markets_data(TODAY, client=client, session=FakeSession(routes))
+    assert [m["symbol"] for m in data["movers"]] == ["NVDA"]
 
 
 def test_gold_missing_session_close_drops_tile():
@@ -162,29 +178,29 @@ def no_fmp(sym):
 
 
 def test_candidate_kept_when_pct_in_cited_text():
-    out = verify_candidates(evidence([cand("MU", 19.0)]), quote_fn=no_fmp)
+    out = verify_candidates(evidence([cand("MU", 19.0)]), change_fn=no_fmp)
     assert [c["symbol"] for c in out] == ["MU"]
 
 
 def test_article_rounding_is_respected():
     # Article says "19%", model reports 19.2: matches at the article's precision.
-    assert verify_candidates(evidence([cand("MU", 19.2)]), quote_fn=no_fmp)
+    assert verify_candidates(evidence([cand("MU", 19.2)]), change_fn=no_fmp)
     # Article says "5.0%", model says -5.4: no match at one decimal.
-    assert not verify_candidates(evidence([cand("RACE", -5.4, exchange="NYSE")]), quote_fn=no_fmp)
+    assert not verify_candidates(evidence([cand("RACE", -5.4, exchange="NYSE")]), change_fn=no_fmp)
 
 
 def test_dropped_when_pct_not_cited():
-    assert verify_candidates(evidence([cand("AAPL", 7.7)]), quote_fn=no_fmp) == []
+    assert verify_candidates(evidence([cand("AAPL", 7.7)]), change_fn=no_fmp) == []
 
 
 def test_dropped_when_url_not_from_search():
     ev = evidence([cand("MU", 19.0, url="https://made.up/story")],
                   cited={"https://made.up/story": ["Micron jumped 19%"]})
-    assert verify_candidates(ev, quote_fn=no_fmp) == []
+    assert verify_candidates(ev, change_fn=no_fmp) == []
 
 
 def test_dropped_when_fmp_disagrees():
-    assert verify_candidates(evidence([cand("NVDA", 3.2)]), quote_fn=lambda s: {"changePercentage": 1.1}) == []
+    assert verify_candidates(evidence([cand("NVDA", 3.2)]), change_fn=lambda s: 1.1) == []
 
 
 def test_fmp_agreement_keeps_and_tsx_skips_cross_check():
@@ -192,10 +208,10 @@ def test_fmp_agreement_keeps_and_tsx_skips_cross_check():
 
     def q(sym):
         calls.append(sym)
-        return {"changePercentage": 3.3}
+        return 3.3
 
     ev = evidence([cand("NVDA", 3.2), cand("SHOP", 19.0, exchange="TSX")])
-    out = verify_candidates(ev, quote_fn=q)
+    out = verify_candidates(ev, change_fn=q)
     assert [c["symbol"] for c in out] == ["NVDA", "SHOP"]
     assert calls == ["NVDA"]
 

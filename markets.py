@@ -162,17 +162,28 @@ def fetch_sector_tiles(session_date: date, session=requests) -> dict[str, dict]:
     return tiles
 
 
-def gold_change_pct(rows: list[dict], session_date: date) -> float:
-    """Close-to-close % for session_date from daily rows.
+def session_change_pct(rows: list[dict], session_date: date) -> float:
+    """Close-to-close % for session_date from FMP daily rows.
 
-    Gold futures trade overnight, so a live quote at 8am is that morning's
-    move. Daily closes pin it to the same session as everything else.
+    Used for gold (futures trade overnight, so a live quote at 8am is that
+    morning's move) and the movers cross-check (a live quote during market
+    hours is today's move: CI run 43074369231 compared NVDA's Nov 10 -5.47%
+    against a live +4.55% and dropped a correct figure).
     """
     by_date = sorted((r for r in rows if r["date"] <= session_date.isoformat()), key=lambda r: r["date"])
     if len(by_date) < 2 or by_date[-1]["date"] != session_date.isoformat():
-        raise FMPUnavailable(f"no gold close for {session_date}")
+        raise FMPUnavailable(f"no close for {session_date}")
     close, prior = by_date[-1]["price"], by_date[-2]["price"]
     return (close / prior - 1) * 100
+
+
+def fmp_session_change(symbol: str, session_date: date, session=requests) -> float:
+    rows = _fmp_get(
+        "historical-price-eod/light",
+        {"symbol": symbol, "from": (session_date - timedelta(days=10)).isoformat()},
+        session,
+    )
+    return session_change_pct(rows, session_date)
 
 
 def fetch_gold_tile(session_date: date, session=requests) -> dict | None:
@@ -182,7 +193,7 @@ def fetch_gold_tile(session_date: date, session=requests) -> dict | None:
             {"symbol": GOLD_SYMBOL, "from": (session_date - timedelta(days=10)).isoformat()},
             session,
         )
-        return tile(GOLD_LABEL, gold_change_pct(rows, session_date))
+        return tile(GOLD_LABEL, session_change_pct(rows, session_date))
     except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError) as e:
         print(f"[markets] Gold unavailable ({e})", flush=True)
         return None
@@ -361,7 +372,8 @@ def verify_summary(evidence: dict) -> str:
     return ""
 
 
-def verify_candidates(evidence: dict, quote_fn=fmp_quote) -> list[dict]:
+def verify_candidates(evidence: dict, change_fn) -> list[dict]:
+    """change_fn(symbol) -> the session's % move from FMP daily closes."""
     verified = []
     for c in evidence["report"].get("candidates", []):
         sym = c.get("symbol", "?")
@@ -376,11 +388,11 @@ def verify_candidates(evidence: dict, quote_fn=fmp_quote) -> list[dict]:
             continue
         if c.get("exchange", "").upper() in US_EXCHANGES:
             try:
-                fmp_pct = quote_fn(sym)["changePercentage"]
+                fmp_pct = change_fn(sym)
                 if abs(fmp_pct - c["change_pct"]) > FMP_MAX_GAP_POINTS:
                     print(f"[markets] {sym}: article {c['change_pct']}% vs FMP {fmp_pct:.2f}%; dropped", flush=True)
                     continue
-            except (FMPUnavailable, requests.RequestException, KeyError):
+            except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError):
                 pass  # premium symbol: article check alone stands
         verified.append(c)
     return verified
@@ -446,7 +458,9 @@ def build_markets_data(today: date | None = None, client=None, session=requests)
                 f"{len(rep.get('candidates') or [])} candidates",
                 flush=True,
             )
-            movers = pick_three(verify_candidates(evidence, quote_fn=lambda s: fmp_quote(s, session)))
+            movers = pick_three(verify_candidates(
+                evidence, change_fn=lambda s: fmp_session_change(s, session_date, session)
+            ))
             summary = verify_summary(evidence)
     except Exception as e:
         print(f"[markets] research failed ({e})", flush=True)
