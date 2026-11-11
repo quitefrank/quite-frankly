@@ -222,20 +222,27 @@ REPORT_TOOL = {
 
 
 def research_prompt(session_date: date) -> str:
+    """Phase 1: search and write the evidence as cited prose. No report tool
+    is offered here, because given one the model skips straight to it and
+    writes no text for citations to attach to (CI run 43073024456: 40 URLs
+    searched, 0 cited)."""
     day = session_date.strftime("%A, %B %-d, %Y")
     return f"""Research the stock market session of {day} for a Toronto reader's morning newsletter.
 
 Find:
-1. A one-sentence summary of why markets moved that day, from wire or newspaper closing coverage (Reuters, AP, The Globe and Mail, CNBC, Bloomberg, Financial Post).
-2. Up to 6 large-cap stocks (S&P 500 or TSX 60 members only) that made notable moves that day and have a reported reason. Include the biggest reported gainers and losers. Prefer, where they moved notably, companies in AI, design and creative software, Canadian housing, or Canadian banks, and tag those. No penny stocks, no ETFs, no stocks without a reported reason.
+1. Why markets moved that day, from wire or newspaper closing coverage (Reuters, AP, The Globe and Mail, CNBC, Bloomberg, Financial Post).
+2. Up to 6 large-cap stocks (S&P 500 or TSX 60 members only) that made notable moves that day and have a reported reason. Include the biggest reported gainers and losers. Prefer, where they moved notably, companies in AI, design and creative software, Canadian housing, or Canadian banks. No penny stocks, no ETFs, no stocks without a reported reason.
 
-Before calling report_markets, write one short evidence line per figure, quoting the source text that states it (the market summary's reason and each stock's % move). These lines must cite the source; they are how the figures get checked. Then call report_markets once.
+Write your findings as short plain sentences: one for the market's move, and one per stock stating its ticker, its % move for that session as the source states it, and the reported reason. Each sentence must draw directly on a search result so it carries a citation; the cited figures are checked against the source. Leave out any stock whose % move or reason for that session you can't find in a source."""
 
-Rules:
-- Only report figures and reasons stated in the sources you found. If a source doesn't state a stock's % move or reason for that session, leave that stock out.
-- change_pct is the % move for that session, signed. source_url is the page the figure came from.
+
+REPORT_INSTRUCTIONS = """Now call report_markets once, using only the findings you just wrote.
+
+- Include only stocks whose % move and reason appear in your cited findings. source_url is the URL of the search result you cited for that stock; summary_source_url likewise for the market sentence.
+- change_pct is the session's % move, signed, exactly as the source states it.
 - "why" is one sentence, under 25 words, plain and specific, with a light dry touch at most. No em dashes. Don't start with the company name.
-- market_summary is one sentence, under 30 words, no em dashes."""
+- market_summary is one sentence, under 30 words, no em dashes.
+- interest_tag: ai, design, housing or banks where it clearly fits, else none."""
 
 
 def _collect_evidence(content: list) -> tuple[dict[str, list[str]], set[str], dict | None]:
@@ -264,28 +271,45 @@ def _collect_evidence(content: list) -> tuple[dict[str, list[str]], set[str], di
 
 
 def research_movers(session_date: date, client=None) -> dict | None:
-    """One Claude call with web search. Returns report + evidence, or None."""
+    """Two Claude calls: cited research, then a forced report. Returns report +
+    evidence, or None."""
     if client is None:
         import anthropic
         client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
-    messages = [{"role": "user", "content": research_prompt(session_date)}]
-    all_content: list = []
+    # Phase 1: search and cited findings, resuming any paused server-tool turn
+    # as one assistant message so the model continues where it stopped.
+    user = {"role": "user", "content": research_prompt(session_date)}
+    messages = [user]
+    findings: list = []
     for _ in range(MAX_CONTINUATIONS + 1):
         resp = client.messages.create(
             model=MARKETS_MODEL,
             max_tokens=4000,
-            tools=[WEB_SEARCH_TOOL, REPORT_TOOL],
+            tools=[WEB_SEARCH_TOOL],
             messages=messages,
         )
-        all_content.extend(resp.content)
+        findings.extend(resp.content)
         if resp.stop_reason != "pause_turn":
             break
-        # Resume the paused turn: resend it as one assistant message so the
-        # model continues where it stopped.
-        messages = [messages[0], {"role": "assistant", "content": list(all_content)}]
+        messages = [user, {"role": "assistant", "content": list(findings)}]
 
-    cited, searched, report = _collect_evidence(all_content)
+    # Phase 2: structure the findings. Forced tool choice, so no new searching.
+    # web_search stays defined because the history contains its blocks.
+    resp = client.messages.create(
+        model=MARKETS_MODEL,
+        max_tokens=2000,
+        tools=[WEB_SEARCH_TOOL, REPORT_TOOL],
+        tool_choice={"type": "tool", "name": "report_markets"},
+        messages=[
+            user,
+            {"role": "assistant", "content": list(findings)},
+            {"role": "user", "content": REPORT_INSTRUCTIONS},
+        ],
+    )
+
+    cited, searched, _ = _collect_evidence(findings)
+    _, _, report = _collect_evidence(resp.content)
     if report is None:
         print("[markets] research returned no report", flush=True)
         return None

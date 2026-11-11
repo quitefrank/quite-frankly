@@ -260,18 +260,33 @@ def report_block(**inp):
 def test_research_collects_evidence_across_pause_turn():
     client = FakeClient([
         fake_response([search_block(REUTERS)], stop="pause_turn"),
-        fake_response([text_block(REUTERS, "Micron jumped 19%"), report_block(candidates=[cand("MU", 19.0)])]),
+        fake_response([text_block(REUTERS, "Micron jumped 19%")]),
+        fake_response([report_block(candidates=[cand("MU", 19.0)])]),
     ])
     ev = research_movers(SESSION, client)
     assert ev["searched"] == {REUTERS}
     assert ev["cited"] == {REUTERS: ["Micron jumped 19%"]}
-    # Continuation resends one assistant turn holding everything so far.
-    second = client.calls[1]["messages"]
-    assert [m["role"] for m in second] == ["user", "assistant"]
+    assert ev["report"]["candidates"][0]["symbol"] == "MU"
+    # Phase 1 offers only search; a pause resumes as one assistant turn.
+    assert [t["name"] for t in client.calls[0]["tools"]] == ["web_search"]
+    assert [m["role"] for m in client.calls[1]["messages"]] == ["user", "assistant"]
+    # Phase 2 forces the report over the findings.
+    final = client.calls[2]
+    assert final["tool_choice"] == {"type": "tool", "name": "report_markets"}
+    assert [m["role"] for m in final["messages"]] == ["user", "assistant", "user"]
+
+
+def test_citations_in_phase_two_do_not_count():
+    client = FakeClient([
+        fake_response([search_block(REUTERS)]),
+        fake_response([text_block(REUTERS, "Micron jumped 19%"), report_block(candidates=[])]),
+    ])
+    assert research_movers(SESSION, client)["cited"] == {}
 
 
 def test_research_without_report_returns_none():
-    assert research_movers(SESSION, FakeClient([fake_response([search_block(REUTERS)])])) is None
+    client = FakeClient([fake_response([search_block(REUTERS)]), fake_response([])])
+    assert research_movers(SESSION, client) is None
 
 
 # ── Orchestrator ──────────────────────────────────────────────────────────────
@@ -280,6 +295,7 @@ def full_client():
     return FakeClient([fake_response([
         search_block(REUTERS, TMX),
         text_block(REUTERS, "Micron jumped 19% while Ferrari fell 5.0%"),
+    ]), fake_response([
         report_block(market_summary="AI names carried the day.", summary_source_url=REUTERS,
                      candidates=[cand("MU", 19.0), cand("RACE", -5.0, exchange="NYSE"), cand("FAKE", 40.0)]),
     ])])
@@ -304,7 +320,8 @@ def test_build_markets_data_never_raises():
 
 
 def test_build_markets_data_none_when_nothing_survives():
-    assert build_markets_data(TODAY, client=FakeClient([fake_response([])]), session=FakeSession({})) is None
+    client = FakeClient([fake_response([]), fake_response([])])
+    assert build_markets_data(TODAY, client=client, session=FakeSession({})) is None
 
 
 def test_intraday_strip_is_labelled_and_research_targets_last_session():
