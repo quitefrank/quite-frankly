@@ -1,0 +1,15 @@
+{
+  "rows": 1,
+  "columns": 6,
+  "area_size": 10,
+  "area_uppercase": false,
+  "ticker_size": 12,
+  "pct_size": 12,
+  "pct_decimals": 1,
+  "tile_pad_y": 8,
+  "tile_pad_x": 6,
+  "area_gap": 0,
+  "pct_gap": 0,
+  "strip_gap_below": 12,
+  "row_dividers": true
+}

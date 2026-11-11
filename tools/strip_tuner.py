@@ -227,7 +227,8 @@ class Handler(BaseHTTPRequestHandler):
         if url.path == "/render":
             q = parse_qs(url.query)
             try:
-                style = _coerce(json.loads(q.get("style", ["{}"])[0]))
+                # No style passed: preview what the newsletter would send.
+                style = _coerce(json.loads(q["style"][0])) if "style" in q else formatting.load_strip_style()
             except (ValueError, TypeError):
                 style = formatting.load_strip_style()
             return self._send(render_preview(style, q.get("set", ["live"])[0], q.get("theme", ["light"])[0]))
