@@ -25,6 +25,7 @@ from triage import apply_phase2_tier, call_triage, cap_items, enrich_cluster_met
 from formatting import call_formatter, call_legacy_formatter, build_format_input, build_email_html, send_email, suppressed_cluster_ids, near_duplicate_ids, write_subject_blurbs
 from images import resolve_ee_thumbnails
 from archive import accumulate, pool_for
+from markets import build_markets_data
 
 
 def main():
@@ -104,6 +105,13 @@ def main():
         with _stage("format_legacy"):
             format_raw = call_legacy_formatter(headlines)
 
+    # Markets block for Finance & Markets. Weekday only: design editions have no
+    # Finance section. build_markets_data never raises; None means no block.
+    markets_data = None
+    if not is_design_mode(mode):
+        with _stage("markets"):
+            markets_data = build_markets_data(today)
+
     with _stage("build_html"):
         html, subject, inline_images = build_email_html(
             format_raw, links_by_id, clusters_by_item_id,
@@ -111,6 +119,7 @@ def main():
             is_design_edition=is_design_mode(mode),
             blurb_writer=write_subject_blurbs,
             thumbnail_resolver=resolve_ee_thumbnails,
+            markets_data=markets_data,
         )
 
     with _stage("send_email"):

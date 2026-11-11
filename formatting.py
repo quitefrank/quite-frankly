@@ -63,6 +63,10 @@ LIGHT = {
     "thumb_ring": "#d9d9d9",
     "footer_bg": "#E9EBF7",
     "footer_text": "#79787d",
+    # Markets block % changes. Direction also carries a ▲/▼ glyph, so colour
+    # is never the only signal.
+    "up": "#0f8a3c",
+    "down": "#d1352b",
     "color_scheme": "light",
 }
 DARK = {
@@ -85,6 +89,8 @@ DARK = {
     "thumb_ring": "#5a606b",
     "footer_bg": "#1a1c2e",
     "footer_text": "#8b8ba3",
+    "up": "#4cc97a",
+    "down": "#ff6b5e",
     "color_scheme": "dark",
 }
 
@@ -917,6 +923,80 @@ def _render_today_in_the_world(lines: list[str], links_by_id: dict, used_ids: se
 _CALLOUT_LINE_RE = re.compile(r"^what this means(?: for you)?:\s*(.*)", re.IGNORECASE)
 
 
+FINANCE_SECTION = "Finance & Markets"
+
+
+def render_markets_block(data: dict | None, palette: dict = LIGHT) -> str:
+    """Strip of tiles, a one-line summary, and up to three movers.
+
+    Tables, not flex or grid, so Gmail and Outlook keep the tiles in one row.
+    Values from the model are escaped; ticker links go to the cited article.
+    """
+    if not data or (not data.get("tiles") and not data.get("movers")):
+        return ""
+    from html import escape
+
+    font = "font-family:Helvetica,Arial,sans-serif"
+    # Entities, not raw glyphs: survives clients that mis-detect the charset.
+    arrow = {"up": "&#9650;", "down": "&#9660;", "flat": ""}
+
+    def color(direction):
+        return palette.get(direction, palette["meta"])
+
+    out = ""
+    tiles = data.get("tiles") or []
+    if tiles:
+        width = f"{100 // len(tiles)}%"
+        cells = "".join(
+            f'<td width="{width}" style="padding:8px 4px;text-align:center;vertical-align:top;'
+            f'border-top:1px solid {palette["divider"]};border-bottom:1px solid {palette["divider"]};{font}">'
+            f'<div style="font-size:11px;font-weight:700;letter-spacing:0.04em;color:{palette["meta_label"]};line-height:16px">{escape(t["label"])}</div>'
+            f'<div style="font-size:14px;font-weight:700;color:{palette["heading"]};line-height:20px;white-space:nowrap">{escape(t["value"])}</div>'
+            f'<div style="font-size:12px;color:{color(t["direction"])};line-height:16px;white-space:nowrap">{escape(t["change"])}</div>'
+            f'</td>'
+            for t in tiles
+        )
+        out += (
+            f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" '
+            f'style="border-collapse:collapse;margin:0 0 12px"><tr>{cells}</tr></table>'
+        )
+
+    if data.get("summary"):
+        out += (
+            f'<p style="margin:0 0 12px;font-size:15px;line-height:22px;color:{palette["body"]};{font}">'
+            f'<strong style="color:{palette["bold"]}">Markets:</strong> {escape(data["summary"])}</p>'
+        )
+
+    movers = data.get("movers") or []
+    for i, m in enumerate(movers):
+        direction = "up" if m["change_pct"] > 0 else "down"
+        top = f"border-top:1px solid {palette['divider']};" if i else ""
+        out += (
+            f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" '
+            f'style="border-collapse:collapse"><tr>'
+            f'<td style="{top}padding:8px 0;{font};font-size:14px;line-height:20px;color:{palette["body"]}">'
+            f'<a href="{escape(m["source_url"], quote=True)}" style="color:{palette["bold"]};font-weight:700;text-decoration:underline">'
+            f'{escape(m["symbol"])}</a> '
+            f'<span style="color:{palette["meta_label"]}">{escape(m["name"])}</span> '
+            f'<span style="color:{color(direction)};font-weight:700;white-space:nowrap">{arrow[direction]} {m["change_pct"]:+.1f}%</span>'
+            f'<br>{escape(m["why"])}</td></tr></table>'
+        )
+
+    as_of = data.get("as_of")
+    if as_of:
+        when = (
+            f'Index tiles intraday; movers from {as_of.strftime("%b %-d")} close.'
+            if data.get("strip_intraday")
+            else f'As of {as_of.strftime("%b %-d")} close.'
+        )
+        out += (
+            f'<p style="margin:6px 0 0;font-size:11px;color:{palette["meta"]};{font}">'
+            f'{when} Indices, 10Y and CAD/USD via FMP; TSX and movers from linked coverage.</p>'
+        )
+
+    return f'<div style="border-bottom:1px solid {palette["divider"]};padding-bottom:16px;margin-bottom:16px">{out}</div>'
+
+
 def _render_callout_html(text, palette, label="What this means:"):
     return (
         f'<div style="margin:10px 0 0;padding:12px 14px;background:{palette["callout_bg"]};'
@@ -943,7 +1023,7 @@ def _extract_section_callout(lines):
     return callout, remaining
 
 
-def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, palette: dict = LIGHT, oh_copy_by_id=None, oh_collect=None, callout_mode=None):
+def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, palette: dict = LIGHT, oh_copy_by_id=None, oh_collect=None, callout_mode=None, section_prefix_html=None):
     mode = callout_mode if callout_mode is not None else CALLOUT_MODE
     clusters_by_item_id = clusters_by_item_id or {}
     tiered_items = tiered_items or []
@@ -1050,7 +1130,10 @@ def parse_and_render_sections(text, links_by_id, clusters_by_item_id=None, tiere
         # Other Headlines are synthesized below, after the render loop has
         # populated used_ids with featured-story IDs.
 
-        stories_html = ""
+        # A section-level block (the Markets strip in Finance & Markets) sits
+        # above the featured stories and counts as content for the empty-card
+        # guard below.
+        stories_html = (section_prefix_html or {}).get(title, "")
 
         for i, s in enumerate(stories):
             border       = "" if i == len(stories) - 1 else f"border-bottom:1px solid {palette['divider']};padding-bottom:16px;margin-bottom:16px;"
@@ -1443,7 +1526,7 @@ def _ee_items_with_cluster_image_fallback(ee_items, links_by_id, tiered_items):
     return out
 
 
-def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, blurb_writer=None, thumbnail_resolver=None):
+def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tiered_items=None, suppressed_ids=None, is_design_edition=False, blurb_writer=None, thumbnail_resolver=None, markets_data=None):
     clusters_by_item_id = clusters_by_item_id or {}
     toronto_tz  = ZoneInfo("America/Toronto")
     now_toronto = datetime.now(toronto_tz)
@@ -1461,6 +1544,9 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
     if TEST_MODE:
         subject = f"[TEST] {subject}"
 
+    markets_html = render_markets_block(markets_data, c)
+    section_prefix = {FINANCE_SECTION: markets_html} if markets_html else None
+
     # Pass 1 discovers which items surface: featured stories populate used_ids,
     # and oh_items collects the Other Headlines picks across every section.
     oh_items: list = []
@@ -1468,6 +1554,7 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
         claude_response, links_by_id, clusters_by_item_id,
         tiered_items=tiered_items, suppressed_ids=suppressed_ids,
         is_design_edition=is_design_edition, palette=c, oh_collect=oh_items,
+        section_prefix_html=section_prefix,
     )
     ee_items = _select_everything_else(links_by_id, used_ids, tiered_items,
                                        is_design_edition)
@@ -1497,6 +1584,7 @@ def build_email_html(claude_response, links_by_id, clusters_by_item_id=None, tie
                 claude_response, links_by_id, clusters_by_item_id,
                 tiered_items=tiered_items, suppressed_ids=suppressed_ids,
                 is_design_edition=is_design_edition, palette=c, oh_copy_by_id=oh_copy,
+                section_prefix_html=section_prefix,
             )
     everything_else_html    = build_everything_else(
         links_by_id, used_ids, clusters_by_item_id, tiered_items=tiered_items,

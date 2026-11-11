@@ -10,3 +10,4 @@ tmp/
 venv/
 .superpowers/
 .playwright-mcp/
+.env
