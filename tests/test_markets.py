@@ -41,11 +41,16 @@ class FakeSession:
     """Routes FMP daily-close requests by symbol; anything else is 'premium'."""
 
     def __init__(self, routes):
-        self.routes = routes
+        self.routes, self.calls = routes, []
 
     def get(self, url, params=None, timeout=None):
+        if "twelvedata" in url:
+            key = f"td:{params.get('symbol')}"
+            self.calls.append(key)
+            return FakeResp(self.routes.get(key, {"status": "error", "message": "needs Grow plan"}))
         path = url.rsplit("/stable/", 1)[1]
         key = f"eod:{params.get('symbol')}" if path == "historical-price-eod/light" else path
+        self.calls.append(key)
         if key in self.routes:
             return FakeResp(self.routes[key])
         return FakeResp(text="Premium Query Parameter: not available")
@@ -57,18 +62,46 @@ def closes(nov9, nov10, nov11=None):
     return ([{"date": "2026-11-11", "price": nov11}] if nov11 else []) + rows
 
 
+def td_closes(nov9, nov10, nov11=None):
+    """Twelve Data time_series payload, newest first, closes as strings."""
+    rows = closes(nov9, nov10, nov11)
+    return {"status": "ok", "values": [{"datetime": r["date"], "close": str(r["price"])} for r in rows]}
+
+
 GOOD_ROUTES = {
-    "eod:SPY": closes(675.0, 672.5, 683.0),       # -0.37% on Nov 10
-    "eod:NVDA": closes(178.67, 168.89, 176.49),   # -5.47%
-    "eod:XOM": closes(118.0, 117.81),
-    "eod:JPM": closes(305.0, 305.0),              # flat
-    "eod:GCUSD": closes(4114.5, 4030.2, 4009.7),  # -2.05%
+    "eod:SPY": closes(675.0, 672.5, 683.0),       # FMP, -0.37% on Nov 10
+    "eod:NVDA": closes(178.67, 168.89, 176.49),   # FMP, -5.47%
+    "td:XLK": td_closes(174.0, 172.0, 175.0),     # Twelve Data from here on
+    "td:XLE": td_closes(63.0, 63.0),              # flat
+    "td:XLF": td_closes(58.5, 58.6),
+    "td:XLRE": td_closes(44.3, 44.5),
+    "td:GLD": td_closes(365.0, 357.0, 356.0),
 }
+
+
+class NoSleep:
+    """Throttle with a fake clock, so tests never actually wait."""
+
+    def __init__(self):
+        self.now, self.slept = 0.0, []
+
+    def throttle(self, per_minute=8):
+        return markets._Throttle(per_minute, clock=lambda: self.now, sleep=self._sleep)
+
+    def _sleep(self, secs):
+        self.slept.append(secs)
+        self.now += secs
 
 
 @pytest.fixture(autouse=True)
 def fmp_key(monkeypatch):
     monkeypatch.setenv("FMP_API_KEY", "test")
+    monkeypatch.setenv("TWELVE_DATA_API_KEY", "test")
+
+
+@pytest.fixture(autouse=True)
+def no_real_sleep(monkeypatch):
+    monkeypatch.setattr(markets.time, "sleep", lambda s: None)
 
 
 @pytest.fixture(autouse=True)
@@ -82,22 +115,42 @@ def default_strip_style(monkeypatch, tmp_path):
 
 def test_strip_is_tickers_with_session_moves():
     tiles = fetch_strip(SESSION, FakeSession(GOOD_ROUTES))
-    assert [t["label"] for t in tiles] == ["SPY", "NVDA", "XOM", "JPM", "GC"]
-    assert tiles[1] == {"label": "NVDA", "area": "Tech", "url": "https://finance.yahoo.com/quote/NVDA",
-                        "price": 168.89, "pct": -5.47, "change": "-5.47%", "direction": "down"}
-    assert tiles[4]["url"] == "https://finance.yahoo.com/quote/GC=F"
-    assert [t["area"] for t in tiles] == ["Market", "Tech", "Energy", "Banks", "Gold"]
-    assert tiles[3]["direction"] == "flat"
-
+    assert [t["label"] for t in tiles] == ["SPY", "XLK", "XLE", "XLF", "XLRE", "GLD"]
+    assert [t["area"] for t in tiles] == ["Market", "Tech", "Energy", "Banks", "Real Estate", "Gold"]
+    assert tiles[1] == {"label": "XLK", "area": "Tech", "url": "https://finance.yahoo.com/quote/XLK",
+                        "price": 172.0, "pct": -1.15, "change": "-1.15%", "direction": "down"}
+    assert tiles[0]["price"] == 672.5          # SPY from FMP, Nov 10 (today's partial row skipped)
+    assert tiles[2]["direction"] == "flat"
 
 def test_near_zero_move_is_flat_not_red():
     assert markets.tile("JPM", -0.003) == {"label": "JPM", "area": "", "url": "", "price": None, "pct": 0.0, "change": "0.00%", "direction": "flat"}
 
 
 def test_one_gated_symbol_costs_one_tile():
-    routes = {k: v for k, v in GOOD_ROUTES.items() if k != "eod:XOM"}
-    assert [t["label"] for t in fetch_strip(SESSION, FakeSession(routes))] == ["SPY", "NVDA", "JPM", "GC"]
+    routes = {k: v for k, v in GOOD_ROUTES.items() if k != "td:XLE"}
+    assert [t["label"] for t in fetch_strip(SESSION, FakeSession(routes))] == ["SPY", "XLK", "XLF", "XLRE", "GLD"]
 
+
+def test_quotes_try_fmp_first_then_twelve_data_once_each():
+    fake = FakeSession(GOOD_ROUTES)
+    q = markets.SessionQuotes(SESSION, fake, NoSleep().throttle())
+    assert q("SPY") == (672.5, pytest.approx(-0.3704, abs=1e-3))
+    q("XLK"); q("XLK")
+    assert fake.calls == ["eod:SPY", "eod:XLK", "td:XLK"]   # FMP gated XLK; TD fetched once
+
+
+def test_missing_from_both_sources_raises():
+    q = markets.SessionQuotes(SESSION, FakeSession({}), NoSleep().throttle())
+    with pytest.raises(FMPUnavailable):
+        q("XIU")
+
+
+def test_twelve_data_calls_are_paced_to_the_free_limit():
+    clock = NoSleep()
+    t = clock.throttle(per_minute=8)
+    for _ in range(9):
+        t.wait()
+    assert len(clock.slept) == 1 and 60 <= clock.slept[0] <= 61
 
 def test_latest_session_skips_todays_partial_row():
     assert latest_session(TODAY, FakeSession(GOOD_ROUTES)) == SESSION
@@ -116,10 +169,10 @@ def test_missing_key_is_unavailable(monkeypatch):
 
 
 def test_session_change_uses_session_close_not_this_morning():
-    pct = session_change_pct(GOOD_ROUTES["eod:GCUSD"], SESSION)
+    pct = session_change_pct(closes(4114.5, 4030.2, 4009.7), SESSION)
     assert round(pct, 2) == round((4030.2 / 4114.5 - 1) * 100, 2)
     with pytest.raises(FMPUnavailable):
-        session_change_pct(GOOD_ROUTES["eod:GCUSD"], date(2026, 11, 12))
+        session_change_pct(closes(4114.5, 4030.2, 4009.7), date(2026, 11, 12))
 
 
 def test_mover_cross_check_uses_session_close():
@@ -355,7 +408,7 @@ def full_client():
 
 def test_build_markets_data_end_to_end():
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
-    assert [t["label"] for t in data["tiles"]] == ["SPY", "NVDA", "XOM", "JPM", "GC"]
+    assert [t["label"] for t in data["tiles"]] == ["SPY", "XLK", "XLE", "XLF", "XLRE", "GLD"]
     assert [m["symbol"] for m in data["movers"]] == ["MU", "RACE"]  # FAKE uncited, dropped
     assert data["summary"] == "AI names carried the day."
     assert data["movers"][0]["why"] == "Because reasons, apparently."
@@ -368,7 +421,7 @@ def test_build_markets_data_never_raises():
         messages = property(lambda self: (_ for _ in ()).throw(RuntimeError("api down")))
 
     data = build_markets_data(TODAY, client=Boom(), session=FakeSession(GOOD_ROUTES))
-    assert data["movers"] == [] and [t["label"] for t in data["tiles"]] == ["SPY", "NVDA", "XOM", "JPM", "GC"]
+    assert data["movers"] == [] and [t["label"] for t in data["tiles"]] == ["SPY", "XLK", "XLE", "XLF", "XLRE", "GLD"]
 
 
 def test_build_markets_data_none_when_nothing_survives():
@@ -397,11 +450,12 @@ def test_no_fmp_still_researches_previous_weekday():
 def test_render_block(palette):
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
     html = render_markets_block(data, palette)
-    for s in ("Market", "Tech", "Energy", "Banks", "Gold", "SPY", "NVDA", "XOM", "JPM", "GC", "-5.47%", "gold futures", "Markets:", "MU",
+    for s in ("Market", "Tech", "Energy", "Banks", "Real Estate", "Gold", "SPY", "XLK", "XLE", "XLF", "XLRE", "GLD",
+              "SPY tracks the S&amp;P 500", "Markets:", "MU",
               "+19.00%", "-5.00%", "Closing prices and daily % moves, Nov 10", REUTERS,
-              ">Markets</td>", ">Featured movers</td>", "$168.89", "$672.50",
+              ">Markets</td>", ">Featured movers</td>", "$172.00", "$672.50",
               "What to watch today", "Canada retail sales", "8:30 ET", "reuters.com",
-              'href="https://finance.yahoo.com/quote/NVDA"', 'href="https://finance.yahoo.com/quote/MU"'):
+              'href="https://finance.yahoo.com/quote/XLK"', 'href="https://finance.yahoo.com/quote/MU"'):
         assert s in html
     assert palette["up"] in html and palette["down"] in html
     assert "border-left" not in html

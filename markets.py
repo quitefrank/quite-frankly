@@ -27,6 +27,8 @@ from __future__ import annotations
 
 import os
 import re
+import time
+from collections import deque
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -52,16 +54,19 @@ MIN_MOVE_PCT = 2.0  # below this a stock isn't a "mover" (the Nov 10 test picked
 # real estate stock and every gold miner, so a ticker Frank could buy has to
 # be one of the megacaps it does serve. A bellwether is one company, not its
 # sector: NVDA fell 5.5% on Nov 10 while the average tech stock rose.
-# (FMP symbol, ticker shown, area name shown above it, Yahoo Finance symbol).
-# Rendered as rows of 3. Interim free set: the sector ETFs Frank picked
-# (XLK, XLE, XLF, GLD and a sixth) need a data source beyond free FMP.
+# Markets rows: (data symbol, ticker shown, sector shown, Yahoo Finance symbol).
+# Sector funds Frank picked 2026-11-12. Free FMP serves SPY only; the rest
+# come from Twelve Data's free plan (see session_quote).
 STRIP_TILES = (
-    ("SPY", "SPY", "Market", "SPY"),    # S&P 500 ETF
-    ("NVDA", "NVDA", "Tech", "NVDA"),
-    ("XOM", "XOM", "Energy", "XOM"),
-    ("JPM", "JPM", "Banks", "JPM"),
-    ("GCUSD", "GC", "Gold", "GC=F"),    # gold futures, the standard GC code
+    ("SPY", "SPY", "Market", "SPY"),
+    ("XLK", "XLK", "Tech", "XLK"),
+    ("XLE", "XLE", "Energy", "XLE"),
+    ("XLF", "XLF", "Banks", "XLF"),
+    ("XLRE", "XLRE", "Real Estate", "XLRE"),
+    ("GLD", "GLD", "Gold", "GLD"),
 )
+TD_BASE = "https://api.twelvedata.com"
+TD_PER_MINUTE = 8  # Twelve Data free plan: 8 credits a minute, 800 a day
 YAHOO_QUOTE = "https://finance.yahoo.com/quote/{}"
 WATCH_MAX = 4
 SESSION_ANCHOR = "SPY"  # its last completed daily close defines the session
@@ -157,6 +162,66 @@ def fmp_session_change(symbol: str, session_date: date, session=requests) -> flo
     return fmp_session_quote(symbol, session_date, session)[1]
 
 
+class _Throttle:
+    """Keeps calls under `per_minute` in any rolling 60 seconds by sleeping."""
+
+    def __init__(self, per_minute: int, clock=time.monotonic, sleep=time.sleep):
+        self.per_minute, self.clock, self.sleep = per_minute, clock, sleep
+        self.calls: deque = deque()
+
+    def wait(self) -> None:
+        now = self.clock()
+        while self.calls and now - self.calls[0] >= 60:
+            self.calls.popleft()
+        if len(self.calls) >= self.per_minute:
+            pause = 60 - (now - self.calls[0]) + 0.5
+            print(f"[markets] Twelve Data rate limit: pausing {pause:.0f}s", flush=True)
+            self.sleep(pause)
+            now = self.clock()
+            while self.calls and now - self.calls[0] >= 60:
+                self.calls.popleft()
+        self.calls.append(now)
+
+
+def td_daily_rows(symbol: str, session=requests, throttle: _Throttle | None = None) -> list[dict]:
+    """Twelve Data daily closes, reshaped to FMP's rows ({date, price}) so
+    session_close_and_pct works on either. Today's unfinished bar is included
+    by the API and skipped downstream like FMP's."""
+    key = os.environ.get("TWELVE_DATA_API_KEY")
+    if not key:
+        raise FMPUnavailable("TWELVE_DATA_API_KEY not set")
+    if throttle:
+        throttle.wait()
+    resp = session.get(f"{TD_BASE}/time_series", timeout=FMP_TIMEOUT,
+                       params={"symbol": symbol, "interval": "1day", "outputsize": 10, "apikey": key})
+    try:
+        data = resp.json()
+    except ValueError:
+        raise FMPUnavailable(resp.text[:80])
+    if data.get("status") != "ok" or not data.get("values"):
+        raise FMPUnavailable(f"Twelve Data {symbol}: {str(data.get('message'))[:80]}")
+    return [{"date": v["datetime"][:10], "price": float(v["close"])} for v in data["values"]]
+
+
+class SessionQuotes:
+    """(close, %) for a symbol on one session: free FMP first (no rate limit),
+    Twelve Data for everything FMP gates. One fetch per symbol per run."""
+
+    def __init__(self, session_date: date, session=requests, throttle: _Throttle | None = None):
+        self.session_date, self.session = session_date, session
+        self.throttle = throttle or _Throttle(TD_PER_MINUTE)
+        self.cache: dict[str, tuple[float, float]] = {}
+
+    def __call__(self, symbol: str) -> tuple[float, float]:
+        if symbol not in self.cache:
+            try:
+                self.cache[symbol] = fmp_session_quote(symbol, self.session_date, self.session)
+            except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError):
+                rows = td_daily_rows(symbol, self.session, self.throttle)
+                self.cache[symbol] = session_close_and_pct(rows, self.session_date)
+        return self.cache[symbol]
+
+
 def latest_session(today: date, session=requests) -> date | None:
     """The last completed session: SPY's newest daily close before today.
 
@@ -179,12 +244,13 @@ def latest_session(today: date, session=requests) -> date | None:
     return last
 
 
-def fetch_strip(session_date: date, session=requests) -> list[dict]:
+def fetch_strip(session_date: date, session=requests, quotes: SessionQuotes | None = None) -> list[dict]:
     """One tile per STRIP_TILES entry that has a close for session_date."""
+    quotes = quotes or SessionQuotes(session_date, session)
     tiles = []
     for symbol, label, area, yahoo in STRIP_TILES:
         try:
-            close, pct = fmp_session_quote(symbol, session_date, session)
+            close, pct = quotes(symbol)
             tiles.append(tile(label, pct, area, YAHOO_QUOTE.format(yahoo), close))
         except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError) as e:
             print(f"[markets] {label} unavailable ({e})", flush=True)
@@ -489,16 +555,22 @@ def _clean(text: str) -> str:
 
 # ── Orchestrator ──────────────────────────────────────────────────────────────
 
-def build_markets_data(today: date | None = None, client=None, session=requests) -> dict | None:
+def build_markets_data(today: date | None = None, client=None, session=requests,
+                       throttle: _Throttle | None = None) -> dict | None:
     """Assemble the block. Never raises; returns None when nothing survives."""
     today = today or datetime.now(TORONTO).date()
     try:
         found = latest_session(today, session)
-        tiles = fetch_strip(found, session) if found else []
+    except Exception as e:
+        print(f"[markets] session lookup failed ({e})", flush=True)
+        found = None
+    session_date = found or previous_weekday(today)
+    quotes = SessionQuotes(session_date, session, throttle)
+    try:
+        tiles = fetch_strip(found, session, quotes) if found else []
     except Exception as e:
         print(f"[markets] strip failed ({e})", flush=True)
-        found, tiles = None, []
-    session_date = found or previous_weekday(today)
+        tiles = []
 
     movers, summary, watch = [], "", []
     try:
@@ -512,7 +584,7 @@ def build_markets_data(today: date | None = None, client=None, session=requests)
                 flush=True,
             )
             movers = pick_three(verify_candidates(
-                evidence, change_fn=lambda s: fmp_session_quote(s, session_date, session)
+                evidence, change_fn=quotes
             ))
             summary = verify_summary(evidence)
             watch = verify_watch(evidence)

@@ -32,6 +32,15 @@ from the previous session's movers.
     SPX/IXIC/XGRO/XEQT/Gold → SPX plus sector averages (Tech, Energy, Finance,
     Realty, Gold) → these tickers, after Frank found sector names too vague
     to act on.
+- **Data (revised 2026-11-12):** Twelve Data free plan added
+  (`TWELVE_DATA_API_KEY`). Coverage tested: every US stock and fund tried
+  (CRWV, BE, MU, SPY, XLK, XLE, XLF, XLRE, GLD, SMH, XAU/USD) is free; TSX
+  listings need its paid Grow plan. `SessionQuotes` asks free FMP first (no
+  rate limit), falls back to Twelve Data, caches per symbol per run, and
+  paces Twelve Data to 8 calls a minute (a full run waits about a minute).
+  Markets rows are now SPY · XLK · XLE · XLF · XLRE · GLD. Every US mover
+  gets a feed close and a feed-checked %, so the dash only remains for TSX
+  movers.
 - **Layout (revised 2026-11-12, supersedes the grid below):** Morning Brew
   style rows in one table. "Markets" group: arrow, ticker (Yahoo link),
   sector, closing price, % pill, 10px above and below each row. "Featured
