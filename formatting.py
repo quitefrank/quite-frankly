@@ -1074,13 +1074,23 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT, style: dict |
             f'style="border-collapse:collapse;border-bottom:{rule}">{rows}</table>'
         )
 
+    def section_label(text, top):
+        # Same look and 4px inset as the Markets / Featured movers labels in the table.
+        return (
+            f'<p style="margin:{top}px 0 6px;padding:0 4px;{font};font-size:11px;font-weight:700;'
+            f'letter-spacing:0.06em;text-transform:uppercase;color:{palette["meta_label"]}">{text}</p>'
+        )
+
+    # One "What to watch" section: yesterday's recap line, then today's events.
+    watch = data.get("watch") or []
+    if data.get("summary") or watch:
+        out += section_label("What to watch", 14)
     if data.get("summary"):
         out += (
-            f'<p style="margin:14px 0 10px;font-size:15px;line-height:22px;color:{palette["body"]};{font}">'
+            f'<p style="margin:0 0 10px;padding:0 4px;font-size:15px;line-height:22px;color:{palette["body"]};{font}">'
             f'<strong style="color:{palette["bold"]}">Markets:</strong> {escape(data["summary"])}</p>'
         )
 
-    watch = data.get("watch") or []
     if watch:
         items = "".join(
             f'<tr><td style="padding:3px 10px 3px 0;{font};font-size:13px;line-height:18px;font-weight:700;'
@@ -1090,15 +1100,14 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT, style: dict |
             for w in watch
         )
         out += (
-            f'<p style="margin:12px 0 4px;font-size:15px;line-height:22px;color:{palette["bold"]};font-weight:700;{font}">What to watch today</p>'
-            f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse">{items}</table>'
+            f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin-left:4px">{items}</table>'
         )
 
     as_of = data.get("as_of")
     shown = {t["label"] for t in tiles}
     if as_of:
         out += (
-            f'<p style="margin:10px 0 0;font-size:11px;color:{palette["meta"]};{font}">'
+            f'<p style="margin:10px 0 0;padding:0 4px;font-size:11px;color:{palette["meta"]};{font}">'
             f'Closing prices and daily % moves, {as_of.strftime("%b %-d")}. Tickers open Yahoo Finance quotes.'
             + "".join(f" {note}" for label, note in TICKER_NOTES.items() if label in shown)
             + '</p>'

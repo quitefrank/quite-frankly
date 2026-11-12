@@ -454,7 +454,7 @@ def test_render_block(palette):
               "SPY tracks the S&amp;P 500", "Markets:", "MU",
               "+19.00%", "-5.00%", "Closing prices and daily % moves, Nov 10", REUTERS,
               ">Markets</td>", ">Featured movers</td>", "$172.00", "$672.50",
-              "What to watch today", "Canada retail sales", "8:30 ET", "reuters.com",
+              ">What to watch</p>", "Canada retail sales", "8:30 ET", "reuters.com",
               'href="https://finance.yahoo.com/quote/XLK"', 'href="https://finance.yahoo.com/quote/MU"'):
         assert s in html
     assert palette["up"] in html and palette["down"] in html
@@ -487,6 +487,18 @@ def test_rows_layout_one_row_per_market_then_movers_with_explainers():
     assert LIGHT["up_bg"] in html and LIGHT["down_bg"] in html
     assert f'border-collapse:collapse;border-bottom:1px solid {LIGHT["divider"]}' in html  # rule under the last explainer
 
+
+def test_recap_and_events_share_one_what_to_watch_section():
+    html = render_markets_block(build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES)), LIGHT)
+    assert html.index(">What to watch</p>") < html.index("Markets:</strong>") < html.index("Canada retail sales")
+    assert ">Yesterday</p>" not in html and "What to watch today" not in html
+    assert html.count("text-transform:uppercase") == 3   # Markets, Featured movers, What to watch
+
+
+def test_what_to_watch_label_shows_with_only_events():
+    html = render_markets_block({"tiles": [], "movers": [], "as_of": None, "summary": "",
+                                 "watch": [{"time": "8:30 ET", "event": "CPI", "source_url": "u"}]}, LIGHT)
+    assert ">What to watch</p>" in html
 
 def test_decimals_setting_applies_to_rows():
     from formatting import STRIP_STYLE_DEFAULTS
