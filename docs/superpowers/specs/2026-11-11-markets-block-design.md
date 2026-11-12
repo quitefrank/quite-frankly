@@ -32,6 +32,15 @@ from the previous session's movers.
     SPX/IXIC/XGRO/XEQT/Gold → SPX plus sector averages (Tech, Energy, Finance,
     Realty, Gold) → these tickers, after Frank found sector names too vague
     to act on.
+- **Layout (revised 2026-11-12, supersedes the grid below):** Morning Brew
+  style rows in one table. "Markets" group: arrow, ticker (Yahoo link),
+  sector, closing price, % pill, 10px above and below each row. "Featured
+  movers" group: same row with the company name in the sector column, 6px
+  below the row, then the sourced explainer spanning from the arrow's left
+  edge, 10px below it. A mover FMP has no close for shows "—" as its price.
+  Then the Markets line and What to watch. Approved from a prototype
+  (option A of two). Of strip_style.json only `pct_decimals` still applies;
+  the grid controls and the tuner are inert pending Frank's call on removal.
 - **Layout (revised 2026-11-11):** the strip is a 2 x 3 grid of sector tiles
   (area name, ticker, % move), movers stay as rows with their sourced "why",
   then **What to watch today**: up to 4 scheduled events (US/Canada economic

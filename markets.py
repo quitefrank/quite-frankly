@@ -99,7 +99,7 @@ def yahoo_url(symbol: str, exchange: str = "") -> str:
     return YAHOO_QUOTE.format(sym)
 
 
-def tile(label: str, pct: float, area: str = "", url: str = "") -> dict:
+def tile(label: str, pct: float, area: str = "", url: str = "", price: float | None = None) -> dict:
     # Direction from the displayed value, so -0.003% reads as a flat 0.00%,
     # not a red "-0.00%".
     shown = round(pct, 2) + 0.0  # + 0.0 turns -0.0 into 0.0
@@ -107,6 +107,7 @@ def tile(label: str, pct: float, area: str = "", url: str = "") -> dict:
         "label": label,
         "area": area,
         "url": url,
+        "price": price,
         "pct": shown,
         "change": format_pct(shown) if shown else "0.00%",
         "direction": "up" if shown > 0 else "down" if shown < 0 else "flat",
@@ -128,7 +129,7 @@ def _daily_rows(symbol: str, since: date, session=requests) -> list[dict]:
     return _fmp_get("historical-price-eod/light", {"symbol": symbol, "from": since.isoformat()}, session)
 
 
-def session_change_pct(rows: list[dict], session_date: date) -> float:
+def session_close_and_pct(rows: list[dict], session_date: date) -> tuple[float, float]:
     """Close-to-close % for session_date from FMP daily rows.
 
     Daily closes rather than live quotes everywhere: gold futures trade
@@ -140,11 +141,20 @@ def session_change_pct(rows: list[dict], session_date: date) -> float:
     if len(by_date) < 2 or by_date[-1]["date"] != session_date.isoformat():
         raise FMPUnavailable(f"no close for {session_date}")
     close, prior = by_date[-1]["price"], by_date[-2]["price"]
-    return (close / prior - 1) * 100
+    return close, (close / prior - 1) * 100
+
+
+def session_change_pct(rows: list[dict], session_date: date) -> float:
+    return session_close_and_pct(rows, session_date)[1]
+
+
+def fmp_session_quote(symbol: str, session_date: date, session=requests) -> tuple[float, float]:
+    """(closing price, % move) for session_date from FMP daily closes."""
+    return session_close_and_pct(_daily_rows(symbol, session_date - timedelta(days=10), session), session_date)
 
 
 def fmp_session_change(symbol: str, session_date: date, session=requests) -> float:
-    return session_change_pct(_daily_rows(symbol, session_date - timedelta(days=10), session), session_date)
+    return fmp_session_quote(symbol, session_date, session)[1]
 
 
 def latest_session(today: date, session=requests) -> date | None:
@@ -174,8 +184,8 @@ def fetch_strip(session_date: date, session=requests) -> list[dict]:
     tiles = []
     for symbol, label, area, yahoo in STRIP_TILES:
         try:
-            pct = fmp_session_change(symbol, session_date, session)
-            tiles.append(tile(label, pct, area, YAHOO_QUOTE.format(yahoo)))
+            close, pct = fmp_session_quote(symbol, session_date, session)
+            tiles.append(tile(label, pct, area, YAHOO_QUOTE.format(yahoo), close))
         except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError) as e:
             print(f"[markets] {label} unavailable ({e})", flush=True)
     return tiles
@@ -402,7 +412,8 @@ def _mentions_company(c: dict, text: str, url: str) -> bool:
 
 def verify_candidates(evidence: dict, change_fn) -> list[dict]:
     """Keep movers whose figure and source hold up. change_fn(symbol) returns
-    the session's % from FMP daily closes.
+    the session's % from FMP daily closes, or a (closing price, %) pair whose
+    price is shown in the mover's row.
 
     US stocks FMP serves: the article's % must match FMP within 0.5 points,
     the page must be a searched, cited result that names the company, and the
@@ -421,12 +432,13 @@ def verify_candidates(evidence: dict, change_fn) -> list[dict]:
             _explain_drop(sym, url, evidence)
             continue
 
-        fmp_pct = None
+        fmp_pct = fmp_close = None
         if c.get("exchange", "").upper() in US_EXCHANGES:
             try:
-                fmp_pct = change_fn(sym)
+                got = change_fn(sym)
+                fmp_close, fmp_pct = got if isinstance(got, tuple) else (None, got)
             except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError):
-                fmp_pct = None  # premium symbol: fall back to the word-for-word check
+                fmp_pct = fmp_close = None  # premium symbol: fall back to the word-for-word check
 
         if fmp_pct is not None:
             if abs(fmp_pct - c["change_pct"]) > FMP_MAX_GAP_POINTS:
@@ -436,7 +448,7 @@ def verify_candidates(evidence: dict, change_fn) -> list[dict]:
                 print(f"[markets] {sym}: cited page doesn't name the company; dropped", flush=True)
                 _explain_drop(sym, url, evidence)
                 continue
-            verified.append({**c, "change_pct": round(fmp_pct, 2),
+            verified.append({**c, "change_pct": round(fmp_pct, 2), "price": fmp_close,
                              "quote_url": yahoo_url(sym, c.get("exchange", ""))})
             continue
 
@@ -500,7 +512,7 @@ def build_markets_data(today: date | None = None, client=None, session=requests)
                 flush=True,
             )
             movers = pick_three(verify_candidates(
-                evidence, change_fn=lambda s: fmp_session_change(s, session_date, session)
+                evidence, change_fn=lambda s: fmp_session_quote(s, session_date, session)
             ))
             summary = verify_summary(evidence)
             watch = verify_watch(evidence)

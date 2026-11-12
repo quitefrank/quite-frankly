@@ -84,14 +84,14 @@ def test_strip_is_tickers_with_session_moves():
     tiles = fetch_strip(SESSION, FakeSession(GOOD_ROUTES))
     assert [t["label"] for t in tiles] == ["SPY", "NVDA", "XOM", "JPM", "GC"]
     assert tiles[1] == {"label": "NVDA", "area": "Tech", "url": "https://finance.yahoo.com/quote/NVDA",
-                        "pct": -5.47, "change": "-5.47%", "direction": "down"}
+                        "price": 168.89, "pct": -5.47, "change": "-5.47%", "direction": "down"}
     assert tiles[4]["url"] == "https://finance.yahoo.com/quote/GC=F"
     assert [t["area"] for t in tiles] == ["Market", "Tech", "Energy", "Banks", "Gold"]
     assert tiles[3]["direction"] == "flat"
 
 
 def test_near_zero_move_is_flat_not_red():
-    assert markets.tile("JPM", -0.003) == {"label": "JPM", "area": "", "url": "", "pct": 0.0, "change": "0.00%", "direction": "flat"}
+    assert markets.tile("JPM", -0.003) == {"label": "JPM", "area": "", "url": "", "price": None, "pct": 0.0, "change": "0.00%", "direction": "flat"}
 
 
 def test_one_gated_symbol_costs_one_tile():
@@ -398,7 +398,8 @@ def test_render_block(palette):
     data = build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES))
     html = render_markets_block(data, palette)
     for s in ("Market", "Tech", "Energy", "Banks", "Gold", "SPY", "NVDA", "XOM", "JPM", "GC", "-5.47%", "gold futures", "Markets:", "MU",
-              "&#9650; +19.0%", "&#9660; -5.0%", "Daily % moves, Nov 10 close", REUTERS,
+              "+19.00%", "-5.00%", "Closing prices and daily % moves, Nov 10", REUTERS,
+              ">Markets</td>", ">Featured movers</td>", "$168.89", "$672.50",
               "What to watch today", "Canada retail sales", "8:30 ET", "reuters.com",
               'href="https://finance.yahoo.com/quote/NVDA"', 'href="https://finance.yahoo.com/quote/MU"'):
         assert s in html
@@ -410,16 +411,6 @@ def _strip(n):
     return [markets.tile(f"T{i}", 1.0, "Area", f"https://finance.yahoo.com/quote/T{i}") for i in range(n)]
 
 
-def test_six_tiles_render_as_two_rows_of_three():
-    html = render_markets_block({"tiles": _strip(6), "movers": [], "as_of": None}, LIGHT)
-    assert html.count("<tr>") == 2 and html.count('width="33%"') == 6
-
-
-def test_short_last_row_is_padded_to_the_grid():
-    html = render_markets_block({"tiles": _strip(5), "movers": [], "as_of": None}, LIGHT)
-    assert html.count("<tr>") == 2 and html.count('width="33%"') == 6  # 5 tiles + 1 spacer
-
-
 def test_footnote_explains_only_tickers_shown():
     from datetime import date as d
     html = render_markets_block({"tiles": _strip(3), "movers": [], "as_of": d(2026, 11, 10)}, LIGHT)
@@ -428,15 +419,30 @@ def test_footnote_explains_only_tickers_shown():
     assert "GC is gold futures." in render_markets_block({"tiles": gc, "movers": [], "as_of": d(2026, 11, 10)}, LIGHT)
 
 
-def test_style_controls_grid_type_and_decimals():
+def test_rows_layout_one_row_per_market_then_movers_with_explainers():
+    data = {"tiles": _strip(5), "as_of": None,
+            "movers": [cand("MU", 19.0) | {"price": 101.5, "quote_url": "https://finance.yahoo.com/quote/MU"},
+                       cand("SHOP", -4.2, exchange="TSX") | {"price": None}]}
+    html = render_markets_block(data, LIGHT)
+    # 2 group labels + 5 market rows + 2 mover rows + 2 explainer rows
+    assert html.count("<tr>") == 11
+    assert html.index(">Markets</td>") < html.index(">Featured movers</td>")
+    assert "$101.50" in html and "&mdash;" in html          # missing price shows a dash
+    assert "padding:10px 4px 6px" in html                    # 6px between a mover and its explainer
+    assert 'colspan="5" style="padding:0 4px 10px' in html   # explainer spans from the arrow's edge
+    assert LIGHT["up_bg"] in html and LIGHT["down_bg"] in html
+
+
+def test_decimals_setting_applies_to_rows():
     from formatting import STRIP_STYLE_DEFAULTS
-    style = dict(STRIP_STYLE_DEFAULTS, rows=1, columns=4, ticker_size=16, pct_size=12, pct_decimals=1,
-                 area_size=10, tile_pad_y=5, strip_gap_below=6)
-    html = render_markets_block({"tiles": _strip(6), "movers": [], "as_of": None}, LIGHT, style)
-    assert html.count("<tr>") == 1 and html.count('width="25%"') == 4   # 1 row of 4; 2 tiles not shown
-    assert "font-size:16px" in html and "font-size:12px" in html and "font-size:10px" in html
+    html = render_markets_block({"tiles": _strip(1), "movers": [], "as_of": None}, LIGHT,
+                                dict(STRIP_STYLE_DEFAULTS, pct_decimals=1))
     assert "+1.0%" in html and "+1.00%" not in html
-    assert "padding:5px 4px" in html and "margin:0 0 6px" in html
+
+
+def test_empty_groups_are_omitted():
+    html = render_markets_block({"tiles": [], "movers": [cand("MU", 19.0)], "as_of": None}, LIGHT)
+    assert ">Markets</td>" not in html and ">Featured movers</td>" in html
 
 
 def test_zero_decimals_never_show_red_minus_zero():
