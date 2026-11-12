@@ -485,6 +485,7 @@ def test_rows_layout_one_row_per_market_then_movers_with_explainers():
     assert "padding:10px 4px 6px" in html                    # 6px between a mover and its explainer
     assert 'colspan="5" style="padding:0 4px 10px' in html   # explainer spans from the arrow's edge
     assert LIGHT["up_bg"] in html and LIGHT["down_bg"] in html
+    assert f'border-collapse:collapse;border-bottom:1px solid {LIGHT["divider"]}' in html  # rule under the last explainer
 
 
 def test_decimals_setting_applies_to_rows():

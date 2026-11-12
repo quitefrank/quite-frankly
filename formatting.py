@@ -1070,7 +1070,8 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT, style: dict |
     if rows:
         out += (
             f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" '
-            f'style="border-collapse:collapse">{rows}</table>'
+            # Bottom rule closes the table off from the Markets line below.
+            f'style="border-collapse:collapse;border-bottom:{rule}">{rows}</table>'
         )
 
     if data.get("summary"):
