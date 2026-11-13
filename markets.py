@@ -68,7 +68,8 @@ STRIP_TILES = (
 TD_BASE = "https://api.twelvedata.com"
 TD_PER_MINUTE = 8  # Twelve Data free plan: 8 credits a minute, 800 a day
 YAHOO_QUOTE = "https://finance.yahoo.com/quote/{}"
-WATCH_MAX = 4
+WATCH_MAX = 4          # events the research may report
+WATCH_STOCKS_MAX = 3   # company catalysts shown as rows under What to watch
 SESSION_ANCHOR = "SPY"  # its last completed daily close defines the session
 
 
@@ -275,9 +276,13 @@ REPORT_TOOL = {
                     "properties": {
                         "time": {"type": "string", "description": "e.g. '8:30 ET', 'Before open', 'After close', 'All day'"},
                         "event": {"type": "string"},
+                        "symbol": {"type": ["string", "null"], "description": "Ticker if the event is one company's (earnings, investor day), else null"},
+                        "name": {"type": ["string", "null"]},
+                        "exchange": {"type": ["string", "null"], "description": "NYSE, NASDAQ or TSX when symbol is set"},
+                        "angle": {"type": ["string", "null"], "description": "What investors will watch for, under 15 words"},
                         "source_url": {"type": "string"},
                     },
-                    "required": ["time", "event", "source_url"],
+                    "required": ["time", "event", "symbol", "name", "exchange", "angle", "source_url"],
                 },
             },
             "candidates": {
@@ -293,8 +298,11 @@ REPORT_TOOL = {
                         "why": {"type": "string"},
                         "source_url": {"type": "string"},
                         "interest_tag": {"type": "string", "enum": ["ai", "design", "housing", "banks", "none"]},
+                        "is_lead_story": {"type": "boolean", "description": "True for the one stock at the centre of the day's main market story"},
+                        "has_cause": {"type": "boolean", "description": "True only if 'why' names what caused the move, not just that it moved"},
                     },
-                    "required": ["symbol", "name", "exchange", "change_pct", "why", "source_url", "interest_tag"],
+                    "required": ["symbol", "name", "exchange", "change_pct", "why", "source_url", "interest_tag",
+                                 "is_lead_story", "has_cause"],
                 },
             },
         },
@@ -313,11 +321,11 @@ def research_prompt(session_date: date, edition_date: date | None = None) -> str
     return f"""Research the stock market session of {day} for a Toronto reader's morning newsletter, which goes out the morning of {edition}.
 
 Find:
-1. Why markets moved that day, from wire or newspaper closing coverage (Reuters, AP, The Globe and Mail, CNBC, Bloomberg, Financial Post).
-2. Up to 6 large-cap stocks (S&P 500 or TSX 60 members only) that made notable moves that day and have a reported reason. Include the biggest reported gainers and losers. Prefer, where they moved notably, companies in AI, design and creative software, Canadian housing, or Canadian banks. No penny stocks, no ETFs, no stocks without a reported reason.
-3. What to watch on {edition}: up to 4 scheduled events that could move markets that day, from an economic or earnings calendar or a preview article. US and Canadian economic releases (CPI, jobs, GDP, retail sales) with their Eastern time, central bank decisions or speeches (Federal Reserve, Bank of Canada), and earnings from large companies (S&P 500 or TSX 60), noting before the open or after the close. Only events scheduled for {edition}.
+1. Why markets moved that day, from wire or newspaper closing coverage (Reuters, AP, The Globe and Mail, CNBC, Bloomberg, Financial Post). Name the day's main market story and the one stock at the centre of it, if there is one.
+2. Up to 6 large-cap stocks (S&P 500 or TSX 60 members only) that made notable moves that day and have a reported cause. Always include the stock at the centre of the main story if it moved. Include the biggest reported gainers and losers. Prefer, where they moved notably, companies in AI, design and creative software, Canadian housing, or Canadian banks. No penny stocks, no ETFs. A cause is what made the stock move (earnings, guidance, a deal, a downgrade, news about the company or its sector); "it was among the worst performers" is not a cause, so skip stocks whose coverage gives none.
+3. What to watch on {edition}, from an earnings or economic calendar or a preview article. First, up to 3 large companies (S&P 500 or TSX 60) with a scheduled catalyst that day (earnings before the open or after the close, an investor day, a product event), with what investors will be watching for, from a preview if one exists. Then up to 4 US and Canadian economic releases or central bank events (CPI, jobs, GDP, retail sales, Federal Reserve, Bank of Canada) with their Eastern time. Only events scheduled for {edition}.
 
-Write your findings as short plain sentences: one for the market's move, and one per stock stating its ticker, its % move for that session as the source states it, and the reported reason, and one per event to watch with its time. Each sentence must draw directly on a search result so it carries a citation; the cited figures are checked against the source. Leave out any stock whose % move or reason for that session you can't find in a source."""
+Write your findings as short plain sentences: one for the market's move and its main story, one per stock stating its ticker, its % move for that session as the source states it, and the cause, and one per event to watch with its time (and, for a company, what to watch for). Each sentence must draw directly on a search result so it carries a citation; the cited figures are checked against the source. Leave out any stock whose % move or reason for that session you can't find in a source."""
 
 
 REPORT_INSTRUCTIONS = """Now call report_markets once, using only the findings you just wrote.
@@ -327,7 +335,9 @@ REPORT_INSTRUCTIONS = """Now call report_markets once, using only the findings y
 - "why" is one sentence, under 25 words, plain and specific, with a light dry touch at most. No em dashes. Don't start with the company name.
 - market_summary is one sentence, under 30 words, no em dashes.
 - interest_tag: ai, design, housing or banks where it clearly fits, else none.
-- watch: only events from your cited findings that are scheduled for the edition day. "event" is under 10 words (e.g. "US CPI for October", "Shopify earnings"). source_url is the search result you cited for it. Leave the list empty if you found none."""
+- is_lead_story: true for at most one stock, the one at the centre of the day's main market story; false for the rest.
+- has_cause: true only if "why" says what caused the move. A sentence that only says the stock rose, fell or led the index is false.
+- watch: only events from your cited findings that are scheduled for the edition day. "event" is under 8 words (e.g. "Fiscal Q1 earnings", "US CPI for October"). For a company event set symbol, name and exchange, and put what investors will watch for in "angle" (under 15 words, from the cited preview; null if none). For economic releases set symbol, name, exchange and angle to null. source_url is the search result you cited for it. Leave the list empty if you found none."""
 
 
 def _collect_evidence(content: list) -> tuple[dict[str, list[str]], set[str], dict | None]:
@@ -435,17 +445,35 @@ def _evidence_for(url: str | None, evidence: dict) -> str:
     return " ".join(evidence["cited"].get(url, []))
 
 
-def verify_watch(evidence: dict) -> list[dict]:
-    """Events to watch, each from a searched, cited source. No number to match,
-    so the source check is the grounding."""
-    kept = []
-    for w in (evidence["report"].get("watch") or [])[:WATCH_MAX]:
-        if w.get("event") and _evidence_for(w.get("source_url"), evidence):
-            kept.append({"time": _clean(w.get("time") or ""), "event": _clean(w["event"]),
-                         "source_url": w["source_url"]})
-        else:
+def verify_watch(evidence: dict, quote_fn=None) -> tuple[list[dict], list[dict]]:
+    """Split cited watch items into company rows and an "also today" list.
+
+    Every item needs a searched, cited source. A company event becomes a row
+    only when quote_fn returns its latest close and move (US listings); a TSX
+    or uncovered company drops to the also-today list, so every row has a
+    price and a pill.
+    """
+    stocks: list[dict] = []
+    also: list[dict] = []
+    for w in (evidence["report"].get("watch") or [])[: WATCH_MAX + WATCH_STOCKS_MAX]:
+        if not (w.get("event") and _evidence_for(w.get("source_url"), evidence)):
             print(f"[markets] watch item uncited; dropped: {w.get('event')!r}", flush=True)
-    return kept
+            continue
+        item = {"time": _clean(w.get("time") or ""), "event": _clean(w["event"]), "source_url": w["source_url"]}
+        sym = (w.get("symbol") or "").strip().upper()
+        if sym and quote_fn and len(stocks) < WATCH_STOCKS_MAX:
+            try:
+                close, pct = quote_fn(sym)
+                stocks.append({**item, "symbol": sym, "name": _clean(w.get("name") or sym),
+                               "angle": _clean(w.get("angle") or ""), "price": close,
+                               "change_pct": round(pct, 2), "quote_url": yahoo_url(sym, w.get("exchange") or "")})
+                continue
+            except (FMPUnavailable, requests.RequestException, KeyError, ZeroDivisionError, TypeError):
+                pass  # no quote: list it as a plain event instead
+            item["event"] = f"{_clean(w.get('name') or sym)} {item['event']}".strip()
+        if len(also) < WATCH_MAX:
+            also.append(item)
+    return stocks, also
 
 
 def verify_summary(evidence: dict) -> str:
@@ -491,6 +519,9 @@ def verify_candidates(evidence: dict, change_fn) -> list[dict]:
     verified = []
     for c in evidence["report"].get("candidates", []):
         sym = c.get("symbol", "?")
+        if c.get("has_cause") is False:
+            print(f"[markets] {sym}: 'why' gives no cause ({c.get('why')!r}); dropped", flush=True)
+            continue
         url = c.get("source_url") or ""
         text = _evidence_for(url, evidence)
         if not text:
@@ -527,9 +558,12 @@ def verify_candidates(evidence: dict, change_fn) -> list[dict]:
 
 
 def pick_three(verified: list[dict]) -> list[dict]:
-    """Biggest gainer, biggest loser, then the biggest remaining interest-tagged
-    mover (falling back to the biggest remaining move). Order: as picked.
-    Moves under MIN_MOVE_PCT never qualify."""
+    """The lead-story stock first, then the biggest gainer and biggest loser,
+    then the biggest remaining interest-tagged mover (falling back to the
+    biggest remaining move). Order: as picked. Moves under MIN_MOVE_PCT never
+    qualify. The lead slot exists because size alone left Nvidia out on
+    Nov 12, the day its CEO resigned: it fell 4.3% while three smaller names
+    moved further."""
     picks: list[dict] = []
     remaining = [c for c in verified if abs(c["change_pct"]) >= MIN_MOVE_PCT]
 
@@ -539,10 +573,13 @@ def pick_three(verified: list[dict]) -> list[dict]:
             picks.append(best)
             remaining.remove(best)
 
+    take([c for c in remaining if c.get("is_lead_story")], lambda c: abs(c["change_pct"]))
+
     take([c for c in remaining if c["change_pct"] > 0], lambda c: c["change_pct"])
     take([c for c in remaining if c["change_pct"] < 0], lambda c: -c["change_pct"])
-    tagged = [c for c in remaining if c.get("interest_tag") in INTEREST_TAGS]
-    take(tagged or remaining, lambda c: abs(c["change_pct"]))
+    if len(picks) < 3:
+        tagged = [c for c in remaining if c.get("interest_tag") in INTEREST_TAGS]
+        take(tagged or remaining, lambda c: abs(c["change_pct"]))
     # Fewer than two directions available: fill up to 3 by size.
     while len(picks) < 3 and remaining:
         take(remaining, lambda c: abs(c["change_pct"]))
@@ -572,7 +609,7 @@ def build_markets_data(today: date | None = None, client=None, session=requests,
         print(f"[markets] strip failed ({e})", flush=True)
         tiles = []
 
-    movers, summary, watch = [], "", []
+    movers, summary, watch_stocks, also_today = [], "", [], []
     try:
         evidence = research_movers(session_date, client, edition_date=today)
         if evidence:
@@ -587,11 +624,11 @@ def build_markets_data(today: date | None = None, client=None, session=requests,
                 evidence, change_fn=quotes
             ))
             summary = verify_summary(evidence)
-            watch = verify_watch(evidence)
+            watch_stocks, also_today = verify_watch(evidence, quotes)
     except Exception as e:
         print(f"[markets] research failed ({e})", flush=True)
 
-    if not tiles and not movers and not watch:
+    if not tiles and not movers and not watch_stocks and not also_today:
         return None
     for m in movers:
         m["why"] = _clean(m["why"])
@@ -600,5 +637,6 @@ def build_markets_data(today: date | None = None, client=None, session=requests,
         "tiles": tiles,
         "summary": summary,
         "movers": movers,
-        "watch": watch,
+        "watch_stocks": watch_stocks,
+        "also_today": also_today,
     }

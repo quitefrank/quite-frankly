@@ -296,12 +296,34 @@ def test_watch_items_need_cited_source():
     ev = evidence([], cited={REUTERS: ["October CPI is due at 8:30 a.m. ET"]},
                   watch=[{"time": "8:30 ET", "event": "US CPI — October", "source_url": REUTERS},
                          {"time": "After close", "event": "Made-up earnings", "source_url": "https://made.up"}])
-    assert verify_watch(ev) == [{"time": "8:30 ET", "event": "US CPI, October", "source_url": REUTERS}]
+    stocks, also = verify_watch(ev)
+    assert stocks == [] and also == [{"time": "8:30 ET", "event": "US CPI, October", "source_url": REUTERS}]
 
 
-def test_watch_capped_at_four():
-    items = [{"time": "9:00", "event": f"E{i}", "source_url": REUTERS} for i in range(6)]
-    assert len(verify_watch(evidence([], watch=items))) == 4
+def test_watch_company_with_quote_becomes_a_row():
+    item = {"time": "After close", "event": "Fiscal Q1 earnings", "symbol": "csco", "name": "Cisco",
+            "exchange": "NASDAQ", "angle": "AI networking demand in focus.", "source_url": REUTERS}
+    stocks, also = verify_watch(evidence([], watch=[item]), quote_fn=lambda s: (100.76, 2.6592))
+    assert also == []
+    assert stocks == [{"time": "After close", "event": "Fiscal Q1 earnings", "source_url": REUTERS,
+                       "symbol": "CSCO", "name": "Cisco", "angle": "AI networking demand in focus.",
+                       "price": 100.76, "change_pct": 2.66, "quote_url": "https://finance.yahoo.com/quote/CSCO"}]
+
+
+def test_watch_company_without_quote_drops_to_also_today():
+    item = {"time": "Before open", "event": "Q4 earnings", "symbol": "RY", "name": "Royal Bank",
+            "exchange": "TSX", "angle": None, "source_url": REUTERS}
+    stocks, also = verify_watch(evidence([], watch=[item]), quote_fn=no_fmp)
+    assert stocks == [] and also == [{"time": "Before open", "event": "Royal Bank Q4 earnings", "source_url": REUTERS}]
+
+
+def test_watch_caps_rows_at_three_and_events_at_four():
+    econ = [{"time": "9:00", "event": f"E{i}", "source_url": REUTERS} for i in range(6)]
+    assert len(verify_watch(evidence([], watch=econ))[1]) == 4
+    cos = [{"time": "After close", "event": "earnings", "symbol": f"S{i}", "name": f"Co{i}",
+            "exchange": "NYSE", "angle": None, "source_url": REUTERS} for i in range(5)]
+    stocks, also = verify_watch(evidence([], watch=cos), quote_fn=lambda s: (10.0, 1.0))
+    assert len(stocks) == 3 and len(also) == 2
 
 
 # ── Picking ───────────────────────────────────────────────────────────────────
@@ -324,6 +346,23 @@ def test_pick_three_one_direction_fills_by_size():
 def test_pick_three_short_list():
     assert pick_three([]) == []
     assert len(pick_three([cand("A", 2.5)])) == 1
+
+
+def test_lead_story_takes_the_first_slot_even_when_smaller():
+    # Nov 12: Nvidia's CEO resigned (-4.3%) while AMD, GPN and SMCI moved further.
+    picks = pick_three([cand("AMD", 5.9), cand("GPN", -12.0), cand("SMCI", -11.3, tag="ai"),
+                        cand("NVDA", -4.3, tag="ai") | {"is_lead_story": True}])
+    assert [p["symbol"] for p in picks] == ["NVDA", "AMD", "GPN"]
+
+
+def test_lead_story_below_minimum_move_is_ignored():
+    picks = pick_three([cand("A", 9.0), cand("B", -7.0), cand("L", 1.2) | {"is_lead_story": True}])
+    assert [p["symbol"] for p in picks] == ["A", "B"]
+
+
+def test_why_without_a_cause_is_dropped():
+    ev = evidence([cand("NVDA", 3.2, name="Nvidia Corp") | {"has_cause": False}])
+    assert verify_candidates(ev, change_fn=no_fmp) == []
 
 
 def test_pick_three_ignores_small_moves():
@@ -398,10 +437,13 @@ def full_client():
     return FakeClient([fake_response([
         search_block(REUTERS, TMX),
         text_block(REUTERS, "Micron jumped 19% while Ferrari fell 5.0%"),
-        text_block(TMX, "Statistics Canada releases September retail sales at 8:30 a.m."),
+        text_block(TMX, "Statistics Canada releases September retail sales at 8:30 a.m.; Nvidia reports after the close"),
     ]), fake_response([
         report_block(market_summary="AI names carried the day.", summary_source_url=REUTERS,
-                     watch=[{"time": "8:30 ET", "event": "Canada retail sales", "source_url": TMX}],
+                     watch=[{"time": "After close", "event": "Q3 earnings", "symbol": "NVDA", "name": "Nvidia",
+                             "exchange": "NASDAQ", "angle": "Data-centre guidance in focus.", "source_url": TMX},
+                            {"time": "8:30 ET", "event": "Canada retail sales", "symbol": None, "name": None,
+                             "exchange": None, "angle": None, "source_url": TMX}],
                      candidates=[cand("MU", 19.0), cand("RACE", -5.0, exchange="NYSE"), cand("FAKE", 40.0)]),
     ])])
 
@@ -413,7 +455,9 @@ def test_build_markets_data_end_to_end():
     assert data["summary"] == "AI names carried the day."
     assert data["movers"][0]["why"] == "Because reasons, apparently."
     assert data["as_of"] == SESSION
-    assert data["watch"] == [{"time": "8:30 ET", "event": "Canada retail sales", "source_url": TMX}]
+    assert data["also_today"] == [{"time": "8:30 ET", "event": "Canada retail sales", "source_url": TMX}]
+    nvda = data["watch_stocks"][0]
+    assert (nvda["symbol"], nvda["price"], nvda["change_pct"]) == ("NVDA", 168.89, -5.47)  # FMP close, same session
 
 
 def test_build_markets_data_never_raises():
@@ -453,8 +497,9 @@ def test_render_block(palette):
     for s in ("Market", "Tech", "Energy", "Banks", "Real Estate", "Gold", "SPY", "XLK", "XLE", "XLF", "XLRE", "GLD",
               "SPY tracks the S&amp;P 500", "Markets:", "MU",
               "+19.00%", "-5.00%", "Closing prices and daily % moves, Nov 10", REUTERS,
-              ">Markets</td>", ">Featured movers</td>", "$172.00", "$672.50",
-              ">What to watch</p>", "Canada retail sales", "8:30 ET", "reuters.com",
+              ">Markets</td>", ">Movers</td>", "$172.00", "$672.50", "$168.89",
+              ">What to watch</td>", "After close:</strong> Q3 earnings. Data-centre guidance in focus.",
+              "Also today:", "Canada retail sales", "8:30 ET", "reuters.com",
               'href="https://finance.yahoo.com/quote/XLK"', 'href="https://finance.yahoo.com/quote/MU"'):
         assert s in html
     assert palette["up"] in html and palette["down"] in html
@@ -480,7 +525,7 @@ def test_rows_layout_one_row_per_market_then_movers_with_explainers():
     html = render_markets_block(data, LIGHT)
     # 2 group labels + 5 market rows + 2 mover rows + 2 explainer rows
     assert html.count("<tr>") == 11
-    assert html.index(">Markets</td>") < html.index(">Featured movers</td>")
+    assert html.index(">Markets</td>") < html.index(">Movers</td>")
     assert "$101.50" in html and "&mdash;" in html          # missing price shows a dash
     assert "padding:10px 4px 6px" in html                    # 6px between a mover and its explainer
     assert 'colspan="5" style="padding:0 4px 10px' in html   # explainer spans from the arrow's edge
@@ -488,17 +533,19 @@ def test_rows_layout_one_row_per_market_then_movers_with_explainers():
     assert f'border-collapse:collapse;border-bottom:1px solid {LIGHT["divider"]}' in html  # rule under the last explainer
 
 
-def test_recap_and_events_share_one_what_to_watch_section():
+def test_recap_leads_movers_and_watch_comes_last():
     html = render_markets_block(build_markets_data(TODAY, client=full_client(), session=FakeSession(GOOD_ROUTES)), LIGHT)
-    assert html.index(">What to watch</p>") < html.index("Markets:</strong>") < html.index("Canada retail sales")
-    assert ">Yesterday</p>" not in html and "What to watch today" not in html
-    assert html.count("text-transform:uppercase") == 3   # Markets, Featured movers, What to watch
+    assert (html.index(">Movers</td>") < html.index("Markets:</strong>") < html.index(">MU</a>")
+            < html.index(">What to watch</td>") < html.index(">NVDA</a>") < html.index("Also today:"))
+    assert "Featured movers" not in html
+    assert html.count("text-transform:uppercase") == 3   # Markets, Movers, What to watch
 
 
 def test_what_to_watch_label_shows_with_only_events():
     html = render_markets_block({"tiles": [], "movers": [], "as_of": None, "summary": "",
-                                 "watch": [{"time": "8:30 ET", "event": "CPI", "source_url": "u"}]}, LIGHT)
-    assert ">What to watch</p>" in html
+                                 "also_today": [{"time": "8:30 ET", "event": "CPI", "source_url": "u"}]}, LIGHT)
+    assert ">What to watch</td>" in html and "Also today:" in html
+
 
 def test_decimals_setting_applies_to_rows():
     from formatting import STRIP_STYLE_DEFAULTS
@@ -509,7 +556,7 @@ def test_decimals_setting_applies_to_rows():
 
 def test_empty_groups_are_omitted():
     html = render_markets_block({"tiles": [], "movers": [cand("MU", 19.0)], "as_of": None}, LIGHT)
-    assert ">Markets</td>" not in html and ">Featured movers</td>" in html
+    assert ">Markets</td>" not in html and ">Movers</td>" in html and ">What to watch</td>" not in html
 
 
 def test_zero_decimals_never_show_red_minus_zero():

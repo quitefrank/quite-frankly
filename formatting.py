@@ -990,15 +990,19 @@ def _source_domain(url: str) -> str:
 
 
 def render_markets_block(data: dict | None, palette: dict = LIGHT, style: dict | None = None) -> str:
-    """Brew-style rows: fixed markets (arrow, ticker, sector, close, % pill),
-    then up to three featured movers in the same row style with their sourced
-    explainer under each, the Markets line, and what to watch today.
+    """Brew-style rows in three groups, each led by a small uppercase label:
+
+    - Markets: fixed sector funds (arrow, ticker, sector, close, % pill).
+    - Movers: the day's story ("Markets:" recap), then up to three movers in
+      the same row style, each with its sourced explainer underneath.
+    - What to watch: companies with a catalyst today as the same rows, the
+      catalyst underneath, then one "Also today" line of economic events.
 
     Tables, not flex or grid, so Gmail and Outlook keep the layout. Every
-    ticker links to its Yahoo Finance quote; each mover and watch item also
-    links to the coverage it came from. Values from the model are escaped.
+    ticker links to its Yahoo Finance quote; explainers link to their source.
+    Values from the model are escaped.
     """
-    if not data or not (data.get("tiles") or data.get("movers") or data.get("watch")):
+    if not data or not any(data.get(k) for k in ("tiles", "movers", "watch_stocks", "also_today")):
         return ""
     from html import escape
 
@@ -1020,9 +1024,18 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT, style: dict |
     rule = f"1px solid {palette['divider']}"
     tiles = data.get("tiles") or []
     movers = data.get("movers") or []
+    summary = data.get("summary") or ""
+    watch_stocks = data.get("watch_stocks") or []
+    also_today = data.get("also_today") or []
 
     def money(price):
         return "&mdash;" if price is None else f"${price:,.2f}"
+
+    def source_link(url):
+        if not url:
+            return ""
+        return (f' <a href="{escape(url, quote=True)}" style="color:{palette["meta"]};font-size:12px;'
+                f'text-decoration:underline;white-space:nowrap">{escape(_source_domain(url))}</a>')
 
     def group_label(text):
         return (
@@ -1046,62 +1059,56 @@ def render_markets_block(data: dict | None, palette: dict = LIGHT, style: dict |
             f'font-size:13px;font-weight:700;white-space:nowrap">{escape(change)}</span></td></tr>'
         )
 
-    out = ""
+    def explainer(inner):
+        # 6px under its row (set on the row), spanning from the arrow's edge.
+        return (f'<tr><td colspan="5" style="padding:0 4px 10px;{font};font-size:13px;line-height:18px;'
+                f'color:{palette["body"]}">{inner}</td></tr>')
+
     rows = ""
     if tiles:
         rows += group_label("Markets")
         for i, t in enumerate(tiles):
             rows += market_row(t["label"], t.get("url"), t.get("area", ""), t.get("price"),
                                t.get("pct", 0.0), first=i == 0, pad_bottom=10)
-    if movers:
-        rows += group_label("Featured movers")
+
+    if movers or summary:
+        rows += group_label("Movers")
+        if summary:
+            # The day's story introduces the movers it explains.
+            rows += (f'<tr><td colspan="5" style="padding:2px 4px 8px;{font};font-size:15px;line-height:22px;'
+                     f'color:{palette["body"]}"><strong style="color:{palette["bold"]}">Markets:</strong> '
+                     f'{escape(summary)}</td></tr>')
         for i, m in enumerate(movers):
             source = m.get("source_url") or ""
-            # 6px under a mover's row, then its explainer spanning from the arrow's edge.
             rows += market_row(m["symbol"], m.get("quote_url") or source, m["name"], m.get("price"),
-                               m["change_pct"], first=i == 0, pad_bottom=6)
-            rows += (
-                f'<tr><td colspan="5" style="padding:0 4px 10px;{font};font-size:13px;line-height:18px;color:{palette["body"]}">'
-                f'{escape(m["why"])}'
-                + (f' <a href="{escape(source, quote=True)}" style="color:{palette["meta"]};font-size:12px;'
-                   f'text-decoration:underline;white-space:nowrap">{escape(_source_domain(source))}</a>' if source else "")
-                + '</td></tr>'
+                               m["change_pct"], first=(i == 0 and not summary), pad_bottom=6)
+            rows += explainer(escape(m["why"]) + source_link(source))
+
+    if watch_stocks or also_today:
+        rows += group_label("What to watch")
+        for i, w in enumerate(watch_stocks):
+            rows += market_row(w["symbol"], w.get("quote_url"), w["name"], w.get("price"),
+                               w["change_pct"], first=i == 0, pad_bottom=6)
+            what = escape(w["event"].rstrip(".")) + "." + (f" {escape(w['angle'])}" if w.get("angle") else "")
+            rows += explainer(f'<strong style="color:{palette["bold"]}">{escape(w["time"])}:</strong> '
+                              f'{what}{source_link(w.get("source_url"))}')
+        if also_today:
+            events = " &middot; ".join(
+                f'<strong style="color:{palette["bold"]}">{escape(e["time"])}</strong> '
+                f'<a href="{escape(e["source_url"], quote=True)}" style="color:{palette["body"]};'
+                f'text-decoration:underline">{escape(e["event"])}</a>'
+                for e in also_today
             )
-    if rows:
-        out += (
-            f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" '
-            # Bottom rule closes the table off from the Markets line below.
-            f'style="border-collapse:collapse;border-bottom:{rule}">{rows}</table>'
-        )
+            edge = f"border-top:{rule};" if watch_stocks else ""
+            rows += (f'<tr><td colspan="5" style="{edge}padding:8px 4px 10px;{font};font-size:13px;'
+                     f'line-height:20px;color:{palette["body"]}"><span style="color:{palette["meta_label"]}">'
+                     f'Also today:</span> {events}</td></tr>')
 
-    def section_label(text, top):
-        # Same look and 4px inset as the Markets / Featured movers labels in the table.
-        return (
-            f'<p style="margin:{top}px 0 6px;padding:0 4px;{font};font-size:11px;font-weight:700;'
-            f'letter-spacing:0.06em;text-transform:uppercase;color:{palette["meta_label"]}">{text}</p>'
-        )
-
-    # One "What to watch" section: yesterday's recap line, then today's events.
-    watch = data.get("watch") or []
-    if data.get("summary") or watch:
-        out += section_label("What to watch", 14)
-    if data.get("summary"):
-        out += (
-            f'<p style="margin:0 0 10px;padding:0 4px;font-size:15px;line-height:22px;color:{palette["body"]};{font}">'
-            f'<strong style="color:{palette["bold"]}">Markets:</strong> {escape(data["summary"])}</p>'
-        )
-
-    if watch:
-        items = "".join(
-            f'<tr><td style="padding:3px 10px 3px 0;{font};font-size:13px;line-height:18px;font-weight:700;'
-            f'color:{palette["bold"]};white-space:nowrap;vertical-align:top">{escape(w["time"])}</td>'
-            f'<td style="padding:3px 0;{font};font-size:14px;line-height:18px;color:{palette["body"]};vertical-align:top">'
-            f'<a href="{escape(w["source_url"], quote=True)}" style="color:{palette["body"]};text-decoration:underline">{escape(w["event"])}</a></td></tr>'
-            for w in watch
-        )
-        out += (
-            f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin-left:4px">{items}</table>'
-        )
+    out = (
+        f'<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" '
+        # Bottom rule closes the table off from the footnote.
+        f'style="border-collapse:collapse;border-bottom:{rule}">{rows}</table>'
+    ) if rows else ""
 
     as_of = data.get("as_of")
     shown = {t["label"] for t in tiles}

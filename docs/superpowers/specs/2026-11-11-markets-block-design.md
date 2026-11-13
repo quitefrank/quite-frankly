@@ -32,6 +32,20 @@ from the previous session's movers.
     SPX/IXIC/XGRO/XEQT/Gold → SPX plus sector averages (Tech, Energy, Finance,
     Realty, Gold) → these tickers, after Frank found sector names too vague
     to act on.
+- **Structure (revised 2026-11-13, option A of two prototypes):** three
+  groups of stock rows. **Markets** (fixed funds). **Movers** (renamed from
+  Featured movers): the "Markets:" recap of the day's story first, then up
+  to three movers with their cause underneath. **What to watch**: up to three
+  companies with a catalyst today (earnings, investor days) as rows with
+  their latest close and move, the catalyst and what to watch for
+  underneath, then one "Also today" line of economic events. A company with
+  no quote (TSX, uncovered) drops to the Also-today line.
+- **Mover picks (revised 2026-11-13):** the stock at the centre of the day's
+  main story takes slot 1 (if it moved at least 2%), then biggest gainer and
+  biggest loser. Nov 12 showed why: Nvidia's CEO resigned and it fell 4.3%,
+  but AMD, GPN and SMCI moved further and filled every slot. Each candidate
+  must have a cause (`has_cause`); restatements like "among the worst
+  performers" drop the stock.
 - **Data (revised 2026-11-12):** Twelve Data free plan added
   (`TWELVE_DATA_API_KEY`). Coverage tested: every US stock and fund tried
   (CRWV, BE, MU, SPY, XLK, XLE, XLF, XLRE, GLD, SMH, XAU/USD) is free; TSX
