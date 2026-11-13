@@ -416,6 +416,9 @@ def test_research_collects_evidence_across_pause_turn():
     final = client.calls[2]
     assert final["tool_choice"] == {"type": "tool", "name": "report_markets"}
     assert [m["role"] for m in final["messages"]] == ["user", "assistant", "user"]
+    # Phase 2 is handed the exact URLs cited in phase 1 to copy from.
+    assert "copied exactly from this list" in final["messages"][2]["content"]
+    assert f"- {REUTERS}" in final["messages"][2]["content"]
 
 
 def test_citations_in_phase_two_do_not_count():

@@ -340,6 +340,17 @@ REPORT_INSTRUCTIONS = """Now call report_markets once, using only the findings y
 - watch: only events from your cited findings that are scheduled for the edition day. "event" is under 8 words (e.g. "Fiscal Q1 earnings", "US CPI for October"). For a company event set symbol, name and exchange, and put what investors will watch for in "angle" (under 15 words, from the cited preview; null if none). For economic releases set symbol, name, exchange and angle to null. source_url is the search result you cited for it. Leave the list empty if you found none."""
 
 
+def report_instructions(cited_urls: list[str]) -> str:
+    """REPORT_INSTRUCTIONS plus the exact URLs cited in phase 1. Every
+    source_url must match one of them; typed from memory, near-misses failed
+    the source check (run 43437631570 dropped the Markets recap that way)."""
+    if not cited_urls:
+        return REPORT_INSTRUCTIONS
+    listed = "\n".join(f"- {u}" for u in cited_urls)
+    return (f"{REPORT_INSTRUCTIONS}\n- Every source_url and summary_source_url must be copied exactly from this "
+            f"list of URLs you cited; an item whose source is not on it must be left out:\n{listed}")
+
+
 def _collect_evidence(content: list) -> tuple[dict[str, list[str]], set[str], dict | None]:
     """Cited text per URL, every URL search returned, and the report tool input."""
     cited: dict[str, list[str]] = {}
@@ -391,6 +402,7 @@ def research_movers(session_date: date, client=None, edition_date: date | None =
 
     # Phase 2: structure the findings. Forced tool choice, so no new searching.
     # web_search stays defined because the history contains its blocks.
+    cited_urls, _, _ = _collect_evidence(findings)
     resp = client.messages.create(
         model=MARKETS_MODEL,
         max_tokens=2000,
@@ -399,7 +411,7 @@ def research_movers(session_date: date, client=None, edition_date: date | None =
         messages=[
             user,
             {"role": "assistant", "content": list(findings)},
-            {"role": "user", "content": REPORT_INSTRUCTIONS},
+            {"role": "user", "content": report_instructions(sorted(cited_urls))},
         ],
     )
 
