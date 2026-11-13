@@ -1357,5 +1357,212 @@
     "published_ts": 1794474000,
     "first_seen_ts": 1794481230.8776789,
     "link": "https://www.itsnicethat.com/articles/dum-dum-studio-graphic-design-discover-121126"
+  },
+  "uxdesign.cc/ai-is-the-new-old-design-material-0e7f83540c9a?source=rss----138adf9c44c---4": {
+    "title": "AI is the new old design material",
+    "source": "UX Collective",
+    "snippet": "A long workbench where hand tools, a stack of paper, and an open laptop share the same\u00a0surface.Creative makers and builders have always learned their medium by working with it, from grinding pigments to HTML. Models are the next material, and you need to learn them by building.The field keeps arguin",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*JuPAwnD1n1gK7HhzzrR1Yw.png",
+    "published_ts": 1794537189,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://uxdesign.cc/ai-is-the-new-old-design-material-0e7f83540c9a?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/the-ai-mind-tax-that-afflicts-those-who-use-ai-best-3eb67ff167d0?source=rss----138adf9c44c---4": {
+    "title": "The AI mind tax that afflicts those who use AI best",
+    "source": "UX Collective",
+    "snippet": "One person, a dozen tools, and nothing connecting them but\u00a0her.AI was supposed to make work easier, but for the people who use it most, it just became a different kind of work, and a whole lot of exhaustion.The promise of the tech was that AI would make work easier, and, sure, in plenty of ways it c",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*mpKLeeSQBl3g1GK2Hb3P3w.jpeg",
+    "published_ts": 1794482080,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://uxdesign.cc/the-ai-mind-tax-that-afflicts-those-who-use-ai-best-3eb67ff167d0?source=rss----138adf9c44c---4"
+  },
+  "smashingmagazine.com/2026/11/should-you-add-ai-audit-product-teams": {
+    "title": "Should You Actually Add AI To That? A Four-Question Audit For Product Teams",
+    "source": "Smashing Magazine",
+    "snippet": "An AI feature can save users time on a task, only for them to spend it checking the results. This practical audit helps product teams decide where AI earns its place and what users need to verify its output.",
+    "image": "http://files.smashing.media/articles/should-you-add-au-audit-product-teams/should-you-add-ai-audit-product-teams.jpg",
+    "published_ts": 1794477600,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://smashingmagazine.com/2026/11/should-you-add-ai-audit-product-teams/"
+  },
+  "smashingmagazine.com/2026/11/modern-css-might-make-your-front-end-more-complex": {
+    "title": "Modern CSS Might\u00a0Make\u00a0Your Front-End More Complex",
+    "source": "Smashing Magazine",
+    "snippet": "Replacing JavaScript with a modern CSS feature can simplify a piece of code while making the wider application harder to reason about. Gabriel Shoyombo explores what happens when logic is split between CSS and JavaScript, sharing practical guidance to help you keep complexity in check during migrati",
+    "image": "http://files.smashing.media/articles/modern-css-might-make-your-front-end-more-complex/modern-css-might-make-your-front-end-more-complex.jpg",
+    "published_ts": 1793700000,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://smashingmagazine.com/2026/11/modern-css-might-make-your-front-end-more-complex/"
+  },
+  "lennysnewsletter.com/p/lennys-newsletter-holiday-gift-guide-057": {
+    "title": "Lenny\u2019s Newsletter holiday gift guide 2026",
+    "source": "Lenny's Newsletter",
+    "snippet": "100+ gift ideas&#8212;all things I actually use, love, and recommend",
+    "image": "https://substackcdn.com/image/fetch/$s_!TE3u!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdfde823f-2bd0-4627-ad51-72f034b11907_1456x970.png",
+    "published_ts": 1793717133,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://www.lennysnewsletter.com/p/lennys-newsletter-holiday-gift-guide-057"
+  },
+  "lennysnewsletter.com/p/how-i-ai-claude-duet-honest-review": {
+    "title": "\ud83c\udf99\ufe0f How I AI: Claude Duet honest review + Why Reddit built its own AI prototyping tool",
+    "source": "Lenny's Newsletter",
+    "snippet": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/b3ec454d-2a57-4dac-9f09-3d0762816acf_1456x1048.png",
+    "published_ts": 1793026853,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://www.lennysnewsletter.com/p/how-i-ai-claude-duet-honest-review"
+  },
+  "lennysnewsletter.com/p/why-reddit-built-its-own-ai-prototyping": {
+    "title": "Why Reddit built its own AI prototyping tool | Blair Metcalf",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now (30 mins) | &#127897;&#65039; Reddit&#8217;s principal UX engineer shows how a custom Figma MCP and Cursor pipeline takes any designer from blank slate to shareable, production-shaped prototype in minutes&#8212;no Git required",
+    "image": "https://substackcdn.com/image/fetch/$s_!AXw8!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F45b01906-3ecd-4788-9f68-c07ea50cfeda_728x524.png",
+    "published_ts": 1793016260,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://www.lennysnewsletter.com/p/why-reddit-built-its-own-ai-prototyping"
+  },
+  "lennysnewsletter.com/p/a-mind-expanding-conversation-on": {
+    "title": "Inside the black box of AI: How AI models actually think | Emmanuel Ameisen (Anthropic)",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now (72 mins) | Emmanuel Ameisen of Anthropic explains what looking inside language models reveals about planning, consciousness, and AI safety",
+    "image": "https://substackcdn.com/image/fetch/$s_!o0oD!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8f3a8d75-7772-4f8c-94ee-8551142a5986_2048x2048.png",
+    "published_ts": 1792326696,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://www.lennysnewsletter.com/p/a-mind-expanding-conversation-on"
+  },
+  "design-milk.com/rooms-designers-on-design-series-returns-with-a-story-of-hospitality-and-human-connection": {
+    "title": "ROOM\u2019s Designers on Design Series Returns with A Story of Hospitality and Human Connection",
+    "source": "Design Milk",
+    "snippet": "In the latest episode, industry icon Anda Andrei and award-winning designer Matthew Goodrich discuss the ups and downs of hospitality design, creative inspirations, and more",
+    "image": "https://design-milk.com/images/2026/11/DesignersOnDesign11Howard-EricVitalePhotography-6.jpg",
+    "published_ts": 1794492054,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://design-milk.com/rooms-designers-on-design-series-returns-with-a-story-of-hospitality-and-human-connection/"
+  },
+  "design-milk.com/cape-town-edition-nerihu": {
+    "title": "Neri&Hu Reinterprets Cape Town\u2019s Maritime Heritage for Edition",
+    "source": "Design Milk",
+    "snippet": "Industrial architecture, locally sourced materials, and South African craftsmanship create a contemporary hotel rooted in the city\u2019s waterfront history",
+    "image": "https://design-milk.com/images/2026/11/ED_CPTEB_Exterior_05.jpg",
+    "published_ts": 1794492043,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://design-milk.com/cape-town-edition-nerihu/"
+  },
+  "design-milk.com/bilibo-toy-25th-anniversary": {
+    "title": "25 Years of Bilibo: The Toy That Lets Imagination Lead",
+    "source": "Design Milk",
+    "snippet": "Swiss designer Alex Hochstrasser reflects on the creation of Bilibo, the deceptively simple toy that has inspired open-ended play for 25 years",
+    "image": "https://design-milk.com/images/2026/11/alex-bilibo-bilibomidi-red.jpg",
+    "published_ts": 1794488441,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://design-milk.com/bilibo-toy-25th-anniversary/"
+  },
+  "design-milk.com/eureka-ergonomics-arundel-collection-moves-onto-the-wall-with-canvas-its-new-wall-system": {
+    "title": "Eureka Ergonomic\u2019s Arundel Collection Moves Onto the Wall With Canvas, Its New Wall System",
+    "source": "Design Milk",
+    "snippet": "Wood-grain panels, glass cabinets, shelving, and integrated lighting share one aluminum frame in a configurable wall system.",
+    "image": "https://design-milk.com/images/2026/11/Eureka-DM-01-canvas-living-room.jpg",
+    "published_ts": 1794464593,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://design-milk.com/eureka-ergonomics-arundel-collection-moves-onto-the-wall-with-canvas-its-new-wall-system/"
+  },
+  "itsnicethat.com/articles/vucko-etsy-motion-graphic-design-sponsored-content-121126": {
+    "title": "Vucko\u2019s motion identity for Etsy is built on joy, simplicity and craft",
+    "source": "It's Nice That",
+    "snippet": "The studio\u2019s motion design work for the online marketplace solidifies Etsy\u2019s identity while providing it with the capacity to adapt to each department\u2019s specific needs.",
+    "image": "https://m.itsnicethat.com/original_images/ETSYMotionPrinciples_03int.gif",
+    "published_ts": 1794492000,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://www.itsnicethat.com/articles/vucko-etsy-motion-graphic-design-sponsored-content-121126"
+  },
+  "agustinbarrientos.com/writing/senior-eye/interfaces-that-understand-what-we-want": {
+    "title": "Building interfaces that understand what we want to do",
+    "source": "Sidebar",
+    "snippet": "Chrome is building a Decisions API that runs a decision model on your computer, for free and privately.",
+    "image": "https://agustinbarrientos.com/_astro/cover.dW8fEYz6.webp",
+    "published_ts": 1794546300,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://agustinbarrientos.com/writing/senior-eye/interfaces-that-understand-what-we-want"
+  },
+  "belowthesurface.amsterdam/en/vondsten": {
+    "title": "Below the surface",
+    "source": "Sidebar",
+    "snippet": "The archaeological research project of the North/South metro line lends the River Amstel a voice in the historical portrayal of Amsterdam.",
+    "image": "",
+    "published_ts": 1794546240,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://belowthesurface.amsterdam/en/vondsten"
+  },
+  "cdevroe.com/2026/11/05/if-x-then-y": {
+    "title": "If X, then Y",
+    "source": "Sidebar",
+    "snippet": "It was never easy to predict the future, but at the moment it feels near impossible.",
+    "image": "",
+    "published_ts": 1794546180,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://cdevroe.com/2026/11/05/if-x-then-y/"
+  },
+  "bodegacatsofnewyork.com": {
+    "title": "Bodega cats of New York",
+    "source": "Sidebar",
+    "snippet": "Photographs and stories of the cats who live in New York\u2019s bodegas, and the people who know them by name.",
+    "image": "https://bodegacatsofnewyork.com/hero/hero-tuxedo-aisle.jpg",
+    "published_ts": 1794546120,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://bodegacatsofnewyork.com/"
+  },
+  "hipuku.dev/writing/where-the-disabled-button-got-its-rule": {
+    "title": "Where the disabled button got its rule",
+    "source": "Sidebar",
+    "snippet": "What Apple\u2019s 1980 rules said about greyed-out commands.",
+    "image": "https://www.hipuku.dev/og/writing-where-the-disabled-button-got-its-rule.png?v=54fb4b1e",
+    "published_ts": 1794546060,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://www.hipuku.dev/writing/where-the-disabled-button-got-its-rule"
+  },
+  "mattstromawn.com/writing/design-is-a-search-problem": {
+    "title": "Design is a search problem",
+    "source": "Sidebar",
+    "snippet": "Most of what we call \u2018design\u2019 is groping around a dark room looking for a black cat.",
+    "image": "https://mattstromawn.com/images/og/og-098f3233a4-1200.jpeg",
+    "published_ts": 1794482787,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://mattstromawn.com/writing/design-is-a-search-problem/"
+  },
+  "logohistories.com/p/airline-logos": {
+    "title": "Airline Logos",
+    "source": "Sidebar",
+    "snippet": "From Lufthansa\u2019s crane to United\u2019s tulip, the stories behind twelve airline logos designed for the jet age.",
+    "image": "https://substackcdn.com/image/fetch/$s_!eF10!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9b4c6744-b636-4b21-bd8e-e4f0d39b10f5_1456x948.png",
+    "published_ts": 1794482654,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://www.logohistories.com/p/airline-logos"
+  },
+  "youtube.com/watch?v=sz_vI8V_k1E": {
+    "title": "I made a film in Excel",
+    "source": "Sidebar",
+    "snippet": "A testament to the inescapable pull of making something out of nothing.",
+    "image": "",
+    "published_ts": 1794482626,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://www.youtube.com/watch?v=sz_vI8V_k1E"
+  },
+  "survey.devographics.com/en-US/survey/state-of-js/2026": {
+    "title": "State of JavaScript 2026",
+    "source": "Sidebar",
+    "snippet": "Take the State of JavaScript survey: a programming language that grew up much, much bigger than anybody ever anticipated.",
+    "image": "https://assets.devographics.com/surveys/js2026-og.png",
+    "published_ts": 1794482515,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://survey.devographics.com/en-US/survey/state-of-js/2026"
+  },
+  "haydenbleasel.com/taking-away": {
+    "title": "By taking away",
+    "source": "Sidebar",
+    "snippet": "Software used to be made like a painting, one layer at a time. With agents, it\u2019s closer to sculpture, and the hard part is seeing what to keep.",
+    "image": "https://haydenbleasel.com/og/taking-away.png?v=4",
+    "published_ts": 1794482424,
+    "first_seen_ts": 1794567630.8445103,
+    "link": "https://haydenbleasel.com/taking-away"
   }
 }
