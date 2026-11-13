@@ -483,7 +483,8 @@ def verify_summary(evidence: dict) -> str:
     if summary and _evidence_for(rep.get("summary_source_url"), evidence):
         return summary
     if summary:
-        print("[markets] market summary uncited; dropping it", flush=True)
+        print(f"[markets] market summary uncited; dropping it: {summary!r}", flush=True)
+        _explain_drop("summary", rep.get("summary_source_url"), evidence)
     return ""
 
 
