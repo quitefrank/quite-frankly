@@ -1,346 +1,4 @@
 {
-  "uxdesign.cc/berrypicking-still-beats-the-single-answer-for-search-even-in-the-world-of-ai-6d7174099500?source=rss----138adf9c44c---4": {
-    "title": "Berrypicking still beats the single answer for search, even in the world of AI",
-    "source": "UX Collective",
-    "snippet": "A searcher moves through scattered sources, collecting one useful piece at each\u00a0stop.In 1989 Marcia Bates showed that people search by gathering, shifting, and revising as they go. Her ideas explain what AI still misses and what is still relevant from research done 47 years\u00a0ago.Much of what product ",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*7nKkTkUX4iDwlOFBMtt4kg.png",
-    "published_ts": 1793938404,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://uxdesign.cc/berrypicking-still-beats-the-single-answer-for-search-even-in-the-world-of-ai-6d7174099500?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/native-is-a-floor-not-a-ceiling-09bc4f27ddce?source=rss----138adf9c44c---4": {
-    "title": "Native is a floor, not a ceiling",
-    "source": "UX Collective",
-    "snippet": "With AI, a polished look costs nothing. Native brings what can\u2019t be drawn, and it moves with the system, one step ahead of what imitates\u00a0it.An AI assistant helped me write this. The ideas, the experience and the final edit are\u00a0mine.In June 2025, Apple introduced Liquid Glass, the new material of iOS",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*tmilNueBY4CBfNN99ZX5vA.jpeg",
-    "published_ts": 1793938349,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://uxdesign.cc/native-is-a-floor-not-a-ceiling-09bc4f27ddce?source=rss----138adf9c44c---4"
-  },
-  "smashingmagazine.com/2026/11/making-immersive-llm-chat-experiences-more-accessible": {
-    "title": "Making Immersive LLM Chat Experiences More Accessible",
-    "source": "Smashing Magazine",
-    "snippet": "As LLM chat patterns become more widespread, making them accessible is essential to ensuring everyone can access the information, tools, and opportunities they offer. Drawing on his work improving these interfaces, Eric Bailey shares practical ways to make chat-based experiences on the web more acce",
-    "image": "http://files.smashing.media/articles/making-immersive-llm-chat-experiences-more-accessible/making-immersive-llm-chat-experiences-more-accessible.jpg",
-    "published_ts": 1793883600,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://smashingmagazine.com/2026/11/making-immersive-llm-chat-experiences-more-accessible/"
-  },
-  "smashingmagazine.com/2026/10/embracing-playful-imperfection-css-random-function": {
-    "title": "Embracing Playful Imperfection With The CSS `random()` Function",
-    "source": "Smashing Magazine",
-    "snippet": "Design systems thrive on consistency, so where does randomness fit in? Through playful demos of organic typography, bouncing letters, and splayed cards, Brecht De Ruyte shows how the new CSS `random()` function brings a little imperfection to the web without JavaScript libraries or preprocessor loop",
-    "image": "http://files.smashing.media/articles/embracing-playful-imperfection-css-random-function/embracing-playful-imperfection-css-random-function.jpg",
-    "published_ts": 1792490400,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://smashingmagazine.com/2026/10/embracing-playful-imperfection-css-random-function/"
-  },
-  "lennysnewsletter.com/p/grok-vs-dot-vs-muse-vs-claude-duet": {
-    "title": "Grok vs. Dot vs. Muse vs. Claude Duet: which one crushes the competition?",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now | &#127897;&#65039; I ranked Grok Bot, Dot, Muse, and Claude Duet across 9 real tasks&#8212;and the scores told me which agent runs my work and which runs my life",
-    "image": "https://substackcdn.com/image/fetch/$s_!8y5p!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F01e73dcb-1f7c-4cb7-a275-43115d0f7651_728x524.png",
-    "published_ts": 1793189062,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.lennysnewsletter.com/p/grok-vs-dot-vs-muse-vs-claude-duet"
-  },
-  "lennysnewsletter.com/p/how-i-ai-meta-muse-wonder-how-brooke": {
-    "title": "\ud83c\udf99\ufe0f How I AI: Meta Muse Wonder + How Brooke Lacey is scaling video with AI",
-    "source": "Lenny's Newsletter",
-    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/a075d5ce-5408-4b1f-947e-23a1210dafa2_1456x1048.png",
-    "published_ts": 1792422215,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.lennysnewsletter.com/p/how-i-ai-meta-muse-wonder-how-brooke"
-  },
-  "lennysnewsletter.com/p/claude-cuts-my-tiktok-how-this-creator": {
-    "title": "\u201cClaude cuts my TikTok\u201d: How this creator is scaling video with AI | Brooke Lacey",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (37 mins) | &#127897;&#65039; Brooke Lacey shows live how Claude Code turns a raw phone video into a captioned, jump-cut TikTok in about 15 seconds",
-    "image": "https://substackcdn.com/image/fetch/$s_!ac6V!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1333497-5596-41e3-848a-39f03ad1597a_728x524.png",
-    "published_ts": 1792411492,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.lennysnewsletter.com/p/claude-cuts-my-tiktok-how-this-creator"
-  },
-  "lennysnewsletter.com/p/how-i-ai-how-meta-designed-muse-with": {
-    "title": "\ud83c\udf99\ufe0f How I AI: How Meta designed Muse with Alex Cornell",
-    "source": "Lenny's Newsletter",
-    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/135a1e19-04d6-423c-86c8-c957635b14f1_1456x1048.png",
-    "published_ts": 1791817238,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.lennysnewsletter.com/p/how-i-ai-how-meta-designed-muse-with"
-  },
-  "lennysnewsletter.com/p/how-meta-designed-muse-an-ai-agent": {
-    "title": "How Meta designed Muse: an AI agent people actually want to talk to | Alex Cornell (Design Director)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now | &#127897;&#65039;Alex Cornell explains how Muse serves your mom and an engineer with the same interface, and demos a SkyMall-style catalog, golf recaps, and a blog turned podcast",
-    "image": "https://substackcdn.com/image/fetch/$s_!yABS!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc58e849c-296a-45c1-beb0-cc3fa26540cd_1456x1048.png",
-    "published_ts": 1791806635,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.lennysnewsletter.com/p/how-meta-designed-muse-an-ai-agent"
-  },
-  "lennysnewsletter.com/p/why-every-company-now-needs-to-think": {
-    "title": "Why every company now needs to think and operate like a lab team | Josh Woodward (Google Labs, Gemini, AI Studio)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now (62 mins) | Josh Woodward of Google Labs on where great ideas come from, knowing when to kill them, and building for a world where what&#8217;s possible changes every week",
-    "image": "https://substackcdn.com/image/fetch/$s_!gR4X!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbe29befe-a94a-46d4-b82c-7f3f47cf652a_2048x2048.png",
-    "published_ts": 1791721919,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.lennysnewsletter.com/p/why-every-company-now-needs-to-think"
-  },
-  "design-milk.com/best-gifts-under-25": {
-    "title": "The Best Gifts Under $25 (That Don\u2019t Look or Feel Cheap)",
-    "source": "Design Milk",
-    "snippet": "These affordable finds bring creativity, personality, and practicality to holiday gifting",
-    "image": "https://design-milk.com/images/2026/11/design-milk-gifts-under-25-2026.jpg",
-    "published_ts": 1793909223,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://design-milk.com/best-gifts-under-25/"
-  },
-  "design-milk.com/les-tells-handbags-brianna-tell": {
-    "title": "Les Tells Designs Handbags Around the Body, Not Just the Outfit",
-    "source": "Design Milk",
-    "snippet": "Brianna Tell's debut collection brings sculptural silhouettes and Italian craftsmanship in six accessories designed to move with the body",
-    "image": "https://design-milk.com/images/2026/11/LT-THE-PANLT-THE-BLK_136_5-4-e1793841945648.jpg",
-    "published_ts": 1793890813,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://design-milk.com/les-tells-handbags-brianna-tell/"
-  },
-  "design-milk.com/arcteryx-abbot-kinney": {
-    "title": "Arc\u2019teryx Rethinks Retail With a Climbing-Focused LA Store",
-    "source": "Design Milk",
-    "snippet": "The outdoor brand\u2019s new Abbot Kinney location combines a climbing wall, flexible gathering spaces, and locally designed furniture",
-    "image": "https://design-milk.com/images/2026/11/IMG_6857.jpg",
-    "published_ts": 1793887231,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://design-milk.com/arcteryx-abbot-kinney/"
-  },
-  "design-milk.com/la-design-week-2026": {
-    "title": "Inside LA Design Week/end 2026: A City of Creative Connections",
-    "source": "Design Milk",
-    "snippet": "From experimental ceramics and midcentury furniture to interactive instruments and sculptural food, LA Design Week/end invites visitors to explore the city's creative community, one neighborhood at a time",
-    "image": "",
-    "published_ts": 1793880026,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://design-milk.com/la-design-week-2026/"
-  },
-  "itsnicethat.com/career-predictions/cat-how": {
-    "title": "Cat How: the bottom rung will come back \u2013 but someone has to build it on purpose",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/cat-how"
-  },
-  "itsnicethat.com/career-predictions/jay-anderson": {
-    "title": "Jay Anderson: if you remove the first rung, who is going to climb the ladder?",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/jay-anderson"
-  },
-  "itsnicethat.com/career-predictions/a-new-directions-oliver-benjamin-be-kind-make-stuff-learn-the-tools": {
-    "title": "A New Direction\u2019s Oliver Benjamin: be kind, make stuff, learn the tools",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/a-new-directions-oliver-benjamin-be-kind-make-stuff-learn-the-tools"
-  },
-  "itsnicethat.com/career-predictions/caterina-bianchini": {
-    "title": "Caterina Bianchini: we can\u2019t ask where the good designers are if we won\u2019t help anyone become one",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/caterina-bianchini"
-  },
-  "itsnicethat.com/career-predictions/hilary-chittenden-studios-that-cant-hire-should-start-hosting": {
-    "title": "Hilary Chittenden: studios that can\u2019t hire should start hosting",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/hilary-chittenden-studios-that-cant-hire-should-start-hosting"
-  },
-  "itsnicethat.com/career-predictions/represents-joe-cooper-from-118-junior-briefs-to-22-someone-has-to-give-them-experience": {
-    "title": "Represent\u2019s Joe Cooper: from 118 junior briefs to 22 \u2013 someone has to give them experience",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/represents-joe-cooper-from-118-junior-briefs-to-22-someone-has-to-give-them-experience"
-  },
-  "itsnicethat.com/career-predictions/crafts-dan-crowder-on-why-your-first-creative-job-will-be-a-fixed-term-contract": {
-    "title": "Craft\u2019s Dan Crowder on why your first creative job will be a fixed-term contract",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/crafts-dan-crowder-on-why-your-first-creative-job-will-be-a-fixed-term-contract"
-  },
-  "itsnicethat.com/career-predictions/dads-paul-drake-human-craft-will-win-out-isnt-enough-reassurance": {
-    "title": "D&AD\u2019s Paul Drake: \u201chuman craft will win out\u201d isn\u2019t enough reassurance",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/dads-paul-drake-human-craft-will-win-out-isnt-enough-reassurance"
-  },
-  "itsnicethat.com/career-predictions/kingstons-rachel-gannon-on-why-design-education-must-learn-to-sit-with-uncertainty": {
-    "title": "Kingston\u2019s Rachel Gannon on why design education must learn to sit with uncertainty",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/kingstons-rachel-gannon-on-why-design-education-must-learn-to-sit-with-uncertainty"
-  },
-  "itsnicethat.com/career-predictions/creative-pecs-nik-gunn-a-hope-for-a-workforce-that-looks-like-the-country": {
-    "title": "Creative PEC\u2019s Nik Gunn: a hope for a workforce that looks like the country",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/creative-pecs-nik-gunn-a-hope-for-a-workforce-that-looks-like-the-country"
-  },
-  "itsnicethat.com/career-predictions/anna-kiernan-on-live-analogue-sell-digital-and-careers-built-outside-the-studio": {
-    "title": "Anna Kiernan on \u201clive analogue, sell digital\u201d and careers built outside the studio",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/anna-kiernan-on-live-analogue-sell-digital-and-careers-built-outside-the-studio"
-  },
-  "itsnicethat.com/career-predictions/porto-rochas-joseph-lebus-on-why-the-best-route-into-creativity-is-a-non-linear-one": {
-    "title": "PORTO ROCHA\u2019s Joseph Lebus on why the best route into creativity is a non-linear one",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/porto-rochas-joseph-lebus-on-why-the-best-route-into-creativity-is-a-non-linear-one"
-  },
-  "itsnicethat.com/career-predictions/meet-a-mentors-fran-plowright-optimism-alone-wont-open-doors": {
-    "title": "Meet a Mentor\u2019s Fran Plowright: optimism alone won\u2019t open doors",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/meet-a-mentors-fran-plowright-optimism-alone-wont-open-doors"
-  },
-  "itsnicethat.com/career-predictions/mina-popa-stop-knocking-on-the-door-start-inviting-people-into-your-world": {
-    "title": "Mina Popa: stop knocking on the door \u2013 start inviting people into your world",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/mina-popa-stop-knocking-on-the-door-start-inviting-people-into-your-world"
-  },
-  "itsnicethat.com/career-predictions/isabel-sachs-on-how-chatgpt-broke-job-applications-and-revived-the-old-boys-club": {
-    "title": "Isabel Sachs on how ChatGPT broke job applications \u2013 and revived the old boys\u2019 club",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/isabel-sachs-on-how-chatgpt-broke-job-applications-and-revived-the-old-boys-club"
-  },
-  "itsnicethat.com/career-predictions/uncommons-lisa-smith-build-a-life-that-gives-you-something-to-say": {
-    "title": "Uncommon\u2019s Lisa Smith: build a life that gives you something to say",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/uncommons-lisa-smith-build-a-life-that-gives-you-something-to-say"
-  },
-  "itsnicethat.com/career-predictions/ok-cools-liz-stone-the-doom-narrative-is-raising-a-generation-of-defeatists": {
-    "title": "OK COOL\u2019s Liz Stone: the doom narrative is raising a generation of defeatists",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/ok-cools-liz-stone-the-doom-narrative-is-raising-a-generation-of-defeatists"
-  },
-  "itsnicethat.com/career-predictions/marcus-wendt-on-why-the-next-creative-career-is-the-one-you-invent-yourself": {
-    "title": "Marcus Wendt on why the next creative career is the one you invent yourself",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/marcus-wendt-on-why-the-next-creative-career-is-the-one-you-invent-yourself"
-  },
-  "itsnicethat.com/career-predictions/nuas-rebecca-wright-on-the-gap-between-the-probable-and-the-possible": {
-    "title": "NUA\u2019s Rebecca Wright on the gap between the probable and the possible",
-    "source": "It's Nice That",
-    "snippet": "It\u2019s a tough time for people starting out in the creative industry right now. Together with Creative Lives in Progress we asked 28 people to predict what starting a creative career will look like over the next three years.",
-    "image": "https://admin.itsnicethat.com/images/5xqVcnhBNXTl9qk3A81JnLWomDg=/284299/width-1440/POV-heasder.jpg",
-    "published_ts": 1794211200,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://www.itsnicethat.com/career-predictions/nuas-rebecca-wright-on-the-gap-between-the-probable-and-the-possible"
-  },
-  "uxdesign.cc/your-ai-is-non-deterministic-but-your-product-cant-be-3ec2a0cf870c": {
-    "title": "Everyone is building AI agents. Who\u2019s designing the stop button?",
-    "source": "Sidebar",
-    "snippet": "Here\u2019s why the hardest design decisions happen where that autonomy ends.",
-    "image": "https://miro.medium.com/v2/resize:fit:1200/1*tGi7tLQUOAJsOZK7y9Vtrg.png",
-    "published_ts": 1793938889,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://uxdesign.cc/your-ai-is-non-deterministic-but-your-product-cant-be-3ec2a0cf870c"
-  },
-  "the-brandidentity.com/typeface/superior-types-heaven-is-a-sans-serif-built-on-oversized-round-shapes": {
-    "title": "A sans serif built on oversized round shapes",
-    "source": "Sidebar",
-    "snippet": "Superior Type\u2019s Heaven is a brutalist grotesque built on round shapes that are too big for their space.",
-    "image": "",
-    "published_ts": 1793938855,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://the-brandidentity.com/typeface/superior-types-heaven-is-a-sans-serif-built-on-oversized-round-shapes"
-  },
-  "george.mand.is/2026/11/the-tokenizer-font": {
-    "title": "Tokenizer Mono",
-    "source": "Sidebar",
-    "snippet": "A monospace font that highlights LLM tokens as you type. No JavaScript, just OpenType substitution rules and a color table.",
-    "image": "https://georgemandis.s3-us-west-1.amazonaws.com/preview.png",
-    "published_ts": 1793938810,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://george.mand.is/2026/11/the-tokenizer-font/"
-  },
-  "longnow.org/ideas/attention-ai-pace-layers": {
-    "title": "Attention is all you need",
-    "source": "Sidebar",
-    "snippet": "A report from the future on AI, attention, and the maintenance of civilization",
-    "image": "https://static.longnow.org/2026/10/PL02026-----Fashion-----deepfates-01.jpg",
-    "published_ts": 1793938764,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://longnow.org/ideas/attention-ai-pace-layers/"
-  },
-  "aframe.io": {
-    "title": "A-Frame",
-    "source": "Sidebar",
-    "snippet": "A web framework for building virtual reality experiences. Make WebVR with HTML and Entity-Component. Works on Vive, Rift, desktop, mobile.",
-    "image": "http://aframe.io/images/card.jpg?v2",
-    "published_ts": 1793938735,
-    "first_seen_ts": 1793962833.7245932,
-    "link": "https://aframe.io/"
-  },
   "uxdesign.cc/after-the-ai-bubble-a-manifesto-2e3157387662?source=rss----138adf9c44c---4": {
     "title": "After the AI bubble: a manifesto",
     "source": "UX Collective",
@@ -1564,5 +1222,86 @@
     "published_ts": 1794482424,
     "first_seen_ts": 1794567630.8445103,
     "link": "https://haydenbleasel.com/taking-away"
+  },
+  "uxdesign.cc/decision-theatre-or-decision-design-f1604f178685?source=rss----138adf9c44c---4": {
+    "title": "Decision theatre or decision design?",
+    "source": "UX Collective",
+    "snippet": "AI has made information easy, but it has not made decisions simple. As machines produce more than we can read, our job is shifting from building knowledge to owning decisions. Are we\u00a0ready?In a 2025 survey by BetterUp Labs and the Stanford Social Media Lab, 40% of US desk workers said they had recei",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*jSm2wuX6DerL6DwhQFrLqA.png",
+    "published_ts": 1794613902,
+    "first_seen_ts": 1794654027.753053,
+    "link": "https://uxdesign.cc/decision-theatre-or-decision-design-f1604f178685?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/schr%C3%B6dingers-huang-d1da36bff88c?source=rss----138adf9c44c---4": {
+    "title": "Schr\u00f6dinger\u2019s Huang: Nvidia could not be everything to everybody",
+    "source": "UX Collective",
+    "snippet": "A cautionary tale for Asian capital attempting to operate technology businesses on both sides of the Pacific simultaneouslyContinue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/1072/0*gqf8_YQf9UQKv9T5.jpg",
+    "published_ts": 1794613887,
+    "first_seen_ts": 1794654027.753053,
+    "link": "https://uxdesign.cc/schr%C3%B6dingers-huang-d1da36bff88c?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/the-crooked-plate-that-felt-more-human-than-the-algorithm-40bb4e5da147?source=rss----138adf9c44c---4": {
+    "title": "The crooked plate that felt more human than the algorithm",
+    "source": "UX Collective",
+    "snippet": "We have spent years teaching machines to be flawless. Now the flawlessness is beginning to feel like a kind of absence.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/710/0*fYWy32dkzlchhe4g",
+    "published_ts": 1794567502,
+    "first_seen_ts": 1794654027.753053,
+    "link": "https://uxdesign.cc/the-crooked-plate-that-felt-more-human-than-the-algorithm-40bb4e5da147?source=rss----138adf9c44c---4"
+  },
+  "nngroup.com/articles/research-in-the-loop": {
+    "title": "Research-In-The-Loop: How UXR Adapts to Development at AI Speed",
+    "source": "NN/g",
+    "snippet": "As AI speeds up development, it can be a challenge for research to adapt. Research can define what each release must measure and what it can help teams discover.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Research-In-The-Loop__How_UXR_Adapts__to_Development_at__AI_Speed.png",
+    "published_ts": 1794592800,
+    "first_seen_ts": 1794654027.753053,
+    "link": "https://www.nngroup.com/articles/research-in-the-loop/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/journey-mapping-101": {
+    "title": "Journey Mapping 101",
+    "source": "NN/g",
+    "snippet": "A journey map is a visualization of the process that a person goes through in order to accomplish a goal.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/Journey_Mapping_101.png",
+    "published_ts": 1794592800,
+    "first_seen_ts": 1794654027.753053,
+    "link": "https://www.nngroup.com/articles/journey-mapping-101/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "design-milk.com/peralta-d-copper-supercar": {
+    "title": "The Peralta D Supercar Is Literally Sculpted From Copper",
+    "source": "Design Milk",
+    "snippet": "Designed by Fabrizio Giugiaro, the one-off grand tourer pairs hand-hammered copper bodywork with a sculptural silhouette",
+    "image": "https://design-milk.com/images/2026/11/GFG-PeraltaD_04-e1794598783627.jpg",
+    "published_ts": 1794623024,
+    "first_seen_ts": 1794654027.753053,
+    "link": "https://design-milk.com/peralta-d-copper-supercar/"
+  },
+  "design-milk.com/friday-five-shaina-tabak-260-madison": {
+    "title": "Friday Five With Shaina Tabak: Art, Architecture, and the Spaces Between",
+    "source": "Design Milk",
+    "snippet": "The Brooklyn-based artist shares the exhibitions, architectural theories, and artworks that inspired her curatorial debut at '260 Madison'",
+    "image": "https://design-milk.com/images/2026/11/1.-Shaina-Tabak-Studio-Portrait.jpg",
+    "published_ts": 1794619907,
+    "first_seen_ts": 1794654027.753053,
+    "link": "https://design-milk.com/friday-five-shaina-tabak-260-madison/"
+  },
+  "design-milk.com/cold-plunge-bathtubs": {
+    "title": "Cold Plunges Are Finding a New Place in Residential Design",
+    "source": "Design Milk",
+    "snippet": "As homeowners increasingly prioritize wellness, new hydrotherapy systems allow cold plunging to be incorporated into homes without separate equipment",
+    "image": "https://design-milk.com/images/2026/11/Hydro-Systems-Marquis-Tub-in-Wetroom-1-Steve-Wilson-Photography.jpg",
+    "published_ts": 1794605389,
+    "first_seen_ts": 1794654027.753053,
+    "link": "https://design-milk.com/cold-plunge-bathtubs/"
+  },
+  "itsnicethat.com/features/uefa-womens-champions-league-queenzine-swedish-girls-gothenburg-collaboration-sponsored-content-131126": {
+    "title": "UEFA Women\u2019s Champions League zine collaborates with art duo Swedish Girls to bring fandom to the streets of Gothenburg",
+    "source": "It's Nice That",
+    "snippet": "Queenzine is a fanzine that celebrates iconic figures in the UEFA Women\u2019s Champions League and the fans that add fuel to their fire. To mark it\u2019s most recent issue, physical copies of the mag sat in various cultural spots in Gothenburg, on custom stands made by one of Sweden\u2019s most exciting art duos",
+    "image": "https://admin.itsnicethat.com/images/JhB8HBh33WANTjt26IVQXZ4MjYs=/284867/width-1440%7Cformat-jpeg/Its_nice_that_x_Queenzie_x_Swedish_girls_029.png",
+    "published_ts": 1794567600,
+    "first_seen_ts": 1794654027.753053,
+    "link": "https://www.itsnicethat.com/features/uefa-womens-champions-league-queenzine-swedish-girls-gothenburg-collaboration-sponsored-content-131126"
   }
 }
