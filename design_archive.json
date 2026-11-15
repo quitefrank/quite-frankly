@@ -1,166 +1,4 @@
 {
-  "uxdesign.cc/after-the-ai-bubble-a-manifesto-2e3157387662?source=rss----138adf9c44c---4": {
-    "title": "After the AI bubble: a manifesto",
-    "source": "UX Collective",
-    "snippet": "Computers should be tools for the people but\u200a\u2014\u200ahidden in a malaise of fatalism\u200a\u2014\u200athe AI bubble has made computers tools to push people around. Soon, or in some time, this will change. We have some thoughts to share with you in the meantime.Morro Bay, CaliforniaPreambleThe purpose of computers is hum",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*LeadMvj17vkMT2qwt-h5RQ.jpeg",
-    "published_ts": 1794004978,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://uxdesign.cc/after-the-ai-bubble-a-manifesto-2e3157387662?source=rss----138adf9c44c---4"
-  },
-  "doc.cc/humankind/allegory-ai": {
-    "title": "Allegory of AI",
-    "source": "UX Collective",
-    "snippet": "On the role that we want to play in the dawn of AI",
-    "image": "https://images.prismic.io/doc-ux-collective/migJktdy7XifPbRI_SEO.jpg?auto=format,compress&rect=0,0,2400,1240&w=1200&h=620",
-    "published_ts": 1793299674,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://www.doc.cc/humankind/allegory-ai"
-  },
-  "smashingmagazine.com/2026/11/ux-insiders-community-in-house-ux-people": {
-    "title": "A New Community For In-House UX People",
-    "source": "Smashing Magazine",
-    "snippet": "We\u2019ve been working on something new! We\u2019ve teamed up for a **new small community** for people doing UX-inside organizations &mdash; with weekly calls and a shared library of the business cases, templates, and research plans that have actually worked for other folks. [Jump to details](https://uxinsid",
-    "image": "http://files.smashing.media/articles/ux-insiders-community-in-house-ux-people/ux-insiders-community-in-house-ux-people.jpg",
-    "published_ts": 1793952000,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://smashingmagazine.com/2026/11/ux-insiders-community-in-house-ux-people/"
-  },
-  "nngroup.com/articles/agent-harness": {
-    "title": "Agent Harness: Definition",
-    "source": "NN/g",
-    "snippet": "An agent harness manages a software loop between an AI model and its tools. Its context, permissions, and limits shape what users can do.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Agent-Harness_socialcard.png",
-    "published_ts": 1793988000,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://www.nngroup.com/articles/agent-harness/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/usability-101-introduction-to-usability": {
-    "title": "Usability 101: Introduction to Usability",
-    "source": "NN/g",
-    "snippet": "Usability refers to how easily people can complete tasks with a design. Improve it by watching representative users do realistic tasks, early and repeatedly.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/Usability_101___.png",
-    "published_ts": 1793988000,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://www.nngroup.com/articles/usability-101-introduction-to-usability/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/training/january": {
-    "title": "UX Conference January Announced (Jan 19 - Feb 1)",
-    "source": "NN/g",
-    "snippet": "Take up to 5 in-depth training courses, teaching user experience best practices for successful design. Training focused on long-lasting skills for UX professionals. January 19 - February 1, 2026.",
-    "image": "https://media.nngroup.com/media/events/opengraph_images/NNG_LOT_Jan19-Feb1_card1.png",
-    "published_ts": 1793939661,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://www.nngroup.com/training/january/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "lennysnewsletter.com/p/claude-duet-is-beautiful-i-still": {
-    "title": "Claude Duet is beautiful. I still forgot to use it",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (16 mins) | &#127897;&#65039; I tested Claude Duet, Anthropic's beautifully designed new personal agent, on real work to see if it can beat my personal agent fatigue and make the cut",
-    "image": "https://substackcdn.com/image/fetch/$s_!Jl8N!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc72797f7-24e9-4238-8217-9f62dc0a0a94_728x524.png",
-    "published_ts": 1792614318,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://www.lennysnewsletter.com/p/claude-duet-is-beautiful-i-still"
-  },
-  "lennysnewsletter.com/p/how-to-tell-if-a-startup-has-a-moat": {
-    "title": "How to tell if a startup has a moat",
-    "source": "Lenny's Newsletter",
-    "snippet": "A framework for assessing whether the company you&#8217;re considering joining is built to last",
-    "image": "https://substackcdn.com/image/fetch/$s_!7Uce!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffb5a8d5c-1e31-45f5-b9f8-93426e87a971_1456x970.png",
-    "published_ts": 1791895541,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://www.lennysnewsletter.com/p/how-to-tell-if-a-startup-has-a-moat"
-  },
-  "design-milk.com/friday-five-jiun-ho-unbound": {
-    "title": "Friday Five With Jiun Ho: A World of Design Inspiration",
-    "source": "Design Milk",
-    "snippet": "The Malaysian-born, San Francisco-based designer shares how travel, traditional craft, and natural forms inspire his latest collection",
-    "image": "https://design-milk.com/images/2026/11/JH-portrait-with-Unbound1-e1793930462782.jpg",
-    "published_ts": 1793994381,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://design-milk.com/friday-five-jiun-ho-unbound/"
-  },
-  "design-milk.com/sculptural-mirrors": {
-    "title": "8 Sculptural Mirrors That Turn Reflection Into Art",
-    "source": "Design Milk",
-    "snippet": "These contemporary mirrors challenge conventional design through unexpected materials, sculptural forms, and inventive approaches to reflection",
-    "image": "https://design-milk.com/images/2026/11/d9bea59e8a703cc45b24df3f110f391ae5c98b10-14264x10697-1.jpg",
-    "published_ts": 1793987926,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://design-milk.com/sculptural-mirrors/"
-  },
-  "design-milk.com/best-gifts-for-minimalists": {
-    "title": "The Best Gifts for Minimalists Who Appreciate Good Design",
-    "source": "Design Milk",
-    "snippet": "From beautifully considered everyday essentials to objects that make a quiet statement, these gifts prove that less can offer so much more",
-    "image": "https://design-milk.com/images/2026/11/design-milk-gifts-minimalist-2026.jpg",
-    "published_ts": 1793982880,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://design-milk.com/best-gifts-for-minimalists/"
-  },
-  "design-milk.com/steinbeisser-houston-center-contemporary-craft": {
-    "title": "Houston Center for Contemporary Craft Celebrates 25 Years with Steinbeisser",
-    "source": "Design Milk",
-    "snippet": "For its 25th anniversary, Houston Center for Contemporary Craft partnered with Steinbeisser for an experimental dinner where artist-made tableware challenged the conventions of dining",
-    "image": "https://design-milk.com/images/2026/11/Steinbeisser_Houston-Craft_05-e1793830439569.jpg",
-    "published_ts": 1793970033,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://design-milk.com/steinbeisser-houston-center-contemporary-craft/"
-  },
-  "trendland.com/melitta-baumeister-x-nike-everything-is-a-statement-piece": {
-    "title": "Melitta Baumeister x Nike: Everything Is a Statement Piece",
-    "source": "Trendland",
-    "snippet": "Words nova\nMelitta Baumeister x Nike: the Rift Rocker returns in brown and yellow, the Yukon Sculpted Jacket inflates, and Kembra Pfahler fronts the strangest sportswear of the season.",
-    "image": "https://trendland.com/wp-content/uploads/2026/11/slide-02-770x1027.jpg",
-    "published_ts": 1794009746,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://trendland.com/melitta-baumeister-x-nike-everything-is-a-statement-piece/"
-  },
-  "trendland.com/vitrine-first-agentic-shopping-experience": {
-    "title": "Vitrine Is the First Agentic Shopping Experience",
-    "source": "Trendland",
-    "snippet": "Words nova\nA new kind of shopper has arrived, and it isn't human. Vitrine is the fashion index built for AI agents \u2014 live rankings, real prices, and a curated edit machines can actually shop.",
-    "image": "https://trendland.com/wp-content/uploads/2026/11/vitrine-agentic-shopper-768x428.jpg",
-    "published_ts": 1793981189,
-    "first_seen_ts": 1794049234.9552064,
-    "link": "https://trendland.com/vitrine-first-agentic-shopping-experience/"
-  },
-  "uxdesign.cc/otherwise-youre-just-a-machine-a9d3b21179b5?source=rss----138adf9c44c---4": {
-    "title": "Otherwise you\u2019re just a machine",
-    "source": "UX Collective",
-    "snippet": "AI is getting better at design. Designers should\u00a0too.The skills behind the\u00a0work.I spend a lot of time looking at design work. Reviewing portfolios. Hiring designers. Working with design leaders, seniors and juniors. Sitting in critiques. Watching people explain how they arrived at a solution. And ov",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*DPDKtw_Qr-hC8-5aISbtwg.png",
-    "published_ts": 1794082542,
-    "first_seen_ts": 1794135629.1650903,
-    "link": "https://uxdesign.cc/otherwise-youre-just-a-machine-a9d3b21179b5?source=rss----138adf9c44c---4"
-  },
-  "smashingmagazine.com/2026/10/desktop-wallpaper-calendars-november-2026": {
-    "title": "A Spark Of Color In November\u2019s Gray (2026 Wallpapers Edition)",
-    "source": "Smashing Magazine",
-    "snippet": "Let\u2019s kick of November with a new collection of desktop wallpapers! Designed by creatives from across the globe, the wallpapers come in a variety of screen resolutions and can be downloaded for free. Enjoy!",
-    "image": "http://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8edeb776-d8d5-4b5b-867f-6964f7addcd6/nov-17-colorful-autumn-preview-opt.png",
-    "published_ts": 1793433600,
-    "first_seen_ts": 1794135629.1650903,
-    "link": "https://smashingmagazine.com/2026/10/desktop-wallpaper-calendars-november-2026/"
-  },
-  "nngroup.com/articles/ux-agentic-software-factories": {
-    "title": "The Role of UX in Agentic Software Factories",
-    "source": "NN/g",
-    "snippet": "AI-native software development lifecycles reduce UX to AI context. UX must discover user needs, shape what\u2019s built, and evaluate it before and after launch.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_Role_of_UX_in_Agentic_Software_Factories.png",
-    "published_ts": 1793379600,
-    "first_seen_ts": 1794135629.1650903,
-    "link": "https://www.nngroup.com/articles/ux-agentic-software-factories/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
-  "nngroup.com/articles/ux-vs-experience-design": {
-    "title": "Experience Design: Dropping the \u201cUser\u201d from \u201cUser Experience\u201d",
-    "source": "NN/g",
-    "snippet": "AI is expanding UX beyond human users to agents acting on their behalf. Experience  design names this broader field, which still centers on people\u2019s goals.",
-    "image": "https://media.nngroup.com/media/articles/opengraph_images/The_Role_of_UX_in_Agentic_Software_Factories_YO2Q558.png",
-    "published_ts": 1793379600,
-    "first_seen_ts": 1794135629.1650903,
-    "link": "https://www.nngroup.com/articles/ux-vs-experience-design/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
-  },
   "lennysnewsletter.com/p/what-it-actually-takes-to-build-frontier": {
     "title": "Why PMs are suddenly valuable again | Tulsee Doshi (Head of Product, Gemini)",
     "source": "Lenny's Newsletter",
@@ -1303,5 +1141,59 @@
     "published_ts": 1794567600,
     "first_seen_ts": 1794654027.753053,
     "link": "https://www.itsnicethat.com/features/uefa-womens-champions-league-queenzine-swedish-girls-gothenburg-collaboration-sponsored-content-131126"
+  },
+  "smashingmagazine.com/2026/11/making-immersive-llm-chat-experiences-more-accessible": {
+    "title": "Making Immersive LLM Chat Experiences More Accessible",
+    "source": "Smashing Magazine",
+    "snippet": "As LLM chat patterns become more widespread, making them accessible is essential to ensuring everyone can access the information, tools, and opportunities they offer. Drawing on his work improving these interfaces, Eric Bailey shares practical ways to make chat-based experiences on the web more acce",
+    "image": "http://files.smashing.media/articles/making-immersive-llm-chat-experiences-more-accessible/making-immersive-llm-chat-experiences-more-accessible.jpg",
+    "published_ts": 1793883600,
+    "first_seen_ts": 1794740433.25215,
+    "link": "https://smashingmagazine.com/2026/11/making-immersive-llm-chat-experiences-more-accessible/"
+  },
+  "smashingmagazine.com/2026/10/embracing-playful-imperfection-css-random-function": {
+    "title": "Embracing Playful Imperfection With The CSS `random()` Function",
+    "source": "Smashing Magazine",
+    "snippet": "Design systems thrive on consistency, so where does randomness fit in? Through playful demos of organic typography, bouncing letters, and splayed cards, Brecht De Ruyte shows how the new CSS `random()` function brings a little imperfection to the web without JavaScript libraries or preprocessor loop",
+    "image": "http://files.smashing.media/articles/embracing-playful-imperfection-css-random-function/embracing-playful-imperfection-css-random-function.jpg",
+    "published_ts": 1792490400,
+    "first_seen_ts": 1794740433.25215,
+    "link": "https://smashingmagazine.com/2026/10/embracing-playful-imperfection-css-random-function/"
+  },
+  "lennysnewsletter.com/p/community-wisdom-when-you-become": {
+    "title": "\ud83e\udde0 Community Wisdom: When you become the bottleneck for your AI agents, the PULL framework for PMs, product growth vs. growth marketing, boosting feedback response rates, and more",
+    "source": "Lenny's Newsletter",
+    "snippet": "Community Wisdom 305",
+    "image": "https://substackcdn.com/image/fetch/$s_!KxHU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1ca8352-9571-4b81-b041-52374176f4fc_2912x1456.png",
+    "published_ts": 1794690946,
+    "first_seen_ts": 1794740433.25215,
+    "link": "https://www.lennysnewsletter.com/p/community-wisdom-when-you-become"
+  },
+  "lennysnewsletter.com/p/grok-vs-dot-vs-muse-vs-claude-duet": {
+    "title": "Grok vs. Dot vs. Muse vs. Claude Duet: which one crushes the competition?",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now | &#127897;&#65039; I ranked Grok Bot, Dot, Muse, and Claude Duet across 9 real tasks&#8212;and the scores told me which agent runs my work and which runs my life",
+    "image": "https://substackcdn.com/image/fetch/$s_!8y5p!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F01e73dcb-1f7c-4cb7-a275-43115d0f7651_728x524.png",
+    "published_ts": 1793189062,
+    "first_seen_ts": 1794740433.25215,
+    "link": "https://www.lennysnewsletter.com/p/grok-vs-dot-vs-muse-vs-claude-duet"
+  },
+  "lennysnewsletter.com/p/how-i-ai-meta-muse-wonder-how-brooke": {
+    "title": "\ud83c\udf99\ufe0f How I AI: Meta Muse Wonder + How Brooke Lacey is scaling video with AI",
+    "source": "Lenny's Newsletter",
+    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/a075d5ce-5408-4b1f-947e-23a1210dafa2_1456x1048.png",
+    "published_ts": 1792422215,
+    "first_seen_ts": 1794740433.25215,
+    "link": "https://www.lennysnewsletter.com/p/how-i-ai-meta-muse-wonder-how-brooke"
+  },
+  "lennysnewsletter.com/p/claude-cuts-my-tiktok-how-this-creator": {
+    "title": "\u201cClaude cuts my TikTok\u201d: How this creator is scaling video with AI | Brooke Lacey",
+    "source": "Lenny's Newsletter",
+    "snippet": "Watch now (37 mins) | &#127897;&#65039; Brooke Lacey shows live how Claude Code turns a raw phone video into a captioned, jump-cut TikTok in about 15 seconds",
+    "image": "https://substackcdn.com/image/fetch/$s_!ac6V!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc1333497-5596-41e3-848a-39f03ad1597a_728x524.png",
+    "published_ts": 1792411492,
+    "first_seen_ts": 1794740433.25215,
+    "link": "https://www.lennysnewsletter.com/p/claude-cuts-my-tiktok-how-this-creator"
   }
 }
