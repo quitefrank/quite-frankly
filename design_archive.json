@@ -1,112 +1,4 @@
 {
-  "uxdesign.cc/why-are-we-cloning-photoshop-52e6e165eef7?source=rss----138adf9c44c---4": {
-    "title": "Why are we cloning Photoshop?",
-    "source": "UX Collective",
-    "snippet": "AI is making it easy to recreate professional tools. I suspect there\u2019s a bigger opportunity being overlooked.Editing in PhotoCraftOctober saw the release of PhotoCraft, an open-source Photoshop clone built with AI that had a similar capability set, but without Adobe Creative Cloud\u2019s exorbitant month",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*Xh48AEBSG8maSKJqeuFfvQ.png",
-    "published_ts": 1794435642,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://uxdesign.cc/why-are-we-cloning-photoshop-52e6e165eef7?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/every-click-has-a-price-now-who-designs-how-that-feels-e3f00b6cabb8?source=rss----138adf9c44c---4": {
-    "title": "Every click has a price now. Who designs how that \u201cfeels\u201d?",
-    "source": "UX Collective",
-    "snippet": "As the all-you-can-eat AI era is ending, UX designers must adapt to a new\u00a0realitySince the democratization of AI, roughly by the end of 2022, companies sold access to their products for less than it costs them to\u00a0run.That didn\u2019t last\u00a0long.Now, to try the latest models or pro versions of certain tool",
-    "image": "https://cdn-images-1.medium.com/max/1024/1*9uqAutsVFqEDaAeZlf7T9w.png",
-    "published_ts": 1794435319,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://uxdesign.cc/every-click-has-a-price-now-who-designs-how-that-feels-e3f00b6cabb8?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/the-bathroom-flaws-that-infuriate-every-designer-a26d50145d47?source=rss----138adf9c44c---4": {
-    "title": "The bathroom flaws that infuriate every designer",
-    "source": "UX Collective",
-    "snippet": "Throne Room Politics: Inside Designers Obsession with BathroomsHow one close look at everyday bathroom flaw will permeantly ruin your\u00a0routine.I paused, leaving the bathroom. Something strange was happening, but what was\u00a0it?There was a woman in a wheelchair who had finished washing her hands. She see",
-    "image": "https://cdn-images-1.medium.com/max/474/1*TGXrzW7wTWgacFjsqRXOcw.jpeg",
-    "published_ts": 1794435034,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://uxdesign.cc/the-bathroom-flaws-that-infuriate-every-designer-a26d50145d47?source=rss----138adf9c44c---4"
-  },
-  "uxdesign.cc/in-system-design-from-code-to-figma-and-back-prototyping-in-your-real-design-system-7372b128de9a?source=rss----138adf9c44c---4": {
-    "title": "In-system design: from code to Figma and back. Prototyping in your real design system",
-    "source": "UX Collective",
-    "snippet": "In-System Design\u00a03/3A practical guide for designers: why I stopped choosing between canvas and code, and how one prototype travels both\u00a0ways.For designers who know Figma well and have never written production code, and for the design system teams around them. Every technical word is explained in the",
-    "image": "https://cdn-images-1.medium.com/max/1024/0*Eh6X8C_0RO5wInpt.jpeg",
-    "published_ts": 1794434912,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://uxdesign.cc/in-system-design-from-code-to-figma-and-back-prototyping-in-your-real-design-system-7372b128de9a?source=rss----138adf9c44c---4"
-  },
-  "lennysnewsletter.com/p/claude-code-obsidian-my-familys-ai": {
-    "title": "Claude Code + Obsidian: My family\u2019s AI brain | Scott Farrar",
-    "source": "Lenny's Newsletter",
-    "snippet": "Watch now (34 mins) | &#127897;&#65039; Scott Farrar walks through the Claude Code and Obsidian system he built to track appliances, chase insurance quotes, and keep household projects moving",
-    "image": "https://substackcdn.com/image/fetch/$s_!xREH!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69a1dd0f-1455-4aea-b063-661b9f8a48f1_728x524.png",
-    "published_ts": 1794402249,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://www.lennysnewsletter.com/p/claude-code-obsidian-my-familys-ai"
-  },
-  "lennysnewsletter.com/p/how-i-ai-grok-vs-dot-vs-muse-vs-duet": {
-    "title": "\ud83c\udf99\ufe0f How I AI: Grok vs. Dot vs. Muse vs. Duet + How Figma\u2019s PMs actually use AI every day",
-    "source": "Lenny's Newsletter",
-    "snippet": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
-    "image": "https://substack-post-media.s3.amazonaws.com/public/images/3cbd4d61-dbc1-4931-afa0-8a8cb35543cb_1456x1048.png",
-    "published_ts": 1793635328,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://www.lennysnewsletter.com/p/how-i-ai-grok-vs-dot-vs-muse-vs-duet"
-  },
-  "lennysnewsletter.com/p/how-figmas-pms-actually-use-ai-every": {
-    "title": "How Figma\u2019s PMs actually use AI every day | Ezra Mechaber (PM, Figma)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now | &#127897;&#65039; Figma growth PM Ezra Mechaber demos PM OS, a 31-skill repo used by 60+ PMs, and AutoXP, an agent that runs growth experiments with one human checkpoint",
-    "image": "https://substackcdn.com/image/fetch/$s_!Lh51!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F11f4fa87-2e46-4a6a-b3ab-6f110e781154_728x524.png",
-    "published_ts": 1793624651,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://www.lennysnewsletter.com/p/how-figmas-pms-actually-use-ai-every"
-  },
-  "lennysnewsletter.com/p/an-86-minute-guide-to-finding-pmf": {
-    "title": "An 86-minute guide to finding PMF | Rob Snyder (Author, The Power of Pull)",
-    "source": "Lenny's Newsletter",
-    "snippet": "Listen now (86 mins) | The founder who helped over 50 startups hit $1M ARR shares his PULL framework for finding real product-market fit",
-    "image": "https://substackcdn.com/image/fetch/$s_!VnwF!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F945d9351-92d1-4bae-8b26-267a7694402e_2048x2048.png",
-    "published_ts": 1792931494,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://www.lennysnewsletter.com/p/an-86-minute-guide-to-finding-pmf"
-  },
-  "design-milk.com/best-gifts-under-100": {
-    "title": "The Best Gifts Under $100 for Design Enthusiasts",
-    "source": "Design Milk",
-    "snippet": "From beautifully considered everyday essentials to objects that make a quiet statement, these gifts prove that less can offer so much more",
-    "image": "https://design-milk.com/images/2026/11/design-milk-best-gifts-under-100-2026.jpg",
-    "published_ts": 1794434323,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://design-milk.com/best-gifts-under-100/"
-  },
-  "design-milk.com/loll-designs-launches-the-here-and-there-collection": {
-    "title": "Reviving an Enduring Emblem of Simplicity, Loll Designs Launches the Here and There Collection",
-    "source": "Design Milk",
-    "snippet": "Developed in collaboration with design studio Argenta Park, the \u201cpeople and nature first\u201d brand reprises conservationist Aldo Leopold\u2019s humble yet ingenious bench as a family of low-maintenance, sustainable outdoor furnishings.",
-    "image": "https://design-milk.com/images/2026/10/Loll-image4.jpg",
-    "published_ts": 1794409221,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://design-milk.com/loll-designs-launches-the-here-and-there-collection/"
-  },
-  "itsnicethat.com/articles/georgie-mcausland-illustration-discover-121126": {
-    "title": "Georgie McAusland on refusing expensive tools to get more \u201csquish and texture\u201d into her drawings",
-    "source": "It's Nice That",
-    "snippet": "The artist is finding joy through drawing on location, capturing the true atmosphere of everyday scenes.",
-    "image": "https://admin.itsnicethat.com/images/1irhgvizaKxnywQ6PNxj3ZCR1w8=/284115/width-1440/Turtle_lake.jpg",
-    "published_ts": 1794474000,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://www.itsnicethat.com/articles/georgie-mcausland-illustration-discover-121126"
-  },
-  "itsnicethat.com/articles/dum-dum-studio-graphic-design-discover-121126": {
-    "title": "Dum Dum Studio\u2019s inventive design emerges from an open mind and a love of play",
-    "source": "It's Nice That",
-    "snippet": "Whether it\u2019s an identity, custom typeface or art direction, this studio is sourcing inspiration from the history of it\u2019s home city, Monterrey \u2013 the industrial capital of Mexico.",
-    "image": "https://m.itsnicethat.com/original_images/Dum-Dum-Studio-graphic-design-itsnicethat-7.gif",
-    "published_ts": 1794474000,
-    "first_seen_ts": 1794481230.8776789,
-    "link": "https://www.itsnicethat.com/articles/dum-dum-studio-graphic-design-discover-121126"
-  },
   "uxdesign.cc/ai-is-the-new-old-design-material-0e7f83540c9a?source=rss----138adf9c44c---4": {
     "title": "AI is the new old design material",
     "source": "UX Collective",
@@ -988,5 +880,203 @@
     "published_ts": 1794987993,
     "first_seen_ts": 1794999639.3550556,
     "link": "https://shiftnudge.com/archive/26905760"
+  },
+  "uxdesign.cc/if-ai-works-from-anywhere-why-are-we-commuting-to-watch-it-f903012aaa86?source=rss----138adf9c44c---4": {
+    "title": "If AI works from anywhere, why are we commuting to watch it?",
+    "source": "UX Collective",
+    "snippet": "The collaboration they promised, in practice.Companies say it\u2019s about collaboration. That\u2019s garbage. The reality is a room full of people in headphones, doing alone what they could\u2019ve done at\u00a0home.The recent post from Alexa von Tobel on LinkedIn.Alexa von Tobel, who runs an early-stage fund and has ",
+    "image": "https://cdn-images-1.medium.com/max/1024/1*F37au71Pq2XfgrOldFF-tg.jpeg",
+    "published_ts": 1795033059,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://uxdesign.cc/if-ai-works-from-anywhere-why-are-we-commuting-to-watch-it-f903012aaa86?source=rss----138adf9c44c---4"
+  },
+  "uxdesign.cc/too-claudified-9af067298b2a?source=rss----138adf9c44c---4": {
+    "title": "Too Claudified",
+    "source": "UX Collective",
+    "snippet": "A client rejected my motion work for looking machine-made. I&#x2019;d published the diagnosis five months earlier.Continue reading on UX Collective \u00bb",
+    "image": "https://cdn-images-1.medium.com/max/600/0*k5uI3X8C4vFS2_ZB.jpg",
+    "published_ts": 1795033025,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://uxdesign.cc/too-claudified-9af067298b2a?source=rss----138adf9c44c---4"
+  },
+  "doc.cc/humankind/doubt": {
+    "title": "Who Owns the Doubt?",
+    "source": "UX Collective",
+    "snippet": "On the wisdom of sitting with not knowing yet.",
+    "image": "https://images.prismic.io/doc-ux-collective/uv6XwHYLQO8_07Bo_Branded-1.png?auto=format,compress&rect=0,242,1000,517&w=1200&h=620",
+    "published_ts": 1794074192,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.doc.cc/humankind/doubt"
+  },
+  "smashingmagazine.com/2026/10/accordion-icons-which-work-best": {
+    "title": "Accordion Icons: Which Work Best?",
+    "source": "Smashing Magazine",
+    "snippet": "A closer look at accordion icons, why split menus are harmful, and why it\u2019s better not to have icons and text labels link to different actions. Plus, why the caret is the safest icon choice. You\u2019ll find more [useful guides](https://www.smashingmagazine.com/category/guides/) and [online workshops](ht",
+    "image": "http://files.smashing.media/articles/how-name-things-choose-accordion-icons/accordion-icons-which-work-best.jpg",
+    "published_ts": 1792760400,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://smashingmagazine.com/2026/10/accordion-icons-which-work-best/"
+  },
+  "nngroup.com/articles/ux-disciplines-glossary": {
+    "title": "UX Disciplines: Glossary",
+    "source": "NN/g",
+    "snippet": "Definitions of fields related to user experience, including UX design, UI design, visual design, interaction design, service design, UX research, and DesignOps",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/UX_Disciplines__Glossary.png",
+    "published_ts": 1792774800,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.nngroup.com/articles/ux-disciplines-glossary/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "nngroup.com/articles/ai-in-ux-survey-26": {
+    "title": "AI in UX: Work Is Faster, But Practitioners Have Mixed Feelings",
+    "source": "NN/g",
+    "snippet": "AI saves UX practitioners time on nearly every task, yet most feel lukewarm about it: mandates, unreliable output, and inflated expectations eat the gains.",
+    "image": "https://media.nngroup.com/media/articles/opengraph_images/AI_in_UX__Work_Is_Faster_But_Practitioners_Have_Mixed_Feelings.png",
+    "published_ts": 1792774800,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.nngroup.com/articles/ai-in-ux-survey-26/?utm_source=rss&utm_medium=feed&utm_campaign=rss-syndication"
+  },
+  "lennysnewsletter.com/p/state-of-the-tech-job-market-late": {
+    "title": "State of the tech job market: late 2026",
+    "source": "Lenny's Newsletter",
+    "snippet": "PMs are winning, engineers are plateauing, designers are hurting, and the biggest AI hiring boom isn&#8217;t in software",
+    "image": "https://substackcdn.com/image/fetch/$s_!-6sL!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8be609d0-ed10-464c-8b94-d052d45956da_2912x1940.png",
+    "published_ts": 1794323043,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.lennysnewsletter.com/p/state-of-the-tech-job-market-late"
+  },
+  "lennysnewsletter.com/p/how-a-19-year-old-intern-built-the": {
+    "title": "How a 19-year-old intern built the growth engine behind this $2B AI company | Hector Serrano",
+    "source": "Lenny's Newsletter",
+    "snippet": "Listen now (88 mins) | Hector Serrano on building Wispr Flow&#8217;s paid-UGC machine, hiring young talent over polished resumes, and why the best marketers are &#8220;allergic to AI&#8221;",
+    "image": "https://substackcdn.com/image/fetch/$s_!Te1w!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff93b47e3-0e4a-401a-ae9f-3310d9d19882_2048x2048.png",
+    "published_ts": 1793539896,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.lennysnewsletter.com/p/how-a-19-year-old-intern-built-the"
+  },
+  "design-milk.com/carsten-holler-mexico-city-slides": {
+    "title": "Carsten H\u00f6ller\u2019s Monumental Slides Bring Play to Mexico City",
+    "source": "Design Milk",
+    "snippet": "Four towering, functional slides connect different parts of Antara, where Sordo Madaleno\u2019s latest expansion brings architecture, contemporary art, and public space together",
+    "image": "https://design-milk.com/images/2026/11/FernandoFarfan_Antara_26-1-e1795038767697.jpg",
+    "published_ts": 1795038853,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://design-milk.com/carsten-holler-mexico-city-slides/"
+  },
+  "design-milk.com/oma-good-times-general-store-potato-head-bali": {
+    "title": "OMA Rethinks Retail Through Craft and Circular Design at Potato Head Bali",
+    "source": "Design Milk",
+    "snippet": "Designed by OMA, Potato Head's Good Times General Store brings Balinese craftsmanship, circular design, and interactive workshops to the traditional retail experience",
+    "image": "https://design-milk.com/images/2026/11/20260602_PH_General_Store_Architecture_0622-e1794932078966.jpg",
+    "published_ts": 1795032792,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://design-milk.com/oma-good-times-general-store-potato-head-bali/"
+  },
+  "design-milk.com/best-tech-gifts": {
+    "title": "The Best Tech Gifts for Design Enthusiasts",
+    "source": "Design Milk",
+    "snippet": "Thoughtfully designed technology that brings something unexpected to everyday life",
+    "image": "https://design-milk.com/images/2026/11/design-milk-gifts-tech-2026-2.jpg",
+    "published_ts": 1795032297,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://design-milk.com/best-tech-gifts/"
+  },
+  "itsnicethat.com/articles/alice-poyzer-other-joys-photography-discover-191126": {
+    "title": "Taxidermy, cat shows, and beauty pageants: Alice Poyzer takes us into her world and what it means to be neurodivergent",
+    "source": "It's Nice That",
+    "snippet": "The artist combines self-portraits and post-documentary to photograph her special interests in an alternative depiction of autism.",
+    "image": "https://admin.itsnicethat.com/images/YA_mCIHb5KE1PJkwqY5NYcRSb1I=/284179/width-1440/Alice-Poyzer-Photography-ItsNiceThat-7.jpg",
+    "published_ts": 1795078800,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.itsnicethat.com/articles/alice-poyzer-other-joys-photography-discover-191126"
+  },
+  "itsnicethat.com/articles/nika-belskaya-vivid-cereal-graphic-design-discover-191126": {
+    "title": "Enter the Vivid Cereal multiverse: Nika Belskaya\u2019s \u201cFrankenstein\u201d world of graphic storytelling",
+    "source": "It's Nice That",
+    "snippet": "Creating under the alias Vivid Cereal, Georgian artist Nika Belskaya hopes to expand her practise into a multiverse, with references ranging from children\u2019s toys to mycology",
+    "image": "https://admin.itsnicethat.com/images/am2EzEtVOnjdap3diRTuEhINSds=/284713/width-1440%7Cformat-jpeg/12__NikaBelskaya-Itsnicethat-Feminism.png",
+    "published_ts": 1795078800,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.itsnicethat.com/articles/nika-belskaya-vivid-cereal-graphic-design-discover-191126"
+  },
+  "itsnicethat.com/articles/biabum-graphic-design-illustration-discover-111126": {
+    "title": "Why the retro brand identities of Biabum studio have illustration built into their DNA",
+    "source": "It's Nice That",
+    "snippet": "The Brazilian studio has a knack for finding the right colour palette to create something that will move people.",
+    "image": "https://admin.itsnicethat.com/images/XGNyWE8Hi4xh0qokiup1ibkLHso=/284079/width-1440/Biabum_Salva_Bar_1.jpg",
+    "published_ts": 1794387600,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.itsnicethat.com/articles/biabum-graphic-design-illustration-discover-111126"
+  },
+  "itsnicethat.com/articles/emily-stein-aquasplash-photography-project-111126": {
+    "title": "Missing summer? Dive into Emily Stein colourful and chaotic snaps of Italian waterparks",
+    "source": "It's Nice That",
+    "snippet": "The photographer captures the retro aesthetics and loud, lurid nature of every kid\u2019s dream day out: \u201cA waterpark is summer turned up to full volume.\u201d",
+    "image": "https://admin.itsnicethat.com/images/c7AnPHqbtvcJYNNSUS0hnEt8JDI=/284194/width-1440/Emily-Stein-Aquasplash-photography-Itsnicethat-7.jpg",
+    "published_ts": 1794387600,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.itsnicethat.com/articles/emily-stein-aquasplash-photography-project-111126"
+  },
+  "itsnicethat.com/articles/adobe-max-miami-2026-creative-industry-sponsored-content-101126": {
+    "title": "Adobe Max Miami 2026 goes live online",
+    "source": "It's Nice That",
+    "snippet": "Adobe\u2019s creativity conference returns on 10-11 November, with a free online pass and a roster that runs from Terry Crews to Adobe\u2019s incoming CEO.",
+    "image": "https://admin.itsnicethat.com/images/BPQv1s4-JS6uP5PvC_ysE21HHag=/284580/width-1440/adobe-max-miami-2026-creative-industry-sponsored-content-itsnicethat-1.jpg",
+    "published_ts": 1794326400,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.itsnicethat.com/articles/adobe-max-miami-2026-creative-industry-sponsored-content-101126"
+  },
+  "itsnicethat.com/articles/trade-secrets-mpb-photography-event-partnership-101126": {
+    "title": "Trade Secrets: a free webinar series reveals the photography techniques behind Ana Flores, Sam Nicklin and Arielle Bobb-Willis photographs",
+    "source": "It's Nice That",
+    "snippet": "In partnership with MPB, we\u2019re launching Trade Secrets \u2013 a three-part webinar series exploring the ideas, techniques and kit behind great photography, with practical advice from three of our favourite image-makers.",
+    "image": "https://m.itsnicethat.com/original_images/META_ZIIW7MI.png?class=w1440",
+    "published_ts": 1794326400,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.itsnicethat.com/articles/trade-secrets-mpb-photography-event-partnership-101126"
+  },
+  "blog.jim-nielsen.com/2026/making-websites-in-2026": {
+    "title": "Making a website in 2026",
+    "source": "Sidebar",
+    "snippet": "How AI builders pick third-party backends and opaque credits\u2014and why understanding hidden dependencies matters a lot.",
+    "image": "",
+    "published_ts": 1795080306,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://blog.jim-nielsen.com/2026/making-websites-in-2026/"
+  },
+  "exactitudes.com/collectie": {
+    "title": "Exactitudes",
+    "source": "Sidebar",
+    "snippet": "A striking visual record of more than three thousand neatly differentiated social types these artists have documented over twenty years.",
+    "image": "",
+    "published_ts": 1795080192,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://exactitudes.com/collectie/"
+  },
+  "baldurbjarnason.com/2026/08-ai-might-be-the-end-of-our-careers": {
+    "title": "\u2018AI\u2019 might be the end of our careers",
+    "source": "Sidebar",
+    "snippet": "I never planned on becoming a software developer, and these days it feels like my exit from the industry might be similarly unplanned.",
+    "image": "https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.baldurbjarnason.com%2F2026%2F08-ai-might-be-the-end-of-our-careers%2F/opengraph/",
+    "published_ts": 1795080121,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://www.baldurbjarnason.com/2026/08-ai-might-be-the-end-of-our-careers/"
+  },
+  "deimos.evilrabbit.com": {
+    "title": "Design Zeitgeist",
+    "source": "Sidebar",
+    "snippet": "An encyclopedia written by a deliberating panel of models: blind ledgers, cross-examination, lot-drawn juries, and a bias report.",
+    "image": "https://deimos.evilrabbit.com/opengraph-image?8c21c83b512ea97d",
+    "published_ts": 1795080090,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://deimos.evilrabbit.com/"
+  },
+  "jespervos.com/craft/squircles": {
+    "title": "Squircles",
+    "source": "Sidebar",
+    "snippet": "Squircles are coming to the web, and you should prepare. Here's how.",
+    "image": "https://jespervos.com/og/craft/squircles.png",
+    "published_ts": 1795080006,
+    "first_seen_ts": 1795086034.6167579,
+    "link": "https://jespervos.com/craft/squircles"
   }
 }
